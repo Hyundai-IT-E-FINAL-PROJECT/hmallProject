@@ -1,4 +1,4 @@
-package org.team2.controller;
+package org.team2.controller.product;
 
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Log4j
-public class SampleController {
-
+@RequestMapping("/product")
+public class ProductController {
     @RequestMapping("/")
     public ModelAndView index(){
         log.info("sample controller start!!");
