@@ -7,9 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Log4j
+@RequestMapping("/")
 public class SampleController {
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public ModelAndView index(){
         log.info("sample controller start!!");
 
