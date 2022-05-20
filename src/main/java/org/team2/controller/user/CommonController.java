@@ -23,7 +23,7 @@ public class CommonController {
             model.addAttribute("error", "Login Error Check Your Account");
         }
         if(logout != null){
-            model.addAttribute("logout","Logout !!! ");
+            model.addAttribute("logout","Logout !!!!");
         }
     }
 

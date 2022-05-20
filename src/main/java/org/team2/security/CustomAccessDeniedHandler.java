@@ -1,4 +1,4 @@
-package org.team2.controller.security;
+package org.team2.security;
 
 import java.io.IOException;
 
