@@ -12,7 +12,7 @@ import org.team2.sample.Restaurant;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:/src/main/webapp/WEB-INF/applicationContext")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 @Log4j
 public class SampleTests {
     @Setter(onMethod_ = {@Autowired})
