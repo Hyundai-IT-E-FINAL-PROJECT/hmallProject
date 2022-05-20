@@ -1,19 +1,22 @@
 package org.team2.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class OrderVO {
 
-    private Integer orderSeq, point, userSeq, invoice;
-    private String status, userName, userNumber, delivery;
-    private Date createAt, updatedAt;
+    private Long seq;//pk
+    private Long user_seq;//fk
+    private Long point;
+    private Long invoice;
+    private String status;
+    private String userName;
+    private String userNumber;
+    private String delivery;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }

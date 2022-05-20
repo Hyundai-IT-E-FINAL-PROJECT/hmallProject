@@ -1,10 +1,14 @@
 package org.team2.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.team2.domain.OrderVO;
 
 public interface OrderMapper {
 
-    public Integer insert(OrderVO vo);
+    int insertOne(OrderVO vo);
 
+    OrderVO readOne(Long seq);
+
+    int updateOrder(OrderVO vo);
+
+    int deleteOne(Long seq);
 }

@@ -1,9 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.OrderMapper">
+    <select id="readOne" resultType="org.team2.domain.OrderVO">
+        select * from tbl_order where order_seq=#{seq}
+    </select>
 
+    <insert id="insertOne">
+        insert into tbl_order(order_seq, user_seq, order_point, order_status, order_user_name, order_user_number,
+                              order_delivery, order_invoice, created_at, updated_at)
+        values(seq_order.nextval, #{user_seq}, #{point}, #{status}, #{userName}, #{userNumber}, #{delivery}, #{invoice}, sysdate, sysdate)
+    </insert>
 
+    <update id="updateOrder">
+        update tbl_order
+        set order_point=#{point},
+            order_status=#{status},
+            order_user_number=#{userNumber},
+            order_delivery=#{delivery},
+            order_invoice=#{invoice},
+            updated_at=sysdate
+        where order_seq=#{seq}
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_order where order_seq=#{seq}
+    </delete>
 
 </mapper>
