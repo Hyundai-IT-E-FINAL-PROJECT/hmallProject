@@ -22,4 +22,16 @@ public class MypageController {
 
         return mav;
     }
+
+    @RequestMapping("level")
+    public ModelAndView level(){
+        log.info("level test");
+
+        ModelAndView mav = new ModelAndView();
+//        mav.addObject("title", "Spring Test");
+//        mav.addObject("content", "Hello World!!");
+        mav.setViewName("mypage.mypageLevel");
+
+        return mav;
+    }
 }

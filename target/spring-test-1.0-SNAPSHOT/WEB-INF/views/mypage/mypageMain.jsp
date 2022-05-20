@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css">
@@ -18,72 +21,9 @@
             <form name="upntLeftForm" method="post" target="uPnt">
                 <input type="hidden" name="mcustNo" value="" />
             </form>
-            <div class="side-content">
-                <h3 class="side-menu-title"><a href="https://www.hmall.com/p/mpf/selectMyPageMain.do">마이페이지</a></h3>
-                <div class="side-menu-list">
-                    <ul>
-                        <li>
-                            <a href="javascript:;">주문현황</a>
-                            <ul class="sub-list">
+            <!-- 마이페이지 사이드바 있던 곳-->
 
-
-
-                                <li><a href="https://www.hmall.com/p/mpa/selectOrdDlvCrst.do?pageType=ALL">주문/배송현황</a></li>
-
-
-                                <li><a href="https://www.hmall.com/p/mpa/selectOrdDlvCrst.do?pageType=D2">취소/반품/교환/AS현황</a></li>
-                                <li><a href="https://www.hmall.com/p/mpa/selectCashTabMainPage.do">영수증/세금계산서</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">쇼핑통장</a>
-                            <ul class="sub-list">
-                                <li><a href="https://www.hmall.com/p/mpe/selectCopnList.do">쿠폰</a></li>
-                                <li><a href="https://www.hmall.com/p/mpe/selectUPntTabPage.do">포인트</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">나의 활동</a>
-                            <ul class="sub-list">
-                                <li><a href="https://www.hmall.com/p/mpc/sltdItemList.do">찜</a></li>
-                                <li><a href="https://www.hmall.com/p/mpc/bitmAlrimList.do">방송알리미</a></li>
-                                <li><a href="https://www.hmall.com/p/mpe/evntEntryDtl.do">참여이벤트</a></li>
-                                <li><a href="https://www.hmall.com/p/mpb/selectItemEvalAtclListPagingByCondtion.do">나의 상품평</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">회원정보</a>
-                            <ul class="sub-list">
-
-
-
-                                <li><a href="https://www.hmall.com/p/mpd/changeMemberInfoForm.do">회원정보관리</a><li>
-
-
-                                <li><a href="https://www.hmall.com/p/mpd/selectMemberDstnAdr.do">배송지관리</a></li>
-                                <li><a href="javascript:;" onclick="fn_HppManage();">H.Point Pay 관리</a></li>
-                                <li><a href="https://www.hmall.com/p/mpd/selectMemberUseInfo.do">개인정보 이용현황</a></li>
-
-
-
-                                <li><a href="https://www.hmall.com/p/mpd/leaveMemberForm.do">회원탈퇴</a></li>
-
-
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">고객센터</a>
-                            <ul class="sub-list">
-                                <li><a href="https://www.hmall.com/p/ccd/selectCnslOrdReqDtl.do">1:1 상담</a></li>
-                                <li><a href="https://www.hmall.com/p/mpb/selectItemQNAPagingByCondition.do">상품 Q&A</a></li>
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-
+            <%@ include file="mypageSide.jsp" %>
 
 
             <div class="contents">
@@ -119,7 +59,7 @@
 
 
                                 <div class="btngroup">
-                                    <a href="https://www.hmall.com/pevent/eva/evntFamilyZoneMain.do" class="btn btn-benefit sm"><span>혜택보기</span></a>
+                                    <a href="${contextPath}/mypage/level" class="btn btn-benefit sm"><span>혜택보기</span></a>
                                 </div>
                             </div>
                             <!-- //.rating -->
