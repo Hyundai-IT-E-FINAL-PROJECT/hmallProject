@@ -7,10 +7,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.team2.domain.ProductVO;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
+
+@RunWith(SpringRunner.class)
+@ContextConfiguration("file:/src/main/webapp/WEB-INF/applicationContext")
 @Log4j
 public class ProductMapperTest {
     @Setter(onMethod_ = @Autowired)
@@ -24,29 +26,26 @@ public class ProductMapperTest {
     @Test
     public void testGetOne() {
         Long targetProductSeq = 4L;
+        ProductVO vo = mapper.getOne(targetProductSeq);
+        log.info(vo);
+    }
+
+    @Test
+    public void testInsert() {
+        ProductVO vo = new ProductVO();
+
+        vo.setProductName("test1");
+        mapper.insert(vo);
+    }
+
+    @Test
+    public void testGetAll() {
+        Long targetProductSeq = 4L;
 
         ProductVO vo = mapper.getOne(targetProductSeq);
 
         log.info(vo);
     }
-
-//    @Test
-//    public void testRead() {
-//        Long targetProductSeq = 4L;
-//
-//        ProductVO vo = mapper.getOne(targetProductSeq);
-//
-//        log.info(vo);
-//    }
-//
-//    @Test
-//    public void testRead() {
-//        Long targetProductSeq = 4L;
-//
-//        ProductVO vo = mapper.getOne(targetProductSeq);
-//
-//        log.info(vo);
-//    }
 //
 //    @Test
 //    public void testRead() {

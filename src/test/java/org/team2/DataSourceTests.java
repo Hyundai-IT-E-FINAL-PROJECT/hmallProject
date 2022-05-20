@@ -16,7 +16,7 @@ import java.sql.Connection;
 import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
+@ContextConfiguration("file:/src/main/webapp/WEB-INF/applicationContext")
 @Log4j
 public class DataSourceTests {
 
