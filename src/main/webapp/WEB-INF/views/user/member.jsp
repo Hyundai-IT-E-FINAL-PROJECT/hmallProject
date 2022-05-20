@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: SM-PC
-  Date: 2022-05-19
-  Time: 오후 2:33
+  User: kimbyeounghoon
+  Date: 2022/05/19
+  Time: 3:56 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,6 +11,6 @@
     <title>all</title>
 </head>
 <body>
-<h1>all page</h1>
+<h1>member page</h1>
 </body>
 </html>
