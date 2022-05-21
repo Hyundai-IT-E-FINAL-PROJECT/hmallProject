@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>Title</title>
@@ -24,7 +25,10 @@
           <input type="password" name="password" value="admin">
       </div>
       <div>
-          <input type="submit">
+          <input type="submit" value="로그인">
+      </div>
+      <div>
+          <a href="${contextPath}/user/signup">회원가입</a>
       </div>
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
   </form>
