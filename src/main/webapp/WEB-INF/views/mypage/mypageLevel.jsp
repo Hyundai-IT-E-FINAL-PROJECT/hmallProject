@@ -8,57 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-
-    <link rel="shortcut icon" href="https://www.hmall.com/favicon.ico" />
-    <!-- UI/UX Style -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/common.css"><!-- 공통 css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/layout.css"><!-- 공통 Layout css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/popup.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
-    <style>
-        .hidden {display:none !important;}
-    </style>
-    <script src="//image.hmall.com/p/js/co/jquery-3.4.1.min.js"></script><!-- jQuery Plugin -->
-    <script src="//image.hmall.com/p/js/co/jquery.easing.min.js"></script><!-- jQuery UI Effect -->
-    <script src="//image.hmall.com/p/js/co/jquery-ui.1.12.1.min.js"></script><!-- jQuery UI js -->
-    <script src="//image.hmall.com/p/js/co/ukDetect.min.js"></script><!-- UI에 사용하는 Detect -->
-    <script src="//image.hmall.com/p/js/co/slick.min.js"></script><!-- 공통 Slide 플러그인 -->
-    <script src="//image.hmall.com/p/js/co/common.js"></script><!-- UI에 사용하는 기본 js  -->
-    <script src="//image.hmall.com/p/js/co/co.js"></script><!-- UI에 사용하는 기본 js  -->
-    <script src="//image.hmall.com/p/js/co/jquery.cookie.js"></script>
-    <script src="//image.hmall.com/p/js/co/commonFunction.js"></script><!-- as-is common.js 상속  -->
-    <script src="//image.hmall.com/p/js/co/reDirectExceptUrlList.js"></script><!-- 로그인버튼 click 리다이렉트 예외 url리스트  -->
-
-    <!-- Google analytics -->
-    <script type="text/javascript" src="//image.hmall.com/p/js/co/GoogleAnalyticsBuilder.js?ver=052011"></script>
-    <script type="text/javascript" src="//image.hmall.com/p/js/co/ScreenNameObj.js?ver=052011"></script>
-
-
-
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1066206974"></script>
-    <!-- Google analytics end -->
-
-    <!-- includeScript -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css">
-
-</head>
 <body>
 <div class="wrap wing-none mp-membership"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->
     <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>
 
     <!-- gnb setting -->
-
-
     <!-- header -->
 
-
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052011"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052011" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052011" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchSpecialShopLinkList.js?ver=052011" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchBrndShopLinkList.js?ver=052011" charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052011"
+            charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052011"
+            charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchSpecialShopLinkList.js?ver=052011"
+            charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchBrndShopLinkList.js?ver=052011"
+            charset="UTF-8"></script>
 
 
     <script type="text/javascript" src="//image.hmall.com/gen/js/new_main_data.js?ver=052011" charset="UTF-8"></script>
@@ -119,7 +84,10 @@
                                             <p class="title"><strong>5,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
                                     <div class="coupon">
@@ -127,7 +95,10 @@
                                             <p class="title"><strong>3,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
@@ -136,7 +107,10 @@
                                             <p class="title"><strong>5</strong>%</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                             </td>
                             <td>
@@ -146,7 +120,10 @@
                                             <p class="title"><strong>5,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
                                     <div class="coupon">
@@ -154,7 +131,10 @@
                                             <p class="title"><strong>3,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
@@ -163,7 +143,10 @@
                                             <p class="title"><strong>5</strong>%</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                             </td>
                             <td>
@@ -173,7 +156,10 @@
                                             <p class="title"><strong>5,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
                                     <div class="coupon">
@@ -181,7 +167,10 @@
                                             <p class="title"><strong>3,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                 </a>
                                 <a href="javascript:;" class="coupon-box">
@@ -190,7 +179,10 @@
                                             <p class="title"><strong>5</strong>%</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </a>
                             </td>
                             <td>
@@ -200,7 +192,10 @@
                                             <p class="title"><strong>3,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                 </a>
                             </td>
@@ -231,14 +226,13 @@
                                             <p class="title"><strong>5,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                     <!-- coupon-down disabled 이면 버튼 문구 다운완료로 변경 -->
                                 </div>
-
-
-
-
 
 
                             </td>
@@ -249,13 +243,12 @@
                                             <p class="title"><strong>2,000</strong>원</p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x2</em></div>
                                 </div>
-
-
-
-
 
 
                             </td>
@@ -272,7 +265,10 @@
                                             <p class="title"><strong class="f-15">무료배송</strong></p>
                                         </div>
                                     </div>
-                                    <div class="coupon-bg"><div></div><div></div></div>
+                                    <div class="coupon-bg">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                     <div class="badge"><em>x3</em></div>
                                 </a>
                             </td>
@@ -341,7 +337,7 @@
                                 <div class="topclass-box">
                                     <div class="box">
                                         <p class="tit">결제금액 0.1% H.Point 적립</p>
-                                        <p class="txt">* 단, TV방송 상품, 순금 등  일부 상품은 적립률이 상이합니다.
+                                        <p class="txt">* 단, TV방송 상품, 순금 등 일부 상품은 적립률이 상이합니다.
                                             <br>
                                             * 정확한 적립 포인트는 주문서 및 마이페이지에서 확인 가능합니다.
                                         </p>
@@ -373,7 +369,8 @@
                         <tbody>
                         <tr>
                             <th scope="row">반영 시기</th>
-                            <td><span class="color-ff5340">매월 3일</span> <br>※ 단, 탑클래스 등급은 연 2회(1월, 7월) 변경 후, 6개월간 등급 유지</td>
+                            <td><span class="color-ff5340">매월 3일</span> <br>※ 단, 탑클래스 등급은 연 2회(1월, 7월) 변경 후, 6개월간 등급 유지
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">등급 기준</th>
@@ -441,7 +438,11 @@
                             <td>
                                 <ul class="hyphenlist">
                                     <li>유효기간 : 당월 3일 ~ 익월 2일</li>
-                                    <li>Hmall에 바로접속 시에만 사용 가능 <button type="button" onclick="window.open('https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2049451')" class="btn btn-linelgray small25"><span>바로접속 자세히 보기</span></button></li>
+                                    <li>Hmall에 바로접속 시에만 사용 가능
+                                        <button type="button"
+                                                onclick="window.open('https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2049451')"
+                                                class="btn btn-linelgray small25"><span>바로접속 자세히 보기</span></button>
+                                    </li>
                                     <li>일부 상품은 적용 불가하며, 적용 제외 상품이 포함되면 해당 주문에 적용 불가</li>
                                     <li>주문 취소/반품 시 재부여 불가</li>
                                     <li>최소결제금액 : 5,000원 쿠폰 - 50,000원 / 3,000원 쿠폰 - 30,000원 / 5% 쿠폰 - 1원</li>
@@ -455,7 +456,11 @@
                             <td>
                                 <ul class="hyphenlist">
                                     <li>유효기간 : 당월 3일 ~ 익월 2일</li>
-                                    <li>Hmall 바로접속 시에만 사용 가능 <button type="button" onclick="window.open('https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2049451')" class="btn btn-linelgray small25"><span>바로접속 자세히 보기</span></button></li>
+                                    <li>Hmall 바로접속 시에만 사용 가능
+                                        <button type="button"
+                                                onclick="window.open('https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2049451')"
+                                                class="btn btn-linelgray small25"><span>바로접속 자세히 보기</span></button>
+                                    </li>
                                     <li>기본 배송비 포함 상품에 대하여, 주문 건당 1개 사용 가능</li>
                                     <li>일부 상품 적용 불가</li>
                                     <li>주문 취소/반품 시 재부여 불가</li>
