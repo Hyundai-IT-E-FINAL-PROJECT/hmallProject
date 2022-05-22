@@ -57,9 +57,7 @@ public class UserController {
         try {
             log.info(userVO.getNo());
             userService.insertSignup(userVO);
-            //userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
-            //log.info(userVO.getUser_pw());
-            return "redirect:../";
+            return "/member";
         } catch (Exception e) {
             e.printStackTrace();
             log.info("에러다 !!");

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -219,10 +220,20 @@
 				<ul>
 
 
-
+					<sec:authorize access="isAnonymous()">
 					<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<sec:authentication property="principal" var="pinfo" />
+						<li>${pinfo.userVO.user_name}님</a></li>
+						<form action="/customLogout" method="post">
+<%--							<li><a href="${contextPath}">로그아웃</a></li>--%>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<button>로그아웃</button>
+						</form>
+					</sec:authorize>
 
-					<li><a href="javascript:bizSpringTag('https://www.hmall.com/p/cua/hmallRegistMember.do', '^헤더^회원가입');">회원가입</a></li>
+					<li><a href="${contextPath}/user/signup">회원가입</a></li>
 
 
 					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>

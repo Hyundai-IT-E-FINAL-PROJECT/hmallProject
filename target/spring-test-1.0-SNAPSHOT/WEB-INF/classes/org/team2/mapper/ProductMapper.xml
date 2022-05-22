@@ -5,7 +5,7 @@
     <select id="getOne" resultType="org.team2.domain.ProductVO">
         select *
         from tbl_product
-        where product_seq = #{seq}
+        where product_seq = #{product_seq}
     </select>
 
     <insert id="insert">
@@ -38,11 +38,11 @@
                 #{productCount},
                 #{productLarge},
                 #{productSmall},
-                #{op1_seq1},
-                #{op1_seq2},
-                #{op1_seq3},
-                #{op1_seq4},
-                #{op1_seq5},
+                #{op2_seq1, jdbcType=VARCHAR},
+                #{op2_seq2, jdbcType=VARCHAR},
+                #{op2_seq3, jdbcType=VARCHAR},
+                #{op2_seq4, jdbcType=VARCHAR},
+                #{op2_seq5, jdbcType=VARCHAR},
                 sysdate,
                 sysdate)
     </insert>
@@ -58,11 +58,11 @@
             PRODUCT_COUNT       = #{productCount},
             PRODUCT_LARGE       = #{productLarge},
             PRODUCT_SMALL       = #{productSmall},
-            OP2_SEQ1            = #{op1_seq1},
-            OP2_SEQ2            = #{op1_seq2},
-            OP2_SEQ3            = #{op1_seq3},
-            OP2_SEQ4            = #{op1_seq4},
-            OP2_SEQ5            = #{op1_seq5},
+            OP2_SEQ1            = #{op2_seq1, jdbcType=VARCHAR},
+            OP2_SEQ2            = #{op2_seq2, jdbcType=VARCHAR},
+            OP2_SEQ3            = #{op2_seq3, jdbcType=VARCHAR},
+            OP2_SEQ4            = #{op2_seq4, jdbcType=VARCHAR},
+            OP2_SEQ5            = #{op2_seq5, jdbcType=VARCHAR},
             updated_at          = SYSDATE
         WHERE PRODUCT_SEQ = #{seq}
     </update>

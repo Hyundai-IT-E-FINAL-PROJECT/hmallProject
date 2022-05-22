@@ -13,6 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SampleControllerTest extends TestCase {
 
     @Test
-    public void testIndex() {
+    public void 한글인코딩제발() {
     }
 }

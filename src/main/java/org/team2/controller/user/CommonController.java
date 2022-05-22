@@ -33,7 +33,4 @@ public class CommonController {
         log.info("custom Logout");
     }
 
-//    @PostMapping("/user/signup")
-//    public String signup(@ModelAttribute )
-
 }
