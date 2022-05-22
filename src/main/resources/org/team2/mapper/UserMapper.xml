@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.UserMapper">
+    <insert id="insertSignup" >
+        <selectKey keyProperty="no" order="BEFORE" resultType="int">
+            SELECT seq_user.nextval from dual
+        </selectKey>
+        INSERT INTO TBL_USER (
+            USER_SEQ,
+            USER_ID,
+            USER_PW,
+            USER_NAME,
+            USER_PHONE,
+            CREATED_AT,
+            UPDATED_AT,
+            USER_EMAIL,
+            USER_BIRTH,
+            USER_GENDER,
+            USER_EMAIL_RECEIVE,
+            USER_SMS_RECEIVE,
+            USER_PURCHASE_AMOUNT,
+            USER_LEVEL,
+            ENABLED
+        ) VALUES (
+                     #{no},
+                     #{user_id},
+                     #{user_pw},
+                     #{user_name},
+                     #{user_phone},
+                     sysdate,
+                     sysdate,
+                     #{user_email},
+                     #{user_birth},
+                     #{user_gender},
+                     #{user_email_receive},
+                     #{user_sms_receive},
+                     0,
+                     0,
+                     1)
+    </insert>
+
+    <insert id="insertAuth">
+        INSERT INTO TBL_USER_AUTH
+        VALUES
+            (
+             SEQ_USER_AUTH.NEXTVAL,
+             #{userNum},
+             'ROLE_USER',
+             sysdate,
+             sysdate
+            )
+    </insert>
+
+    <resultMap id="userMap" type="org.team2.domain.UserVO">
+        <id property="user_id" column="user_id"/>
+        <result property="no" column="user_seq"/>
+        <result property="user_id" column="user_id"/>
+        <result property="user_pw" column="user_pw"/>
+        <result property="user_name" column="user_name"/>
+        <result property="created_at" column="created_at"/>
+        <result property="updated_at" column="updated_at"/>
+        <collection property="authList" resultMap="authMap">
+        </collection>
+    </resultMap>
+
+    <resultMap id="authMap" type="org.team2.domain.AuthVO">
+        <result property="user_seq" column="user_seq"/>
+        <result property="user_auth_authority" column="user_auth_authority"/>
+    </resultMap>
+
+    <select id="read" resultMap="userMap">
+        SELECT US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY
+        FROM
+        TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
+        where US.user_id = #{user_id}
+    </select>
+</mapper>
