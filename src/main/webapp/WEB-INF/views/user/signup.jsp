@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -95,7 +95,7 @@
                 <section class="step3_container">
                     <div class="layout1">
                         <div class="wrap_box">
-                            <form name="joinForm" id="mainCustForm" method="post" action="insertUser">
+                            <form name="joinForm" id="mainCustForm" method="post" action="insertUser" accept-charset="UTF-8">
 
                                     <!-- 개인정보입력 -->
                                     <div class="input_infomation">

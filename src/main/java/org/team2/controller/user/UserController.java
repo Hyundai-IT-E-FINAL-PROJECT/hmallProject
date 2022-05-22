@@ -49,7 +49,7 @@ public class UserController {
        log.info("signup");
     }
 
-    @PostMapping("/insertUser")
+    @PostMapping(value = "/insertUser", produces = "text/plain;charset=UTF-8")
     public String insertSignup(@ModelAttribute UserVO userVO, Model model){
         log.info("데이터 잘 넘어옴 !");
         log.info(userVO.toString());
@@ -57,7 +57,7 @@ public class UserController {
         try {
             log.info(userVO.getNo());
             userService.insertSignup(userVO);
-            return "/member";
+            return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();
             log.info("에러다 !!");
