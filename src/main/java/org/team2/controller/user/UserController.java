@@ -13,7 +13,7 @@ import org.team2.domain.UserVO;
 import org.team2.service.UserService;
 
 @Log4j
-@RequestMapping("/user/*")
+@RequestMapping("/user")
 @Controller
 //@WebAppConfiguration
 //@ContextConfiguration("file:src/main/webapp/WEB-INF/security-context.xml")
@@ -22,6 +22,7 @@ public class UserController {
 //    @Setter(onMethod_ = @Autowired)
 //    private PasswordEncoder pwencoder;
 
+    @Setter(onMethod_ = @Autowired)
     private UserService userService;
 
     public UserController (UserService userService){
@@ -65,6 +66,16 @@ public class UserController {
             model.addAttribute("url", "javascript:history.back();");
         }
         return "customLogin";
+    }
+    @ResponseBody
+    @PostMapping ("/idCheck")
+    public int idCheck(@RequestParam("id") String id) throws Exception{
+        log.info("userIdCheck 진입");
+        log.info(id);
+        int cnt = 0;
+        cnt = userService.idCheck(id);
+        //int cnt = 0;
+        return cnt;
     }
 
 }

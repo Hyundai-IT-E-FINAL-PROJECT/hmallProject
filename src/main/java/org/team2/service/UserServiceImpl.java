@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService{
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
+
     @Transactional
     @Override
     public void insertSignup(UserVO userVO) throws Exception{
@@ -32,5 +33,12 @@ public class UserServiceImpl implements UserService{
         int userNum = userVO.getNo();
         log.info(userNum);
         userMapper.insertAuth(userNum);
+    }
+
+    @Override
+    public int idCheck(String id) throws Exception{
+        int cnt = userMapper.idCheck(id);
+        log.info("cnt: "+cnt);
+        return cnt;
     }
 }

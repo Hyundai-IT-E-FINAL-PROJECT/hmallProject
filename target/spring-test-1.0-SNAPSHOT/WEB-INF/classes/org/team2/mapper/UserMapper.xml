@@ -53,6 +53,10 @@
             )
     </insert>
 
+    <select id="idCheck" parameterType="String" resultType="int">
+        select count(user_id) from tbl_user where user_id = #{user_id}
+    </select>
+
     <resultMap id="userMap" type="org.team2.domain.UserVO">
         <id property="user_id" column="user_id"/>
         <result property="no" column="user_seq"/>

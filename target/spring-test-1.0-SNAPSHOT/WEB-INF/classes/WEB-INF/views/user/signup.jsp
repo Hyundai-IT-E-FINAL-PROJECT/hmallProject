@@ -50,8 +50,44 @@
     <script type="text/javascript" src="/assets/app/js/swiper.min.js"></script><!-- RENEWAL 2021 -->
     <script type="text/javascript" src="/assets/app/js/common-pub.js"></script><!-- RENEWAL 2021 -->
     <script type="text/javascript" src="/assets/app/js/page-pub.js"></script><!-- RENEWAL 2021 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<%--    <script type="text/javascript">--%>
+<%--        function idCheck() {--%>
 
+<%--            var memberId = $("#id").val();--%>
 
+<%--            if(memberId.search(/\s/) != -1) {--%>
+<%--                alert("아이디에는 공백이 들어갈 수 없습니다.");--%>
+<%--            } else {--%>
+<%--                if(memberId.trim().length != 0) {--%>
+<%--                    $.ajax({--%>
+<%--                        async : true,--%>
+<%--                        type : 'POST',--%>
+<%--                        data: memberId,--%>
+<%--                        url: "user/idCheck",--%>
+<%--                        dataType: "json",--%>
+<%--                        contentType: "application/json; charset=UTF-8",--%>
+<%--                        success: function(count) {--%>
+<%--                            if(count > 0) {--%>
+<%--                                alert("해당 아이디 존재");--%>
+<%--                                $("#submit").attr("disabled", "disabled");--%>
+<%--                                window.location.reload();--%>
+<%--                            } else {--%>
+<%--                                alert("사용가능 아이디");--%>
+<%--                                $("#submit").removeAttr("disabled");--%>
+<%--                            }--%>
+<%--                        },--%>
+<%--                        error: function(error) {--%>
+<%--                            alert("아이디를 입력해주세요.");--%>
+<%--                        }--%>
+<%--                    });--%>
+<%--                } else {--%>
+<%--                    alert("아이디를 입력해주세요.");--%>
+<%--                }--%>
+<%--            }--%>
+<%--        }--%>
+
+<%--    </script>--%>
 
 
 
@@ -75,6 +111,8 @@
     <script type="text/javascript" src="/js/jquery/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="/css/customer.css?ver=4" />  -->
 
+
+</head>
     <div id="contents" class="subPage">
         <div id="sign">
 
@@ -108,8 +146,12 @@
                                                     <label for="id" class="inp_tit">아이디<span class="nec">*</span></label>
                                                     <!-- input에 값을 잘 못 입력하면 .inp_bundle에 클래스 "error" 추가해주세요. (포커스되고 값이 입력되면 "focus" 클래스가 붙음) -->
                                                     <div class="inp_bundle registerCustId">
-                                                        <input type="text" title="아이디 입력" id="registerCustId" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" />
+                                                        <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" />
                                                         <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
+                                                        <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.</span>
+                                                        <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.</span>
+<%--                                                        <button class="idCheck" type="button" id="idCheck" onclick="checkId();" value="N">중복확인</button>--%>
+                                                        <!-- oninput은 사용자의 입력을 받으면 실행되는 이벤트이다. 즉 커서를 다른 곳으로 옮기지 않아도 입력 즉시 DB에서 id를 비교할 수 있다.-->
                                                     </div>
                                                 </div>
                                                 <!--// 아이디 -->
@@ -118,12 +160,25 @@
                                                 <div class="wrap_inp">
                                                     <label for="password" class="inp_tit">비밀번호<span class="nec">*</span></label>
                                                     <div class="inp_bundle registerPwd1">
-                                                        <input type="password" title="비밀번호 입력" id="registerPwd1" name="user_pw" maxlength="30" class="inp flex" placeholder="비밀번호" />
+                                                        <input type="password" title="비밀번호 입력" id="pw1" name="user_pw" maxlength="30" class="inp flex" placeholder="비밀번호" onchange="check_pw()" />
                                                     </div>
                                                     <p class="t_error" id="pwdCheckMsg1" style="display:none">패스워드는 8자리 ~ 30자리로 입력해주세요.</p>
                                                     <p class="cmt_guide1 mark1 inp_mt">영문, 숫자, 특수문자를 포함 8~30 자리로 입력해주세요.</p>
                                                 </div>
                                                 <!--// 비밀번호 -->
+
+                                                <!-- 비밀번호 확인 -->
+                                                <div class="wrap_inp">
+                                                    <label for="password" class="inp_tit">비밀번호 확인<span class="nec">*</span></label>
+                                                    <div class="inp_bundle registerPwd1">
+                                                        <input type="password" title="비밀번호 입력" id="pw2" maxlength="30" class="inp flex" placeholder="비밀번호" onchange="check_pw()" />&nbsp;<span id="check"></span>
+
+<%--                                                        <span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>--%>
+<%--                                                        <span class="pwck_input_re_1" style="color:#008000; display: none;">비밀번호가 일치합니다.</span>--%>
+<%--                                                        <span class="pwck_input_re_2" style="color:#008000; display: none;">비밀번호가 일치하지 않습니다.</span>--%>
+                                                    </div>
+                                                </div>
+                                                <!--// 비밀번호 확인 -->
 
                                                 <!--// 이름-->
                                                 <div class="wrap_inp">
@@ -206,6 +261,50 @@
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        function checkId(){
+            var id = $('#id').val();
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfTokenValue = "${_csrf.token}";
+            $.ajax({
+                url:'${contextPath}/user/idCheck' , //Controller 에서 인식할 주소
+                type:'POST',
+                data: {id:id},
+                dataType:'text',
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function (cnt){
+                    console.log(cnt);
+                    //console.log(count);
+                    if(cnt == '<Integer>0</Integer>') {
+                        $('.id_ok').css("display", "inline-block");
+                        $('.id_already').css("display", "none")
+                    }else if(cnt == '<Integer>1</Integer>'){
+                        $('.id_already').css("display","inline-block");
+                        $('.id_ok').css("display","none");
+                    }
+                },
+                error:function (){
+                    alert("에러입니다.");
+                }
+            });
+        };
+
+        function check_pw(){
+            var pw = document.getElementById('pw1').value;
+            console.log(pw);
+            if(document.getElementById('pw1').value == document.getElementById('pw2').value){
+                document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                document.getElementById('check').style.color='blue';
+            } else{
+                document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                document.getElementById('check').style.color='red';
+            }
+        }
+
+    </script>
 
     <!-- 팝업 : 마케팅 수신 동의 -->
     <div class="popup_ui type_modal pop_marketing_agree" style="display: none;">
