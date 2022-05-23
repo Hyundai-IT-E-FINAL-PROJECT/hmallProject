@@ -1,6 +1,7 @@
 package org.team2.controller.mypage;
 
 import lombok.extern.log4j.Log4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Log4j
-@RequestMapping("/mypage")
 public class MypageController {
 
 /*
@@ -20,14 +20,15 @@ public class MypageController {
     }
 */
 
-    @RequestMapping("")
-    public ModelAndView mypage() {
+    @GetMapping("mypage")
+    @PreAuthorize("isAuthenticated()")
+    public String mypage() {
         log.info("tiles test");
 
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypage.mypageMain");
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("mypage.mypageMain");
 
-        return mav;
+        return "mypage.mypageMain";
     }
 
     @RequestMapping("level")

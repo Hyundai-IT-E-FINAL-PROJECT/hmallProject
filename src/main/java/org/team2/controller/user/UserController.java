@@ -57,7 +57,7 @@ public class UserController {
         try {
             log.info(userVO.getNo());
             userService.insertSignup(userVO);
-            return "/member";
+            return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();
             log.info("에러다 !!");

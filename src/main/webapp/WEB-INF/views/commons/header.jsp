@@ -134,7 +134,7 @@
 
 					</a>
 				</li>
-				<li><a class="mypage" href="${contextPath}/mypage"><span>마이페이지</span></a></li>
+				<li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
 				<li>
 					<a href="javascript:;" class="recently" id="recentlyImg" onclick="openRecentShopping(); return false;">
 						<span>최근본쇼핑</span>
@@ -217,25 +217,19 @@
 			<div class="header-util">
 				<h2 class="hiding">유틸메뉴</h2>
 				<!-- 로그인 전 -->
-				<ul>
-
-
+				<ul style="display: flex;">
 					<sec:authorize access="isAnonymous()">
-					<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+						<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+						<li><a href="${contextPath}/user/signup">회원가입</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property="principal" var="pinfo" />
-						<li>${pinfo.userVO.user_name}님</a></li>
-						<form action="/customLogout" method="post">
-<%--							<li><a href="${contextPath}">로그아웃</a></li>--%>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-							<button>로그아웃</button>
+						<li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+						<li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
+						<form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
+							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 						</form>
 					</sec:authorize>
-
-					<li><a href="${contextPath}/user/signup">회원가입</a></li>
-
-
 					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
 				</ul>
 			</div>
