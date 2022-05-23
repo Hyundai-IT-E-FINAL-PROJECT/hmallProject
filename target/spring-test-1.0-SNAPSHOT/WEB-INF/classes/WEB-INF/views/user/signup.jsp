@@ -160,7 +160,7 @@
                                                 <div class="wrap_inp">
                                                     <label for="password" class="inp_tit">비밀번호<span class="nec">*</span></label>
                                                     <div class="inp_bundle registerPwd1">
-                                                        <input type="password" title="비밀번호 입력" id="pw1" name="user_pw" maxlength="30" class="inp flex" placeholder="비밀번호" onchange="check_pw()" />
+                                                        <input type="password" title="비밀번호 입력" id="pw1" name="user_pw" maxlength="30" class="inp flex" placeholder="비밀번호" onchange="check_pw()" />&nbsp;<span id="check_length"></span>
                                                     </div>
                                                     <p class="t_error" id="pwdCheckMsg1" style="display:none">패스워드는 8자리 ~ 30자리로 입력해주세요.</p>
                                                     <p class="cmt_guide1 mark1 inp_mt">영문, 숫자, 특수문자를 포함 8~30 자리로 입력해주세요.</p>
@@ -200,15 +200,23 @@
                                                 <div class="wrap_inp">
                                                     <label for="email" class="inp_tit">이메일<span class="nec">*</span></label>
                                                     <div class="inp_bundle email_bundle emailCheckMsg">
-                                                        <input type="email" title="이메일 아이디 입력" id="registerEmail" name="user_email" value="" maxlength="80" class="inp flex" placeholder="이메일" />
-                                                        <select class="select flex" id="registerWrite3_3" title="이메일 도메인 선택">
-                                                            <option value="00">직접입력</option>
-                                                            <option value="01">@naver.com</option>
-                                                            <option value="02">@hanmail.net</option>
-                                                            <option value="03">@daum.net</option>
-                                                            <option value="04">@gmail.com</option>
-                                                            <option value="05">@nate.com</option>
-                                                        </select>
+<%--                                                        <input type="email" title="이메일 아이디 입력" id="registerEmail" name="user_email" value="" maxlength="80" class="inp flex" placeholder="이메일" />--%>
+<%--                                                        <select class="select flex" id="registerWrite3_3" title="이메일 도메인 선택">--%>
+<%--                                                            <option value="00">직접입력</option>--%>
+<%--                                                            <option value="01">@naver.com</option>--%>
+<%--                                                            <option value="02">@hanmail.net</option>--%>
+<%--                                                            <option value="03">@daum.net</option>--%>
+<%--                                                            <option value="04">@gmail.com</option>--%>
+<%--                                                            <option value="05">@nate.com</option>--%>
+<%--                                                        </select>--%>
+                                                        <input type="text" id="user_email" maxlength="80" class="inp flex" placeholder="이메일" required><input type="text" id="email_address" list="user_email_address">
+                                                        <datalist id="user_email_address">
+                                                            <option value="naver.com"></option>
+                                                            <option value="daum.com"></option>
+                                                            <option value="google.com"></option>
+                                                            <option value="직접입력"></option>
+                                                        </datalist>
+                                                        <input type="hidden" id="totalemail" name="email" value="">
                                                     </div>
                                                     <p class="cmt_guide1 mark1 inp_mt">특수문자[-], [_]만 사용 가능합니다.</p>
                                                 </div>
@@ -294,7 +302,31 @@
 
         function check_pw(){
             var pw = document.getElementById('pw1').value;
+            var SC = ["!","@","#","$","%"];
+            var check_SC = 0;
+            for(var i=0;i<SC.length;i++){
+                if(pw.indexOf(SC[i]) != -1){
+                    check_SC = 1;
+                }
+            }
+            if(check_SC == 0){
+                document.getElementById('check_length').innerHTML='!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.'
+                document.getElementById('check_length').style.color='blue';
+                document.getElementById('pw').value='';
+            }else{
+                document.getElementById('check_length').innerHTML='사용 가능한 비밀번호 입니다.'
+                document.getElementById('check_length').style.color='blue';
+            }
             console.log(pw);
+            if(pw.length < 6 || pw.length>16){
+                document.getElementById('check_length').innerHTML='비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.'
+                document.getElementById('check_length').style.color='blue';
+                // window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+                document.getElementById('pw').value='';
+            }else{
+                document.getElementById('check_length').innerHTML='사용 가능한 비밀번호 입니다.'
+                document.getElementById('check_length').style.color='blue';
+            }
             if(document.getElementById('pw1').value == document.getElementById('pw2').value){
                 document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
                 document.getElementById('check').style.color='blue';
