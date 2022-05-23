@@ -20,14 +20,14 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-<!--    <bean id="incrementerManager" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">-->
-<!--        <property name="dataSource">-->
-<!--            <ref bean="dataSource"/>-->
-<!--        </property>-->
-<!--        <property name="incrementerName">-->
-<!--            <value>SEQ_USER</value>-->
-<!--        </property>-->
-<!--    </bean>-->
+    <!--    <bean id="incrementerManager" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">-->
+    <!--        <property name="dataSource">-->
+    <!--            <ref bean="dataSource"/>-->
+    <!--        </property>-->
+    <!--        <property name="incrementerName">-->
+    <!--            <value>SEQ_USER</value>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 
     <mybatis-spring:scan base-package="org.team2.mapper"/>
     <context:component-scan base-package="org.team2"/>
