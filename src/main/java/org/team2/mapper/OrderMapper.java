@@ -2,13 +2,18 @@ package org.team2.mapper;
 
 import org.team2.domain.OrderVO;
 
+import java.util.List;
+
 public interface OrderMapper {
 
-    int insertOne(OrderVO vo);
+    int insert(OrderVO vo);
 
     OrderVO readOne(Long seq);
 
     int updateOrder(OrderVO vo);
 
-    int deleteOne(Long seq);
+    int delete(Long seq);
+
+    //pl/sql 적용
+    List<OrderVO> packageSelect();
 }

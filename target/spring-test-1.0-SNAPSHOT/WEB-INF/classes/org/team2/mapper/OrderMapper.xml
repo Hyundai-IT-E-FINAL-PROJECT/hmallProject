@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.OrderMapper">
+    <select id="readOne" resultType="org.team2.domain.OrderVO">
+        select * from tbl_order where order_seq=#{seq}
+    </select>
+
+
+    <update id="updateOrder">
+        update tbl_order
+        set order_point=#{point},
+            order_status=#{status},
+            order_user_number=#{userNumber},
+            order_delivery=#{delivery},
+            order_invoice=#{invoice},
+            updated_at=sysdate
+        where order_seq=#{seq}
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_order where order_seq=#{seq}
+    </delete>
+
+    <select id="packageSelect">
+        declare p_cursor sys_refcursor;
+            order_rec tbl_order%rowtype;
+                    begin
+            pack_order.proc_order_select_all(p_cursor);
+            loop
+                    fetch p_cursor into order_rec;
+              exit when p_cursor%notfound;
+                    end loop;
+                    close p_cursor;
+                    end;
+
+    </select>
+
+    <insert id="insert" statementType="CALLABLE">
+        {
+        call pack_order.proc_order_insert(#{user_seq},#{point}, #{status}, #{userName}, #{userNumber}, #{delivery}, #{invoice})
+        }
+    </insert>
+
+    <delete id="delete" statementType="CALLABLE">
+        {
+            call pack_order.proc_order_delete(#{order_seq})
+        }
+    </delete>
+
+</mapper>

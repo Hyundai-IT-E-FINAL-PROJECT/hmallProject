@@ -17,4 +17,9 @@
     <definition name="mypage.*" extends="default">
         <put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp"/>
     </definition>
+
+    <definition name="order.*" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/order/{1}.jsp"/>
+    </definition>
+
 </tiles-definitions>

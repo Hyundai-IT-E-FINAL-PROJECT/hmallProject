@@ -3,6 +3,7 @@ package org.team2.domain;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class OrderVO {
@@ -16,7 +17,7 @@ public class OrderVO {
     private String userNumber;
     private String delivery;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Date createdAt;
+    private Date updatedAt;
 
 }
