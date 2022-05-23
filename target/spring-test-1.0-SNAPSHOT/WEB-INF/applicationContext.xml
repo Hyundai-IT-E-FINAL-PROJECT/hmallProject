@@ -7,7 +7,7 @@
 
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@edudb_high?TNS_ADMIN=/Users/kimbyeounghoon/Wallet_edudb"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@edudb_high?TNS_ADMIN=C:////Wallet_edudb"/>
         <property name="username" value="teamKim"/>
         <property name="password" value="xxxxxxAt21cc"/>
     </bean>
@@ -20,6 +20,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+<<<<<<< HEAD
     <!--    <bean id="incrementerManager" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">-->
     <!--        <property name="dataSource">-->
     <!--            <ref bean="dataSource"/>-->
@@ -28,8 +29,11 @@
     <!--            <value>SEQ_USER</value>-->
     <!--        </property>-->
     <!--    </bean>-->
+=======
+>>>>>>> origin/minsu
 
     <mybatis-spring:scan base-package="org.team2.mapper"/>
+
     <context:component-scan base-package="org.team2"/>
 
 </beans>
