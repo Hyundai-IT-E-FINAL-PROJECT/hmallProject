@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -4587,7 +4588,7 @@
 
 					</a>
 				</li>
-				<li><a class="mypage" href="${contextPath}/mypage"><span>마이페이지</span></a></li>
+				<li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
 				<li>
 					<a href="javascript:;" class="recently" id="recentlyImg" onclick="openRecentShopping(); return false;">
 						<span>최근본쇼핑</span>
@@ -4670,18 +4671,35 @@
 			<div class="header-util">
 				<h2 class="hiding">유틸메뉴</h2>
 				<!-- 로그인 전 -->
-				<ul>
+<<<<<<< HEAD
+				<ul style="display: flex">
+					<sec:authorize access="isAnonymous()">
+					<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+=======
+				<ul style="display: flex;">
+					<sec:authorize access="isAnonymous()">
+						<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+>>>>>>> origin/minsu
+						<li><a href="${contextPath}/user/signup">회원가입</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<sec:authentication property="principal" var="pinfo" />
+<<<<<<< HEAD
+						<li><a href="mypage"> ${pinfo.userVO.user_name}님</a></li>
+=======
+						<li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+>>>>>>> origin/minsu
+						<li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
+						<form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
+							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+						</form>
+						<li><a href="level">멤버십존</a> </li>
+					</sec:authorize>
+<<<<<<< HEAD
 
 
-
-					<li><a ga-category="헤더" ga-action="로그인" href="javascript://" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
-
-
-
-
-					<li><a href="javascript:bizSpringTag('https://www.hmall.com/p/cua/hmallRegistMember.do', '^헤더^회원가입');">회원가입</a></li>
-
-
+=======
+>>>>>>> origin/minsu
 					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
 				</ul>
 			</div>
