@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.ProductMapper">
+    <select id="getOne" resultType="org.team2.domain.ProductVO">
+        select *
+        from tbl_product
+        where product_seq = #{product_seq}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO tbl_product (product_seq,
+                                 product_code,
+                                 product_name,
+                                 product_info,
+                                 product_detail,
+                                 product_brand,
+                                 product_manufacture,
+                                 product_country,
+                                 product_count,
+                                 product_large,
+                                 product_small,
+                                 op2_seq1,
+                                 op2_seq2,
+                                 op2_seq3,
+                                 op2_seq4,
+                                 op2_seq5,
+                                 created_at,
+                                 updated_at)
+        VALUES (seq_product.NEXTVAL,
+                #{productCode},
+                #{productName},
+                #{productInfo},
+                #{productDetail},
+                #{productBrand},
+                #{productManufacture},
+                #{productCountry},
+                #{productCount},
+                #{productLarge},
+                #{productSmall},
+                #{op2_seq1, jdbcType=VARCHAR},
+                #{op2_seq2, jdbcType=VARCHAR},
+                #{op2_seq3, jdbcType=VARCHAR},
+                #{op2_seq4, jdbcType=VARCHAR},
+                #{op2_seq5, jdbcType=VARCHAR},
+                sysdate,
+                sysdate)
+    </insert>
+
+    <update id="update">
+        UPDATE tbl_product
+        SET PRODUCT_NAME        = #{productName},
+            PRODUCT_INFO        = #{productInfo},
+            PRODUCT_DETAIL      = #{productDetail},
+            PRODUCT_BRAND       = #{productBrand},
+            PRODUCT_MANUFACTURE = #{productManufacture},
+            PRODUCT_COUNTRY     = #{productCountry},
+            PRODUCT_COUNT       = #{productCount},
+            PRODUCT_LARGE       = #{productLarge},
+            PRODUCT_SMALL       = #{productSmall},
+            OP2_SEQ1            = #{op2_seq1, jdbcType=VARCHAR},
+            OP2_SEQ2            = #{op2_seq2, jdbcType=VARCHAR},
+            OP2_SEQ3            = #{op2_seq3, jdbcType=VARCHAR},
+            OP2_SEQ4            = #{op2_seq4, jdbcType=VARCHAR},
+            OP2_SEQ5            = #{op2_seq5, jdbcType=VARCHAR},
+            updated_at          = SYSDATE
+        WHERE PRODUCT_SEQ = #{seq}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM tbl_product p
+        WHERE p.product_seq = #{seq}
+    </delete>
+</mapper>
