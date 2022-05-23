@@ -46,15 +46,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
 
-<<<<<<< HEAD
-        if(roleNames.contains("ROLE_USER")){
-            response.sendRedirect("/");
-            return;
-        }
-
-=======
->>>>>>> origin/minsu
-
         response.sendRedirect("/");
     }
 }

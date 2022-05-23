@@ -1668,30 +1668,6 @@
 									} catch (e) {}
 								}
 
-								function openLoginTag(url, pathVal) {
-
-									try {
-
-										//현재는 사용안함 향후 매체동의 사용시에 주석 제거
-										//sessionStorage.setItem("recentCokiUseAgr", "Y");
-
-										_trk_flashEnvView('_TRK_CP=' + pathVal);
-									} catch(e){}
-
-									// 2020.11.25 icj : url이 없는 경우 현재 url 전달
-									if(isEmpty(url)){
-										// 2021.01.13 : url이 없는경우 특정 url은 제외 처리
-										if (isLoginExpectUrl(location.href)) {
-											url = "";
-										} else {
-											url = location.href;
-										}
-
-									}
-
-									openLoginPopup(url);
-								}
-
 								//2020.03.04 gnb_search.js에서 이동
 								var searchAdTempArr = new Array();
 

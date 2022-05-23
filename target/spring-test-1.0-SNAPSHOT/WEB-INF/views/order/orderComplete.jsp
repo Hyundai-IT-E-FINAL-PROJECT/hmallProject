@@ -7,33 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>주문서</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<c:forEach items="${orderVO}" var="vo">--%>
-<%--    <p>${vo.seq}</p>--%>
-<%--    <p>${vo.user_seq}</p>--%>
-<%--    <p>${vo.point}</p>--%>
-<%--    <p>${vo.invoice}</p>--%>
-<%--    <p>${vo.status}</p>--%>
-<%--    <p>${vo.userName}</p>--%>
-<%--    <p>${vo.userNumber}</p>--%>
-<%--    <p>${vo.delivery}</p>--%>
-<%--</c:forEach>--%>
-<%--</body>--%>
-<%--</html>--%>
-
 <html>
-
-
-
     <title>주문완료</title>
     <head>
         <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">
-
-
     </head>
 
     <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
@@ -57,62 +34,17 @@
                                     <span>주문완료</span>
                                 </li>
                             </ol>
-                            <div>
-                                <span>${seq}</span>
-                                <span>${vo.user_seq}</span>
-                                <span>${vo.point}</span>
-                                <span>${vo.invoice}</span>
-                                <span>${vo.status}</span>
-                                <span>${vo.userName}</span>
-                                <span>${vo.userNumber}</span>
-                                <span>${vo.delivery}</span>
-                            </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <!-- 첫구매 -->
-
-                        <!-- //첫구매 -->
-
-                        <!-- 5만원 이사의 첫 구매가 아닐 때-->
-
-
-
-
-
-<%--                        <%--%>
-<%--                            String str1=request.getParameter("invoice");--%>
-<%--                        %>--%>
                         <div class="order-complete-box">
                             <span class="bgcircle check-on-sm"><i class="icon check-on"></i></span>
                             <p class="tit">홈쇼핑을 이용해주셔서 감사합니다.</p>
                             <p class="txt">주문하신 내역은 마이페이지>나의 쇼핑내역> 주문/배송조회에서 확인하실 수 있습니다.</p>
-                            <p class="tit">(주문번호 : <em>${invoice}</em>)</p>
+                            <p class="tit">(주문번호 : <em>${vo.invoice}</em>)</p>
                             <div class="btngroup">
                                 <button class="btn btn-default medium" onclick="goPage('/p/mpa/selectOrdDlvCrst.do');"><span>주문 확인&amp;변경</span></button>
                             </div>
                         </div>
-
-
-
-
-
-
 
                         <h3 class="title22">상품상품 내역 및 배송 정보</h3>
                         <div class="order-info-box">
@@ -127,10 +59,10 @@
                                     <div class="tit-wrap">배송지</div>
                                     <div class="txt-wrap">
                                         <ul class="user-info">
-                                            <li>김보경</li>
-                                            <li>010-4627-2769</li>
+                                            <li>${vo.userName}</li>
+                                            <li>${vo.userNumber}</li>
                                         </ul>
-                                        <p class="txt">서울특별시 강북구  삼양로130길 9-8(수유동, 신건영빌리지) 강북구</p>
+                                        <p class="txt">${vo.delivery}</p>
                                     </div>
                                 </li>
 
@@ -138,7 +70,7 @@
                         </div>
                         <div class="order-info-box">
                             <div class="line-box">
-                                <p class="tit2">김보경 고객님</p>
+                                <p class="tit2">${vo.userName} 고객님</p>
                                 <p class="txt2">5월 Hmall에서 <span class="color-ff5340">1건 &amp; 0원 </span> 이상 추가 구매시, <span class="gold-lvtxt">6월 GOLD</span> 등급으로 승급됩니다!</p>
                                 <button class="btn atext" onclick="location.href='/pevent/eva/evntFamilyZoneMain.do'"><span>등급 혜택 자세히 보기</span><i class="arrow right"></i></button>
                             </div>

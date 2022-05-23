@@ -1668,30 +1668,6 @@
 									} catch (e) {}
 								}
 
-								function openLoginTag(url, pathVal) {
-
-									try {
-
-										//현재는 사용안함 향후 매체동의 사용시에 주석 제거
-										//sessionStorage.setItem("recentCokiUseAgr", "Y");
-
-										_trk_flashEnvView('_TRK_CP=' + pathVal);
-									} catch(e){}
-
-									// 2020.11.25 icj : url이 없는 경우 현재 url 전달
-									if(isEmpty(url)){
-										// 2021.01.13 : url이 없는경우 특정 url은 제외 처리
-										if (isLoginExpectUrl(location.href)) {
-											url = "";
-										} else {
-											url = location.href;
-										}
-
-									}
-
-									openLoginPopup(url);
-								}
-
 								//2020.03.04 gnb_search.js에서 이동
 								var searchAdTempArr = new Array();
 
@@ -4671,35 +4647,20 @@
 			<div class="header-util">
 				<h2 class="hiding">유틸메뉴</h2>
 				<!-- 로그인 전 -->
-<<<<<<< HEAD
-				<ul style="display: flex">
-					<sec:authorize access="isAnonymous()">
-					<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
-=======
 				<ul style="display: flex;">
 					<sec:authorize access="isAnonymous()">
 						<li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin" onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
->>>>>>> origin/minsu
 						<li><a href="${contextPath}/user/signup">회원가입</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property="principal" var="pinfo" />
-<<<<<<< HEAD
-						<li><a href="mypage"> ${pinfo.userVO.user_name}님</a></li>
-=======
 						<li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
->>>>>>> origin/minsu
 						<li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
 						<form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
 							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 						</form>
 						<li><a href="level">멤버십존</a> </li>
 					</sec:authorize>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/minsu
 					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
 				</ul>
 			</div>

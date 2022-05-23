@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <title>Hi</title>
 <head>
@@ -152,65 +153,73 @@
                             <span class="txt">배송/결제 정보를 정확히 입력해주세요.</span>
                         </h3>
 
-                        <div class="tab-content" style="padding: 10px;">
-                            <div role="tabpanel" class="tab-pane" id="addresslist">
+                        <form id="orderPush" method="post" action="orderComplete">
 
-                                <div class="nodata"><span class="bgcircle"><i class="icon nodata-type15"></i></span><p>지정된 배송지가 없습니다.</p></div><div class="btngroup">
-                                <button type="button" class="btn btn-default" onclick="selectDstnAddr();"><span>확인</span></button>
-                                <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
-                            </div>
-                            </div>
-                            <%--                                test중--%>
-                            <input type="hidden" name="order_point" value="200" id="order_point">
-                            <input type="hidden" name="order_status" value="준비중" id="order_status">
-                            <input type="hidden" name="order_invoice" value=2 id="order_invoice">
-                            <input type="hidden" name="user_seq" value=19 id="user_seq">
+                            <div class="tab-content" style="padding: 10px;">
+                                <div role="tabpanel" class="tab-pane" id="addresslist">
 
-                            <div role="tabpanel" class="tab-pane ui-active" id="addressadd" style="padding: 10px;">
-                                <div class="inputbox">
-                                    <input type="hidden" name="" value="" id="adrKndGbcd">
-                                    <input type="hidden" name="" value="" id="dlvType">
-                                    <input type="hidden" name="" value="" id="selectedDstnSeq">
-                                    <label class="inplabel"><input type="text"  name="order_user_name" value="" placeholder="받으실 분" id="order_user_name" maxlength="25"></label>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-
-                                <div class="inputbox">
-                                    <input type="hidden" name="" value="" id="selectedPost">
-                                    <input type="hidden" name="" value="" id="selectedJibunAddr">
-                                    <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소"></label>
-                                    <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 찾기</span></button>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-
-                                <div class="inputbox">
-                                    <label class="inplabel"><input type="text" name="order_delivery" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery" maxlength="100"></label>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-                                <div class="inputbox">
-                                    <label class="inplabel"><input type="text" class="onlyNumber" name="order_user_number" value="" placeholder="연락처(필수입력) (예 : 01012345678)" id="order_user_number" maxlength="12"></label>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-                                <div class="inputbox">
-                                    <label class="inplabel"><input type="text" class="onlyNumber" name="" value="" placeholder="휴대폰 (예 : 01012345678)" id="selectedDstnTel2" maxlength="12"></label>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-                                <div class="inputbox">
-                                    <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-                                <label class="chklabel">
-                                    <input type="checkbox" name="" id="selectedBaseYn" value="Y">
-                                    <i class="icon"></i>
-                                    <span>기본배송지로 지정</span>
-                                </label>
-                                <div class="btngroup">
-                                    <button class="btn btn-linelgray" onclick="$('#pec003').modal().hide();"><span>취소</span></button>
-                                    <button class="btn btn-default" onclick="modifyAddr('', $(this).parent().parent().find('#dlvType').val(), '');"><span>확인</span></button>
+                                    <div class="nodata"><span class="bgcircle"><i class="icon nodata-type15"></i></span><p>지정된 배송지가 없습니다.</p></div><div class="btngroup">
+                                    <button type="button" class="btn btn-default" onclick="selectDstnAddr();"><span>확인</span></button>
                                     <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
                                 </div>
+                                </div>
+                                <%--test중--%>
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal" var="pinfo" />
+                                        <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
+                                </sec:authorize>
+
+                                <input type="hidden" name="point" value="200" id="order_point">
+                                <input type="hidden" name="status" value="준비중" id="order_status">
+                                <input type="hidden" name="invoice" value=26473753 id="order_invoice">
+
+                                <div role="tabpanel" class="tab-pane ui-active" id="addressadd" style="padding: 10px;">
+                                    <div class="inputbox">
+    <%--                                    <input type="hidden" name="" value="" id="adrKndGbcd">--%>
+    <%--                                    <input type="hidden" name="" value="" id="dlvType">--%>
+    <%--                                    <input type="hidden" name="" value="" id="selectedDstnSeq">--%>
+                                        <label class="inplabel"><input type="text"  name="userName" value="" placeholder="받으실 분" id="order_user_name" maxlength="25"></label>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+
+                                    <div class="inputbox">
+    <%--                                    <input type="hidden" name="" value="" id="selectedPost">--%>
+    <%--                                    <input type="hidden" name="" value="" id="selectedJibunAddr">--%>
+                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소"></label>
+                                        <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 찾기</span></button>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" name="delivery" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery" maxlength="100"></label>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" class="onlyNumber" name="userNumber" value="" placeholder="연락처(필수입력) (예 : 01012345678)" id="order_user_number" maxlength="12"></label>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" class="onlyNumber" name="" value="" placeholder="휴대폰 (예 : 01012345678)" id="selectedDstnTel2" maxlength="12"></label>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>
+    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <label class="chklabel">
+                                        <input type="checkbox" name="" id="selectedBaseYn" value="Y">
+                                        <i class="icon"></i>
+                                        <span>기본배송지로 지정</span>
+                                    </label>
+                                    <div class="btngroup">
+                                        <button class="btn btn-linelgray" onclick="$('#pec003').modal().hide();"><span>취소</span></button>
+                                        <button class="btn btn-default" onclick="modifyAddr('', $(this).parent().parent().find('#dlvType').val(), '');"><span>확인</span></button>
+                                        <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </form>
 
                         <div id="cost">
 
@@ -338,7 +347,7 @@
                                 </ul>
 
                                 <div class="btngroup">
-                                    <button type="button"  class="btn btn-default medium"><span>결제</span></button>
+                                    <button type="submit" form="orderPush" class="btn btn-default medium"><span>결제</span></button>
                                 </div>
                             </div>
                         </div></div>
@@ -350,38 +359,38 @@
     </div>
 </main>
 <%--주문 상세 내역--%>
-<script type="text/javascript">
-    $(".medium").click(function (){
-        console.log("실행중");
+<%--<script type="text/javascript">--%>
+<%--    $(".medium").click(function (){--%>
+<%--        console.log("실행중");--%>
 
-        var orderVO={
-            seq:$("#order_seq").val(),
-            user_seq: 19,
-            point:$("#order_point").val(),
-            status:$("#order_status").val(),
-            userName:$("#order_user_name").val(),
-            userNumber:$("#order_user_number").val(),
-            delivery:$("#order_delivery").val(),
-            invoice:$("#order_invoice").val(),
-        };
-        var data=JSON.stringify(orderVO);
-        console.log(orderVO);
-        $.ajax({
-            url:"/order/orderComplete",
-            data:data,
-            type:"post",
-            contentType: 'application/json',
-            dataType:"json",
-            async: false,
-            success: function(data){
-                location.href='/order/orderComplete';
-                alert("success"+data);
-            },
-            error:function(){
-                alert("error");
-            }
-        })
-    })
-</script>
+<%--        var orderVO={--%>
+<%--            seq:$("#order_seq").val(),--%>
+<%--            user_seq: 19,--%>
+<%--            point:$("#order_point").val(),--%>
+<%--            status:$("#order_status").val(),--%>
+<%--            userName:$("#order_user_name").val(),--%>
+<%--            userNumber:$("#order_user_number").val(),--%>
+<%--            delivery:$("#order_delivery").val(),--%>
+<%--            invoice:$("#order_invoice").val(),--%>
+<%--        };--%>
+<%--        var data=JSON.stringify(orderVO);--%>
+<%--        console.log(orderVO);--%>
+<%--        $.ajax({--%>
+<%--            url:"/order/orderComplete",--%>
+<%--            data:data,--%>
+<%--            type:"post",--%>
+<%--            contentType: 'application/json',--%>
+<%--            dataType:"json",--%>
+<%--            async: false,--%>
+<%--            success: function(data){--%>
+<%--                location.href='/order/orderComplete';--%>
+<%--                alert("success"+data);--%>
+<%--            },--%>
+<%--            error:function(){--%>
+<%--                alert("error");--%>
+<%--            }--%>
+<%--        })--%>
+<%--    })--%>
+<%--</script>--%>
     </body>
 </html>
