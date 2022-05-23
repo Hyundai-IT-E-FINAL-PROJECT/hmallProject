@@ -11,6 +11,6 @@
     <title>all</title>
 </head>
 <body>
-
+<h1>all page</h1>
 </body>
 </html>
