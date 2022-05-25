@@ -42,8 +42,6 @@ public class ProductMapperTest {
         vo.setProduct_manufacture(ManufactureType.MANU1);
         vo.setProduct_country(CountryType.JAPAN);
         vo.setProduct_count(1L);
-        vo.setProduct_large(CategoryLargeType.JEAN);
-        vo.setProduct_small(CategorySmallType.BLUEJEANS);
 
         mapper.insert(vo);
     }

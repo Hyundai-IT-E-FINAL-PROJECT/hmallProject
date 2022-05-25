@@ -142,12 +142,12 @@
 
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
-    <dependency>
-      <groupId>com.oracle.ojdbc</groupId>
-      <artifactId>ojdbc8</artifactId>
-      <version>19.3.0.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
+<!--    <dependency>-->
+<!--      <groupId>com.oracle.ojdbc</groupId>-->
+<!--      <artifactId>ojdbc8</artifactId>-->
+<!--      <version>19.3.0.0</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix &ndash;&gt;-->
     <dependency>
       <groupId>org.lazyluke</groupId>
       <artifactId>log4jdbc-remix</artifactId>
@@ -270,6 +270,12 @@
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>compile</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20220320</version>
     </dependency>
 
   </dependencies>

@@ -1,9 +1,12 @@
 package org.team2.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.team2.domain.enums.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class ProductVO {
@@ -17,6 +20,7 @@ public class ProductVO {
     private Long op2_seq3;
     private Long op2_seq4;
     private Long op2_seq5;
+    private Long category_seq;
 
     // general
     private Long product_code;
@@ -27,10 +31,10 @@ public class ProductVO {
     private ManufactureType product_manufacture;
     private CountryType product_country;
     private Long product_count;
-    private CategoryLargeType product_large;
-    private CategorySmallType product_small;
 
     // date
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Date created_at;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Date updated_at;
 }

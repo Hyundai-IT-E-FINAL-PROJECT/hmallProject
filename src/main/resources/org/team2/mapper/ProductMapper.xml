@@ -5,7 +5,20 @@
     <select id="getOne" resultType="org.team2.domain.ProductVO">
         select *
         from tbl_product
-        where product_seq = #{product_seq}
+        where product_seq = #{seq}
+    </select>
+
+    <select id="getAll" resultType="map">
+        select *
+        from tbl_product
+    </select>
+
+    <select id="getMain" resultType="map">
+        <![CDATA[
+        SELECT *
+        FROM (SELECT * FROM tbl_product)
+        WHERE ROWNUM <= 10
+        ]]>
     </select>
 
     <insert id="insert">
@@ -18,51 +31,48 @@
                                  product_manufacture,
                                  product_country,
                                  product_count,
-                                 product_large,
-                                 product_small,
                                  op2_seq1,
                                  op2_seq2,
                                  op2_seq3,
                                  op2_seq4,
                                  op2_seq5,
+                                 category_seq,
                                  created_at,
                                  updated_at)
         VALUES (seq_product.NEXTVAL,
-                #{productCode},
-                #{productName},
-                #{productInfo},
-                #{productDetail},
-                #{productBrand},
-                #{productManufacture},
-                #{productCountry},
-                #{productCount},
-                #{productLarge},
-                #{productSmall},
+                #{product_code},
+                #{product_name},
+                #{product_info},
+                #{product_detail},
+                #{product_brand},
+                #{product_manufacture},
+                #{product_country},
+                #{product_count},
                 #{op2_seq1, jdbcType=VARCHAR},
                 #{op2_seq2, jdbcType=VARCHAR},
                 #{op2_seq3, jdbcType=VARCHAR},
                 #{op2_seq4, jdbcType=VARCHAR},
                 #{op2_seq5, jdbcType=VARCHAR},
+                #{category_seq},
                 sysdate,
                 sysdate)
     </insert>
 
     <update id="update">
         UPDATE tbl_product
-        SET PRODUCT_NAME        = #{productName},
-            PRODUCT_INFO        = #{productInfo},
-            PRODUCT_DETAIL      = #{productDetail},
-            PRODUCT_BRAND       = #{productBrand},
-            PRODUCT_MANUFACTURE = #{productManufacture},
-            PRODUCT_COUNTRY     = #{productCountry},
-            PRODUCT_COUNT       = #{productCount},
-            PRODUCT_LARGE       = #{productLarge},
-            PRODUCT_SMALL       = #{productSmall},
+        SET PRODUCT_NAME        = #{product_name},
+            PRODUCT_INFO        = #{product_info},
+            PRODUCT_DETAIL      = #{product_detail},
+            PRODUCT_BRAND       = #{product_brand},
+            PRODUCT_MANUFACTURE = #{product_manufacture},
+            PRODUCT_COUNTRY     = #{product_country},
+            PRODUCT_COUNT       = #{product_count},
             OP2_SEQ1            = #{op2_seq1, jdbcType=VARCHAR},
             OP2_SEQ2            = #{op2_seq2, jdbcType=VARCHAR},
             OP2_SEQ3            = #{op2_seq3, jdbcType=VARCHAR},
             OP2_SEQ4            = #{op2_seq4, jdbcType=VARCHAR},
             OP2_SEQ5            = #{op2_seq5, jdbcType=VARCHAR},
+            CATEGORY_SEQ        = #{category_seq},
             updated_at          = SYSDATE
         WHERE PRODUCT_SEQ = #{seq}
     </update>
@@ -70,6 +80,6 @@
     <delete id="delete">
         DELETE
         FROM tbl_product p
-        WHERE p.product_seq = #{seq}
+        WHERE p.product_seq = #{product_seq}
     </delete>
 </mapper>

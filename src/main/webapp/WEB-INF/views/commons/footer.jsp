@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!-- footer -->
-<!-- 푸터 영역 시작 -->
 <footer class="footer">
 	<div class="link-area">
 		<div class="link-area-in">
@@ -117,5 +109,3 @@
 		</div>
 	</div>
 </footer>
-</body>
-</html>
