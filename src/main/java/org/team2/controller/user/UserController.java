@@ -9,8 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.team2.domain.AddressVO;
 import org.team2.domain.UserVO;
+import org.team2.service.AddressService;
 import org.team2.service.UserService;
+
+import java.util.List;
 
 @Log4j
 @RequestMapping("/user")
@@ -24,10 +28,16 @@ public class UserController {
 
     @Setter(onMethod_ = @Autowired)
     private UserService userService;
+    @Setter(onMethod_ = @Autowired)
+    private AddressService addressService;
 
-    public UserController (UserService userService){
+    public UserController (UserService userService, AddressService addressService){
         this.userService = userService;
+        this.addressService = addressService;
     }
+//    public UserController(AddressService addressService){
+//        this.addressService = addressService;
+//    }
 
     @GetMapping("/all")
     public void doAll(){
@@ -51,13 +61,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/insertUser", produces = "text/plain;charset=UTF-8")
-    public String insertSignup(@ModelAttribute UserVO userVO, Model model){
+    public String insertSignup(@ModelAttribute UserVO userVO, AddressVO addressVO, Model model){
         log.info("데이터 잘 넘어옴 !");
         log.info(userVO.toString());
+        log.info(addressVO.toString());
         //log.info("잘된다!");
         try {
             log.info(userVO.getNo());
             userService.insertSignup(userVO);
+            addressService.insertAddress(addressVO, userVO);
             return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();

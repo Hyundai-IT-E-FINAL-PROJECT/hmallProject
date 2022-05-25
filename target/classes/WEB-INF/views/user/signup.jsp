@@ -4,6 +4,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <head>
+    <style>
+        .addr {
+            margin-top: 20px;
+        }
+    </style>
     <meta charset="utf-8" />
     <title>현대백화점그룹 통합멤버십 | H.Point</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,6 +34,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
+    <!--datepicker-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
     <script type="text/javascript" src="/assets/app/js/jquery-3.3.1.min.js"></script><!-- RENEWAL 2021 -->
     <script type="text/javascript" src="/assets/app/js/jquery-migrate-1.4.1.js"></script><!-- RENEWAL 2021 -->
     <script type="text/javascript" src="/assets/app/js/gsap.min.js"></script><!-- RENEWAL 2021 -->
@@ -51,53 +60,6 @@
     <script type="text/javascript" src="/assets/app/js/common-pub.js"></script><!-- RENEWAL 2021 -->
     <script type="text/javascript" src="/assets/app/js/page-pub.js"></script><!-- RENEWAL 2021 -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<%--    <script type="text/javascript">--%>
-<%--        function idCheck() {--%>
-
-<%--            var memberId = $("#id").val();--%>
-
-<%--            if(memberId.search(/\s/) != -1) {--%>
-<%--                alert("아이디에는 공백이 들어갈 수 없습니다.");--%>
-<%--            } else {--%>
-<%--                if(memberId.trim().length != 0) {--%>
-<%--                    $.ajax({--%>
-<%--                        async : true,--%>
-<%--                        type : 'POST',--%>
-<%--                        data: memberId,--%>
-<%--                        url: "user/idCheck",--%>
-<%--                        dataType: "json",--%>
-<%--                        contentType: "application/json; charset=UTF-8",--%>
-<%--                        success: function(count) {--%>
-<%--                            if(count > 0) {--%>
-<%--                                alert("해당 아이디 존재");--%>
-<%--                                $("#submit").attr("disabled", "disabled");--%>
-<%--                                window.location.reload();--%>
-<%--                            } else {--%>
-<%--                                alert("사용가능 아이디");--%>
-<%--                                $("#submit").removeAttr("disabled");--%>
-<%--                            }--%>
-<%--                        },--%>
-<%--                        error: function(error) {--%>
-<%--                            alert("아이디를 입력해주세요.");--%>
-<%--                        }--%>
-<%--                    });--%>
-<%--                } else {--%>
-<%--                    alert("아이디를 입력해주세요.");--%>
-<%--                }--%>
-<%--            }--%>
-<%--        }--%>
-
-<%--    </script>--%>
-
-
-
-
-
-
-
-    <!-- INDEX : RjHViaNnYjFlSsStHYFs52vQD8ANJ7h7MmliFHOtn10= -->
-
-
 
     <script type="text/javascript" src="/js/jquery/jquery.form.min.js"></script>
     <script type="text/javascript" src="/js/hdgm/validation.js?ver=200401"></script><!-- 유효성체크 -->
@@ -106,11 +68,9 @@
     <script type="text/javascript" src="/js/etc/flatpickr.js"></script>
     <link rel="stylesheet" href="/css/flatpickr.min.css" />
 
-    <!-- <link rel="stylesheet" href="/css/jquery-ui.css" />
-    <script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/jquery/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="/css/customer.css?ver=4" />  -->
-
+    <--주소 api-->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="/resources/js/addressapi.js"></script>
 
 </head>
     <div id="contents" class="subPage">
@@ -199,34 +159,50 @@
                                                 <!-- 이메일 -->
                                                 <div class="wrap_inp">
                                                     <label for="email" class="inp_tit">이메일<span class="nec">*</span></label>
-                                                    <div class="inp_bundle email_bundle emailCheckMsg">
-<%--                                                        <input type="email" title="이메일 아이디 입력" id="registerEmail" name="user_email" value="" maxlength="80" class="inp flex" placeholder="이메일" />--%>
-<%--                                                        <select class="select flex" id="registerWrite3_3" title="이메일 도메인 선택">--%>
-<%--                                                            <option value="00">직접입력</option>--%>
-<%--                                                            <option value="01">@naver.com</option>--%>
-<%--                                                            <option value="02">@hanmail.net</option>--%>
-<%--                                                            <option value="03">@daum.net</option>--%>
-<%--                                                            <option value="04">@gmail.com</option>--%>
-<%--                                                            <option value="05">@nate.com</option>--%>
-<%--                                                        </select>--%>
-                                                        <input type="text" id="user_email" maxlength="80" class="inp flex" placeholder="이메일" required><input type="text" id="email_address" list="user_email_address">
-                                                        <datalist id="user_email_address">
-                                                            <option value="naver.com"></option>
-                                                            <option value="daum.com"></option>
-                                                            <option value="google.com"></option>
-                                                            <option value="직접입력"></option>
-                                                        </datalist>
-                                                        <input type="hidden" id="totalemail" name="email" value="">
+                                                    <div class="inp_bundle email_bundle">
+                                                        <input type="text" title="이메일 아이디 입력" id="email1" name="email1" value="" maxlength="80" class="inp flex" placeholder="이메일" />
+
+                                                        <select class="select flex" id="email2" title="이메일 도메인 선택">
+                                                            <option value="직접입력">직접입력</option>
+                                                            <option value="@naver.com">@naver.com</option>
+                                                            <option value="@hanmail.net">@hanmail.net</option>
+                                                            <option value="@daum.net">@daum.net</option>
+                                                            <option value="@gmail.com">@gmail.com</option>
+                                                            <option value="@nate.com">@nate.com</option>
+                                                        </select>
+                                                        <input type="hidden" id="totalemail" name="user_email" value="" >
                                                     </div>
                                                     <p class="cmt_guide1 mark1 inp_mt">특수문자[-], [_]만 사용 가능합니다.</p>
                                                 </div>
 
+                                                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                                                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                                                <script>
+                                                const config = {
+                                                    dateFormat: 'yy-mm-dd',
+                                                    yearRange: '1930:2022',
+
+                                                    prevText: '이전 달',
+                                                    nextText: '다음 달',
+                                                    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                                    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                                    dayNames: ['일','월','화','수','목','금','토'],
+                                                    dayNamesShort: ['일','월','화','수','목','금','토'],
+                                                    dayNamesMin: ['일','월','화','수','목','금','토'],
+                                                    yearSuffix: '년',
+                                                    changeMonth: true,
+                                                    changeYear: true
+                                                }
+                                                $(function() {
+                                                    $( "input[name='user_birth']" ).datepicker(config);
+                                                });
+                                                </script>
                                                 <!--// 생일-->
                                                 <div class="wrap_inp">
-                                                    <label for="birth" class="inp_tit">생년월일<span class="nec">*</span></label>
+                                                    <label for="datepicker" class="inp_tit">생년월일<span class="nec">*</span></label>
                                                     <div class="inp_bundle registerPwd1">
-                                                        <input type="text" title="생년월일 입력" id="registerBirth" name="user_birth" maxlength="30" class="inp flex" placeholder="생년월일" />
-                                                    </div>
+                                                       <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" placeholder="생년월일" />
+                                                   </div>
                                                 </div>
 
                                                 <!--// 성별-->
@@ -237,27 +213,57 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="wrap_inp">
+                                                    <label for="address" class="inp_tit">주소<span class="nec">*</span></label>
+                                                    <div class="inp_bundle addr">
+                                                        <input class="inp flex" style="width: 40%; display: inline;" placeholder="우편번호" name="user_address_address1" id="addr1" type="text" readonly="readonly" >
+                                                        <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+                                                    </div>
+                                                    <div class="inp_bundle addr">
+                                                        <input class="inp flex" style="top: 5px;" placeholder="도로명 주소" name="user_address_address2" id="addr2" type="text" readonly="readonly" />
+                                                    </div>
+                                                    <div class="inp_bundle addr">
+                                                        <input class="inp flex" placeholder="상세주소" name="user_address_address3" id="addr3" type="text"/>
+                                                    </div>
+                                                </div>
+
                                                 <!--// 이메일 수신여부 테스트-->
-                                                <div class="wrap_inp">
-                                                    <label for="email_test" class="inp_tit">이메일 수신 여부<span class="nec">*</span></label>
-                                                    <div class="inp_bundle registerPwd1">
-                                                        <input type="text" title="이메일 수신 여부 입력" id="registerEmail_test" name="user_email_receive" maxlength="30" class="inp flex" placeholder="이메일 테스트" />
-                                                    </div>
-                                                </div>
-
-                                                <!--// sms 수신 여부 테스트-->
-                                                <div class="wrap_inp">
-                                                    <label for="sms_test" class="inp_tit">sms 수신 여부 테스트<span class="nec">*</span></label>
-                                                    <div class="inp_bundle registerPwd1">
-                                                        <input type="text" title="sms 수신 여부 입력" id="registerSms_test" name="user_sms_receive" maxlength="30" class="inp flex" placeholder="sms 테스트" />
-                                                    </div>
-                                                </div>
-
                                             </fieldset>
+                                            <fieldset>
+                                                <legend>마케팅 정보 수신동의</legend>
+                                                <!-- 마케팅 정보 수신동의 -->
+                                                <div class="marketing">
+                                                    <p class="inp_tit">마케팅 정보 수신동의 (선택)</p>
+                                                        <div class="checkbox_ui type1 agree_all">
+                                                            <input type="checkbox" id="allAgree2" class="allCheckbox">
+                                                            <label for="allAgree2">전체동의</label>
+                                                        </div>
+                                                    <div class="box box_type2">
+                                                        <p class="tit">Hmall</p>
+                                                        <p class="wrap_chk">
+                                                        <div class="wrap_chk">
+                                                                <span class="checkbox_ui type1">
+                                                                   <input type="checkbox" id="notice" name="notice" class="mktCheckbox"/>
+                                                                   <label for="notice">이메일</label>
+                                                                    <input type="hidden" id="user_email_receive" name="user_email_receive"/>
+                                                                </span>
+
+                                                                <span class="checkbox_ui type1">
+                                                                    <input type="checkbox" name="notice_sms" id="notice_sms" class="mktCheckbox" />
+                                                                    <label for="notice_sms">SMS</label>
+                                                                    <input type="hidden" id="user_sms_receive" name="user_sms_receive"/>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--// 마케팅 정보 수신동의 -->
+                                            </fieldset>
+
                                     </div>
-                                <input type="submit" value="회원가입">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <input type="submit" value="회원가입">
                             </form>
+
                         </div>
                     </div>
                 </section>
@@ -334,6 +340,86 @@
                 document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
                 document.getElementById('check').style.color='red';
             }
+        }
+
+        //이메일 옵션 입력받기
+        $("#email1").blur(function (){
+            email();
+        });
+        $("#email2").change(function (){
+            email();
+        });
+
+        function email(){
+            const email = $("#email1").val();
+            const address = $("#email2").val();
+            if(email != "" && address != ""){
+                $("#totalemail").val(email+address);
+            }
+        };
+
+        //체크박스 클릭 여부에 따른 값 변화
+       $("#notice").change(
+           function (){
+               if($("#notice").is(":checked")){
+                   $("#user_email_receive").val('1');
+               }else{
+                   $("#user_email_receive").val('0');
+               }
+           }
+       )
+
+        $("#notice_sms").change(
+            function (){
+                if($("#notice_sms").is(":checked")){
+                    $("#user_sms_receive").val('1');
+                }else{
+                    $("#user_sms_receive").val('0');
+                }
+            }
+        )
+
+        function execPostCode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraRoadAddr !== ''){
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+                    // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                    if(fullRoadAddr !== ''){
+                        fullRoadAddr += extraRoadAddr;
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    console.log(data.zonecode);
+                    console.log(fullRoadAddr);
+
+
+                    $("[name=user_address_address1]").val(data.zonecode);
+                    $("[name=user_address_address2]").val(fullRoadAddr);
+
+                    /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+                    document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+                    document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+                }
+            }).open();
         }
 
     </script>
