@@ -48,4 +48,10 @@
         }
     </delete>
 
+    <resultMap id="orderMap" type="org.team2.domain.OrderVO">
+        <result property="order_seq" column="order_seq" />
+    </resultMap>
+
+
+
 </mapper>

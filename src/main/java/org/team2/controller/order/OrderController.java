@@ -11,10 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.CouponVO;
 import org.team2.domain.OrderVO;
+import org.team2.service.CouponService;
 import org.team2.service.OrderService;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @Log4j
@@ -23,6 +27,7 @@ import java.sql.SQLException;
 public class OrderController {
 
     private OrderService orderService;
+    private CouponService couponService;
 
     @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
     @RequestMapping("")
@@ -31,14 +36,46 @@ public class OrderController {
         mav.setViewName("order.basktList");
         return mav;
     }
-
-    @GetMapping( "od")
-    public ModelAndView openOrderPage(){
-        log.info("orderPage 접속");
+//@RequestParam("user_seq")Long user_seq
+    @GetMapping("od")
+    public ModelAndView sendOrderData() throws Exception {
         ModelAndView mav = new ModelAndView();
+        log.info("데이터 이동");
         mav.setViewName("order.orderPage");
+//      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
+//      log.info("user_seq: "+user_seq);
+        List<CouponVO> couponList=couponService.getCouponList(41L);
+        log.info(couponList);
+        mav.addObject("couponList", couponList);
+
         return mav;
     }
+//
+    //수정중
+//    @PostMapping( "od")
+//    public ModelAndView sendOrderData (@RequestParam Map<String, String>map) throws Exception {
+//        log.info("orderPage 접속");
+//        ModelAndView mav = new ModelAndView();
+//
+//        long user_seq= Long.parseLong(map.get("user_seq"));
+//        log.info("사용자의 user_seq: "+user_seq);
+//        // 사용자의 쿠폰 내역을 불러오기 위함
+//        List<CouponVO> couponList=couponService.getCouponList(user_seq);
+//        log.info(couponList);
+//        mav.addObject("couponList", couponList);
+//
+//        mav.setViewName("order.orderPage");
+//        return mav;
+//    }
+
+//    @GetMapping("od")
+//    public String sendOrderData() throws Exception {
+//        log.info("컨트롤러 이동 확인");
+//
+//
+//
+//        return "order.orderPage";
+//    }
 
     @GetMapping( "orderComplete")
     public ModelAndView openOrderCompletePage(){
@@ -48,23 +85,6 @@ public class OrderController {
         return mav;
     }
 
-//    @ResponseBody //error 뜨는 것 방지 ? 하지만 뜸
-//    @PostMapping("orderComplete")
-//    public ModelAndView sendOrderData(@RequestBody OrderVO vo) throws Exception {
-//        log.info("데이터 이동 확인");
-//        ModelAndView mv=new ModelAndView();
-//        //mv.setViewName("order.orderComplete");
-//        try{
-//            //orderService.insert(vo);
-//            //log.info(vo.toString()+ "삽입 성공");
-//            mv.addObject("orderVO", vo);
-//            return mv;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return mv;
-//
-//    }
 
 //    @ResponseBody
 //    @PostMapping("orderComplete")

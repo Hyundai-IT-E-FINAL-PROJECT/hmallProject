@@ -22,4 +22,8 @@
         <put-attribute name="body" value="/WEB-INF/views/order/{1}.jsp"/>
     </definition>
 
+    <definition name="sc.*" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/sc/{1}.jsp"/>
+    </definition>
+
 </tiles-definitions>

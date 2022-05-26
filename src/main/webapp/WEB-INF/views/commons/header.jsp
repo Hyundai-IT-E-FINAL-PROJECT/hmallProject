@@ -2087,19 +2087,7 @@
 											<li>
 												<a class="cart" ga-category="헤더" ga-action="장바구니" href="javascript:bizSpringTag('https://www.hmall.com/p/odb/basktList.do','^헤더^장바구니');">
 													<span>장바구니</span>
-
-
-
-
-
-
 													<em class="badge">1</em>
-
-
-
-
-
-
 												</a>
 											</li>
 											<li><a class="mypage" href="javascript:bizSpringTag('https://www.hmall.com/p/mpf/selectMyPageMain.do','^헤더^마이페이지 레이어^마이페이지');"><span>마이페이지</span></a></li>
@@ -4661,7 +4649,7 @@
 						</form>
 						<li><a href="level">멤버십존</a> </li>
 					</sec:authorize>
-					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
+					<li><a ga-category="헤더" ga-action="고객센터" href="${contextPath}/sc">고객센터</a></li>
 				</ul>
 			</div>
 

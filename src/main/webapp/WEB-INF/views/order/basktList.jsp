@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
@@ -2479,12 +2480,7 @@
 
 
 
-
                                                 <input type="hidden" name="basktVenCdGatherVal" id="basktVenCdGatherVal" value="018489|000000||EMT">
-
-
-
-
 
 
 
@@ -2494,96 +2490,63 @@
                                                 <input type="hidden" name="basktTotalGiftOrderYn" value="Y">
 
 
-
-
-
-
                                                 <input type="hidden" name="bsicAmt" value="0">
-
-
 
                                                 <div class="checkbox">
                                                     <label class="chklabel"><input type="checkbox" name="basktInf" value="2137171063|00002|0|1|99000" onclick="check(this, 'gen', '2137171063', '00002');"><i class="icon"></i><span>[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종</span></label>
                                                 </div>
                                                 <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2137171063|00002|0|1|99000');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                                 <div class="pdlist-wrap">
-                                                    <div class="pditem">
-                                                        <figure class="pdthumb">
-                                                            <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506">
-                                                                <div class="thumb">
-                                                                    <img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=120x120&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')">
-                                                                </div>
-                                                            </a>
-                                                            <figcaption>
+<%--                                                    <form id="od" method="post" action="od">--%>
+
+                                                        <div class="pditem">
+                                                            <figure class="pdthumb">
                                                                 <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506">
-                                                                    <div class="pdprice">
-
-
-
-
-
-
-
-
-
-
-                                                                        <!-- TODO 곽희섭 20170608 통합포인트 추가 -->
-
-
-                                                                        <input type="hidden" name="sellPrc" value="99000">
-                                                                        <input type="hidden" name="bbprc" value="99000">
-
-                                                                        <ins class="normal" aria-label="정상가"><em>99,000</em><b>원</b></ins>
-
-
-                                                                    </div>
-                                                                    <div class="benefits">
-
-
-
-
-
-
-
-
-
-
-
-                                                                        <!-- 카드즉시할인KJH -->
-
-                                                                    </div>
-
-
-
-                                                                    <div class="pdoption" aria-label="옵션/수량">
-                                                                        <span class="option">옵션: <em>블랙/95</em></span>
-                                                                        <span class="count">수량: <em>1개</em></span>
+                                                                    <div class="thumb">
+                                                                        <img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=120x120&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')">
                                                                     </div>
                                                                 </a>
-                                                            </figcaption>
-                                                            <div class="pdlike">
-                                                                <a href="javascript:;" onclick="zzimItem(this, '2137171063', '00002');" class="btn btn-like" id="zzim_2137171063:00002"><i class="icon"></i><span class="hiding">찜</span></a>
-                                                            </div>
-                                                        </figure>
-                                                    </div>
-                                                    <!-- //.pditem -->
+                                                                <figcaption>
+                                                                    <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506">
+                                                                        <div class="pdprice">
+                                                                            <input type="hidden" name="sellPrc" value="99000">
+                                                                            <input type="hidden" name="bbprc" value="99000">
+                                                                            <ins class="normal" aria-label="정상가"><em>99,000</em><b>원</b></ins>
+                                                                        </div>
+                                                                        <div class="benefits">
+                                                                        </div>
+                                                                        <div class="pdoption" aria-label="옵션/수량">
+                                                                            <span class="option">옵션: <em>블랙/95</em></span>
+                                                                            <span class="count">수량: <em>1개</em></span>
+                                                                        </div>
+                                                                    </a>
+                                                                </figcaption>
+                                                                <div class="pdlike">
+                                                                    <a href="javascript:;" onclick="zzimItem(this, '2137171063', '00002');" class="btn btn-like" id="zzim_2137171063:00002"><i class="icon"></i><span class="hiding">찜</span></a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+<%--                                                        <sec:authorize access="isAuthenticated()">--%>
+<%--                                                            <sec:authentication property="principal" var="pinfo" />--%>
+<%--                                                            <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">--%>
+<%--                                                        </sec:authorize>--%>
+<%--                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+<%--                                                    </form>--%>
 
-                                                    <!-- gifts-area : 필수사은품 -->
-
-                                                    <!-- //.gifts-area -->
-
-                                                    <!-- btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
                                                     <div class="btngroup">
-
-
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2137171063_00002" onclick="showChgUitmPup(this, '2137171063', '00002', 0, 99000, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
 
                                                         <button type="button" class="btn btn-linelgray" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2137171063"><span>선물하기</span></button>
 
+<%--                                                        <button type="submit" form="od" class="btn btn-default" >--%>
+<%--                                                                <span>바로구매</span>--%>
+<%--                                                        </button>--%>
+
                                                         <a href="${contextPath}/order/od" class="btn btn-default" ><span>바로구매</span></a>
 
+                                                    </div>
                                                     </div>
                                                     <!-- // btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
 
