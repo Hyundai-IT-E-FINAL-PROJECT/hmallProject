@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
 Built-By: gimjihye
 Build-Jdk: Oracle OpenJDK version 11.0.15
 
-=======
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: user
-Build-Jdk: Oracle OpenJDK version 11.0.2
-
->>>>>>> 1e689d9b91eb9676030e4d946e844504c3d15c76

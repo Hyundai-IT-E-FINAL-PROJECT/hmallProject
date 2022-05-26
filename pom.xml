@@ -133,13 +133,13 @@
       <version>1.18.24</version>
 
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
-<!--    <dependency>-->
-<!--      <groupId>com.oracle.ojdbc</groupId>-->
-<!--      <artifactId>ojdbc8</artifactId>-->
-<!--      <version>19.3.0.0</version>-->
-<!--    </dependency>-->
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix &ndash;&gt;-->
+
+    <dependency>
+      <groupId>com.oracle.ojdbc</groupId>
+      <artifactId>ojdbc8</artifactId>
+      <version>19.3.0.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
     <dependency>
       <groupId>org.lazyluke</groupId>
       <artifactId>log4jdbc-remix</artifactId>
