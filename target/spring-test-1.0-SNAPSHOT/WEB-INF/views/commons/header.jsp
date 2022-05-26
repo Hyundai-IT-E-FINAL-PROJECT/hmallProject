@@ -114,7 +114,7 @@
             <ul>
                 <li>
                     <a class="cart" ga-category="헤더" ga-action="장바구니"
-                       href="${contextPath}/order">
+                       href="${contextPath}/cart">
                         <span>장바구니</span>
                     </a>
                 </li>
@@ -193,8 +193,7 @@
                 <!-- 로그인 전 -->
                 <ul style="display: flex;">
                     <sec:authorize access="isAnonymous()">
-                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin"
-                               onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
                         <li><a href="${contextPath}/user/signup">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
@@ -205,8 +204,7 @@
                         </form>
                         <li><a href="/level">멤버십존</a></li>
                     </sec:authorize>
-                    <li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a>
-                    </li>
+                    <li><a ga-category="헤더" ga-action="고객센터" href="${contextPath}/customer">고객센터</a></li>
                 </ul>
             </div>
         </div>

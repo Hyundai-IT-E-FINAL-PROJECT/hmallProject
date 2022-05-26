@@ -11,7 +11,7 @@
 
     </select>
 
-    <select id="couponDiscount">
+    <select id="couponDiscount" resultType="org.team2.domain.CouponVO">
         select *
         from tbl_coupon
         where coupon_seq=#{coupon_seq}

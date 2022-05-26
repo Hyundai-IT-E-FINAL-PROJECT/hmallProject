@@ -1,10 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/cart.css">
 <body class="vsc-initialized">
 <div class="wrap cartwrap">
 
@@ -4004,7 +4000,15 @@
                 ]});
     </script>
 
-</div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><div id="criteo-tags-div" style="display: none;"></div><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;"></iframe></body>
+</div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div>
+</div></div></div><div id="criteo-tags-div" style="display: none;"></div>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
+<iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
 
+</iframe><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
 
-</html>
+</iframe><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;">
+
+</iframe>
+

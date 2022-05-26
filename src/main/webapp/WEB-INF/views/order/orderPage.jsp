@@ -1,16 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<title>Hi</title>
-<head>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">
-<body>
+<%--<html>--%>
+<%--<title>Hi</title>--%>
+<%--<head>--%>
+<%--    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">--%>
+<%--<body>--%>
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
         console.log("objName", objName);
         console.log("aplyCopn_yn", aplyCopn_yn);
-
 
         // renew2020 금액 reset
         $("#"+objName).val("0원");
@@ -585,11 +584,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                                 <input type="checkbox" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
                                                                 <i class="icon"></i>
                                                                 <span>${coupon.coupon_name}</span>
+                                                                <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
+                                                                <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
+                                                                <input type="hidden" name="coupon_ratio" value=${coupon.expired_at}>
                                                             </label>
     <%--                                                        <input type="hidden" name="totPrmoDcAmt" value="175800">--%>
-                                                            <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
-                                                            <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
-                                                            <input type="hidden" name="coupon_ratio" value=${coupon.expired_at}>
+
                                                         </div>
                                                     </div>
                                                 </c:forEach>
@@ -812,7 +812,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" onclick="checkUseHanaMoney()">
+                                                    <input type="radio" name="paymentMethod" id="method1" value="method1" onclick="checPaymentMethod()">
                                                     <span>신용카드</span>
                                                 </label>
                                             </div>
@@ -820,7 +820,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" onclick="checkUseHanaMoney()">
+                                                    <input type="radio" name="paymentMethod" id="method2" value="method2" onclick="checPaymentMethod()">
                                                     <span>무통장입금</span>
                                                 </label>
                                             </div>
@@ -940,20 +940,57 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         var totalCost=$("input[name='totalCost']").val();
 
         $("#couponSelectorBtn").on("click", function(){
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfTokenValue = "${_csrf.token}";
+            //할인 값 가져오는 ajax
+            $.ajax({
+               type:'POST',
+               dataType:'text',
+               data:{
+                   couponSeq:$("input[name='couponName']:checked").val()
+               },
+               url:'${contextPath}/order/couponInfo',
+               beforeSend:function (xhr){
+                   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+               },
+               success:function(discount){
+                   console.log('쿠폰 할인가격: ', parseInt(discount));
+                    discount=parseInt(discount);
+                   //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
+                   //쿠폰Seq에 따른 cost를 불러와야 함
+                   //discountCost=$("input[name='coupon_cost']").val();
 
-            couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
-            discountCost=$("input[name='coupon_cost']").val();
+                   //가격 할인
+                   if(discount>100){
+                       totalCost=parseInt(totalCost)-discount;
+                       console.log("totalCost: ",totalCost)
 
-            totalCost=parseInt(totalCost)-parseInt(discountCost);
-            console.log("totalCost: ",totalCost)
+                       //console.log("couponSeq:", couponSeq);
 
-            console.log("couponSeq:", couponSeq);
+                       $("#couponSeq").val(couponSeq);
+                       $("#couponCost").val(discount);
+                       $("#totalCost").val(totalCost);
 
-            $("#couponSeq").val(couponSeq);
-            $("#couponCost").val(discountCost);
-            $("#totalCost").val(totalCost);
+                   }else{//비율 할인
+                        totalCost=parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+                        console.log("totalCost: ",totalCost)
 
-            $('#pec007').modal().hide();
+                       $("#couponSeq").val(couponSeq);
+                       $("#couponCost").val(parseInt(totalCost)*(discount/100));
+                       $("#totalCost").val(totalCost);
+                   }
+
+
+
+                   $('#pec007').modal().hide();
+               },
+               error:function(){
+                   alert('쿠폰을 적용하지 못합니다.');
+               }
+
+            });
+
+
 
         });
     </script>
@@ -992,7 +1029,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--        })--%>
 <%--    })--%>
 <%--</script>--%>
-    </body>
+
 <script type="text/javascript">
 
     function applyCopnDc() {
@@ -1179,4 +1216,20 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
     }
 </script>
-</html>
+<script type="text/javascript">
+
+    function checPaymentMethod(){
+        //TODO: 결제수단에 따른 결제 페이지 보여주기
+        $('input:radio[name=paymentMethod]').is(':checked');
+        //결제 수단: 1: 신용카드, 2: 무통장입금
+        console.log($("input:radio[name='paymentMethod']").val());
+    }
+
+    $("input[type=radio]").change(function(){
+        console.log($(this).val());
+        console.log($(this).attr("id"));
+    })
+
+
+</script>
+

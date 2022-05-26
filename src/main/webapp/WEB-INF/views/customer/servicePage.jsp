@@ -7,14 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/cc/customer.css">
-<body class="vsc-initialized">
-<div class="wrap customer-center"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->
-    <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>
 
+<%--<body class="vsc-initialized">--%>
+<%--<div class="wrap customer-center"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->--%>
+<%--    <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>--%>
 
 
     <main class="cmain customer" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
@@ -1000,18 +996,6 @@
         <!-- //.ui-modal-dialog -->
     </div>
 
-    <!-- skyscraper include-->
-
-
-    <!-- 스카이스크래퍼 -->
-
-
-
-
-
-
-
-
     <script type="text/javascript">
 
         var skySclbrodEndTime = "";
@@ -1306,9 +1290,11 @@
         */
     </script>
     <!-- 스카이스크래퍼 -->
-
-
 </div>
-
-<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div></body>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+    <div></div>
+</div>
+<%--</div></body>--%>
 

@@ -10,4 +10,6 @@ public interface CouponService {
     List<CouponVO> getCouponList(Long user_seq) throws Exception;
 
     int deleteCoupon(Long coupon_seq) throws Exception;
+
+    CouponVO couponDiscount(Long coupon_seq) throws Exception;
 }

@@ -1,11 +1,6 @@
 package org.team2.controller.order;
-import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +11,7 @@ import org.team2.domain.OrderVO;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Log4j
@@ -29,13 +22,13 @@ public class OrderController {
     private OrderService orderService;
     private CouponService couponService;
 
-    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
-    @RequestMapping("")
-    public ModelAndView order(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("order.basktList");
-        return mav;
-    }
+//    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
+//    @RequestMapping("")
+//    public ModelAndView order(){
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("order.basktList");
+//        return mav;
+//    }
 //@RequestParam("user_seq")Long user_seq
     @GetMapping("od")
     public ModelAndView sendOrderData() throws Exception {
@@ -71,9 +64,7 @@ public class OrderController {
 //    @GetMapping("od")
 //    public String sendOrderData() throws Exception {
 //        log.info("컨트롤러 이동 확인");
-//
-//
-//
+
 //        return "order.orderPage";
 //    }
 
@@ -114,5 +105,27 @@ public class OrderController {
                 e.printStackTrace();
             }
             return "order.orderComplete";
+        }
+
+        @ResponseBody
+        @PostMapping("couponInfo")
+        public String getCouponInfo(@RequestParam("couponSeq") String couponSeq) throws Exception{
+            log.info("쿠폰 데이터 가져오는 중");
+            log.info(couponSeq);
+
+            String discount="";
+
+            CouponVO vo=couponService.couponDiscount(Long.valueOf(couponSeq));
+
+            if(vo.getCoupon_cost()==0){
+                discount= String.valueOf(vo.getCoupon_ratio());
+                log.info(discount);
+                return discount;
+            }else{
+                discount= String.valueOf(vo.getCoupon_cost());
+                log.info(discount);
+                return discount;
+            }
+
         }
 }
