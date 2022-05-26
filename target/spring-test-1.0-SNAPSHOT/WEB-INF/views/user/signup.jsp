@@ -106,7 +106,7 @@
                                                     <label for="id" class="inp_tit">아이디<span class="nec">*</span></label>
                                                     <!-- input에 값을 잘 못 입력하면 .inp_bundle에 클래스 "error" 추가해주세요. (포커스되고 값이 입력되면 "focus" 클래스가 붙음) -->
                                                     <div class="inp_bundle registerCustId">
-                                                        <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" />
+                                                        <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" onchange="check_id_length()"/>
                                                         <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
                                                         <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.</span>
                                                         <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.</span>
@@ -208,9 +208,31 @@
                                                 <!--// 성별-->
                                                 <div class="wrap_inp">
                                                     <label for="gender" class="inp_tit">성별<span class="nec">*</span></label>
-                                                    <div class="inp_bundle registerPwd1">
-                                                        <input type="text" title="성별 입력" id="registerGender" name="user_gender" maxlength="30" class="inp flex" placeholder="성별" />
+                                                    <div class="box box_type2">
+                                                        <p class="wrap_chk">
+                                                        <div class="wrap_chk">
+                                                                <span class="checkbox_ui type1">
+                                                                       <input type="checkbox" name="user_gender" id="male" class="mktCheckbox" onclick='checkOnlyOne(this)' value="M"/>
+                                                                       <label for="male">남자</label>
+
+                                                                </span>
+
+                                                                <span class="checkbox_ui type1">
+                                                                        <input type="checkbox" name="user_gender" id="female" class="mktCheckbox" onclick='checkOnlyOne(this)' value="F"/>
+                                                                        <label for="female">여자</label>
+
+                                                                </span>
+
+                                                                <span class="checkbox_ui type1">
+                                                                        <input type="checkbox" name="user_gender" id="none" class="mktCheckbox" onclick='checkOnlyOne(this)' value="N"/>
+                                                                        <label for="none">미입력</label>
+
+                                                                </span>
+                                                        </div>
                                                     </div>
+<%--                                                    <div class="inp_bundle registerPwd1">--%>
+<%--                                                        <input type="text" title="성별 입력" id="registerGender" name="user_gender" maxlength="30" class="inp flex" placeholder="성별" />--%>
+<%--                                                    </div>--%>
                                                 </div>
 
                                                 <div class="wrap_inp">
@@ -277,33 +299,43 @@
     </div>
 
     <script type="text/javascript">
+
+        function check_id_length(){
+            var id_length = document.getElementById('id').value;
+            if(id_length.length < 6 || id_length.length > 16){
+                window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+            }
+        }
+
         function checkId(){
             var id = $('#id').val();
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
-            $.ajax({
-                url:'${contextPath}/user/idCheck' , //Controller 에서 인식할 주소
-                type:'POST',
-                data: {id:id},
-                dataType:'text',
-                beforeSend:function (xhr){
-                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-                },
-                success:function (cnt){
-                    console.log(cnt);
-                    //console.log(count);
-                    if(cnt == '<Integer>0</Integer>') {
-                        $('.id_ok').css("display", "inline-block");
-                        $('.id_already').css("display", "none")
-                    }else if(cnt == '<Integer>1</Integer>'){
-                        $('.id_already').css("display","inline-block");
-                        $('.id_ok').css("display","none");
+            if(id.length >= 6){
+                $.ajax({
+                    url:'${contextPath}/user/idCheck' , //Controller 에서 인식할 주소
+                    type:'POST',
+                    data: {id:id},
+                    dataType:'text',
+                    beforeSend:function (xhr){
+                        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                    },
+                    success:function (cnt){
+                        console.log(cnt);
+                        //console.log(count);
+                        if(cnt == '<Integer>0</Integer>') {
+                            $('.id_ok').css("display", "inline-block");
+                            $('.id_already').css("display", "none")
+                        }else if(cnt == '<Integer>1</Integer>'){
+                            $('.id_already').css("display","inline-block");
+                            $('.id_ok').css("display","none");
+                        }
+                    },
+                    error:function (){
+                        alert("에러입니다.");
                     }
-                },
-                error:function (){
-                    alert("에러입니다.");
-                }
-            });
+                });
+            }
         };
 
         function check_pw(){
@@ -341,6 +373,8 @@
                 document.getElementById('check').style.color='red';
             }
         }
+
+
 
         //이메일 옵션 입력받기
         $("#email1").blur(function (){
@@ -420,6 +454,14 @@
                     document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
                 }
             }).open();
+        }
+
+        function checkOnlyOne(element){
+           const checkboxes = document.getElementsByName("user_gender");
+           checkboxes.forEach((cb)=>{
+               cb.checked = false;
+            })
+            element.checked = true;
         }
 
     </script>
