@@ -17,10 +17,20 @@ public class ServiceCenterController {
     private OrderService orderService;
 
     @GetMapping("")
-    public String order() {
+    public String cart() {
 //        ModelAndView mav = new ModelAndView();
 //        mav.setViewName("customer.servicePage");
         return "customer.servicePage";
+    }
+
+    @GetMapping("faqList")
+    public String faqList(){
+        return "customer.faqList";
+    }
+
+    @GetMapping("noticeList")
+    public String noticeList(){
+        return "customer.noticeList";
     }
 
 }

@@ -1,13 +1,58 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 2022-05-27
+  Time: 오전 1:25
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<div class="wrap cartwrap">
+    <title>자주 묻는 질문 - 현대Hmall</title>
 
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052010"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052010" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052010" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchSpecialShopLinkList.js?ver=052010" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchBrndShopLinkList.js?ver=052010" charset="UTF-8"></script>
+
+
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "hmall",
+            "url": "https://www.hmall.com",
+            "sameAs": [
+                "https://www.facebook.com/hyundaiHmall",
+                "https://www.youtube.com/c/%ED%9B%85%ED%8B%B0%EB%B9%84",
+                "https://www.instagram.com/hyundai.homeshopping/",
+                "https://itunes.apple.com/kr/app/id870397981",
+                "https://play.google.com/store/apps/details?id=com.hmallapp&hl=ko",
+                "http://myhmall.tistory.com"
+            ]
+        }
+    </script>
+
+    <link rel="shortcut icon" href="https://www.hmall.com/favicon.ico">
+    <!-- UI/UX Style -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/common.css"><!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/layout.css"><!-- 공통 Layout css -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/popup.css"><!-- 공통 Popup css -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
+    <style>
+        .hidden {display:none !important;}
+    </style>
+    <script src="//image.hmall.com/p/js/co/jquery-3.4.1.min.js"></script><!-- jQuery Plugin -->
+    <script src="//image.hmall.com/p/js/co/jquery.easing.min.js"></script><!-- jQuery UI Effect -->
+    <script src="//image.hmall.com/p/js/co/jquery-ui.1.12.1.min.js"></script><!-- jQuery UI js -->
+    <script src="//image.hmall.com/p/js/co/ukDetect.min.js"></script><!-- UI에 사용하는 Detect -->
+    <script src="//image.hmall.com/p/js/co/slick.min.js"></script><!-- 공통 Slide 플러그인 -->
+    <script src="//image.hmall.com/p/js/co/common.js"></script><!-- UI에 사용하는 기본 js  -->
+    <script src="//image.hmall.com/p/js/co/co.js"></script><!-- UI에 사용하는 기본 js  -->
+    <script src="//image.hmall.com/p/js/co/jquery.cookie.js"></script>
+    <script src="//image.hmall.com/p/js/co/commonFunction.js"></script><!-- as-is common.js 상속  -->
+    <script src="//image.hmall.com/p/js/co/reDirectExceptUrlList.js"></script><!-- 로그인버튼 click 리다이렉트 예외 url리스트  -->
+
+    <!-- Google analytics -->
+    <script type="text/javascript" src="//image.hmall.com/p/js/co/GoogleAnalyticsBuilder.js?ver=052701"></script>
+    <script type="text/javascript" src="//image.hmall.com/p/js/co/ScreenNameObj.js?ver=052701"></script>
+
+
 
     <script type="text/javascript">
 
@@ -187,14 +232,14 @@
 
             GA_info[GACustomKey.Dimension6] = "N";
             GA_info[GACustomKey.Dimension7] = "N";
-
-            GA_info[GACustomKey.Dimension9] = "20220520";
+            GA_info[GACustomKey.Dimension8] = "20220526";
+            GA_info[GACustomKey.Dimension9] = "20220526";
 
             var _gaid = getCookieGA('GAID');
             if(_gaid != null){GA_info[GACustomKey.Dimension11] = _gaid;}
 
             GA_info[GACustomKey.Dimension12] = "Y";
-            GA_info[GACustomKey.Dimension24] = "6";
+            GA_info[GACustomKey.Dimension24] = "";
 
 
             GA_info[GACustomKey.Dimension13] = "U";
@@ -203,17 +248,17 @@
 
             GA_info[GACustomKey.Dimension22] = "기타";
 
+            GA_info[GACustomKey.Dimension25] = "20220521";
 
-
-
-
+            GA_info[GACustomKey.Dimension27] = "20220521";
+            GA_info[GACustomKey.Dimension28] = "20220526";
 
             GA_info[GACustomKey.Dimension30] = "N";
 
-            GA_info[GACustomKey.Dimension37] = "0";
+            GA_info[GACustomKey.Dimension37] = "1";
             GA_info[GACustomKey.Dimension38] = "N";
-
-
+            GA_info[GACustomKey.Dimension39] = "방송";
+            GA_info[GACustomKey.Dimension40] = "인터넷";
             GA_info[GACustomKey.Dimension41] = "PCWEB";
             GA_info[GACustomKey.Dimension47] = "N";
 
@@ -240,9 +285,9 @@
 
         function setGaDataSend_Event(evntType,product_array){
             /* var product_array = [];
-            if(product_array_param != null && product_array_param != undefined){
-                product_array = product_array_param;
-            } */
+	if(product_array_param != null && product_array_param != undefined){
+		product_array = product_array_param;
+	} */
             var ecommerce_hit = new Object();
             var action_obj = new Object();
 
@@ -467,19 +512,19 @@
             setGaPromotion(title, name, position, creative, id);
             //마케팅플랫폼 전용 >>> 마케팅 플랫폼은 Tab명이 다르기 때문에 if문 처리
             /*
-            if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
-                title = "메인>"+gaForTabNm;
-                name = "메인_"+gaForTabNm+"탭";
-            }
+    if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
+        title = "메인>"+gaForTabNm;
+        name = "메인_"+gaForTabNm+"탭";
+    }
 
-            if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
-                //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
+    if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
+        //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
 
-            }else{
-                console.log("setGaPromotion()................1");
-                setGaPromotion(title, name, position, creative, id);
-            }
-        */
+    }else{
+        console.log("setGaPromotion()................1");
+        setGaPromotion(title, name, position, creative, id);
+    }
+*/
 
             if (etc == "home"){
                 bizSpringTagForHome(msg1, msg2, msg3);
@@ -493,7 +538,773 @@
 
 
     </script> <!-- GA Custum lib -->
-    <script type="text/javascript" src="//image.hmall.com/gen/js/new_main_data.js?ver=052010" charset="UTF-8"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-1066206974"></script>
+    <!-- Google analytics end -->
+
+    <script>
+
+        $.fn.size = function() {
+            return this.length;
+        }
+
+        /**
+         * 팝업 관련  함수(아래 링크를 참고하고 있음)
+         * as-is https://image.hmall.com/pc/js/hmall/co/common.js
+         * serverHost indexof local이 없어 추가-> 추후 as-is js 생성 필요
+         * 2020.09.21 http -> https 로 던지도록 변경
+         */
+        document.domain = "hmall.com";
+        var locationHref = document.location.href;
+        var imageServer = "https://image.hmall.com";
+        var serverHost = (location.href.indexOf("final") > 0 || location.href.indexOf("stg") > 0 || location.href.indexOf("dev") > 0 || location.href.indexOf("local") > 0) ? "https://" + location.host : "https://www.hmall.com";
+        var serverHostForSSL = (location.href.indexOf("final") > 0 || location.href.indexOf("stg") > 0 || location.href.indexOf("dev") > 0 || location.href.indexOf("local")>0) ? "https://" + location.host : "https://www.hmall.com";
+        var switch_serverHost;
+
+        if (locationHref.indexOf("https") > -1) {
+            switch_serverHost = serverHostForSSL;
+            imageServer = "https://image.hmall.com";
+        } else if (locationHref.indexOf("http") > -1) {
+            switch_serverHost = serverHost;
+            imageServer = "https://image.hmall.com";
+        }
+
+
+
+        try{
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-1066206974');
+            gtag('config', 'AW-937000404');
+        }catch(e){}
+
+        //Google Analytics
+        var init_Obj = new Object();
+
+        $(window).on("load",function() {
+            // $("body").prepend('hello new UI');
+
+            //GA 맞춤측정 데이터 전송 및 클릭이벤트 초기화
+            console.log("setDimension and useWindload 호출");
+            setDimension();
+            useWinload();
+
+        });
+
+
+        // GNB - 바로가기 링크
+        function setQuicklink(jsonData){
+            var _data = jsonData;
+            var _html = "";
+
+            $(_data).each(function(_idx){
+                var _label = this.dispNm.toString();
+                var _dispUrl = this.dispUrl.toString();
+                var _item = "";
+
+                if(_idx == 0) _item = "<li class='first'>";
+                else _item = "<li>";
+
+                var _bizParam = _dispUrl.indexOf("?") >= 0 ? "&_IC_=tab"+(_idx+1) : "?_IC_=tab"+(_idx+1);
+
+                _item += "<a href='" + _dispUrl + _bizParam + "' class='gp_className' ga-category='메인 홈' ga-action='상단탭' ga-label='" + _label + "'>" + _label + "</a>" + "</li>";
+
+                _html += _item;
+            });
+
+            $('.quicklink.ql-left').empty().append(_html);
+        }
+        /*
+    function gaTagging(obj_GA, msg1, msg2, msg3){
+    	location.href = msg1;
+    }
+*/
+        function getClickUrl(url){
+            if(url == ''){
+                return false;
+            }else{
+                document.location.href = url;
+
+            }
+        }
+
+    </script>
+
+    <!-- includeScript -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/cc/customer.css">
+    <script type="text/javascript">
+        var param = "";
+        var faqLCsfCount = "0";
+        jQuery(function($) {
+            if(param != ''){
+                $("#"+param).click();
+                var ancmId = param;
+                var params = "ancmId=" + ancmId;
+                $.ajax({ url: "/p/ccc/updateFaqCnt.do", data:params, type:"post", success: function(data){
+                        $("#cnt"+ancmId).html(data.qryCnt);
+                    }, dataType: "json"});
+
+                $("#"+param).attr('chk','true');
+            }
+
+            //FAQ 평가 글자 수 제한
+            $("textarea").keyup(function(){
+                var text = $(this).val();
+                var textlength = text.length;
+                var bytesize = 0;
+
+                for(i = 0; i < textlength;i++){
+                    onechar = text.charAt(i);
+                    if(isValidKorean(onechar)){
+                        bytesize += 2;
+                    } else{
+                        bytesize++;
+                    }
+                }
+
+                if (bytesize > 1000) {
+                    $("textarea").blur();
+                    var msg = $("textarea").val().substring(0, 1000);
+                    $("textarea").val(msg);
+                    alert("1000byte를 초과하실 수 없습니다");
+                    return false;
+                }
+                $("span.color_ora").text(bytesize);
+            });
+
+            $("input[name='ancmCntn']").on("keydown", function(e) {
+                if (e.keyCode == 13) {
+                    searchCntn();
+                }
+            });
+        })
+
+        //검색하여 리스트 출력
+        function searchCntn() {
+            var ancmCntn = $("input[name='ancmCntn']").val().trim();
+            if (ancmCntn == "") {
+                alert("검색어를 입력해 주세요.");
+                return false;
+            }
+            $("form[name='searchForm']").submit();
+        }
+
+        //조회수 순서로 리스트 출력
+        function sortByCnt() {
+            var faqMCsfNo = "";
+            var faqLCsfNo = "";
+
+            if(faqMCsfNo){
+                $("#faqMCsfNo").val(leadingSpaces(faqMCsfNo, 5));
+            }
+            if(faqLCsfNo){
+                $("#faqLCsfNo").val(leadingSpaces(faqLCsfNo, 2));
+            }
+
+            $("#sort").val("true");
+            $("form[name='searchForm']").submit();
+        }
+
+        //자릿수 맞추기
+        function leadingSpaces(n, digits) {
+            var space = '';
+            n = n.toString();
+
+            if (n.length < digits) {
+                for (var i = 0; i < digits - n.length; i++)
+                    space += '0';
+            }
+            return space + n;
+        }
+
+        //FAQ 평가 저장 ajax
+        function evalSubmit(ancmId){
+            var evalScrg = $(":radio[name=evalScrg"+ancmId+"]:checked").val();
+            var evalOpnCntn = $("#txt_appraisal"+ancmId).val();
+
+            var param = "ancmId=" + ancmId + "&evalScrg=" + evalScrg + "&evalOpnCntn=" + evalOpnCntn;
+            $.ajax({ url: "/p/ccc/insertFaqEval.do", data:param, type:"post", success: function(data){
+                    if(data.result == -1){
+                        alert("평가 입력을 실패하였습니다");
+                    } else{
+                        var url = "/p/ccc/faqEvalSuccess.do";
+                        var popName = "faqEvalSuccess";
+                        var popOption = "height=255, width=550, fullscreen=no, location=no, scrollbars=no, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+                        window.open(url,popName,popOption);
+                    }
+                }, dataType: "json"});
+
+            $("#txt_appraisal"+ancmId).val('');
+        }
+
+        //한글 필터링
+        function isValidKorean(data){
+            var format = /^[\uac00-\ud7a3]*$/g;
+            if (data.search(format) == -1)
+                return false;
+            return true;
+        }
+
+        //쇼핑가이드
+        function shopGuidePup(){
+            var url = "https://www.hmall.com/html/shop/Guide_order_trouble.html";
+            var popName = "shopGuidePup";
+            var popOption = "height=700, width=990, fullscreen=no, location=no, scrollbars=no, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+            window.open(url,popName,popOption);
+        }
+
+        //1:1 상담
+        function openCnslAcptPup(obj){
+            if(isLogin() == 'true'){
+                var url = "/p/ccd/selectCnslAcptPup.do?cnslCsfCd=" + obj;
+                if(isEmpty(obj)){
+                    url = "/p/ccd/selectCnslAcptPup.do";
+                }
+                var popName = "selectCnslAcptPup";
+                var popOption = "height=316, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+                window.open(url,popName,popOption);
+            }else{
+                openLoginPopup();
+            }
+        }
+        //고객의 의견
+        function openCustBoardPup(){
+            var url = "/p/cce/selectCustBoardPup.do";
+            var popName = "selectCustBoardPup";
+            var popOption = "height=900, width=810, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+            window.open(url,popName,popOption);
+        }
+
+        //2021.07.02 KJH FAQ 조회수 카운트
+        function lookup_count(target,notice_id,category) {
+            if(($(target).parent().attr('class') != "selected")) {
+                if(category.toString().length == 1) {
+                    category = "0" + category;
+                }
+                $.ajax({
+                    url : "/p/cca/FaqCountAjax.do",
+                    data : {
+                        "notice_id" : notice_id
+                        ,"category" : category
+                    },
+                    type : "POST",
+                    dataType : "json",
+                    cache : false,
+                    success : function (data){
+                        console.log("json success");
+                    },
+                    error : function(){
+                        console.log("json error");
+                    }
+                });
+            }
+        }
+
+    </script>
+    <meta http-equiv="origin-trial" content="A9wkrvp9y21k30U9lU7MJMjBj4USjLrGwV+Z8zO3J3ZBH139DOnCv3XLK2Ii40S94HG1SZ/Zeg2GSHOD3wlWngYAAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1066206974/?random=1653582341888&amp;cv=9&amp;fst=1653582341888&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=19&amp;u_tz=540&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oa5n0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.hmall.com%2Fp%2Fccc%2FfaqList.do&amp;ref=https%3A%2F%2Fwww.hmall.com%2Fp%2Fcca%2Fmain.do&amp;tiba=%EC%9E%90%EC%A3%BC%20%EB%AC%BB%EB%8A%94%20%EC%A7%88%EB%AC%B8%20-%20%ED%98%84%EB%8C%80Hmall&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><meta http-equiv="origin-trial" content="A9wkrvp9y21k30U9lU7MJMjBj4USjLrGwV+Z8zO3J3ZBH139DOnCv3XLK2Ii40S94HG1SZ/Zeg2GSHOD3wlWngYAAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1066206974/?random=1653582341917&amp;cv=9&amp;fst=1653582341917&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=19&amp;u_tz=540&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oa5n0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.hmall.com%2Fp%2Fccc%2FfaqList.do&amp;ref=https%3A%2F%2Fwww.hmall.com%2Fp%2Fcca%2Fmain.do&amp;tiba=%EC%9E%90%EC%A3%BC%20%EB%AC%BB%EB%8A%94%20%EC%A7%88%EB%AC%B8%20-%20%ED%98%84%EB%8C%80Hmall&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/937000404/?random=1653582341972&amp;cv=9&amp;fst=1653582341972&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=19&amp;u_tz=540&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oa5n0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.hmall.com%2Fp%2Fccc%2FfaqList.do&amp;ref=https%3A%2F%2Fwww.hmall.com%2Fp%2Fcca%2Fmain.do&amp;tiba=%EC%9E%90%EC%A3%BC%20%EB%AC%BB%EB%8A%94%20%EC%A7%88%EB%AC%B8%20-%20%ED%98%84%EB%8C%80Hmall&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/937000404/?random=1653582341978&amp;cv=9&amp;fst=1653582341978&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=19&amp;u_tz=540&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oa5n0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.hmall.com%2Fp%2Fccc%2FfaqList.do&amp;ref=https%3A%2F%2Fwww.hmall.com%2Fp%2Fcca%2Fmain.do&amp;tiba=%EC%9E%90%EC%A3%BC%20%EB%AC%BB%EB%8A%94%20%EC%A7%88%EB%AC%B8%20-%20%ED%98%84%EB%8C%80Hmall&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style></head>
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052701"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052701" charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052701" charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchSpecialShopLinkList.js?ver=052701" charset="UTF-8"></script>
+    <script type="text/javascript" src="//image.hmall.com/gen/js/searchBrndShopLinkList.js?ver=052701" charset="UTF-8"></script>
+
+    <script type="text/javascript">
+
+
+        var oneClickFlag = 0;
+        function setDimension(){
+
+            if(oneClickFlag != 0){
+                return false;
+            }
+
+            oneClickFlag = 1;
+
+            if(location.pathname.indexOf("/p/cob/memberLogin.do") > -1){
+                return;
+            }
+            var GA_info = {};
+
+
+            GA_info = setDimenData(GA_info);
+
+
+            GA_Init(GA_info);
+
+
+            if(location.pathname.replace("//", "/") == '/m/pda/smItemDetailR.do' || location.pathname.replace("//", "/") == '/p/pda/itemPtc.do' && pdaItemPtcCnt == 0){
+                pdaItemPtcCnt = 1;
+                var	product_array = [];
+                product_array.push(
+                    {
+                        'id':'',
+                        'name':'',
+                        'brand': '',
+                        'category' : '',
+                        'dimension51': 'default',
+                        'dimension52':'',
+                        'dimension53':'',
+                        'dimension54':'',
+                        'dimension55':'',
+                        'dimension56':'',
+                        'dimension57':'',
+                        'dimension58':'',
+                        'dimension59':'',
+                        'dimension60':'',
+
+                        'dimension62':'',
+                        'dimension63':'',
+                        'dimension64':''
+                    }
+                );
+
+                var ecommerce_hit = new Object();
+                ecommerce_hit[GAHitKey.NonInteraction] = '1';
+                var action_obj = new Object();
+
+
+                GADataSend_Ecommerce(GAEcommerceStepKey.Detail, action_obj, product_array, ecommerce_hit);
+
+            }else if(location.pathname == '/p/oda/orderComplete.do' && ordCompleteCnt == 0){
+                ordCompleteCnt = 1;
+                var	product_array = [];
+
+
+
+                var ecommerce_hit = new Object();
+                ecommerce_hit[GAHitKey.NonInteraction] = '1';
+                ecommerce_hit[GAHitKey.currencyCode] = 'KRW';
+
+
+
+                ecommerce_hit[GACustomKey.Metric1] = 0;
+
+                ecommerce_hit[GACustomKey.Metric2] = 0;
+
+
+                ecommerce_hit['dimension74'] = '';
+                ecommerce_hit['dimension75'] = '';
+
+
+
+                var action_obj = new Object();
+                action_obj[GAActionFieldKey.TransactionID]='';
+                action_obj[GAActionFieldKey.TransactionRevenue]='0';
+                action_obj[GAActionFieldKey.TransactionShipping]='0';
+
+                action_obj[GAActionFieldKey.TransactionCouponCode]='';
+
+
+
+
+
+
+
+                GADataSend_Ecommerce(GAEcommerceStepKey.Purchase, action_obj, product_array, ecommerce_hit);
+                oneClickFlag = 0;
+            } else if(location.pathname == '/p/cua/registMemberComplete.do') { //회원가입완료 페이지 로드
+
+                try {
+                    if (!gaLoad.APP) {
+                        var GAInfo = {};
+                        GAInfo.title = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension31] = "회원가입/로그인";
+                        GAInfo[GACustomKey.Dimension32] = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension33] = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension34] = "회원가입/로그인>회원가입완료";
+
+
+                        GAInfo.hitType = 'event';
+                        GAInfo.eventCategory = '회원가입';
+                        GAInfo.eventAction = 'Step3. 가입완료';
+                        GAInfo.eventLabel = 'Hmall 간편회원가입';
+                        ga('gp.send', GAInfo);
+                    }else{
+                        var emptyObject = JSON.parse(JSON.stringify(CustomObject));
+                        emptyObject.type = 'E';
+                        if(getCookieGAB('ReferCode') !== null){ emptyObject.dimension[GACustomKey.Dimension20] = getCookieGAB('ReferCode'); }
+                        if(getCookieGAB('TcCode') !== null){
+                            var tmpTcCode = getCookieGAB('TcCode');
+                            if(tmpTcCode.split('|').length == 1){
+                                emptyObject.dimension[GACustomKey.Dimension21] = getCookieGAB('TcCode');
+                            }else if(tmpTcCode.split('|').length == 2){
+                                emptyObject.dimension[GACustomKey.Dimension21] = tmpTcCode.split('|')[0];
+                            }
+                        }
+
+                        emptyObject['category'] = '회원가입';
+                        emptyObject['action'] = 'Step3. 가입완료';
+                        emptyObject['label'] = 'Hmall 간편회원가입';
+
+
+                        GAInfo.title = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension31] = "회원가입/로그인";
+                        GAInfo[GACustomKey.Dimension32] = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension33] = "회원가입/로그인>회원가입완료";
+                        GAInfo[GACustomKey.Dimension34] = "회원가입/로그인>회원가입완료";
+
+
+                        if (browserInfo.indexOf(AndroidWebview) > -1 && window.AndroidJS && emptyObject['title'] !== undefined && emptyObject['title'].trim().length > 0)
+                            window.AndroidJS.GA_DATA(JSON.stringify(emptyObject));
+                        else if(typeof pageTemplateNm !== 'undefined' && browserInfo.indexOf(AndroidWebview) > -1 && window.AndroidJS){
+                            window.AndroidJS.GA_DATA(JSON.stringify(emptyObject));
+                        }
+                        else if (browserInfo.indexOf(iOS_Webview_WK) > -1 && window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.gascriptCallbackHandler)
+                            webkit.messageHandlers.gascriptCallbackHandler.postMessage(JSON.stringify(emptyObject));
+                        else if (browserInfo.indexOf(iOS_WebView_UI) > -1) doRequest(Scheme + encodeURIComponent(JSON.stringify(emptyObject)));
+                    }
+                } catch(e){
+
+                }
+                oneClickFlag = 0;
+            }
+        }
+
+
+        function setDimenData(GA_info){
+            var _ga = getCookieGA('_ga');
+            if(_ga != null){
+                GA_info[GACustomKey.Dimension1] = _ga;
+            }
+
+            var uid = "";
+            if(getCookieGA('ENCEHCustNO') != null && getCookieGA('ENCEHCustNO') != ""){
+                uid = getCookieGA('ENCEHCustNO');
+            }
+
+            if(uid == "" || uid.length != 32){
+
+            }else{
+                GA_info[GACustomKey.Dimension2] = uid;
+                GA_info[GAHitKey.UserId] = uid;
+
+
+            }
+
+            GA_info[GACustomKey.Dimension3] = "20220513";
+            GA_info[GACustomKey.Dimension4] = "일반";
+
+            GA_info[GACustomKey.Dimension6] = "N";
+            GA_info[GACustomKey.Dimension7] = "N";
+            GA_info[GACustomKey.Dimension8] = "20220526";
+            GA_info[GACustomKey.Dimension9] = "20220526";
+
+            var _gaid = getCookieGA('GAID');
+            if(_gaid != null){GA_info[GACustomKey.Dimension11] = _gaid;}
+
+            GA_info[GACustomKey.Dimension12] = "Y";
+            GA_info[GACustomKey.Dimension24] = "";
+
+
+            GA_info[GACustomKey.Dimension13] = "U";
+            GA_info[GACustomKey.Dimension14] = "U";
+            GA_info[GACustomKey.Dimension15] = "실버";
+
+            GA_info[GACustomKey.Dimension22] = "기타";
+
+            GA_info[GACustomKey.Dimension25] = "20220521";
+
+            GA_info[GACustomKey.Dimension27] = "20220521";
+            GA_info[GACustomKey.Dimension28] = "20220526";
+
+            GA_info[GACustomKey.Dimension30] = "N";
+
+            GA_info[GACustomKey.Dimension37] = "1";
+            GA_info[GACustomKey.Dimension38] = "N";
+            GA_info[GACustomKey.Dimension39] = "방송";
+            GA_info[GACustomKey.Dimension40] = "인터넷";
+            GA_info[GACustomKey.Dimension41] = "PCWEB";
+            GA_info[GACustomKey.Dimension47] = "N";
+
+
+            if(location.pathname == '/p/pde/search.do'){
+
+
+
+
+
+                GA_info[GACustomKey.Dimension19] = "N";
+
+
+            }
+
+            GA_info[GACustomKey.Dimension16] = "PCWEB";
+
+            GA_info[GACustomKey.Dimension35] = location.href.replace("http://", "").replace("https://", "");
+
+            return GA_info;
+        }
+
+
+
+        function setGaDataSend_Event(evntType,product_array){
+            /* var product_array = [];
+	if(product_array_param != null && product_array_param != undefined){
+		product_array = product_array_param;
+	} */
+            var ecommerce_hit = new Object();
+            var action_obj = new Object();
+
+
+            if(location.pathname == '/m/pda/smItemDetailR.do' || location.pathname == '/p/pda/itemPtc.do'){
+
+                if(evntType == GAEcommerceStepKey.Checkout){
+                    action_obj[GAActionFieldKey.CheckoutStep] = '1';
+                    GADataSend_Ecommerce(evntType, action_obj, product_array, ecommerce_hit);
+                }else{
+                    ecommerce_hit[GAHitKey.NonInteraction] = '1';
+                    GADataSend_Ecommerce(evntType, action_obj, product_array, ecommerce_hit);
+                }
+
+            }else if(location.pathname == '/p/oda/order.do'){
+
+                try {
+                    var itemGbcd = ""; // 무형상품체크, 유/무형 상품 같이 구매 불가하므로..
+
+                } catch (e) {
+
+                }
+
+                if(evntType == GAEcommerceStepKey.Checkout){
+                    var ecommerce_hit = new Object();
+                    var action_obj = new Object();
+                    action_obj[GAActionFieldKey.CheckoutStep] = '2';
+
+                    var selOrderType = $("input[name='payType']:checked").val();
+
+                    if(selOrderType == '10'  ){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '01 카드';
+                        ecommerce_hit['dimension75'] = '01 카드';
+                    }else if(selOrderType == '20'){
+                        action_obj[GAActionFieldKey.CheckoutOptions] = '02 현금';
+                        ecommerce_hit['dimension75'] = '02 현금';
+                    }else if(selOrderType == '40'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '12 휴대폰결제';
+                        ecommerce_hit['dimension75'] = '12 휴대폰결제';
+                    }else if(selOrderType == '91'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '15 페이코';
+                        ecommerce_hit['dimension75'] = '15 페이코';
+                    }else if(selOrderType == '30'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '20 현금(실시간)';
+                        ecommerce_hit['dimension75'] = '20 현금(실시간)';
+                    }else if(selOrderType == '95'){
+                        action_obj[GAActionFieldKey.CheckoutOptions] = '21 네이버페이';
+                        ecommerce_hit['dimension75'] = '21 네이버페이';
+                    }else if(selOrderType == '96'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '22 스마일페이';
+                        ecommerce_hit['dimension75'] = '22 스마일페이';
+                    }else if(selOrderType == '97'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '23 카카오페이';
+                        ecommerce_hit['dimension75'] = '23 카카오페이';
+                    }else if(selOrderType == '81'){
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '25 토스';
+                        ecommerce_hit['dimension75'] = '25 토스';
+                    }else if(selOrderType == '99') {
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '24 현금간편결제';
+                        ecommerce_hit['dimension75'] = '24 현금간편결제';
+                    }else if(selOrderType == '50') {
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '98 카드+현금';
+                        ecommerce_hit['dimension75'] = '98 카드+현금';
+                    }else if(selOrderType == '93') {
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = '99 삼성페이';
+                        ecommerce_hit['dimension75'] = '99 삼성페이';
+                    }else {
+                        action_obj[GAActionFieldKey.CheckoutOptions]  = 'default';
+                        ecommerce_hit['dimension75'] = 'default';
+                    }
+
+                    // 무형상품이면 고정 - 이호정선임요청 2021.01.28 김기호
+                    if (itemGbcd == "04") {
+                        console.log("무형상품이므로 Dimension75:무형상품");
+                        action_obj[GAActionFieldKey.CheckoutOptions] = '무형상품';
+                        ecommerce_hit[GACustomKey.Dimension75] = '무형상품';
+                    } else {
+
+                        ecommerce_hit[GACustomKey.Dimension74] = '일반구매';
+
+                    }
+                    GADataSend_Ecommerce(evntType, action_obj, product_array, ecommerce_hit);
+                }
+            }else{
+                GADataSend_Ecommerce(evntType, action_obj, product_array, ecommerce_hit);
+            }
+
+        }
+
+
+
+        function sendSlitmClick(slitmNm, slitmCd, tabNm){
+
+            if(slitmNm == "" || slitmCd == "" || tabNm == "")
+                return;
+
+            var product_array = [];
+            product_array.push({'id': slitmCd, 'name': slitmNm});
+
+            var action_obj = new Object();
+            action_obj[GAActionFieldKey.ProductActionList] = tabNm;
+
+            var ecommerce_hit = new Object();
+            GADataSend_Ecommerce(GAEcommerceStepKey.Click, action_obj, product_array, ecommerce_hit);
+        }
+
+
+
+        function getParameterByName(url, name) {
+            if(url == "" || name == "" || url == undefined || name == undefined){
+                return;
+            }
+
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(url);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function setGaPromotion(title, name, position, creative, id){
+            var action_obj = new Object();
+            var ecommerce_hit = new Object();
+            var tabNm = title;
+            if (tabNm.length > 0) {
+                tabNm = tabNm.substring(tabNm.indexOf(">")+1, tabNm.length);
+            }
+
+            ecommerce_hit[GAHitKey.Title] = title;
+
+            action_obj["promo1"] = {};
+            action_obj["promo1"][GAActionFieldKey.PromotionName] = name;
+            action_obj["promo1"][GAActionFieldKey.PromotionPosition] = position;
+            action_obj["promo1"][GAActionFieldKey.PromotionCreative] = creative;
+            action_obj["promo1"][GAActionFieldKey.PromotionID] = id;
+
+            if(name.substring(0, name.indexOf("_")) == "메인"){
+                console.log("setGaPromotion()................4");
+                ecommerce_hit[GACustomKey.Dimension31] = '메인';
+                ecommerce_hit[GACustomKey.Dimension32] = '메인>'+ tabNm;
+                ecommerce_hit[GACustomKey.Dimension33] = '메인>'+ tabNm;
+                ecommerce_hit[GACustomKey.Dimension34] = '메인>'+ tabNm;
+            }
+
+            GADataSend_Ecommerce(GAEcommerceStepKey.PromotionClick, action_obj, null, ecommerce_hit);
+        }
+
+        function getCookieGA(name) {
+            var cname = name + "=";
+            var dc = document.cookie;
+            if (dc.length > 0) {
+                begin = dc.indexOf(cname);
+                if (begin != -1) {
+                    begin += cname.length;
+                    end = dc.indexOf(";", begin);
+                    if (end == -1) end = dc.length;
+                    if ( "EHCustName" == name || "LAST_SECT" == name) {
+                        return decodeURIComponent(dc.substring(begin, end));
+                    }
+                    else {
+                        return unescape(dc.substring(begin, end)).replace('GA1.2.','');
+                    }
+                }
+            }
+            return null;
+        }
+
+        function sendSlitmClickGo(slitmNm, slitmCd, tabNm,url){
+
+            if(slitmNm == "" || slitmCd == "" || tabNm == "" || url =="")
+                return;
+
+            var product_array = [];
+            product_array.push({'id': slitmCd, 'name': slitmNm});
+
+            var action_obj = new Object();
+            action_obj[GAActionFieldKey.ProductActionList] = tabNm;
+
+            var ecommerce_hit = new Object();
+            GADataSend_Ecommerce(GAEcommerceStepKey.Click, action_obj, product_array, ecommerce_hit);
+
+            document.location.href = url;
+        }
+        function sendSlitmClickNewWin(slitmNm, slitmCd, tabNm, url){
+
+            if(slitmNm == "" || slitmCd == "" || tabNm == "" || url =="")
+                return;
+
+            var product_array = [];
+            product_array.push({'id': slitmCd, 'name': slitmNm});
+
+            var action_obj = new Object();
+            action_obj[GAActionFieldKey.ProductActionList] = tabNm;
+
+            var ecommerce_hit = new Object();
+            GADataSend_Ecommerce(GAEcommerceStepKey.Click, action_obj, product_array, ecommerce_hit);
+
+            try {
+                _trk_flashEnvView('_TRK_PI=LYRNWN');
+            } catch(e) {}
+
+            try {
+                _trk_clickTrace("EVT", "상품리스트_새창");
+            } catch (e) {}
+            window.open(url, '_blank');
+        }
+
+        function bizSpringTagForHome(url, tag, pathVal){
+
+            location.href = url
+        }
+
+        function gaTagging(obj_GA, msg1, msg2, msg3){
+            console.log("gaTagging()................");
+            var title =     $(obj_GA).attr("ga-custom-title") == undefined ? "" : $(obj_GA).attr("ga-custom-title");
+            var name =      $(obj_GA).attr("ga-custom-name") == undefined ? "" : $(obj_GA).attr("ga-custom-name");
+            var position =  $(obj_GA).attr("ga-custom-position") == undefined ? "" : $(obj_GA).attr("ga-custom-position");
+            var creative =  $(obj_GA).attr("ga-custom-creative") == undefined ? "" : $(obj_GA).attr("ga-custom-creative");
+            var id =        $(obj_GA).attr("ga-custom-id") == undefined ? "" : $(obj_GA).attr("ga-custom-id");
+            var etc =       $(obj_GA).attr("ga-custom-etc") == undefined ? "" : $(obj_GA).attr("ga-custom-etc");
+            var etc2 =      $(obj_GA).attr("ga-custom-etc2") == undefined ? "" : $(obj_GA).attr("ga-custom-etc2");
+
+            setGaPromotion(title, name, position, creative, id);
+            //마케팅플랫폼 전용 >>> 마케팅 플랫폼은 Tab명이 다르기 때문에 if문 처리
+            /*
+    if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
+        title = "메인>"+gaForTabNm;
+        name = "메인_"+gaForTabNm+"탭";
+    }
+
+    if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
+        //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
+
+    }else{
+        console.log("setGaPromotion()................1");
+        setGaPromotion(title, name, position, creative, id);
+    }
+*/
+
+            if (etc == "home"){
+                bizSpringTagForHome(msg1, msg2, msg3);
+            } else {
+                if (msg1 != null && msg1 != "" && msg1.length > 0) {
+                    location.href = msg1;
+                }
+            }
+        }
+
+
+
+    </script> <!-- GA Custum lib -->
+    <script type="text/javascript" src="//image.hmall.com/gen/js/new_main_data.js?ver=052701" charset="UTF-8"></script>
 
 
     <!-- TODO 곽희섭 20170523 통합포인트 추가 -->
@@ -505,7 +1316,7 @@
 
         /* TODO 곽희섭 20170524 통합포인트 추가 */
         var ssoAuthYn       = "";
-        var ssoAuthCd       = "N";
+        var ssoAuthCd       = "";
         var upntCustNoEnc   = "";
         var mcustNo         = ""; //TODO 곽희섭 20170804 통합멤버십 회원 코드
         var custNo          = "202205302469"; //TODO 곽희섭 20170810 회원코드
@@ -1409,7 +2220,51 @@
             }
         }
 
+        //최근본쇼핑 하단 이미지조회
+        function getRecentImg(){
+            $.ajax({
+                type: "get",
+                url: '/p/coe/selectRcntShpgImg.do',
+                dataType: "json",
+                success: function(data){
 
+                    var itemImg = data.rcntShpgMap.itemImg;
+                    if(itemImg != null && itemImg != ""){
+                        var imgTag = '<img src='+itemImg+' onerror="noImage(this, \'https://image.hmall.com/p/img/co/noimg-thumb.png\')" >';
+                        $("#recentlyImg > em").html(imgTag);
+                    }
+
+
+                    //하단이미지 조회 후 쿠키동의여부 팝업 노출여부 체크 및 노출
+                    if(sessionStorage.getItem("recentCokiUseAgr") == "Y"){
+
+                        // 로그인 성공 했을 때
+                        $.ajax({
+                            type: "get"
+                            ,url: "/p/coe/checkRcntShpg.do"
+                            ,dataType: "json"
+                            ,cache : false
+                            ,data: {}
+                            ,async: true
+                            ,success : function(data) {
+                                if (data && data.showRcntShpgPop == "Y") {
+                                    $("#recentCokiUseAgr").addClass("active");
+                                    $("#recentCokiUseAgr").show();
+                                    sessionStorage.removeItem("recentCokiUseAgr");
+                                }
+                            },
+                            error : function(e){
+                            }
+                        });
+                    }
+
+
+                },
+                error: function(xhr, type){
+                    //alert('no data : ' + type);
+                }
+            });
+        }
 
         //최근본쇼핑 쿠키동의여부 처리
         function setRecentCookieAgr(agrVal){
@@ -2273,8 +3128,8 @@
             var returnURL = "";
             var redirect_uri ='https://www.hmall.com';
             /* if(returnURL.indexOf("&") > -1){
-                returnURL = returnURL.replace(/&amp;/g,"||");
-            } */
+            returnURL = returnURL.replace(/&amp;/g,"||");
+        } */
 
             var gnbLoginYn = "Y";
             redirect_uri += '/p/cob/naverLoginChk.do?gnbLoginYn=' + gnbLoginYn + '&returnUrl=' + returnURL;
@@ -2284,6 +3139,8 @@
             var popOption = "height=760, width=795, fullscreen=no, location=no, scrollbars=no, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no, top=0, left=0, status=no";
             window.open(url, popName, popOption);
         }
+
+        setTopBanner();
 
         loadPCdirect();
         ajaxCallback();
@@ -2304,508 +3161,343 @@
     </script>
     <!--//header -->
 
+    <!-- //gnb -->
 
-    <!-- full 배경이 들어간 구조 bgcmain -->
-    <main class="cmain bgcmain" role="main" id="mainContents">
+    <main class="cmain customer" role="main">
         <div class="container">
-            <input type="hidden" name="giftOrderYn">
-
-            <div class="cbody">
-                <div class="contents">
-                    <div class="csection">
-                        <div class="cart-area">
-                            <div class="cart-head">
-                                <div class="cart-top">
-                                    <div class="cart-all">
-                                        <strong>장바구니</strong>  <span>(<em class="cart-count">1</em>)</span>
-                                    </div>
-                                    <ol class="cart-list-num">
-                                        <li class="active"> <!-- active일 경우 style 변경 -->
-                                            <strong>01</strong>
-                                            <span>장바구니</span>
-                                        </li>
-                                        <li>
-                                            <strong>02</strong>
-                                            <span>주문서작성</span>
-                                        </li>
-                                        <li>
-                                            <strong>03</strong>
-                                            <span>주문완료</span>
-                                        </li>
-                                    </ol>
-                                    <!-- 가격이 내려간 상품이 있을 경우 노출 -->
-                                    <div class="toast arrtl bgc" style="display:none;">
-                                        <p>가격이 내려간 상품이 있습니다</p>
-                                        <button type="button" class="btn-close"><i class="icon"></i><span class="hiding">닫기</span></button>
-                                    </div>
-                                </div>
-                                <div class="cart-bottom">
-                                    <div class="btngroup">
-                                        <button type="button" class="btn btn-cart-del" onclick="deleteBasktAll();"><i class="icon cart-del"></i><span>장바구니 비우기</span></button>
-                                        <button type="button" class="btn btn-cart-set lyopen" data-modules-modal="target:#cartAlarm;"><i class="icon cart-set"></i><span>알림설정</span></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- //.cart-head -->
-
-                            <div class="cart-body">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <!-- 품절체크 -->
-
-
-
-
-
-
-
-
-
-
-
-
-                                <form action="#" name="totBasktForm" method="post" onsubmit="return false;">
-
-                                    <!-- 일반상품 -->
-                                    <div class="shipping-listwrap" aria-label="일반상품">
-                                        <div class="cart-check">
-                                            <div class="checkbox">
-                                                <label class="chklabel"><input type="checkbox" name="all" id="gen" onclick="check(this, 'gen', 'all', '');"><i class="icon"></i><span>일반상품</span></label>
-                                                <span class="cart-count">(<strong>0</strong>/<em>1</em>)</span>
-                                            </div>
-                                            <button type="button" class="btn btn-linelgray sm" onclick="deleteBasktItem(this)"><span>선택삭제</span></button>
-                                        </div>
-                                        <!-- //.cart-check -->
-
-
-
-
-
-
-
-
-
-
-                                        <!-- 초기화 -->
-
-
-
-
-
-
-
-
-                                        <div class="shipping-list" id="gen">
-
-
-
-
-
-
-
-
-
-
-
-                                            <!-- .pdwrap -->
-                                            <div class="pdwrap pdlist ml" style="display:;" id="018489_000000_16">
-                                                <input type="hidden" id="exclItemTrgtGbcd_2137171063" name="exclItemTrgtGbcd" value="">
-                                                <input type="hidden" id="slitmNm_2137171063" name="slitmNm" value="[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종">
-                                                <input type="hidden" name="slitmCd" value="2137171063">
-
-                                                <!-- 새벽배송/신선식품 추가 20180705 특화배송조유진 -->
-                                                <input type="hidden" name="ordAgreeInf" value="N|N|N|N|[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종|블랙/95|00002|0">
-
-                                                <input type="hidden" name="uitmCdInfPup" value="[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종$블랙/95$1$99000$ $2137171063$bask">
-                                                <input type="hidden" name="dawnDlvYn" value="N">
-                                                <input type="hidden" name="freshFoodYn" value="N">
-
-                                                <input type="hidden" name="sectId" value="2731506">
-                                                <input type="hidden" name="stlmWayScopGbcd" value="10">
-
-                                                <input type="hidden" name="venCd" value="018489">
-                                                <input type="hidden" name="cardEventYn" value="">
-                                                <input type="hidden" name="basktGbcd" value="02">
-                                                <input type="hidden" name="brand" value="290274(DKNY골프)">
-                                                <input type="hidden" name="gaCategory" value="스포츠_레져/골프용품/골프웨어/니트셔츠(여성)">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                <!-- 스토어픽 상품, 픽업일 경과일경우 -->
-
-
-
-
-                                                <input type="hidden" name="basktVenCdVal" id="basktVenCdVal" value="018489">
-                                                <input type="hidden" name="basktVen2CdVal" id="basktVen2CdVal" value="000000">
-                                                <input type="hidden" name="basktOshpVenAdrSeqVal" id="basktOshpVenAdrSeqVal" value="16">
-                                                <input type="hidden" name="basktGrpDivRnm" id="basktGrpDivRnm" value="EMT">
-                                                <input type="hidden" name="sdlvcVenSeq" id="sdlvcVenSeq" value="">
-                                                <input type="hidden" name="dlvcPayGbcdVal" id="dlvcPayGbcdVal" value="00">
-
-                                                <input type="hidden" name="dlvHopeOverYn" value="Y">
-                                                <input type="hidden" name="basktDlvCostVal" id="basktDlvCostVal" value="0">
-
-
-
-                                                <input type="hidden" name="basktVenCdGatherVal" id="basktVenCdGatherVal" value="018489|000000||EMT">
-
-
-
-                                                <input type="hidden" name="basktGiftOrderYn" value="Y">
-
-
-                                                <input type="hidden" name="basktTotalGiftOrderYn" value="Y">
-
-
-                                                <input type="hidden" name="bsicAmt" value="0">
-
-                                                <div class="checkbox">
-                                                    <label class="chklabel"><input type="checkbox" name="basktInf" value="2137171063|00002|0|1|99000" onclick="check(this, 'gen', '2137171063', '00002');"><i class="icon"></i><span>[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종</span></label>
-                                                </div>
-                                                <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2137171063|00002|0|1|99000');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
-                                                <div class="pdlist-wrap">
-<%--                                                    <form id="od" method="post" action="od">--%>
-
-                                                        <div class="pditem">
-                                                            <figure class="pdthumb">
-                                                                <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506">
-                                                                    <div class="thumb">
-                                                                        <img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=120x120&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')">
-                                                                    </div>
-                                                                </a>
-                                                                <figcaption>
-                                                                    <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506">
-                                                                        <div class="pdprice">
-                                                                            <input type="hidden" name="sellPrc" value="99000">
-                                                                            <input type="hidden" name="bbprc" value="99000">
-                                                                            <ins class="normal" aria-label="정상가"><em>99,000</em><b>원</b></ins>
-                                                                        </div>
-                                                                        <div class="benefits">
-                                                                        </div>
-                                                                        <div class="pdoption" aria-label="옵션/수량">
-                                                                            <span class="option">옵션: <em>블랙/95</em></span>
-                                                                            <span class="count">수량: <em>1개</em></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </figcaption>
-                                                                <div class="pdlike">
-                                                                    <a href="javascript:;" onclick="zzimItem(this, '2137171063', '00002');" class="btn btn-like" id="zzim_2137171063:00002"><i class="icon"></i><span class="hiding">찜</span></a>
-                                                                </div>
-                                                            </figure>
-                                                        </div>
-<%--                                                        <sec:authorize access="isAuthenticated()">--%>
-<%--                                                            <sec:authentication property="principal" var="pinfo" />--%>
-<%--                                                            <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">--%>
-<%--                                                        </sec:authorize>--%>
-<%--                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
-<%--                                                    </form>--%>
-
-                                                    <div class="btngroup">
-                                                        <div class="pdfunc">
-                                                            <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2137171063_00002" onclick="showChgUitmPup(this, '2137171063', '00002', 0, 99000, '');"><span>수량/속성변경</span><i class="icon"></i></button>
-                                                        </div>
-
-                                                        <button type="button" class="btn btn-linelgray" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2137171063"><span>선물하기</span></button>
-
-<%--                                                        <button type="submit" form="od" class="btn btn-default" >--%>
-<%--                                                                <span>바로구매</span>--%>
-<%--                                                        </button>--%>
-
-                                                        <a href="${contextPath}/order/od" class="btn btn-default" ><span>바로구매</span></a>
-
-                                                    </div>
-                                                    </div>
-                                                    <!-- // btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
-
-                                                    <!-- 속성변경 옵션 class=selected 추가하면 활성화 됨 -->
-                                                    <div class="prop-change" id="chgUitmLayer_2137171063_00002">
-                                                    </div>
-                                                    <!-- //.prop-change -->
-
-
-                                                </div>
-                                                <!-- //.pdlist-wrap -->
-                                            </div>
-                                            <!-- //.pdwrap -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        </div>
-                                        <!-- //.shipping-list -->
-
-                                    </div>
-                                    <!-- //.shipping-listwrap  일반상품 -->
-                                </form>
-
-
-                            </div>
-                            <!-- //.cart-body -->
-
-
-                        </div>
-                        <!-- //.cart-area -->
-                    </div>
-                    <!-- //.csection -->
-
-                    <!-- 상품리스트에 하나라도 체크되면 활성화됨 -->
-                    <div class="sticky-ui-wrapper util-option-sticky"><div class="sticky-placeholder"></div><div class="util-option sticky" data-modules-sticky="padding:-40;breakPoint:.container;className:util-option-sticky;" style="">
-                        <div class="sticky-inner">
-                            <div class="result">
-                                <p class="sel-tit">선택한 상품<span>(<em id="selCnt">0</em>)</span></p>
-                                <p><strong>상품금액</strong><ins><em id="selSlitmAmt">0</em><b>원</b></ins></p>
-                                <!-- <p class="sale"><strong>할인</strong><ins><em class="off">0</em><b>원</b></ins></p>-->
-                                <p class="ship-fee"><strong>배송비</strong><ins><em id="selDlvAmt">0</em><b>원</b></ins></p>  <!-- 선택한 상품이 없을 경우 em에 class="off" 붙여주세요.  -->
-                            </div>
-                            <div class="total-price">
-                                <a href="javascript:;" class="btn-total"><span>총 주문 금액</span></a>
-                                <ins><em id="selOrdAmt">0</em><b>원</b></ins>
-                            </div>
-                            <div id="uobtnprsnbox" class="btngroup _gift" style="display:none;">
-                                <button class="btn btn-linelgray" onclick="setGiftOrder('Y');orderSelect();"><span>선물하기</span></button>
-                                <button class="btn btn-purchase" onclick="setGiftOrder('N');orderSelect();"><span>바로구매</span></button>
-                            </div>
-                            <div id="uobtnbox" class="btngroup">
-                                <button type="button" class="btn btn-purchase" onclick="setGiftOrder('N');orderSelect();"><span>선택상품 구매하기</span></button>
-                            </div>
-                        </div>
-                    </div></div>
-                    <!-- //.util-option -->
-
+            <!-- LNB 시작 -->
+
+
+
+
+            <script type="text/javascript">
+                //1:1 상담
+                function openCnslAcptPup(obj){
+                    if(isLogin() == 'true'){
+                        var url = "/p/ccd/selectCnslAcptPup.do?cnslCsfCd=" + obj;
+                        if(isEmpty(obj)){
+                            url = "/p/ccd/selectCnslAcptPup.do";
+                        }
+                        var popName = "selectCnslAcptPup";
+                        var popOption = "height=660, width=650, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+                        window.open(url,popName,popOption);
+                    }else{
+                        openLoginPopup();
+                    }
+                }
+                //고객의 의견
+                function openCustBoardPup(){
+                    var url = "https://www.hmall.com/p/cce/selectCustBoardPup.do";
+                    //var url = "/p/cce/viewPage.do?view=CustBoardPup_if";
+                    var popName = "selectCustBoardPup";
+                    var popOption = "height=853, width=923, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+                    var windowPup = window.open(url,popName,popOption);
+                    windowPup.focus();
+                }
+            </script>
+
+
+            <div class="side-content">
+
+                <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
+                <div class="side-menu-list">
+                    <ul>
+                        <li><a class="#" href="/p/ccc/faqList.do">자주 묻는 질문</a></li>
+                        <!--20200826 수요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
+                        <li><a href="#" onclick="openCnslAcptPup(); return false;">1:1 상담신청</a></li>
+                        <li><a href="/p/ccb/noticeList.do">공지사항</a></li>
+                        <!-- <li><a href="javascript:;">쇼핑가이드</a></li> -->
+                        <!--20200827 목요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
+                        <li><a href="#" onclick="openCustBoardPup();">고객의 의견</a></li>
+                        <li><a href="/p/mpa/selectOrdDlvCrst.do?pageType=ALL" onclick="openLoginPopup(this.href);return false;">비회원 주문/배송조회</a></li>
+                    </ul>
                 </div>
-                <!-- //.contents -->
+                <!-- // .side-menu-list -->
 
-                <!--product-content-->
-                <div class="product-content">
-                    <div class="product-area">
-
-
-                        <!-- 오늘의 추천상품 : 메인 내 오늘추천 탭의 전체 카테고리 상품  -->
-
-                        <div class="article produt-slide">
-                            <h3 class="major-headings">오늘의 추천 상품</h3>
-                            <div class="pdwrap xllist">
-                                <div class="pdlist-wrap">
-
-
-                                    <figure class="pdthumb">
-                                        <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2028027962&amp;SectID=" onclick="gaTagging(this, '', '', '');" ga-custom-name="장바구니" ga-custom-position="오늘의 추천 상품" ga-custom-creative="2028027962_만쥬/찰밥바/경주빵/찰보리빵/아이스크림 모음" ga-custom-title="주문/장바구니>장바구니>리스트" ga-custom-etc="">
-                                            <!-- [12/04]_수정(이미지 크기 및 border-radius , bg opacity 추가) -->
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/9/7/02/28/2028027962_0.jpg?RS=185x185&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=185x185&amp;AR=0')">
-                                            </div>
-                                            <figcaption>
-                                                <div class="pdname" aria-label="제품명">만쥬/찰밥바/경주빵/찰보리빵/아이스크림 모음</div>
-
-                                                <div class="pdprice">
-                                                    <span aria-label="판매가"><em>10,900</em><b>원</b></span>
-                                                </div>
-
-                                            </figcaption>
-                                        </a>
-                                    </figure>
-
-
-
-                                    <figure class="pdthumb">
-                                        <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2062184449&amp;SectID=" onclick="gaTagging(this, '', '', '');" ga-custom-name="장바구니" ga-custom-position="오늘의 추천 상품" ga-custom-creative="2062184449_[화과방][이번주만 10% 다운쿠폰]팥빙수세트부터 양갱, 전병까지" ga-custom-title="주문/장바구니>장바구니>리스트" ga-custom-etc="">
-                                            <!-- [12/04]_수정(이미지 크기 및 border-radius , bg opacity 추가) -->
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/4/4/18/62/2062184449_0.jpg?RS=185x185&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=185x185&amp;AR=0')">
-                                            </div>
-                                            <figcaption>
-                                                <div class="pdname" aria-label="제품명">[화과방][이번주만 10% 다운쿠폰]팥빙수세트부터 양갱, 전병까지</div>
-
-                                                <div class="pdprice">
-                                                    <span aria-label="판매가"><em>16,500</em><b>원</b></span>
-                                                </div>
-
-                                            </figcaption>
-                                        </a>
-                                    </figure>
-
-
-
-                                    <figure class="pdthumb">
-                                        <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2139463828&amp;SectID=" onclick="gaTagging(this, '', '', '');" ga-custom-name="장바구니" ga-custom-position="오늘의 추천 상품" ga-custom-creative="2139463828_[오트리][5% 다운쿠폰]단백질바 36개 32,400원 외 견과류 원물 / 하루견과" ga-custom-title="주문/장바구니>장바구니>리스트" ga-custom-etc="">
-                                            <!-- [12/04]_수정(이미지 크기 및 border-radius , bg opacity 추가) -->
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/8/3/46/39/2139463828_0.jpg?RS=185x185&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=185x185&amp;AR=0')">
-                                            </div>
-                                            <figcaption>
-                                                <div class="pdname" aria-label="제품명">[오트리][5% 다운쿠폰]단백질바 36개 32,400원 외 견과류 원물 / 하루견과</div>
-
-                                                <div class="pdprice">
-                                                    <span aria-label="판매가"><em>32,400</em><b>원</b></span>
-                                                </div>
-
-                                            </figcaption>
-                                        </a>
-                                    </figure>
-
-
-
-                                    <figure class="pdthumb">
-                                        <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2139572013&amp;SectID=" onclick="gaTagging(this, '', '', '');" ga-custom-name="장바구니" ga-custom-position="오늘의 추천 상품" ga-custom-creative="2139572013_[던킨,배스킨라빈스][16일∼22일]10% 다운쿠폰 + 2개↑머그컵증정" ga-custom-title="주문/장바구니>장바구니>리스트" ga-custom-etc="">
-                                            <!-- [12/04]_수정(이미지 크기 및 border-radius , bg opacity 추가) -->
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/0/2/57/39/2139572013_0.jpg?RS=185x185&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=185x185&amp;AR=0')">
-                                            </div>
-                                            <figcaption>
-                                                <div class="pdname" aria-label="제품명">[던킨,배스킨라빈스][16일∼22일]10% 다운쿠폰 + 2개↑머그컵증정</div>
-
-                                                <div class="pdprice">
-                                                    <span aria-label="판매가"><em>19,900</em><b>원</b></span>
-                                                </div>
-
-                                            </figcaption>
-                                        </a>
-                                    </figure>
-
-
-                                </div>
-                                <!-- //.pdlist-wrap -->
-                            </div>
-                            <!-- //.pdwrap -->
-                        </div>
-
-                        <!-- //오늘의 추천상품 : 메인 내 오늘추천 탭의 전체 카테고리 상품  -->
-
-                        <!-- .produt-slide : 내 장바구니와 유사한 장바구니에 담긴 다른 상품 -->
-                        <div class="article produt-slide hidden" id="rcmm1">
-                            <h3 class="major-headings">내 장바구니와 유사한 장바구니에 담긴 다른 상품</h3> <!-- 장바구니에 담긴 상품이 없을 시 텍스트 변경 : 이 상품 지금 딱!-->
-                            <div class="pdwrap xllist">
-                            </div>
-                            <!-- //.pdwrap -->
-                        </div>
-                        <!-- //.produt-slide : 내 장바구니와 유사한 장바구니에 담긴 다른 상품 -->
-
-                        <!-- .produt-slide :  장바구니 상품과 동일한 카테고리 베스트 셀러 -->
-                        <div class="article produt-slide hidden" id="rcmm2">
-                            <h3 class="major-headings">함께 구매하면 좋은 상품</h3>  <!-- 장바구니에 담긴 상품이 없을 시 텍스트 변경 : 지금 인기 많은 상품 -->
-                            <div class="pdwrap xllist">
-                            </div>
-                            <!-- //.pdwrap -->
-                        </div>
-                        <!-- //.produt-slide : 장바구니 상품과 동일한 카테고리 베스트 셀러 -->
-                    </div>
+                <!--side-info-->
+                <div class="side-info">
+                    <p class="banner"><strong>현대Hmall</strong><em>1600-0000</em><span>(유료)</span></p>
+                    <p class="banner"><strong>모바일 현대Hmall</strong><em>1600-0009</em><span>(유료)</span></p>
+                    <p class="txt"><span>평일 09:00~20:00<br>주말, 공휴일 휴무</span></p>
                 </div>
-                <!--product-cotent-->
+                <!--//side-info-->
             </div>
-            <!-- //.cbody -->
+            <!-- // LNB 끝 -->
 
-            <!-- cfoot -->
-            <div class="cfoot">
-                <div class="contents">
-                    <div class="cart-info">
-                        <h3 class="major-headings">장바구니 이용안내</h3>
-                        <div class="cart-infocnt" role="region" aria-label="장바구니 이용안내">
-                            <h4 class="subheadings">장바구니 보관 안내</h4>
-                            <ul class="dotlist">
-                                <li>장바구니에 담긴 상품은 1달 동안 보관됩니다. 더 오래 보관 하시려면 "찜"에 저장해 주시기 바랍니다.</li>
-                                <li>장바구니에 보관 된 상품이라 해도, 가격이나 혜택이 변동 될 수 있으니 주문하시기 전에 다시 한번 확인하시기 바랍니다.</li>
-                                <li>상품에 따라 반품이나 교환 시 별도로 배송비가 청구되는 경우가 있습니다.</li>
-                            </ul>
-                            <h4 class="subheadings">무이자 할부 이용 안내</h4>
-                            <ul class="dotlist">
-                                <li>상품상세 페이지나 장바구니에 기재된 무이자할부 개월수는 해당상품을 단독 구매할 경우 적용되는 조건입니다.</li>
-                                <li>여러종류의 상품을 함께 구매 할 경우, 보다 낮은 개월 수 의 무이자 할부가 적용됩니다.</li>
-                                <li>무이자할부 대상이 아닌 상품을 함께 구매 할 경우, 무이자 할부가 적용되지 않습니다.</li>
-                                <li>일부 특가상품은 무이자 할부 대상에서 제외되며 또한 각 상품별로 무이자 할부 개월수가 상이하오니, 최종 결제 페이지에서 무이자 할부 개월수를 다시 한번 확인하시기 바랍니다.</li>
-                                <li>상품별로 무이자할부 혜택을 받고 싶으시다면, 개별 주문 부탁드립니다.</li>
-                            </ul>
+            <!-- .contents -->
+            <div class="contents">
+                <!--search : 자주 묻는 질문-->
+                <div class="cus-wrap">
+                    <h3>자주 묻는 질문</h3>
+                    <!-- 20200909 시안 08/26 기준 작업 -->
+                    <div class="search-area">
+                        <form name="searchForm" method="get" action="/p/ccc/faqList.do">
+                            <div class="inputbox">
+                                <input hidden="hidden">
+                                <label class="inplabel icon-find"><input type="text" name="ancmCntn" placeholder="질문을 검색해보세요" title="검색어 입력" value=""></label>
+                                <button type="button" class="btn btn-find" onclick="searchCntn();"><i class="icon find-sm"></i><span class="hiding">검색</span></button>
+                                <button type="button" class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                            </div>
+                            <input type="hidden" name="sort" id="sort" value="false">
+                            <input type="hidden" name="faqMCsfNo" id="faqMCsfNo" value="">
+                        </form>
+                    </div>
+                    <!-- 20200909 시안 08/26 기준 작업 -->
+                </div>
+                <!--//search : 자주 묻는 질문-->
+
+
+                <!--faq-tab-->
+                <div class="cus-wrap">
+                    <div class="faq-tab">
+                        <ul class="faq-full">
+                            <li class="on"><a href="/p/ccc/faqList.do"><span>전체</span></a></li>
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=01"><span>회원</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=02"><span>상품</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=03"><span>주문/결제</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=04"><span>배송</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=05"><span>취소/반품/교환/AS</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=07"><span>이벤트/혜택</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=08"><span>사이트 이용</span></a></li>
+
+
+
+
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=09"><span>모바일</span></a></li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <!--//cus-wrap-->
+
+                <!--faq-list-->
+                <div class="cus-wrap">
+                    <!--accparent-->
+
+                    <div class="accparent">
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,25,05)"><i class="icon question"></i><span>주문 내용 변경, 취소, AS 등은 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt01" role="best-txt01">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p><strong><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷&nbsp;색상/사이즈&nbsp;및 배송지 변경</span><br></span></strong><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">결제완료 단계일때 마이페이지에서 직접 수정하실 수 있습니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문이 상품준비중 단계로 변경된&nbsp;이후에는 1:1 고객상담을 통해 변경 신청 하실 수 있습니다. </span><br><br></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong><strong><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;주문 취소</span><br></span></strong><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">마이페이지 주문상세 내역에서 즉시 취소가 가능한 단계는 아래와 같습니다.&nbsp;</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">- 신용카드 주문 : 결제완료, 상품준비중 (주문제작/설치 등 일부 상품 제외)</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">- 현금, 상품권 주문 : 주문접수</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">즉시 취소가 가능한 주문은 위 단계일때 [주문취소] 버튼이 표시되므로, 직접 취소 하실 수 있습니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">단, 위에 해당되지 않는 단계로 넘어간 주문에 대해서는 1:1 고객상담을 통해 주문취소 신청하실 수 있습니다.&nbsp;</span></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"><br></span><br></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;AS신청</span></strong><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d"> </span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">AS는 마이페이지에서 직접 신청이 불가합니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1:1상담신청 혹은 현대홈쇼핑 고객센터(1600-0000)로 전화 주시어 AS 문의를 남겨 주신다면 안내 도와 드리겠습니다.</span><br></span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문 진행상태에 따라 신청 가능한 항목은 다음과 같습니다.</span></p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><img src="https://image.hmall.com/CO/EDITOR/20220208/133804159/414tk.jpg"></p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                            </div>
+                            <!--//txt 영역-->
                         </div>
-                        <!-- //.cart-infocnt -->
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,19,04)"><i class="icon question"></i><span>주문한 상품은 배송 내역은 어디서 확인하나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt02" role="best-txt02">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p style="LINE-HEIGHT: 1.5"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문하신 상품의 배송 일정은 결제완료 시점을 기준으로 안내됩니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">상품 종류에 따라 배송 일정이 달라질 수 있으니 아래 가이드에 따라 배송 일정을 확인해주시면 됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷회원 주문 시</span><br></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. [ 마이페이지 &gt; </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문/배송현황 &gt; </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문/배송 상세 ]&nbsp;선택</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 배송 관련 상세 정보 확인 가능</span><br><br></span><span style="COLOR: #000000"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">비회원 주문 시</span><br></span></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 로그인 화면에서 비회원 주문조회 선택</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 성명/주문번호 입력</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. 배송 관련 상세 정보 확인 가능</span><br><br></span><span style="COLOR: #000000"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">※&nbsp;</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">참고사항<br></span></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">꽃이나 케이크는 배송희망일을 주문 메모에 적어 주시면 해당 날짜에 배송해 드립니다.</span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,52944,05)"><i class="icon question"></i><span>취소/반품 완료 후 환불 언제 되나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt03" role="best-txt03">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">취소 또는 반품에 대한 환불 처리는 취소, 반품 접수 후 24시간 이내 해드립니다. 환불 처리는 주문 결제 수단과 동일하게 함을 원칙으로 하며, 환불 받을 금액을 예치 해두고 다음에 사용하고자 한다면 고객센터를 통해 환불 금액의 예치금 전환을 신청해 주시기 바랍니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ Hmall 상품의 반품에 대한 환불 처리는 상품 입고하여 검품 완료 후 환불처리 되므로 대략 4~7일 정도의 시간이 소요됩니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주말 또는 휴일처럼 금융업무가 비정상적인 경우 그 다음 근무 일에 처리됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 신용카드<span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"></span></span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">주문취소 시 카드매출 취소는 즉시 접수 되지만, 카드사 매입 취소까지 보통 3~7일 정도 소요될 수 있습니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">※ 매입 전 카드 주문은 당일 취소됩니다.</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000">※ 각 카드사마다 취소 처리 기간이 다르기 때문에 카드사를 통하여 확인하실 수 있습니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">만약에 대금이 결제되었다 하더라도 해당 금액만큼 해당 카드사에서 다음달 결제 대금에서 제외됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 체크카드</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">당사 취소 청구 후 7일 이내 카드사에서 계좌로 입금됩니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 은행에 따라 소요일 달라질 수 있습니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 무통장입금/ 실시간계좌이체</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">환불요청 후 익일 (영업일 기준<span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"></span>) 입력하신 계좌로 입금됩니다.</span><br></span><span style="COLOR: #cc3d3d"><strong><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 휴대폰 결제</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">환불요청 후 3~5일 소요됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 상품권 결제</span><br></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">환불 요청 후 익일 (영업일 기준) 예치금 환불로 처리됩니다.</span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,28,05)"><i class="icon question"></i><span>택배기사를 기다릴 필요없이 편의점반품이 가능한가요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt04" role="best-txt04">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반품신청 후 수거가 진행되는 동안의 불편함을 줄이고자 편의점반품 서비스를 오픈하였습니다.</span><br><br><b><font color="red"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷편의점반품이란?</span><br></font></b><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반품신청 후 택배기사님의 방문을 기다릴 필요 없이 가까운 편의점(GS25, CU)에 방문하여 반품접수를 </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">할 수 있는 서비스입니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 사전 현대홈쇼핑 고객센터(1600-0000)로 연락하여 접수해 주시기 바랍니다. </span><br><br><font color="red"><span style="COLOR: #cc3d3d"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">편의점반품 진행단계</span></strong></span></font><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">당사 고객센터 전화상담</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 편의점반품 접수</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품신청승인번호 SMS발송</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 편의점방문,승인번호입력 / 택배접수</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">5.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품배송 시작</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">6.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품배송 완료</span><br><br><font color="red"><span style="COLOR: #cc3d3d"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">편의점반품 불가상품</span></strong></span></font><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">비규격상품(가로+세로+높이의 합이 100cm이상 또는 2kg이상)</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">식품류</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">상품가격 50만원 이상의 상품</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> </span>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,26,05)"><i class="icon question"></i><span>환불은 어떻게 받나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt05" role="best-txt05">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">취소 또는 반품에 대한 환불처리는 취소, 반품 접수 후 24시간 이내 해드립니다.&nbsp; </span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">단, Hmall 상품의 반품에 대한 환불처리는 상품 입고하여 검품 완료 후 환불처리 되므로 대략 4~7일 정도의 시간이 소요됩니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">다만, 주말 또는 휴일처럼 금융업무가 비정상적인 경우 그 다음 근무일에 처리됩니다.</span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">참고로, 환불처리는 주문결제 수단과 동일하게 함을 원칙으로 하며, 환불 받을 금액을 예치해두고 다음에 사용하고자 한다면 고객센터를 통해 환불금액의 예치금 전환을 신청해 주시기 바랍니다.</span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,5,01)"><i class="icon question"></i><span>회원탈퇴는 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt06" role="best-txt06">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p style="LINE-HEIGHT: 1.5"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; COLOR: #123456"><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷PC </span></span></span></strong></span><br><span style="FONT-SIZE: 10pt; COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">화면 상단에 있는 [마이페이지 &gt;&nbsp;회원정보 &gt; 회원탈퇴]를 선택하시면 회원탈퇴를 하실 수 있습니다.</span><br><br></span><strong><span style="FONT-SIZE: 10pt; COLOR: #123456"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷모바일</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;</span></span><br></strong><span style="FONT-SIZE: 10pt; COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">화면 하단에 있는 [마이페이지 &gt; 최하단 ‘㈜현대홈쇼핑’ &gt; 회원탈퇴]를 선택하시면 회원탈퇴를 하실 수 있습니다.</span><br><br></span><span style="COLOR: #cc3d3d"><span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">※ </span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">유의사항</span></strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d"> </span></span></span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 배송 진행 중, 반품진행중인 주문 건이 &nbsp;있을 경우에는 탈퇴처리가 되지 않습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 재가입하셔도 개인정보가 복원되지 않습니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. Hmall에 가지고 계신 적립금, 예치금, 할인쿠폰 등의 혜택이 자동삭제 되며, 재가입하실 경우에도 복원되지 않습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4.&nbsp;재가입시, 기존에 사용하셨던 ID는 재가입 시 사용하실 수 없습니다. </span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,24,05)"><i class="icon question"></i><span>교환 또는 반품이 안되는 경우는 어떤 경우인가요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt07" role="best-txt07">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p style="LINE-HEIGHT: 1.5"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">받으신 상품에 하자가 있거나 마음에 들지 않는 경우, Hmall 상품은 배송완료 후 7일내, TV 홈쇼핑 상품은 30일 이내에&nbsp;언제든지 교환 또는 반품신청이 가능합니다. 단, TV 홈쇼핑 의류, 보석, 핸드백, 슈즈, 선글라스 상품은 상품인도 후 15일, 신선식품은 상품인도 후 7일 이내에 가능합니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">상품이 불량일 경우에는 언제든지 반품이 가능합니다. 단, 아래의 경우는 반품이 불가능합니다.(상품불량 제외)<br></span></p>
+                                <p style="LINE-HEIGHT: 1.5">&nbsp;</p>
+                                <p style="LINE-HEIGHT: 1.5"><img src="https://image.hmall.com/CO/EDITOR/20220208/133734588/9j5j5.jpg"></p>
+                                <p style="LINE-HEIGHT: 1.5"><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000">※ 상품에 따라서 변심으로 인한 반품 시 고객께서 반품 비용을 부담하셔야 하는 경우도 있습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif"><span style="COLOR: #000000">※ 그 외 특이사항은 해당 상품 설명에 표기되어 있습니다. </span></span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,31,07)"><i class="icon question"></i><span>이벤트 당첨은 어디서 확인하나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt08" role="best-txt08">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p class="depth1" nodeindex="1" jquery17102688160967782381="246" sizcache09139176650749625="6" sizset="54"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">이벤트 당첨자는 이벤트 탭의 이벤트 당첨공지에서 확인하실 수 있습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">내가 참여한 이벤트는 마이페이지 &gt; 참여이벤트에서 확인하실 수 있습니다.</span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">[PC]</span><br><img src="http://image.hyundaihmall.com/CO/EDITOR/20210208/053356609/www5o.jpg"><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">[모바일]</span><br><img style="HEIGHT: 581px; WIDTH: 310px" src="http://image.hyundaihmall.com/CO/EDITOR/20210208/053421173/19o7u.jpg" width="310" height="581"></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,21,04)"><i class="icon question"></i><span>백화점 상품의 배송은 어떻게 진행이 되나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt09" role="best-txt09">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p style="LINE-HEIGHT: 1.5"><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">가구 및 침구 등 일부 상품의 경우 협력사에 직접 배송이 진행되며, 그 외 상품은 현대백화점 매장을 통해 배송 진행 됩니다.</span><br></span><span style="COLOR: #cc3d3d"><strong><span style="COLOR: #cc3d3d"><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷배송과정 </span><br></span></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 결제완료가 된 다음날 백화점 매장으로 상품 준비 요청됩니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 현대백화점 배송팀에서 상품을 받아 포장합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. 포장완료후 해당지역으로 발송합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4. 발송후 1~2일 이후 수령(결제후 2~7일이내)&nbsp;가능합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 무통장입금 경우 무통장입금 확인이 된 다음날 백화점 매장으로 상품 준비 요청됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷&nbsp;배송기간</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d"> </span><br></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000"><span style="COLOR: #353535">1. 매장에 재고가 있을 경우 주문일로 부터 평균 3~4일 소요되며(공휴일 제외)</span><span style="COLOR: #353535">&nbsp;</span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">일시품절일 경우 평균 5~7일 소요됩니다.(완전 품절일 경우 취소 요청)</span></span></span><span style="COLOR: #000000"><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 백화점의 휴무일과 공휴일, 주말의 주문상품은 평균배송일에 1~2일이 더 소요됩니다.&nbsp;</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">제품 품절시 고객님께 가능한 빠른시간내에 품절통보 및 환불절차에 대해 안내해 드리도록 하겠습니다.</span><br></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
+
+                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                        <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,18,04)"><i class="icon question"></i><span>주문 후 배송상태를 어떻게 알 수 있나요?</span><i class="icon acc-arrow"></i></button></h3>
+                        <div class="accordion-panel best-txt010" role="best-txt010">
+                            <!--txt 영역-->
+                            <div class="txt-wrap">
+                                <p style="LINE-HEIGHT: 1.5"><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">고객께서 주문하신 상품의 배송상태는 화면 상단의 [주문/배송조회]에서 확인하실 수 있습니다.</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문상태별 주문의 진행현황은 다음과 같습니다.<br></span></p>
+                                <p style="LINE-HEIGHT: 1.5">&nbsp;</p>
+                                <p style="LINE-HEIGHT: 1.5"><img src="https://image.hmall.com/CO/EDITOR/20220208/133831202/af1o8.jpg"></p>
+                                <p style="LINE-HEIGHT: 1.5"><br><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"><br>※ 발송완료 단계에서는 배송추적기능을 통해 택배사, 상품의 현재 위치를 시간대별로 실시간 </span></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">조회하실 수 있습니다. </span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주문상태의 변경은 실시간으로 반영하는 것을 원칙으로 하오나, 업체배송 상품의 경우 간혹 </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반영이 늦어지는 경우가 발생할 수 있습니다.</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주문상태 변경이 지연되고 있는 경우에는 1대1 고객상담이나 고객센터(1600-0000)으로 문의하시면 빠른 시간 내에 배송현황을 </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">알려드리겠습니다.</span><span style="COLOR: #000000"><br></span></p>
+                            </div>
+                            <!--//txt 영역-->
+                        </div>
+                        <!--best-txt01 -->
 
                     </div>
-                    <!-- //.cart-info -->
-                </div>
-            </div>
-            <!-- //.cfoot -->
+                    <!--paging-->
+                    <div class="paging">
+                        <div class="page-prevarea">
 
+
+
+
+
+                            <div class="page-prevarea">
+
+
+
+
+
+
+
+
+                                <strong aria-label="현재 선택페이지">1</strong>
+
+
+
+                                <a href="/p/ccc/faqList.do?page=2">2</a>
+
+
+
+
+                                <a href="/p/ccc/faqList.do?page=3">3</a>
+
+
+
+
+                                <a href="/p/ccc/faqList.do?page=4">4</a>
+
+
+
+
+                                <a href="/p/ccc/faqList.do?page=5">5</a>
+
+
+
+
+                                <a href="/p/ccc/faqList.do?page=6">6</a>
+
+
+
+
+                                <a href="/p/ccc/faqList.do?page=7">7</a>
+
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <!--//paging-->
+
+                    <!--//accparent-->
+
+                </div>
+                <!--//cus-wrap-->
+            </div>
+            <!-- //.contents -->
         </div>
         <!-- //.container -->
     </main>
-    <!-- //.cmain -->
-
-    <form id="productModifyForm" action="#" method="post"></form>
-    <form id="goBasktList" action="https://www.hmall.com/p/odb/basktList.do" method="post"></form>
-    <form id="orderForm" action="https://www.hmall.com/p/oda/orderRedirect.do" method="post"></form>
-    <form id="deleteForm" method="post"></form>
-
-
-
-
-
-    <script type="text/javascript">
-        // 20201202 footer script 오류로... 임시!
-        //$(window).on("load", function() {
-
-        /* [UX-147]추천 알고리즘  비 활성화 처리*/
-        // 	if ( 1 > 0 ) {
-        //      cartRcmm("similarCart", "2137171063");
-        //      cartRcmm("together");
-        //  } else {
-        //      cartRcmm("similarPrsn");
-        //  }
-        //});
-    </script>
-
-    <!-- footer include-->
-
-
-
-
-    <!-- footer -->
-
-
-
-
-    <!-- footer -->
-    <!-- 푸터 영역 시작 -->
-
 
     <script type="text/javascript" defer="defer">
         (function() {
@@ -2881,8 +3573,8 @@
     <!-- End Naver Premium Log -->
 
     <!-- Google analytics -->
-    <script type="text/javascript" src="//image.hmall.com/p/js/co/GoogleAnalyticsBuilder.js?ver=052010"></script>
-    <script type="text/javascript" src="//image.hmall.com/p/js/co/ScreenNameObj.js?ver=052010"></script>
+    <script type="text/javascript" src="//image.hmall.com/p/js/co/GoogleAnalyticsBuilder.js?ver=052701"></script>
+    <script type="text/javascript" src="//image.hmall.com/p/js/co/ScreenNameObj.js?ver=052701"></script>
 
     <script type="text/javascript">
 
@@ -3062,14 +3754,14 @@
 
             GA_info[GACustomKey.Dimension6] = "N";
             GA_info[GACustomKey.Dimension7] = "N";
-
-            GA_info[GACustomKey.Dimension9] = "20220520";
+            GA_info[GACustomKey.Dimension8] = "20220526";
+            GA_info[GACustomKey.Dimension9] = "20220526";
 
             var _gaid = getCookieGA('GAID');
             if(_gaid != null){GA_info[GACustomKey.Dimension11] = _gaid;}
 
             GA_info[GACustomKey.Dimension12] = "Y";
-            GA_info[GACustomKey.Dimension24] = "6";
+            GA_info[GACustomKey.Dimension24] = "";
 
 
             GA_info[GACustomKey.Dimension13] = "U";
@@ -3078,17 +3770,17 @@
 
             GA_info[GACustomKey.Dimension22] = "기타";
 
+            GA_info[GACustomKey.Dimension25] = "20220521";
 
-
-
-
+            GA_info[GACustomKey.Dimension27] = "20220521";
+            GA_info[GACustomKey.Dimension28] = "20220526";
 
             GA_info[GACustomKey.Dimension30] = "N";
 
-            GA_info[GACustomKey.Dimension37] = "0";
+            GA_info[GACustomKey.Dimension37] = "1";
             GA_info[GACustomKey.Dimension38] = "N";
-
-
+            GA_info[GACustomKey.Dimension39] = "방송";
+            GA_info[GACustomKey.Dimension40] = "인터넷";
             GA_info[GACustomKey.Dimension41] = "PCWEB";
             GA_info[GACustomKey.Dimension47] = "N";
 
@@ -3115,9 +3807,9 @@
 
         function setGaDataSend_Event(evntType,product_array){
             /* var product_array = [];
-            if(product_array_param != null && product_array_param != undefined){
-                product_array = product_array_param;
-            } */
+	if(product_array_param != null && product_array_param != undefined){
+		product_array = product_array_param;
+	} */
             var ecommerce_hit = new Object();
             var action_obj = new Object();
 
@@ -3342,19 +4034,19 @@
             setGaPromotion(title, name, position, creative, id);
             //마케팅플랫폼 전용 >>> 마케팅 플랫폼은 Tab명이 다르기 때문에 if문 처리
             /*
-            if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
-                title = "메인>"+gaForTabNm;
-                name = "메인_"+gaForTabNm+"탭";
-            }
+    if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
+        title = "메인>"+gaForTabNm;
+        name = "메인_"+gaForTabNm+"탭";
+    }
 
-            if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
-                //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
+    if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
+        //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
 
-            }else{
-                console.log("setGaPromotion()................1");
-                setGaPromotion(title, name, position, creative, id);
-            }
-        */
+    }else{
+        console.log("setGaPromotion()................1");
+        setGaPromotion(title, name, position, creative, id);
+    }
+*/
 
             if (etc == "home"){
                 bizSpringTagForHome(msg1, msg2, msg3);
@@ -3450,7 +4142,7 @@
             try {
                 $.ajax({
                     type: "get"
-                    ,url: "https://wwwca.hmall.com/p/coe/onAirList.do?time=052010"
+                    ,url: "https://wwwca.hmall.com/p/coe/onAirList.do?time=052701"
                     ,dataType: "html"
                     ,async: true
                     ,success : function(data) {
@@ -3482,7 +4174,7 @@
 
                         $.ajax({
                             type: "get"
-                            ,url: "/p/coe/onAirList.do?time=052010"
+                            ,url: "/p/coe/onAirList.do?time=052701"
                             ,dataType: "html"
                             ,async: true
                             ,success : function(data) {
@@ -3519,7 +4211,7 @@
             try {
                 $.ajax({
                     type: "get"
-                    ,url: "https://wwwca.hmall.com/p/coe/onAirCardPrmoList.do?time=052010"
+                    ,url: "https://wwwca.hmall.com/p/coe/onAirCardPrmoList.do?time=052701"
                     ,dataType: "html"
                     ,async: true
                     ,success : function(data) {
@@ -3533,7 +4225,7 @@
 
                         $.ajax({
                             type: "get"
-                            ,url: "/p/coe/onAirCardPrmoList.do?time=052010"
+                            ,url: "/p/coe/onAirCardPrmoList.do?time=052701"
                             ,dataType: "html"
                             ,async: true
                             ,success : function(data) {
@@ -3635,11 +4327,11 @@
 
                 <li>
 
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2136720410&amp;bfmtNo=202205203004&amp;brodDt=20220520&amp;brodStrtDtm=09:25&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^패밀리세트 비에날씬 프로(BNR 17) * 12BOX + 비에날프로틴 3BOX&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2136720410_패밀리세트 비에날씬 프로(BNR 17) * 12BOX + 비에날프로틴 3BOX" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/4/0/72/36/2136720410_0.png?RS=140x140&amp;AR=0" alt="패밀리세트 비에날씬 프로(BNR 17) * 12BOX + 비에날프로틴 3BOX" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
+                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2133860086&amp;bfmtNo=202205263018&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^닥터린 대마종자유 18개월분&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2133860086_닥터린 대마종자유 18개월분" ga-custom-etc="home">
+                        <img src="https://image.hmall.com/static/0/0/86/33/2133860086_0.jpg?RS=140x140&amp;AR=0" alt="닥터린 대마종자유 18개월분" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
                         <span class="over-box">
 		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220520102500">00:09:15</em>
+		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220527020000">00:33:55</em>
 		                        </span>
                     </a>
 
@@ -3650,11 +4342,11 @@
 
                 <li>
 
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2140706072&amp;bfmtNo=202205205005&amp;brodDt=20220520&amp;brodStrtDtm=09:40&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[5월 한정 기획] 준우젬 18K 귀걸이 5종 + 18K 펜던트 2종 (총7종)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2140706072_[5월 한정 기획] 준우젬 18K 귀걸이 5종 + 18K 펜던트 2종 (총7종)" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/0/6/70/40/2140706072_0.jpg?RS=140x140&amp;AR=0" alt="[5월 한정 기획] 준우젬 18K 귀걸이 5종 + 18K 펜던트 2종 (총7종)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
+                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2139992840&amp;bfmtNo=202205265020&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2139992840_[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" ga-custom-etc="home">
+                        <img src="https://image.hmall.com/static/8/2/99/39/2139992840_0.jpg?RS=140x140&amp;AR=0" alt="[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
                         <span class="over-box">
 		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220520103959">00:23:15</em>
+		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220527015959">00:32:55</em>
 		                        </span>
                     </a>
 
@@ -3687,10 +4379,10 @@
 
 
 
-                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280893">
-                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-shinhan.png" alt="신한카드"></span>
+                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280846">
+                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-kb.png" alt="KB국민카드"></span>
                         <span class="card-txt">
-		                            <strong class="card-name">신한카드</strong>
+		                            <strong class="card-name">KB국민카드</strong>
 		                            <span class="benefit-txt">
 		                              <em class="point-red">
 
@@ -3729,285 +4421,18 @@
         }, 100);
 
         /*
-        setTimeout(function() {
-            setCardPromotion();
-        }, 300);
-        */
+    setTimeout(function() {
+    	setCardPromotion();
+    }, 300);
+    */
     </script>
     <!-- 스카이스크래퍼 -->
 
 
-    <!--알림설정 클릭 시 가격변경 알리미 팝업-->
-    <div class="ui-modal" id="cartAlarm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="ui-modal-dialog cart alarm" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">가격변경 알리미</strong>
-                <div class="pop-content">
-                    <p class="desc">장바구니에 담긴 상품의 가격이 인하되면 알림을 보내드립니다.</p>
-                    <div class="content">
-                        <div class="box-type">
-                            <p class="radio-box-tit">수신방법</p>
-                            <div class="radiobox">
-                                <div class="radio-cnt">
-                                    <label class="radlabel"><input type="radio" name="basktNotfMthdGbcd" value="2"><i class="icon"></i><span>앱푸시 (PUSH)</span></label>
-                                </div>
-
-                                <div class="radio-cnt">
-                                    <label class="radlabel"><input type="radio" name="basktNotfMthdGbcd" value="1"><i class="icon"></i><span>이메일 (bog*****@nate.com)</span></label>
-                                    <button class="btn btn-round xs" onclick="window.location.href='/p/mpd/changeMemberInfoFormMain.do'"><span>변경</span></button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <ul class="dotlist">
-                            <li>상품이 재입고 되면 알림을 보내드립니다.</li>
-                            <li>앱푸시(PUSH)는 수신 동의가 되어 있어야 발송됩니다. <br> (확인 및 수신동의 : Hmall앱 &gt; 설정 &gt; 알림설정 &gt; 혜택 알림받기 ON)</li>
-                            <li>21시 ~ 익일 08시에는 가격변경 알리미가 발송되지 않습니다. 단, 야간알림 PUSH 수신 동의시에는 알림이 발송됩니다.</li>
-                        </ul>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
+</div>
+<script type="text/javascript">
+    initToggle(document.getElementById("faq-list"));
+</script>
 
 
-                            <button type="button" class="btn btn-default ml" onclick="registBasketAlrimi('Y');"><span>알림신청</span></button>
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//알림설정 클릭 시 가격변경 알리미 팝업-->
-
-    <!--품절된 상품 > 재입고 알림 버튼 클릭시 재입고 팝업-->
-    <div class="ui-modal" id="cartRestock" tabindex="-1" role="dialog" aria-labelledby="cartRestock">
-        <div class="ui-modal-dialog cart restock-alarm" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">재입고 알리미</strong>
-                <div class="pop-content">
-                    <form name="restock" onsubmit="return false;">
-                        <input type="hidden" name="slitmCd">
-                        <input type="hidden" name="uitmCd">
-                        <input type="hidden" name="useYn" value="Y">
-                        <p class="desc">상품이 재입고되면 알림을 보내드립니다.</p>
-                        <div class="content">
-                            <div class="box-type item">  <!-- pditem이 있을 경우 item 클래스 추가 -->
-                                <div class="pditem">
-                                    <figure class="pdthumb">
-                                        <div class="thumb" id="restock_img"></div>
-                                        <figcaption>
-                                            <p class="pdtit" id="restock_name"></p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                                <p class="radio-box-tit">수신방법</p>
-                                <div class="radiobox">
-                                    <label class="radlabel"><input type="radio" name="rad1" checked="" aria-checked="true"><i class="icon"></i><span>휴대폰 SMS (010-****-2769)</span></label>
-                                </div>
-                            </div>
-                            <ul class="dotlist">
-                                <li>상품이 재입고 되면 알림을 보내드립니다.</li>
-                                <li>앱푸시(PUSH)는 수신 동의가 되어 있어야 발송됩니다. <br> (확인 및 수신동의 : Hmall앱 &gt; 설정 &gt; 알림설정 &gt; 혜택 알림받기 ON)</li>
-                                <li>재입고 알리미 신청 확인 및 삭제는 Hmall 모바일 &gt; 마이페이지 &gt; 재입고 알리미에서 하실 수 있습니다.</li>
-                            </ul>
-                            <div class="btngroup">
-                                <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-                                <button type="button" class="btn btn-default" onclick="insertAlrim();"><span>알림신청</span></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//품절된 상품 > 재입고 알림 버튼 클릭시 재입고 팝업-->
-
-    <!--주의사항안내 : PEB003 신선식품 주의사항 안내-->
-    <div class="ui-modal" id="divFreshFoodPd" tabindex="-1" role="dialog" aria-labelledby="divFreshFoodPd">
-        <div class="ui-modal-dialog cart caution caution-fresh" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">신선식품 주의사항 안내</strong>
-                <div class="pop-content">
-                    <p class="desc"><span>아래 신선식품(냉장, 냉동 포함) 상품은 상품가치 하락 사유로 <em>배송중에는 취소 불가</em>하며, 단순 변심으로 인한 <em>교환, 반품이 불가</em>합니다. <br> (단, 상품 하자 제외)</span></p>
-                    <div class="content">
-                        <div class="product-list" id="divFreshFoodPdItemList">
-                        </div>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button>
-                            <button type="button" class="btn btn-default" onclick="orderLayerPop('divFreshFoodPd');"><span>동의</span></button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//주의사항안내 : PEB003 신선식품 주의사항 안내-->
-    <!--주의사항안내 : PEB004 할부개월 수 주의사항 안내-->
-    <div class="ui-modal" id="divWintInsmMthsPd" tabindex="-1" role="dialog" aria-labelledby="divWintInsmMthsPd">
-        <div class="ui-modal-dialog cart caution caution-installment" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">할부개월 수 안내</strong>
-                <div class="pop-content">
-                    <p class="desc" id="pMinWintInsmMths"></p>
-                    <div class="content">
-                        <div class="product-list" id="divWintInsmMthsPdItemList">
-                        </div>
-                        <ul class="dotlist">
-                            <li>상품별로 제공하는 무이자할부 혜택을 이용하시려면 각각 구매해주세요.</li>
-                            <li>12개월 이상 무이자할부는 카드사별 적용조건이 상이하여 결제수단(카드) 선택 시 확인 가능합니다.</li>
-                        </ul>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button>
-                            <button type="button" class="btn btn-default" onclick="orderLayerPop('divWintInsmMthsPd')"><span>주문 진행</span></button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//주의사항안내 : PEB004 할부개월 수 주의사항 안내-->
-    <!--주의사항안내 : PEB005 신용카드 즉시할인 적용안내 주의사항 안내-->
-    <div class="ui-modal" id="divCrdImdtDc" tabindex="-1" role="dialog" aria-labelledby="divCrdImdtDc">
-        <div class="ui-modal-dialog cart caution caution-sale" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">신용카드 즉시할인 적용안내</strong>
-                <div class="pop-content">
-                    <p class="desc"><span>구매하실 상품들의 즉시할인 비대상이 포함되어있습니다. <br> 함께 주문하실 경우 <em>신용카드 즉시 할인이 적용되지 않습니다.</em></span></p>
-                    <div class="content">
-                        <div class="product-list" id="ulCrdImdtDc">
-                        </div>
-                        <ul class="dotlist">
-                            <li>상품별로 제공하는 카드즉시할인 혜택을 이용하시려면 개별 구매해주세요.</li>
-                        </ul>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button>
-                            <button type="button" class="btn btn-default" onclick="fn_crdImdtDcOrder();"><span>주문 진행</span></button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//주의사항안내 : PEB005 신용카드 즉시할인 적용안내 주의사항 안내-->
-    <!--주의사항안내 : PEB006 주문상품 주의사항 안내-->
-    <div class="ui-modal" id="divOrdMakePd" tabindex="-1" role="dialog" aria-labelledby="divOrdMakePd">
-        <div class="ui-modal-dialog cart caution caution-product" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">주문상품 주의사항 안내</strong>
-                <div class="pop-content">
-                    <p class="desc"><span>아래 상품은 <em>주문제작</em> 예정이므로 <em>취소, 교환, 반품이 불가</em> 합니다. <br> (상품 하자 제외)</span></p>
-                    <div class="content">
-                        <div class="product-list" id="divOrdMakePdItemList">
-                        </div>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button>
-                            <button type="button" class="btn btn-default" onclick="orderLayerPop('divOrdMakePd');"><span>동의</span></button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//주의사항안내 : PEB006 주문상품 주의사항 안내-->
-    <!--주의사항안내 : PEB007 포장개봉 주의사항 안내-->
-    <div class="ui-modal" id="divBoxOpenPd" tabindex="-1" role="dialog" aria-labelledby="divBoxOpenPd">
-        <div class="ui-modal-dialog cart caution caution-product-pack" role="document">
-            <div class="pop-wrap">
-                <strong class="pop-title">포장개봉 주의사항 안내</strong>
-                <div class="pop-content">
-                    <p class="desc"><span>아래 상품은 특성상, <em>박스(BOX) 또는 밀봉포장 개봉으로 인한 상품 가치 하락시 교환/반품이 불가</em> 한 상품입니다. (단, 상품가치 하락없이 재화 등의 내용을 확인하기 위해 포장 등을 훼손한 경우는 제외)</span></p>
-                    <div class="content">
-                        <div class="product-list" id="divBoxOpenPdItemList">
-                        </div>
-                        <div class="btngroup">
-                            <button type="button" class="btn btn-linegray" data-dismiss="modal"><span>취소</span></button>
-                            <button type="button" class="btn btn-default" onclick="orderLayerPop('divBoxOpenPd');"><span>동의</span></button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-close sm" data-dismiss="modal"><span>팝업 닫기</span></button> <!--data-dismiss="modal" 줄 경우 닫힘-->
-            </div>
-        </div>
-    </div>
-    <!--//주의사항안내 : PEB007 PEB007 포장개봉 주의사항 안내-->
-
-
-    <div class="ui-modal cart-recom" id="cart-recommend" tabindex="-1" role="dialog" aria-label="이런 상품 어떠세요? 레이어 팝업">
-        <div class="ui-modal-dialog w1080" role="document">
-            <div class="content">
-                <p class="ui-title">이런 상품 어떠세요?</p>
-                <div class="content-body">
-                    <div class="pdlist-wrap col5"> <!--// 5xn class="col5" 추가 -->
-                    </div>
-                </div>
-                <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- [11/24]_수정(찜리스트 알럿추가) -->
-    <div class="ui-modal alert" id="zzimlistAdd" tabindex="-1" role="dialog" aria-label="찜리스트추가">
-        <div class="ui-modal-dialog" role="document">
-            <div class="content">
-                <span class="bgcircle check-on-sm"><i class="icon check-on"></i></span>
-                <p class="ctypo17 bold">찜리스트에 추가되었습니다.</p>
-            </div>
-            <div class="btngroup">
-                <!-- <button class="btn btn-linelgray" data-dismiss="modal"><span>취소</span></button> -->
-                <button class="btn btn-default" data-dismiss="modal"><span>확인</span></button>
-                <!-- 데이터 전송 후 닫힘 $(element).modal().hide() -->
-            </div>
-            <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-        </div>
-    </div>
-
-    <!-- [01/15] 선물포장안내-->
-    <div class="ui-modal" id="modalGiftNoti" tabindex="-1" role="dialog" aria-label="선물포장안내">
-        <div id="gift-popup-content" class="ui-modal-dialog giftnoti" role="document">
-            <div class="content">
-                <p class="ui-title">선물포장안내</p>
-                <div class="content-body">
-                    <p class="ctypo17 bold" id="gift-popup-p">구매 하시는 상품은 선물포장, <br> <span>쇼핑백신청</span>이 가능한 상품입니다.</p>
-                    <p class="ctypo14" id="gift-popup-p-two">선물 포장을 신청하시겠습니까?</p>
-                    <div id="gift-popup-button" class="btngroup">
-                        <button class="btn btn-linegray" onclick="setBoxPrsnPackGbcd('0');setSpbgPrsnPackGbcd('0');order(packBoxBasktIngArr,packCrdImdtDcPrmoChkYN);"><span>아니오</span></button>
-                        <button class="btn btn-default" onclick="setBoxPrsnPackGbcd('1');setSpbgPrsnPackGbcd('1');order(packBoxBasktIngArr,packCrdImdtDcPrmoChkYN);"><span>예</span></button>
-                    </div>
-                </div>
-                <button class="btn btn-close" onclick="boxPackItemClose();" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 크리테오 장바구니 페이지 트래커  ---->
-    <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-    <script type="text/javascript">
-        window.criteo_q = window.criteo_q || [];
-        window.criteo_q.push(
-            { event: "setAccount", account: 15047 },
-            { event: "setSiteType", type: "d" },
-            { event: "viewBasket", item: [
-
-                ]});
-    </script>
-
-</div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div>
-</div></div></div><div id="criteo-tags-div" style="display: none;"></div>
-<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
-<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
-<iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
-
-</iframe><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
-
-</iframe><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;">
-
-</iframe>
-
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div>
