@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<html>
+<sec:authentication property="principal" var="pinfo" />
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
     <div class="container">
         <div class="gird-l2x">
@@ -48,16 +48,16 @@
 
                     ">
                         <div>
-                            <p class="myname"><a href="/mypage/mypageUpdate"
-                                                 class="btn-link"><em>김민수님</em></a></p>
+                            <p class="myname"><a href="/passwordCheck/mypageUpdate"
+                                                 class="btn-link"><em>${pinfo.userVO.user_name}님</em></a></p>
                             <div class="rating">
 
 
-                                <span class="silver-lv"><i class="icon"></i><em>실버</em></span>
+                                <span class="silver-lv"><i class="icon"></i><em>${pinfo.userVO.user_level}</em></span>
 
 
                                 <div class="btngroup">
-                                    <a href="/mypage/level"
+                                    <a href="/level"
                                        class="btn btn-benefit sm"><span>혜택보기</span></a>
                                 </div>
                             </div>
@@ -66,21 +66,22 @@
 
                         <ul class="infowrap">
                             <li>
-                                <a href="/mypage/mypageCoupon">
+                                <a href="/mypageCoupon">
                                     <span class="link"><b>0</b>장</span>
                                     <span class="txt">보유 쿠폰</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/mypage/mypagePoint" onclick="doSearchUPntMainPop()">
+                                <a href="/mypagePoint" onclick="doSearchUPntMainPop()">
                                 <%--<a href="javascript://" onclick="doSearchUPntMainPop()">--%>
                                     <span class="link">
-                                    <b>1,143</b>P</span>
+                                    <b>1111</b>P</span>
+<%--                                    ${pinfo.userVO.point}--%>
                                     <span class="txt">포인트</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/mypage/mypagePoint">
+                                <a href="/mypagePoint">
                                     <span class="link"><b>1231</b>원</span>
                                     <span class="txt">예차금</span>
                                 </a>
@@ -119,12 +120,13 @@
                     <h3 class="title22">
                         최근 주문/배송 현황
                         <div class="btngroup abs">
-                            <a href="/mypage/mypageOrder" class="btn atext"><span>전체보기</span><i
+                            <a href="/mypageOrder" class="btn atext"><span>전체보기</span><i
                                     class="arrow right"></i></a>
                         </div>
                     </h3>
 
 
+                    <c:forEach items="${list}" var="list" varStatus="vs">
                     <div class="order-list">
                         <!-- 결제완료 -->
 
@@ -132,15 +134,17 @@
                         <dl>
                             <dt>
                                 <div class="date">
-                                    <span>2022.05.13 (주문번호 : 20220513295854)</span>
+                                    <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/>
+                                        (주문번호 : ${list.ORDER_SEQ})
+                                    </span>
                                 </div>
 
                                 <div class="abs">
-                                    <a href="/p/mpa/selectOrdPTCPup.do?ordNo=20220513295854" class="btn alink"><span>주문/배송 상세</span></a>
+                                    <a href="/mypageOrderDetail" class="btn alink"><span>주문/배송 상세</span></a>
                                 </div>
 
                             </dt>
-                            <input type="hidden" name="paymentYnOrdNo" value=""/>
+                            <input type="hidden" name="paymentYnOrdNo" value="" />
 
                             <!-- 가장최근주문 1건, 최대 10개 상품 -->
 
@@ -151,16 +155,14 @@
 
                                     <input type="hidden" name="slitmCd" value="2137807436">
                                     <span class="img">
-	    	                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0"
-                                                 alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)"
-                                                 onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+	    	                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
 	                                    </span>
                                     <div class="box">
 	                                        <span class="state sky">
 
 
 
-															배송완료
+															 ${list.ORDER_STATUS}
 
 
 
@@ -169,18 +171,13 @@
                                             </em>
                                             </span>
                                         <span class="tit">
-	                                        	SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)
+	                                        	${list.PRODUCT_NAME}
 	                                        </span>
                                         <div class="info">
                                             <ul>
-                                                <li>10봉 랜덤구성</li>
+                                                <li>product_info 자리</li>
                                                 <li>
-
-
-                                                    1
-
-
-                                                    개
+                                                    ${list.OP_COUNT} 개
                                                 </li>
                                             </ul>
                                         </div>
@@ -197,30 +194,22 @@
 
                                     <!-- 20180626_특화배송조유진 -->
 
+                                    <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
 
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onclick="openCnslAcptPup('20220513295854','1','rtp');"><span>반품신청</span>
-                                    </button>
+                                    <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
 
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onclick="openCnslAcptPup('20220513295854','1','exch');"><span>교환신청</span>
-                                    </button>
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onClick="openDlvTrcUrlPup('20220513295854', '1')"><span>배송조회</span></button>
-
-                                    <input type="hidden" name="copnStlmFixYn" value=""/>
+                                    <input type="hidden" name="copnStlmFixYn" value="" />
                                 </div>
 
                             </dd>
+
 
 
                         </dl>
                         <!-- // 결제완료 -->
 
                     </div>
-
+                    </c:forEach>
 
                     <!-- 추후 상품전시 레이아웃 마크업으로 변경 필요 -->
 
@@ -252,5 +241,3 @@
         </div>
     </div>
 </main>
-</body>
-</html>

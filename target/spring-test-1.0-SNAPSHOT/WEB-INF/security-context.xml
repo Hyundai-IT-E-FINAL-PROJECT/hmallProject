@@ -13,7 +13,6 @@
     <security:http >
         <security:intercept-url pattern="/user/all" access="permitAll"/>
         <security:intercept-url pattern="/user/member" access ="hasRole('ROLE_MEMBER')"/>
-        <security:intercept-url pattern="/mypage" access ="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
         <!--        <security:form-login/>-->

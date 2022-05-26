@@ -134,7 +134,13 @@
 
 					</a>
 				</li>
-				<li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
+				<sec:authentication property="principal" var="pinfo" />
+				<sec:authorize access="isAnonymous()">
+					<li><a class="mypage" href="/customLogin"><span>마이페이지</span></a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li><a class="mypage" href="/mypage/${pinfo.userVO.no}"><span>마이페이지</span></a></li>
+				</sec:authorize>
 				<li>
 					<a href="javascript:;" class="recently" id="recentlyImg" onclick="openRecentShopping(); return false;">
 						<span>최근본쇼핑</span>
@@ -223,12 +229,12 @@
 						<li><a href="${contextPath}/user/signup">회원가입</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<sec:authentication property="principal" var="pinfo" />
 						<li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
 						<li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
 						<form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
 							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 						</form>
+						<li><a href="/level">멤버십존</a> </li>
 					</sec:authorize>
 					<li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
 				</ul>

@@ -6,22 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
+<script>
+    $(document).ready(function () {
+        // 화면 로드될 때 비밀번호 확인하는 상단부만 보여주기
+        document.getElementById("headerSection").style.display = "";
+        document.getElementById("bottomSection").style.display = "none";
+    });
+</script>
+<section id="headerSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
     <div class="container">
         <div class="gird-l2x">
             <!-- LNB 시작 -->
 
             <%@ include file="mypageSide.jsp" %>
-            <form name="upntLeftForm" method="post" target="uPnt">
-                <input type="hidden" name="mcustNo" value="">
-            </form>
-            <!-- // LNB 끝 -->
 
             <div class="contents">
                 <div class="mypage-info-wrap">
@@ -29,43 +34,27 @@
                     <div class="border-gray-box">
                         <div class="confirm-box">
                             <p class="ctypo17">고객님의 소중한 개인정보를 보호하기 위해 <br>비밀번호를 다시 한번 확인합니다.</p>
+                            <sec:authentication property="principal" var="pinfo" />
                             <div class="bg-gray-box center">
-
-
-
-
-
-                                <p class="title22">아이디 자리</p>
-
-
-
-
-
+                                <p class="title22">${pinfo.userVO.user_id}</p>
                             </div>
 
                             <div class="form-wrap">
-                                <form name="checkPasswordForm" method="post" action="/mypage/pwcheck">
                                     <div class="inputbox" id="divPassword"><!-- 실패시 class="failed" 추가 -->
-                                        <label class="inplabel icon-lock"><input type="password" id="pwd1063" name="pwd" maxlength="30" value="" placeholder="비밀번호 (6자리 이상)"></label>
+                                        <label class="inplabel icon-lock"><input type="password" id="inputpwd" name="inputPwd" maxlength="30" value="" placeholder="비밀번호 (6자리 이상)"></label>
                                         <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                                     </div>
-                                    <input type="hidden" name="formType" id="formType">
-                                    <input type="hidden" name="snsType" id="snsType">
-                                    <input type="hidden" name="id" value="alsth">
-                                    <input type="hidden" name="type" value="${type}">
+                                    <input type="hidden" id="userpwd" name="userpwd" value="${pinfo.userVO.user_pw}">
                                     <p class="failed-msg"> <!-- 실패시 노출 -->
                                         <i class="icon" id="alterPasswordIcon"></i>
                                         <span id="alterPassword"></span>
                                     </p>
-                                </form>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </div>
 
                             <div class="btngroup">
-                                <button class="btn btn-default medium" onclick="checkPassword();"><span>확인</span></button>
+                                <button class="btn btn-default medium" onclick="pwdcheckButton();"><span>확인</span></button>
                             </div>
-
-
-
 
                         </div> <!-- //.confirm-box -->
                     </div> <!-- //.border-gray-box -->
@@ -74,35 +63,56 @@
         </div>
     </div> <!-- //.container -->
 </main>
+</section>
+<script>
 
-<script type="text/javascript">
-    jQuery(function($) {
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}"
 
+    function pwdcheckButton() {
+        var userPwd = document.getElementById("userpwd").value;
+        var inputPwd = document.getElementById("inputpwd").value;
 
-        $("input[name='pwd']").focus();
+        console.log(userPwd);
+        console.log(inputPwd);
 
-        $("form[name='checkPasswordForm']").submit(function() {
-            var pwd = $("input[name='pwd']").val();
-
-            if (isEmpty(pwd)) {
-                $("div#divPassword").addClass("failed");
-                $("i#alterPasswordIcon").addClass("error");
-                $("span#alterPassword").text("비밀번호를 입력해 주세요.").show();
-                //alert("비밀번호를 입력해 주세요.");
-                $("input[name='pwd']").focus();
-                return false;
-            }
-        });
-
-
-    });
-
-    function checkPassword() {
-        $("form[name='checkPasswordForm']").submit();
+        if (inputPwd === "") {
+            $("div#divPassword").addClass("failed");
+            $("i#alterPasswordIcon").addClass("error");
+            $("span#alterPassword").text("비밀번호를 입력해 주세요.").show();
+            //alert("비밀번호를 입력해 주세요.");
+            $("input[name='pwd']").focus();
+        } else { // IdCheckController 요청
+            $.ajax({
+                url: "/pwcheck",
+                method: "post", // 요청방식은 post
+                data: { "userPwd": userPwd , "inputPwd" : inputPwd},
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
+                success: function (result) {
+                    if (result === "1") {
+                        // 비밀번호 입력 상단부 숨기고, 회원정보 수정 폼 보여주기
+                        document.getElementById("headerSection").style.display = "none";
+                        document.getElementById("bottomSection").style.display = "";
+                    } else {
+                        // 비밀번호가 회원 정보와 일치하지 않는 경우 초기화 후 alert창 띄워주기
+                        $("div#divPassword").addClass("failed");
+                        $("i#alterPasswordIcon").addClass("error");
+                        $("span#alterPassword").text("비밀번호가 맞지 않습니다. 다시 확인하여 입력해주세요").show();
+                        //alert("비밀번호를 입력해 주세요.");
+                        $("input[name='pwd']").focus();
+                        $('#inputpwd').val('');
+                    }
+                }, error: function (error) {
+                    alert("AJAX요청 실패 : 에러코드=" + error.status); // status 에러확인
+                }
+            });
+        }
     }
 
-
 </script>
+
 </body>
 </html>
 

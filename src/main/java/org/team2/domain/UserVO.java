@@ -25,6 +25,7 @@ public class UserVO implements Serializable {
     private String user_gender;
     private String user_email_receive;
     private String user_sms_receive;
+    private String user_level;
     private List<AuthVO> authList;
 
     private Date created_at;

@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="passwordCheck.jsp" %>
+<section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
     <div class="container">
         <div class="gird-l2x">
@@ -164,5 +166,6 @@
     <!-- //.container -->
 
 </main>
+</section>
 </body>
 </html>
