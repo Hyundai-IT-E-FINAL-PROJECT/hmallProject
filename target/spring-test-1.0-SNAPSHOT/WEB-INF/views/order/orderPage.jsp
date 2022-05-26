@@ -621,10 +621,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         console.log(couponSeq);
                                         console.log(discountCost);
                                         $("#couponSeq").val(couponSeq);
+                                        $("#couponCost").val(discountCost);
 
                                         $('#pec007').modal().hide();
 
-                                        //return couponSeq;
                                     });
                                 </script>
                                 <div>
@@ -847,6 +847,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             </div>
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
+
                         <div class="box-toggle">
                             <h3>
                                 <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">
@@ -874,7 +875,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <p class="tit">할인금액</p>
                                         </div>
                                         <div class="row-value">
-                                            <p class="price"><strong id="main_discountAmt">0</strong>원</p>
+                                            <p class="price"><strong id="main_discountAmt">
+                                                <input value="" id="couponCost" name="couponCost" style="border: none; width: auto; "/>
+                                            </strong>원</p>
                                         </div>
                                     </li>
                                     <li>
@@ -882,6 +885,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <p class="tit">배송비</p>
                                         </div>
                                         <div class="row-value">
+                                            <input value="" id="discountCost" />
                                             <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>
                                         </div>
                                     </li>
