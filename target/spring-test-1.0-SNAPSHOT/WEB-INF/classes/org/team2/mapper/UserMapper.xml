@@ -99,7 +99,7 @@
     </resultMap>
 
     <select id="read" resultMap="userMap">
-        SELECT US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY
+        SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY
         FROM
         TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
         where US.user_id = #{user_id}

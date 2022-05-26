@@ -12,8 +12,12 @@
     <security:http>
         <security:csrf disabled="true"/>
         <security:intercept-url pattern="/user/all" access="permitAll"/>
+<<<<<<< HEAD
         <security:intercept-url pattern="/product/insert" access="permitAll"/>
         <security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER')"/>
+=======
+        <security:intercept-url pattern="/user/member" access ="hasRole('ROLE_MEMBER')"/>
+>>>>>>> 1e689d9b91eb9676030e4d946e844504c3d15c76
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
         <security:access-denied-handler ref="customAccessDenied"/>
