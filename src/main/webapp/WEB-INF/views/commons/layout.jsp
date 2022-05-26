@@ -33,6 +33,7 @@
             width: 100%;
         }
     </style>
+<<<<<<< HEAD
 </head>
 <body>
 <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052510"></script>

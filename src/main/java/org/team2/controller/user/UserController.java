@@ -3,10 +3,12 @@ package org.team2.controller.user;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.team2.domain.AddressVO;
@@ -14,6 +16,8 @@ import org.team2.domain.UserVO;
 import org.team2.service.AddressService;
 import org.team2.service.UserService;
 
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 @Log4j
@@ -31,13 +35,14 @@ public class UserController {
     @Setter(onMethod_ = @Autowired)
     private AddressService addressService;
 
-    public UserController (UserService userService, AddressService addressService){
+    @Setter(onMethod_ = @Autowired)
+    private JavaMailSender mailSender;
+
+    public UserController (UserService userService, AddressService addressService, JavaMailSender mailSender){
         this.userService = userService;
         this.addressService = addressService;
+        this.mailSender = mailSender;
     }
-//    public UserController(AddressService addressService){
-//        this.addressService = addressService;
-//    }
 
     @GetMapping("/all")
     public void doAll(){
@@ -90,4 +95,31 @@ public class UserController {
         return cnt;
     }
 
+    @RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String mailCheck(@RequestParam("total_email") String total_email){
+        int serti = (int)((Math.random() * (99999-10000+1)) + 10000);
+        String from = "team2@naver.com";
+        String to = total_email;
+        String title = "회원가입시 필요한 인증번호 입니다.";
+        String content = "[인증번호]" + serti +" 입니다. <br/> 인증번호 확인란에 기입해주십시오.";
+        String num = "";
+        log.info(total_email);
+        try {
+            MimeMessage m = mailSender.createMimeMessage();
+            MimeMessageHelper mailHelper = new MimeMessageHelper(m, true, "UTF-8");
+
+            mailHelper.setFrom(from);
+            mailHelper.setTo(to);
+            mailHelper.setSubject(title);
+            mailHelper.setText(content, true);
+            mailSender.send(m);
+            num = Integer.toString(serti);
+        }catch (Exception e){
+            e.printStackTrace();
+            num = "error";
+        }
+
+        return num;
+    }
 }
