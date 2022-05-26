@@ -34,8 +34,8 @@
                     </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane ui-active" id="hmallLogin">
-<%--                            <h2><c:out value="${error}"/></h2>--%>
-<%--                            <h2><c:out value="${logout}"/></h2>--%>
+                            <%--                            <h2><c:out value="${error}"/></h2>--%>
+                            <%--                            <h2><c:out value="${logout}"/></h2>--%>
                             <form method="post" action="/login">
 
                                 <div role="tabpanel" class="tab-pane ui-active" id="hmall">

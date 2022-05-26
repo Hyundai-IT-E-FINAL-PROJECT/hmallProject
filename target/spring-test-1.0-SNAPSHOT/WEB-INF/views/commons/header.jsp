@@ -6,7 +6,6 @@
 <header class="header">
     <div class="header-top">
         <h1 class="logo"><a href="${contextPath}/" title="현대Hmall">Hmall</a></h1>
-
         <div class="search" role="search">
             <div class="field">
                 <form name="gnbPdeSearchForm" method="get" accept-charset="UTF-8" class="main-search"
@@ -110,43 +109,6 @@
             <!-- //.field -->
         </div>
         <!-- // 검색 영역 -->
-
-        <script>
-            // 2020.12.24 검색 DOM 로드후 javascript 실행을 위해 옮김
-            // 2020.12.17 icj : 텍스트 광고 입력이 없을시 재노출 (하선윤)
-            mySearchList();
-
-            $("#gnbSearchKeyword").focus(function () {
-                $(".header .search").addClass("selected");
-
-                if ($("#gnbSearchKeyword").val() == gv_gnbHomeBnnrTitl) {
-                    $("#gnbSearchKeyword").val('');
-                }
-
-                $("#search-popup").css({display: ""});  // 최근검색어 탭 노출
-                if ($("#keyword-list li").length == 0) {
-                    $("#nodata").css({display: ""});
-                    $("#keyword-list").css({display: "none"});
-                }
-
-                //검색창 입력전 광고
-                fn_searchAdKeywordDefault();
-                $("#search-recommend").css({display: "none"});
-                $("#search-autowrap").show();
-
-                //퀵 메뉴 숨김 처리
-                $('.quick-menu-more').removeClass('on');
-
-                // 2020.12.17 icj : 텍스트 광고 입력이 없을시 재노출 (하선윤)
-            }).focusout(function () {
-                var $keyword = $("#gnbSearchKeyword");
-                if ($keyword.val() == '') {
-                    $keyword.val(gv_gnbHomeBnnrTitl);
-                }
-            });
-
-        </script>
-
         <!-- 개인화 메뉴 -->
         <div class="personal-menu">
             <ul>
@@ -154,26 +116,21 @@
                     <a class="cart" ga-category="헤더" ga-action="장바구니"
                        href="${contextPath}/order">
                         <span>장바구니</span>
-                        <em class="badge">1</em>
                     </a>
                 </li>
-                <li>
-                    <sec:authentication property="principal" var="pinfo"/>
-                    <sec:authorize access="isAnonymous()">
-                <li><a class="mypage" href="/customLogin"><span>마이페이지</span></a></li>
+                <sec:authentication property="principal" var="pinfo"/>
+                <sec:authorize access="isAnonymous()">
+                    <li><a class="mypage" href="/customLogin"><span>마이페이지</span></a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li><a class="mypage" href="/mypage/${pinfo.userVO.no}"><span>마이페이지</span></a></li>
                 </sec:authorize>
-                </li>
                 <li>
                     <a href="javascript:;" class="recently" id="recentlyImg"
                        onclick="openRecentShopping(); return false;">
                         <span>최근본쇼핑</span>
                         <!-- 최근 본 상품 썸네일 이미지 -->
-                        <em class="thumb-recent"><img
-                                src="//image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140&amp;AR=0"
-                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png')"></em>
+                        <em class="thumb-recent"></em>
                     </a>
                 </li>
             </ul>
@@ -187,87 +144,71 @@
             <div class="category-area" id="categoryArea">
                 <a href="javascript:;" class="btn-category">카테고리</a>
                 <!-- 카테고리 메뉴 시작 -->
+
             </div>
             <!-- // 카테고리 메뉴 -->
             <!-- 퀵메뉴 -->
-
-
             <div class="quick-menu-wrap">
                 <div class="quick-menu-list">
                     <ul class="quicklink ql-left222" id="main_tab">
 
                         <li class=" ">
-                            <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&amp;mainDispSeq=2&amp;"
-                               class="gp_className" ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">편성표</a>
-                        </li>
+                            <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
+                               ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">편성표</a></li>
 
                         <li class=" ">
-                            <a href="/p/home.do?_IC_=tab2&amp;mainDispSeq=1&amp;" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="스토어">스토어</a></li>
+                            <a href="/p/home.do?_IC_=tab2&mainDispSeq=1&" class="gp_className" ga-category="메인 홈"
+                               ga-action="상단탭" ga-label="스토어">스토어</a></li>
+
+                        <li class="current ">
+                            <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"
+                               ga-action="상단탭" ga-label="홈">홈</a></li>
 
                         <li class=" ">
-                            <a href="/p/tvMainR.do?_IC_=tab3&amp;mainDispSeq=3&amp;" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="홈">홈</a></li>
+                            <a href="/p/mktgMain.do?_IC_=tab4&mainDispSeq=62&" class="gp_className" ga-category="메인 홈"
+                               ga-action="상단탭" ga-label="슈퍼H페스타">슈퍼H페스타</a></li>
 
                         <li class=" ">
-                            <a href="/p/mktgMain.do?_IC_=tab4&amp;mainDispSeq=62&amp;" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="슈퍼H페스타">슈퍼H페스타</a></li>
-
-                        <li class=" point">
-                            <a href="/p/mktgMain.do?_IC_=tab5&amp;mainDispSeq=32&amp;" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="어메이징딜">어메이징딜</a></li>
+                            <a href="/p/dsMainR.do?_IC_=tab5&mainDispSeq=6&" class="gp_className" ga-category="메인 홈"
+                               ga-action="상단탭" ga-label="백화점">백화점</a></li>
 
                         <li class=" ">
-                            <a href="/p/dsMainR.do?_IC_=tab6&amp;mainDispSeq=6&amp;" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="백화점">백화점</a></li>
-
-                        <li class=" ">
-                            <a href="/p/todayOpenDeal.do?_IC_=tab7&amp;mainDispSeq=48&amp;" class="gp_className"
+                            <a href="/p/todayOpenDeal.do?_IC_=tab6&mainDispSeq=48&" class="gp_className"
                                ga-category="메인 홈" ga-action="상단탭" ga-label="오늘추천">오늘추천</a></li>
 
                         <li class=" ">
-                            <a href="/pevent/eva/evntMainPage.do?_IC_=tab8&amp;mainDispSeq=7&amp;"
-                               class="gp_className" ga-category="메인 홈" ga-action="상단탭" ga-label="이벤트">이벤트</a>
-                        </li>
+                            <a href="/pevent/eva/evntMainPage.do?_IC_=tab7&mainDispSeq=7&" class="gp_className"
+                               ga-category="메인 홈" ga-action="상단탭" ga-label="이벤트">이벤트</a></li>
+
+                        <li class=" point">
+                            <a href="/p/dpd/wkBestTypeTot.do?_IC_=tab8&mainDispSeq=21&" class="gp_className"
+                               ga-category="메인 홈" ga-action="상단탭" ga-label="주간베스트">주간베스트</a></li>
 
                     </ul>
                 </div>
 
-                <div class="quick-menu-more">
-                    <a href="javascript:;" class="btn-quick-more">퀵메뉴 더보기</a>
-                    <div class="quick-menu-add">
-
-                        <a href="/p/dpd/wkBestTypeTot.do?_IC_=tab1&amp;mainDispSeq=21&amp;" class="gp_className"
-                           ga-category="메인 홈" ga-action="상단탭" ga-label="주간베스트">
-                            주간베스트
-                        </a>
-
-                    </div>
-                </div>
-
             </div>
-            <!-- // 퀵메뉴-->
-
-            <!-- 유틸메뉴 -->
             <div class="header-util">
                 <h2 class="hiding">유틸메뉴</h2>
                 <!-- 로그인 전 -->
-                <ul>
-
-
-                    <li><a ga-category="헤더" ga-action="로그아웃"
-                           href="javascript:bizSpringTag('http://www.hmall.com/p/cob/logout.do','^헤더^로그아웃');">로그아웃</a>
+                <ul style="display: flex;">
+                    <sec:authorize access="isAnonymous()">
+                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin"
+                               onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+                        <li><a href="${contextPath}/user/signup">회원가입</a></li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+                        <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
+                        <form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
+                            <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+                        </form>
+                        <li><a href="/level">멤버십존</a></li>
+                    </sec:authorize>
+                    <li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a>
                     </li>
-                    <li>
-                        <a href="javascript:bizSpringTag('/pevent/eva/evntFamilyZoneMain.do','^헤더^마이페이지 레이어^멤버십존');">멤버십존</a>
-                    </li>
-
-                    <li><a ga-category="헤더" ga-action="고객센터"
-                           href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
                 </ul>
             </div>
-
         </div>
-
     </div>
 </header>
