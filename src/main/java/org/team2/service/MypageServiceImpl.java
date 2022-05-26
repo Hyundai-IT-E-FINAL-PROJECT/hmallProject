@@ -19,8 +19,12 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public List<Map<String,Object>>  recentOrders(long no) throws Exception {
-        List<Map<String,Object>>   list = mypageMapper.recentOrders(no);
-        log.info(list);
-        return list;
+        return mypageMapper.recentOrders(no);
     }
+
+    @Override
+    public List<Map<String, Object>> periodOrders(long no) throws Exception {
+        return mypageMapper.periodOrders(no);
+    }
+
 }

@@ -30,7 +30,7 @@ public class MypageController {
 
     @GetMapping("/mypage/{no}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(@PathVariable long no, Model model) throws Exception {
+    public ModelAndView mypage(@PathVariable long no) throws Exception {
         log.info("tiles test");
         ModelAndView mav = new ModelAndView();
         log.info(no);
@@ -69,13 +69,19 @@ public class MypageController {
         return mav;
     }
 
-    @RequestMapping("mypageOrder")
-    public ModelAndView oreder() {
-        log.info("order test");
-
+    @RequestMapping("mypageOrder/{no}")
+    public ModelAndView oreder(@PathVariable long no) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypage.mypageOrder");
 
+        try {
+            List<Map<String,Object>> list = mypageService.periodOrders(no);
+            mav.addObject("list", list);
+            mav.setViewName("mypage.mypageOrder");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", "마이페이지 에러");
+            mav.setViewName("accessError");
+        }
         return mav;
     }
 
@@ -109,7 +115,7 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("pwcheck")
-    public ResponseEntity<String> pwcheck(@RequestParam Map<String, Object> param) {
+    public ResponseEntity<String> pwcheck(@RequestParam Map<String, Object> param) throws Exception {
         ResponseEntity<String> entity = null;
 
         String userPwd = (String)param.get("userPwd");

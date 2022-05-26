@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
 <main class="cmain mypage" role="main" id="mainContents">
     <div class="container">
         <div class="gird-l2x">
@@ -777,5 +775,3 @@
     </div> <!-- //.container -->
 
 </main>
-</body>
-</html>

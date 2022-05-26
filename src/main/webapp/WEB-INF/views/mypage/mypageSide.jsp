@@ -8,18 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<html>
-<body>
 <div class="side-content">
     <sec:authentication property="principal" var="pinfo" />
-    <h3 class="side-menu-title"><a href="/mypage?no=${pinfo.userVO.no}">마이페이지</a></h3>
+    <h3 class="side-menu-title"><a href="/mypage/${pinfo.userVO.no}">마이페이지</a></h3>
     <div class="side-menu-list">
         <ul>
             <li>
                 <a href="javascript:;">나의 쇼핑내역</a>
                 <ul class="sub-list">
-                    <li><a href="/mypageOrder">주문/배송조회</a></li>
-                    <li><a href="/mypageOrder">취소/교환/반품</a></li>
+                    <li><a href="/mypageOrder/${pinfo.userVO.no}">주문/배송조회</a></li>
+                    <li><a href="/mypageOrder/${pinfo.userVO.no}">취소/교환/반품</a></li>
                 </ul>
             </li>
             <li>
@@ -50,5 +48,3 @@
         </ul>
     </div>
 </div>
-</body>
-</html>
