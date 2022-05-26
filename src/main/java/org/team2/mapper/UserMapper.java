@@ -11,4 +11,6 @@ public interface UserMapper {
     int idCheck(String id) throws Exception;
 
     void insertAddress(@Param("AddressVO")AddressVO addressVO, @Param("userNum") int userNum) throws Exception;
+
+    UserVO find_id(UserVO userVO) throws Exception;
 }

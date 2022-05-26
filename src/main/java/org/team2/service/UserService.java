@@ -6,5 +6,7 @@ public interface UserService {
     void insertSignup(UserVO userVO) throws Exception;
     public int idCheck(String id) throws Exception;
 
+    UserVO find_id(UserVO userVO) throws Exception;
+
 //    public int idCheck(String id) throws  Exception;
 }

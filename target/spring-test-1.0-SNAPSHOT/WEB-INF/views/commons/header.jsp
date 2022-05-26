@@ -193,8 +193,7 @@
                 <!-- 로그인 전 -->
                 <ul style="display: flex;">
                     <sec:authorize access="isAnonymous()">
-                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin"
-                               onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
                         <li><a href="${contextPath}/user/signup">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">

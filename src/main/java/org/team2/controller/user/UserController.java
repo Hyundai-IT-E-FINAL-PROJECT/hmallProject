@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.AddressVO;
 import org.team2.domain.UserVO;
 import org.team2.service.AddressService;
@@ -18,6 +19,7 @@ import org.team2.service.UserService;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
 import java.util.List;
 
 @Log4j
@@ -122,4 +124,31 @@ public class UserController {
 
         return num;
     }
+    @GetMapping("/finduser_info")
+    public String find_user_info(){
+        log.info("hi");
+        return "user.finduser_info";
+    }
+
+    @PostMapping("/find_id")
+    public ModelAndView find_id(UserVO userVO){
+
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("user.find_id");
+        log.info("hi");
+        log.info(userVO.getUser_name());
+        log.info(userVO.getUser_email());
+        try {
+            UserVO vo = userService.find_id(userVO);
+            //String day = userService.find_id(userVO);
+            mav.addObject("find", vo);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return mav;
+    }
+//    @RequestMapping(value = "/find_id")
+//    public String find_id() throws Exception{
+//        return "user.find_id";
+//    }
 }
