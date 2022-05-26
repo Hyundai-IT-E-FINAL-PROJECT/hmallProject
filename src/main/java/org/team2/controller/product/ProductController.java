@@ -87,7 +87,13 @@ public class ProductController {
 
     // frontAPI
     @RequestMapping("/detail")
-    public void detail(){
-        log.info("sample detail start!!");
+    public ModelAndView detail(@RequestParam Long product_seq){
+        log.info("product controller detail start!!");
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("product_seq", product_seq);
+        mav.setViewName("product.detail");
+
+        return mav;
     }
 }

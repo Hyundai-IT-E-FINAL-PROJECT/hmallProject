@@ -5397,7 +5397,7 @@ $(function fn_searchAdKeywordDefault() {
                     $("#mainProduct").append(
                         `
                         <li class="pdthumb">
-                            <a href="product/${product.PRODUCT_SEQ}" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-position="마이템_추천" ga-custom-id="${product.PRODUCT_NAME}" ga-custom-name="메인_홈쇼핑탭" ga-custom-creative="BDA_bdTrkArea=34&amp;bdTrkAlgrth=11_자동" tabindex="0">
+                            <a href="product/detail?product_seq=${product.PRODUCT_SEQ}" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-position="마이템_추천" ga-custom-id="${product.PRODUCT_NAME}" ga-custom-name="메인_홈쇼핑탭" ga-custom-creative="BDA_bdTrkArea=34&amp;bdTrkAlgrth=11_자동" tabindex="0">
                                 <div class="thumb">
                                     <img src="https://image.hmall.com/static/5/0/56/01/2101560521_0.jpg?RS=300x300&amp;AR=0" alt="SPC삼립 필라프 5종(총15팩) + 비프 함박스테이크 2종(총15장)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
                                 </div>

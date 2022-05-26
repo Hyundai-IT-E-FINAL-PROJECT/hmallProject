@@ -17,4 +17,8 @@
     <definition name="mypage.*" extends="default">
         <put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp"/>
     </definition>
+
+    <definition name="product.*" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/product/{1}.jsp"/>
+    </definition>
 </tiles-definitions>
