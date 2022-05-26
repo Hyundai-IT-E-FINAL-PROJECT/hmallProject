@@ -8,7 +8,7 @@
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@edudb_high?TNS_ADMIN=/Users/gimjihye/Wallet_edudb"/>
-        <property name="username" value="teamkim"/>
+        <property name="username" value="teamKim"/>
         <property name="password" value="xxxxxxAt21cc"/>
     </bean>
 

@@ -53,6 +53,26 @@
             )
     </insert>
 
+    <insert id="insertAddress">
+        INSERT INTO TBL_USER_ADDRESS
+        VALUES
+            (
+            SEQ_USER_ADDRESS.NEXTVAL,
+            #{userNum},
+            #{AddressVO.user_address_address1},
+            #{AddressVO.user_address_address2},
+            #{AddressVO.user_address_address3},
+            #{AddressVO.user_name},
+            #{AddressVO.user_phone},
+            sysdate,
+            sysdate
+            )
+    </insert>
+
+    <select id="idCheck" parameterType="String" resultType="int">
+        select count(user_id) from tbl_user where user_id = #{user_id}
+    </select>
+
     <resultMap id="userMap" type="org.team2.domain.UserVO">
         <id property="user_id" column="user_id"/>
         <result property="no" column="user_seq"/>
@@ -63,11 +83,19 @@
         <result property="updated_at" column="updated_at"/>
         <collection property="authList" resultMap="authMap">
         </collection>
+        <collection property="addressList" resultMap="addressMap">
+        </collection>
     </resultMap>
 
     <resultMap id="authMap" type="org.team2.domain.AuthVO">
         <result property="user_seq" column="user_seq"/>
         <result property="user_auth_authority" column="user_auth_authority"/>
+    </resultMap>
+
+    <resultMap id="addressMap" type="org.team2.domain.AddressVO">
+        <result property="user_address_address1" column="user_address_address1"/>
+        <result property="user_address_address2" column="user_address_address2"/>
+        <result property="user_address_address3" column="user_address_address3"/>
     </resultMap>
 
     <select id="read" resultMap="userMap">

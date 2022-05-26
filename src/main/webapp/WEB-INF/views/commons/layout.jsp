@@ -6,13 +6,11 @@
 <head>
     <title><tiles:getAsString name="title"/></title>
     <link rel="stylesheet" type="text/css" href="/resources/css/common.css"><!-- 공통 css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"><!-- 공통 Layout css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/main.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/video-js.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/product.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css"> <!-- 마이페이지 css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"><!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/video-js.css"><!-- 공통 css -->
+    <link rel="stylesheet" href="<tiles:getAsString name = "dynamic_css"/>"/>
 
     <script src="//image.hmall.com/p/js/co/jquery-3.4.1.min.js"></script><!-- jQuery Plugin -->
     <script src="//image.hmall.com/p/js/co/jquery.easing.min.js"></script><!-- jQuery UI Effect -->
@@ -31,7 +29,6 @@
         .container {
             margin-top: 10px;
         }
-
         .container.footer {
             width: 100%;
         }

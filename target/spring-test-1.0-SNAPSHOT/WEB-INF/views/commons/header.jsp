@@ -113,7 +113,7 @@
                 if ($keyword.val() == '') {
                     $keyword.val(gv_gnbHomeBnnrTitl);
                 }
-            });
+            })
 
         </script>
 
@@ -141,7 +141,6 @@
         </div>
         <!-- // 개인화 메뉴 -->
     </div>
-
     <div class="header-menu-wrap">
         <div class="header-menu-in">
             <!-- 카테고리 메뉴 -->
@@ -981,5 +980,28 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <!-- 유틸메뉴 -->
+    <div class="header-util">
+        <h2 class="hiding">유틸메뉴</h2>
+        <!-- 로그인 전 -->
+        <ul style="display: flex;">
+            <sec:authorize access="isAnonymous()">
+                <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin"
+                       onclick="openLoginTag('','^헤더^로그인');return false;">로그인</a></li>
+                <li><a href="${contextPath}/user/signup">회원가입</a></li>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <sec:authentication property="principal" var="pinfo"/>
+                <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+                <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
+                <form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
+                    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+                </form>
+                <li><a href="level">멤버십존</a></li>
+            </sec:authorize>
+            <li><a ga-category="헤더" ga-action="고객센터"
+                   href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a></li>
+        </ul>
     </div>
 </header>

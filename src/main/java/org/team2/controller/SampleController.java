@@ -11,14 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class SampleController {
 
     @RequestMapping("")
-    public ModelAndView index(){
-        log.info("sample controller start!!");
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("title", "Spring Test");
-        mav.addObject("content", "Hello World!!");
-        mav.setViewName("index");
-
-        return mav;
+    public String main(){
+        log.info("main controller");
+        return "main.main";
     }
 }
