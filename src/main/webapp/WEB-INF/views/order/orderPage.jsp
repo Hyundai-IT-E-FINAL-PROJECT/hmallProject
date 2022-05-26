@@ -565,9 +565,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                 </label>
                                                 <button class="btn btn-linelgray small34" onclick="$('#pec007').modal().show();"><span>조회/변경</span></button>
                                             </div>
-                                            <div class="row-value">
-                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>
-                                            </div>
+<%--                                            <div class="row-value">--%>
+<%--                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>--%>
+<%--                                            </div>--%>
                                         </li>
                                     </ul>
                                 </div>
@@ -608,30 +608,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <!-- //.ui-modal-dialog -->
                                 </div>
 <%--                                쿠폰 시퀀스 가져오기--%>
-                                <script type="text/javascript">
 
-                                    var couponSeq=0;
-                                    var discountCost=0;
-
-                                    $("#couponSelectorBtn").on("click", function(){
-
-                                        couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
-                                        discountCost=$("input[name='coupon_cost']").val();
-
-                                        console.log(couponSeq);
-                                        console.log(discountCost);
-                                        $("#couponSeq").val(couponSeq);
-                                        $("#couponCost").val(discountCost);
-
-                                        $('#pec007').modal().hide();
-
-                                    });
-                                </script>
-                                <div>
-                                    <label>
-                                        <input type="text" id="couponSeq" name="coupon_seq" value="" readonly/>
-                                    </label>
-                                </div>
+<%--                                <div>--%>
+<%--                                    <label>--%>
+<%--                                        <input type="text" id="couponSeq" name="coupon_seq" value="" readonly/>--%>
+<%--                                    </label>--%>
+<%--                                </div>--%>
                                 <div class="ui-modal pop-pec007-01 in coupon-detail-select_gnrlCopn_2137894734_00002_0_0 gnrlCopn" id="gnrlCopn_2137894734_00002_0_0_layer" tabindex="-1" role="dialog" aria-label="쿠폰 할인">
                                     <div class="ui-modal-dialog" role="document">
                                         <div class="content">
@@ -707,6 +689,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 <div class="point-area">
                                     <ul class="row-list">
                                         <li id="hpointUseLi">
+<%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
                                             <div class="row-title">
                                                 <label class="chklabel">
                                                     <input type="checkbox" name="upointCheck" onclick="useUpoint()">
@@ -854,7 +837,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <span class="row-title">총 결제금액</span>
                                     <span class="row-value color-ff5340">
 		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>
-		                                            <strong id="main_totPayAmt">99,000</strong>원
+		                                            <strong id="main_totPayAmt">
+                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>
+                                                    </strong>원
 		                                        </span>
                                     <i class="icon"></i>
                                 </button>
@@ -876,7 +861,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         </div>
                                         <div class="row-value">
                                             <p class="price"><strong id="main_discountAmt">
-                                                <input value="" id="couponCost" name="couponCost" style="border: none; width: auto; "/>
+                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>
                                             </strong>원</p>
                                         </div>
                                     </li>
@@ -885,7 +870,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <p class="tit">배송비</p>
                                         </div>
                                         <div class="row-value">
-                                            <input value="" id="discountCost" />
                                             <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>
                                         </div>
                                     </li>
@@ -900,6 +884,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 </ul>
                             </div>
                         </div>
+
 
                         <div class="sticky-ui-wrapper util-option-sticky">
                             <div class="sticky-placeholder" style=""></div>
@@ -948,6 +933,30 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         </div>
         <!-- //.container -->
     </div>
+    <script type="text/javascript">
+
+        var couponSeq=0;
+        var discountCost=0;
+        var totalCost=$("input[name='totalCost']").val();
+
+        $("#couponSelectorBtn").on("click", function(){
+
+            couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
+            discountCost=$("input[name='coupon_cost']").val();
+
+            totalCost=parseInt(totalCost)-parseInt(discountCost);
+            console.log("totalCost: ",totalCost)
+
+            console.log("couponSeq:", couponSeq);
+
+            $("#couponSeq").val(couponSeq);
+            $("#couponCost").val(discountCost);
+            $("#totalCost").val(totalCost);
+
+            $('#pec007').modal().hide();
+
+        });
+    </script>
 </main>
 <%--주문 상세 내역--%>
 <%--<script type="text/javascript">--%>
