@@ -140,15 +140,10 @@ public class UserController {
         log.info(userVO.getUser_email());
         try {
             UserVO vo = userService.find_id(userVO);
-            //String day = userService.find_id(userVO);
             mav.addObject("find", vo);
         }catch(Exception e){
             e.printStackTrace();
         }
         return mav;
     }
-//    @RequestMapping(value = "/find_id")
-//    public String find_id() throws Exception{
-//        return "user.find_id";
-//    }
 }
