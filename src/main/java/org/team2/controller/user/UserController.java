@@ -3,10 +3,7 @@ package org.team2.controller.user;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +14,7 @@ import org.team2.domain.UserVO;
 import org.team2.service.AddressService;
 import org.team2.service.UserService;
 
-import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
-import java.util.List;
 
 @Log4j
 @RequestMapping("/user")
