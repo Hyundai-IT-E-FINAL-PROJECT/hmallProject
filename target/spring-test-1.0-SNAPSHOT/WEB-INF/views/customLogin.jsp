@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
 </head>
 <body>
-<div class="popup-win wp-log-hmall">
+<div class="popup-win wp-log-hmall" style="display: inline-block;>
     <div class="pop-wrap" tabindex="0">
-        <div class="pop-content-wrap">
+        <div class="pop-content-wrap"">
             <strong class="pop-title">Hmall 로그인</strong>
             <div class="pop-content">
                 <div class="tabgroup bdline">
@@ -34,8 +34,8 @@
                     </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane ui-active" id="hmallLogin">
-                            <%--                            <h2><c:out value="${error}"/></h2>--%>
-                            <%--                            <h2><c:out value="${logout}"/></h2>--%>
+<%--                            <h2><c:out value="${error}"/></h2>--%>
+<%--                            <h2><c:out value="${logout}"/></h2>--%>
                             <form method="post" action="/login">
 
                                 <div role="tabpanel" class="tab-pane ui-active" id="hmall">

@@ -7,9 +7,9 @@
 
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@edudb_high?TNS_ADMIN=/Users/gimjihye/Wallet_edudb"/>
-        <property name="username" value="teamKim"/>
-        <property name="password" value="xxxxxxAt21cc"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>
+        <property name="username" value="c##teamKim"/>
+        <property name="password" value="team2"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -20,7 +20,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+
     <mybatis-spring:scan base-package="org.team2.mapper"/>
+
     <context:component-scan base-package="org.team2"/>
 
 </beans>

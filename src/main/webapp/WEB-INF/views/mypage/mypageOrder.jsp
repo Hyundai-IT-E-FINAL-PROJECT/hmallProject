@@ -6,11 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
     <div class="container">
         <div class="gird-l2x">
             <%@ include file="mypageSide.jsp" %>
+            <sec:authentication property="principal" var="pinfo" />
+<%--            <form id="searchForm" name="searchForm" action="${contextPath}/mypageOrderPeriod/" method="get">--%>
+<%--                <input type='hidden' name='searchType' 		id='searchType' 		value="" />--%>
+<%--                <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'			value="" />--%>
+<%--                <input type='hidden' name='ordEndDt' 		id='ordEndDt' 			value="" />--%>
+<%--&lt;%&ndash;                <input type='hidden' name='selectTypeGbcd' 	id='selectTypeGbcd' 	value="" />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <input type='hidden' name='itemNm' 			id='itemNm'				value="" />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <input type='hidden' name='listSize' 		id='listSize'			value="20" />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <input type='hidden' name='selectListSize'  id='selectListSize'     value="20" />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <input type='hidden' name='pageType'        id='pageType'           value="ALL" />&ndash;%&gt;--%>
+<%--            </form>--%>
             <div class="contents">
                 <div class="mypage-order-wrap">
                     <h3 class="title22">주문/배송 현황</h3>
@@ -95,10 +108,6 @@
                                     <label for="order07" onclick="setPeriod(-3);">전체</label>
                                 </li>
                             </ul>
-                            <input type="hidden" id="searchType" name="searchType" value="2"/>
-                            <input type="hidden" class="from" name="strtDt" id="txtOrdStrtDt" maxlength="8" value=""/>
-                            <input type="hidden" class="to" name="endDt" id="txtOrdEndDt" maxlength="8" value=""/>
-
                             <div class="inputbox sm">
                                 <label class="inplabel icon-find"><input type="text" name="txtItemNm" id="txtItemNm"
                                                                          value="" placeholder="상품명 검색"></label>
@@ -110,119 +119,55 @@
                         </div>
                     </div>
 
-
-                    <div class="order-list">
-
-                        <dl>
-
-                            <!--  2020.07.31 박민성 묶음상품 조건 추가  -->
-                            <!-- 각 상품들이 배송비비용발생번호가 같지 않을 경우 (묶음 상품)-->
-
-                            <!-- 묶음 상품일 경우 배송비비용발생번호와 같은 상품들끼리 카운트 및 추가 배송비를 합한다. -->
-
-
-                            <!-- 결제완료 -->
-
-
-                            <dt>
-                                <div class="date">
-                                    <span>2022-05-13 (주문번호 : 20220513295854)</span>
-                                </div>
-
-                                <div class="abs">
-                                    <a href="/p/mpa/selectOrdPTCPup.do?ordNo=20220513295854" class="btn alink"><span>주문/배송 상세</span></a>
-                                </div>
-
-                            </dt>
-
-
-                            <dd class="btn-col2"><!-- 버튼 1개일경우 class="btn-col" 추가, 버튼 2개 이상일경우 class="btn-col2" 추가 -->
-
-
-                                <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
-                                    <span class="img"><img
-                                            src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0"
-                                            alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)"
-                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/></span>
-
-
-                                    <div class="box">
-	                                            <span class="state sky">
-
-
-
-
-
-				                                                배송완료
-
-
-
-	                                            <em class="color-999">
-
-	                                            </em>
-	                                            </span>
-                                        <span class="tit">SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)</span>
-                                        <div class="info">
-
-
-                                            <ul>
-
-                                                <li>10봉 랜덤구성</li>
-
-
-                                                <li>1개</li>
-
-                                            </ul>
-
-
-                                        </div>
-                                        <span class="price">
-
-
-					                                    	<strong>15,000</strong>원
-
-
-	                                            </span>
+                    <div class="order-list-load">
+                    <c:forEach items="${list}" var="list" varStatus="vs">
+                        <div class="order-list">
+                            <dl>
+                                <dt>
+                                    <div class="date">
+                                        <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${list.ORDER_SEQ})</span>
                                     </div>
-                                </a>
+                                    <div class="abs">
+                                        <a href="/mypageOrderDetail" class="btn alink"><span>주문/배송 상세</span></a>
+                                    </div>
+                                </dt>
+<%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
+                                <!-- 가장최근주문 1건, 최대 10개 상품 -->
+                                <dd>
+                                    <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                        <input type="hidden" name="slitmCd" value="2137807436">
+                                        <span class="img">
+	    	                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+	                                    </span>
+                                        <div class="box">
+	                                        <span class="state sky">
+															 ${list.ORDER_STATUS}
+                                            <em class="color-999">
 
-                                <div class="btngroup">
+                                            </em>
+                                            </span>
+                                            <span class="tit"> ${list.PRODUCT_NAME}</span>
+                                            <div class="info">
+                                                <ul>
+                                                    <li>product_info 자리</li>
+                                                    <li>
+                                                            ${list.OP_COUNT} 개
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <span class="price"> <strong>15,000</strong>원 </span>
+                                        </div>
+                                    </a>
 
-
-                                    <!-- 20180626_특화배송조유진 -->
-
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onclick="openCnslAcptPup('20220513295854','1','rtp');"><span>반품신청</span>
-                                    </button>
-
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onclick="openCnslAcptPup('20220513295854','1','exch');"><span>교환신청</span>
-                                    </button>
-
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onClick="openDlvTrcUrlPup('20220513295854', '1')"><span>배송조회</span></button>
-
-
-                                    <button class="btn btn-linelgray small30" type="button"
-                                            onClick="openItemEvalPopup('2137807436', '00008', '20220513295854')"><span>만족도평가</span>
-
-                                    </button>
-
-
-                                </div>
-
-                                <!--[10/16] 사은품/hpoint 영역 추가-->
-
-                                <!--//[10/16] 사은품/hpoint 영역 추가-->
-                            </dd>
-                            <!-- // 결제완료 -->
-
-                        </dl>
-
-
+                                    <div class="btngroup">
+                                        <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
+                                        <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
+                                        <input type="hidden" name="copnStlmFixYn" value="" />
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </c:forEach>
                     </div>
                     <div class="paging">
 
@@ -378,7 +323,117 @@
             <!-- // .contents -->
         </div>
     </div>
-    <!-- //.container -->
 
+    <script>
+
+        // let startDateStr, endDateStr;
+        const csrfHeaderName = "${_csrf.headerName}";
+        const csrfTokenValue = "${_csrf.token}";
+
+        function setPeriod(period) {
+
+            var d = new Date();
+            var dt, startDateStr;
+            var endDateStr = getDateStr(d);
+
+            if (period == 2){
+                dt = new Date(d.setDate(d.getDate() - 14));
+                startDateStr = getDateStr(dt);
+            } else if (period == 3){
+                dt = new Date(d.setMonth(d.getMonth() - 3));
+                startDateStr = getDateStr(dt);
+            } else if (period == 6) {
+                dt = new Date(d.setMonth(d.getMonth() - 6));
+                startDateStr = getDateStr(dt);
+            } else if (period == 0) {
+                startDateStr = endDateStr.substr(0,4)+"0101";
+                endDateStr = endDateStr.substr(0,4)+"1231";
+            } else if (period == -1) {
+                d.setFullYear(new Date().getFullYear() - 1);
+                startDateStr = getDateStr(d).substr(0,4)+"0101";
+                endDateStr = startDateStr.substr(0,4)+"1231";
+            } else if (period == -2) {
+                d.setFullYear(new Date().getFullYear() - 2);
+                startDateStr = getDateStr(d).substr(0,4)+"0101";
+                endDateStr = startDateStr.substr(0,4)+"1231";
+            } else { // 전체
+                startDateStr = "";
+                endDateStr = "";
+            }
+
+            // $("#txtOrdStrtDt").val(startDateStr);
+            // $("#txtOrdEndDt").val(endDateStr);
+            // $("#searchType").val(period);
+            // $("input[name=listSize]").val('20');
+            // $("input[name=selectListSize]").val('20');
+
+            $.ajax({
+                url: "${contextPath}/mypageOrderPeriod/${pinfo.userVO.no}",
+                method: "post", // 요청방식은 post
+                data: { "startDateStr": startDateStr , "endDateStr" : endDateStr, "period" : period},
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
+                success: function (result) {
+                    console.log("실행중");
+
+                    var html = jQuery('<div>').html(result);
+                    var contents = html.find("div.order-list-load").html();
+
+                    $(".order-list-load").html(contents);
+
+
+                },
+                error: function (error) {
+                    alert("AJAX요청 실패 : 에러코드=" + error.status); // status 에러확인
+                }
+            });
+
+        }
+
+        <%--// 댓글 목록을 불러오는 함수--%>
+        <%--function getOrders() {--%>
+        <%--    $.getJSON("${contextPath}/replyList/" + ${boardDTO.no}, function (data) {--%>
+        <%--        console.log(data);--%>
+        <%--        var str = "";--%>
+
+
+        <%--        $(data).each(function () {--%>
+        <%--            if(this.writer === replyer) {--%>
+        <%--                str += "<li data-reply_no='" + this.rno + "' class='replyLi'>"--%>
+        <%--                    + "<p class='reply_text'>" + this.content + "</p>"--%>
+        <%--                    + "<p class='reply_writer'> 작성자 : " + this.writer + "</p>"--%>
+        <%--                    + "<button type='button' class='btn btn-xs btn-info' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"--%>
+        <%--                    + "</li>"--%>
+        <%--                    + "<hr/>";--%>
+        <%--            }--%>
+        <%--            else {--%>
+        <%--                str += "<li data-reply_no='" + this.rno + "' class='replyLi'>"--%>
+        <%--                    + "<p class='reply_text'>" + this.content + "</p>"--%>
+        <%--                    + "<p class='reply_writer'> 작성자 : " + this.writer + "</p>"--%>
+        <%--                    + "</li>"--%>
+        <%--                    + "<hr/>";--%>
+        <%--            }--%>
+        <%--        });--%>
+        <%--        $("#replies").html(str);--%>
+        <%--    });--%>
+        <%--}--%>
+
+        function getDateStr(dt){
+            var year = dt.getFullYear();
+            var month = dt.getMonth();
+            month++;
+            if( month < 10 ){
+                month = "0" + month;
+            }
+            var date = dt.getDate();
+            if( date < 10){
+                date = "0" + date;
+            }
+            return year + "" +  month + "" + date;
+        }
+
+
+    </script>
 </main>
 <!-- //.cmain -->

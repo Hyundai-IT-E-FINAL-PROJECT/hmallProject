@@ -2,6 +2,7 @@ package org.team2.controller.mypage;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.service.MypageService;
@@ -70,12 +72,14 @@ public class MypageController {
     }
 
     @RequestMapping("mypageOrder/{no}")
-    public ModelAndView oreder(@PathVariable long no) throws Exception {
+    public ModelAndView oreder(@PathVariable long no) {
         ModelAndView mav = new ModelAndView();
-
+        log.info(no);
+        log.info("주문/배송 조회 컨트롤러");
         try {
-            List<Map<String,Object>> list = mypageService.periodOrders(no);
+            List<Map<String,Object>> list = mypageService.periodOrders(no, null, null, null);
             mav.addObject("list", list);
+            log.info(list);
             mav.setViewName("mypage.mypageOrder");
         }
         catch (Exception e) {
@@ -83,6 +87,28 @@ public class MypageController {
             mav.setViewName("accessError");
         }
         return mav;
+    }
+
+    @ResponseBody
+    @PostMapping("mypageOrderPeriod/{no}")
+    public Object oreder(@PathVariable long no, @RequestParam Map<String, Object> param, Model model) {
+
+        String startDateStr = (String)param.get("startDateStr");
+        String endDateStr = (String)param.get("endDateStr");
+        String period = (String)param.get("period");
+
+        log.info("주문/배송 조회 컨트롤러");
+        log.info(no);
+        log.info("order parameter : " + startDateStr + " " + endDateStr + " " + period);
+
+        try {
+            List<Map<String,Object>> list = mypageService.periodOrders(no, startDateStr, endDateStr, period);
+            model.addAttribute(list);
+            return "periodorders";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
     }
 
     @RequestMapping("mypageCoupon")
@@ -114,7 +140,7 @@ public class MypageController {
 //    }
 
     @ResponseBody
-    @PostMapping("pwcheck")
+    @PostMapping("pwdcheck")
     public ResponseEntity<String> pwcheck(@RequestParam Map<String, Object> param) throws Exception {
         ResponseEntity<String> entity = null;
 

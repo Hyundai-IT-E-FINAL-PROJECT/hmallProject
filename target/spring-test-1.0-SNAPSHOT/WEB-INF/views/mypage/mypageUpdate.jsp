@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@ include file="passwordCheck.jsp" %>
 <section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
@@ -92,50 +91,50 @@
 
         <%@ include file="mypageSide.jsp" %>
 
-        <script type="text/javascript">
-          var upntCustYn = "N";
-          $(document).ready(function() {
-            $.ajax({
-              type: "get"
-              ,url: "/p/mpf/chkUpntCustYn.do"
-              ,dataType: "json"
-              ,async: false
-              ,success : function(data) {
-                upntCustYn = data.upntCustYn;
-              }
-              , error: function (data) {
-                console.log("chkUpntCustYn_error", data);
-              }
-            });
-          });
+<%--        <script type="text/javascript">--%>
+<%--          var upntCustYn = "N";--%>
+<%--          $(document).ready(function() {--%>
+<%--            $.ajax({--%>
+<%--              type: "get"--%>
+<%--              ,url: "/p/mpf/chkUpntCustYn.do"--%>
+<%--              ,dataType: "json"--%>
+<%--              ,async: false--%>
+<%--              ,success : function(data) {--%>
+<%--                upntCustYn = data.upntCustYn;--%>
+<%--              }--%>
+<%--              , error: function (data) {--%>
+<%--                console.log("chkUpntCustYn_error", data);--%>
+<%--              }--%>
+<%--            });--%>
+<%--          });--%>
 
-          <!--HPAY임대진 추가 -->
-          function openHPayTag(pathVal) {
-            var url = "http://" + location.host + "/p/mpf/hpayManage.do";
-            try {
-              _trk_flashEnvView('_TRK_CP=' + pathVal);
-            } catch(e){}
+<%--          <!--HPAY임대진 추가 -->--%>
+<%--          function openHPayTag(pathVal) {--%>
+<%--            var url = "http://" + location.host + "/p/mpf/hpayManage.do";--%>
+<%--            try {--%>
+<%--              _trk_flashEnvView('_TRK_CP=' + pathVal);--%>
+<%--            } catch(e){}--%>
 
-            openPopup(url, "loginPup", 640, 600, "no", $(window).width(), $(window).height());
-          }
+<%--            openPopup(url, "loginPup", 640, 600, "no", $(window).width(), $(window).height());--%>
+<%--          }--%>
 
-          //H.Point Pay 관리 통합회원 확인 후 후 화면 분기
-          function fn_HppManage(){
-            if(upntCustYn == "Y"){
-              location.href = "https://www.hmall.com/p/mpd/hhpPmntManage.do";
-            }else{
-              $("#pec001-01").modal().show();
-            }
-          }
+<%--          //H.Point Pay 관리 통합회원 확인 후 후 화면 분기--%>
+<%--          function fn_HppManage(){--%>
+<%--            if(upntCustYn == "Y"){--%>
+<%--              location.href = "https://www.hmall.com/p/mpd/hhpPmntManage.do";--%>
+<%--            }else{--%>
+<%--              $("#pec001-01").modal().show();--%>
+<%--            }--%>
+<%--          }--%>
 
-          function fn_upntPopupOpen(){
-            location.href='/p/cua/registUpnt.do';
-          }
+<%--          function fn_upntPopupOpen(){--%>
+<%--            location.href='/p/cua/registUpnt.do';--%>
+<%--          }--%>
 
-          function fn_upntPopupClose(){
-            $("#pec001-01").modal().hide();
-          }
-        </script>
+<%--          function fn_upntPopupClose(){--%>
+<%--            $("#pec001-01").modal().hide();--%>
+<%--          }--%>
+<%--        </script>--%>
         <!--20170816 박승택 추가 -->
 
         <input type="hidden" name="mcustNo" value="">
@@ -389,5 +388,3 @@
   </div> <!-- //.container -->
 </main>
 </section>
-</body>
-</html>
