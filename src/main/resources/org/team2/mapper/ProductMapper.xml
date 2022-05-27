@@ -8,6 +8,15 @@
         where product_seq = #{seq}
     </select>
 
+
+    <select id="getUserOrder" resultType="org.team2.domain.ProductVO">
+        select tbl_product.product_seq ,tbl_product.product_code, tbl_product.product_name, tbl_product.product_cost
+        from tbl_product, tbl_op, tbl_order
+        where tbl_product.product_seq = tbl_op.product_seq
+          and tbl_op.order_seq = tbl_order.order_seq
+          and tbl_order.user_seq=#{seq}
+    </select>
+
     <select id="getAll" resultType="map">
         select *
         from tbl_product

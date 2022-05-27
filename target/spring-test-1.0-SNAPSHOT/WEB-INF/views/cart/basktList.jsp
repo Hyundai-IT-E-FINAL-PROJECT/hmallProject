@@ -2347,6 +2347,11 @@
                                 </div>
                             </div>
                             <!-- //.cart-head -->
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal" var="pinfo" />
+                                ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                적립금: ${pinfo.userVO.no}
+                            </sec:authorize>
 
                             <div class="cart-body">
 
@@ -2422,7 +2427,7 @@
 
 
 
-
+<%--                                            장바구니 제품 나열--%>
                                             <!-- .pdwrap -->
                                             <div class="pdwrap pdlist ml" style="display:;" id="018489_000000_16">
                                                 <input type="hidden" id="exclItemTrgtGbcd_2137171063" name="exclItemTrgtGbcd" value="">
@@ -2446,21 +2451,7 @@
                                                 <input type="hidden" name="gaCategory" value="스포츠_레져/골프용품/골프웨어/니트셔츠(여성)">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                                                 <!-- 스토어픽 상품, 픽업일 경과일경우 -->
-
-
 
 
                                                 <input type="hidden" name="basktVenCdVal" id="basktVenCdVal" value="018489">

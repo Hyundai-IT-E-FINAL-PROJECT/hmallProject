@@ -16,4 +16,6 @@ public interface ProductMapper {
     int update(ProductVO productVO);
 
     List<ProductVO> getMain();
+
+    List<ProductVO> getUserOrder(Long user_seq);
 }

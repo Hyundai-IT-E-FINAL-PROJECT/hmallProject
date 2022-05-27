@@ -558,7 +558,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li id="copnSaleDiv" 1:0:="">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="copnDcAply" onclick="applyCopnDc();">
+                                                    <input type="checkbox" name="couponCheck" onclick="applyCopnDc();">
                                                     <i class="icon"></i>
                                                     <span>쿠폰</span>
                                                 </label>
@@ -579,10 +579,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
                                                     <div class="discount-box">
                                                         <div class="row-wrap">
-                                                            <input type="checkbox" id="discount2" style="display:none;">
+                                                            <input type="radio" id="discount2" style="display:none;">
                                                             <label class="chklabel">
-                                                                <input type="checkbox" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
-                                                                <i class="icon"></i>
+                                                                <input type="radio" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
+<%--                                                                <i class="icon"></i>--%>
                                                                 <span>${coupon.coupon_name}</span>
                                                                 <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
                                                                 <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
@@ -607,6 +607,17 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     </div>
                                     <!-- //.ui-modal-dialog -->
                                 </div>
+                                <script type="text/javascript">
+
+                                    // function checkOnlyOne(){
+                                    //     const checkboxes=document.getElementById("discount2Tmp");
+                                    //     checkboxes.forEach((cb)=>{
+                                    //         cb.checked=false;
+                                    //     })
+                                    //     element.checked=true;
+                                    // }
+
+                                </script>
 <%--                                쿠폰 시퀀스 가져오기--%>
 
 <%--                                <div>--%>
@@ -692,7 +703,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="upointCheck" onclick="useUpoint()">
+                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">
                                                     <i class="icon"></i>
                                                     <span>적립금 <em class="num">99,000</em></span>
                                                     <input type="hidden" name="uPoint" value="">
@@ -710,7 +721,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li id="depositLi">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="upointCheck" onclick="useUpoint()">
+                                                    <input type="checkbox" name="depositPoint" onclick="useUpoint()">
                                                     <i class="icon"></i>
                                                     <span>예치금 <em class="num">99,000</em></span>
                                                     <input type="hidden" name="uPoint" value="">
@@ -935,6 +946,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
     </div>
     <script type="text/javascript">
 
+        // TODO: 체크버튼이 클릭 되어있을 때 값을 다시 계산해주는 식으로 전송: DB 연동으로 검사
+        // checkbox name
+        // 적립금: resPoint
+        // 예치금: depoistPoint
+        // 쿠폰: couponCheck
+        // total= total-respoint+depositPoint-couponCheck //check안되어있을 시 0으로 간주하고 계산
+        // 적립금, 예치금 화면에 띄우기, check안되어있을 때는 초기값으로 설정.
+
         var couponSeq=0;
         var discountCost=0;
         var totalCost=$("input[name='totalCost']").val();
@@ -979,8 +998,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                        $("#couponCost").val(parseInt(totalCost)*(discount/100));
                        $("#totalCost").val(totalCost);
                    }
-
-
 
                    $('#pec007').modal().hide();
                },

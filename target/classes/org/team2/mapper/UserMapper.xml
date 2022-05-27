@@ -73,6 +73,11 @@
         select count(user_id) from tbl_user where user_id = #{user_id}
     </select>
 
+    <select id="find_id" parameterType="String" resultType="org.team2.domain.UserVO">
+        select * from tbl_user
+        where user_name = #{user_name} and user_email = #{user_email}
+    </select>
+
     <resultMap id="userMap" type="org.team2.domain.UserVO">
         <id property="user_id" column="user_id"/>
         <result property="no" column="user_seq"/>

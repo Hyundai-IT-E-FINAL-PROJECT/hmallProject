@@ -13,6 +13,7 @@ import org.team2.domain.CategoryVO;
 import org.team2.domain.ProductVO;
 import org.team2.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -96,4 +97,30 @@ public class ProductController {
 
         return mav;
     }
+
+    @GetMapping("openOrderListPup")
+    public ModelAndView openOrderListPup(){
+        log.info("orderList Popup 접속");
+        ModelAndView mav = new ModelAndView();
+
+        List<ProductVO> data=productService.getUserOrder(41L);
+
+        List<ProductVO> userOrderList=new ArrayList<>();
+        for(ProductVO vo : data){
+            System.out.println(vo);
+            ProductVO po=new ProductVO();
+            po.setProduct_name(vo.getProduct_name());
+            po.setProduct_code(vo.getProduct_code());
+            po.setProduct_cost(vo.getProduct_cost());
+            po.setProduct_seq(vo.getProduct_seq());
+
+            userOrderList.add(po);
+        }
+        log.info(userOrderList);
+        mav.addObject("userOrderList",userOrderList);
+
+        mav.setViewName("layerPup/openOrderListPup.empty");
+        return mav;
+    }
+
 }

@@ -55,7 +55,7 @@
                     <ul>
                         <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                         <!--20200826 수요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
-                        <li><a href="#" onclick="openCnslAcptPup(); return false;">1:1 상담신청</a></li>
+                        <li><a href="customer/inquiryPage">1:1 문의하기</a></li>
                         <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                         <!-- <li><a href="javascript:;">쇼핑가이드</a></li> -->
                         <!--20200827 목요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
@@ -81,7 +81,7 @@
                     <h3>자주 묻는 질문</h3>
                     <!-- 20200909 시안 08/26 기준 작업 -->
                     <div class="search-area">
-                        <form name="searchForm" method="get" action="/p/ccc/faqList.do">
+                        <form name="searchForm" method="get" action="/customer/faqList.do">
                             <div class="inputbox">
                                 <input hidden="hidden">
                                 <label class="inplabel icon-find"><input type="text" name="ancmCntn" placeholder="질문을 검색해보세요" title="검색어 입력" value=""></label>
@@ -95,6 +95,7 @@
                     <!-- 20200909 시안 08/26 기준 작업 -->
                 </div>
                 <!--//search : 자주 묻는 질문-->
+
 
                 <!--베스트 FAQ 10-->
                 <div class="cus-wrap">
@@ -1288,6 +1289,17 @@
             setCardPromotion();
         }, 300);
         */
+    </script>
+
+    <script type="text/javascript">
+        function searchCntn() {
+            var ancmCntn = $("input[name='ancmCntn']").val().trim();
+            if (ancmCntn == "") {
+                alert("검색어를 입력해 주세요.");
+                return false;
+            }
+            $("form[name='searchForm']").submit();
+        }
     </script>
     <!-- 스카이스크래퍼 -->
 </div>

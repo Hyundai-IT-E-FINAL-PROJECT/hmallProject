@@ -50,4 +50,10 @@ public class ProductSerivceImpl implements ProductService {
         int updateResult = productMapper.update(productVO);
         return updateResult;
     }
+
+    @Override
+    public List<ProductVO> getUserOrder(Long user_seq) {
+        List<ProductVO> userProduct = productMapper.getUserOrder(user_seq);
+        return userProduct;
+    }
 }

@@ -13,4 +13,5 @@ public interface ProductService {
     int insert(ProductVO productVO);
     int delete(ProductVO productVO);
     int update(ProductVO productVO);
+    List<ProductVO> getUserOrder(Long user_seq);
 }
