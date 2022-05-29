@@ -8,5 +8,9 @@ import java.util.Map;
 public interface MypageMapper {
     List<Map<String,Object>> recentOrders(long no) throws Exception;
 
-    List<Map<String, Object>> periodOrders(@Param("no") long no, @Param("startDateStr") String startDateStr, @Param("endDateStr") String endDateStr, @Param("period") String period) throws Exception;
+    List<Map<String, Object>> periodOrders(@Param("no") long no,
+                                           @Param("ordStrtDt") String ordStrtDt,
+                                           @Param("ordEndDt") String ordEndDt,
+                                           @Param("seType") String seType,
+                                           @Param("itemNm") String itemNm) throws Exception;
 }

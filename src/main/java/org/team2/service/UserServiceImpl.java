@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder pwencoder;
 
 
+
     @Transactional
     @Override
     public void insertSignup(UserVO userVO) throws Exception{
@@ -40,5 +41,11 @@ public class UserServiceImpl implements UserService{
         int cnt = userMapper.idCheck(id);
         log.info("cnt: "+cnt);
         return cnt;
+    }
+
+    @Override
+    public UserVO find_id(UserVO userVO) throws Exception {
+        userMapper.find_id(userVO);
+        return userMapper.find_id(userVO);
     }
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.MypageMapper">
     <sql id="userOrders">
-    SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, d.image_name
+    SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_info, c.product_cost, d.image_name
         FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
         WHERE #{alias} = a.user_seq
             AND a.order_seq = b.order_seq
@@ -23,22 +23,30 @@
     <select id="periodOrders" resultType="map">
 
             SELECT *
-            FROM (SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, d.image_name
+            FROM (SELECT a.order_status, a.order_total_cost, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_info, d.image_name
                     FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
                     WHERE #{no} = a.user_seq
                         AND a.order_seq = b.order_seq
                         AND b.product_seq = c.product_seq
                         AND c.product_seq = d.product_seq
                         ORDER BY created_at DESC)
+
             <choose>
-                <when test="period != null">
-                    WHERE TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{startDateStr} AND #{endDateStr}
+                <when test='seType != null'>
+                    <if test='seType != "-3"'>
+                        WHERE TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{ordStrtDt} AND #{ordEndDt}
+                    </if>
                 </when>
-                <when test="period == null">
+                <when test="seType == null">
                     <![CDATA[WHERE TO_DATE(sysdate-14) < created_at]]>
                 </when>
             </choose>
-
+            <if test='itemNm != "" and itemNm != null and ordStrtDt != ""'>
+                AND PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
+            </if>
+            <if test='itemNm != "" and itemNm != null and ordStrtDt == ""'>
+                WHERE PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
+            </if>
     </select>
 </mapper>
 

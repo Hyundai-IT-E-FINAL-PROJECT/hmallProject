@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <sec:authentication property="principal" var="pinfo" />
@@ -174,7 +175,7 @@
 	                                        </span>
                                         <div class="info">
                                             <ul>
-                                                <li>product_info 자리</li>
+                                                <li>${list.PRODUCT_INFO}</li>
                                                 <li>
                                                     ${list.OP_COUNT} 개
                                                 </li>
@@ -192,11 +193,12 @@
                                 <div class="btngroup">
 
                                     <!-- 20180626_특화배송조유진 -->
-
-                                    <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
-
+                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
+                                        <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
+                                    </c:if>
+                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
                                     <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-
+                                    </c:if>
                                     <input type="hidden" name="copnStlmFixYn" value="" />
                                 </div>
 
@@ -209,7 +211,12 @@
 
                     </div>
                     </c:forEach>
-
+                    <c:if test="${list.size() == 0}">
+                        <div class="nodata">
+                            <span class="bgcircle"><i class="icon nodata-type7"></i></span>
+                            <p>최근 14일간의 주문한 상품이 없습니다.</p>
+                        </div>
+                    </c:if>
                     <!-- 추후 상품전시 레이아웃 마크업으로 변경 필요 -->
 
 

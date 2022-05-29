@@ -9,5 +9,5 @@ public interface MypageService {
 //
 //    List<Map<String, Object>> periodOrders(long no) throws Exception;
 
-    List<Map<String, Object>> periodOrders(long no, String startDateStr, String endDateStr, String period)throws Exception;
+    List<Map<String, Object>> periodOrders(long no, String ordStrtDt, String ordEndDt, String seType, String itemNm)throws Exception;
 }

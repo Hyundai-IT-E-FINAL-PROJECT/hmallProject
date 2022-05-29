@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.service.MypageService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -71,14 +72,20 @@ public class MypageController {
         return mav;
     }
 
-    @RequestMapping("mypageOrder/{no}")
-    public ModelAndView oreder(@PathVariable long no) {
+    // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
+   @RequestMapping("mypageOrder/{no}")
+    public ModelAndView oreder(@PathVariable long no, HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
-        log.info(no);
-        log.info("주문/배송 조회 컨트롤러");
+
+        String ordStrtDt = req.getParameter("ordStrtDt");
+        String ordEndDt = req.getParameter("ordEndDt");
+        String seType =  req.getParameter("seType");
+        String itemNm =  req.getParameter("itemNm");
+
         try {
-            List<Map<String,Object>> list = mypageService.periodOrders(no, null, null, null);
+            List<Map<String,Object>> list = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
             mav.addObject("list", list);
+            mav.addObject("seType", seType);
             log.info(list);
             mav.setViewName("mypage.mypageOrder");
         }
@@ -89,27 +96,6 @@ public class MypageController {
         return mav;
     }
 
-    @ResponseBody
-    @PostMapping("mypageOrderPeriod/{no}")
-    public Object oreder(@PathVariable long no, @RequestParam Map<String, Object> param, Model model) {
-
-        String startDateStr = (String)param.get("startDateStr");
-        String endDateStr = (String)param.get("endDateStr");
-        String period = (String)param.get("period");
-
-        log.info("주문/배송 조회 컨트롤러");
-        log.info(no);
-        log.info("order parameter : " + startDateStr + " " + endDateStr + " " + period);
-
-        try {
-            List<Map<String,Object>> list = mypageService.periodOrders(no, startDateStr, endDateStr, period);
-            model.addAttribute(list);
-            return "periodorders";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
-        }
-    }
 
     @RequestMapping("mypageCoupon")
     public ModelAndView coupon() {
@@ -131,14 +117,7 @@ public class MypageController {
         return mav;
     }
 
-//    @GetMapping("pwcheck")
-//    public String pwcheck(@RequestParam String type, Model model) {
-//
-//        log.info("type : " + type);
-//        model.addAttribute("type", type);
-//        return "mypage.passwordCheck";
-//    }
-
+    // 마이페이지 나의 정보(회원정보 변경, 배송지 관리, 회원 탈퇴) 페이지를 들어가기전 비밀번호를 재확인 기능 컨트롤러
     @ResponseBody
     @PostMapping("pwdcheck")
     public ResponseEntity<String> pwcheck(@RequestParam Map<String, Object> param) throws Exception {

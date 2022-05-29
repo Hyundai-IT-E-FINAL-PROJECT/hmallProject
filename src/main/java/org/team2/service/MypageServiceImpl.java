@@ -23,8 +23,8 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<Map<String, Object>> periodOrders(long no, String startDateStr, String endDateStr, String period) throws Exception {
-        return mypageMapper.periodOrders(no, startDateStr, endDateStr, period);
+    public List<Map<String, Object>> periodOrders(long no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception {
+        return mypageMapper.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
     }
 
 }
