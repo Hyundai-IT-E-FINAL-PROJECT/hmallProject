@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,9 @@ import org.team2.domain.ProductVO;
 import org.team2.service.ProductService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Log4j
@@ -103,24 +106,49 @@ public class ProductController {
         log.info("orderList Popup 접속");
         ModelAndView mav = new ModelAndView();
 
-        List<ProductVO> data=productService.getUserOrder(41L);
-
-        List<ProductVO> userOrderList=new ArrayList<>();
-        for(ProductVO vo : data){
-            System.out.println(vo);
-            ProductVO po=new ProductVO();
-            po.setProduct_name(vo.getProduct_name());
-            po.setProduct_code(vo.getProduct_code());
-            po.setProduct_cost(vo.getProduct_cost());
-            po.setProduct_seq(vo.getProduct_seq());
-
-            userOrderList.add(po);
-        }
+        List<Map<String, String>> userOrderList=productService.getUserOrder(41L);
         log.info(userOrderList);
         mav.addObject("userOrderList",userOrderList);
-
         mav.setViewName("layerPup/openOrderListPup.empty");
         return mav;
     }
+
+    @ResponseBody
+    @RequestMapping(value="getProductInfo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<HashMap<String, String>> getProductInfo(@RequestParam Long order_seq){
+        ResponseEntity<HashMap<String, String>> entity=null;
+        HashMap<String, String> resultMap=new HashMap<>();
+
+        log.info("getProductInfo Controller 접속");
+        log.info(order_seq);
+        Map<String, String> productInfo =productService.getProductInfo(order_seq);
+//
+
+//        //log.info(productInfo);
+//        HashMap<String, String> info=new HashMap<>();
+        resultMap.put("ORDER_SEQ",String.valueOf(productInfo.get("ORDER_SEQ")));
+        resultMap.put("PRODUCT_CODE",String.valueOf(productInfo.get("PRODUCT_CODE")));
+
+        entity=new ResponseEntity<HashMap<String ,String >>(resultMap, HttpStatus.OK);
+
+        return entity;
+    }
+
+    @ResponseBody
+    @PostMapping("getProduct")
+    public ModelAndView getProduct(@RequestParam("product_seq") Long product_seq){
+        log.info("getProduct 접속");
+        ModelAndView mav = new ModelAndView();
+
+        ProductVO vo=productService.getOne(product_seq);
+
+        mav.addObject("ProductInfo",vo);
+        log.info(vo);
+
+        mav.setViewName("customer.writeInquiryPage");
+        return mav;
+    }
+
+
 
 }

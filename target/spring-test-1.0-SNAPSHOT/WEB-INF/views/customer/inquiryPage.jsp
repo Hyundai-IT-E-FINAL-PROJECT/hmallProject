@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css">
 </head>
@@ -527,40 +528,6 @@
         var chromeDownloadLink = "https://www.google.com/intl/ko/chrome/";
 
 
-        function fnSso() {
-            gfnSsoInit();
-            gfnSsoReqAjax(fnSsoCallback1);
-        }
-
-        function fnSsoCallback1(data) {
-            console.log("fnSsoCallback1.data:" + data);
-            document.cookie = "SSOTOKENYN=; Max-Age=0"; // 토큰발급 여부 초기화
-
-            var currUrl = location.href;
-            if (currUrl.indexOf("upntBindingLogin") > 0) {
-                // 최초 H.point 로그인 이후 H.point 연결안되어 있으면 stop.(as-is 는 header 없는 페이지라..)
-                return;
-            }
-            if(data.succYn == "Y" && data.mcustNo != "") {
-                var redirectUrl = 'https://www.hmall.com/p/cob/upntGateSsoPage.do?upntFlag=Y&mcustkey='+data.mcustNo;
-                mcustNo = data.mcustNo;
-                window.location.href=redirectUrl;
-            } else {
-                var todayDate = new Date();
-                todayDate.setDate( todayDate.getDate() + 5/24/60 );
-                document.cookie = "SSOAUTHYN=N; path=/; domain=.hmall.com; expires=" + todayDate.toGMTString() + ";"
-            }
-        }
-
-        function fnTokn(){
-            gfnSsoInit();
-            gfnReqSSoToknIssuAjax(upntCustNoEnc, ssoAuthCd,fnSsoTokenCallback);
-        }
-
-        function fnSsoTokenCallback(data) {
-            console.log(data);
-            document.cookie = "SSOTOKENYN=Y;";  // 토큰발급 성공여부 세션쿠키에 저장
-        }
 
         function getCookie(name) {
             var cname = name + "=";
@@ -1415,52 +1382,52 @@
                 newForm.submit();
             }
         }
-
-        //최근본쇼핑 하단 이미지조회
-        function getRecentImg(){
-            $.ajax({
-                type: "get",
-                url: '/p/coe/selectRcntShpgImg.do',
-                dataType: "json",
-                success: function(data){
-
-                    var itemImg = data.rcntShpgMap.itemImg;
-                    if(itemImg != null && itemImg != ""){
-                        var imgTag = '<img src='+itemImg+' onerror="noImage(this, \'https://image.hmall.com/p/img/co/noimg-thumb.png\')" >';
-                        $("#recentlyImg > em").html(imgTag);
-                    }
-
-
-                    //하단이미지 조회 후 쿠키동의여부 팝업 노출여부 체크 및 노출
-                    if(sessionStorage.getItem("recentCokiUseAgr") == "Y"){
-
-                        // 로그인 성공 했을 때
-                        $.ajax({
-                            type: "get"
-                            ,url: "/p/coe/checkRcntShpg.do"
-                            ,dataType: "json"
-                            ,cache : false
-                            ,data: {}
-                            ,async: true
-                            ,success : function(data) {
-                                if (data && data.showRcntShpgPop == "Y") {
-                                    $("#recentCokiUseAgr").addClass("active");
-                                    $("#recentCokiUseAgr").show();
-                                    sessionStorage.removeItem("recentCokiUseAgr");
-                                }
-                            },
-                            error : function(e){
-                            }
-                        });
-                    }
-
-
-                },
-                error: function(xhr, type){
-                    //alert('no data : ' + type);
-                }
-            });
-        }
+        //
+        // //최근본쇼핑 하단 이미지조회
+        // function getRecentImg(){
+        //     $.ajax({
+        //         type: "get",
+        //         url: '/p/coe/selectRcntShpgImg.do',
+        //         dataType: "json",
+        //         success: function(data){
+        //
+        //             var itemImg = data.rcntShpgMap.itemImg;
+        //             if(itemImg != null && itemImg != ""){
+        //                 var imgTag = '<img src='+itemImg+' onerror="noImage(this, \'https://image.hmall.com/p/img/co/noimg-thumb.png\')" >';
+        //                 $("#recentlyImg > em").html(imgTag);
+        //             }
+        //
+        //
+        //             //하단이미지 조회 후 쿠키동의여부 팝업 노출여부 체크 및 노출
+        //             if(sessionStorage.getItem("recentCokiUseAgr") == "Y"){
+        //
+        //                 // 로그인 성공 했을 때
+        //                 $.ajax({
+        //                     type: "get"
+        //                     ,url: "/p/coe/checkRcntShpg.do"
+        //                     ,dataType: "json"
+        //                     ,cache : false
+        //                     ,data: {}
+        //                     ,async: true
+        //                     ,success : function(data) {
+        //                         if (data && data.showRcntShpgPop == "Y") {
+        //                             $("#recentCokiUseAgr").addClass("active");
+        //                             $("#recentCokiUseAgr").show();
+        //                             sessionStorage.removeItem("recentCokiUseAgr");
+        //                         }
+        //                     },
+        //                     error : function(e){
+        //                     }
+        //                 });
+        //             }
+        //
+        //
+        //         },
+        //         error: function(xhr, type){
+        //             //alert('no data : ' + type);
+        //         }
+        //     });
+        // }
 
         //최근본쇼핑 쿠키동의여부 처리
         function setRecentCookieAgr(agrVal){
@@ -2446,88 +2413,95 @@
                     <div class="mypage-consult-wrap">
                         <h3 class="title22">1:1 상담</h3>
                         <div class="border-gray-box">
-                            <p class="ctypo15">고객님의 궁금한 사항을 친절히 해결해 드립니다.</p>
+                            <p class="ctypo15">고객님이 문의하신 내역입니다.</p>
+                            <p>언제나 고객님의 입장에서 빠르고 정확한 답변을 드리는 홈쇼핑이 되겠습니다.</p>
+                            <p></p>
                             <div class="btngroup inline-block">
-                                <a type="button" a href="/customer/writeInquiryPage" class="btn btn-linelgray small34" type="button" ><i class="icon write"></i><span>게시판 상담하기</span></a>
+                                <a type="button" a href="/customer/writeInquiryPage" class="btn btn-linelgray small34" type="button" ><i class="icon write"></i><span>1:1 문의하기</span></a>
                             </div>
                         </div>
 
-                        <ul class="ui-tab type-line" role="tablist">
-                            <li role="presentation" class="ui-active"><a href="#board" onclick="javascript:location.replace('/p/ccd/selectCnslOrdReqDtl.do')" aria-controls="board" role="tab" data-modules-tab="">게시판 상담</a></li>
-                            <li role="presentation"><a href="#chat" onclick="javascript:location.replace('/p/ccd/selectCnslChatReqDtl.do')" aria-controls="chat" role="tab" data-modules-tab="">채팅상담</a></li>
-                        </ul>
                         <div class="tab-content">
+                            <div class="board">
+                                <!--table-->
+                                <div class="tblwrap">
+                                    <table>
+                                        <caption>상담 내역 테이블</caption>
+                                        <colgroup>
+                                            <col style="width:60px">
+                                            <col style="width:100px">
+                                            <col style="width:400px">
+                                            <col style="width:100px">
+                                            <col style="width:100px">
+                                            <col style="width:100px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">NO</th>
+                                            <th scope="col">문의 유형</th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">문의일</th>
+                                            <th scope="col">답변일</th>
+                                            <th scope="col">문의상태</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${qnaList}" var="qna" varStatus="status">
+                                            <tr>
+                                                <td class="txt-center">${status.index+1}</td>
+                                                <c:choose>
+                                                    <c:when test="${qna.QC_TYPE eq 'A'}">
+                                                        <td class="txt-center">취소</td>
+                                                    </c:when>
+                                                    <c:when test="${qna.QC_TYPE eq 'B'}">
+                                                        <td class="txt-center">반품</td>
+                                                    </c:when>
+                                                    <c:when test="${qna.QC_TYPE eq 'C'}">
+                                                        <td class="txt-center">배송/회수</td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="txt-center">결제/환불</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+<%--                                                <td class="txt-center">${qna.QC_TYPE}</td>--%>
+                                                <td class="txt-left nowrap">${qna.QC_TITLE}</td>
+                                                <td class="txt-center">${qna.CREATED_AT}</td>
+                                                <c:choose>
+                                                    <c:when test="${qna.R_CREATED_AT eq null}">
+                                                        <td></td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="txt-center">${qna.R_CREATED_AT}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <c:choose>
+                                                    <c:when test="${qna.QA_CONTENT eq null}">
+                                                        <td class="txt-center" style="color: orangered">처리중</td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="txt-center" style="color: green">답변완료</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                                <td class="txt-center"${qna.ORDER_TOTAL_COST}></td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
                             <div role="tabpanel" class="tab-pane ui-active" id="board">
                                 <div class="consult-list">
-                                    <div class="filter-box bg-none">
-                                        <form action="/p/ccd/selectCnslOrdReqDtl.do" method="post" name="myOrdReqSearchForm">
-                                            <input type="hidden" id="condPeriod" name="condPeriod" value="2">
-                                            <input type="hidden" name="strtDt" id="strtDt" maxlength="8" value="">
-                                            <input type="hidden" name="endDt" id="endDt" maxlength="8" value="">
-                                            <input type="hidden" name="kwd" id="kwd" value="">
-                                        </form>
-                                        <div class="search-filter">
-                                            <ul class="radiolist">
-                                                <li>
-                                                    <input type="radio" name="order" id="order01" aria-checked="&quot;true&quot;" checked="&quot;&quot;">
-                                                    <label for="order01" onclick="setWeekPeriod(0);">최근 14일</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order02" aria-checked="&quot;false&quot;">
-                                                    <label for="order02" onclick="setMonthPeriod(0,3);">최근 3개월</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order03" aria-checked="&quot;false&quot;">
-                                                    <label for="order03" onclick="setMonthPeriod(0,6);">최근 6개월</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order04" aria-checked="&quot;false&quot;" value="2022">
-                                                    <label for="order04" onclick="setYearPeriod(0,0);">2022년</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order05" aria-checked="&quot;false&quot;" value="2021">
-                                                    <label for="order05" onclick="setYearPeriod(0,-1);">2021년</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order06" aria-checked="&quot;false&quot;" value="2020">
-                                                    <label for="order06" onclick="setYearPeriod(0,-2);">2020년</label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="order" id="order07" aria-checked="&quot;false&quot;">
-                                                    <label for="order07" onclick="setAllPeriod(0);">전체</label>
-                                                </li>
-                                            </ul>
-                                            <div class="inputbox">
-                                                <label class="inplabel icon-find"><input type="text" onkeyup="srchKwdEventKey();" id="srchKwd" value="" placeholder="상품명 검색"></label>
-                                                <button class="btn btn-find" onclick="srchKwd();"><i class="icon find"></i><span class="hiding">검색</span></button>
-                                                <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                                    <div class="accparent">
+                                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
+                                        <h3 class=""><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false"><i class="icon question"></i><span>주문 내용 변경, 취소, AS 등은 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
+                                        <div class="accordion-panel best-txt01" role="best-txt01" aria-label="주문 내용 변경, 취소, AS 등은 어떻게 하나요?">
+                                            <div class="txt-wrap">
+                                                <p>문의 내용</p>
+                                                <p>&nbsp;</p>
                                             </div>
-                                            <!--  UX-277 해피톡 고도화 : 상담유형  비노출
-                                            <div class="custom-selectbox sm" data-modules-selectbox>
-                                            <select name="mCnslCsfCd">
-                                                <option value="" selected='selected'>상담유형</option>
-
-                                                    <option value="0302" >입금</option>
-
-                                                    <option value="0303" >환불</option>
-
-                                                    <option value="0401" >AS </option>
-
-                                                    <option value="0402" >교환</option>
-
-                                                    <option value="0404" >반품</option>
-
-                                                    <option value="0405" >취소</option>
-
-                                                    <option value="0501" >배송</option>
-
-                                                    <option value="0701" >서비스문의</option>
-
-                                                    <option value="0712" >시스템오류</option>
-
-                                            </select>
-                                            </div>
-                                            -->
                                         </div>
                                     </div>
 
@@ -3364,107 +3338,6 @@
 
             </div>
         </a>
-        <div class="recent-view-area" id="skyScOnAirArea">
-
-
-
-
-
-
-
-
-
-            <a class="recent-view-title">ON AIR</a>
-            <ul id="banner-onair">
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2141268492&amp;bfmtNo=202205273005&amp;brodDt=20220527&amp;brodStrtDtm=10:25&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[CLIO] 클리오 더블 커버킬 마그넷 팩트 전무후무 단한번패키지ⓢ&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2141268492_[CLIO] 클리오 더블 커버킬 마그넷 팩트 전무후무 단한번패키지ⓢ" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/4/8/26/41/2141268492_0.jpg?RS=140x140&amp;AR=0" alt="[CLIO] 클리오 더블 커버킬 마그넷 팩트 전무후무 단한번패키지ⓢ" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220527114000">00:32:57</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2140601277&amp;bfmtNo=202205275006&amp;brodDt=20220527&amp;brodStrtDtm=10:40&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[La RACEE] 라라쎄 여성 아사 면 플레어 원피스 + 레이스 볼레로 2종 세트 &quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2140601277_[La RACEE] 라라쎄 여성 아사 면 플레어 원피스 + 레이스 볼레로 2종 세트 " ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/2/1/60/40/2140601277_0.jpg?RS=140x140&amp;AR=0" alt="[La RACEE] 라라쎄 여성 아사 면 플레어 원피스 + 레이스 볼레로 2종 세트 " onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220527113959">00:31:57</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-            </ul>
-
-        </div>
-        <div class="qr_view_area">
-            <span class="qr_txt">쇼핑라이브</span>
-            <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg" alt="쇼핑라이브 qr이미지"></span>
-        </div>
-        <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-
-
-
-
-
-
-
-            <ul>
-
-
-                <li style="">
-
-
-
-
-
-                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280846">
-                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-kb.png" alt="KB국민카드"></span>
-                        <span class="card-txt">
-		                            <strong class="card-name">KB국민카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      5%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- 페이징 -->
-
-
-
-
-
-            <!-- // 페이징 -->
-        </div>
-        <!-- // .wing-slide -->
-
-        <div class="btn-top"><a href="javascript:;">TOP</a></div>
     </div></div>
     <!-- // 스카이 스크래퍼 -->
     <script type="text/javascript">

@@ -5,6 +5,7 @@
   Time: 오전 11:05
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
   <script type="application/ld+json">
@@ -931,104 +932,6 @@
       });
       $("div.hideBtnGroup").attr('style', 'display:none');
     }
-    //상세 내역 select 생성
-    function inSelectHtml(mCnslCsfCdBoard){
-      $("select[name='cnslCsfCd']").html('');
-
-      var selectHtml1="";
-      var selectHtml2="";
-      var selectHtml3="";
-      var selectHtml4="";
-      var selectHtml5="";
-      var selectHtml6="";
-      var selectHtml7="";
-      var selectHtml8="";
-
-      //취소신청
-      selectHtml1 += '	<option value="">상담 사유</option>									      ';
-      selectHtml1 += '	<option value="040501">변심</option>									      ';
-      selectHtml1 += '	<option value="040501">유사상품 구입</option>						      ';
-      selectHtml1 += '	<option value="040501">결제변경</option>								      ';
-      selectHtml1 += '	<option value="040501">단품변경</option>								      ';
-      selectHtml1 += '	<option value="040501">가격변경</option>								      ';
-      selectHtml1 += '	<option value="040501">배송지연</option>								      ';
-      selectHtml1 += '	<option value="040501">기타문의</option>								      ';
-
-      //반품신청
-      selectHtml2 += '	<option value="">상담 사유</option>									      ';
-      selectHtml2 += '	<option value="040401">변심</option>									      ';
-      selectHtml2 += '	<option value="040401">이미지차이</option>							      ';
-      selectHtml2 += '	<option value="040401">상품불량(작동불량)</option>				      ';
-      selectHtml2 += '	<option value="040401">반품배송</option>								      ';
-      selectHtml2 += '	<option value="040401">지연</option>									      ';
-      selectHtml2 += '	<option value="040401">기타사유</option>								      ';
-
-      //배송/회수 문의
-      selectHtml3 += '	<option value="">상담 사유</option>									      ';
-      selectHtml3 += '	<option value="050103">배송문의</option>								      ';
-      selectHtml3 += '	<option value="050105">배송지 변경요청</option>';
-      selectHtml3 += '	<option value="050103">출고후 배송지연</option>					      ';
-      selectHtml3 += '	<option value="050103">지정일 배송문의</option>					      ';
-      selectHtml3 += '	<option value="050103">회수지연</option>								      ';
-      selectHtml3 += '	<option value="050103">기타문의</option>								      ';
-
-      //결제/환불 문의
-      selectHtml4 += '	<option value="">상담 사유</option>									      ';
-      selectHtml4 += '	<option value="030304">입금확인문의</option>						      ';
-      selectHtml4 += '	<option value="030304">예치금환불</option>							      ';
-      selectHtml4 += '	<option value="030304">상품권 결제 문의</option>					      ';
-      selectHtml4 += '	<option value="030304">기타문의</option>								      ';
-
-      //교환신청
-      selectHtml5 += '	<option value="">상담 사유</option>									      ';
-      selectHtml5 += '	<option value="0402">포장불량</option>								      ';
-      selectHtml5 += '	<option value="0402">색상변경</option>								      ';
-      selectHtml5 += '	<option value="0402">상품불량(작동불량)</option>				       ';
-      selectHtml5 += '	<option value="0402">사이즈변경</option>				       ';
-      selectHtml5 += '	<option value="0402">구성품누락</option>				       ';
-      selectHtml5 += '	<option value="0402">교환지연</option>								      ';
-      selectHtml5 += '	<option value="0402">교환방법문의</option>						      ';
-      selectHtml5 += '	<option value="0402">기타문의</option>								      ';
-
-      //AS신청
-      selectHtml6 += '	<option value="">상담 사유</option>									      ';
-      selectHtml6 += '	<option value="040101">작동불량</option>								      ';
-      selectHtml6 += '	<option value="040101">수선</option>									      ';
-      selectHtml6 += '	<option value="040101">AS센터 전화번호 확인</option>				      ';
-      selectHtml6 += '	<option value="040101">AS가능여부 확인</option>					      ';
-      selectHtml6 += '	<option value="040101">AS신청 후 처리사항</option>				      ';
-      selectHtml6 += '	<option value="040101 ">기타 문의 </option>							      ';
-
-      //시스템오류
-      selectHtml7 += '    <option value="071201" selected>시스템오류/불편사항</option>				       ';
-
-      //서비스문의
-      selectHtml8 += '    <option value="070102" selected>이벤트문의(문화공연/일반)</option>				       ';
-
-      switch(mCnslCsfCdBoard){
-        case '0405' 	: 	$("select[name='cnslCsfCd']").append(selectHtml1);
-          break;
-        case '0404' 	: 	$("select[name='cnslCsfCd']").append(selectHtml2);
-          break;
-        case '0501' 	: 	$("select[name='cnslCsfCd']").append(selectHtml3);
-          break;
-        case '0303' 	: 	$("select[name='cnslCsfCd']").append(selectHtml4);
-          break;
-        case '0402' 	: 	$("select[name='cnslCsfCd']").append(selectHtml5);
-          break;
-        case '0401' 	: 	$("select[name='cnslCsfCd']").append(selectHtml6);
-          break;
-        case '0712'  :   $("select[name='cnslCsfCd']").append(selectHtml7);
-          break;
-        case '0701' : 	$("select[name='cnslCsfCd']").append(selectHtml8);
-          break;
-        default		: 	$("select[name='cnslCsfCd']").append('<option value="">상담 사유</option>');
-          submitUrl="";
-          break;
-      }
-      //$("select[name='cnslCsfCd']").append(html);
-      $("#cnslCsfCd").selectbox('refresh');
-    }
 
     function getByteLength(input) {
       var iByteLength = 0;
@@ -1695,10 +1598,10 @@
           <select name="reasonChoice" class="cu_select" >
 
             <option value="">상담 분야 선택</option>
-            <option value="0405">취소신청</option>
-            <option value="0404">반품신청</option>
-            <option value="0501">배송/회수 문의</option>
-            <option value="0303">결제/환불 문의</option>
+            <option value="A">취소신청</option>
+            <option value="B">반품신청</option>
+            <option value="C">배송/회수 문의</option>
+            <option value="D">결제/환불 문의</option>
           </select>
           <!--product-wrap-->
           <div class="product-wrap delete" id="productChoiceMsg" style="display: none;">  <!--20200827 금요일 윈도우 팝업안에서 버튼 클릭 시 새창 윈도우로 뜸. (페이지고유 name값 추가)-->
@@ -1715,11 +1618,6 @@
 
           <!--choice-item-->
           <div id="choiceItemDiv" style="display: block;">
-
-
-
-
-
             <script type="text/javascript">
               var changeChk = '';
 
@@ -1732,8 +1630,6 @@
                   setSelectCnslCsfCd(paramCnslCsfCd.substr(0, 4), paramCnslCsfCd);
                   setViewForm(paramCnslCsfCd);
                 }
-
-
                 $("input[name=acntCdpstRepy]").click(function() {
 
                   if (this.checked) {
@@ -1775,206 +1671,7 @@
               }
 
 
-              function submitForm(){
-                var email = $("input[name=email]");
-                var cntn = $("textarea[name=cntn]");
-                var reqCntn = $("input[name=reqCntn]");
-                var reqCntnJson = $("input[name=reqCntnJson]");
-                var answReqnGbcd = $("input:radio[name=answReqnGbcd]:checked").val();
-                var bankInfSelect = $("input[name='acntCdpstRepy']");
-                var bankCd = $("select[name=bankCd]");
-                var bnkac = $("input[name=bnkac]");
-                var dpsr = $("input[name=dpsr]");
-                var relp = $("select[name=relp]");
-                var payWayGbcd = $("input[name=acntCdpstRepy]:checked");
-                var dlvco = $("select[name=dlvco]");
-                var invcNo = $("input[name=invcNo]");
-                var mobileDdd,mobilePhone1,mobilePhone2;
 
-                if(answReqnGbcd == "3"){
-                  if (isEmpty(email.val())) {
-                    alert("이메일 입력해 주세요 ");
-                    email.focus();
-                    return false;
-                  }
-
-                  if (validateEmail(email.val()) == false) {
-                    alert("올바른 이메일을 입력해 주세요");
-                    email.focus();
-                    return false;
-                  }
-                  var mobileDddOrg = $("input[name='mobileDdd']").val(); // $("select[name=mobileDdd]");
-                  mobileDdd = mobileDddOrg.substr(0,3);
-
-                  if(mobileDdd == '013'){
-                    mobileDdd=mobiledDddOrg.substr(0,4);
-                    mobileDddOrg=mobildDddOrg.substr(4,8);
-                  }else{
-                    mobileDddOrg = mobileDddOrg.substr(3,8);
-                  }
-
-                  if(mobileDddOrg.length == 7){
-                    mobilePhone1 = mobileDddOrg.substr(0,3);
-                    mobilePhone2 = mobileDddOrg.substr(3,7);
-                  }else if(mobileDddOrg.length == 8){
-                    mobilePhone1 = mobileDddOrg.substr(0,4);
-                    mobilePhone2 = mobileDddOrg.substr(4,8);
-                  }
-                  $("input[name='mobileDdd']").val(mobileDdd);
-                  $("input[name='mobilePhone1']").val(mobilePhone1);
-                  $("input[name='mobilePhone2']").val(mobilePhone2);
-                }
-
-
-                if (getByteLength(cntn.val()) > 1000) {
-                  alert("문의내용은 1000자(한글 500자)이내로 입력하세요.");
-                  cntn.focus();
-                  return false;
-                }else if (getByteLength(cntn.val()) == 0) {
-                  alert("문의 내용을 입력하세요.");
-                  cntn.focus();
-                  return false;
-                }
-
-
-                if(!$("input[name='chkPersonalInfo']")[0].checked){
-                  alert("개인정보 수집 및 이용에 모두 동의해주세요.");
-                  return false;
-                }
-
-                if ($("input[name='acntCdpstRepy']").val()== "acnt") {
-                  if ($("select[name=bankCd]").val()=="은행 선택") {
-                    alert("환불받을 은행을 선택하여 주세요 ");
-                    bankCd.focus();
-                    return false;
-                  }
-
-                  if (isEmpty(bnkac.val())) {
-                    alert("계좌번호를 입력하여 주세요 ");
-                    bnkac.focus();
-                    return false;
-                  }
-
-                  if (isEmpty(dpsr.val())) {
-                    alert("예금주명을 입력하여 주세요 ");
-                    dpsr.focus();
-                    return false;
-                  }
-
-                  if (isEmpty(relp.val())) {
-                    alert("관계를 입력하여 주세요 ");
-                    relp.focus();
-                    return false;
-                  }
-
-                  if(!$("input[name='chkPersonalInfoRefund']")[0].checked){
-                    alert("개인정보 수집 및 이용에 모두 동의해주세요.");
-                    return false;
-                  }
-                }
-
-                if(answReqnGbcd == "1" || answReqnGbcd == "2"){
-
-                  var mobileDddOrg = $("input[name='mobileDdd']").val(); // $("select[name=mobileDdd]");
-                  mobileDdd = mobileDddOrg.substr(0,3);
-
-                  if (isEmpty(mobileDdd)) {
-                    alert("전화번호를 입력해 주세요 ");
-                    return false;
-                  }
-
-                  if(mobileDdd == '013'){
-                    mobileDdd=mobiledDddOrg.substr(0,4);
-                    mobileDddOrg=mobildDddOrg.substr(4,8);
-                  }else{
-                    mobileDddOrg = mobileDddOrg.substr(3,8);
-                  }
-
-                  if(mobileDddOrg.length == 7){
-                    mobilePhone1 = mobileDddOrg.substr(0,3);
-                    mobilePhone2 = mobileDddOrg.substr(3,7);
-                  }else if(mobileDddOrg.length == 8){
-                    mobilePhone1 = mobileDddOrg.substr(0,4);
-                    mobilePhone2 = mobileDddOrg.substr(4,8);
-                  }else{
-                    alert("전화번호를 확인해 주세요");
-                    return false;
-                  }
-
-                  $("input[name='mobileDdd']").val(mobileDdd);
-                  $("input[name='mobilePhone1']").val(mobilePhone1);
-                  $("input[name='mobilePhone2']").val(mobilePhone2);
-                }
-                //계좌번호
-                var decBnkac = "04";
-                //환불계좌
-                var decReBnkac = "48";
-                //입금계좌
-                var decInBnkac = "49";
-                //전화번호
-                var decPhoneNum = "55";
-                //휴대폰번호
-                var decMobileNum = "56";
-                //예금주
-                var decDpsr = "26";
-                //기타사유
-                var decEtc = "99";
-
-                var reqCntnStrJson = {};
-                //reqCntnStrJson[decEtc] = cntn.val();
-
-
-                var line = "\n"
-                var reqCntnStr = cntn.val() + line + line;
-                reqCntnStr += "아래는 신청내용입니다." + line;
-                reqCntnStr += "세부문의분야 : " + $("select[name='cnslCsfCd'] option:selected").text() + line;
-                reqCntnStr += "상품명 : " + $("input[name=ordItemNm]").val() + line;
-                reqCntnStr += "수량 : " + $("input[name=ordQty]").val() + line;
-                reqCntnStr += "주문번호 : " + "20220527276991" + line;
-                if(answReqnGbcd == "3"){
-                  reqCntnStr += "이메일 : " + email.val() + line;
-                }
-
-                if(answReqnGbcd == "1" || answReqnGbcd == "2" || answReqnGbcd == "3"){
-                  reqCntnStrJson[decMobileNum] = mobileDdd + "-" + mobilePhone1 + "-" + mobilePhone2;
-                }
-
-                reqCntnStr += "입금하신 금액 : " + $("input[name=dmndAmt]").val() + line;
-
-                if (payWayGbcd.val() == "acnt") {
-                  reqCntnStr += "환불희망은행 : " + $("select[name=bankCd] option:selected").text() + line;
-                  reqCntnStr += "예금주명 : " + dpsr.val() + line;
-                  reqCntnStr += "관계 : " + relp.val() + line;
-                  reqCntnStr += "계좌번호 : " + bnkac.val() + line;
-                  //reqCntnStrJson[decBnkac] = bnkac.val() + line;
-                }  else if (payWayGbcd.val() == "cdpst") {
-                  reqCntnStr += "※예치금환불희망" + line;
-                } else if (payWayGbcd.val() == "card") {
-                  reqCntnStr += "※카드취소희망" + line;
-                } else if (payWayGbcd.val() == "easy") {
-                  reqCntnStr += "※간편결제취소희망" + line;
-                } else if (payWayGbcd.val() == "etc") {
-                  reqCntnStr += "※기타(여러 결제수단 취소)" + line;
-                } else if (payWayGbcd.val() == "point") {
-                  reqCntnStr += "※포인트 취소희망" + line;
-                } else if (payWayGbcd.val() == "phone") {
-                  reqCntnStr += "※휴대폰소액결제 취소희망" + line;
-                }
-
-
-                if (isEmpty(dlvco.val())) {
-                  reqCntnStr += "택배사 : 미선택" + line;
-                  reqCntnStr += "운송장번호 : 미입력" + line;
-                } else {
-                  reqCntnStr += "택배사 : " + $("select[name=dlvco] option:selected").text() + line;
-                  reqCntnStr += "운송장번호 : " + invcNo.val() + line;
-                }
-
-                // 신청내역 입력
-                reqCntn.val(reqCntnStr);
-                reqCntnJson.val(JSON.stringify(reqCntnStrJson));
-                $("#frm").submit();
-              }
 
 
 
@@ -1990,42 +1687,17 @@
               });
             </script>
 
-            <form id="frm" action="/p/mpa/updateOrdCnclReq.do" method="post">
-
-
+            <form>
               <div class="choice-item">
                 <div class="pdwrap pdlist pdconsult">
                   <div class="pdlist-wrap">
                     <figure class="pdthumb">
-                      <div class="thumb">
-                        <a href="/p/mpa/selectOrdPTCPup.do?ordNo=20220527276991" target="_blank"><img src="https://image.hmall.com/static/2/8/88/02/2102888217_0.jpg?RS=140" alt="[공식 3+머그] 스타벅스 캡슐커피 by 네스프레소" style="width:90px;height:90px;" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=600x600&amp;AR=0')"></a>
-                      </div>
                       <figcaption>
-                        <div class="delive-stat">
-
-
-
-                          주문접수
-
-
-                        </div>
-
-                        <div class="pdname" aria-label="제품명"><a href="/p/mpa/selectOrdPTCPup.do?ordNo=20220527276991" target="_blank">[공식 3+머그] 스타벅스 캡슐커피 by 네스프레소</a></div>
-                        <div class="pdoption" aria-label="옵션/수량">
-                          <span class="color">스타벅스 블론드 에스프레소</span>
-                          <span class="count"><em class="count-num">1</em>개</span>
-                        </div>
-                        <div class="pdprice">
-                          <ins class="normal" aria-label="가격">
-                            <em>7,990</em><b>원</b>
-                          </ins>
-                        </div>
+                        <div class="pdname" aria-label="제품명"><a href="/p/mpa/selectOrdPTCPup.do?ordNo=20220527276991" target="_blank">${ProductInfo.product_name}</a></div>
+                        주문 번호: <input value="" name="order_seq" id="order_seq" style="border:none; width:80px;" >상품 코드: <input value="" name="product_code" id="product_code" style="border:none; width:100px;">
+<%--                        TODO: 옵션 코드 컬럼 미정--%>
+<%--                        옵션 번호: <input value="" id="product_code">--%>
                       </figcaption>
-
-                      <div class="another">
-                        <button class="btn btn-linelgray small34" type="button" onclick="openCnslAcptPup();"><i class="icon"></i><span>다른상품선택</span></button>
-                      </div>
-
                     </figure>
                   </div>
                 </div>
@@ -2039,7 +1711,7 @@
                 <h3>제목</h3>
                 <div class="field" id="inquiryTitle">
                   <div class="inputbox">
-                    <label class="inplabel"><input type="text" name="mobileDdd" placeholder="제목을 입력해주세요" title="" value=""></label>
+                    <label class="inplabel"><input type="text" name="qc_title" placeholder="제목을 입력해주세요" title="" value=""></label>
                     <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                   </div>
                 </div>
@@ -2050,7 +1722,7 @@
                   <div class="field">
                     <div class="textareabox">
                       <label class="txtlabel">
-	                    <textarea cols="48" rows="7" name="cntn" onkeyup="checkCntn(this, 500)" placeholder="문의하실 내용을 구체적으로 적어주시면정확하고 빠른 답변에 도움이 됩니다." aria-placeholder="문의하실 내용을 구체적으로 적어주시면
+	                    <textarea name="qc_content" cols="48" rows="7" name="cntn" onkeyup="checkCntn(this, 500)" placeholder="문의하실 내용을 구체적으로 적어주시면정확하고 빠른 답변에 도움이 됩니다." aria-placeholder="문의하실 내용을 구체적으로 적어주시면
 	                    정확하고 빠른 답변에 도움이 됩니다."></textarea>
                       </label>
                       <span class="txtcount"><em>0</em><b>500</b></span>
@@ -2071,7 +1743,7 @@
                   <!--휴대폰번호-->
                   <div class="field" id="phoneConsultDiv">
                     <div class="inputbox">
-                      <label class="inplabel"><input type="number" name="mobileDdd" placeholder="휴대폰 번호 (예:01012345678)" title="휴대폰 번호 입력" value=""></label>
+                      <label class="inplabel"><input type="number" name="qc_phone" placeholder="휴대폰 번호 (예:01012345678)" title="휴대폰 번호 입력" value=""></label>
                       <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                     </div>
                   </div>
@@ -2079,7 +1751,7 @@
                   <!--//이메일-->
                   <div class="field" id="emailConsultDiv">
                     <div class="inputbox">
-                      <label class="inplabel"><input type="email" name="email" placeholder="userid@mail.com" title="이메일 입력" value=""></label>
+                      <label class="inplabel"><input type="email" name="qc_email" placeholder="userid@mail.com" title="이메일 입력" value=""></label>
 <%--                      <div class="checkbox_ui type1 agree_all">--%>
 <%--                        <input type="checkbox" id="emailReceive" class="allCheckbox">--%>
 <%--                        <label for="emailReceive">이메일로 답변 받음</label>--%>
@@ -2096,7 +1768,7 @@
               <div class="terms-box">
                 <!-- [12/04]_수정(TMS 관련 수정 - PC_고객센터_1대1 상담신청_201022 체크박스 누락케이스 마크업 구조 변경 및 문구변경) -->
                 <label class="chklabel">
-                  <input type="checkbox" name="chkPersonalInfo">
+                  <input type="checkbox" name="chkEmailReceive">
                   <i class="icon"></i>
                   <span>이메일로 답변 받음</span>
                 </label>
@@ -2107,18 +1779,14 @@
               <div class="btngroup">
                 <!-- 20200828 금요일 취소버튼 클릭 시 닫힘 -->
                 <button class="btn btn-linelgray medium" data-dismiss="window"><span>취소</span></button>
-                <button class="btn btn-default medium" onclick="submitForm(); return false;"><span>문의하기</span></button>
+<%--                콜백함수 type="button"으로 해결--%>
+                <button type="button" class="btn btn-default" onclick="submitForm();"><span>문의하기</span></button>
               </div>
               <!--//btngroup-->
+
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
           </div>
-          <!--//choice-item -->
-
-          <form id="cnslAcptPupForm">
-            <input type="hidden" name="cnslCsfCd" value="">
-            <input type="hidden" name="page" value="">
-            <input type="hidden" name="mCnslCsfNm" value="">
-          </form>
         </div>
       </div>
       <!--//pop-content-->
@@ -2169,57 +1837,246 @@
   </div>
   <!-- //.ui-modal-dialog -->
 </div>
-<!--//20201005 월요일 레이어팝업추가 : 개인정보수집및이용-->
-<!--20201005 월요일 레이어팝업추가 : 개인정보수집및이용-환불-->
-<div class="ui-modal" id="modalCollectPersonalInfoRefund" tabindex="-1" role="dialog" aria-label="개인정보수집및이용">
-  <div class="ui-modal-dialog collect-perInfo" role="document">
-    <div class="content">
-      <p class="ui-title">개인정보 수집 및 이용</p>
-      <!-- //.content-head -->
-      <div class="content-body">
-        <div class="tblwrap">
-          <table>
-            <caption>개인정보 수집 및 이용</caption>
-            <colgroup>
-              <col style="width:138px">
-              <col style="width:140px">
-              <col style="width:182px">
-            </colgroup>
-            <thead>
-            <tr>
-              <th scope="col" class="regular">목적</th>
-              <th scope="col" class="regular">항목</th>
-              <th scope="col">보유기간</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td class="txt-center">환불처리</td>
-              <td class="txt-center">예금주명, 계좌정보</td>
-              <td class="txt-center bold">회원탈퇴 시 <br> 또는 법정 의무 보유기간</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- //.content-body -->
+<script type="text/javascript">
 
-      <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-    </div>
-    <!-- //.content -->
-  </div>
-</div>
-<!--//20201005 월요일 레이어팝업추가 : 개인정보수집및이용-환불-->
-<div class="ui-modal alert" id="modalAddressAlert1" tabindex="-1" role="dialog" aria-label="택배사 방문 주소를 입력해 주세요.">
-  <div class="ui-modal-dialog restockalarm" role="document">
-    <div class="content">
-      <span class="bgcircle ex-redmark-sm"><i class="icon ex-red-mark"></i></span>
-      <p class="ctypo17 bold">택배사 방문 주소를 입력해 주세요.</p>
-    </div>
-    <div class="btngroup">
-      <button class="btn btn-default" data-dismiss="modal"><span>확인</span></button>
-      <!-- 데이터 전송 후 닫힘 $(element).modal().hide() -->
-    </div>
-    <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-  </div>
-</div>
+  function submitForm() {
+
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+
+    var emailReceive=0;
+
+    //email 체크하면 true
+    if($("input[name='chkEmailReceive']")[0].checked){
+      emailReceive=1;
+    }
+
+    var data = {
+      user_seq:$("input[name='user_seq']").val(),
+      qc_type: $("select[name='reasonChoice'] option:checked").val(),
+      qc_title: $("input[name='qc_title']").val(),
+      qc_content: $("textarea[name='qc_content']").val(),
+      qc_phone: Number($("input[name='qc_phone']").val()),
+      qc_email: $("input[name='qc_email']").val(),
+      order_seq: Number($("input[name='order_seq']").val()),
+      product_code: Number($("input[name='product_code']").val()),
+      qc_email_receive: emailReceive,
+      option_code: 2
+    };
+
+    console.log(data);
+
+    $.ajax({
+      type: "post"
+      , url: "${contextPath}/customer/registerQnA"
+      , data: data,
+      beforeSend:function (xhr){
+        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+      },
+      success: function () {
+        alert("문의가 성공적으로 등록되었습니다!");
+        location.href='${contextPath}/customer/inquiryPage';
+      },
+      error: function (request,status,error) {
+        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+      }
+    });
+  }
+
+    //var answReqnGbcd = $("input:radio[name=answReqnGbcd]:checked").val();
+    //var bankInfSelect = $("input[name='acntCdpstRepy']");
+    //
+    // var bnkac = $("input[name=bnkac]");
+    // var dpsr = $("input[name=dpsr]");
+    // var relp = $("select[name=relp]");
+    // var payWayGbcd = $("input[name=acntCdpstRepy]:checked");
+    // var dlvco = $("select[name=dlvco]");
+    // var invcNo = $("input[name=invcNo]");
+    // var mobileDdd,mobilePhone1,mobilePhone2;
+
+
+  //
+  //   if(answReqnGbcd == "3"){
+  //     if (isEmpty(email.val())) {
+  //       alert("이메일 입력해 주세요 ");
+  //       email.focus();
+  //       return false;
+  //     }
+  //
+  //     if (validateEmail(email.val()) == false) {
+  //       alert("올바른 이메일을 입력해 주세요");
+  //       email.focus();
+  //       return false;
+  //     }
+  //     var mobileDddOrg = $("input[name='mobileDdd']").val(); // $("select[name=mobileDdd]");
+  //     mobileDdd = mobileDddOrg.substr(0,3);
+  //
+  //     if(mobileDdd == '013'){
+  //       mobileDdd=mobiledDddOrg.substr(0,4);
+  //       mobileDddOrg=mobildDddOrg.substr(4,8);
+  //     }else{
+  //       mobileDddOrg = mobileDddOrg.substr(3,8);
+  //     }
+  //
+  //     if(mobileDddOrg.length == 7){
+  //       mobilePhone1 = mobileDddOrg.substr(0,3);
+  //       mobilePhone2 = mobileDddOrg.substr(3,7);
+  //     }else if(mobileDddOrg.length == 8){
+  //       mobilePhone1 = mobileDddOrg.substr(0,4);
+  //       mobilePhone2 = mobileDddOrg.substr(4,8);
+  //     }
+  //     $("input[name='mobileDdd']").val(mobileDdd);
+  //     $("input[name='mobilePhone1']").val(mobilePhone1);
+  //     $("input[name='mobilePhone2']").val(mobilePhone2);
+  //   }
+  //
+  //
+  //   if (getByteLength(cntn.val()) > 1000) {
+  //     alert("문의내용은 1000자(한글 500자)이내로 입력하세요.");
+  //     cntn.focus();
+  //     return false;
+  //   }else if (getByteLength(cntn.val()) == 0) {
+  //     alert("문의 내용을 입력하세요.");
+  //     cntn.focus();
+  //     return false;
+  //   }
+  //
+  //
+  //
+  //
+  //   if ($("input[name='acntCdpstRepy']").val()== "acnt") {
+  //     if ($("select[name=bankCd]").val()=="은행 선택") {
+  //       alert("환불받을 은행을 선택하여 주세요 ");
+  //       bankCd.focus();
+  //       return false;
+  //     }
+  //
+  //     if (isEmpty(bnkac.val())) {
+  //       alert("계좌번호를 입력하여 주세요 ");
+  //       bnkac.focus();
+  //       return false;
+  //     }
+  //
+  //     if (isEmpty(dpsr.val())) {
+  //       alert("예금주명을 입력하여 주세요 ");
+  //       dpsr.focus();
+  //       return false;
+  //     }
+  //
+  //     if (isEmpty(relp.val())) {
+  //       alert("관계를 입력하여 주세요 ");
+  //       relp.focus();
+  //       return false;
+  //     }
+  //
+  //     if(!$("input[name='chkPersonalInfoRefund']")[0].checked){
+  //       alert("개인정보 수집 및 이용에 모두 동의해주세요.");
+  //       return false;
+  //     }
+  //   }
+  //
+  //   if(answReqnGbcd == "1" || answReqnGbcd == "2"){
+  //
+  //     var mobileDddOrg = $("input[name='mobileDdd']").val(); // $("select[name=mobileDdd]");
+  //     mobileDdd = mobileDddOrg.substr(0,3);
+  //
+  //     if (isEmpty(mobileDdd)) {
+  //       alert("전화번호를 입력해 주세요 ");
+  //       return false;
+  //     }
+  //
+  //     if(mobileDdd == '013'){
+  //       mobileDdd=mobiledDddOrg.substr(0,4);
+  //       mobileDddOrg=mobildDddOrg.substr(4,8);
+  //     }else{
+  //       mobileDddOrg = mobileDddOrg.substr(3,8);
+  //     }
+  //
+  //     if(mobileDddOrg.length == 7){
+  //       mobilePhone1 = mobileDddOrg.substr(0,3);
+  //       mobilePhone2 = mobileDddOrg.substr(3,7);
+  //     }else if(mobileDddOrg.length == 8){
+  //       mobilePhone1 = mobileDddOrg.substr(0,4);
+  //       mobilePhone2 = mobileDddOrg.substr(4,8);
+  //     }else{
+  //       alert("전화번호를 확인해 주세요");
+  //       return false;
+  //     }
+  //
+  //     $("input[name='mobileDdd']").val(mobileDdd);
+  //     $("input[name='mobilePhone1']").val(mobilePhone1);
+  //     $("input[name='mobilePhone2']").val(mobilePhone2);
+  //   }
+  //   //계좌번호
+  //   var decBnkac = "04";
+  //   //환불계좌
+  //   var decReBnkac = "48";
+  //   //입금계좌
+  //   var decInBnkac = "49";
+  //   //전화번호
+  //   var decPhoneNum = "55";
+  //   //휴대폰번호
+  //   var decMobileNum = "56";
+  //   //예금주
+  //   var decDpsr = "26";
+  //   //기타사유
+  //   var decEtc = "99";
+  //
+  //   var reqCntnStrJson = {};
+  //   //reqCntnStrJson[decEtc] = cntn.val();
+  //
+  //
+  //   var line = "\n"
+  //   var reqCntnStr = cntn.val() + line + line;
+  //   reqCntnStr += "아래는 신청내용입니다." + line;
+  //   reqCntnStr += "세부문의분야 : " + $("select[name='cnslCsfCd'] option:selected").text() + line;
+  //   reqCntnStr += "상품명 : " + $("input[name=ordItemNm]").val() + line;
+  //   reqCntnStr += "수량 : " + $("input[name=ordQty]").val() + line;
+  //   reqCntnStr += "주문번호 : " + "20220527276991" + line;
+  //   if(answReqnGbcd == "3"){
+  //     reqCntnStr += "이메일 : " + email.val() + line;
+  //   }
+  //
+  //   if(answReqnGbcd == "1" || answReqnGbcd == "2" || answReqnGbcd == "3"){
+  //     reqCntnStrJson[decMobileNum] = mobileDdd + "-" + mobilePhone1 + "-" + mobilePhone2;
+  //   }
+  //
+  //   reqCntnStr += "입금하신 금액 : " + $("input[name=dmndAmt]").val() + line;
+  //
+  //   if (payWayGbcd.val() == "acnt") {
+  //     reqCntnStr += "환불희망은행 : " + $("select[name=bankCd] option:selected").text() + line;
+  //     reqCntnStr += "예금주명 : " + dpsr.val() + line;
+  //     reqCntnStr += "관계 : " + relp.val() + line;
+  //     reqCntnStr += "계좌번호 : " + bnkac.val() + line;
+  //     //reqCntnStrJson[decBnkac] = bnkac.val() + line;
+  //   }  else if (payWayGbcd.val() == "cdpst") {
+  //     reqCntnStr += "※예치금환불희망" + line;
+  //   } else if (payWayGbcd.val() == "card") {
+  //     reqCntnStr += "※카드취소희망" + line;
+  //   } else if (payWayGbcd.val() == "easy") {
+  //     reqCntnStr += "※간편결제취소희망" + line;
+  //   } else if (payWayGbcd.val() == "etc") {
+  //     reqCntnStr += "※기타(여러 결제수단 취소)" + line;
+  //   } else if (payWayGbcd.val() == "point") {
+  //     reqCntnStr += "※포인트 취소희망" + line;
+  //   } else if (payWayGbcd.val() == "phone") {
+  //     reqCntnStr += "※휴대폰소액결제 취소희망" + line;
+  //   }
+  //
+  //
+  //   if (isEmpty(dlvco.val())) {
+  //     reqCntnStr += "택배사 : 미선택" + line;
+  //     reqCntnStr += "운송장번호 : 미입력" + line;
+  //   } else {
+  //     reqCntnStr += "택배사 : " + $("select[name=dlvco] option:selected").text() + line;
+  //     reqCntnStr += "운송장번호 : " + invcNo.val() + line;
+  //   }
+  //
+  //   // 신청내역 입력
+  //   reqCntn.val(reqCntnStr);
+  //   reqCntnJson.val(JSON.stringify(reqCntnStrJson));
+  //   $("#frm").submit();
+  // }
+
+
+</script>

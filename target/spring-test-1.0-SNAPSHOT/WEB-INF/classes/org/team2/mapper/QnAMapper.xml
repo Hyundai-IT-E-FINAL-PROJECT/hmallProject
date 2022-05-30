@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.QnAMapper">
+
+    <insert id="registerQnA" statementType="CALLABLE">
+        {
+            call PACK_QC.proc_qc_insert(#{user_seq},#{qc_type}, #{qc_title}, #{qc_content}, #{qc_phone},
+                #{qc_email}, #{qc_email_receive}, #{order_seq}, #{product_code}, #{option_code})
+        }
+    </insert>
+
+    <select id="getQnAList" resultType="map">
+        select *
+        from tbl_qc C, tbl_qa A
+        where C.qc_seq =A.qc_seq
+    </select>
+
+</mapper>

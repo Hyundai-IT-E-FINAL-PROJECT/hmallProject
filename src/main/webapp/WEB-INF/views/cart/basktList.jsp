@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <div class="wrap cartwrap">
-
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052010"></script>
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052010" charset="UTF-8"></script>
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052010" charset="UTF-8"></script>
@@ -2519,6 +2518,15 @@
 <%--                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
 <%--                                                    </form>--%>
 
+                                                    <form action="${contextPath}/order/od" method="post" id="directBuy">
+                                                        <sec:authorize access="isAuthenticated()">
+                                                            <sec:authentication property="principal" var="pinfo" />
+                                                            <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
+                                                        </sec:authorize>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+                                                        <%--                                                            <input type="submit" class="btn btn-default" onclick="location.href='${contextPath}/order/od'" value="바로구매">--%>
+                                                    </form>
                                                     <div class="btngroup">
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2137171063_00002" onclick="showChgUitmPup(this, '2137171063', '00002', 0, 99000, '');"><span>수량/속성변경</span><i class="icon"></i></button>
@@ -2529,10 +2537,33 @@
 <%--                                                        <button type="submit" form="od" class="btn btn-default" >--%>
 <%--                                                                <span>바로구매</span>--%>
 <%--                                                        </button>--%>
-
-                                                        <a href="${contextPath}/order/od" class="btn btn-default" ><span>바로구매</span></a>
+                                                        <button type="submit" form="directBuy" class="btn btn-default medium"><span>바로구매</span></button>
 
                                                     </div>
+                                                    <script type="text/javascript">
+                                                        $(".medium").click(function(){
+                                                            console.log("실행중");
+
+
+                                                            $.ajax({
+                                                                url:"/order/od",
+                                                                type:"GET",
+                                                                data: {
+                                                                    user_seq: $("#user_seq").val()
+                                                                },
+                                                                contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+                                                                success:function (){
+                                                                    location.href='/order/od';
+                                                                },
+                                                                error:function(){
+                                                                    alert("error");
+                                                                }
+                                                            });
+
+                                                        });
+
+
+                                                    </script>
                                                     </div>
                                                     <!-- // btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
 

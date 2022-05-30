@@ -1,6 +1,7 @@
 package org.team2.controller.order;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.ucp.proxy.annotation.Post;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,19 +31,44 @@ public class OrderController {
 //        return mav;
 //    }
 //@RequestParam("user_seq")Long user_seq
-    @GetMapping("od")
-    public ModelAndView sendOrderData() throws Exception {
+
+
+
+//    @GetMapping("od")
+//    public ModelAndView openOrderPage(){
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("order.orderPage");
+//        return mav;
+//    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "od", method = RequestMethod.GET)
+    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
         log.info("데이터 이동");
-        mav.setViewName("order.orderPage");
-//      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
-//      log.info("user_seq: "+user_seq);
-        List<CouponVO> couponList=couponService.getCouponList(41L);
+        log.info(user_seq);
+        List<CouponVO> couponList=couponService.getCouponList(user_seq);
         log.info(couponList);
+        mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
-
+        mav.setViewName("order.orderPage");
         return mav;
     }
+
+//    @GetMapping("od")
+//    public ModelAndView sendOrderData() throws Exception {
+//        ModelAndView mav = new ModelAndView();
+//        log.info("데이터 이동");
+//        mav.setViewName("order.orderPage");
+////      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
+////      log.info("user_seq: "+user_seq);
+//        List<CouponVO> couponList=couponService.getCouponList(41L);
+//        log.info(couponList);
+//        mav.addObject("couponList", couponList);
+//
+//        return mav;
+//    }
 //
     //수정중
 //    @PostMapping( "od")

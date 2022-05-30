@@ -1027,6 +1027,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--            delivery:$("#order_delivery").val(),--%>
 <%--            invoice:$("#order_invoice").val(),--%>
 <%--        };--%>
+<%-- 주문내역 불러오고
 <%--        var data=JSON.stringify(orderVO);--%>
 <%--        console.log(orderVO);--%>
 <%--        $.ajax({--%>

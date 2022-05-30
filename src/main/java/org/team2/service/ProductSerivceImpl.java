@@ -7,6 +7,8 @@ import org.team2.domain.ProductVO;
 import org.team2.mapper.ProductMapper;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class ProductSerivceImpl implements ProductService {
 
@@ -52,8 +54,15 @@ public class ProductSerivceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getUserOrder(Long user_seq) {
-        List<ProductVO> userProduct = productMapper.getUserOrder(user_seq);
+    public List<Map<String, String>> getUserOrder(Long user_seq) {
+        List<Map<String, String>> userProduct = productMapper.getUserOrder(user_seq);
         return userProduct;
+    }
+
+
+    @Override
+    public Map<String, String> getProductInfo(Long order_seq) {
+        Map<String, String> productInfo=productMapper.getProductInfo(order_seq);
+        return productInfo;
     }
 }

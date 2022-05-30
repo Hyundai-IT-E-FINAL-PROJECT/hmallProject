@@ -772,55 +772,28 @@
                                             <c:forEach items="${userOrderList}" var="orderProduct">
                                                 <tr>
                                                     <td>
-                                                        <input type="radio" name="check" />
+                                                        <input type="radio" id="order_seq" name="order_seq" value="${orderProduct.ORDER_SEQ}" />
+<%--                                                        <input type="hidden" id="order_seq" name="order_seq" value="${orderProduct.ORDER_SEQ}" />--%>
                                                     </td>
-                                                    <td class="txt-center">${orderProduct.product_code}</td>
+<%--                                                    <input type="hidden" id="product_seq" name="product_seq" value="${orderProduct.product_seq}" />--%>
+                                                    <td class="txt-center">${orderProduct.ORDER_SEQ}</td>
                                                     <td class="txt-left nowrap">
-                                                            ${orderProduct.product_name}
+                                                            ${orderProduct.PRODUCT_NAME}
                                                     </td>
-                                                    <td class="txt-center">${orderProduct.product_cost}</td>
+                                                    <td class="txt-center">${orderProduct.ORDER_TOTAL_COST}</td>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
-
-
-                                    <form name="DtlViewCheckDoPostForm" method="post" id="DtlViewCheckDoPostForm">
-                                        <input type="hidden" name="cnslAcptNo" value="">
-                                        <input type="hidden" name="cnslAcptSeq" value="">
-                                        <input type="hidden" name="page" value="1">
-                                        <input type="hidden" name="condText" value="">
-                                        <input type="hidden" name="scretAtclYn" value="">
-                                        <input type="hidden" name="custNo" value="">
-                                    </form>
-
-                                    <!--//table-->
-                                    <!--paging : 게시글이 11개 이상일 경우 노출-->
-
-<%--                                    <div class="paging">--%>
-<%--                                        <div class="page-prevarea">--%>
-<%--                                            <strong aria-label="현재 선택페이지">1</strong>--%>
-<%--                                            <a href="/p/cce/selectCustBoardPup.do?page=2">2</a>--%>
-<%--                                            <a href="/p/cce/selectCustBoardPup.do?page=3">3</a>--%>
-<%--                                            <a href="/p/cce/selectCustBoardPup.do?page=4">4</a>--%>
-<%--                                            <a href="/p/cce/selectCustBoardPup.do?page=5">5</a>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
                                 </div>
-
 <%--                            TODO: 확인버튼 눌렀을 때 product seq 값 반환, product controller: getOne--%>
                                 <button class="btn btn-default small34" onclick="closePopup();"><span>확인</span></button>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="myNoti">
                             </div>
                         </div>
-                    <script type="text/javascript">
-                        function closePopup(){
-                            window.close();
-                        }
 
-                    </script>
                         <!--//Tab panes -->
                     </div>
                     <!--//tabgroup-->
@@ -834,6 +807,39 @@
 </div>
 <!--popup-win-->
 <!--//윈도우팝업 1:1 상담신청-->
+<script type="text/javascript">
+    function closePopup(){
 
+        var order_seq=$("input[name='order_seq']:checked").val();
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        //주문번호, 상품코드, 옵션 코드 가져오기, 데이터만 가져오기.
+        $.ajax({
+            url:"getProductInfo",
+            type:"get",
+            dataType : "json",
+            contentType : 'application/json; charset=UTF-8',
+            data: {
+                order_seq: order_seq
+            },
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function (info){
+                //부모창에 값 전달
+                console.log(info);
+                opener.document.getElementById("order_seq").value=info["ORDER_SEQ"];
+                opener.document.getElementById("product_code").value=info["PRODUCT_CODE"];
+                window.close();
+            },
+            error:function(request,status,error){
+                alert("문의할 상품을 선택해주세요!");
+            }
+        });
+    }
+
+</script>
 
 <iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe>

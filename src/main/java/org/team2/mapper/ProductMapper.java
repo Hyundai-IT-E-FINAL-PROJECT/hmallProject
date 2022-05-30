@@ -3,6 +3,7 @@ package org.team2.mapper;
 import org.team2.domain.ProductVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductMapper {
     int insert(ProductVO vo);
@@ -17,5 +18,7 @@ public interface ProductMapper {
 
     List<ProductVO> getMain();
 
-    List<ProductVO> getUserOrder(Long user_seq);
+    List<Map<String, String>> getUserOrder(Long user_seq);
+
+    Map<String, String> getProductInfo(Long order_seq);
 }
