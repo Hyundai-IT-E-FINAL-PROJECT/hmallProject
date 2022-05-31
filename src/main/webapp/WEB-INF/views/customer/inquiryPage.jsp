@@ -2425,7 +2425,7 @@
                             <div class="board">
                                 <!--table-->
                                 <div class="tblwrap">
-                                    <table>
+                                    <table id="customerConsultTable">
                                         <caption>상담 내역 테이블</caption>
                                         <colgroup>
                                             <col style="width:60px">
@@ -2447,44 +2447,79 @@
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${qnaList}" var="qna" varStatus="status">
-                                            <tr>
-                                                <td class="txt-center">${status.index+1}</td>
-                                                <c:choose>
-                                                    <c:when test="${qna.QC_TYPE eq 'A'}">
-                                                        <td class="txt-center">취소</td>
-                                                    </c:when>
-                                                    <c:when test="${qna.QC_TYPE eq 'B'}">
-                                                        <td class="txt-center">반품</td>
-                                                    </c:when>
-                                                    <c:when test="${qna.QC_TYPE eq 'C'}">
-                                                        <td class="txt-center">배송/회수</td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td class="txt-center">결제/환불</td>
-                                                    </c:otherwise>
-                                                </c:choose>
-<%--                                                <td class="txt-center">${qna.QC_TYPE}</td>--%>
-                                                <td class="txt-left nowrap">${qna.QC_TITLE}</td>
-                                                <td class="txt-center">${qna.CREATED_AT}</td>
-                                                <c:choose>
-                                                    <c:when test="${qna.R_CREATED_AT eq null}">
-                                                        <td></td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td class="txt-center">${qna.R_CREATED_AT}</td>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <c:choose>
-                                                    <c:when test="${qna.QA_CONTENT eq null}">
-                                                        <td class="txt-center" style="color: orangered">처리중</td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td class="txt-center" style="color: green">답변완료</td>
-                                                    </c:otherwise>
-                                                </c:choose>
+                                                <tr>
+                                                    <td class="txt-center arrow"><div class="arrow>">${status.index+1}</div></td>
+                                                    <c:choose>
+                                                        <c:when test="${qna.QC_TYPE eq 'A'}">
+                                                            <td class="txt-center">취소</td>
+                                                        </c:when>
+                                                        <c:when test="${qna.QC_TYPE eq 'B'}">
+                                                            <td class="txt-center">반품</td>
+                                                        </c:when>
+                                                        <c:when test="${qna.QC_TYPE eq 'C'}">
+                                                            <td class="txt-center">배송/회수</td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td class="txt-center">결제/환불</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+    <%--                                                <td class="txt-center">${qna.QC_TYPE}</td>--%>
+                                                    <td class="txt-left nowrap">${qna.QC_TITLE}</td>
+                                                    <td class="txt-center">${qna.CREATED_AT}</td>
+                                                    <c:choose>
+                                                        <c:when test="${qna.R_CREATED_AT eq null}">
+                                                            <td></td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td class="txt-center">${qna.R_CREATED_AT}</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${qna.QA_CONTENT eq null}">
+                                                            <td class="txt-center" style="color: orangered">처리중</td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td class="txt-center" style="color: green">답변완료</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
 
-                                                <td class="txt-center"${qna.ORDER_TOTAL_COST}></td>
-                                            </tr>
+<%--                                                    <td class="txt-center"${qna.ORDER_TOTAL_COST}></td>--%>
+                                                </tr>
+                                                <tr>
+                                                     <td  colspan="6">
+                                                         <div class="consult-form-wrap">
+                                                             <h3>문의한 내용</h3>
+                                                             <!--문의내용-->
+                                                             <div class="consult-form">
+                                                                 <div class="field">
+                                                                     <div class="textareabox">
+                                                                         <label class="txtlabel">
+                                                                            <textarea cols="28" rows="2" readonly style="resize:none; height:30px;">${qna.QC_CONTENT}</textarea>
+                                                                         </label>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <c:choose>
+                                                            <c:when test="${qna.QA_CONTENT ne null}">
+                                                                <div class="consult-form-wrap">
+                                                                    <h3>답변</h3>
+                                                                    <!--문의내용-->
+                                                                    <div class="consult-form">
+                                                                        <div class="field">
+                                                                            <div class="textareabox">
+                                                                                <label class="txtlabel">
+                                                                                    <textarea readonly style="resize:none; width:100%; height:30px;">${qna.QA_CONTENT}</textarea>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:when>
+                                                        </c:choose>
+
+                                                     </td>
+                                                </tr>
                                         </c:forEach>
                                         </tbody>
                                     </table>
@@ -3326,36 +3361,19 @@
         }
 
     </script>
-
-    <!-- 스카이 스크래퍼 -->
-    <div class="sticky-ui-wrapper wing-banner-sticky"><div class="sticky-placeholder" style=""></div><div class="wing-banner banner-right ui-break" data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky" style="top: 122.587px;">
-        <!-- fixed 클래스 추가 시 고정 -->
-        <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-            <div class="visit-indicator">바로접속
-
-
-                <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-            </div>
-        </a>
-    </div></div>
-    <!-- // 스카이 스크래퍼 -->
-    <script type="text/javascript">
-
-        setTimeout(function() {
-            setOnAirSkySc();
-        }, 100);
-
-        /*
-        setTimeout(function() {
-            setCardPromotion();
-        }, 300);
-        */
-    </script>
-    <!-- 스카이스크래퍼 -->
-
-
 </div>
 <div id="cnslDtlPup"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#customerConsultTable tr:odd").addClass("odd");
+        $("#customerConsultTable tr:not(.odd)").hide();
+        $("#customerConsultTable tr:first-child").show(); //열머리글 보여주기
 
+        $("#customerConsultTable tr.odd").click(function(){
+            $(this).next("tr").toggle();
+            $(this).find("#toggle").toggleClass("up");
+
+        });
+    });
+</script>
 <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
