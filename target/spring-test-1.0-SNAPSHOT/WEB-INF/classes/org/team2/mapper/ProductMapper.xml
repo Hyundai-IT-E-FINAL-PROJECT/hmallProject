@@ -8,6 +8,23 @@
         where product_seq = #{seq}
     </select>
 
+
+    <select id="getUserOrder" resultType="map">
+        select P.product_seq , P.product_code ,O.order_seq, P.product_code, P.product_name, O.order_total_cost
+        from tbl_product P, tbl_op OP, tbl_order O
+        where P.product_seq = OP.product_seq
+          and OP.order_seq = O.order_seq
+          and O.user_seq=#{seq}
+    </select>
+
+    <select id="getProductInfo" resultType="map">
+        select O.order_seq , P.product_code
+        from tbl_product P, tbl_op OP, tbl_order O
+        where P.product_seq = OP.product_seq
+          and OP.order_seq=O.order_seq
+          and O.order_seq=#{seq}
+    </select>
+
     <select id="getAll" resultType="map">
         select *
         from tbl_product

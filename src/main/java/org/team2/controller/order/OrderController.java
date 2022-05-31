@@ -1,11 +1,7 @@
 package org.team2.controller.order;
-import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
+import oracle.ucp.proxy.annotation.Post;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +12,7 @@ import org.team2.domain.OrderVO;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Log4j
@@ -29,20 +23,42 @@ public class OrderController {
     private OrderService orderService;
     private CouponService couponService;
 
-//@RequestParam("user_seq")Long user_seq
-    @GetMapping("od")
-    public ModelAndView sendOrderData() throws Exception {
+//    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
+//    @RequestMapping("")
+//    public ModelAndView order(){
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("order.basktList");
+//        return mav;
+//    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "od", method = RequestMethod.GET)
+    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
         log.info("데이터 이동");
-        mav.setViewName("order.orderPage");
-//      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
-//      log.info("user_seq: "+user_seq);
-        List<CouponVO> couponList=couponService.getCouponList(41L);
+        log.info(user_seq);
+        List<CouponVO> couponList=couponService.getCouponList(user_seq);
         log.info(couponList);
+        mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
-
+        mav.setViewName("order.orderPage");
         return mav;
     }
+
+//    @GetMapping("od")
+//    public ModelAndView sendOrderData() throws Exception {
+//        ModelAndView mav = new ModelAndView();
+//        log.info("데이터 이동");
+//        mav.setViewName("order.orderPage");
+////      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
+////      log.info("user_seq: "+user_seq);
+//        List<CouponVO> couponList=couponService.getCouponList(41L);
+//        log.info(couponList);
+//        mav.addObject("couponList", couponList);
+//
+//        return mav;
+//    }
 //
     //수정중
 //    @PostMapping( "od")
@@ -64,9 +80,7 @@ public class OrderController {
 //    @GetMapping("od")
 //    public String sendOrderData() throws Exception {
 //        log.info("컨트롤러 이동 확인");
-//
-//
-//
+
 //        return "order.orderPage";
 //    }
 
@@ -96,7 +110,6 @@ public class OrderController {
 //
 //
 //    }
-
         @PostMapping("orderComplete")
         public String sendOrderData(@ModelAttribute("vo") OrderVO vo, Model model) throws Exception {
             log.info("데이터 이동 확인");
@@ -108,4 +121,26 @@ public class OrderController {
             }
             return "order.orderComplete";
         }
+
+        @ResponseBody
+        @PostMapping("couponInfo")
+        public String getCouponInfo(@RequestParam("couponSeq") String couponSeq) throws Exception{
+            log.info("쿠폰 데이터 가져오는 중");
+            log.info(couponSeq);
+
+            String discount="";
+
+            CouponVO vo=couponService.couponDiscount(Long.valueOf(couponSeq));
+
+            if(vo.getCoupon_cost()==0){
+                discount= String.valueOf(vo.getCoupon_ratio());
+                log.info(discount);
+                return discount;
+            }else{
+                discount= String.valueOf(vo.getCoupon_cost());
+                log.info(discount);
+                return discount;
+            }
+        }
+
 }

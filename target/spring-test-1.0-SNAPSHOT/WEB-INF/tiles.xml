@@ -17,4 +17,13 @@
         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 
+    <definition name="empty" template="/WEB-INF/views/commons/empty.jsp">
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <definition name="layerPup/*.empty" extends="empty">
+<!--        <put-attribute name="dynamic_css" value="/resources/css/{1}.css"/>-->
+        <put-attribute name="content" value="/WEB-INF/views/layerPup/{1}.jsp" />
+    </definition>
+
 </tiles-definitions>

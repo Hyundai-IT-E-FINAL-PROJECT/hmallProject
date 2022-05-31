@@ -1,13 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/cart.css">
-<body class="vsc-initialized">
 <div class="wrap cartwrap">
-
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052010"></script>
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052010" charset="UTF-8"></script>
     <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052010" charset="UTF-8"></script>
@@ -2352,38 +2346,17 @@
                                 </div>
                             </div>
                             <!-- //.cart-head -->
-
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal" var="pinfo" />
+                                ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                적립금: ${pinfo.userVO.no}
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal" var="pinfo" />
+                                ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                적립금: ${pinfo.userVO.no}
+                            </sec:authorize>
                             <div class="cart-body">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <!-- 품절체크 -->
-
-
-
-
-
-
-
-
-
-
-
 
                                 <form action="#" name="totBasktForm" method="post" onsubmit="return false;">
 
@@ -2427,7 +2400,7 @@
 
 
 
-
+<%--                                            장바구니 제품 나열--%>
                                             <!-- .pdwrap -->
                                             <div class="pdwrap pdlist ml" style="display:;" id="018489_000000_16">
                                                 <input type="hidden" id="exclItemTrgtGbcd_2137171063" name="exclItemTrgtGbcd" value="">
@@ -2451,21 +2424,7 @@
                                                 <input type="hidden" name="gaCategory" value="스포츠_레져/골프용품/골프웨어/니트셔츠(여성)">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                                                 <!-- 스토어픽 상품, 픽업일 경과일경우 -->
-
-
 
 
                                                 <input type="hidden" name="basktVenCdVal" id="basktVenCdVal" value="018489">
@@ -2533,6 +2492,15 @@
 <%--                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
 <%--                                                    </form>--%>
 
+                                                    <form action="${contextPath}/order/od" method="post" id="directBuy">
+                                                        <sec:authorize access="isAuthenticated()">
+                                                            <sec:authentication property="principal" var="pinfo" />
+                                                            <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
+                                                        </sec:authorize>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+                                                        <%--                                                            <input type="submit" class="btn btn-default" onclick="location.href='${contextPath}/order/od'" value="바로구매">--%>
+                                                    </form>
                                                     <div class="btngroup">
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2137171063_00002" onclick="showChgUitmPup(this, '2137171063', '00002', 0, 99000, '');"><span>수량/속성변경</span><i class="icon"></i></button>
@@ -2543,10 +2511,33 @@
 <%--                                                        <button type="submit" form="od" class="btn btn-default" >--%>
 <%--                                                                <span>바로구매</span>--%>
 <%--                                                        </button>--%>
-
-                                                        <a href="${contextPath}/order/od" class="btn btn-default" ><span>바로구매</span></a>
+                                                        <button type="submit" form="directBuy" class="btn btn-default medium"><span>바로구매</span></button>
 
                                                     </div>
+                                                    <script type="text/javascript">
+                                                        $(".medium").click(function(){
+                                                            console.log("실행중");
+
+
+                                                            $.ajax({
+                                                                url:"/order/od",
+                                                                type:"GET",
+                                                                data: {
+                                                                    user_seq: $("#user_seq").val()
+                                                                },
+                                                                contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+                                                                success:function (){
+                                                                    location.href='/order/od';
+                                                                },
+                                                                error:function(){
+                                                                    alert("error");
+                                                                }
+                                                            });
+
+                                                        });
+
+
+                                                    </script>
                                                     </div>
                                                     <!-- // btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
 
@@ -4004,7 +3995,15 @@
                 ]});
     </script>
 
-</div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><div id="criteo-tags-div" style="display: none;"></div><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;"></iframe></body>
+</div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div>
+</div></div></div><div id="criteo-tags-div" style="display: none;"></div>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
+<script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
+<iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
 
+</iframe><iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;">
 
-</html>
+</iframe><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;">
+
+</iframe>
+

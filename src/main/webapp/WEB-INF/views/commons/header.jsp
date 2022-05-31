@@ -204,8 +204,7 @@
                         </form>
                         <li><a href="/level">멤버십존</a></li>
                     </sec:authorize>
-                    <li><a ga-category="헤더" ga-action="고객센터" href="javascript:bizSpringTag('/p/cca/main.do','^헤더^고객센터');">고객센터</a>
-                    </li>
+                    <li><a ga-category="헤더" ga-action="고객센터" href="${contextPath}/customer">고객센터</a></li>
                 </ul>
             </div>
         </div>

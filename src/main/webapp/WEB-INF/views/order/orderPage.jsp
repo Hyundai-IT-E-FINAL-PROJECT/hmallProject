@@ -1,16 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<title>Hi</title>
-<head>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">
-<body>
+<%--<html>--%>
+<%--<title>Hi</title>--%>
+<%--<head>--%>
+<%--    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">--%>
+<%--<body>--%>
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
         console.log("objName", objName);
         console.log("aplyCopn_yn", aplyCopn_yn);
-
 
         // renew2020 금액 reset
         $("#"+objName).val("0원");
@@ -559,15 +558,15 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li id="copnSaleDiv" 1:0:="">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="copnDcAply" onclick="applyCopnDc();">
+                                                    <input type="checkbox" name="couponCheck" onclick="applyCopnDc();">
                                                     <i class="icon"></i>
                                                     <span>쿠폰</span>
                                                 </label>
                                                 <button class="btn btn-linelgray small34" onclick="$('#pec007').modal().show();"><span>조회/변경</span></button>
                                             </div>
-                                            <div class="row-value">
-                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>
-                                            </div>
+<%--                                            <div class="row-value">--%>
+<%--                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>--%>
+<%--                                            </div>--%>
                                         </li>
                                     </ul>
                                 </div>
@@ -580,16 +579,17 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
                                                     <div class="discount-box">
                                                         <div class="row-wrap">
-                                                            <input type="checkbox" id="discount2" style="display:none;">
+                                                            <input type="radio" id="discount2" style="display:none;">
                                                             <label class="chklabel">
-                                                                <input type="checkbox" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
-                                                                <i class="icon"></i>
+                                                                <input type="radio" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
+<%--                                                                <i class="icon"></i>--%>
                                                                 <span>${coupon.coupon_name}</span>
+                                                                <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
+                                                                <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
+                                                                <input type="hidden" name="coupon_ratio" value=${coupon.expired_at}>
                                                             </label>
     <%--                                                        <input type="hidden" name="totPrmoDcAmt" value="175800">--%>
-                                                            <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
-                                                            <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
-                                                            <input type="hidden" name="coupon_ratio" value=${coupon.expired_at}>
+
                                                         </div>
                                                     </div>
                                                 </c:forEach>
@@ -607,31 +607,24 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     </div>
                                     <!-- //.ui-modal-dialog -->
                                 </div>
-<%--                                쿠폰 시퀀스 가져오기--%>
                                 <script type="text/javascript">
 
-                                    var couponSeq=0;
-                                    var discountCost=0;
+                                    // function checkOnlyOne(){
+                                    //     const checkboxes=document.getElementById("discount2Tmp");
+                                    //     checkboxes.forEach((cb)=>{
+                                    //         cb.checked=false;
+                                    //     })
+                                    //     element.checked=true;
+                                    // }
 
-                                    $("#couponSelectorBtn").on("click", function(){
-
-                                        couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
-                                        discountCost=$("input[name='coupon_cost']").val();
-
-                                        console.log(couponSeq);
-                                        console.log(discountCost);
-                                        $("#couponSeq").val(couponSeq);
-
-                                        $('#pec007').modal().hide();
-
-                                        //return couponSeq;
-                                    });
                                 </script>
-                                <div>
-                                    <label>
-                                        <input type="text" id="couponSeq" name="coupon_seq" value="" readonly/>
-                                    </label>
-                                </div>
+<%--                                쿠폰 시퀀스 가져오기--%>
+
+<%--                                <div>--%>
+<%--                                    <label>--%>
+<%--                                        <input type="text" id="couponSeq" name="coupon_seq" value="" readonly/>--%>
+<%--                                    </label>--%>
+<%--                                </div>--%>
                                 <div class="ui-modal pop-pec007-01 in coupon-detail-select_gnrlCopn_2137894734_00002_0_0 gnrlCopn" id="gnrlCopn_2137894734_00002_0_0_layer" tabindex="-1" role="dialog" aria-label="쿠폰 할인">
                                     <div class="ui-modal-dialog" role="document">
                                         <div class="content">
@@ -707,9 +700,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 <div class="point-area">
                                     <ul class="row-list">
                                         <li id="hpointUseLi">
+<%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="upointCheck" onclick="useUpoint()">
+                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">
                                                     <i class="icon"></i>
                                                     <span>적립금 <em class="num">99,000</em></span>
                                                     <input type="hidden" name="uPoint" value="">
@@ -727,7 +721,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li id="depositLi">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="upointCheck" onclick="useUpoint()">
+                                                    <input type="checkbox" name="depositPoint" onclick="useUpoint()">
                                                     <i class="icon"></i>
                                                     <span>예치금 <em class="num">99,000</em></span>
                                                     <input type="hidden" name="uPoint" value="">
@@ -829,7 +823,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" onclick="checkUseHanaMoney()">
+                                                    <input type="radio" name="paymentMethod" id="method1" value="method1" onclick="checPaymentMethod()">
                                                     <span>신용카드</span>
                                                 </label>
                                             </div>
@@ -837,7 +831,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" onclick="checkUseHanaMoney()">
+                                                    <input type="radio" name="paymentMethod" id="method2" value="method2" onclick="checPaymentMethod()">
                                                     <span>무통장입금</span>
                                                 </label>
                                             </div>
@@ -847,13 +841,16 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             </div>
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
+
                         <div class="box-toggle">
                             <h3>
                                 <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">
                                     <span class="row-title">총 결제금액</span>
                                     <span class="row-value color-ff5340">
 		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>
-		                                            <strong id="main_totPayAmt">99,000</strong>원
+		                                            <strong id="main_totPayAmt">
+                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>
+                                                    </strong>원
 		                                        </span>
                                     <i class="icon"></i>
                                 </button>
@@ -874,7 +871,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <p class="tit">할인금액</p>
                                         </div>
                                         <div class="row-value">
-                                            <p class="price"><strong id="main_discountAmt">0</strong>원</p>
+                                            <p class="price"><strong id="main_discountAmt">
+                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>
+                                            </strong>원</p>
                                         </div>
                                     </li>
                                     <li>
@@ -896,6 +895,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 </ul>
                             </div>
                         </div>
+
 
                         <div class="sticky-ui-wrapper util-option-sticky">
                             <div class="sticky-placeholder" style=""></div>
@@ -944,6 +944,73 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         </div>
         <!-- //.container -->
     </div>
+    <script type="text/javascript">
+
+        // TODO: 체크버튼이 클릭 되어있을 때 값을 다시 계산해주는 식으로 전송: DB 연동으로 검사
+        // checkbox name
+        // 적립금: resPoint
+        // 예치금: depoistPoint
+        // 쿠폰: couponCheck
+        // total= total-respoint+depositPoint-couponCheck //check안되어있을 시 0으로 간주하고 계산
+        // 적립금, 예치금 화면에 띄우기, check안되어있을 때는 초기값으로 설정.
+
+        var couponSeq=0;
+        var discountCost=0;
+        var totalCost=$("input[name='totalCost']").val();
+
+        $("#couponSelectorBtn").on("click", function(){
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfTokenValue = "${_csrf.token}";
+            //할인 값 가져오는 ajax
+            $.ajax({
+               type:'POST',
+               dataType:'text',
+               data:{
+                   couponSeq:$("input[name='couponName']:checked").val()
+               },
+               url:'${contextPath}/order/couponInfo',
+               beforeSend:function (xhr){
+                   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+               },
+               success:function(discount){
+                   console.log('쿠폰 할인가격: ', parseInt(discount));
+                    discount=parseInt(discount);
+                   //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
+                   //쿠폰Seq에 따른 cost를 불러와야 함
+                   //discountCost=$("input[name='coupon_cost']").val();
+
+                   //가격 할인
+                   if(discount>100){
+                       totalCost=parseInt(totalCost)-discount;
+                       console.log("totalCost: ",totalCost)
+
+                       //console.log("couponSeq:", couponSeq);
+
+                       $("#couponSeq").val(couponSeq);
+                       $("#couponCost").val(discount);
+                       $("#totalCost").val(totalCost);
+
+                   }else{//비율 할인
+                        totalCost=parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+                        console.log("totalCost: ",totalCost)
+
+                       $("#couponSeq").val(couponSeq);
+                       $("#couponCost").val(parseInt(totalCost)*(discount/100));
+                       $("#totalCost").val(totalCost);
+                   }
+
+                   $('#pec007').modal().hide();
+               },
+               error:function(){
+                   alert('쿠폰을 적용하지 못합니다.');
+               }
+
+            });
+
+
+
+        });
+    </script>
 </main>
 <%--주문 상세 내역--%>
 <%--<script type="text/javascript">--%>
@@ -960,6 +1027,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--            delivery:$("#order_delivery").val(),--%>
 <%--            invoice:$("#order_invoice").val(),--%>
 <%--        };--%>
+<%-- 주문내역 불러오고
 <%--        var data=JSON.stringify(orderVO);--%>
 <%--        console.log(orderVO);--%>
 <%--        $.ajax({--%>
@@ -979,7 +1047,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--        })--%>
 <%--    })--%>
 <%--</script>--%>
-    </body>
+
 <script type="text/javascript">
 
     function applyCopnDc() {
@@ -1166,4 +1234,20 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
     }
 </script>
-</html>
+<script type="text/javascript">
+
+    function checPaymentMethod(){
+        //TODO: 결제수단에 따른 결제 페이지 보여주기
+        $('input:radio[name=paymentMethod]').is(':checked');
+        //결제 수단: 1: 신용카드, 2: 무통장입금
+        console.log($("input:radio[name='paymentMethod']").val());
+    }
+
+    $("input[type=radio]").change(function(){
+        console.log($(this).val());
+        console.log($(this).attr("id"));
+    })
+
+
+</script>
+
