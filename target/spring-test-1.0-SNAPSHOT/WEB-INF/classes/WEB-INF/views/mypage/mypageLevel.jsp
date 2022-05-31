@@ -6,9 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="ko">
-<body>
+<main>
 <div class="wrap wing-none mp-membership"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->
     <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>
 
@@ -477,6 +475,3 @@
 
 </main>
 <!-- //.cmain -->
-
-</body>
-</html>

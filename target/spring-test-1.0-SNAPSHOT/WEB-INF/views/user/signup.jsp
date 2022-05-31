@@ -6,7 +6,10 @@
 <head>
     <style>
         .addr {
-            margin-top: 20px;
+            margin-top: 25px;
+        }
+        .em{
+            margin-bottom: 25px;
         }
     </style>
     <meta charset="utf-8" />
@@ -106,7 +109,7 @@
                                                     <label for="id" class="inp_tit">아이디<span class="nec">*</span></label>
                                                     <!-- input에 값을 잘 못 입력하면 .inp_bundle에 클래스 "error" 추가해주세요. (포커스되고 값이 입력되면 "focus" 클래스가 붙음) -->
                                                     <div class="inp_bundle registerCustId">
-                                                        <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" onchange="check_id_length()"/>
+                                                        <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" />
                                                         <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
                                                         <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.</span>
                                                         <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.</span>
@@ -170,9 +173,17 @@
                                                             <option value="@gmail.com">@gmail.com</option>
                                                             <option value="@nate.com">@nate.com</option>
                                                         </select>
-                                                        <input type="hidden" id="totalemail" name="user_email" value="" >
+                                                        <span id="emailChk" class="doubleChk">인증번호 보내기</span><br/>
+                                                        <input type="hidden" id="total_email" name="user_email" value="" >
                                                     </div>
                                                     <p class="cmt_guide1 mark1 inp_mt">특수문자[-], [_]만 사용 가능합니다.</p>
+                                                    <div class="inp_bundle em">
+
+                                                        <input type="text" id="email_ch" name="email_ch" value="" maxlength="80" class="inp flex" placeholder="인증번호 입력" disabled required />
+                                                        <span id="emailChk2" class="doubleChk">이메일인증</span>
+                                                        <input type="hidden" id="emailDoubleChk"/>
+                                                    </div>
+                                                    <span class="point successEmailChk">이메일 입력후 인증번호 보내기를 해주십시오</span>
                                                 </div>
 
                                                 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -300,20 +311,20 @@
 
     <script type="text/javascript">
 
-        function check_id_length(){
-            var id_length = document.getElementById('id').value;
-            if(id_length.length < 6 || id_length.length > 16){
-                window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-            }
-        }
+        // function check_id_length(){
+        //     var id_length = document.getElementById('id').value;
+        //     if(id_length.length < 6 || id_length.length > 16){
+        //         window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+        //     }
+        // }
 
         function checkId(){
             var id = $('#id').val();
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
-            if(id.length >= 6){
+            if(id.length > 6){
                 $.ajax({
-                    url:'${contextPath}/user/idCheck' , //Controller 에서 인식할 주소
+                    url:'${contextPath}/user/idCheck',
                     type:'POST',
                     data: {id:id},
                     dataType:'text',
@@ -388,7 +399,7 @@
             const email = $("#email1").val();
             const address = $("#email2").val();
             if(email != "" && address != ""){
-                $("#totalemail").val(email+address);
+                $("#total_email").val(email+address);
             }
         };
 
@@ -463,6 +474,44 @@
             })
             element.checked = true;
         }
+
+        //이메일 인증 보내기
+        var code = " ";
+       $("#emailChk").click(function (){
+           var total_email = $("#total_email").val();
+           console.log(total_email);
+           $.ajax({
+               type: "GET",
+               url: "${contextPath}/user/mailCheck?total_email="+total_email,
+               cache: false,
+               success:function (data){
+                   if(data == "error"){
+                       alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
+                       $("#totalemail").attr("autofocus",true);
+                       //$(".successEmailChk").text("유효한 이메일 주소를 입력해주세요.");
+                       //$(".successEmailChk").css("color","red");
+                   }else{
+                       alert("인증번호 발송이 완료되었습니다.\n입력한 이메일에서 인증번호 확인을 해주십시오.");
+                       $("#email_ch").attr("disabled",false);
+                       code = data;
+                   }
+               }
+           });
+       });
+
+       $("#emailChk2").click(function (){
+
+           console.log(ch_num);  var ch_num = $("#email_ch").val();
+           if(ch_num == code){
+                $(".successEmailChk").text("인증번호가 일치합니다.");
+                $(".successEmailChk").css("color","green");
+                $("#email_ch").attr("disabled",true);
+           }else{
+               $(".successEmailChk").text("인증번호가 일치하지 않습니다. 다시 확인해주세요!.");
+               $(".successEmailChk").css("color","red");
+               $("#email_ch").attr("autofocus",true);
+           }
+       })
 
     </script>
 

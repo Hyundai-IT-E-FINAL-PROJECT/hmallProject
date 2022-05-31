@@ -1,4 +1,6 @@
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: SM-PC
@@ -7,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% DecimalFormat decFormatdecFormat = new DecimalFormat("###,###"); %>
 <div class="wrap product-detail">
     <!-- 브랜드 검색 : 추천 브랜드  -->
     <div class="layer-popup brand" style="display:none;">
@@ -747,7 +750,7 @@
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=1400x1400&amp;AR=0"
+                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
@@ -763,7 +766,7 @@
                                                          data-slick-index="0" aria-hidden="false" style="width: 520px;">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=1400x1400&amp;AR=0"
+                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
@@ -779,7 +782,7 @@
                                                          style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_1.jpg?RS=1400x1400&amp;AR=0"
+                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
@@ -795,7 +798,7 @@
                                                          style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=1400x1400&amp;AR=0"
+                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
@@ -811,13 +814,13 @@
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=1400x1400&amp;AR=0"
+                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
                                                                    onclick="goGaEvent('상품상세','상단_이미지확대','')"
                                                                    tabindex="-1"><img
-                                                                        src="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=520x520&amp;AR=0"
+                                                                        src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                         alt="2122712699_0.jpg"
                                                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
                                                             </div>
@@ -908,11 +911,8 @@
                                     </div>
                                     <!-- // .customer-use-info -->
                                 </div>
-                                <!-- // .customer-use-wrap -->
-
                             </div>
-                            <!--// 좌측메뉴 -->
-                            <!-- 우측메뉴 -->
+ㅅ
                             <div class="right-info">
                                 <div data-viewercontent="" class="">
                                     <p class="guide-txt">마우스 휠을 움직이면 상품 이미지를 더욱 상세히 보실 수 있습니다.</p>
@@ -923,36 +923,25 @@
                                     <input type="hidden" name="ordMakeYn" value="N">
                                     <input type="hidden" name="ordMakeExcldMCsfYn" value="N">
                                     <input type="hidden" name="bsitmCd" value="2101984300">
-
-
                                     <input type="hidden" name="sellPrc" value="29900">
-
-
                                     <input type="hidden" name="dluMaxBuyQty" value="99">
                                     <input type="hidden" name="sectId" value="2731643">
-                                    <input type="hidden" name="slitmNm"
-                                           value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )">
-
+                                    <input type="hidden" name="slitmNm" value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )">
                                     <input type="hidden" name="uitmCombYn" value="N">
                                     <input type="hidden" name="uitmChocPossYn" value="Y">
                                     <input type="hidden" name="sdlvcVenMinStlmAmt" value="">
                                     <input type="hidden" name="sdlvcVenBsicAmtBuyPossYn" value="">
                                     <input type="hidden" name="hpntPrtyStlmYn" value="N">
-                                    <!-- 새벽배송/신선식품여부 추가 _20180704특화배송조유진 -->
                                     <input type="hidden" name="dawnDlvYn" value="N">
                                     <input type="hidden" name="freshFoodYn" value="N">
-                                    <!-- SFR-001-04 : 선물하기 기능 PC버젼 BY JeongHJ, 2020-07-27 시작-->
-                                    <!-- 선물하기 -->
                                     <input type="hidden" name="giftOrderYn" value="N">
                                     <input type="hidden" name="boxPrsnPackGbcd" value="0">
                                     <input type="hidden" name="spbgPrsnPackGbcd" value="0">
-                                    <!-- SFR-001-04 : 선물하기 기능 PC버젼 BY JeongHJ, 2020-07-27 끝-->
-
-
                                     <input type="hidden" name="uitmMacYn" value="N">
 
 
-                                    <textarea name="sdlvcVenItemPtcCntn" class="hidden" style="display: none"></textarea>
+                                    <textarea name="sdlvcVenItemPtcCntn" class="hidden"
+                                              style="display: none"></textarea>
                                     <input type="hidden" name="rcmmType" value="">
 
                                     <input type="hidden" name="gaCategory" value="식품/농산물/국내청과/사과">
@@ -962,7 +951,6 @@
                                     <input type="hidden" name="stpicPickUpDt" value="">
                                     <input type="hidden" name="fundingYn" value="N">
                                     <input type="hidden" name="uitmCdInf" value="0^00002|1"></form>
-                                <!-- 상품 기본 정보 시작 -->
                                 <div class="basic-info">
 
 
@@ -976,30 +964,18 @@
                                            ga-custom-etc="urlAction">
 
                                             <span class="img"><img
-                                                    src="https://image.hmall.com/static/image/sect/brand/disp_img/dispM14717.jpg"
+                                                    src="/resources/img/${imageVOList[0].image_name}.jpg"
                                                     alt="아이사랑"
                                                     onerror="noImage(this, 'http:////image.hmall.com/p/img/co/logo-brand-default.jpg')"></span>
 
-                                            <span class="brand-name">${productVO.product_brand}<i class="icon icon-arrow"></i></span>
+                                            <span class="brand-name">${productVO.product_brand}<i
+                                                    class="icon icon-arrow"></i></span>
                                         </a>
                                     </div>
-
-
-                                    <!--//brand-area-->
-
-                                    <!--prduct-title-info-->
                                     <div class="prduct-title-info">
 
 
                                         <strong class="prduct-name">${productVO.product_name}</strong>
-
-
-                                        <!-- TODO: 추가구성 상품명 -->
-
-
-                                        <!-- 리뉴얼 >> 원산지 위치 및 UI 변경.. -->
-
-
                                         <p class="prduct-origin">
                                             원산지 : 상세설명 / 기본정보 참고
                                         </p>
@@ -1019,36 +995,20 @@
                                                         class="hiding">닫기</span></button>
                                             </div>
                                         </div>
-
-
                                     </div>
-                                    <!--//prduct-title-info-->
-
-                                    <!-- pdinfo 플래그 -->
                                     <div class="pdinfo">
-
                                         <div class="benefits">
-
-
                                             <span class="flag bold tvplus">TV+샵</span>
-
-
                                         </div>
-
-
                                         <a href="#none" onclick="gotoPageLink(2);return false;" class="gp_className"
                                            ga-category="상품상세" ga-action="별점" ga-label="">
                                             <div class="grade">
-
-
                                                 <div class="starbg pt9">
                                                     <p class="score"><span class="hiding">90점</span></p>
                                                 </div>
                                                 <p class="like-count"><em>4.4</em>(4,441)</p>
                                             </div>
-                                            <!-- 9 9 -->
                                         </a>
-
                                         <script type="text/javascript">
                                             function gotoPageLink(n) {//별점 클릭시 탭이동
                                                 $('[data-modules-scrollspy] .ui-spynav li:eq(' + n + ') a').trigger('click')
@@ -1056,46 +1016,24 @@
                                             }
                                         </script>
                                     </div>
-                                    <!--//pdinfo-->
-
-
-                                    <!-- 혜택가 Start -->
-
-
-                                    <!-- 혜택가 End-->
-
-                                    <!-- 판매가 -->
-
-
-                                    <!-- 할인기간 -->
-
-
-                                    <!-- pdprice-->
                                     <div class="pdprice">
-
-
-                                        <!-- N | 30900 | 29900 | 29900 -->
-
-
                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
-
                                             <em class="rate" aria-label="할인율">3%</em>
-
-                                            <!-- (우수고객혜택가) -->
                                         <p class="discount" aria-label="할인가">
-                                            <em>${productVO.product_cost}</em><b>원</b><a href="#tooltipDiscount" data-modules-tooltip=""><i
-                                                class="icon que-mark"></i></a>
+                                            <em>
+                                                <fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/>
+                                            </em>
+                                            <b>원</b>
+                                            <a href="#tooltipDiscount" data-modules-tooltip=""><i
+                                                    class="icon que-mark"></i></a>
                                         </p>
-
                                             <del class="normal" aria-label="정상가">
-                                                <em>${productVO.product_cost}</em>원
+                                                                                            <em>
+                                                <fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/>
+                                            </em>
+                                            <b>원</b>
                                             </del>
-
-                                            <!--옵션값이있을경우-->
-
                                     </span>
-
-
                                         <div class="tooltip-box" id="tooltipDiscount">
                                             <div class="thead">
                                                 <p class="tit">할인내역</p>
@@ -1105,17 +1043,10 @@
                                                 <dd>
                                                     <span class="enroll-price">30,900<em>원</em></span>
                                                 </dd>
-                                                <!-- 모바일은 dealYn ne 'Y' 이게 안걸려 있긴함.. 승주선임에게 문의완료.  -->
-
                                                 <dt class="sale-name">TV방송할인</dt>
                                                 <dd>
-
-
                                                     <span class="enroll-price">1,000<em>원</em></span>
-
                                                 </dd>
-
-
                                             </dl>
                                             <dl class="sumcost-wrap">
                                                 <dt>혜택가</dt>
@@ -1127,26 +1058,16 @@
                                                     </p>
                                                 </dd>
                                             </dl>
-                                            <!-- comment -->
-
                                             <button class="btn-close"><i class="icon"></i><span class="hiding">닫기</span>
                                             </button>
                                         </div>
-
                                     </div>
-                                    <!--//pdprice-->
-
-
-                                    <!--box-type : 등급, 포인트 적립-->
-
                                     <div class="box-type">
-
-
                                         <dl class="inf-reward">
                                             <dt>
-                        <span class="tag hpoint" style="background-color: #e68714">
-                            <em>H.Point</em>
-                        </span>
+                                                <span class="tag hpoint" style="background-color: #e68714">
+                                                    <em>H.Point</em>
+                                                </span>
                                             </dt>
                                             <dd>
                                                 <!--20200928 월요일 tooltip > 링크로 이동[i 클래스 변경] // 포인트안내 페이지로 이동-->
@@ -1156,55 +1077,44 @@
                                                 </a>
                                             </dd>
                                         </dl>
-
-
                                     </div>
-
-                                    <!--//box-type-->
-
-                                    <!--백화점 동일 바코드 상품을 조회 --->
-
-
-                                    <!--// 백화점 동일 바코드 상품을 조회 -->
-                                    <!--box-type-->
-
-                                    <!--//box-type-->
                                 </div>
-                                <!-- // 상품 기본 정보 끝 -->
-
-                                <!-- 구매 혜택 시작 csahn!-->
                                 <div class="pdprice-info">
-
-
-                                    <!-- 카드즉시할인KJH 카드즉시할인 안내영역 -->
-
-
                                     <dl class="baroOnOff" id="crdImdDlTagTmp">
                                         <dt>
-
-
                                             즉시할인
-
                                         </dt>
                                         <dd>
-
-
                                             <p><strong>[모바일 구매혜택]</strong></p>
-
-
                                             <p>
                                                 <a href="#" data-modules-modal="target:#modalImmeDiscount-02;"
                                                    onclick="GA_Event('상품상세','구매혜택 더보기','즉시할인');">
-
-
                                                     <em>5</em>% KB국민카드 (<em>50,000</em>원↑)<i
                                                         class="icon icon-arrow"></i>
                                                 </a>
                                             </p>
+                                            <script type="text/javascript">
+                                                var rgx1 = /\D/g;
+                                                var rgx2 = /(\d+)(\d{3})/;
 
+                                                // 금액 타입 체크
+                                                function getNumber(obj) {
+                                                    var num01, num02;
+                                                    num01 = obj.value;
+                                                    num02 = num01.replace(rgx1, "");
+                                                    num01 = setComma(num02);
+                                                    obj.value = num01;
+                                                }
 
-                                            <script>
-
+                                                // 콤마 입력 변환
+                                                function setComma(inNum) {
+                                                    var outNum;
+                                                    outNum = inNum;
+                                                    while (rgx2.test(outNum)) {
+                                                        outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+                                                    }
+                                                    return outNum;
+                                                }
                                             </script>
 
                                         </dd>
@@ -1388,41 +1298,19 @@
                                     </div>
 
                                 </div>
-
-
-                                <!-- // 배송 정보 끝 -->
-
-
-                                <!-- 딜상품 아닌경우 -->
-
-                                <!-- ---------------------------------------------------------------------  -->
-                                <!-- MAC 립스틱 브랜드관련 색상선택 -->
-
-
                                 <div class="product-option-wrap">
-
-
                                     <div class="stock-item select-product-list item-normal-product">
                                         <div class="pditem">
                                             <input type="hidden" name="uitmCd" value="00002">
                                             <div class="product-info">
                                                 <div class="figcaption">
-
-
                                                     <div class="pdoption" aria-label="옵션/수량">
                                                             <span class="option">색상/속성 : <em>
-
-
-
                                                                     6kg(3kg * 2박스)
-
-
                                                            </em>
                                                            </span>
                                                         <span class="stock-num">남은수량 : <em>83,464</em></span>
                                                     </div>
-
-
                                                     <div class="quantity">
                                                         <div class="count">
                                                             <button class="btn btn-minus" data-area-id="1"
@@ -1445,21 +1333,10 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div> <!--// figcaption -->
-                                            </div> <!--// product-info -->
-                                        </div> <!--// pditem -->
-
-                                    </div> <!--// stock-item -->
-
-
-                                    <!-- 희망배송일 -->
-
-                                    <!-- //희망배송일 -->
-
-
-                                    <!-- 현대백화점 상품구매도우미 -->
-
-                                    <!-- //현대백화점 상품구매도우미 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="popup id_duplicate posA hiding" id="stock_cnt"
                                          style="width:469px; right:0; bottom:1px;"></div>
                                 </div>
@@ -2042,6 +1919,7 @@
                     <script type="text/javascript" defer="defer">
                         (function () {
                             console.log("${productVO}")
+
                             function injectScript() {
                                 var _TRK_InSc = document.createElement('script');
                                 _TRK_InSc.type = 'text/javascript';
@@ -2224,7 +2102,7 @@
                                 <div class="content-body">
                                     <div class="basket-item">
                                         <div class="thumbswrap">
-                                            <img src="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=140"
+                                            <img src="/resources/img/${imageVOList[0].image_name}.jpg"
                                                  alt="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )"
                                                  onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=600x600&amp;AR=0')">
                                         </div>
@@ -2666,7 +2544,8 @@
 
                                                             <p>&nbsp;</p>
                                                             <p>
-                                                                <img src="http://image.hyundaihmall.com/CO/EDITOR/20210302/140909557/26s1w.jpg">
+<%--                                                                <img src="http://image.hyundaihmall.com/CO/EDITOR/20210302/140909557/26s1w.jpg">--%>
+                                                                ${productVO.product_detail}
                                                             </p>
                                                             <p>&nbsp;</p>
                                                             <p>&nbsp;</p>
@@ -2697,8 +2576,7 @@
                                                                      data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=140&amp;AR=0"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="-1">
-                                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=600&amp;AR=0"
-                                                                             alt="상품이미지" "=""
+                                                                        <img src="/resources/i"
                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
                                                                 </div>
@@ -2712,7 +2590,7 @@
                                                                      data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=140&amp;AR=0"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="0">
-                                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=600&amp;AR=0"
+                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                              alt="상품이미지" "=""
                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
@@ -2723,10 +2601,10 @@
                                                              style="width: 561px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_1.jpg?RS=140&amp;AR=0"
+                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="-1">
-                                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_1.jpg?RS=600&amp;AR=0"
+                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                              alt="상품이미지" "=""
                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
@@ -2737,10 +2615,10 @@
                                                              style="width: 561px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=140&amp;AR=0"
+                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="-1">
-                                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=600&amp;AR=0"
+                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                              alt="상품이미지" "=""
                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
@@ -2751,10 +2629,10 @@
                                                              aria-hidden="true" style="width: 561px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=140&amp;AR=0"
+                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="-1">
-                                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=600&amp;AR=0"
+                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                                              alt="상품이미지" "=""
                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
@@ -2770,7 +2648,7 @@
                                                     <li class="ui-thumbnaii ui-active">
 
 
-                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=140&amp;AR=0"
+                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                              id="smallPic_1" alt="상품이미지"
                                                              style="width:100px; height:100px;"
                                                              onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
@@ -2781,7 +2659,7 @@
                                                     <li class="ui-thumbnaii">
 
 
-                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_1.jpg?RS=140&amp;AR=0"
+                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                              id="smallPic_2" alt="상품이미지"
                                                              style="width:100px; height:100px;"
                                                              onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
@@ -2792,7 +2670,7 @@
                                                     <li class="ui-thumbnaii">
 
 
-                                                        <img src="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=140&amp;AR=0"
+                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                              id="smallPic_3" alt="상품이미지"
                                                              style="width:100px; height:100px;"
                                                              onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
@@ -5492,7 +5370,6 @@
                 </div>
             </div>
 
-            <!-- 쿠키 사용 안내 -->
             <div class="layer-popup cookie-bottom" style="display:none">
                 <div class="layer-bottom-inner">
                     <p class="title"><strong>쿠키 사용 안내</strong></p>
@@ -5509,7 +5386,9 @@
             </div>
             <!-- // 쿠키 사용 안내 -->
         </div>
-
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
+    </main>
+</div>
+<script src="/resources/js/productDetail.js"></script>

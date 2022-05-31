@@ -11,12 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/video-js.css"><!-- 공통 css -->
-    <tiles:getAsString name='first'/>
-    <c:choose>
-        <c:when test="${<tiles:getAsString name='first'/> eq 'hyundai'}" >
-            <link rel="stylesheet" type="text/css" href="/resources/css/main.css"><!-- 공통 css -->
-        </c:when>
-    </c:choose>
 <%--    <link rel="stylesheet" type="text/css" href="/resources/css/product.css"><!-- 공통 css -->--%>
 <%--    <link rel="stylesheet" type="text/css" href="<tiles:getAsString name = "dynamic_css"/>"/>--%>
 
@@ -49,10 +43,10 @@
     <script src="//image.hmall.com/p/js/co/videojs-http-streaming.js?ver=053015"></script>
 </head>
 <body>
-    <div class = "wrap <tiles:getAsString name = "first"/>-<tiles:getAsString name = "second"/>">
-        <tiles:insertAttribute name="header"/>
-        <tiles:insertAttribute name="body"/>
-        <tiles:insertAttribute name="footer"/>
-    </div>
+<div class="${divclassname}">
+    <tiles:insertAttribute name="header"/>
+    <tiles:insertAttribute name="body"/>
+    <tiles:insertAttribute name="footer"/>
+</div>
 </body>
 </html>

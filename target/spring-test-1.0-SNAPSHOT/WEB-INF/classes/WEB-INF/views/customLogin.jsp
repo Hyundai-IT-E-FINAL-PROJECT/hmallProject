@@ -34,8 +34,8 @@
                     </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane ui-active" id="hmallLogin">
-<%--                            <h2><c:out value="${error}"/></h2>--%>
-<%--                            <h2><c:out value="${logout}"/></h2>--%>
+                            <%--                            <h2><c:out value="${error}"/></h2>--%>
+                            <%--                            <h2><c:out value="${logout}"/></h2>--%>
                             <form method="post" action="/login">
 
                                 <div role="tabpanel" class="tab-pane ui-active" id="hmall">
@@ -92,7 +92,7 @@
                                     <!-- </div> -->
 
                                     <ul class="login-find">
-                                        <li><a href="javascript:;" onclick="findId(); return false;">아이디 찾기</a></li>
+                                        <li><a href="${contextPath}/user/finduser_info" onclick="findId(); return false;">아이디 찾기</a></li>
                                         <li><a href="javascript:;" onclick="findPwd(); return false;">비밀번호 찾기</a></li>
                                         <li><a href="javascript:;" onclick="goRegistMember()">회원가입</a></li>
                                     </ul>

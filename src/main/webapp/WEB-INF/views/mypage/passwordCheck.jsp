@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<body>
 <script>
     $(document).ready(function () {
         // 화면 로드될 때 비밀번호 확인하는 상단부만 보여주기
@@ -62,12 +61,12 @@
 </section>
 <script>
 
-    var csrfHeaderName = "${_csrf.headerName}";
-    var csrfTokenValue = "${_csrf.token}"
+    const csrfHeaderName = "${_csrf.headerName}";
+    const csrfTokenValue = "${_csrf.token}";
 
     function pwdcheckButton() {
-        var userPwd = document.getElementById("userpwd").value;
-        var inputPwd = document.getElementById("inputpwd").value;
+        let userPwd = document.getElementById("userpwd").value;
+        let inputPwd = document.getElementById("inputpwd").value;
 
         console.log(userPwd);
         console.log(inputPwd);
@@ -80,7 +79,7 @@
             $("input[name='pwd']").focus();
         } else { // IdCheckController 요청
             $.ajax({
-                url: "/pwcheck",
+                url: "pwdcheck",
                 method: "post", // 요청방식은 post
                 data: { "userPwd": userPwd , "inputPwd" : inputPwd},
                 beforeSend: function(xhr) {
@@ -108,7 +107,6 @@
     }
 
 </script>
-
 
 
 

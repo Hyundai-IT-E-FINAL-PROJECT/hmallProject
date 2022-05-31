@@ -23,8 +23,18 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<Map<String, Object>> periodOrders(long no) throws Exception {
-        return mypageMapper.periodOrders(no);
+    public List<Map<String, Object>> periodOrders(long no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception {
+        return mypageMapper.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
+    }
+
+    @Override
+    public List<Map<String, Object>> detailOrders(long no, long odno) throws Exception {
+        return mypageMapper.detailOrders(no, odno);
+    }
+
+    @Override
+    public List<Map<String, Object>> couponList(long no) throws Exception {
+        return mypageMapper.couponList(no);
     }
 
 }

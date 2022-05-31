@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.MypageMapper">
     <sql id="userOrders">
-    SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, d.image_name
+    SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_info, c.product_cost, d.image_name
         FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
         WHERE #{alias} = a.user_seq
             AND a.order_seq = b.order_seq
@@ -20,11 +20,51 @@
         WHERE ROWNUM = 1
     </select>
 
-    <select id="periodOrders" parameterType="long" resultType="map">
-        SELECT *
-        FROM (SELECT *
-                FROM (<include refid="userOrders"><property name="alias" value="#{no}"/></include>))
-        WHERE ROWNUM = 1
+    <select id="periodOrders" resultType="map">
+
+            SELECT *
+            FROM (SELECT a.order_status, a.order_total_cost, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_info, d.image_name
+                    FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
+                    WHERE #{no} = a.user_seq
+                        AND a.order_seq = b.order_seq
+                        AND b.product_seq = c.product_seq
+                        AND c.product_seq = d.product_seq
+                        ORDER BY created_at DESC)
+
+            <choose>
+                <when test='seType != null'>
+                    <if test='seType != "-3"'>
+                        WHERE TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{ordStrtDt} AND #{ordEndDt}
+                    </if>
+                </when>
+                <when test="seType == null">
+                    <![CDATA[WHERE TO_DATE(sysdate-14) < created_at]]>
+                </when>
+            </choose>
+            <if test='itemNm != "" and itemNm != null and ordStrtDt != ""'>
+                AND PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
+            </if>
+            <if test='itemNm != "" and itemNm != null and ordStrtDt == ""'>
+                WHERE PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
+            </if>
+    </select>
+
+    <select id="detailOrders" parameterType="long" resultType="map">
+        SELECT a.order_status, a.order_total_cost, a.order_user_name, a.order_point, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, c.product_info, d.image_name, e.user_address_name, e.user_address_phone_num, e.user_address_address1, e.user_address_address2, e.user_address_address3
+        FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d, tbl_user_address e
+        WHERE #{no} = a.user_seq
+          AND #{odno} = a.order_seq
+          AND a.order_seq = b.order_seq
+          AND b.product_seq = c.product_seq
+          AND c.product_seq = d.product_seq
+          AND a.user_seq = e.user_seq
+    </select>
+
+    <select id="couponList" resultType="map">
+        select b.coupon_name, b.coupon_ratio, b.coupon_cost, b.created_at, b.expired_date, TO_DATE(b.expired_date, 'YYYY-MM-DD')-TO_DATE(sysdate, 'YYYY-MM-DD') as "lefttime"
+        from tbl_cu a, tbl_coupon b
+        where #{no} = a.user_seq
+          and a.coupon_seq = b.coupon_seq
     </select>
 </mapper>
 

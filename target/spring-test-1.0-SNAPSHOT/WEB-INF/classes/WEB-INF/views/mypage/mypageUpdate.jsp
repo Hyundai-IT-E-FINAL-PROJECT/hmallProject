@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
-<body>
+
+<%@ include file="passwordCheck.jsp" %>
+<section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
   <div class="container">
     <form name="updateMemberForm" method="post">
@@ -79,25 +79,13 @@
       <!-- 마케팅 동의 관련 수정 : 민수영 140421 -->
 
 
-
-
-
-
-
       <input type="hidden" id="marketingAgreementYn" name="marketingAgreementYn" value="Y">
-
-
 
       <input type="hidden" id="emailReceiveYn" name="emailReceiveYn" value="N">
 
-
-
       <input type="hidden" id="fObReceiveYn" name="fObReceiveYn" value="N">
 
-
-
       <input type="hidden" id="smsReceiveYn" name="smsReceiveYn" value="N">
-
 
       <div class="gird-l2x">
         <!-- LNB 시작 -->
@@ -400,6 +388,6 @@
 
   </div> <!-- //.container -->
 </main>
-</body>
+</section>
 </body>
 </html>

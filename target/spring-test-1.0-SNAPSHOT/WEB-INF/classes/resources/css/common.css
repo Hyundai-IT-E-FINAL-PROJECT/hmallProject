@@ -1715,7 +1715,7 @@ textarea[readonly]{border-color:#666;color:#111;}
 .slick-track::after{content:"";display:table;}
 .slick-track::after{clear:both;}
 .slick-loading .slick-track{visibility:hidden;}
-.slick-slide{display:none;float:left;height:100%;min-height:1px;}
+.slick-slide{display:none;float:left;height:fit-content;min-height:1px;}
 [dir='rtl'] .slick-slide{float:right;}
 .slick-slide img{display:block;}
 .slick-slide.slick-loading img{display:none;}
