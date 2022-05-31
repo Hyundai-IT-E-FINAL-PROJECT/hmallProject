@@ -6,60 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <main class="cmain mypage" role="main" id="mainContents">
     <div class="container">
         <div class="gird-l2x">
             <!-- 비회원 주문조회 시 LNB영역 숨김 -->
             <%@ include file="mypageSide.jsp" %>
 
-            <script type="text/javascript">
-                var upntCustYn = "N";
-                $(document).ready(function() {
-                    $.ajax({
-                        type: "get"
-                        ,url: "/p/mpf/chkUpntCustYn.do"
-                        ,dataType: "json"
-                        ,async: false
-                        ,success : function(data) {
-                            upntCustYn = data.upntCustYn;
-                        }
-                        , error: function (data) {
-                            console.log("chkUpntCustYn_error", data);
-                        }
-                    });
-                });
-
-                <!--HPAY임대진 추가 -->
-                function openHPayTag(pathVal) {
-                    var url = "http://" + location.host + "/p/mpf/hpayManage.do";
-                    try {
-                        _trk_flashEnvView('_TRK_CP=' + pathVal);
-                    } catch(e){}
-
-                    openPopup(url, "loginPup", 640, 600, "no", $(window).width(), $(window).height());
-                }
-
-                //H.Point Pay 관리 통합회원 확인 후 후 화면 분기
-                function fn_HppManage(){
-                    if(upntCustYn == "Y"){
-                        location.href = "https://www.hmall.com/p/mpd/hhpPmntManage.do";
-                    }else{
-                        $("#pec001-01").modal().show();
-                    }
-                }
-
-                function fn_upntPopupOpen(){
-                    location.href='/p/cua/registUpnt.do';
-                }
-
-                function fn_upntPopupClose(){
-                    $("#pec001-01").modal().hide();
-                }
-            </script>
-            <!--20170816 박승택 추가 -->
-            <form name="upntLeftForm" method="post" target="uPnt">
-                <input type="hidden" name="mcustNo" value="">
-            </form>
+            <c:forEach items="${list}" var="list">
             <div class="contents">
                 <div class="mypage-order-wrap">
                     <h3 class="title22">상세 주문 내역</h3>
@@ -70,9 +26,9 @@
                             <dt>
                                 <div class="date">
                                     <span>주문일</span>
-                                    <strong>2022-05-13</strong>
+                                    <strong><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/></strong>
                                     <span>주문번호</span>
-                                    <strong>20220513295854</strong>
+                                    <strong>${list.ORDER_SEQ}</strong>
                                     <span style="display:none">주문매체</span>
                                     <strong style="display:none">PC주문</strong>
                                 </div>
@@ -131,27 +87,13 @@
                                     <span class="img"><img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&amp;AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')"></span>
                                     <div class="box">
                                                         <span class="state sky">
-
-
-
-
-
-
-
-
-
-                                                                            배송완료
-
-
-
-
-
+                                                                            ${list.ORDER_STATUS}
                                                             <em class="color-999">
 
                                                             </em>
                                                         </span>
 
-                                        <span class="tit">SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)</span>
+                                        <span class="tit">${list.PRODUCT_NAME}</span>
 
                                         <!--엄지펀딩 배송예정시작일 시작-->
 
@@ -159,292 +101,55 @@
 
                                         <div ttt="" class="info">
                                             <ul>
-
-
-                                                <li>10봉 랜덤구성</li>
-
-
-
-                                                <li>
-
-
-
-                                                    1개
-
-
-                                                </li>
+                                                <li>${list.PRODUCT_INFO}</li> <!-- 상품 정보 -->
+                                                <li>${list.OP_COUNT} 개</li> <!-- 상품 수량 -->
                                             </ul>
                                         </div>
 
                                         <span class="price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                    <strong>15,000</strong>원
-
-
-                                                        </span>
-
-
-                                        <!-- 2017.11.07 최연태 설치상품 배송예정일 노출 -->
-
+                                            <strong>${list.ORDER_TOTAL_COST}</strong>원
+                                        </span>
                                     </div>
                                 </a>
 
-                                <!-- [01/04]_수정(마크업 추가) -->
-
-
-
-
-
-
-
-
-                                <!-- [01/04]_수정(마크업 추가) -->
-
-
-
-
-
-
-
-
-
-
-
-
-                                <!-- asis테이블 항목 중 tobe에서 제외된 항목 시작 -->
-
-
-
-                                <!-- asis테이블 항목 중 tobe에서 제외된 항목 종료 -->
-
-
-
-
-                                <div class="btngroup">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <!-- 20180626_특화배송조유진 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <button class="btn btn-linelgray small30" type="button" onclick="openDlvTrcUrlPup('20220513295854', '1')"><span>배송조회</span></button>
-
-
-
-
-
-
-
-                                    <button class="btn btn-linelgray small30" type="button" onclick="openItemEvalPopup('2137807436', '00008', '20220513295854')"><span>만족도평가</span></button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                               <div class="btngroup">
+                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>
+<%--                                    openDlvTrcUrlPup('20220513295854', '1')--%>
+                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>
+<%--                                    openItemEvalPopup('2137807436', '00008', '20220513295854')--%>
                                 </div>
-
-
-
                             </dd> <!-- //.btn-col2 -->
-
-                            <!-- 선물하기 합주문 - 배송정보 나뉘는것 방지 -->
-
-
-
-
-
-
-
-                            <!-- 2020.12.21 선물하기 케이스 UI변경(상단 주소지 정보에서 보여주던 방식에서 스토어픽 형태로 보여주는 방식으로 변경한다.) -->
-
-
-
-
                         </dl>
                     </div> <!-- //.order-list -->
-                    <!-- // 주문접수/추가구상품 있는 경우 -->
-
-                    <!-- 스토어픽 조건이 아닌경우 처리한다. -->
-
 
                     <h3 class="title22">배송지</h3>
 
-
-
-
-
                     <div class="address-box" data-dstnseq="0000000002">
-                        <form name="updateDstnAdr" method="post">
-                            <input type="hidden" name="ordNo" value="20220513295854">
-                            <input type="hidden" name="dstnSeq" value="0000000002">
-                            <input type="hidden" name="rcvCustNm">
-                            <!-- 같은 배송지에 여러 상품이 있는 경우 주소변경 시 같이 변경되도록... 2020.12.30 김기호 -->
-
-                            <!-- as-is와 동일하게 주문취소 건은 주소지 변경에서 제외 [2021.01.20 추가] -->
-                            <input type="hidden" name="ordPtcSeqArr" value="1">
-
-
-                            <input type="hidden" name="adrKndGbcd">
-                            <input type="hidden" name="dstnPostNo">
-                            <input type="hidden" name="dstnPostNoSum">
-                            <input type="hidden" name="dstnBaseAdr">
-                            <input type="hidden" name="dstnPtcAdr">
-                            <input type="hidden" name="dstnTela">
-                            <input type="hidden" name="dstnTels">
-                            <input type="hidden" name="dstnTeli">
-                            <input type="hidden" name="dstnHpIdntNo">
-                            <input type="hidden" name="dstnHpIntmNo">
-                            <input type="hidden" name="dstnHpBckNo">
-                            <input type="hidden" name="dawnDlvYn" value="N">
-                            <input type="hidden" name="dsrvCoMsg">
-                            <input type="hidden" name="halfDlvYn" value="N">
-                        </form>
                         <div class="top-box">
 
-                            <p class="name" name="rcvCustNm">김민수
-                                <!-- span class="tag red">기본 배송지</span 2020.12.09 Hmall기획에서 제거 요청 -->
-                            </p>
+                            <p class="name" name="rcvCustNm">${list.USER_ADDRESS_NAME}</p>
                             <!-- 일반주소 -->
-                            <!-- <p class="add" name="dstnAdr">서울특별시 중랑구  망우로71가길 11-5(망우동, 어반캐슬) 203호</p> -->
-                            <p class="add" name="dstnAdr">(02060) 서울특별시 중랑구  망우로71가길 11-5(망우동, 어반캐슬)<br>203호</p>
+                            <p class="add" name="dstnAdr">${list.USER_ADDRESS_ADDRESS1} ${list.USER_ADDRESS_ADDRESS2}<br>${list.USER_ADDRESS_ADDRESS3}</p>
 
-
-                            <p class="tel" name="hpNo">010-9398-9130</p>
+                            <p class="tel" name="hpNo">${list.USER_ADDRESS_PHONE_NUM}</p>
                             <!-- 전화번호2 추가[2021.01.06] -->
 
-
-
                             <p class="tel" name="telNo"></p>
-
-
-
-                            <!-- 주소 변경 버튼 조회 기준 변경[2021.01.20] -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
 
                         <div class="bottom-box">
                             <dl>
                                 <dt>주문자명</dt>
-                                <dd name="ordCustNm">김민수</dd>
+                                <dd name="ordCustNm">${list.ORDER_USER_NAME}</dd>
                             </dl>
-
-
-
                             <dl>
                                 <dt>배송메모</dt>
                                 <dd name="dsrvCoMsg">
-
-
+                                    배송메모 컬럼 있어야 할 듯
                                 </dd>
                             </dl>
-
-
                         </div>
                     </div> <!-- //.address-box -->
-
-
-
-
-
-
-
-
-
-
-
 
                     <h3 class="title22">결제 정보</h3>
                     <div class="pay-info-box">
@@ -453,12 +158,7 @@
                                 <dl class="between top">
                                     <dt>총 주문금액</dt>
                                     <dd>
-
-
-
-
-
-                                        <strong>15,000</strong>원
+                                        <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
 
 
                                     </dd>
@@ -468,12 +168,7 @@
                                     <dt>주문금액</dt>
                                     <dd>
 
-
-
-
-
-                                        <strong>15,000</strong>원
-
+                                        <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
 
                                     </dd>
                                 </dl>
@@ -485,7 +180,7 @@
                                 <span class="minus-icon"><i class="icon"></i></span>
                                 <dl class="between top">
                                     <dt>할인금액</dt>
-                                    <dd><strong><span class="sumjH">0</span></strong>원</dd>
+                                    <dd><strong>${list.PRODUCT_COST * list.OP_COUNT - list.ORDER_TOTAL_COST}</strong>원</dd>
                                 </dl>
 
                             </li>
@@ -494,72 +189,35 @@
                                 <dl class="between top">
                                     <dt>잔여 결제 금액</dt>
                                     <dd class="result">
-
-
-
-
-
-                                        <strong>15,000</strong>원
-
-
+                                        <strong>${list.ORDER_TOTAL_COST}</strong>원
                                     </dd>
                                 </dl>
-
-
-
 
 
                                 <dl class="between">
                                     <dt>결제하신 금액</dt>
-                                    <dd><strong>15,000</strong>원</dd>
+                                    <dd><strong>${list.ORDER_TOTAL_COST}</strong>원</dd>
                                 </dl>
-
 
                                 <dl class="between">
                                     <dt>결제하실 금액</dt>
                                     <dd>
-
-
-
-
-
                                         <strong>0</strong>원
-
-
                                     </dd>
                                 </dl>
 
-
-
-
-
                                 <div class="detail-info">
                                     <!-- 클래스 sumj3Tip 와 sumj3Tip2는 상항에 따라서 보여줬다가 숨겨줬다가 하시면 됩니다.SB 99, 133페이지참고. -->
-
-
                                 </div> <!-- //.detail-info -->
 
 
                             </li>
                         </ul>
 
-
-
                         <ul class="col">
-
-
-
-
-
-
-
-
 
                             <li> <!-- 20200928 결제수단 영역 원복 -->
                                 <h4 class="pay-tit">결제 수단</h4>
-
-
-
 
                                 <div class="paytype">
                                     <!-- [kdh : 부분취소 적용] 20160108 s ========================================-->
@@ -579,41 +237,17 @@
 
                                     <dl class="list">
 
-
-
                                         <dt>KB국민은행</dt>
                                         <dd><strong>130290-71-205907</strong>
                                             <div class="btngroup">
-                                                <button type="button" class="btn btn-linelgray small25" onclick="copyEcrytFncIstnNo(this);"><span>복사</span></button>
+                                                <button type="button" class="btn btn-linelgray small25" onclick=""><span>복사</span></button>
+<%--                                                copyEcrytFncIstnNo(this);--%>
                                             </div>
                                         </dd>
                                         <dt>입금자명</dt>
                                         <dd>김민수</dd>
 
-
-
                                     </dl>
-
-
-
-
-
-
-                                    <!-- TODO 곽희섭 20170328 통합포인트 추가 시작 -->
-
-                                    <!-- TODO 곽희섭 20170328 통합포인트 추가 끝 -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -624,19 +258,13 @@
                             </li>
 
 
-
-                            <!-- 20140306 - 적립예정 포인트 -->
-                            <!-- TODO 곽희섭 20170511 H포인트를 적립금으로 수정 -->
-
                             <li> <!-- // 20200928 결제수단 영역 원복 -->
                                 <h4 class="pay-tit">적립예정 포인트</h4>
 
                                 <dl class="between">
-                                    <dt>H.Point</dt>
-                                    <dd><strong>10</strong>원</dd>
+                                    <dt>Point</dt>
+                                    <dd><strong>${list.ORDER_POINT}</strong>원</dd>
                                 </dl>
-
-
                             </li>
 
                         </ul>
@@ -645,77 +273,33 @@
 
 
 
-                    <h3 class="title22">결제/취소 내역
-                        <div class="btngroup abs">
+<%--                    <h3 class="title22">결제/취소 내역--%>
+<%--                        <div class="btngroup abs">--%>
 
-                            <button id="btnCashReceipt" class="btn btn-linelgray small34" onclick="openCashRcptPrntInfPop(&quot;2022.05.13&quot;,&quot;2022.05.13&quot;,&quot;&quot;,&quot;&quot;,&quot;20220513295854&quot;,&quot;소득공제&quot;)" data-delyhopeyn="자진발급신청가능"><span>현금영수증 조회</span></button>
-
-
-
-
-                        </div>
-                    </h3>
+<%--                            <button id="btnCashReceipt" class="btn btn-linelgray small34"  data-delyhopeyn="자진발급신청가능"><span>현금영수증 조회</span></button>--%>
+<%--&lt;%&ndash;                            onclick="openCashRcptPrntInfPop(&quot;2022.05.13&quot;,&quot;2022.05.13&quot;,&quot;&quot;,&quot;&quot;,&quot;20220513295854&quot;,&quot;소득공제&quot;)"&ndash;%&gt;--%>
 
 
+
+<%--                        </div>--%>
+<%--                    </h3>--%>
 
 
 
 
+<%--                    <div class="history-box">--%>
+<%--                        <p class="ctypo15 bold">[결제] 2022. 05. 13</p>--%>
+<%--                        <ul>--%>
 
+<%--                            <li>--%>
+<%--                                <div class="tit-wrap">무통장입금&nbsp;[입금계좌 KB국민은행 : 130290-71-205907]</div>--%>
+<%--                                <div class="txt-wrap"><strong>15,000</strong>원</div>--%>
+<%--                            </li>--%>
+<%--                --%>
+<%--                            <!-- TODO 곽희섭 20170328 통합포인트 추가 시작 -->--%>
 
-                    <div class="history-box">
-                        <p class="ctypo15 bold">[결제] 2022. 05. 13</p>
-                        <ul>
-
-
-
-
-
-                            <li>
-                                <div class="tit-wrap">무통장입금&nbsp;[입금계좌 KB국민은행 : 130290-71-205907]</div>
-                                <div class="txt-wrap"><strong>15,000</strong>원</div>
-                            </li>
-
-
-
-
-
-                            <!-- TODO 곽희섭 20170328 통합포인트 추가 시작 -->
-
-                            <!-- TODO 곽희섭 20170328 통합포인트 추가 시작 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </ul>
-                    </div>
-
-
-
-
-
+<%--                        </ul>--%>
+<%--                    </div>--%>
 
 
 
@@ -752,16 +336,16 @@
                             <li class="non-dot">
                                 <strong class="title16 color-666">1:1상담신청</strong>
 
-                                <button type="button" class="btn btn-linelgray small25" name="pop820x685" onclick="openCnslAcptPupAll(20220513295854);"><span>1:1 게시판상담</span></button>
+                                <button type="button" class="btn btn-linelgray small25" name="pop820x685" onclick=""><span>1:1 게시판상담</span></button>
+<%--                                openCnslAcptPupAll(20220513295854);--%>
 
 
 
 
 
 
-
-                                <button type="button" class="btn btn-linelgray small25" name="pop820x685" onclick="sellerTalkOpen('1')"><span>1:1: 채팅상담</span></button>
-
+                                <button type="button" class="btn btn-linelgray small25" name="pop820x685" onclick=""><span>1:1: 채팅상담</span></button>
+<%--                                sellerTalkOpen('1')--%>
 
 
 
@@ -773,5 +357,5 @@
             </div> <!-- // .contents -->
         </div> <!-- //.gird-l2x -->
     </div> <!-- //.container -->
-
+    </c:forEach>
 </main>

@@ -30,16 +30,6 @@ public class OrderController {
 //        mav.setViewName("order.basktList");
 //        return mav;
 //    }
-//@RequestParam("user_seq")Long user_seq
-
-
-
-//    @GetMapping("od")
-//    public ModelAndView openOrderPage(){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("order.orderPage");
-//        return mav;
-//    }
 
 
     @ResponseBody
@@ -120,7 +110,6 @@ public class OrderController {
 //
 //
 //    }
-
         @PostMapping("orderComplete")
         public String sendOrderData(@ModelAttribute("vo") OrderVO vo, Model model) throws Exception {
             log.info("데이터 이동 확인");
@@ -152,8 +141,6 @@ public class OrderController {
                 log.info(discount);
                 return discount;
             }
-
         }
-
 
 }

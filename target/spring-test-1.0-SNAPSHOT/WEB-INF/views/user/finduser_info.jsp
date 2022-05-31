@@ -21,6 +21,7 @@
                     </dl>
                     <!--//tit-wrap-->
                     <!--아코디언-->
+
                     <form id="findIdForm" name="findIdForm" method="post" action="find_id">
                         <div class="accparent">
                             <!--회원정보로찾기-->   <!--h3/accordion-panel에 selected 시 열림-->
@@ -43,6 +44,7 @@
                                 <!-- fail일 경우 메세지 출력-->
                                 <p class="failed-msg" id="alertPerson" style="display:none;">
                                     <i class="icon error"></i>
+
                                 </p>
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                         <input type="submit" id="find_id_with_birth" class="btn btn-default medium" onclick="location.href='${contextPath}/user/find_id'"/>
@@ -63,3 +65,4 @@
     <%--    })--%>
     <%--})--%>
 </script>
+

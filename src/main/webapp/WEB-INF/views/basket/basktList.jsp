@@ -2351,38 +2351,12 @@
                                 ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 적립금: ${pinfo.userVO.no}
                             </sec:authorize>
-
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal" var="pinfo" />
+                                ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                적립금: ${pinfo.userVO.no}
+                            </sec:authorize>
                             <div class="cart-body">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <!-- 품절체크 -->
-
-
-
-
-
-
-
-
-
-
-
 
                                 <form action="#" name="totBasktForm" method="post" onsubmit="return false;">
 

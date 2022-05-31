@@ -10,8 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.CategoryVO;
+import org.team2.domain.ImageVO;
 import org.team2.domain.ProductVO;
+import org.team2.service.ImageService;
 import org.team2.service.ProductService;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class ProductController {
 
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
+
+    @Setter(onMethod_ = @Autowired)
+    private ImageService imageService;
 
 
     // restAPI
@@ -94,13 +98,19 @@ public class ProductController {
     public ModelAndView detail(@RequestParam Long product_seq){
         log.info("product controller detail start!!");
 
+        ProductVO productVO = productService.getOne(product_seq);
+        List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
+
+        log.info(productVO.getProduct_name());
+
         ModelAndView mav = new ModelAndView();
-        mav.addObject("product_seq", product_seq);
+        mav.addObject("productVO", productVO);
+        mav.addObject("imageVOList",  allByProductSeq);
+
         mav.setViewName("product.detail");
 
         return mav;
     }
-
     @GetMapping("openOrderListPup")
     public ModelAndView openOrderListPup(){
         log.info("orderList Popup 접속");
@@ -149,6 +159,13 @@ public class ProductController {
         return mav;
     }
 
+    @RequestMapping("/all")
+    public ModelAndView all(){
+        log.info("product controller all start!!");
 
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("product.all");
 
+        return mav;
+    }
 }
