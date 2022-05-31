@@ -5321,7 +5321,7 @@ $(function () {
 
 })
 
-$(function setCategory(url) {
+$(function setCategory() {
     console.log("카테고리 세팅")
     $.ajax({
         type: "get"
@@ -5329,6 +5329,7 @@ $(function setCategory(url) {
         , dataType: "json"
         , crossDomain: true
         , success: function (data, textStatus, jqXHR) {
+            console.log(data)
             $("#categoryArea").append(
                 `
                 <div class="category-menu-wrap">

@@ -1399,8 +1399,8 @@
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 시작-->
 
 
-                                    <button class="btn btn-linelgray large btn-cart" onclick="addCart(this);">
-                                        <span>장바구니</span></button>
+                                    <button class="btn btn-linelgray large btn-cart">
+                                        <a href="${contextPath}/basket/basketList"><span>장바구니</span></a></button>
 
 
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 끝-->
