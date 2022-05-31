@@ -25,14 +25,7 @@
     <script src="//image.hmall.com/p/js/co/reDirectExceptUrlList.js"></script><!-- 로그인버튼 click 리다이렉트 예외 url리스트  -->
     <script src="/resources/js/script-for-Top2.js"></script>
     <script src="/resources/js/script-for-Top1.js"></script>
-    <style>
-        .container {
-            margin-top: 10px;
-        }
-        .container.footer {
-            width: 100%;
-        }
-    </style>
+
 </head>
 <body>
 <div class="${divclassname}">

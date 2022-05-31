@@ -66,7 +66,7 @@ public class MypageController {
         return mav;
     }
 
-    @GetMapping("mypageOrderDetail")
+    @GetMapping("mypageOrderDetail/{no}/{odno}")
     public ModelAndView orderDetail(@PathVariable long no, @PathVariable  long odno) throws Exception {
         log.info("detail test");
 
@@ -116,11 +116,15 @@ public class MypageController {
 
         log.info("coupon test");
         ModelAndView mav = new ModelAndView();
-        List<Map<String,Object>> list = mypageService.couponList(no);
-        log.info(list);
-        mav.addObject("list", list);
-        mav.setViewName("mypage.mypageCoupon");
-
+        try {
+            List<Map<String,Object>> list = mypageService.couponList(no);
+            mav.addObject("list", list);
+            mav.setViewName("mypage.mypageCoupon");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", e.getMessage());
+            mav.setViewName("accessError");
+        }
         return mav;
     }
 
