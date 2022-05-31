@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.team2.domain.ProductVO;
 import org.team2.domain.enums.*;
 
+import java.util.Map;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
@@ -30,6 +32,13 @@ public class ProductMapperTest {
         ProductVO vo = mapper.getOne(targetProductSeq);
         log.info(vo.getProduct_name());
         log.info(vo);
+    }
+
+    @Test
+    public void getProductInfo(){
+        Map<String, String> map = mapper.getProductInfo(81L);
+        log.info(map);
+
     }
 
     @Test

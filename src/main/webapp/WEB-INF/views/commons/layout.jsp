@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -10,7 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/video-js.css"><!-- 공통 css -->
-    <link rel="stylesheet" href="<tiles:getAsString name = "dynamic_css"/>"/>
+<%--    <link rel="stylesheet" type="text/css" href="/resources/css/product.css"><!-- 공통 css -->--%>
+<%--    <link rel="stylesheet" type="text/css" href="<tiles:getAsString name = "dynamic_css"/>"/>--%>
 
     <script src="//image.hmall.com/p/js/co/jquery-3.4.1.min.js"></script><!-- jQuery Plugin -->
     <script src="//image.hmall.com/p/js/co/jquery.easing.min.js"></script><!-- jQuery UI Effect -->
@@ -26,6 +28,20 @@
     <script src="/resources/js/script-for-Top2.js"></script>
     <script src="/resources/js/script-for-Top1.js"></script>
 
+    <style>
+        .container {
+            margin-top: 10px;
+        }
+        .container.footer {
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/resources/css/product.css">
+    <script type="text/javascript" src="//image.hmall.com/p/js/co/jquery.form.js"></script>
+    <script type="text/javascript" src="//image.hmall.com/p/js/pd/product.js"></script>
+    <link href="//image.hmall.com/p/css/co/video-js.css?ver=053015" rel="stylesheet">
+    <script src="//image.hmall.com/p/js/co/video.js?ver=053015"></script>
+    <script src="//image.hmall.com/p/js/co/videojs-http-streaming.js?ver=053015"></script>
 </head>
 <body>
 <div class="${divclassname}">

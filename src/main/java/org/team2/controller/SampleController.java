@@ -13,6 +13,6 @@ public class SampleController {
     @RequestMapping("")
     public String main(){
         log.info("main controller");
-        return "main.main";
+        return "hyundai.homeshoping";
     }
 }
