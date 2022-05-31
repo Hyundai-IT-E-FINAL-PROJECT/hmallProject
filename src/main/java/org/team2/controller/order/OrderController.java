@@ -29,13 +29,6 @@ public class OrderController {
     private OrderService orderService;
     private CouponService couponService;
 
-    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
-    @RequestMapping("")
-    public ModelAndView order(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("order.basktList");
-        return mav;
-    }
 //@RequestParam("user_seq")Long user_seq
     @GetMapping("od")
     public ModelAndView sendOrderData() throws Exception {

@@ -114,7 +114,7 @@
             <ul>
                 <li>
                     <a class="cart" ga-category="헤더" ga-action="장바구니"
-                       href="${contextPath}/order">
+                       href="${contextPath}/basket/basketList">
                         <span>장바구니</span>
                     </a>
                 </li>
