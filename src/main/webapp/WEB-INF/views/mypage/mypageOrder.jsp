@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <script>
@@ -148,7 +149,7 @@
                                             <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${list.ORDER_SEQ})</span>
                                         </div>
                                         <div class="abs">
-                                            <a href="/mypageOrderDetail" class="btn alink"><span>주문/배송 상세</span></a>
+                                            <a href="/mypageOrderDetail/${pinfo.userVO.no}/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                         </div>
                                     </dt>
     <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>

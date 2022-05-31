@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="abs">
-                                    <a href="/mypageOrderDetail" class="btn alink"><span>주문/배송 상세</span></a>
+                                    <a href="/mypageOrderDetail/${pinfo.userVO.no}/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                 </div>
 
                             </dt>

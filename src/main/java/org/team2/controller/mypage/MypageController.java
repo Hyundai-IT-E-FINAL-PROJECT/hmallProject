@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +34,7 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
-    @GetMapping("/mypage/{no}")
+    @RequestMapping("/mypage/{no}")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(@PathVariable long no) throws Exception {
         log.info("tiles test");
@@ -40,6 +43,7 @@ public class MypageController {
         try {
             List<Map<String,Object>> list = mypageService.recentOrders(no);
             mav.addObject("list", list);
+            mav.addObject("divclassname", "wrap mp-main");
             log.info(list);
             mav.setViewName("mypage.mypageMain");
             return mav;
@@ -62,13 +66,23 @@ public class MypageController {
         return mav;
     }
 
-    @RequestMapping("mypageOrderDetail")
-    public ModelAndView orderDetail() {
+    @GetMapping("mypageOrderDetail")
+    public ModelAndView orderDetail(@PathVariable long no, @PathVariable  long odno) throws Exception {
         log.info("detail test");
 
+        log.info(no + " " + odno);
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypage.mypageOrderDetail");
 
+        try {
+            List<Map<String, Object>> list = mypageService.detailOrders(no, odno);
+            mav.addObject("list", list);
+            log.info(list);
+            mav.setViewName("mypage.mypageOrderDetail");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", e.getMessage());
+            mav.setViewName("accessError");
+        }
         return mav;
     }
 
@@ -90,18 +104,21 @@ public class MypageController {
             mav.setViewName("mypage.mypageOrder");
         }
         catch (Exception e) {
-            mav.addObject("msg", "마이페이지 에러");
+            mav.addObject("msg", e.getMessage());
             mav.setViewName("accessError");
         }
         return mav;
     }
 
 
-    @RequestMapping("mypageCoupon")
-    public ModelAndView coupon() {
-        log.info("coupon test");
+    @RequestMapping("mypageCoupon/{no}")
+    public ModelAndView coupon(@PathVariable long no) throws Exception {
 
+        log.info("coupon test");
         ModelAndView mav = new ModelAndView();
+        List<Map<String,Object>> list = mypageService.couponList(no);
+        log.info(list);
+        mav.addObject("list", list);
         mav.setViewName("mypage.mypageCoupon");
 
         return mav;

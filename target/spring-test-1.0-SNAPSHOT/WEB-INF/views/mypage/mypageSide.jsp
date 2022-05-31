@@ -23,9 +23,9 @@
             <li>
                 <a href="javascript:;">나의 혜택</a>
                 <ul class="sub-list">
-                    <li><a href="/mypagePoint">적립금</a></li>
-                    <li><a href="/mypagePoint">예치금</a></li>
-                    <li><a href="/mypageCoupon">쿠폰</a></li>
+                    <li><a href="/mypagePoint/${pinfo.userVO.no}">적립금</a></li>
+                    <li><a href="/mypagePoint/${pinfo.userVO.no}">예치금</a></li>
+                    <li><a href="/mypageCoupon/${pinfo.userVO.no}">쿠폰</a></li>
                 </ul>
             </li>
             <li>
