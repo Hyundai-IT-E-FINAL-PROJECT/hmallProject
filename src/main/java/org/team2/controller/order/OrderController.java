@@ -34,13 +34,13 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "od", method = RequestMethod.GET)
-    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
+    public ModelAndView sendOrderData() throws Exception {
+//    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
         log.info("데이터 이동");
-        log.info(user_seq);
-        List<CouponVO> couponList=couponService.getCouponList(user_seq);
+        List<CouponVO> couponList=couponService.getCouponList(41L);
         log.info(couponList);
-        mav.addObject("user_seq", user_seq);
+        mav.addObject("user_seq", 41);
         mav.addObject("couponList", couponList);
         mav.setViewName("order.orderPage");
         return mav;
