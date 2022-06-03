@@ -118,13 +118,11 @@
                         <span>장바구니</span>
                     </a>
                 </li>
-                <sec:authentication property="principal" var="pinfo"/>
-                <sec:authorize access="isAnonymous()">
-                    <li><a class="mypage" href="/customLogin"><span>마이페이지</span></a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li><a class="mypage" href="/mypage/${pinfo.userVO.no}"><span>마이페이지</span></a></li>
-                </sec:authorize>
+
+
+
+                    <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
+
                 <li>
                     <a href="javascript:;" class="recently" id="recentlyImg"
                        onclick="openRecentShopping(); return false;">
@@ -192,6 +190,7 @@
                 <h2 class="hiding">유틸메뉴</h2>
                 <!-- 로그인 전 -->
                 <ul style="display: flex;">
+                    <sec:authentication property="principal" var="pinfo"/>
                     <sec:authorize access="isAnonymous()">
                         <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
                         <li><a href="${contextPath}/user/signup">회원가입</a></li>

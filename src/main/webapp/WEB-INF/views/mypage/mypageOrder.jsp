@@ -43,7 +43,7 @@
             <%@ include file="mypageSide.jsp" %>
             <sec:authentication property="principal" var="pinfo" />
 
-                 <form id="searchForm" name="searchForm" action="/mypageOrder/${pinfo.userVO.no}" method="get">
+                 <form id="searchForm" name="searchForm" action="/mypageOrder" method="get">
                     <input type='hidden' name='seType' 		    id='seType' 		value="" />
                     <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'			value="" />
                     <input type='hidden' name='ordEndDt' 		id='ordEndDt' 			value="" />
@@ -149,7 +149,7 @@
                                             <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${list.ORDER_SEQ})</span>
                                         </div>
                                         <div class="abs">
-                                            <a href="/mypageOrderDetail/${pinfo.userVO.no}/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                            <a href="/mypageOrderDetail/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                         </div>
                                     </dt>
     <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>

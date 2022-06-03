@@ -1020,7 +1020,7 @@
                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
                                             <em class="rate" aria-label="할인율">3%</em>
                                         <p class="discount" aria-label="할인가">
-                                            <em>
+                                            <em id="product-discount">
                                                 <fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/>
                                             </em>
                                             <b>원</b>
@@ -1362,11 +1362,7 @@
 
                                     <div class="price-wrap">
                                         <p class="total-price">
-
-
-                                            <strong>119,600</strong>원
-
-
+                                            <strong><fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/></strong>원
                                         </p>
                                     </div>
                                 </div>
@@ -1403,8 +1399,8 @@
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 시작-->
 
 
-                                    <button class="btn btn-linelgray large btn-cart" onclick="addCart(this);">
-                                        <span>장바구니</span></button>
+                                    <button class="btn btn-linelgray large btn-cart">
+                                        <a href="${contextPath}/basket/basketList"><span>장바구니</span></a></button>
 
 
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 끝-->

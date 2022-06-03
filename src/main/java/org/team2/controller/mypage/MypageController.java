@@ -2,24 +2,24 @@ package org.team2.controller.mypage;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.CustomUser;
+import org.team2.domain.UserVO;
 import org.team2.service.MypageService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -34,16 +34,17 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
-    @RequestMapping("/mypage/{no}")
+    @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(@PathVariable long no) throws Exception {
+    public ModelAndView mypage(Principal principal) throws Exception {
+
         log.info("tiles test");
         ModelAndView mav = new ModelAndView();
-        log.info(no);
+
         try {
-            List<Map<String,Object>> list = mypageService.recentOrders(no);
+            List<Map<String,Object>> list = mypageService.recentOrders(principal.getName());
             mav.addObject("list", list);
-            mav.addObject("divclassname", "wrap mp-main");
+            mav.addObject("className", "wrap mp-main");
             log.info(list);
             mav.setViewName("mypage.mypageMain");
             return mav;
@@ -61,21 +62,24 @@ public class MypageController {
         log.info("level test");
 
         ModelAndView mav = new ModelAndView();
+        mav.addObject("className", "wrap wing-none mp-membership");
         mav.setViewName("mypage.mypageLevel");
 
         return mav;
     }
 
-    @GetMapping("mypageOrderDetail")
-    public ModelAndView orderDetail(@PathVariable long no, @PathVariable  long odno) throws Exception {
+    @GetMapping("mypageOrderDetail/{odno}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView orderDetail(@PathVariable  long odno, Principal principal) throws Exception {
         log.info("detail test");
 
-        log.info(no + " " + odno);
+        log.info(odno);
         ModelAndView mav = new ModelAndView();
 
         try {
-            List<Map<String, Object>> list = mypageService.detailOrders(no, odno);
+            List<Map<String, Object>> list = mypageService.detailOrders(principal.getName(), odno);
             mav.addObject("list", list);
+            mav.addObject("className", "wrap order-list-page");
             log.info(list);
             mav.setViewName("mypage.mypageOrderDetail");
         }
@@ -87,8 +91,9 @@ public class MypageController {
     }
 
     // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
-   @RequestMapping("mypageOrder/{no}")
-    public ModelAndView oreder(@PathVariable long no, HttpServletRequest req) {
+   @RequestMapping("mypageOrder")
+   @PreAuthorize("isAuthenticated()")
+    public ModelAndView oreder(Principal principal, HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
 
         String ordStrtDt = req.getParameter("ordStrtDt");
@@ -97,9 +102,10 @@ public class MypageController {
         String itemNm =  req.getParameter("itemNm");
 
         try {
-            List<Map<String,Object>> list = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
+            List<Map<String,Object>> list = mypageService.periodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm);
             mav.addObject("list", list);
             mav.addObject("seType", seType);
+            mav.addObject("className", "wrap mp-order");
             log.info(list);
             mav.setViewName("mypage.mypageOrder");
         }
@@ -111,21 +117,27 @@ public class MypageController {
     }
 
 
-    @RequestMapping("mypageCoupon/{no}")
-    public ModelAndView coupon(@PathVariable long no) throws Exception {
+    @RequestMapping("mypageCoupon")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView coupon(Principal principal) throws Exception {
 
         log.info("coupon test");
         ModelAndView mav = new ModelAndView();
-        List<Map<String,Object>> list = mypageService.couponList(no);
-        log.info(list);
-        mav.addObject("list", list);
-        mav.setViewName("mypage.mypageCoupon");
-
+        try {
+            List<Map<String,Object>> list = mypageService.couponList(principal.getName());
+            mav.addObject("list", list);
+            mav.addObject("className", "wrap mp-coupon");
+            mav.setViewName("mypage.mypageCoupon");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", e.getMessage());
+            mav.setViewName("accessError");
+        }
         return mav;
     }
 
     @RequestMapping("mypagePoint")
-    public ModelAndView point() {
+    public ModelAndView point(Principal principal) {
         log.info("point test");
 
         ModelAndView mav = new ModelAndView();
@@ -158,6 +170,7 @@ public class MypageController {
     }
 
     @RequestMapping("mypageUpdate")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView update() {
         log.info("update test");
 
@@ -169,6 +182,7 @@ public class MypageController {
 
 
     @RequestMapping("mypageDelivery")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView delivery() {
         log.info("delivery test");
 
@@ -179,11 +193,23 @@ public class MypageController {
     }
 
     @RequestMapping("mypageLeave")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView drop() {
         log.info("update test");
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("mypage.mypageLeave");
+
+        return mav;
+    }
+
+    @RequestMapping("mypageDeposit")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView deposit() {
+        log.info("deposit test");
+
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("mypage.mypageDeposit");
 
         return mav;
     }

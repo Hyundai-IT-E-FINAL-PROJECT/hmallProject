@@ -11,8 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class SampleController {
 
     @RequestMapping("")
-    public String main(){
+    public ModelAndView main(){
         log.info("main controller");
-        return "hyundai.homeshoping";
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("main.main");
+        mv.addObject("className", "wrap hyundai-homeshoping");
+
+        return mv;
     }
 }
