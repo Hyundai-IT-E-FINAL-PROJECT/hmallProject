@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService{
         userMapper.find_id(userVO);
         return userMapper.find_id(userVO);
     }
+
+    @Override
+    public UserVO readPoint(Long user_seq) throws Exception {
+       return userMapper.readPoint(user_seq);
+    }
 }

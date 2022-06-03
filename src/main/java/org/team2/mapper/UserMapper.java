@@ -13,4 +13,6 @@ public interface UserMapper {
     void insertAddress(@Param("AddressVO")AddressVO addressVO, @Param("userNum") int userNum) throws Exception;
 
     UserVO find_id(UserVO userVO) throws Exception;
+
+    public UserVO readPoint(Long user_seq) throws Exception;
 }

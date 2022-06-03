@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.CouponVO;
 import org.team2.domain.OrderVO;
+import org.team2.domain.UserVO;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
+import org.team2.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -22,6 +25,7 @@ public class OrderController {
 
     private OrderService orderService;
     private CouponService couponService;
+    private UserService userService;
 
 //    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
 //    @RequestMapping("")
@@ -34,32 +38,23 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "od", method = RequestMethod.GET)
-    public ModelAndView sendOrderData() throws Exception {
+    public ModelAndView sendOrderData(Principal principal) throws Exception {
 //    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
+        //예치금, 적립금도 불러오기
+        Long user_seq=Long.valueOf(principal.getName());
+        mav.addObject("className","wrap order-main");
         log.info("데이터 이동");
-        List<CouponVO> couponList=couponService.getCouponList(41L);
-        log.info(couponList);
-        mav.addObject("user_seq", 41);
+        List<CouponVO> couponList=couponService.getCouponList(user_seq);
+        UserVO user=userService.readPoint(user_seq);
+        mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
+        mav.addObject("userPoint", user.getUser_point());
+        mav.addObject("depositPoint",user.getUser_deposit());
         mav.setViewName("order.orderPage");
         return mav;
     }
 
-//    @GetMapping("od")
-//    public ModelAndView sendOrderData() throws Exception {
-//        ModelAndView mav = new ModelAndView();
-//        log.info("데이터 이동");
-//        mav.setViewName("order.orderPage");
-////      user_sequence를 받아와야 쿠폰 내역을 불러올 수 있음.
-////      log.info("user_seq: "+user_seq);
-//        List<CouponVO> couponList=couponService.getCouponList(41L);
-//        log.info(couponList);
-//        mav.addObject("couponList", couponList);
-//
-//        return mav;
-//    }
-//
     //수정중
 //    @PostMapping( "od")
 //    public ModelAndView sendOrderData (@RequestParam Map<String, String>map) throws Exception {

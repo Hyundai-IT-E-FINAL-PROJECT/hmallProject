@@ -8,5 +8,7 @@ public interface UserService {
 
     UserVO find_id(UserVO userVO) throws Exception;
 
+    UserVO readPoint(Long user_seq) throws Exception;
+
 //    public int idCheck(String id) throws  Exception;
 }
