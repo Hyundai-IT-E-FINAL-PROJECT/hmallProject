@@ -212,7 +212,7 @@
                                                 <div class="wrap_inp">
                                                     <label for="datepicker" class="inp_tit">생년월일<span class="nec">*</span></label>
                                                     <div class="inp_bundle registerPwd1">
-                                                       <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" placeholder="생년월일" />
+                                                       <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" />
                                                    </div>
                                                 </div>
 

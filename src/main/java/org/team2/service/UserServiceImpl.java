@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.team2.domain.UserVO;
 import org.team2.mapper.UserMapper;
 
+import java.util.Date;
+import java.util.List;
+
 @Log4j
 @Service
 @WebAppConfiguration
@@ -24,6 +27,10 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder pwencoder;
 
 
+    @Override
+    public void myPage_newBirthday(Date user_birth, String user_id) throws Exception {
+        userMapper.myPage_newBirthday(user_birth,user_id);
+    }
 
     @Transactional
     @Override
@@ -67,5 +74,23 @@ public class UserServiceImpl implements UserService{
         userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
         userMapper.newPassword(userVO);
         return userMapper.newPassword(userVO);
+    }
+
+    @Override
+    public UserVO myPage_pwUpate(UserVO userVO) throws Exception {
+        userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
+        userMapper.myPage_pwUpdate(userVO);
+        return userMapper.myPage_pwUpdate(userVO);
+    }
+
+    @Override
+    public void myPage_newNickname(UserVO userVO) throws Exception {
+        userMapper.myPage_newNickname(userVO);
+    }
+
+    @Override
+    public List<UserVO> getUserinfo(long no) throws Exception {
+        userMapper.getUserinfo(no);
+        return userMapper.getUserinfo(no);
     }
 }

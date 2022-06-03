@@ -3,13 +3,20 @@ package org.team2.controller.mypage;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
+<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+=======
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+>>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +24,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
 import org.team2.service.MypageService;
+import org.team2.service.UserService;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+=======
+import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+>>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
 import java.util.List;
 import java.util.Map;
 
@@ -32,13 +46,25 @@ public class MypageController {
     private MypageService mypageService;
 
     @Setter(onMethod_ = @Autowired)
+    private UserService userService;
+
+    @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
+<<<<<<< HEAD
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(Principal principal) throws Exception {
 
+=======
+    public Date date;
+
+    @GetMapping("/mypage/{no}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView mypage(@PathVariable long no, @AuthenticationPrincipal UserVO vo) throws Exception {
+>>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
         log.info("tiles test");
+        log.info(vo.getNo());
         ModelAndView mav = new ModelAndView();
 
         try {
@@ -73,7 +99,18 @@ public class MypageController {
     public ModelAndView orderDetail(@PathVariable  long odno, Principal principal) throws Exception {
         log.info("detail test");
 
+<<<<<<< HEAD
         log.info(odno);
+=======
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("mypage.mypageOrderDetail");
+
+        return mav;
+    }
+
+    @RequestMapping("mypageOrder/{no}")
+    public ModelAndView oreder(@PathVariable int no) throws Exception {
+>>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
         ModelAndView mav = new ModelAndView();
 
         try {
@@ -198,11 +235,12 @@ public class MypageController {
         log.info("update test");
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypage.mypageLeave");
+        mav.setViewName("mypageLeave.mypageLeave");
 
         return mav;
     }
 
+<<<<<<< HEAD
     @RequestMapping("mypageDeposit")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView deposit() {
@@ -212,5 +250,63 @@ public class MypageController {
         mav.setViewName("mypage.mypageDeposit");
 
         return mav;
+=======
+    @ResponseBody
+    @PostMapping("myPage_pwUpdate")
+    public String myPage_pwUpate(@RequestParam("user_pw") String user_pw, @RequestParam("user_id") String user_id, UserVO userVO) throws Exception{
+        log.info("비번 변경 도착");
+        log.info(user_id);
+        log.info(user_pw);
+        userService.myPage_pwUpate(userVO);
+        return "1";
+    }
+
+    @ResponseBody
+    @PostMapping("myPage_newNickname")
+    public ResponseEntity<String> myPage_newNickname(@RequestParam("user_nickname") String user_nickname, @RequestParam("user_id") String user_id,
+                                   UserVO userVO) throws Exception{
+        ResponseEntity<String> entity = null;
+        userVO.setUser_nickname(user_nickname);
+
+        log.info("닉네임 변경 도착");
+        log.info(user_nickname);
+        log.info(user_id);
+        try {
+            userService.myPage_newNickname(userVO);
+            entity = new ResponseEntity<String>("Nickname_Success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        log.info(entity);
+        return entity;
+    }
+
+    @RequestMapping(value = "getUserInfo/{no}")
+    public ResponseEntity<List<UserVO>> list(@PathVariable("no") long no) throws Exception{
+        log.info("getUserInfo Mapping 완료");
+        log.info(no);
+        ResponseEntity<List<UserVO>> entity = null;
+        List<UserVO> list_2 = userService.getUserinfo(no);
+        log.info(list_2);
+        entity = new ResponseEntity<List<UserVO>>(userService.getUserinfo(no),HttpStatus.OK);
+        log.info(entity);
+        return entity;
+    }
+
+    @ResponseBody
+    @PostMapping("myPage_newBirthday")
+    public void myPage_newBirthday(@RequestParam("user_birth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date user_birth, @RequestParam("user_id") String user_id,
+                                   UserVO userVO) throws Exception{
+        log.info("생년월일 변경 도착");
+        log.info(user_birth);
+        log.info(user_id);
+
+        try {
+            userService.myPage_newBirthday(user_birth, user_id);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+>>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
     }
 }
