@@ -7,18 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
-<head>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css">
-</head>
-
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchPopKeyWordList.js?ver=052711"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADTextList.js?ver=052711" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchADLinkList.js?ver=052711" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchSpecialShopLinkList.js?ver=052711" charset="UTF-8"></script>
-    <script type="text/javascript" src="//image.hmall.com/gen/js/searchBrndShopLinkList.js?ver=052711" charset="UTF-8"></script>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal" var="pinfo" />
     <script type="text/javascript">
 
 
@@ -2414,6 +2405,7 @@
                 <div class="contents">
                     <div class="mypage-consult-wrap">
                         <h3 class="title22">1:1 상담</h3>
+<%--                        <span>${pinfo.userVO.authList[0].user_auth_authority}</span>--%>
                         <div class="border-gray-box">
                             <p class="ctypo15">고객님이 문의하신 내역입니다.</p>
                             <p>언제나 고객님의 입장에서 빠르고 정확한 답변을 드리는 홈쇼핑이 되겠습니다.</p>
@@ -2452,7 +2444,7 @@
                                                 <input type="hidden" name="qc_seq${status.index+1}" value="${qna.QC_SEQ}"/>
                                                 <input type="hidden" name="qa_seq${status.index+1}" value="${qna.QA_SEQ}"/>
                                                 <tr>
-                                                    <td class="txt-center arrow"><div class="arrow>">${status.index+1}</div></td>
+                                                    <td class="txt-center"><div class="arrow>">${status.index+1}</div></td>
                                                     <c:choose>
                                                         <c:when test="${qna.QC_TYPE eq 'A'}">
                                                             <td class="txt-center">취소</td>
@@ -2467,15 +2459,18 @@
                                                             <td class="txt-center">결제/환불</td>
                                                         </c:otherwise>
                                                     </c:choose>
-    <%--                                                <td class="txt-center">${qna.QC_TYPE}</td>--%>
                                                     <td class="txt-left nowrap">${qna.QC_TITLE}</td>
-                                                    <td class="txt-center">${qna.CREATED_AT}</td>
+                                                    <td class="txt-left nowrap">
+                                                        <fmt:formatDate value="${qna.CREATED_AT}" pattern="yyyy-MM-dd"/>
+                                                    </td>
                                                     <c:choose>
                                                         <c:when test="${qna.R_CREATED_AT eq null}">
                                                             <td></td>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <td class="txt-center">${qna.R_CREATED_AT}</td>
+                                                            <td class="txt-left nowrap">
+                                                                <fmt:formatDate value="${qna.R_CREATED_AT}" pattern="yyyy-MM-dd"/>
+                                                            </td>
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <c:choose>
@@ -2486,17 +2481,15 @@
                                                             <td class="txt-center" style="color: green">답변완료</td>
                                                         </c:otherwise>
                                                     </c:choose>
-
-<%--                                                    <td class="txt-center"${qna.ORDER_TOTAL_COST}></td>--%>
                                                 </tr>
                                                 <tr>
                                                      <td  colspan="6">
                                                          <div class="consult-form-wrap">
                                                              <h3>문의한 내용</h3>
                                                              <!--문의내용-->
-                                                             <div class="consult-form">
+                                                             <div class="consult-form" style="background-color:aliceblue; border-radius: 5px;">
                                                                  <div class="field">
-                                                                     <div class="textareabox">
+                                                                     <div>
                                                                          <label class="txtlabel">
                                                                             <textarea cols="28" rows="2" readonly style="resize:none; height:30px;">${qna.QC_CONTENT}</textarea>
                                                                          </label>
@@ -2507,30 +2500,27 @@
                                                          <c:choose>
 <%--                                                             답변 내용이 있을 경우--%>
                                                             <c:when test="${qna.QA_CONTENT ne null}">
-                                                                <div class="consult-form-wrap">
+                                                                <div class="consult-form-wrap" style="background-color:aliceblue; border-radius: 5px;">
                                                                     <h3>답변</h3>
                                                                     <!--문의내용-->
                                                                     <div class="consult-form">
                                                                         <div class="field">
-                                                                            <div class="textareabox">
+                                                                            <div>
                                                                                 <label class="txtlabel">
                                                                                     <textarea readonly style="resize:none; width:100%; height:30px;">${qna.QA_CONTENT}</textarea>
-<%--                                                                                    <sec:authentication property="principal" var="pinfo" />--%>
-<%--                                                                                    ${pinfo.userVO.authList[0].user_auth_authority}--%>
-
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </c:when>
-                                                             <c:otherwise>
-                                                                 <div class="consult-form-wrap">
+                                                             <c:when test="${qna.QA_CONTENT eq null and pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
+                                                                 <div class="consult-form-wrap" style="background-color:aliceblue; border-radius: 5px;">
                                                                      <h3>답변</h3>
                                                                      <!--문의내용-->
                                                                      <div class="consult-form">
                                                                          <div class="field">
-                                                                             <div class="textareabox">
+                                                                             <div>
                                                                                  <label class="txtlabel">
                                                                                      <textarea name="replyArea${status.index+1}" placeholder="답변을 입력해주세요." style="resize:none; width:100%; height:30px;"></textarea>
                                                                                      </label>
@@ -2541,46 +2531,13 @@
                                                                 <div class="consult-form-wrap">
                                                                     <button type="button" class="btn btn-default" onclick="addReply(${status.index+1});"><span>답변하기</span></button>
                                                                 </div>
-                                                             </c:otherwise>
-<%--                                                             and pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}--%>
-<%--&lt;%&ndash;&lt;%&ndash;                                                             답변 내용이 없을 경우+ 관리자일 경우&ndash;%&gt;--%>
-<%--                                                             <c:when test="${qna.QA_CONTENT ne null}">--%>
-<%--                                                                 <div>--%>
-
-<%--                                                                 </div>--%>
-<%--                                                             </c:when>--%>
+                                                             </c:when>
                                                         </c:choose>
-
                                                      </td>
                                                 </tr>
                                         </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-
-
-                            <div role="tabpanel" class="tab-pane ui-active" id="board">
-                                <div class="consult-list">
-                                    <div class="accparent">
-                                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
-                                        <h3 class=""><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false"><i class="icon question"></i><span>주문 내용 변경, 취소, AS 등은 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
-                                        <div class="accordion-panel best-txt01" role="best-txt01" aria-label="주문 내용 변경, 취소, AS 등은 어떻게 하나요?">
-                                            <div class="txt-wrap">
-                                                <p>문의 내용</p>
-                                                <p>&nbsp;</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div class="nodata">
-                                            <span class="bgcircle"><i class="icon nodata-type12"></i></span>
-                                            <p>상담 내역이 없습니다.</p>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -3127,21 +3084,6 @@
             var etc2 =      $(obj_GA).attr("ga-custom-etc2") == undefined ? "" : $(obj_GA).attr("ga-custom-etc2");
 
             setGaPromotion(title, name, position, creative, id);
-            //마케팅플랫폼 전용 >>> 마케팅 플랫폼은 Tab명이 다르기 때문에 if문 처리
-            /*
-            if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
-                title = "메인>"+gaForTabNm;
-                name = "메인_"+gaForTabNm+"탭";
-            }
-
-            if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
-                //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
-
-            }else{
-                console.log("setGaPromotion()................1");
-                setGaPromotion(title, name, position, creative, id);
-            }
-        */
 
             if (etc == "home"){
                 bizSpringTagForHome(msg1, msg2, msg3);

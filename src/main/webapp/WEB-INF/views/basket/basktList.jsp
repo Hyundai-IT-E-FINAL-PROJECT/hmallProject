@@ -214,7 +214,7 @@
                                     <script type="text/javascript">
                                         console.log("${basketVOList}")
                                     </script>
-                                    <c:forEach items="${basketVOList}" var="basketVO">
+                                    <c:forEach items="${basketVOList}" var="basketVO" varStatus="status">
                                         <div class="shipping-list" id="gen">
                                             <!-- .pdwrap -->
                                             <div class="pdwrap pdlist ml" style="display:;" id="013817_000000_9">
@@ -275,11 +275,13 @@
                                                         </figure>
                                                     </div>
                                                     <div class="btngroup">
+                                                        <input type="hidden" name="product_seq${status.index+1}" value="${basketVO.productVO.product_seq}"/>
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2101560521_00001" onclick="showChgUitmPup(this, '2101560521', '00001', 0, 59900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
                                                         <button type="button" class="btn btn-linelgray" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2101560521"><span>선물하기</span></button>
-                                                        <button type="button" class="btn btn-default" onclick="setGiftOrder('N');buyDirect(this);" id="buyDirectBtn_2101560521"><span>바로구매</span></button>
+<%--                                                        <button type="button" class="btn btn-default" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2101560521"><span>바로구매</span></button>--%>
+                                                        <button type="button" class="btn btn-default" onclick="directBuyBtn(${status.index+1});" id="directBuy" name="directBuy"><span>바로구매</span></button>
                                                     </div>
                                                     <div class="prop-change" id="chgUitmLayer_2101560521_00001">
                                                     </div>
@@ -292,6 +294,40 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    function directBuyBtn(idx){
+
+                        var csrfHeaderName = "${_csrf.headerName}";
+                        var csrfTokenValue = "${_csrf.token}";
+                        var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
+
+                        console.log(typeof(product_seq));
+
+
+                        $.ajax({
+                            type:'get',
+                            data:{
+                                product_seq:product_seq
+                            },
+                            url: '${contextPath}/order/od',
+                            beforeSend:function (xhr){
+                                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                            },
+                            success:function(){
+                                alert("바로구매 페이지로 이동합니다.");
+                                location.href="/order/od";
+                            },
+                            error: function (request,status,error) {
+                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                            }
+
+                        });
+
+
+
+
+                    }
+                </script>
                 <div class="sticky-ui-wrapper util-option-sticky">
                     <div class="sticky-placeholder" style=""></div>
                     <div class="util-option sticky"

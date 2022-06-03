@@ -10,13 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.CouponVO;
 import org.team2.domain.OrderVO;
 import org.team2.domain.UserVO;
+import org.team2.service.BasketService;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
 import org.team2.service.UserService;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Log4j
@@ -27,6 +30,7 @@ public class OrderController {
     private OrderService orderService;
     private CouponService couponService;
     private UserService userService;
+    private BasketService basketService;
 
 //    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
 //    @RequestMapping("")
@@ -36,6 +40,38 @@ public class OrderController {
 //        return mav;
 //    }
 
+
+//    @ResponseBody
+//    @RequestMapping(value = "od", method = RequestMethod.GET)
+//    public ModelAndView sendOrderData(Principal principal, @RequestParam("product_seq") Long product_seq) throws Exception {
+//        log.info("move to order Page..");
+//        ModelAndView mav = new ModelAndView();
+//        Long user_seq=Long.valueOf(principal.getName());
+//        //css파일 적용
+//        List<String> styleFileList = new ArrayList<>();
+//        styleFileList.add("order");
+//
+//        //장바구니 가져오기(물품 한 개일 때)
+//        Map<String, Long> map=new HashMap<>();
+//        map.put("product_seq", product_seq);
+//        map.put("user_seq",user_seq);
+////        basketService.directBuy(Long, Long);
+//
+//
+//        //쿠폰 내역 가져오기
+//        List<CouponVO> couponList=couponService.getCouponList(user_seq);
+//        UserVO user=userService.readPoint(user_seq);
+//
+//        mav.addObject("user_seq", user_seq);
+//        mav.addObject("couponList", couponList);
+//        mav.addObject("userPoint", user.getUser_point());
+//        mav.addObject("depositPoint",user.getUser_deposit());
+//        mav.addObject("cssFileList", styleFileList);
+//        mav.addObject("directBuyBasket", basketService.directBuy(map));
+//        mav.addObject("className","wrap order-main");
+//        mav.setViewName("order.orderPage");
+//        return mav;
+//    }
 
     @ResponseBody
     @RequestMapping(value = "od", method = RequestMethod.GET)
@@ -83,6 +119,7 @@ public class OrderController {
 
 //        return "order.orderPage";
 //    }
+
 
     @GetMapping( "orderComplete")
     public ModelAndView openOrderCompletePage(){

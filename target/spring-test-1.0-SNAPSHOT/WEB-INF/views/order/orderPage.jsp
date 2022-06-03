@@ -962,7 +962,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                     //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
                     //쿠폰Seq에 따른 cost를 불러와야 함
 
-
                     //discountCost=$("input[name='coupon_cost']").val();
                     //totalCouponPoint
                     //가격 할인
