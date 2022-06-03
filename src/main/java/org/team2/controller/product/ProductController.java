@@ -160,12 +160,21 @@ public class ProductController {
     }
 
     @RequestMapping("/all")
-    public ModelAndView all(){
+    public ModelAndView all(@RequestParam("category_seq") Long category_seq){
         log.info("product controller all start!!");
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("product.all");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("search");
+        styleFileList.add("display");
+        styleFileList.add("prd-list");
 
+
+        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(category_seq);
+        mav.setViewName("search.all");
+        mav.addObject("productVOList", allWithCouponByFirstCategory);
+        mav.addObject("className", "wrap display-3depth");
+        mav.addObject("cssFileList", styleFileList);
         return mav;
     }
 }

@@ -29,6 +29,14 @@ public class ProductSerivceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductVO> getAllWithCouponByFirstCategory(Long category_seq) {
+        List<ProductVO> allWithCouponByFirstCategory = productMapper.getAllWithCouponByFirstCategory(category_seq);
+
+        return allWithCouponByFirstCategory;
+    }
+
+
+    @Override
     public List<ProductVO> getMain() {
         List<ProductVO> mainProduct = productMapper.getMain();
 

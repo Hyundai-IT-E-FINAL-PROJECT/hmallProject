@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <main class="cmain bgcmain" role="main" id="mainContents">
@@ -45,7 +46,16 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- //.cart-head -->
+
+                        <div class="cart-userinfo">
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal" var="pinfo" />
+                                ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                적립금: ${pinfo.userVO.no}
+                            </sec:authorize>
+                        </div>
 
                         <div class="cart-body">
                             <form action="#" name="totBasktForm" method="post" onsubmit="return false;">
@@ -236,9 +246,9 @@
                                                 <input type="hidden" name="bsicAmt" value="0">
 
                                                 <div class="checkbox">
-                                                    <label class="chklabel"><input type="checkbox" name="basktInf" value="2101560521|00001|0|2|57900" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
+                                                    <label class="chklabel"><input type="checkbox" name="basktInf" value="2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
-                                                <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2101560521|00001|0|2|57900');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
+                                                <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                                 <div class="pdlist-wrap">
                                                     <div class="pditem">
                                                         <figure class="pdthumb">
@@ -250,12 +260,12 @@
                                                             <figcaption>
                                                                 <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2101560521&amp;sectId=920435">
                                                                     <div class="pdprice">
-                                                                        <input type="hidden" name="sellPrc" value="59900">
-                                                                        <input type="hidden" name="bbprc" value="57900">
+                                                                        <input type="hidden" name="sellPrc" value="${basketVO.productVO.product_cost}">
+                                                                        <input type="hidden" name="bbprc" value="${basketVO.productVO.product_cost}">
                                                                         <ins class="normal" aria-label="정상가"><em><fmt:formatNumber value="${basketVO.productVO.product_cost}" pattern="#,###"/></em><b>원</b></ins>
                                                                     </div>
                                                                     <div class="pdoption" aria-label="옵션/수량">
-                                                                        <span class="count">수량: <em><fmt:formatNumber value="${basketVO.productVO.product_count}" pattern="#,###"/>개</em></span>
+                                                                        <span class="count">수량: <em><fmt:formatNumber value="${basketVO.basket_count}" pattern="#,###"/>개</em></span>
                                                                     </div>
                                                                 </a>
                                                             </figcaption>
@@ -289,9 +299,9 @@
                          style="">
                         <div class="sticky-inner">
                             <div class="result">
-                                <p class="sel-tit">선택한 상품<span>(<em id="selCnt">2</em>)</span></p>
+                                <p class="sel-tit">선택한 상품<span>(<em id="selCnt">aa</em>)</span></p>
                                 <p><strong>상품금액</strong>
-                                    <ins><em id="selSlitmAmt">164,800</em><b>원</b></ins>
+                                    <ins><em id="selSlitmAmt"></em><b>원</b></ins>
                                 </p>
                                 <!-- <p class="sale"><strong>할인</strong><ins><em class="off">0</em><b>원</b></ins></p>-->
                                 <p class="ship-fee"><strong>배송비</strong>

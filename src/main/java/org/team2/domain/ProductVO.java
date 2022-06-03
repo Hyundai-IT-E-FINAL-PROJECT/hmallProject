@@ -27,6 +27,7 @@ public class ProductVO {
     private CountryType product_country;
     private Long product_count;
     private Long product_cost;
+    private Long discounted_cost;
 
     // date
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

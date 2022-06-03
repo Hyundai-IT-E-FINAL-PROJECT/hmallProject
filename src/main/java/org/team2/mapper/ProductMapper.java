@@ -12,6 +12,8 @@ public interface ProductMapper {
 
     List<ProductVO> getAll();
 
+    List<ProductVO> getAllWithCouponByFirstCategory(Long category_seq);
+
     int delete(Long seq);
 
     int update(ProductVO productVO);

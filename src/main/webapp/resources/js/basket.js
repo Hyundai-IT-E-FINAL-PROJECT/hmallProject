@@ -1,10 +1,11 @@
 $(function sayHello() {
-    console.log("basket js!")
+    calculateSelect();
 })
 
 function check(obj, gbcd, slitmCd, uitmCd) {
     var checkFlag = $(obj).prop("checked");
     var checkCount = 0;
+    console.log(obj);
 
     // 품절은 구매가능한 상품과는 별도로 처리.
     if ( gbcd == "soldout" ) {
@@ -202,13 +203,12 @@ function calculateSelect() {
     var selCnt = 0;
     var selSlitmAmt = 0;
     var selDlvAmt = 0;
-    var selOrdAmt = 0;
-    var basktVenCdGatherVal = "";
 
     // ||||
     $("input[name=basktInf]").each(function() {
         if ( $(this).prop("checked") ) {
             var basktInfArr = $(this).val().split("|");
+            console.log(basktInfArr)
             console.log("basktInfArr")
             console.log(basktInfArr)
 
@@ -218,6 +218,9 @@ function calculateSelect() {
     });
 
     selDlvAmt += parseInt(calculateSelectDlvAmt());
+
+    console.log("$$$")
+    console.log(selCnt)
 
     // 우측 윙 set
     $("#selCnt").html(gfn_appendComma(selCnt));
@@ -295,4 +298,188 @@ function deleteBasktItem(obj) {
         }
     });
     deleteBaskt();
+}
+
+function showChgUitmPup(obj, slitmCd, uitmCd, aspItemCd, sellPrc, uitmCombYn) {
+
+    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).html("");
+
+    if ( $("#optBtn_"+slitmCd+"_"+uitmCd).hasClass("selected") ) {
+        //$("#chgUitmLayer_"+slitmCd+"_"+uitmCd).toggleClass("selected");
+        return;
+    }
+
+    //$("#dlUitmArea, #dlAddCmpsArea, #divSelectedUitmArea").html("");
+    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="slitmCd" value="' + slitmCd + '"/>');
+    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="uitmCd" value="' + uitmCd + '"/>');
+    loading(true);
+    $.ajax({
+        type: "post"
+        , url: "/p/odb/getBakstItemUitmInf.do"
+        , dataType: "html"
+        , data : {slitmCd : slitmCd, uitmCd : uitmCd, uitmCombYn : uitmCombYn}
+        , success : function(data) {
+            if(!isEmpty(data.errorMessages)) {
+                loading(false);
+                alert(data.errorMessages.join("\n"));
+            } else {
+                $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).html(data);
+                loading(false);
+                /*
+                                var optionCnt = 0;
+                                var dlUitmArea = $("#chgUitmLayer_"+slitmCd+"_"+uitmCd);
+                                var selectbox = $('<div class="selectbox"></div>');
+
+                                $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="uitmSellPrc" value="' + sellPrc +'"/>');
+                                if(data.uitmAttrTypeList != null && data.uitmAttrTypeList.uitmAttrMstList.length > 0) {
+                                    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="bsitmCd" value="' + data.uitmAttrTypeList[0].bsitmCd +'"/>');
+
+                                    for(var i in data.uitmAttrTypeList) {
+                                        var label = $('<label class="sellabel"></label>');
+
+                                        var select = $("<select onchange='changeUitm(this);'></select>");
+                                        $(select).append('<option value="">선택하세요</option>');
+
+                                        for(var j in data.uitmAttrTypeList[i].uitmAttrMstList) {
+                                            $(select).append('<option value="' + data.uitmAttrTypeList[i].uitmAttrMstList[j].uitmSeq + '">' + data.uitmAttrTypeList[i].uitmAttrMstList[j].uitmAttrNm + '</option>');
+                                        }
+
+                                        $(label).append(select);
+                                        $(selectbox).append(label);
+                                    }
+                                    $(dlUitmArea).append(selectbox);
+                                }
+
+                                if(data.bsicUitmList != null && data.bsicUitmList.length > 1) {
+                                    var label = $('<label class="sellabel"></label>');
+                                    var select = $("<select id='uitmSelect' onchange='changeUitmCd(\""+slitmCd+"\", \""+uitmCd+"\");'></select>");
+                                    $(select).append('<option value="">선택하세요</option>');
+
+                                    for(var i in data.bsicUitmList) {
+                                        $(select).append('<option value="' + data.bsicUitmList[i].uitmCd + '">' + data.bsicUitmList[i].uitmTotNm + '</option>');
+                                        optionCnt += 1;
+                                    }
+
+                                    $(label).append(select);
+                                    $(selectbox).append(label);
+                                    $(dlUitmArea).append(selectbox);
+                                }
+                                ///*
+                                // 기본구성
+                                if(data.baseSlitmCmpsMstList != null && data.baseSlitmCmpsMstList.length > 0) {
+                                    for(var i in data.baseSlitmCmpsMstList) {
+                                        $(dlUitmArea).append('<dt>' + data.baseSlitmCmpsMstList[i].cmpsNm + '</dt>');
+
+                                        var dd = $("<dd></dd>");
+                                        var select = $("<select class='cu_select w260 baseCmpsSelect' onchange='changeBaseCmps(this);'></select>");
+                                        $(select).append('<option value="">선택하세요</option>');
+
+                                        for(var j in data.baseSlitmCmpsMstList[i].slitmCmpsDtlList) {
+                                            $(select).append('<option value="' + data.baseSlitmCmpsMstList[i].slitmCmpsDtlList[j].cmpsSeq + '|' + data.baseSlitmCmpsMstList[i].slitmCmpsDtlList[j].cmpsItemSeq + '">' + data.baseSlitmCmpsMstList[i].slitmCmpsDtlList[j].cmpsItemDispNm + '</option>');
+                                        }
+
+                                        $(dd).append(select);
+                                        $(dlUitmArea).append(dd);
+                                    }
+                                }
+                                // /
+
+                                // 추가구성
+                                if(data.addSlitmCmpsMstList != null && data.addSlitmCmpsMstList.length > 0) {
+                                    for(var i in data.addSlitmCmpsMstList) {
+                                        //$(dlAddCmpsArea).append('<dt>' + data.addSlitmCmpsMstList[i].cmpsNm + '</dt>');
+
+                                        var label = $('<label class="sellabel"></label>');
+                                        var select = $("<select onchange='changeAddCmps(this, \""+slitmCd+"\", \""+uitmCd+"\");'></select>");
+                                        $(select).append('<option value="">선택하세요</option>');
+
+                                        for(var j in data.addSlitmCmpsMstList[i].slitmCmpsDtlList) {
+                                            $(select).append('<option value="' + data.addSlitmCmpsMstList[i].cmpsSeq + '|' + data.addSlitmCmpsMstList[i].slitmCmpsDtlList[j].cmpsItemSeq + '|' + data.addSlitmCmpsMstList[i].slitmCmpsDtlList[j].sellPrc + '">' + data.addSlitmCmpsMstList[i].slitmCmpsDtlList[j].cmpsItemDispNm + '</option>');
+                                            optionCnt += 1;
+                                        }
+
+                                        $(label).append(select);
+                                        $(selectbox).append(label);
+                                    }
+                                    $(dlUitmArea).append(selectbox);
+                                }
+
+                                if(data.baskt != null) {
+                                    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="dluMaxBuyQtyCnt" value="' + data.baskt.slitmInf.dluMaxBuyQty +'"/>');
+                                    $("#chgUitmLayer_"+slitmCd+"_"+uitmCd).append('<input type="hidden" name="lwstBuyQtyCnt" value="' + data.baskt.slitmInf.lwstBuyQty +'"/>');
+
+                                    var optgroup = $('<div class="optgroup"></div>');
+                                    $(optgroup).append($("<strong>"+data.baskt.uitmTotNm+"</strong>"));
+
+                                    var quantity = $('<div class="quantity" id="uitm"></div>');
+
+                                    if(data.baskt.uitmCombYn == 'Y') {
+                                        for(var idx in data.baskt.uitmSeqList) {
+                                            $(quantity).append('<input type="hidden" name="uitmSeq" value="' + data.baskt.uitmSeqList[idx] + '"/>');
+                                        }
+                                    } else {
+                                        $(quantity).append('<input type="hidden" name="uitmCd" value="' + data.baskt.uitmCd + '"/>');
+                                    }
+
+                                    var count = $('<div class="count"></div>');
+                                    $(count).append('<button type="button" class="btn btn-minus" aria-label="수량 감소" onclick="uitmMinus(this, \''+ data.baskt.slitmInf.lwstBuyQty + '\')"><i class="icon"></i><span class="hiding">감소</span></button>');
+                                    $(count).append('<div class="inputbox"><label class="inplabel"><input type="number" name="ordQty" maxlength="2" value="'+ data.baskt.ordQty + '" onkeyup="uCheckOrdQty(this,\''+ data.baskt.slitmInf.dluMaxBuyQty + '\', \''+data.baskt.slitmInf.lwstBuyQty+'\')" title="입력하세요"></label></div>');
+                                    $(count).append('<button type="button" class="btn btn-plus" aria-label="수량 증가" onclick="uitmPlus(this, \''+ data.baskt.slitmInf.dluMaxBuyQty + '\')"><i class="icon"></i><span class="hiding">증가</span></button>');
+
+                                    var price = $('<div class="pdprice"></div>');
+                                    $(price).append('<input type="hidden" name="sellPrc" value="' + data.baskt.slitmInf.sellPrc + '"/>');
+                                    $(price).append('<ins aria-label="가격"><em>'+gfn_appendComma(Number(data.baskt.slitmInf.sellPrc) * Number(data.baskt.ordQty))+'</em><b>원</b></ins>');
+                                    if ( optionCnt > 0 ) {
+                                        $(price).append('<button type="button" class="btn-delete" onclick="removeUitmRow(this);"><i class="icon"></i><span class="hiding">삭제</span></button>');
+                                    }
+                                    /*
+                                    if(data.baskt.basktBaseCmpsDtlList != null && data.baskt.basktBaseCmpsDtlList.length > 0) { // 기본구성
+                                        for(var i in data.baskt.basktBaseCmpsDtlList) {
+                                            $("#divSelectedUitmArea li.first").append('<span class="block gray mt5">└ ' + data.baskt.basktBaseCmpsDtlList[i].cmpsItemDispNm + '</span>');
+                                            $("#divSelectedUitmArea li.first").append('<input type="hidden" name="baseCmpsInfo" value="' + data.baskt.basktBaseCmpsDtlList[i].cmpsSeq + '|' + data.baskt.basktBaseCmpsDtlList[i].cmpsItemSeq + '"/>');
+                                        }
+                                    }
+                                    // /
+
+                                    $(quantity).append(count);
+                                    $(quantity).append(price);
+                                    $(optgroup).append(quantity);
+                                    $(dlUitmArea).append(optgroup);
+
+                                    if(data.baskt.basktAddCmpsDtlList != null && data.baskt.basktAddCmpsDtlList.length > 0) {   // 추가구성
+                                        for(var i in data.baskt.basktAddCmpsDtlList) {
+                                            //var optgroup = $('<div class="optgroup"></div>');
+                                            $(optgroup).append($("<strong>"+data.baskt.basktAddCmpsDtlList[i].cmpsItemDispNm+"</strong>"));
+
+                                            var quantity = $('<div class="quantity" id="addCmps"></div>');
+                                            $(quantity).append('<input type="hidden" name="addCmpsInf" value="' + data.baskt.basktAddCmpsDtlList[i].cmpsSeq + '|' + data.baskt.basktAddCmpsDtlList[i].cmpsItemSeq + '"/>');
+
+                                            var count = $('<div class="count"></div>');
+                                            $(count).append('<input type="hidden" name="ordQty" value="'+ data.baskt.basktAddCmpsDtlList[i].cmpsOrdQty + '"title="입력하세요">');
+
+                                            var price = $('<div class="pdprice"></div>');
+                                            $(price).append('<input type="hidden" name="sellPrc" value="' + data.baskt.slitmInf.sellPrc + '"/>');
+                                            $(price).append('<ins aria-label="가격"><em>'+gfn_appendComma(Number(data.baskt.basktAddCmpsDtlList[i].cmpsSellPrc) * Number(data.baskt.basktAddCmpsDtlList[i].cmpsOrdQty))+'</em><b>원</b></ins>');
+                                            $(price).append('<button type="button" class="btn-delete" onclick="removeUitmRow(this);"><i class="icon"></i><span class="hiding">삭제</span></button>');
+
+                                            $(quantity).append(count);
+                                            $(quantity).append(price);
+                                            $(optgroup).append(quantity);
+                                            $(dlUitmArea).append(optgroup);
+                                        }
+                                    }
+
+                                    //calcSellPrc();
+                                }
+                                $(dlUitmArea).append('<div class="btngroup"><button type="button" class="btn btn-linelgray" onclick="$(\'#optBtn_'+slitmCd+'_'+uitmCd+'\').toggleClass(\'selected\');$(\'#chgUitmLayer_'+slitmCd+'_'+uitmCd+'\').toggleClass(\'selected\');"><span>취소</span></button> <button type="button" class="btn btn-linelgray" onclick="changeBasktItemUitmInf(\''+slitmCd+'\', \''+uitmCd+'\');"><span>변경적용</span></button></div>');
+                                //$("#chgUitmLayer_"+slitmCd+"_"+uitmCd).toggleClass("selected");
+                                loading(false);
+                                */
+
+            }
+        }
+        , error: function(data) {
+            loading(false);
+        }
+    });
 }

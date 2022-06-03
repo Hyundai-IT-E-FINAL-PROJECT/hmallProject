@@ -10,6 +10,8 @@ public interface ProductService {
 
     List<ProductVO> getAll();
 
+    List<ProductVO> getAllWithCouponByFirstCategory(Long category_seq);
+
     List<ProductVO> getMain();
     int insert(ProductVO productVO);
     int delete(ProductVO productVO);
