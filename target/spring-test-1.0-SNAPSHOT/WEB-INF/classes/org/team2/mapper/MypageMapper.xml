@@ -10,10 +10,11 @@
             AND a.order_seq = b.order_seq
             AND b.product_seq = c.product_seq
             AND c.product_seq = d.product_seq
-        ORDER BY created_at DESC
+            AND d.image_type = 'MAIN'
+            ORDER BY created_at DESC
     </sql>
 
-    <select id="recentOrders" parameterType="long" resultType="map">
+    <select id="recentOrders" resultType="map">
         SELECT *
         FROM (SELECT *
                 FROM (<include refid="userOrders"><property name="alias" value="#{no}"/></include>))
@@ -29,6 +30,7 @@
                         AND a.order_seq = b.order_seq
                         AND b.product_seq = c.product_seq
                         AND c.product_seq = d.product_seq
+                        AND d.image_type = 'MAIN'
                         ORDER BY created_at DESC)
 
             <choose>
@@ -49,7 +51,7 @@
             </if>
     </select>
 
-    <select id="detailOrders" parameterType="long" resultType="map">
+    <select id="detailOrders" resultType="map">
         SELECT a.order_status, a.order_total_cost, a.order_user_name, a.order_point, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, c.product_info, d.image_name, e.user_address_name, e.user_address_phone_num, e.user_address_address1, e.user_address_address2, e.user_address_address3
         FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d, tbl_user_address e
         WHERE #{no} = a.user_seq

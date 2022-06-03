@@ -120,7 +120,7 @@
                     <h3 class="title22">
                         최근 주문/배송 현황
                         <div class="btngroup abs">
-                            <a href="/mypageOrder/${pinfo.userVO.no}" class="btn atext"><span>전체보기</span><i
+                            <a href="/mypageOrder" class="btn atext"><span>전체보기</span><i
                                     class="arrow right"></i></a>
                         </div>
                     </h3>
@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="abs">
-                                    <a href="/mypageOrderDetail/${pinfo.userVO.no}/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    <a href="/mypageOrderDetail/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                 </div>
 
                             </dt>

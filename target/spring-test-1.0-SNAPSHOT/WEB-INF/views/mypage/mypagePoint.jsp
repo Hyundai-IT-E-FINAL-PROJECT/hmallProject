@@ -163,7 +163,81 @@
 
                                 </div>
                                 <!--//유효한 적립금만보기-->
+                                <div class="list-wrap">
 
+
+                                    <ul class="list">
+
+
+                                        <li>
+
+                                            <div class="cell">
+                                                <p>
+                                                    <span class="date">2022.05.24</span>
+
+
+
+                                                    <strong class="accu">적립</strong>
+
+
+
+                                                </p>
+
+
+                                                <p class="pdname nowrap">SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)</p>
+
+
+
+
+
+                                                <p>주문번호 : 20220513295854</p>
+
+
+
+                                            </div>
+                                            <div class="cell">
+
+                                                <span class="point-up">+10P</span>
+                                                <!-- 에누리 -->
+                                                <sub></sub>
+
+
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+
+                                    <!--paging-->
+                                    <div class="paging">
+
+
+
+
+
+                                        <div class="page-prevarea">
+
+
+
+
+
+
+                                            <strong aria-label="현재 선택페이지">1</strong>
+
+
+
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--//paging-->
+
+
+                                </div>
 
                                 <!--hpoint list-->
                                 <div class="list-wrap">
