@@ -746,6 +746,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
                             <span class="txt">배송/결제 정보를 정확히 입력해주세요.</span>
                         </h3>
+                        <button type="radio" onclick="openAddressListPup()" ><span>이전 배송지</span></button>
 
                         <form id="orderPush" method="post" action="orderComplete">
 
@@ -1247,6 +1248,11 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         console.log($(this).val());
         console.log($(this).attr("id"));
     })
+
+
+    function openAddressListPup(){
+        var url="/"
+    }
 
 
 </script>
