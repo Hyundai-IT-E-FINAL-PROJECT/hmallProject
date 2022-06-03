@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.CategoryVO;
 import org.team2.domain.ImageVO;
 import org.team2.domain.ProductVO;
+import org.team2.service.CategoryService;
 import org.team2.service.ImageService;
 import org.team2.service.ProductService;
 
@@ -30,6 +32,9 @@ public class ProductController {
 
     @Setter(onMethod_ = @Autowired)
     private ImageService imageService;
+
+    @Setter(onMethod_ = @Autowired)
+    private CategoryService categoryService;
 
 
     // restAPI
@@ -171,8 +176,13 @@ public class ProductController {
 
 
         List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(category_seq);
+        CategoryVO categoryVO = categoryService.getOne(category_seq);
+        List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(category_seq);
+
         mav.setViewName("search.all");
         mav.addObject("productVOList", allWithCouponByFirstCategory);
+        mav.addObject("categoryVO", categoryVO);
+        mav.addObject("subCategoryList", subCategoryList);
         mav.addObject("className", "wrap display-3depth");
         mav.addObject("cssFileList", styleFileList);
         return mav;

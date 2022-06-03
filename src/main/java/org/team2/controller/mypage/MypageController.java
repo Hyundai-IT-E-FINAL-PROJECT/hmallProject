@@ -20,6 +20,7 @@ import org.team2.service.MypageService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,12 +41,14 @@ public class MypageController {
 
         log.info("tiles test");
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
 
         try {
             List<Map<String,Object>> list = mypageService.recentOrders(principal.getName());
             mav.addObject("list", list);
             mav.addObject("className", "wrap mp-main");
-            log.info(list);
+            mav.addObject("cssFileList", styleFileList);
             mav.setViewName("mypage.mypageMain");
             return mav;
         }

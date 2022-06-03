@@ -8,4 +8,8 @@ import java.util.Map;
 
 public interface CategoryMapper {
     List<CategoryVO> getAll();
+
+    CategoryVO getOne(Long category_seq);
+
+    List<CategoryVO> getSubCategoryList(Long category_seq);
 }

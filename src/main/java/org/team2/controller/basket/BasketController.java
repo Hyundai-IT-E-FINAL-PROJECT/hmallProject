@@ -20,6 +20,7 @@ import org.team2.domain.UserVO;
 import org.team2.service.BasketService;
 import org.team2.service.CategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,8 +35,11 @@ public class BasketController {
     @RequestMapping("/basketList")
     public ModelAndView order(@AuthenticationPrincipal UserVO userVO){
         List<BasketVO> allByUserSeq = basketService.getAllByUserSeq(21L);
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("basket");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("basket.basktList");
+        mav.addObject("cssFileList", styleFileList);
         mav.addObject("basketVOList", allByUserSeq);
         mav.addObject("className", "wrap cartwrap");
         return mav;
