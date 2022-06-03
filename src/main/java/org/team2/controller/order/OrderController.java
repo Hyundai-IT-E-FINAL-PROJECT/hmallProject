@@ -15,6 +15,7 @@ import org.team2.service.OrderService;
 import org.team2.service.UserService;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -41,6 +42,9 @@ public class OrderController {
     public ModelAndView sendOrderData(Principal principal) throws Exception {
 //    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("order");
+
         //예치금, 적립금도 불러오기
         Long user_seq=Long.valueOf(principal.getName());
         mav.addObject("className","wrap order-main");
@@ -51,6 +55,7 @@ public class OrderController {
         mav.addObject("couponList", couponList);
         mav.addObject("userPoint", user.getUser_point());
         mav.addObject("depositPoint",user.getUser_deposit());
+        mav.addObject("cssFileList", styleFileList);
         mav.setViewName("order.orderPage");
         return mav;
     }

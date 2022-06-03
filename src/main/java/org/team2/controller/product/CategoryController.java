@@ -12,7 +12,6 @@ import org.team2.domain.CategoryVO;
 import org.team2.service.CategoryService;
 
 import java.util.List;
-import java.util.Map;
 
 @Log4j
 @RequestMapping(value = "/category/*")

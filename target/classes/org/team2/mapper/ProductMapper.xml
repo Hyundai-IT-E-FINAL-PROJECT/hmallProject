@@ -24,10 +24,87 @@
           and OP.order_seq=O.order_seq
           and O.order_seq=#{seq}
     </select>
+    
+    <select id="getProductWithCoupon" resultType="org.team2.domain.ProductVO">
+        SELECT
+            p.product_seq,
+            p.product_cost * ( 1 - aa.coupon_ratio / 100 ) AS discounted_cost,
+            p.product_code,
+            p.product_name,
+            p.product_info,
+            p.product_detail,
+            p.product_manufacture,
+            p.product_brand,
+            p.product_country,
+            p.product_count,
+            p.category_seq,
+            p.product_cost
+        FROM
+            tbl_product p
+                LEFT JOIN (
+                SELECT
+                    c.coupon_ratio,
+                    cp.product_seq
+                FROM
+                    tbl_coupon c
+                        LEFT JOIN tbl_cp     cp ON c.coupon_seq = cp.coupon_seq
+            )           aa ON p.product_seq = aa.product_seq
+        WHERE
+            p.product_seq = {product_seq}
+    </select>
 
-    <select id="getAll" resultType="map">
-        select *
-        from tbl_product
+    <select id="getAllWithCoupon" resultType="map">
+        SELECT
+            p.product_seq,
+            p.product_cost * ( 1 - aa.coupon_ratio / 100 ) AS discounted_cost,
+            p.product_code,
+            p.product_name,
+            p.product_info,
+            p.product_detail,
+            p.product_manufacture,
+            p.product_brand,
+            p.product_country,
+            p.product_count,
+            p.category_seq,
+            p.product_cost
+        FROM
+            tbl_product p
+                LEFT JOIN (
+                SELECT
+                    c.coupon_ratio,
+                    cp.product_seq
+                FROM
+                    tbl_coupon c
+                        LEFT JOIN tbl_cp     cp ON c.coupon_seq = cp.coupon_seq
+            )           aa ON p.product_seq = aa.product_seq
+    </select>
+
+    <select id="getAllWithCouponByFirstCategory" resultType="map">
+        SELECT
+            p.product_seq,
+            p.product_cost * ( 1 - aa.coupon_ratio / 100 ) AS discounted_cost,
+            p.product_code,
+            p.product_name,
+            p.product_info,
+            p.product_detail,
+            p.product_manufacture,
+            p.product_brand,
+            p.product_country,
+            p.product_count,
+            p.category_seq,
+            p.product_cost
+        FROM
+            tbl_product p
+                LEFT JOIN (
+                SELECT
+                    c.coupon_ratio,
+                    cp.product_seq
+                FROM
+                    tbl_coupon c
+                        LEFT JOIN tbl_cp     cp ON c.coupon_seq = cp.coupon_seq
+            )           aa ON p.product_seq = aa.product_seq
+        WHERE
+                p.category_seq in (select category_seq from tbl_category where category_ref = ${category_seq})
     </select>
 
     <select id="getMain" resultType="map">

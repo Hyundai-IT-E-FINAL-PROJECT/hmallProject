@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.BasketMapper">
+    <select id="getProductsByUserSeq" resultMap="basketMap">
+        select *
+        from tbl_product p
+                 join (select * from tbl_basket where user_seq = ${user_seq}) b on p.product_seq = b.product_seq
+    </select>
+
+    <resultMap id="basketMap" type="org.team2.domain.BasketVO">
+        <result property="basket_seq" column="basket_seq" />
+        <result property="basket_count" column="basket_count" />
+        <result property="created_at" column="created_at" />
+        <result property="updated_at" column="updated_at" />
+        <association property="productVO" resultMap="productMap"/>
+    </resultMap>
+
+    <resultMap id="productMap" type="org.team2.domain.ProductVO">
+        <result property="product_seq" column="product_seq" />
+        <result property="product_code" column="product_code" />
+        <result property="product_name" column="product_name" />
+        <result property="product_info" column="product_info" />
+        <result property="product_detail" column="product_detail" />
+        <result property="product_brand" column="product_brand" />
+        <result property="product_manufacture" column="product_manufacture" />
+        <result property="product_country" column="product_country" />
+        <result property="product_count" column="product_count" />
+        <result property="product_cost" column="product_cost" />
+    </resultMap>
+
+</mapper>
