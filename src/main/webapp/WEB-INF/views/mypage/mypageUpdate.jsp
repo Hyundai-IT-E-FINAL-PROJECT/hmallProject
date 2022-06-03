@@ -5,7 +5,11 @@
   Time: 오후 1:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <%@ include file="passwordCheck.jsp" %>
 <section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
@@ -135,6 +139,8 @@
 <%--            $("#pec001-01").modal().hide();--%>
 <%--          }--%>
 <%--        </script>--%>
+=======
+>>>>>>> 4ddd453 ([FEAT]: 약관동의 처리 끝(필수, 선택, 전체선택))
         <!--20170816 박승택 추가 -->
 
         <input type="hidden" name="mcustNo" value="">
@@ -177,55 +183,40 @@
                 <tr>
                   <th scope="row" class="txt-left">이름</th>
                   <td>
-                    <span id="baseInfoName">김민*</span>
-                    <button type="button" class="btn btn-linelgray small30" onclick="openPopChangeNameCert();"><span>수정</span></button>
+                    <sec:authentication property="principal" var="pinfo" />
+                    <span id="baseInfoName">${pinfo.userVO.user_name}</span>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="txt-left">아이디</th>
                   <td>
-
-
-
-
-
-                    <span id="baseInfoId">als******</span>
-
-
-
-
-
+                    <span id="baseInfoId">${pinfo.userVO.user_id}</span>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="txt-left">비밀번호</th>
                   <td><span>********</span>
-                    <button type="button" class="btn btn-linelgray small30" onclick="popChangePassword();"><span>수정</span></button>
+                    <button type="button" class="btn btn-linelgray small30" onclick="$('#changePasswordPup').modal().show()"><span>수정</span></button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="txt-left">휴대폰</th>
                   <script type="text/javascript">
                     var cnryCd = null;
-
                     cnryCd = "KR";
-
-
                     if (cnryCd == null || cnryCd == "") {
                       cnryCd = "KR";
                     }
-
                     $("#cnryCd").val(cnryCd);
                   </script>
-
                   <input type="hidden" class="text type2" title="휴대폰번호 첫자리" name="mobileDdd" value="010" maxlength="4">
                   <input type="hidden" class="text type2" title="휴대폰번호 두번째" name="mobilePhone1" value="9398" maxlength="4">
                   <input type="hidden" class="text type2" title="휴대폰번호 마지막" name="mobilePhone2" value="9130" maxlength="4">
 
                   <td>
 
-
-                    <span id="baseInfoMobilePhone">대한민국 (82) - 010-93**-91**</span>
+                    <sec:authentication property="principal" var="pinfo" />
+                    <span id="baseInfoMobilePhone">대한민국 (82) - ${pinfo.userVO.user_phone}</span>
                     <input type="hidden" id="cnryNm" value="대한민국 (82)">
                     <button type="button" class="btn btn-linelgray small30" onclick="popChangeMobilePhone();"><span>수정</span></button>
                   </td>
@@ -256,7 +247,8 @@
                 <tr>
                   <th scope="row" class="txt-left">이메일</th>
                   <td>
-                    <span id="baseInfoEmail">als********@naver.com</span>
+                    <sec:authentication property="principal" var="pinfo" />
+                    <span id="baseInfoEmail">${pinfo.userVO.user_email}</span>
                     <button type="button" class="btn btn-linelgray small30" onclick="popChangeEmail();"><span>수정</span></button>
                   </td>
                 </tr>
@@ -384,6 +376,63 @@
           </div>
         </div> <!-- // .contents -->
       </div></form>
+
+    <!--비밀번호 변경 모달창-->
+    <div class="ui-modal password-change in" id="changePasswordPup" tabindex="-1" role="dialog" aria-label="비밀번호 수정" style="z-index: 1031; display: none; padding-right: 0px;">
+      <div class="ui-modal-dialog" role="document">
+        <div class="content">
+          <p class="ui-title">비밀번호 수정</p>
+          <!-- //.content-head -->
+          <div class="content-body">
+            <div class="form-wrap">
+              <!-- 현재비밀번호 ------ -->
+              <div class="inputbox" id="divOldPwd"><!-- 실패시 class="failed" 추가 -->
+                <label class="inplabel icon-lock"><input type="password" placeholder="현재 비밀번호 입력" id="iPwd" name="oldPassword" maxlength="30"></label>
+                <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+              </div>
+              <p class="failed-msg" id="failedOldPwd" style="display: none;">
+                <i class="icon error" id="alertOldPasswdIcon"></i><span id="alertOldPasswd" style="display: none;"></span>
+              </p> <!-- // 실패시 노출 -->
+
+              <!-- 신규비밀번호 ------ -->
+              <div class="inputbox" id="divNewPwd"><!-- 실패시 class="failed" 추가 -->
+                <label class="inplabel icon-lock" id="uPwdChk1"><input type="password" placeholder="비밀번호 (영문, 숫자 조합 6자리 이상)" id="iPwd1" name="newPassword" maxlength="30"></label>
+                <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                <em class="" id="lockNewPwd" style="display: none;"></em>
+              </div>
+              <p class="failed-msg" id="failedNewPwd" style="display: none;">
+                <i class="icon error" id="alertNewPasswdIcon"></i><span id="alertNewPasswd" style="display: none;"></span>
+              </p> <!-- // 실패시 노출 -->
+
+              <!-- 비밀번호확인 ------ -->
+              <div class="inputbox" id="divReNewPwd"><!-- 실패시 class="failed" 추가 -->
+                <label class="inplabel icon-lock" id="uPwdChk2"><input type="password" placeholder="비밀번호 재확인" id="iPwd2" name="reNewPassword" maxlength="30"></label>
+                <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                <em class="" id="lockReNewPwd" style="display: none;"></em>
+              </div>
+              <p class="failed-msg" id="failedReNewPwd" style="display:none">
+                <i class="icon" id="alertReNewPasswdIcon"></i><span id="alertReNewPasswd" style="display: none;"></span>
+              </p> <!-- // 실패시 노출 -->
+
+            </div>
+
+            <ul class="dotlist">
+              <li>영문, 숫자를 포함한 6자 이상 ~ 30자 이내 (공백 입력 불가)</li>
+              <li>영문+숫자 10자 이상 혹은 영문+숫자+특수문자 8자 이상을 권장</li>
+              <li>다른 사이트와 같지 않은 비밀번호를 추천</li>
+            </ul>
+
+            <div class="btngroup">
+              <button class="btn btn-linelgray" data-dismiss="modal" id="btnChangePwdCancel"><span>취소</span></button>
+              <button class="btn btn-default medium" id="btnChangePwdConfirm"><span>확인</span></button>
+            </div>
+          </div>
+          <!-- //.content-body -->
+
+          <button class="btn btn-close" data-dismiss="modal" id="btnChangePwdX"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
+        </div> <!-- //.content -->
+      </div> <!-- //.ui-modal-dialog -->
+    </div>
 
   </div> <!-- //.container -->
 </main>

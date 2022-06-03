@@ -25,13 +25,7 @@ import java.util.Random;
 @Log4j
 @RequestMapping("/user")
 @Controller
-//@WebAppConfiguration
-//@ContextConfiguration("file:src/main/webapp/WEB-INF/security-context.xml")
 public class UserController {
-
-//    @Setter(onMethod_ = @Autowired)
-//    private PasswordEncoder pwencoder;
-
     @Setter(onMethod_ = @Autowired)
     private UserService userService;
     @Setter(onMethod_ = @Autowired)
@@ -167,17 +161,6 @@ public class UserController {
         return result;
     }
 
-//    @ResponseBody
-//    @PostMapping ("/idCheck")
-//    public int idCheck(@RequestParam("id") String id) throws Exception{
-//        log.info("userIdCheck 진입");
-//        log.info(id);
-//        int cnt = 0;
-//        cnt = userService.idCheck(id);
-//        //int cnt = 0;
-//        return cnt;
-//    }
-
     @GetMapping("/find_pw_with_email")
     public String find_pw_with_email(){
         return "user.find_pw_with_email";
@@ -234,12 +217,6 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/pw_")
-//    public String find_user_info(){
-//        log.info("hi");
-//        return "user.finduser_info";
-//    }
-
     @RequestMapping(value = "/pw_set.me", method = RequestMethod.POST)
     public ModelAndView pw_set(@RequestParam(value = "checking_email") String checking_email, @RequestParam(value = "num") String num, UserVO userVO ) throws Exception{
         log.info("셋미 도착 ");
@@ -271,5 +248,12 @@ public class UserController {
             log.info("error");
             return "user.pw_new";
         }
+    }
+
+    //약관동의
+    @GetMapping("/user_agree")
+    public String user_agree(){
+        log.info("약관동의");
+        return "user.user_agree";
     }
 }

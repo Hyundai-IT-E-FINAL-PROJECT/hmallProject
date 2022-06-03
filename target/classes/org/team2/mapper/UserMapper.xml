@@ -103,6 +103,8 @@
         <result property="created_at" column="created_at"/>
         <result property="updated_at" column="updated_at"/>
         <result property="user_level" column="user_level"/>
+        <result property="user_email" column="user_email"/>
+        <result property="user_phone" column="user_phone"/>
         <collection property="authList" resultMap="authMap">
         </collection>
         <collection property="addressList" resultMap="addressMap">
@@ -121,7 +123,8 @@
     </resultMap>
 
     <select id="read" resultMap="userMap">
-        SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY, USER_LEVEL
+        SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY, USER_LEVEL,
+            US.USER_EMAIL, US.USER_PHONE
         FROM
         TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
         where US.user_id = #{user_id}
