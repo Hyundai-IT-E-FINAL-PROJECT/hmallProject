@@ -48,4 +48,24 @@ public class UserServiceImpl implements UserService{
         userMapper.find_id(userVO);
         return userMapper.find_id(userVO);
     }
+
+    @Override
+    public int emailCheck(String email) throws Exception {
+        int result = userMapper.emailCheck(email);
+        log.info("result: "+result);
+        return result;
+    }
+
+    @Override
+    public UserVO find_pw(String email) throws Exception {
+        userMapper.find_pw(email);
+        return userMapper.find_pw(email);
+    }
+
+    @Override
+    public int newPassword(UserVO userVO) throws Exception {
+        userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
+        userMapper.newPassword(userVO);
+        return userMapper.newPassword(userVO);
+    }
 }

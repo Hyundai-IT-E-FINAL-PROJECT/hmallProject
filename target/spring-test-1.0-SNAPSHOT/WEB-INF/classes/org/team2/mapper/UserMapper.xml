@@ -22,7 +22,9 @@
             USER_SMS_RECEIVE,
             USER_PURCHASE_AMOUNT,
             USER_LEVEL,
-            ENABLED
+            ENABLED,
+            USER_POINT,
+            USER_DEPOSIT
         ) VALUES (
                      #{no},
                      #{user_id},
@@ -38,7 +40,9 @@
                      #{user_sms_receive},
                      0,
                      0,
-                     1)
+                     1,
+                     0,
+                     0)
     </insert>
 
     <insert id="insertAuth">
@@ -77,6 +81,18 @@
         select * from tbl_user
         where user_name = #{user_name} and user_email = #{user_email}
     </select>
+
+    <select id="emailCheck" parameterType="String" resultType="int">
+        select count(user_email) from tbl_user where user_email = #{user_email}
+    </select>
+
+    <select id="find_pw" parameterType="String" resultType="org.team2.domain.UserVO">
+        select * from tbl_user where user_email = #{email}
+    </select>
+
+    <update id="newPassword" parameterType="org.team2.domain.UserVO">
+        update tbl_user set user_pw = #{user_pw} where user_email = #{user_email}
+    </update>
 
     <resultMap id="userMap" type="org.team2.domain.UserVO">
         <id property="user_id" column="user_id"/>
