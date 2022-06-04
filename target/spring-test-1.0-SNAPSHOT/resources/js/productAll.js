@@ -42,8 +42,12 @@ function searchAutoCate(obj, first_category, second_category) {
 
                                                 <div class="pdinfo">
                                                     <div class="benefits" style="line-height: 20px;">
+                                                        <span class="flag hdshop"> <em>적립금</em></span>
+                                                        <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
                                                     </div>
                                                     <p class="like-count">
+                                                        <em>4.5점</em>
+                                                        <b>(2)</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -85,8 +89,12 @@ function searchAutoCate(obj, first_category, second_category) {
 
                                                 <div class="pdinfo">
                                                     <div class="benefits" style="line-height: 20px;">
+                                                        <span class="flag hdshop"> <em>적립금</em></span>
+                                                        <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
                                                     </div>
                                                     <p class="like-count">
+                                                        <em>4.5점</em>
+                                                        <b>(2)</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -109,18 +117,6 @@ function searchAutoCate(obj, first_category, second_category) {
             console.log('error', e);
         }
     });
-}
-
-function getSimpleFilter() {
-    // 선택필터 영역 세션에 저장
-    if (window.sessionStorage != null) {
-        var simpleFilter = sessionStorage.getItem("selected-filter-list");
-        if (simpleFilter != null) {
-            $(".selected-filter-list").html(simpleFilter);
-            $(".selected-filter-list").css("display", "flex");
-            sessionStorage.removeItem("selected-filter-list");
-        }
-    }
 }
 
 function clickFilter(filter) {
@@ -277,11 +273,14 @@ function search(keyword, first_category, second_category) {
                                                                 <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
                                                             </span>
                                                         </div>
-
                                                 <div class="pdinfo">
                                                     <div class="benefits" style="line-height: 20px;">
+                                                        <span class="flag hdshop"> <em>적립금</em></span>
+                                                        <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
                                                     </div>
                                                     <p class="like-count">
+                                                        <em>4.5점</em>
+                                                        <b>(2)</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -321,12 +320,16 @@ function search(keyword, first_category, second_category) {
                                                             </span>
                                                         </div>
 
-                                                <div class="pdinfo">
-                                                    <div class="benefits" style="line-height: 20px;">
-                                                    </div>
-                                                    <p class="like-count">
-                                                    </p>
-                                                </div>
+                                                        <div class="pdinfo">
+                                                            <div class="benefits" style="line-height: 20px;">
+                                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                                            </div>
+                                                            <p class="like-count">
+                                                                <em>4.5점</em>
+                                                                <b>(2)</b>
+                                                            </p>
+                                                        </div>
                                             </div>
                                         </a>
                                         <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
