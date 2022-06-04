@@ -10,12 +10,12 @@
     <select id="getOne" resultType="org.team2.domain.CategoryVO">
         select *
         from tbl_category
-        where category_seq = ${category_seq}
+        where category_seq = #{first_category}
     </select>
 
     <select id="getSubCategoryList" resultType="org.team2.domain.CategoryVO">
         select *
         from tbl_category
-        where category_ref = ${category_seq}
+        where category_ref = #{first_category}
     </select>
 </mapper>

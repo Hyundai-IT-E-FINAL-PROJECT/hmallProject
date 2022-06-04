@@ -15,8 +15,8 @@ public class ProductSerivceImpl implements ProductService {
     @Setter(onMethod_ = @Autowired)
     private ProductMapper productMapper;
     @Override
-    public ProductVO getOne(Long seq) {
-        ProductVO productVO = productMapper.getOne(seq);
+    public ProductVO getOne(Long product_seq) {
+        ProductVO productVO = productMapper.getOne(product_seq);
 
         return productVO;
     }
@@ -29,8 +29,8 @@ public class ProductSerivceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getAllWithCouponByFirstCategory(Long category_seq) {
-        List<ProductVO> allWithCouponByFirstCategory = productMapper.getAllWithCouponByFirstCategory(category_seq);
+    public List<ProductVO> getAllWithCouponByFirstCategory(Long first_category, Long second_category, String search_text) {
+        List<ProductVO> allWithCouponByFirstCategory = productMapper.searchProducts(first_category, second_category, search_text);
 
         return allWithCouponByFirstCategory;
     }

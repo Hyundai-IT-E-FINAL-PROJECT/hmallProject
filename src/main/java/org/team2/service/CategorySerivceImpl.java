@@ -21,12 +21,12 @@ public class CategorySerivceImpl implements CategoryService{
     }
 
     @Override
-    public CategoryVO getOne(Long category_seq) {
-        return categoryMapper.getOne(category_seq);
+    public CategoryVO getOne(Long first_category) {
+        return categoryMapper.getOne(first_category);
     }
 
     @Override
-    public List<CategoryVO> getSubCategoryList(Long category_seq) {
-        return categoryMapper.getSubCategoryList(category_seq);
+    public List<CategoryVO> getSubCategoryList(Long first_category) {
+        return categoryMapper.getSubCategoryList(first_category);
     }
 }

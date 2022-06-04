@@ -1,4 +1,4 @@
-package org.team2.controller.product;
+package org.team2.controller.api;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.CategoryVO;
 import org.team2.domain.ImageVO;
 import org.team2.domain.ProductVO;
 import org.team2.service.CategoryService;
@@ -24,8 +23,8 @@ import java.util.Map;
 
 @Controller
 @Log4j
-@RequestMapping("/product/*")
-public class ProductController {
+@RequestMapping("/api/product/*")
+public class ProductAPIController {
 
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
@@ -168,7 +167,7 @@ public class ProductController {
     }
 
     @RequestMapping("/all")
-    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text){
+    public ResponseEntity<List<ProductVO>> all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text){
         log.info("product controller all start!!");
 
         ModelAndView mav = new ModelAndView();
@@ -179,15 +178,7 @@ public class ProductController {
 
 
         List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text);
-        CategoryVO categoryVO = categoryService.getOne(first_category);
-        List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
 
-        mav.setViewName("search.all");
-        mav.addObject("productVOList", allWithCouponByFirstCategory);
-        mav.addObject("categoryVO", categoryVO);
-        mav.addObject("subCategoryList", subCategoryList);
-        mav.addObject("className", "wrap display-3depth");
-        mav.addObject("cssFileList", styleFileList);
-        return mav;
+        return ResponseEntity.ok().body(allWithCouponByFirstCategory);
     }
 }

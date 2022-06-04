@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: gimjihye
@@ -79,7 +81,7 @@
                                     <div class="inputbox">
                                         <label class="inplabel" for="searchKeyword"><input type="text" id="searchKeyword" name="searchKeyword" onkeydown="return keydownKeyword(event);" placeholder="검색어를 입력하세요" title="검색어를 입력하세요"></label>
                                     </div>
-                                    <button type="button" class="btn btn-lineblack" id="searchKeywordBtn"><span>적용</span></button>
+                                    <button type="button" class="btn btn-lineblack" id="searchKeywordBtn" onclick="javascript:search($('#searchKeyword').val(), ${categoryVO.category_seq}, $('.ui-active').val());"><span>적용</span></button>
                                 </div>
                             </div>
                         </li>
@@ -110,10 +112,10 @@
 
                         <ul class="ui-tab _selectCategory" role="tablist">
                             <!-- 전체 -->
-                            <li role="presentation" class="autoCate ui-active"><a onclick="javascript:searchAutoCate(this);" role="tab">전체</a></li>
+                            <li role="presentation" class="autoCate ui-active" value=""><a onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, 0);" role="tab">전체</a></li>
 <%--                            다른 하위 카테고리--%>
                             <c:forEach items="${subCategoryList}" var="subCategory">
-                                <li role="presentation" class="autoCate "><a onclick="javascript:searchAutoCate(this, 4);" role="tab">${subCategory.category_name}</a></li>
+                                <li role="presentation" class="autoCate" value="${subCategory.category_seq}"><a onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, ${subCategory.category_seq});" role="tab">${subCategory.category_name}</a></li>
                             </c:forEach>
 
                         </ul>
@@ -196,40 +198,61 @@
 
                         <div class="pdlist-wrap" id="pdListDiv">
                             <ul>
-                                <li class="pdthumb">
-                                    <a href="javascript://" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141573456&amp;sectId=2731753', 'DV0001_U02', 'A');">
-                                        <div class="thumb">
-                                            <img src="https://image.hmall.com/static/4/3/57/41/2141573456_0.jpg?RS=300x300&amp;AR=0" alt="[하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)" id="2141573456_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                        </div>
-                                        <div class="figcaption">
-                                            <div class="pdname" aria-label="제품명">
-                                                [하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)
-                                            </div>
+                                <c:forEach items="${productVOList}" var="productVO">
+                                    <li class="pdthumb">
+                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
 
-                                            <div class="pdprice">
-                                                <span class="rateprice" aria-label="정상가 가격">
-                                                    <p class="discount" aria-label="정상가"><em>27,720</em>원</p>
-                                                </span>
-                                            </div>
+                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                            <div class="thumb">
 
-                                            <div class="pdinfo">
-                                                <div class="benefits" style="line-height: 20px;">
-                                                    <span>무료배송</span>
+                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                            </div>
+                                            <div class="figcaption">
+                                                <div class="pdname" aria-label="제품명">
+                                                        ${productVO.PRODUCT_NAME}
                                                 </div>
-                                                <p class="like-count">
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript://" onclick="sendSlitmClickNewWin('[하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)','2141573456','검색결과','/p/pda/itemPtc.do?slitmCd=2141573456&amp;overL=nw');" class="hoverview">
-                                        <i class="icon"></i>새창열기
-                                    </a>
-                                    <div class="alimlike" data-slitmcd="2141573456" data-bsitmcd="2141573456">
 
-                                        <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','016092','P324151979','2141573456', event);">
-                                            <i class="icon"></i><span class="hiding">찜</span></a>
-                                    </div>
-                                </li>
+                                                <c:choose>
+                                                    <c:when test="${productVO.PRODUCT_COST == productVO.DISCOUNTED_COST}">
+                                                        <div class="pdprice">
+                                                            <span class="rateprice" aria-label="정상가 가격">
+                                                                <p class="discount" aria-label="정상가"><em><fmt:formatNumber value="${productVO.PRODUCT_COST}" pattern="#,###"/></em>원</p>
+                                                            </span>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:when test="${productVO.PRODUCT_COST != productVO.DISCOUNTED_COST}">
+                                                        <div class="pdprice">
+                                                            <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                                <p class="discount" aria-label="할인가"><em><fmt:formatNumber value="${productVO.DISCOUNTED_COST}" pattern="#,###"/></em>원</p>
+                                                                <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                                <del class="normal" aria-label="정상가"><fmt:formatNumber value="${productVO.PRODUCT_COST}" pattern="#,###"/></del>
+                                                            </span>
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
+
+                                                <div class="pdinfo">
+                                                    <div class="benefits" style="line-height: 20px;">
+                                                        <span class="flag hdshop"> <em>적립금</em></span>
+                                                        <span><fmt:formatNumber value="${productVO.DISCOUNTED_COST * 0.05}" pattern="#,###"/>원</span>
+                                                    </div>
+                                                    <p class="like-count">
+                                                        <em>4.5점</em>
+                                                        <b>(2)</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                            <i class="icon"></i>새창열기
+                                        </a>
+                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+
+                                            <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info"">
+                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                        </div>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
 
@@ -317,80 +340,79 @@
 
                     </div>
 
-                    <!-- 브랜드 더보기 레이어 영역 as-is class="pl_dim" 참고-->
-                    <div class="ui-modal brand-detail" id="brandDetail" tabindex="-1" role="dialog" aria-label="브랜드 더보기">
+                    <div class="ui-modal broadcast-channel-info" id="broadcast-channel-info" tabindex="-1" role="dialog" aria-label="방송채널 안내" style="z-index: 1031; display: none;">
                         <div class="ui-modal-dialog" role="document">
                             <div class="content">
-                                <p class="ui-title">브랜드 더보기</p>
-                                <div class="inputbox md">
-                                    <label class="inplabel icon-find">
-                                        <input type="text" name="pl_brands_searchform_search" id="pl_brands_searchform_search" onkeyup="brandTxtSearchKeyUpEvent();" onkeydown="brandTxtSearchKeyEvent();" placeholder="브랜드 검색">
-                                    </label>
-                                    <button class="btn btn-find" type="button" onclick="brandLayerTxtSearch();"><i class="icon find"></i><span class="hiding">검색</span></button>
-                                    <button class="btn ico-clearabled" type="button" id="brandKeywordClear" onclick="javascript:brandClearWord();"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
-                                <!-- class="selectall" "active" "disabled" -->
-                                <ul class="brand-filtermenu" id="pl_brands_brandlist">
-                                    <li><a href="#all" onclick="brandSelectLayerProc(this, 'selectall');" class="selectall"><span>전체</span></a></li>
-                                    <li class="brandAllH_A disabled"><a href="#brandAllH_A"><span>A</span></a></li>
-                                    <li class="brandAllH_B disabled"><a href="#brandAllH_B"><span>B</span></a></li>
-                                    <li class="brandAllH_C disabled"><a href="#brandAllH_C"><span>C</span></a></li>
-                                    <li class="brandAllH_D disabled"><a href="#brandAllH_D"><span>D</span></a></li>
-                                    <li class="brandAllH_E disabled"><a href="#brandAllH_E"><span>E</span></a></li>
-                                    <li class="brandAllH_F disabled"><a href="#brandAllH_F"><span>F</span></a></li>
-                                    <li class="brandAllH_G disabled"><a href="#brandAllH_G"><span>G</span></a></li>
-                                    <li class="brandAllH_H disabled"><a href="#brandAllH_H"><span>H</span></a></li>
-                                    <li class="brandAllH_I disabled"><a href="#brandAllH_I"><span>I</span></a></li>
-                                    <li class="brandAllH_J disabled"><a href="#brandAllH_J"><span>J</span></a></li>
-                                    <li class="brandAllH_K disabled"><a href="#brandAllH_K"><span>K</span></a></li>
-                                    <li class="brandAllH_L disabled"><a href="#brandAllH_L"><span>L</span></a></li>
-                                    <li class="brandAllH_M disabled"><a href="#brandAllH_M"><span>M</span></a></li>
-                                    <li class="brandAllH_N disabled"><a href="#brandAllH_N"><span>N</span></a></li>
-                                    <li class="brandAllH_O disabled"><a href="#brandAllH_O"><span>O</span></a></li>
-                                    <li class="brandAllH_P disabled"><a href="#brandAllH_P"><span>P</span></a></li>
-                                    <li class="brandAllH_Q disabled"><a href="#brandAllH_Q"><span>Q</span></a></li>
-                                    <li class="brandAllH_R disabled"><a href="#brandAllH_R"><span>R</span></a></li>
-                                    <li class="brandAllH_S disabled"><a href="#brandAllH_S"><span>S</span></a></li>
-                                    <li class="brandAllH_T disabled"><a href="#brandAllH_T"><span>T</span></a></li>
-                                    <li class="brandAllH_U disabled"><a href="#brandAllH_U"><span>U</span></a></li>
-                                    <li class="brandAllH_V disabled"><a href="#brandAllH_V"><span>V</span></a></li>
-                                    <li class="brandAllH_W disabled"><a href="#brandAllH_W"><span>W</span></a></li>
-                                    <li class="brandAllH_X disabled"><a href="#brandAllH_X"><span>X</span></a></li>
-                                    <li class="brandAllH_Y disabled"><a href="#brandAllH_Y"><span>Y</span></a></li>
-                                    <li class="brandAllH_Z disabled"><a href="#brandAllH_Z"><span>Z</span></a></li>
-                                    <li class="brandAllH_a disabled"><a href="#brandAllH_a"><span>ㄱ</span></a></li>
-                                    <li class="brandAllH_b disabled"><a href="#brandAllH_b"><span>ㄴ</span></a></li>
-                                    <li class="brandAllH_c disabled"><a href="#brandAllH_c"><span>ㄷ</span></a></li>
-                                    <li class="brandAllH_d disabled"><a href="#brandAllH_d"><span>ㄹ</span></a></li>
-                                    <li class="brandAllH_e disabled"><a href="#brandAllH_e"><span>ㅁ</span></a></li>
-                                    <li class="brandAllH_f disabled"><a href="#brandAllH_f"><span>ㅂ</span></a></li>
-                                    <li class="brandAllH_g disabled"><a href="#brandAllH_g"><span>ㅅ</span></a></li>
-                                    <li class="brandAllH_h disabled"><a href="#brandAllH_h"><span>ㅇ</span></a></li>
-                                    <li class="brandAllH_i disabled"><a href="#brandAllH_i"><span>ㅈ</span></a></li>
-                                    <li class="brandAllH_j disabled"><a href="#brandAllH_j"><span>ㅊ</span></a></li>
-                                    <li class="brandAllH_k disabled"><a href="#brandAllH_k"><span>ㅋ</span></a></li>
-                                    <li class="brandAllH_l disabled"><a href="#brandAllH_l"><span>ㅌ</span></a></li>
-                                    <li class="brandAllH_m disabled"><a href="#brandAllH_m"><span>ㅍ</span></a></li>
-                                    <li class="brandAllH_n disabled"><a href="#brandAllH_n"><span>ㅎ</span></a></li>
-                                    <li class="brandAllH_0 disabled"><a href="#brandAllH_0"><span>0</span></a></li>
-                                    <li class="brandAllH_1 disabled"><a href="#brandAllH_1"><span>1</span></a></li>
-                                    <li class="brandAllH_2 disabled"><a href="#brandAllH_2"><span>2</span></a></li>
-                                    <li class="brandAllH_3 disabled"><a href="#brandAllH_3"><span>3</span></a></li>
-                                    <li class="brandAllH_4 disabled"><a href="#brandAllH_4"><span>4</span></a></li>
-                                    <li class="brandAllH_5 disabled"><a href="#brandAllH_5"><span>5</span></a></li>
-                                    <li class="brandAllH_6 disabled"><a href="#brandAllH_6"><span>6</span></a></li>
-                                    <li class="brandAllH_7 disabled"><a href="#brandAllH_7"><span>7</span></a></li>
-                                    <li class="brandAllH_8 disabled"><a href="#brandAllH_8"><span>8</span></a></li>
-                                    <li class="brandAllH_9 disabled"><a href="#brandAllH_9"><span>9</span></a></li>
-                                </ul>
+                                <p class="ui-title">방송채널 안내</p>
+                                <!-- //.content-head -->
                                 <div class="content-body">
-                                    <div class="brands-show" id="custom-scroll-content" data-modules-scroll="">
+                                    <div class="tblwrap">
+                                        <table>
+                                            <caption>방송채널 안내 항목 - 방송사, TV쇼핑, TV+샵</caption>
+                                            <colgroup>
+                                                <col style="width:calc(100%/3);">
+                                                <col style="width:calc(100%/3);">
+                                                <col style="width:calc(100%/3);">
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">방송사</th>
+                                                <th scope="col">TV쇼핑</th>
+                                                <th scope="col">TV+샵</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-olleh.png" alt="olleh"></td>
+                                                <td class="txt-center">10번</td>
+                                                <td class="txt-center">36번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-skbroadband.png" alt="SK broadband"></td>
+                                                <td class="txt-center">8번</td>
+                                                <td class="txt-center">39번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-lgu.png" alt="LG U+"></td>
+                                                <td class="txt-center"><strong class=" color-ff5340">12번</strong></td>
+                                                <td class="txt-center">34번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-skylife.png" alt="skylife"></td>
+                                                <td class="txt-center">6번</td>
+                                                <td class="txt-center">26번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-lghellovision.png" alt="LG HelloVision"></td>
+                                                <td class="txt-center">13번</td>
+                                                <td class="txt-center"><strong class=" color-ff5340">36번</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-tboard.png" alt="t broad"></td>
+                                                <td class="txt-center">6번</td>
+                                                <td class="txt-center">33번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-dlive.png" alt="D'LiVE"></td>
+                                                <td class="txt-center">6번</td>
+                                                <td class="txt-center">37번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-hyundai.png" alt="현대 HCN"></td>
+                                                <td class="txt-center">10번</td>
+                                                <td class="txt-center">22번</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center"><img src="//image.hmall.com/p/img/co/img-cmb.png" alt="CMB"></td>
+                                                <td class="txt-center">8번</td>
+                                                <td class="txt-center">-</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <!-- //.brands-show -->
-                                    <!-- 선택 해제/적용은 Method/Event는 스크립트 가이드 참조 -->
                                     <div class="btngroup">
-                                        <button type="button" onclick="brandSelectLayerProc(this, 'cancel');" class="btn btn-lineblack"><span>선택 해제</span></button>
-                                        <button type="button" onclick="clickFilter(this);brandSelectLayerProc(this, 'apply');" class="btn btn-default" id="brndApply" data-dismiss="modal"><span>적용</span></button>
+                                        <button class="btn btn-default" data-dismiss="modal"><span>닫기</span></button>
+                                        <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
                                     </div>
                                 </div>
                                 <!-- //.content-body -->
@@ -401,7 +423,6 @@
                         </div>
                         <!-- //.ui-modal-dialog -->
                     </div>
-                    <!-- //.ui-modal -->
                 </div>
                 <!-- //.contents -->
             </div>
@@ -409,3 +430,4 @@
     <!-- //.container -->
 
 </main>
+<script src="/resources/js/productAll.js"></script>
