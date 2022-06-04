@@ -44,14 +44,18 @@
             <sec:authentication property="principal" var="pinfo" />
 
                  <form id="searchForm" name="searchForm" action="/mypageOrder" method="get">
-                    <input type='hidden' name='seType' 		    id='seType' 		value="" />
-                    <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'			value="" />
-                    <input type='hidden' name='ordEndDt' 		id='ordEndDt' 			value="" />
-                    <input type='hidden' name='itemNm' 			id='itemNm'				value="" />
-                </form>
+                     <input type='hidden' name='seType' 		id='seType' 		value="" />
+                     <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
+                     <input type='hidden' name='ordEndDt' 		id='ordEndDt' 		value="" />
+                     <input type='hidden' name='itemNm' 		id='itemNm'			value="" />
+                     <input type="hidden" name='type'           id='type'           value="${type}" />
+                 </form>
+
                 <div class="contents">
                     <div class="mypage-order-wrap">
 
+
+                        <c:if test="${type eq 'all'}">
                         <h3 class="title22">주문/배송 현황</h3>
                         <div class="order-step">
                             <p class="txt-right">(최근 2개월)</p>
@@ -93,8 +97,46 @@
                             <li>구매확정이 완료된 주문은 진행중인 주문에 포함되지 않으며, 진행상태에 따라 배송지 변경, 취소, 교환, 반품신청이 가능합니다.</li>
                             <li>가전, 가구 등 설치 상품은 물류 이동으로 인해 상품발송 후 설치 방문까지 2~3일 정도 기간이 추가될 수 있습니다.</li>
                         </ul>
+                        </c:if>
 
+                        <c:if test="${type eq 'cancel'}">
+                            <h3 class="title22">취소/반품/교환/AS현황</h3>
+                                <div class="order-step return-step">
+                                    <p class="txt-right">(최근 2개월)</p>
 
+                            <ul>
+                                <li>
+                                    <div>
+                                        <strong class="num">2</strong>
+                                        <span class="txt">주문취소</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong class="num">0</strong>
+                                        <span class="txt">반품접수</span>
+                                    </div>
+                                    <div>
+                                        <strong class="num">0</strong>
+                                        <span class="txt">반품완료</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong class="num">0</strong>
+                                        <span class="txt">교환접수</span>
+                                    </div>
+                                    <div>
+                                        <strong class="num">0</strong>
+                                        <span class="txt">교환완료</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="dotlist">
+                            <li>취소/반품/교환 요청: 취소/반품/교환 신청은 상품발송 후 7일 이내에만 가능합니다.</li>
+                        </ul>
+                        </c:if>
 
                         <div class="filter-box">
                             <div class="search-filter">
@@ -161,12 +203,24 @@
                                                 <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
                                             </span>
                                             <div class="box">
-                                                <span class="state sky">
-                                                                 ${list.ORDER_STATUS}
-                                                <em class="color-999">
+                                                <c:choose>
+                                                    <c:when test="${list.ORDER_STATUS eq '주문취소' or list.ORDER_STATUS eq '교환접수' or list.ORDER_STATUS eq '교환완료' or list.ORDER_STATUS eq '반품접수' or list.ORDER_STATUS eq '반품완료'}">
+                                                        <span class="state red">
+                                                                    ${list.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                                </em>
-                                                </span>
+                                                        </em>
+                                                        </span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="state sky">
+                                                                 ${list.ORDER_STATUS}
+                                                        <em class="color-999">
+
+                                                        </em>
+                                                        </span>
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 <span class="tit"> ${list.PRODUCT_NAME}</span>
                                                 <div class="info">
                                                     <ul>
@@ -182,7 +236,7 @@
 
                                         <div class="btngroup">
                                             <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                                <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
+                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${list.ORDER_SEQ}'"><span>주문취소</span></button>
                                             </c:if>
                                             <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
                                             <input type="hidden" name="copnStlmFixYn" value="" />

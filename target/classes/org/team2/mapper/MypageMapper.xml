@@ -33,22 +33,51 @@
                         AND d.image_type = 'MAIN'
                         ORDER BY created_at DESC)
 
+            <where>
             <choose>
                 <when test='seType != null'>
                     <if test='seType != "-3"'>
-                        WHERE TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{ordStrtDt} AND #{ordEndDt}
+                        AND TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{ordStrtDt} AND #{ordEndDt}
                     </if>
                 </when>
                 <when test="seType == null">
-                    <![CDATA[WHERE TO_DATE(sysdate-14) < created_at]]>
+                    <![CDATA[AND TO_DATE(sysdate-14) < created_at]]>
                 </when>
             </choose>
-            <if test='itemNm != "" and itemNm != null and ordStrtDt != ""'>
-                AND PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
-            </if>
-            <if test='itemNm != "" and itemNm != null and ordStrtDt == ""'>
-                WHERE PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%'
-            </if>
+                <if test="itemNm != null"> AND PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%' </if>
+            </where>
+    </select>
+
+    <select id="returnperiodOrders" resultType="map">
+
+        select *
+        from       (SELECT *
+                    FROM (SELECT a.order_status, a.order_total_cost, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_info, d.image_name
+                            FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
+                            WHERE #{no} = a.user_seq
+                                AND a.order_seq = b.order_seq
+                                AND b.product_seq = c.product_seq
+                                AND c.product_seq = d.product_seq
+                                AND d.image_type = 'MAIN'
+                                ORDER BY created_at DESC)
+                        WHERE order_status = '주문취소'
+                        OR order_status = '교환접수'
+                        OR order_status = '교환완료'
+                        OR order_status = '반품접수'
+                        OR order_status = '반품완료')
+        <where>
+            <choose>
+                <when test='seType != null'>
+                    <if test='seType != "-3"'>
+                        AND TO_CHAR(created_at, 'YYYYMMDD') BETWEEN #{ordStrtDt} AND #{ordEndDt}
+                    </if>
+                </when>
+                <when test="seType == null">
+                    <![CDATA[AND TO_DATE(sysdate-14) < created_at]]>
+                </when>
+            </choose>
+            <if test="itemNm != null"> AND PRODUCT_NAME LIKE '%' ||  #{itemNm} || '%' </if>
+        </where>
     </select>
 
     <select id="detailOrders" resultType="map">
@@ -63,10 +92,45 @@
     </select>
 
     <select id="couponList" resultType="map">
-        select b.coupon_name, b.coupon_ratio, b.coupon_cost, b.created_at, b.expired_date, TO_DATE(b.expired_date, 'YYYY-MM-DD')-TO_DATE(sysdate, 'YYYY-MM-DD') as "lefttime"
+        select b.coupon_name, b.coupon_ratio, b.coupon_cost, b.created_at, b.expired_date, b.expired_cost, TO_DATE(b.expired_date, 'YYYY-MM-DD')-TO_DATE(sysdate, 'YYYY-MM-DD') as "lefttime"
         from tbl_cu a, tbl_coupon b
         where #{no} = a.user_seq
           and a.coupon_seq = b.coupon_seq
+    </select>
+
+    <select id="pointList" resultType="map">
+        SELECT A.CREATED_AT, A.POINT_SAVE, A.POINT_USE, A.PRODUCT_SEQ, B.PRODUCT_NAME
+        FROM TBL_POINT A, TBL_PRODUCT B
+        WHERE A.USER_SEQ = #{no}
+        AND A.PRODUCT_SEQ = B.PRODUCT_SEQ
+        <choose>
+            <when test='searchType != null'>
+                <if test='searchType != "-3"'>
+                    AND TO_CHAR(A.CREATED_AT, 'YYYYMMDD') BETWEEN #{strtDt} AND #{endDt}
+                </if>
+            </when>
+            <when test="searchType == null">
+                <![CDATA[AND TO_DATE(sysdate-14) < A.CREATED_AT]]>
+            </when>
+        </choose>
+        ORDER BY CREATED_AT DESC
+    </select>
+
+    <select id="depositList" resultType="org.team2.domain.DepositVO">
+        SELECT *
+        FROM TBL_DEPOSIT
+        WHERE USER_SEQ = #{no}
+        <choose>
+            <when test='searchType != null'>
+                <if test='searchType != "-3"'>
+                    AND TO_CHAR(CREATED_AT, 'YYYYMMDD') BETWEEN #{strtDt} AND #{endDt}
+                </if>
+            </when>
+            <when test="searchType == null">
+                <![CDATA[AND TO_DATE(sysdate-14) < CREATED_AT]]>
+            </when>
+        </choose>
+        ORDER BY CREATED_AT DESC
     </select>
 </mapper>
 

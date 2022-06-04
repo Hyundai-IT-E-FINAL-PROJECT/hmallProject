@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.team2.domain.DepositVO;
 import org.team2.mapper.MypageMapper;
 
 import java.util.List;
@@ -36,5 +37,21 @@ public class MypageServiceImpl implements MypageService {
     public List<Map<String, Object>> couponList(String no) throws Exception {
         return mypageMapper.couponList(no);
     }
+
+    @Override
+    public List<Map<String, Object>> pointList(String no, String strtDt, String endDt, String searchType) throws Exception {
+        return mypageMapper.pointList(no, strtDt, endDt, searchType);
+    }
+
+    @Override
+    public List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm, String type) throws Exception {
+        return mypageMapper.returnperiodOrders(no, ordStrtDt, ordEndDt, seType, itemNm, type);
+    }
+
+    @Override
+    public List<DepositVO> depositList(String no, String strtDt, String endDt, String searchType) throws Exception {
+        return mypageMapper.depositList(no, strtDt, endDt, searchType);
+    }
+
 
 }
