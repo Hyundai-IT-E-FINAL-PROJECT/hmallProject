@@ -2278,3 +2278,127 @@
 .exhibition-marketing .contents-notice .btngroup { margin-top: 30px; text-align: center; }
 .exhibition-marketing .contents-notice .btngroup .btn-black { width: 250px; }
 .exhibition-marketing .contents-notice .btngroup .btn-black span { font-size: 19px; font-weight: 700; }
+
+.product-banner-wrap {
+    position: relative;
+    display: block;
+    width: 520px;
+    height: 625px;
+}
+
+.slider-thumbnaii {
+    width: 440px;
+    height: 85px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.slider-thumbnaii.no-slick {
+    width: 520px;
+}
+
+.slider-thumbnaii .ui-thumbnaii {
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.slider-thumbnaii .ui-thumbnaii a {
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.slider-thumbnaii .ui-thumbnaii img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+}
+
+.slider-thumbnaii .ui-thumbnaii.ui-active {
+    border: 1px solid #FF5340;
+    border-radius: 5px;
+}
+
+.slider-thumbnaii ul {
+    white-space: nowrap;
+}
+
+.slider-thumbnaii li {
+    display: inline-block;
+}
+
+.slider-thumbnaii li + li {
+    margin-left: 4px;
+}
+
+.product-banner-wrap .product-mainbanner .slick-prev, .product-mainbanner .slick-next {
+    top: inherit;
+    bottom: -67px;
+    width: 7px;
+    height: 11px;
+    border: none;
+    background: url(//image.hmall.com/p/img/co/icon/ico-slick-product-arrow.png) no-repeat;
+    background-size: 7px 11px;
+}
+
+.product-banner-wrap .product-mainbanner .slick-next {
+    transform: rotate(-180deg);
+}
+
+.product-banner-wrap .product-mainbanner .slick-prev {
+    bottom: -72px;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .ui-angle {
+    border: 2px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .ui-angle:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background: #fff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.product-banner-wrap [data-modules-imageviewer] .ui-angle.ui-active {
+    display: block;
+}
+
+.product-banner-wrap [data-modules-imageviewer], .product-mainbanner [data-modules-imageviewer] a {
+    cursor: crosshair;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .video_sec {
+    cursor: default !important;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .video_sec .onair-window {
+    top: -6px;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .video_sec .onair-window .btn-next-video {
+    margin-bottom: 8px;
+}
+
+.product-banner-wrap [data-modules-imageviewer] .video_sec .onair-window > span {
+    margin-top: 11px;
+}
+
+.product-mainbanner {
+    width: 520px;
+    height: 520px;
+    margin: 0 auto 20px;
+}
