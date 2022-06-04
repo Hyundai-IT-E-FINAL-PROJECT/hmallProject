@@ -1,8 +1,10 @@
 package org.team2.service;
 
-import org.springframework.http.HttpStatus;
+import org.team2.domain.AddressVO;
 import org.team2.domain.UserVO;
 
+import org.springframework.http.HttpStatus;
+import org.team2.domain.UserVO;
 import java.util.Date;
 import java.util.List;
 
@@ -27,4 +29,8 @@ public interface UserService {
     UserVO readPoint(Long user_seq) throws Exception;
 
 //    public int idCheck(String id) throws  Exception;
+
+    List<AddressVO> readAddress(Long user_seq) throws Exception;
+
+    AddressVO selectAddress(Long user_address_seq) throws Exception;
 }

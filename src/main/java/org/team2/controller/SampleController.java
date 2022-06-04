@@ -28,7 +28,6 @@ public class SampleController {
         mv.setViewName("main.main");
         mv.addObject("cssFileList", styleFileList);
         mv.addObject("className", "wrap hyundai-homeshoping");
-
         return mv;
     }
 }

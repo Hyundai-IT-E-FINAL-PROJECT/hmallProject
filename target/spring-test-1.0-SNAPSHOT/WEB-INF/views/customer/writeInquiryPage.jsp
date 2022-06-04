@@ -1861,7 +1861,6 @@
       order_seq: Number($("input[name='order_seq']").val()),
       product_code: Number($("input[name='product_code']").val()),
       qc_email_receive: emailReceive
-      //option_code: 2
     };
 
     console.log(data);

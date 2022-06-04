@@ -9,6 +9,7 @@ import org.team2.mapper.BasketMapper;
 import org.team2.mapper.CategoryMapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BasketSerivceImpl implements BasketService{
@@ -18,5 +19,10 @@ public class BasketSerivceImpl implements BasketService{
     @Override
     public List<BasketVO> getAllByUserSeq(Long user_seq) {
         return basketMapper.getProductsByUserSeq(user_seq);
+    }
+
+    @Override
+    public BasketVO directBuy(Map<String, Long> map) {
+        return basketMapper.directBuy(map);
     }
 }
