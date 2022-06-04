@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+import org.team2.domain.AddressVO;
 import org.team2.domain.UserVO;
 import org.team2.mapper.UserMapper;
+
+import java.util.List;
 
 @Log4j
 @Service
@@ -52,5 +55,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserVO readPoint(Long user_seq) throws Exception {
        return userMapper.readPoint(user_seq);
+    }
+
+    @Override
+    public List<AddressVO> readAddress(Long user_seq) throws Exception {
+        return userMapper.readAddress(user_seq);
+    }
+
+    @Override
+    public AddressVO selectAddress(Long user_address_seq) throws Exception {
+        return userMapper.selectAddress(user_address_seq);
     }
 }

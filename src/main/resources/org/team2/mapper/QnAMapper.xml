@@ -13,6 +13,7 @@
         select *
         from tbl_qc C, tbl_qa A
         where C.qc_seq =A.qc_seq
+        order by C.created_at desc
     </select>
 
     <select id="addReply">

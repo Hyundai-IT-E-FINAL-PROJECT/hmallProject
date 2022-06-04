@@ -62,8 +62,8 @@
             #{AddressVO.user_address_address1},
             #{AddressVO.user_address_address2},
             #{AddressVO.user_address_address3},
-            #{AddressVO.user_name},
-            #{AddressVO.user_phone},
+            #{AddressVO.user_address_name},
+            #{AddressVO.user_address_phone_num},
             sysdate,
             sysdate
             )
@@ -113,5 +113,13 @@
 
     <select id="readPoint" resultType="org.team2.domain.UserVO">
         select * from tbl_user where user_seq=#{user_seq}
+    </select>
+
+    <select id="readAddress" resultType="org.team2.domain.AddressVO">
+        select * from tbl_user_address where user_seq=#{use_seq}
+    </select>
+
+    <select id="selectAddress" resultType="org.team2.domain.AddressVO">
+        select * from tbl_user_address where user_address_seq=#{user_address_seq}
     </select>
 </mapper>

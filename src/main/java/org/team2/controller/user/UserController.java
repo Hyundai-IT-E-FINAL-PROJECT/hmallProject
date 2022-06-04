@@ -3,6 +3,9 @@ package org.team2.controller.user;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -19,8 +22,12 @@ import org.team2.service.UserService;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
+import javax.swing.*;
+import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Log4j
 @RequestMapping("/user")
@@ -147,4 +154,28 @@ public class UserController {
         }
         return mav;
     }
+
+    @GetMapping("openAddressListPup")
+    public ModelAndView openOrderListPup(Principal principal) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        log.info("openAddressListPup  접속");
+
+        List<AddressVO> userAddressList=userService.readAddress(Long.valueOf(principal.getName()));
+        log.info(userAddressList);
+        mav.addObject("userAddressList",userAddressList);
+        mav.setViewName("layerPup/openAddressListPup.empty");
+        return mav;
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping(value="getAddressInfo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AddressVO getAddressInfo(@RequestParam Long user_address_seq) throws Exception {
+
+        log.info("getAddressInfo Controller 접속");
+        AddressVO addressVO =userService.selectAddress(user_address_seq);
+        return addressVO;
+    }
+
 }

@@ -74,32 +74,7 @@
                                     </div>
                                     <div class="shipping-list" id="gen">
                                         <div class="pdwrap pdlist ml" style="display:none;" id="007818_000000_314">
-                                            <input type="hidden" id="exclItemTrgtGbcd_2122712699" name="exclItemTrgtGbcd" value="">
-                                            <input type="hidden" id="slitmNm_2122712699" name="slitmNm" value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )">
-                                            <input type="hidden" name="slitmCd" value="2122712699">
-                                            <input type="hidden" name="ordAgreeInf" value="N|N|N|N|[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )|6kg(3kg * 2박스)|00002|0">
-                                            <input type="hidden" name="uitmCdInfPup" value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )$6kg(3kg * 2박스)$12$358800$2122712699_0_100.jpg$2122712699$bask">
-                                            <input type="hidden" name="dawnDlvYn" value="N">
-                                            <input type="hidden" name="freshFoodYn" value="N">
-                                            <input type="hidden" name="sectId" value="2731643">
-                                            <input type="hidden" name="stlmWayScopGbcd" value="10">
-                                            <input type="hidden" name="venCd" value="007818">
-                                            <input type="hidden" name="cardEventYn" value="">
-                                            <input type="hidden" name="basktGbcd" value="02">
-                                            <input type="hidden" name="brand" value="209964(아이사랑)">
-                                            <input type="hidden" name="gaCategory" value="식품/농산물/국내청과/사과">
-                                            <input type="hidden" name="basktVenCdVal" id="basktVenCdVal" value="007818">
-                                            <input type="hidden" name="basktVen2CdVal" id="basktVen2CdVal" value="000000">
-                                            <input type="hidden" name="basktOshpVenAdrSeqVal" id="basktOshpVenAdrSeqVal" value="314">
-                                            <input type="hidden" name="basktGrpDivRnm" id="basktGrpDivRnm" value="EMT">
-                                            <input type="hidden" name="sdlvcVenSeq" id="sdlvcVenSeq" value="">
-                                            <input type="hidden" name="dlvcPayGbcdVal" id="dlvcPayGbcdVal" value="00">
-                                            <input type="hidden" name="dlvHopeOverYn" value="Y">
-                                            <input type="hidden" name="basktDlvCostVal" id="basktDlvCostVal" value="0">
-                                            <input type="hidden" name="basktVenCdGatherVal" id="basktVenCdGatherVal" value="007818|000000||EMT">
-                                            <input type="hidden" name="basktGiftOrderYn" value="Y">
-                                            <input type="hidden" name="basktTotalGiftOrderYn" value="Y">
-                                            <input type="hidden" name="bsicAmt" value="0">
+
 
                                             <div class="checkbox">
                                                 <label class="chklabel"><input type="checkbox" name="basktInf" value="2122712699|00002|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
@@ -116,41 +91,14 @@
                                                         <figcaption>
                                                             <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2122712699&amp;sectId=2731643">
                                                                 <div class="pdprice">
-
-
-
-
-
-
-
                                                                     <!-- TODO 곽희섭 20170608 통합포인트 추가 -->
-
-
                                                                     <input type="hidden" name="sellPrc" value="30900">
                                                                     <input type="hidden" name="bbprc" value="29900">
-
                                                                     <ins class="normal" aria-label="정상가"><em>358,800</em><b>원</b></ins>
-
-
                                                                 </div>
                                                                 <div class="benefits">
-
-
-
-
-
-
-
-
-
-
-
                                                                     <!-- 카드즉시할인KJH -->
-
                                                                 </div>
-
-
-
                                                                 <div class="pdoption" aria-label="옵션/수량">
                                                                     <span class="option">옵션: <em>6kg(3kg * 2박스)</em></span>
                                                                     <span class="count">수량: <em>12개</em></span>
@@ -163,39 +111,15 @@
                                                     </figure>
                                                 </div>
                                                 <!-- //.pditem -->
-
                                                 <!-- gifts-area : 필수사은품 -->
-
                                                 <!-- //.gifts-area -->
-
                                                 <!-- btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
                                                 <div class="btngroup">
-
-
                                                     <div class="pdfunc">
                                                         <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2122712699_00002" onclick="showChgUitmPup(this, '2122712699', '00002', 0, 30900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                     </div>
-
-
-
-
-
-
                                                     <button type="button" class="btn btn-linelgray" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2122712699"><span>선물하기</span></button>
-
-
-
-
-
-
-
-
                                                     <button type="button" class="btn btn-default" onclick="setGiftOrder('N');buyDirect(this);" id="buyDirectBtn_2122712699"><span>바로구매</span></button>
-
-
-
-
-
                                                 </div>
                                                 <!-- // btngroup: 수량,속성변경 / 선물하기 / 스토어픽 구매 / 바로구매 -->
 
@@ -214,37 +138,11 @@
                                     <script type="text/javascript">
                                         console.log("${basketVOList}")
                                     </script>
+<%--                                    <form method="post" action="${contextPath}/order/od" id="basketForm" name="basketForm">--%>
                                     <c:forEach items="${basketVOList}" var="basketVO" varStatus="status">
                                         <div class="shipping-list" id="gen">
                                             <!-- .pdwrap -->
                                             <div class="pdwrap pdlist ml" style="display:;" id="013817_000000_9">
-                                                <input type="hidden" id="exclItemTrgtGbcd_2101560521" name="exclItemTrgtGbcd" value="">
-                                                <input type="hidden" id="slitmNm_2101560521" name="slitmNm" value="SPC삼립 필라프 5종(총15팩) + 비프 함박스테이크 2종(총15장)">
-                                                <input type="hidden" name="slitmCd" value="2101560521">
-                                                <input type="hidden" name="ordAgreeInf" value="N|N|N|N|SPC삼립 필라프 5종(총15팩) + 비프 함박스테이크 2종(총15장)|없음|00001|3">
-                                                <input type="hidden" name="uitmCdInfPup" value="SPC삼립 필라프 5종(총15팩) + 비프 함박스테이크 2종(총15장)$없음$2$115800$2101560521_0_100.jpg$2101560521$bask">
-                                                <input type="hidden" name="dawnDlvYn" value="N">
-                                                <input type="hidden" name="freshFoodYn" value="N">
-                                                <input type="hidden" name="sectId" value="920435">
-                                                <input type="hidden" name="stlmWayScopGbcd" value="10">
-                                                <input type="hidden" name="venCd" value="013817">
-                                                <input type="hidden" name="cardEventYn" value="">
-                                                <input type="hidden" name="basktGbcd" value="02">
-                                                <input type="hidden" name="brand" value="A03306(삼립식품)">
-                                                <input type="hidden" name="gaCategory" value="식품/가공식품/밥류/볶음밥">
-                                                <input type="hidden" name="basktVenCdVal" id="basktVenCdVal" value="013817">
-                                                <input type="hidden" name="basktVen2CdVal" id="basktVen2CdVal" value="000000">
-                                                <input type="hidden" name="basktOshpVenAdrSeqVal" id="basktOshpVenAdrSeqVal" value="9">
-                                                <input type="hidden" name="basktGrpDivRnm" id="basktGrpDivRnm" value="EMT">
-                                                <input type="hidden" name="sdlvcVenSeq" id="sdlvcVenSeq" value="">
-                                                <input type="hidden" name="dlvcPayGbcdVal" id="dlvcPayGbcdVal" value="00">
-                                                <input type="hidden" name="dlvHopeOverYn" value="Y">
-                                                <input type="hidden" name="basktDlvCostVal" id="basktDlvCostVal" value="0">
-                                                <input type="hidden" name="basktVenCdGatherVal" id="basktVenCdGatherVal" value="013817|000000||EMT">
-                                                <input type="hidden" name="basktGiftOrderYn" value="Y">
-                                                <input type="hidden" name="basktTotalGiftOrderYn" value="Y">
-                                                <input type="hidden" name="bsicAmt" value="0">
-
                                                 <div class="checkbox">
                                                     <label class="chklabel"><input type="checkbox" name="basktInf" value="2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
@@ -289,7 +187,10 @@
                                             </div>
                                         </div>
                                     </c:forEach>
+<%--                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+<%--                                    </form>--%>
                                 </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
                         </div>
                     </div>
@@ -299,23 +200,48 @@
 
                         var csrfHeaderName = "${_csrf.headerName}";
                         var csrfTokenValue = "${_csrf.token}";
+
                         var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
 
-                        console.log(typeof(product_seq));
+                        <%--let myForm=document.getElementById('#basketForm');--%>
+                        <%--let formData=new FormData(myForm[0]);--%>
+                        <%--// formData.append('product_seq',product_seq);--%>
+                        <%--fetch('${contextPath}/order/od',{--%>
+                        <%--    headers: {--%>
+                        <%--        'Content-Type': 'application/x-www-form-urlencoded'--%>
+                        <%--    },--%>
+                        <%--    method:'POST',--%>
+                        <%--    body:new URLSearchParams({--%>
+                        <%--        product_seq:product_seq--%>
+                        <%--    })--%>
+                        <%--});--%>
+
+
+
+                        <%--let form=$("#basketForm");--%>
+
+
+
+                        <%--form.attr("action", "${contextPath}/order/od");--%>
+                        <%--form.attr('method','post');--%>
+                        <%--form.attr("product_seq",product_seq);--%>
+                        <%--form.appendTo('#basketForm');--%>
+
+                        <%--// form.append(product_seq);--%>
+                        <%--// console.log(product_seq);--%>
+
+                        <%--form.submit();--%>
 
 
                         $.ajax({
                             type:'get',
-                            data:{
-                                product_seq:product_seq
-                            },
-                            url: '${contextPath}/order/od',
+                            url: '${contextPath}/order/od/'+product_seq,
                             beforeSend:function (xhr){
                                 xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
                             },
                             success:function(){
-                                alert("바로구매 페이지로 이동합니다.");
-                                location.href="/order/od";
+                                alert("주문 작성 페이지로 이동합니다.");
+                                location.href='${contextPath}/order/od/'+product_seq;
                             },
                             error: function (request,status,error) {
                                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

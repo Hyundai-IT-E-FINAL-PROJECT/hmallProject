@@ -2,11 +2,13 @@ package org.team2.controller.order;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import oracle.ucp.proxy.annotation.Post;
+import org.json.JSONObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.BasketVO;
 import org.team2.domain.CouponVO;
 import org.team2.domain.OrderVO;
 import org.team2.domain.UserVO;
@@ -41,45 +43,23 @@ public class OrderController {
 //    }
 
 
-//    @ResponseBody
-//    @RequestMapping(value = "od", method = RequestMethod.GET)
-//    public ModelAndView sendOrderData(Principal principal, @RequestParam("product_seq") Long product_seq) throws Exception {
-//        log.info("move to order Page..");
-//        ModelAndView mav = new ModelAndView();
-//        Long user_seq=Long.valueOf(principal.getName());
-//        //css파일 적용
-//        List<String> styleFileList = new ArrayList<>();
-//        styleFileList.add("order");
-//
-//        //장바구니 가져오기(물품 한 개일 때)
-//        Map<String, Long> map=new HashMap<>();
-//        map.put("product_seq", product_seq);
-//        map.put("user_seq",user_seq);
-////        basketService.directBuy(Long, Long);
-//
-//
-//        //쿠폰 내역 가져오기
-//        List<CouponVO> couponList=couponService.getCouponList(user_seq);
-//        UserVO user=userService.readPoint(user_seq);
-//
-//        mav.addObject("user_seq", user_seq);
-//        mav.addObject("couponList", couponList);
-//        mav.addObject("userPoint", user.getUser_point());
-//        mav.addObject("depositPoint",user.getUser_deposit());
-//        mav.addObject("cssFileList", styleFileList);
-//        mav.addObject("directBuyBasket", basketService.directBuy(map));
-//        mav.addObject("className","wrap order-main");
-//        mav.setViewName("order.orderPage");
-//        return mav;
-//    }
 
+    //장바구니 -> 상품 하나 선택했을 때 Controller
     @ResponseBody
-    @RequestMapping(value = "od", method = RequestMethod.GET)
-    public ModelAndView sendOrderData(Principal principal) throws Exception {
+    @RequestMapping(value = "od/{product_seq}", method = RequestMethod.GET)
+    public ModelAndView sendOrderData(Principal principal, @PathVariable Long product_seq) throws Exception {
 //    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("order");
+
+            //장바구니 가져오기(물품 한 개일 때)
+        Map<String, Long> map=new HashMap<>();
+        map.put("product_seq", product_seq);
+        map.put("user_seq", Long.valueOf(principal.getName()));
+        BasketVO directBasket=basketService.directBuy(map);
+
+        log.info(directBasket);
 
         //예치금, 적립금도 불러오기
         Long user_seq=Long.valueOf(principal.getName());
@@ -87,6 +67,7 @@ public class OrderController {
         log.info("데이터 이동");
         List<CouponVO> couponList=couponService.getCouponList(user_seq);
         UserVO user=userService.readPoint(user_seq);
+        mav.addObject("directBasket",directBasket);
         mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
         mav.addObject("userPoint", user.getUser_point());
@@ -96,6 +77,28 @@ public class OrderController {
         return mav;
     }
 
+
+//
+//    @ResponseBody
+//    @RequestMapping(value = "od", method = RequestMethod.POST)
+//    public ModelAndView sendOrderData(Principal principal, @RequestParam("product_seq") Long product_seq) throws Exception {
+//        log.info("move to order Page..");
+//        ModelAndView mav = new ModelAndView();
+//        Long user_seq=Long.valueOf(principal.getName());
+//
+//        //장바구니 가져오기(물품 한 개일 때)
+//        Map<String, Long> map=new HashMap<>();
+//        map.put("product_seq", product_seq);
+//        map.put("user_seq",user_seq);
+//
+//        //BasketVO directBasket=basketService.directBuy(map);
+//        //log.info(directBasket);
+//        JSONObject directBasket= new JSONObject(basketService.directBuy(map));
+//
+//        mav.addObject("directBasket", directBasket);
+//        mav.setViewName("order.orderPage");
+//        return mav;
+//    }
     //수정중
 //    @PostMapping( "od")
 //    public ModelAndView sendOrderData (@RequestParam Map<String, String>map) throws Exception {
