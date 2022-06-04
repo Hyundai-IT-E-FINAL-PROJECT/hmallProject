@@ -24,20 +24,11 @@ public class SampleController {
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("main");
 
-<<<<<<< HEAD
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main.main");
         mv.addObject("cssFileList", styleFileList);
         mv.addObject("className", "wrap hyundai-homeshoping");
-=======
-        ModelAndView mav = new ModelAndView();
-        List<String> styleFileList = new ArrayList<>();
-        styleFileList.add("main");
-        mav.addObject("cssFileList", styleFileList);
-        mav.addObject("className", "wrap hyundai-homeshoping");
-        mav.setViewName("main.main");
->>>>>>> hoon
 
-        return mav;
+        return mv;
     }
 }

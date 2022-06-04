@@ -57,10 +57,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-<<<<<<< HEAD
     public UserVO readPoint(Long user_seq) throws Exception {
        return userMapper.readPoint(user_seq);
-=======
+    }
     public int emailCheck(String email) throws Exception {
         int result = userMapper.emailCheck(email);
         log.info("result: "+result);
@@ -96,6 +95,5 @@ public class UserServiceImpl implements UserService{
     public List<UserVO> getUserinfo(long no) throws Exception {
         userMapper.getUserinfo(no);
         return userMapper.getUserinfo(no);
->>>>>>> hoon
     }
 }

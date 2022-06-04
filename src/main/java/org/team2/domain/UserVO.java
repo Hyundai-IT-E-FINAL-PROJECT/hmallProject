@@ -30,13 +30,10 @@ public class UserVO implements Serializable {
     private String user_email_receive;
     private String user_sms_receive;
     private String user_level;
-<<<<<<< HEAD
     private Long enabled;
     private Long user_point;
     private Long user_deposit;
-=======
     private String user_nickname;
->>>>>>> hoon
     private List<AuthVO> authList;
     private List<AddressVO> addressList;
 

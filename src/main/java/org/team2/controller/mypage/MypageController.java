@@ -22,11 +22,8 @@ import org.team2.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.Date;
->>>>>>> hoon
 import java.util.List;
 import java.util.Map;
 

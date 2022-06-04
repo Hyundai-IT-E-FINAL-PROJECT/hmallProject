@@ -192,8 +192,6 @@
                                         const config = {
                                             dateFormat: 'yy-mm-dd',
                                             yearRange: '1930:2022',
-
-<<<<<<< HEAD
                                             prevText: '이전 달',
                                             nextText: '다음 달',
                                             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -216,7 +214,6 @@
                                             <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" />
                                         </div>
                                     </div>
-=======
                                                     prevText: '이전 달',
                                                     nextText: '다음 달',
                                                     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
