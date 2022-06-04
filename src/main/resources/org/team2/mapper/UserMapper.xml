@@ -22,7 +22,9 @@
             USER_SMS_RECEIVE,
             USER_PURCHASE_AMOUNT,
             USER_LEVEL,
-            ENABLED
+            ENABLED,
+            USER_POINT,
+            USER_DEPOSIT
         ) VALUES (
                      #{no},
                      #{user_id},
@@ -38,7 +40,9 @@
                      #{user_sms_receive},
                      0,
                      0,
-                     1)
+                     1,
+                     0,
+                     0)
     </insert>
 
     <insert id="insertAuth">
@@ -78,6 +82,34 @@
         where user_name = #{user_name} and user_email = #{user_email}
     </select>
 
+    <select id="emailCheck" parameterType="String" resultType="int">
+        select count(user_email) from tbl_user where user_email = #{user_email}
+    </select>
+
+    <select id="find_pw" parameterType="String" resultType="org.team2.domain.UserVO">
+        select * from tbl_user where user_email = #{email}
+    </select>
+
+    <update id="newPassword" parameterType="org.team2.domain.UserVO">
+        update tbl_user set user_pw = #{user_pw} where user_email = #{user_email}
+    </update>
+
+    <update id="myPage_pwUpdate" parameterType="org.team2.domain.UserVO">
+        update tbl_user set user_pw = #{user_pw} where user_id = #{user_id}
+    </update>
+
+    <update id="myPage_newNickname" parameterType="String">
+        update tbl_user set user_nickname = #{user_nickname} where user_id = #{user_id}
+    </update>
+
+    <select id="getUserinfo" resultType="org.team2.domain.UserVO">
+        select user_nickname, user_phone, user_email from tbl_user where user_seq = #{no}
+    </select>
+
+    <update id="myPage_newBirthday">
+        update tbl_user set user_birth = #{user_birth} where user_id = #{user_id}
+    </update>
+
     <resultMap id="userMap" type="org.team2.domain.UserVO">
         <id property="user_id" column="user_id"/>
         <result property="no" column="user_seq"/>
@@ -87,6 +119,10 @@
         <result property="created_at" column="created_at"/>
         <result property="updated_at" column="updated_at"/>
         <result property="user_level" column="user_level"/>
+        <result property="user_email" column="user_email"/>
+        <result property="user_phone" column="user_phone"/>
+        <result property="user_nickname" column="user_nickname"/>
+        <result property="user_birth" column="user_birth"/>
         <collection property="authList" resultMap="authMap">
         </collection>
         <collection property="addressList" resultMap="addressMap">
@@ -105,7 +141,8 @@
     </resultMap>
 
     <select id="read" resultMap="userMap">
-        SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY, USER_LEVEL
+        SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY, USER_LEVEL,
+            US.USER_EMAIL, US.USER_PHONE, US.USER_NICKNAME, US.USER_BIRTH
         FROM
         TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
         where US.user_id = #{user_id}

@@ -193,7 +193,7 @@
                     <sec:authentication property="principal" var="pinfo"/>
                     <sec:authorize access="isAnonymous()">
                         <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
-                        <li><a href="${contextPath}/user/signup">회원가입</a></li>
+                        <li><a href="${contextPath}/user/user_agree">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>

@@ -22,7 +22,7 @@
 <body>
 <div class="popup-win wp-log-hmall" style="display: inline-block;>
     <div class="pop-wrap" tabindex="0">
-        <div class="pop-content-wrap"">
+        <div class="pop-content-wrap">
             <strong class="pop-title">Hmall 로그인</strong>
             <div class="pop-content">
                 <div class="tabgroup bdline">
@@ -93,7 +93,7 @@
 
                                     <ul class="login-find">
                                         <li><a href="${contextPath}/user/finduser_info" onclick="findId(); return false;">아이디 찾기</a></li>
-                                        <li><a href="javascript:;" onclick="findPwd(); return false;">비밀번호 찾기</a></li>
+                                        <li><a href="${contextPath}/user/find_pw" onclick="findPwd(); return false;">비밀번호 찾기</a></li>
                                         <li><a href="javascript:;" onclick="goRegistMember()">회원가입</a></li>
                                     </ul>
 

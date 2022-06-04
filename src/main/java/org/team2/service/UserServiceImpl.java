@@ -12,6 +12,7 @@ import org.team2.domain.AddressVO;
 import org.team2.domain.UserVO;
 import org.team2.mapper.UserMapper;
 
+import java.util.Date;
 import java.util.List;
 
 @Log4j
@@ -27,6 +28,10 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder pwencoder;
 
 
+    @Override
+    public void myPage_newBirthday(Date user_birth, String user_id) throws Exception {
+        userMapper.myPage_newBirthday(user_birth,user_id);
+    }
 
     @Transactional
     @Override
@@ -54,7 +59,43 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserVO readPoint(Long user_seq) throws Exception {
-       return userMapper.readPoint(user_seq);
+        return userMapper.readPoint(user_seq);
+    }
+    public int emailCheck(String email) throws Exception {
+        int result = userMapper.emailCheck(email);
+        log.info("result: "+result);
+        return result;
+    }
+
+    @Override
+    public UserVO find_pw(String email) throws Exception {
+        userMapper.find_pw(email);
+        return userMapper.find_pw(email);
+    }
+
+    @Override
+    public int newPassword(UserVO userVO) throws Exception {
+        userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
+        userMapper.newPassword(userVO);
+        return userMapper.newPassword(userVO);
+    }
+
+    @Override
+    public UserVO myPage_pwUpate(UserVO userVO) throws Exception {
+        userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
+        userMapper.myPage_pwUpdate(userVO);
+        return userMapper.myPage_pwUpdate(userVO);
+    }
+
+    @Override
+    public void myPage_newNickname(UserVO userVO) throws Exception {
+        userMapper.myPage_newNickname(userVO);
+    }
+
+    @Override
+    public List<UserVO> getUserinfo(long no) throws Exception {
+        userMapper.getUserinfo(no);
+        return userMapper.getUserinfo(no);
     }
 
     @Override
