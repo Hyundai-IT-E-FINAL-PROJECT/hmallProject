@@ -13,7 +13,6 @@ public class CustomUser extends User {
     private static final long serialVersionUID = 1L;
     private UserVO userVO;
 
-
     public CustomUser(String no, String password, Collection<? extends GrantedAuthority> authorities){
         super(no,password,authorities);
     }
