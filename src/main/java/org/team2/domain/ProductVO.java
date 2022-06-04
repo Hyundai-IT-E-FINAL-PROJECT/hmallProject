@@ -31,6 +31,7 @@ public class ProductVO {
     private Long discounted_cost;
     private String image_name;
     private ImageType image_type;
+    private Long coupon_ratio;
 
     // date
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

@@ -9,7 +9,7 @@ import java.util.Map;
 public interface CategoryService {
      List<CategoryVO> getAll();
 
-     CategoryVO getOne(Long category_seq);
+     CategoryVO getOne(Long first_category);
 
-     List<CategoryVO> getSubCategoryList(Long category_seq);
+     List<CategoryVO> getSubCategoryList(Long first_category);
 }

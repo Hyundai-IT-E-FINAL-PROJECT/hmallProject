@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: gimjihye
@@ -79,7 +81,7 @@
                                     <div class="inputbox">
                                         <label class="inplabel" for="searchKeyword"><input type="text" id="searchKeyword" name="searchKeyword" onkeydown="return keydownKeyword(event);" placeholder="검색어를 입력하세요" title="검색어를 입력하세요"></label>
                                     </div>
-                                    <button type="button" class="btn btn-lineblack" id="searchKeywordBtn"><span>적용</span></button>
+                                    <button type="button" class="btn btn-lineblack" id="searchKeywordBtn" onclick="javascript:search($('#searchKeyword').val(), ${categoryVO.category_seq}, $('.ui-active').val());"><span>적용</span></button>
                                 </div>
                             </div>
                         </li>
@@ -110,10 +112,10 @@
 
                         <ul class="ui-tab _selectCategory" role="tablist">
                             <!-- 전체 -->
-                            <li role="presentation" class="autoCate ui-active"><a onclick="javascript:searchAutoCate(this);" role="tab">전체</a></li>
+                            <li role="presentation" class="autoCate ui-active" value=""><a onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, 0);" role="tab">전체</a></li>
 <%--                            다른 하위 카테고리--%>
                             <c:forEach items="${subCategoryList}" var="subCategory">
-                                <li role="presentation" class="autoCate "><a onclick="javascript:searchAutoCate(this, 4);" role="tab">${subCategory.category_name}</a></li>
+                                <li role="presentation" class="autoCate" value="${subCategory.category_seq}"><a onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, ${subCategory.category_seq});" role="tab">${subCategory.category_name}</a></li>
                             </c:forEach>
 
                         </ul>
@@ -196,40 +198,78 @@
 
                         <div class="pdlist-wrap" id="pdListDiv">
                             <ul>
-                                <li class="pdthumb">
-                                    <a href="javascript://" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141573456&amp;sectId=2731753', 'DV0001_U02', 'A');">
-                                        <div class="thumb">
-                                            <img src="https://image.hmall.com/static/4/3/57/41/2141573456_0.jpg?RS=300x300&amp;AR=0" alt="[하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)" id="2141573456_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                        </div>
-                                        <div class="figcaption">
-                                            <div class="pdname" aria-label="제품명">
-                                                [하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)
-                                            </div>
+                                <c:forEach items="${productVOList}" var="productVO">
+                                    <li class="pdthumb">
+                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
 
-                                            <div class="pdprice">
-                                                <span class="rateprice" aria-label="정상가 가격">
-                                                    <p class="discount" aria-label="정상가"><em>27,720</em>원</p>
-                                                </span>
-                                            </div>
+                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                            <div class="thumb">
 
-                                            <div class="pdinfo">
-                                                <div class="benefits" style="line-height: 20px;">
-                                                    <span>무료배송</span>
+                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                            </div>
+                                            <div class="figcaption">
+                                                <div class="pdname" aria-label="제품명">
+                                                        ${productVO.PRODUCT_NAME}
                                                 </div>
-                                                <p class="like-count">
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript://" onclick="sendSlitmClickNewWin('[하프클럽/탑보이]11 빅사이즈 베이직 엠보 7부 반팔티 (BTBS_986)','2141573456','검색결과','/p/pda/itemPtc.do?slitmCd=2141573456&amp;overL=nw');" class="hoverview">
-                                        <i class="icon"></i>새창열기
-                                    </a>
-                                    <div class="alimlike" data-slitmcd="2141573456" data-bsitmcd="2141573456">
 
-                                        <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','016092','P324151979','2141573456', event);">
-                                            <i class="icon"></i><span class="hiding">찜</span></a>
-                                    </div>
-                                </li>
+                                                <c:choose>
+                                                    <c:when test="${productVO.PRODUCT_COST == productVO.DISCOUNTED_COST}">
+                                                        <div class="pdprice">
+                                                            <span class="rateprice" aria-label="정상가 가격">
+                                                                <p class="discount" aria-label="정상가"><em><fmt:formatNumber value="${productVO.PRODUCT_COST}" pattern="#,###"/></em>원</p>
+                                                            </span>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:when test="${productVO.PRODUCT_COST != productVO.DISCOUNTED_COST}">
+                                                        <div class="pdprice">
+                                                            <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                                <p class="discount" aria-label="할인가"><em><fmt:formatNumber value="${productVO.DISCOUNTED_COST}" pattern="#,###"/></em>원</p>
+                                                                <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                                <del class="normal" aria-label="정상가"><fmt:formatNumber value="${productVO.PRODUCT_COST}" pattern="#,###"/></del>
+                                                            </span>
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
+
+                                                <div class="pdinfo">
+                                                    <div class="benefits" style="line-height: 20px;">
+                                                        <!-- 상품종류? START -->
+
+
+
+
+
+
+                                                        　
+
+                                                        <!-- 상품종류? END -->
+
+
+
+                                                    </div>
+                                                    <p class="like-count">
+
+
+
+
+
+
+                                                    </p>
+                                                    <!-- 2020.11.26 icj : weightYn에 따른 가중치 표기 추가 -->
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                            <i class="icon"></i>새창열기
+                                        </a>
+                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+
+                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','011870','129084','2141512848', event);">
+                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                        </div>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
 
@@ -409,3 +449,4 @@
     <!-- //.container -->
 
 </main>
+<script src="/resources/js/productAll.js"></script>
