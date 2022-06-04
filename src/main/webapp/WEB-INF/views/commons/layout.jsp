@@ -10,7 +10,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
-    <link rel="stylesheet" type="text/css" href="<tiles:getAsString name = "dynamic_css"/>"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/search.css">
+    <c:forEach items="${cssFileList}" var="styleFile">
+        <link rel="stylesheet" type="text/css" href="/resources/css/${styleFile}.css">
+    </c:forEach>
 
     <script src="//image.hmall.com/p/js/co/jquery-3.4.1.min.js"></script><!-- jQuery Plugin -->
     <script src="//image.hmall.com/p/js/co/jquery.easing.min.js"></script><!-- jQuery UI Effect -->
@@ -25,6 +28,7 @@
     <script src="//image.hmall.com/p/js/co/reDirectExceptUrlList.js"></script><!-- 로그인버튼 click 리다이렉트 예외 url리스트  -->
     <script src="/resources/js/script-for-Top2.js"></script>
     <script src="/resources/js/script-for-Top1.js"></script>
+
     </style>
     <script type="text/javascript" src="//image.hmall.com/p/js/co/jquery.form.js"></script>
     <script type="text/javascript" src="//image.hmall.com/p/js/pd/product.js"></script>

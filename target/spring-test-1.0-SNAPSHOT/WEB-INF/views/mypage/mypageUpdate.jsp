@@ -5,16 +5,12 @@
   Time: 오후 1:31
   To change this template use File | Settings | File Templates.
 --%>
-<<<<<<< HEAD
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-=======
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
->>>>>>> 4ddd453 ([FEAT]: 약관동의 처리 끝(필수, 선택, 전체선택))
 <%@ include file="passwordCheck.jsp" %>
 <section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
@@ -95,7 +91,6 @@
       <input type="hidden" id="fObReceiveYn" name="fObReceiveYn" value="N">
 
       <input type="hidden" id="smsReceiveYn" name="smsReceiveYn" value="N">
-<<<<<<< HEAD
 
       <div class="gird-l2x">
         <!-- LNB 시작 -->

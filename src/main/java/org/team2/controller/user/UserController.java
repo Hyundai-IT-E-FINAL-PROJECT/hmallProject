@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Random;
 
 @Log4j
@@ -94,7 +95,7 @@ public class UserController {
 
     @RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
     @ResponseBody
-    public String mailCheck(@RequestParam("total_email") String total_email){
+    public String mailCheck(@RequestParam("total_email") String total_email, Principal principal){
         int serti = (int)((Math.random() * (99999-10000+1)) + 10000);
         String from = "team2@naver.com";
         String to = total_email;

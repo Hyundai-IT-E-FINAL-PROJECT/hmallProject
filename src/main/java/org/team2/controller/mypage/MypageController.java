@@ -8,32 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
-<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-=======
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
->>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
+import org.team2.service.ExhibitService;
 import org.team2.service.MypageService;
 import org.team2.service.UserService;
 
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-=======
-import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
->>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
 import java.util.List;
 import java.util.Map;
 
@@ -51,20 +40,13 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
-<<<<<<< HEAD
+    public Date date;
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(Principal principal) throws Exception {
+    public ModelAndView mypage(Principal principal, @AuthenticationPrincipal UserVO vo) throws Exception {
 
-=======
-    public Date date;
-
-    @GetMapping("/mypage/{no}")
-    @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(@PathVariable long no, @AuthenticationPrincipal UserVO vo) throws Exception {
->>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
         log.info("tiles test");
-        log.info(vo.getNo());
+        log.info(principal.getName());
         ModelAndView mav = new ModelAndView();
 
         try {
@@ -98,32 +80,10 @@ public class MypageController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView orderDetail(@PathVariable  long odno, Principal principal) throws Exception {
         log.info("detail test");
-
-<<<<<<< HEAD
         log.info(odno);
-=======
         ModelAndView mav = new ModelAndView();
         mav.setViewName("mypage.mypageOrderDetail");
 
-        return mav;
-    }
-
-    @RequestMapping("mypageOrder/{no}")
-    public ModelAndView oreder(@PathVariable int no) throws Exception {
->>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
-        ModelAndView mav = new ModelAndView();
-
-        try {
-            List<Map<String, Object>> list = mypageService.detailOrders(principal.getName(), odno);
-            mav.addObject("list", list);
-            mav.addObject("className", "wrap order-list-page");
-            log.info(list);
-            mav.setViewName("mypage.mypageOrderDetail");
-        }
-        catch (Exception e) {
-            mav.addObject("msg", e.getMessage());
-            mav.setViewName("accessError");
-        }
         return mav;
     }
 
@@ -240,7 +200,6 @@ public class MypageController {
         return mav;
     }
 
-<<<<<<< HEAD
     @RequestMapping("mypageDeposit")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView deposit() {
@@ -250,7 +209,8 @@ public class MypageController {
         mav.setViewName("mypage.mypageDeposit");
 
         return mav;
-=======
+    }
+
     @ResponseBody
     @PostMapping("myPage_pwUpdate")
     public String myPage_pwUpate(@RequestParam("user_pw") String user_pw, @RequestParam("user_id") String user_id, UserVO userVO) throws Exception{
@@ -307,6 +267,5 @@ public class MypageController {
         }catch (Exception e) {
             e.printStackTrace();
         }
->>>>>>> 1d8fd91 ([FEAT]: 개인정보 수정)
     }
 }

@@ -5,7 +5,10 @@
   Time: 오후 6:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="contents">
@@ -2604,307 +2607,175 @@
                             <div class="titArea"><h3>이번주 혜택 가득 행사</h3></div>
                             <div class="sliderwrap slick-initialized slick-slider isArrows slick-paging slider-transitioning"
                                  data-modules-slick="arrows:true;dots:false;autoplay:true;paging:true;infinite:true;slidesToShow:1;">
-                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">
+                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="" onclick="plusSlides(-1)">
                                     Previous
                                 </button>
                                 <div class="slick-list draggable">
-                                    <div class="slick-track"
-                                         style="opacity: 1; width: 4977px; transform: translate(-4241px, 0px);">
-                                        <div class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true"
-                                             tabindex="-1" style="width: 711px;">
+                                    <div class="slick-track">
+                                        <div class="slick-slide" style="width: 711px;">
                                             <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
+                                                <div class="items_main"
+                                                     style="width: 100%; vertical-align: top;">
                                                     <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, 'https://www.hmall.com/m/index.do?mainSeq=50', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="7가지 콜라겐 캡슐로 헤어 토탈케어"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(230, 112, 185);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>10%할인★</em></span>
-
-                                                            <p class="tit">헤드스파7 트리트먼트 안티에이징</p>
-                                                            <p class="txt">7가지 콜라겐 캡슐로 헤어 토탈케어</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/2/1/11/40/2140111291_0.jpg"
-                                                                 alt=""
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20210317/145850/logoImg20210317145856.png"
-                                                                     alt="뷰티FULL"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
+                                                    <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg"/>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="slick-slide slick-current slick-active" data-slick-index="0"
-                                             aria-hidden="false" style="width: 711px;" tabindex="-1">
+                                        <div class="slick-slide" style="width: 711px;" >
                                             <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
+                                                <div class="items_main"
+                                                     style="width: 100%; vertical-align: top;">
                                                     <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2797606', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="냉장고 / 에어컨 / 세탁기 등"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(58, 129, 105);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>5/23~25, 10%적립</em></span>
-
-                                                            <p class="tit">미리보는 계절가전 특집</p>
-                                                            <p class="txt">냉장고 / 에어컨 / 세탁기 등</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/image/sect/mblbnnr2797606.jpg"
-                                                                 alt="계절가전 브랜드줌"
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20220126/150405/logoImg20220126150416.png"
-                                                                     alt="브랜드줌"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
+                                                    <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg"/>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="slick-slide" data-slick-index="1" aria-hidden="true"
-                                             style="width: 711px;" tabindex="-1">
+                                        <div class="slick-slide" style="width: 711px;">
                                             <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, '/p/dpa/searchSpexSectItem.do?sectId=2800550', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="Hmall 단독 조건!"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(81, 105, 183);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>5/23~25, 10%적립</em></span>
-
-                                                            <p class="tit">싸이닉 X 더마펜스</p>
-                                                            <p class="txt">Hmall 단독 조건!</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/image/sect/mblbnnr2800550.jpg"
-                                                                 alt="[Hmall 단독] 싸이닉X더마펜스 브랜드줌"
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20220126/150405/logoImg20220126150416.png"
-                                                                     alt="브랜드줌"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide" data-slick-index="2" aria-hidden="true"
-                                             style="width: 711px;" tabindex="-1">
-                                            <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, '/p/dpa/searchSpexSectItem.do?sectId=2800790', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="혜택가에 만나보세요"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(58, 129, 105);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>5/24~26, 단 3일간</em></span>
-
-                                                            <p class="tit">요즘 대세 뷰티템</p>
-                                                            <p class="txt">혜택가에 만나보세요</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/image/sect/mblbnnr2800790.jpg"
-                                                                 alt="요즘 대세 뷰티템"
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide" data-slick-index="3" aria-hidden="true"
-                                             style="width: 711px;" tabindex="-1">
-                                            <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, '/p/dpa/searchSpexSectItem.do?sectId=2475807', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="타미힐피거 피케셔츠 외 9개 상품"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(58, 187, 213);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>5/23~5/29, 7일간</em></span>
-
-                                                            <p class="tit">금주의 히트예감 대/공/개</p>
-                                                            <p class="txt">타미힐피거 피케셔츠 외 9개 상품</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/HM/HM115/20220519/091211/220523_deal_750.jpg"
-                                                                 alt="[TV방송상품]히트예감"
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20210129/135544/logoImg20210129135619.png"
-                                                                     alt="히트예감"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide" data-slick-index="4" aria-hidden="true"
-                                             style="width: 711px;">
-                                            <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, 'https://www.hmall.com/m/index.do?mainSeq=50', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="7가지 콜라겐 캡슐로 헤어 토탈케어"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(230, 112, 185);" tabindex="0">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>10%할인★</em></span>
-
-                                                            <p class="tit">헤드스파7 트리트먼트 안티에이징</p>
-                                                            <p class="txt">7가지 콜라겐 캡슐로 헤어 토탈케어</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/2/1/11/40/2140111291_0.jpg"
-                                                                 alt=""
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20210317/145850/logoImg20210317145856.png"
-                                                                     alt="뷰티FULL"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true"
-                                             tabindex="-1" style="width: 711px;">
-                                            <div>
-                                                <div class="items"
-                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <a href="javascript:;"
-                                                       onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2797606', '', '');"
-                                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                       ga-custom-position="딜배너" ga-custom-creative="냉장고 / 에어컨 / 세탁기 등"
-                                                       ga-custom-id="" ga-custom-etc="urlAction"
-                                                       tag-comment="GA요청:홈쇼핑탭:8"
-                                                       data-background="#B78051|#80BF47|#5169B7|#3A8169|#3ABBD5|#AC54C6|#E670B9|#555555"
-                                                       style="background: rgb(58, 129, 105);" tabindex="-1">
-
-                                                        <div class="info-box">
-
-
-                                                            <span class="label"><em>5/23~25, 10%적립</em></span>
-
-                                                            <p class="tit">미리보는 계절가전 특집</p>
-                                                            <p class="txt">냉장고 / 에어컨 / 세탁기 등</p>
-                                                        </div>
-                                                        <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/image/sect/mblbnnr2797606.jpg"
-                                                                 alt="계절가전 브랜드줌"
-                                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                            <span class="brand">
-                                                                <img src="https://image.hmall.com/HM/HM002/20220126/150405/logoImg20220126150416.png"
-                                                                     alt="브랜드줌"
-                                                                     onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-                                                            </span>
-
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                                <form id="euroForm" action="${contextPath}/exhibition/euro_exhibit" method="post">
+                                                    <div class="items_main" style="width: 100%; vertical-align: top;">
+                                                        <input type="hidden" name="exhibit_num" value="1">
+                                                        <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
+                                                        <input type="image" class="img_1"  src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg"/>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next
+                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="" onclick="plusSlides(1)">Next
                                 </button>
-                                <div class="slick-slidetotal" style=""><em class="current">1</em><strong
-                                        class="total">5</strong></div>
+                                <div class="slick-slidetotal" style=""><em id="current_slide">1</em><strong
+                                        class="total">3</strong></div>
                             </div>
 
                             <button type="button" class="btn btn-all lyopen" data-modules-modal="target:#modalTvFull;">
                                 <span>전체</span><i class="icon"></i></button>
 
                         </div>
+
+                        <!--유로 기획전 데이터 전송-->
+<%--                        <script>--%>
+<%--                            function euro_exhibit(){--%>
+<%--                                var exhibit_num = $('#exhibit_num').val();--%>
+<%--                                console.log(exhibit_num);--%>
+<%--                                var csrfHeaderName = "${_csrf.headerName}";--%>
+<%--                                var csrfTokenValue = "${_csrf.token}";--%>
+<%--                                $.ajax({--%>
+<%--                                    url:'${contextPath}/exhibition/euro_exhibit',--%>
+<%--                                    type:'post',--%>
+<%--                                    data: {exhibit_num:exhibit_num},--%>
+<%--                                    dataType:'int',--%>
+<%--                                    beforeSend:function (xhr){--%>
+<%--                                        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
+<%--                                    },--%>
+<%--                                    success:function (data){--%>
+<%--                                        window.location.href="${contextPath}/exhibition/euro_exhibit";--%>
+<%--                                    }--%>
+<%--                                })--%>
+<%--                            }--%>
+<%--                        </script>--%>
+
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('div#modalTvFull .display-wrap').html($("div.top-banner-wrap div.slick-slide:not(.slick-cloned) a").clone(true).wrap('<div class="items"></div>').parent());
                             });
+                        </script>
+
+<%--                        <script>--%>
+<%--                            function submit_form(){--%>
+<%--                                let myform = document.getElementById('euroForm');--%>
+<%--                                formData = new FormData(myform);--%>
+<%--                                fetch('${contextPath}/exhibition/euro_exhibit',{--%>
+<%--                                    method:'post',--%>
+<%--                                    body: myform--%>
+<%--                                });--%>
+<%--                            }--%>
+<%--                        </script>--%>
+
+
+                        <script>
+                            var slideIndex = 1;
+                            showSlides(slideIndex);
+                            function plusSlides(n){
+                                showSlides(slideIndex+=n);
+                                const resultElement = document.getElementById('current_slide');
+                                // var currentElement = $('.current_slide').html();
+                                var currentElement = resultElement.innerText;
+                                console.log("n : "+n);
+                                console.log("number : "+currentElement);
+                                if(currentElement < 3 && currentElement > 1){
+                                    if(n == 1){
+                                        currentElement = parseInt(currentElement) +1;
+                                    }else if(n == -1){
+                                        currentElement = parseInt(currentElement) -1;
+                                    }
+                                }else if(currentElement == 1){
+                                    if(n == 1){
+                                        currentElement = parseInt(currentElement) +1;
+                                    }else if(n == -1){
+                                        currentElement = 3;
+                                    }
+                                }else if(currentElement == 3){
+                                    if(n == 1){
+                                        currentElement = 1;
+                                    }else if(n == -1){
+                                        currentElement = parseInt(currentElement) -1;
+                                    }
+                                }
+
+                                resultElement.innerText = currentElement;
+                            }
+                            function showSlides(n){
+                                var i;
+                                var slides = document.getElementsByClassName("img_1");
+                                console.log(slides);
+                                if (n > slides.length) {slideIndex = 1}
+                                if (n < 1) {slideIndex = slides.length}
+                                for(i = 0 ; i < slides.length ; i++){
+                                    slides[i].style.display = "none";
+                                }
+                                slides[slideIndex-1].style.display = "block";
+                            }
+
+                            var slideIndex_side = 1;
+                            showSlides_side(slideIndex_side);
+
+                            function plusSlides_side(n){
+                                showSlides_side(slideIndex_side+=n);
+                                console.log(n);
+                                const resultElement = document.getElementById('current_side');
+                                // var currentElement = $('.current_slide').html();
+                                var currentElement = resultElement.innerText;
+                                console.log(currentElement);
+                                if(currentElement == 1){
+                                    if(n==1){
+                                        currentElement = 2;
+                                    }else{
+                                        currentElement = 2;
+                                    }
+                                }else if(currentElement ==2){
+                                    if(n==1){
+                                        currentElement = 1;
+                                    }else{
+                                        currentElement = 1;
+                                    }
+                                }
+                                resultElement.innerText = currentElement;
+                            }
+
+                            function showSlides_side(n){
+                                var i;
+                                var slides_side = document.getElementsByClassName("slide_img");
+                                console.log(slides_side);
+                                if (n > slides_side.length) {slideIndex_side = 1}
+                                if (n < 1) {slideIndex_side = slides_side.length}
+                                for(i = 0 ; i < slides_side.length ; i++){
+                                    slides_side[i].style.display = "none";
+                                }
+                                slides_side[slideIndex_side-1].style.display = "block";
+                            }
                         </script>
 
 
@@ -2915,338 +2786,66 @@
                             <div class="titArea"><h3>이달의 혜택</h3></div>
                             <div class="sliderwrap slick-initialized slick-slider isArrows slick-paging"
                                  data-modules-slick="arrows:true;paging:true;dots:false;infinite:true;">
-                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">
+                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="" onclick="plusSlides_side(-1)">
                                     Previous
                                 </button>
                                 <div class="slick-list draggable">
                                     <div class="slick-track"
-                                         style="opacity: 1; width: 1192px; transform: translate(-298px, 0px);">
-                                        <div class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true"
-                                             tabindex="-1" style="width: 298px;">
+                                         style="opacity: 1; width: 1192px;">
+                                        <div style="width: 298px;">
                                             <div>
-                                                <ul style="width: 100%; display: inline-block; vertical-align: top;">
-
+                                                <ul class="slide_img" style="width: 100%; vertical-align: top;">
 
                                                     <li>
                                                         <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/m/smRegisterUpnt.do?', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택" ga-custom-creative="통합멤버십 가입"
-                                                               ga-custom-id="" ga-custom-etc="urlAction"
-                                                               tag-comment="GA요청:홈쇼핑탭:9" tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220427/134518/202204_event.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">통합멤버십 가입</span>
-                                                                    <span class="txt">3종 할인쿠폰 증정!</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_1.jpeg"/>
                                                         </div>
                                                     </li>
 
 
                                                     <li>
                                                         <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058717', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택" ga-custom-creative="첫구매 고객님!"
-                                                               ga-custom-id="" ga-custom-etc="urlAction"
-                                                               tag-comment="GA요청:홈쇼핑탭:9" tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/170849/final3.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">첫구매 고객님!</span>
-                                                                    <span class="txt">2.5만원 혜택♡</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_2.jpeg"/>
                                                         </div>
                                                     </li>
 
 
                                                     <li>
                                                         <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058718', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="알리미 신청하면?" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220427/141640/ALARM.png"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">알리미 신청하면?</span>
-                                                                    <span class="txt">5천원 플러스쿠폰!</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_3.jpeg"/>
                                                         </div>
                                                     </li>
 
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="slick-slide slick-current slick-active" data-slick-index="0"
-                                             aria-hidden="false" style="width: 298px;">
+                                        <div style="width: 298px;">
                                             <div>
-                                                <ul style="width: 100%; display: inline-block; vertical-align: top;">
+                                                <ul class="slide_img" style="width: 100%; vertical-align: top; display: none">
                                                     <li>
                                                         <div class="items">
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2797154', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="5월 다양한 이벤트" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="0">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/173111/REALFINAL1.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">5월 다양한 이벤트</span>
-                                                                    <span class="txt">역대급 경품,사은품 팡팡!</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_4.jpeg"/>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00057107', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="5월 TV방송상품" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="0">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/173131/REALFINAL2.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">5월 TV방송상품</span>
-                                                                    <span class="txt">구매 사은품 혜택</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_5.jpeg"/>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058816', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="H.Point 신규회원 혜택" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="0">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220512/161716/0512_event_bn_1.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">H.Point 신규회원 혜택</span>
-                                                                    <span class="txt">쇼핑지원금 받아가세요♡</span>
-                                                                </div>
-                                                            </a>
+                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_6.jpeg"/>
                                                         </div>
                                                     </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1"
-                                             style="width: 298px;">
-                                            <div>
-                                                <ul style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/m/smRegisterUpnt.do?', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택" ga-custom-creative="통합멤버십 가입"
-                                                               ga-custom-id="" ga-custom-etc="urlAction"
-                                                               tag-comment="GA요청:홈쇼핑탭:9" tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220427/134518/202204_event.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">통합멤버십 가입</span>
-                                                                    <span class="txt">3종 할인쿠폰 증정!</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058717', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택" ga-custom-creative="첫구매 고객님!"
-                                                               ga-custom-id="" ga-custom-etc="urlAction"
-                                                               tag-comment="GA요청:홈쇼핑탭:9" tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/170849/final3.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">첫구매 고객님!</span>
-                                                                    <span class="txt">2.5만원 혜택♡</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058718', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="알리미 신청하면?" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220427/141640/ALARM.png"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">알리미 신청하면?</span>
-                                                                    <span class="txt">5천원 플러스쿠폰!</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide slick-cloned" data-slick-index="2" aria-hidden="true"
-                                             tabindex="-1" style="width: 298px;">
-                                            <div>
-                                                <ul style="width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2797154', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="5월 다양한 이벤트" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/173111/REALFINAL1.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">5월 다양한 이벤트</span>
-                                                                    <span class="txt">역대급 경품,사은품 팡팡!</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00057107', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="5월 TV방송상품" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/MH/MH002/20220429/173131/REALFINAL2.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">5월 TV방송상품</span>
-                                                                    <span class="txt">구매 사은품 혜택</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-
-                                                            <a href="javascript:;" class="event-wrap"
-                                                               onclick="gaTagging(this, 'https://www.hmall.com/mevent/eva/evntView.do?prmoNo=00058816', '', '');"
-                                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                               ga-custom-position="이달의 혜택"
-                                                               ga-custom-creative="H.Point 신규회원 혜택" ga-custom-id=""
-                                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:9"
-                                                               tabindex="-1">
-
-
-                                                                <span class="img"><img
-                                                                        src="https://image.hmall.com/HM/HM118/20220512/161716/0512_event_bn_1.jpg"
-                                                                        alt=""
-                                                                        onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')"></span>
-                                                                <div class="txt-wrap">
-                                                                    <span class="tit">H.Point 신규회원 혜택</span>
-                                                                    <span class="txt">쇼핑지원금 받아가세요♡</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next
+                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="" onclick="plusSlides_side(1)">Next
                                 </button>
-                                <div class="slick-slidetotal" style=""><em class="current">1</em><strong
-                                        class="total">2</strong></div>
+                                <div class="slick-slidetotal" style=""><em id="current_side">1</em><strong
+                                        class="total" value="">2</strong></div>
                             </div>
                         </div>
 
