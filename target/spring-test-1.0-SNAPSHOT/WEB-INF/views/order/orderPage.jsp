@@ -516,26 +516,22 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             <div class="order-list" id="orderItems">
                                 <ul>
                                     <li name="orderItem">
-                                        <input type="hidden" name="slitmNm" value="[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종">
-                                        <input type="hidden" name="uitmNm" value="블랙/95">
-                                        <input type="hidden" name="areaDlvCostAddYn" value="N">
-                                        <input type="hidden" name="jejuAddDlvCost" value="0">
-                                        <input type="hidden" name="irgnAddDlvCost" value="0">
-                                        <input type="hidden" name="bndlItemCnt" value="1">
-                                        <input type="hidden" name="grpItemNum" value="0">
-                                        <input type="hidden" name="ItemNum" value="0">
+<%--                                        상품에 관한 정보들--%>
+                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.productVO.product_count}">
+
+
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
                                             <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
                                             <div class="box">
-                                                <span class="tit">[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종</span>
+                                                <span class="tit">${directBasket.productVO.product_name}</span>
                                                 <div class="info">
                                                     <ul>
-                                                        <li>블랙/95</li>
-                                                        <li>1개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
+                                                        <li>${directBasket.productVO.product_cost}원</li>
+                                                        <li>${directBasket.productVO.product_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
                                                     </ul>
                                                 </div>
                                                 <%--                                                상품 값 받아와 함--%>
-                                                <span class="price"><strong>99,000</strong>원</span>
+                                                <span class="price"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
                                             </div>
                                         </a>
                                     </li>
@@ -620,26 +616,24 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                 <label class="chklabel">
 <%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
 <%--                                                    <i class="icon"></i>--%>
-                                                    <span>적립금</span>
-                                                    <label class="inplabel"><input type="number" placeholder="0" name="userPoint" id="userPoint"></label>
+                                                    <span style="width: 100px">적립금</span>
+                                                    <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
                                                     <span class="unit point">P</span>
                                                     <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
                                                     <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
-                                                    <span>[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
+                                                    <span style="width: 300px">[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
                                                 </label>
                                             </div>
                                         </li>
                                         <li id="depositLi">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
-                                                    <%--                                                    <i class="icon"></i>--%>
-                                                    <span>예치금</span>
-                                                        <label class="inplabel"><input type="number" placeholder="0" name="depositPoint" id="depositPoint"></label>
+                                                    <span style="width: 100px">예치금</span>
+                                                    <input type="number" placeholder="0" name="depositPoint" id="depositPoint" style="width: auto; text-align: right;">
                                                     <span class="unit point">P</span>
                                                     <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
                                                     <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
-                                                    <span>[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
+                                                    <span style="width: 300px">[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
                                                 </label>
                                             </div>
                                         </li>
@@ -691,7 +685,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             }
 
                             function applyDiscount(){
-                                var totalCost=99000;
+                                var totalCost=parseInt($("input[name='totalPrice']").val());
 
                                 var discount1=$("input[name='totalUserPoint']").val();
                                 var discount2=$("input[name='totalDepositPoint']").val();
@@ -710,9 +704,30 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         </div> <!-- chkStlmType() 2번째 종료 -->
                         <h3 class="title22" id="dlvTitleH3">주문고객/배송지 정보 입력</h3>
 
-                        <span class="txt">배송/결제 정보를 정확히 입력해주세요.</span>
+                        <span class="txt">※ 주문 고객 정보</span>
+                        <div style="height: 20px;"></div>
+                        <table>
+                            <caption>주문 고객 정보 테이블</caption>
+                            <colgroup>
+                                <col style="width:100px; ">
+                                <col style="width:150px; background-color:white; ">
+                                <col style="width:100px">
+                                <col style="width:150px; background-color:white; ">
+                            </colgroup>
+                            <tr>
+                                <th scope="col">주문하시는 분</th>
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal" var="pinfo" />
+                                <th scope="col">${pinfo.userVO.user_name}</th>
+                                <th scope="col">보내시는 분</th>
+                                <th scope="col">${pinfo.userVO.user_name}</th>
+                                </sec:authorize>
+                            </tr>
+
+                        </table>
                         </h3>
-                        <button type="radio" onclick="openAddressListPup()" ><span>이전 배송지</span></button>
+
+                        <button class="btn btn-linelgray small30" type="button" onclick="openAddressListPup()"><span>이전 배송지</span></button> <!--마이페이지 1:1상담으로 이동-->
 
                         <form id="orderPush" method="post" action="orderComplete">
 
@@ -746,13 +761,17 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <div class="inputbox">
                                         <%--                                    <input type="hidden" name="" value="" id="selectedPost">--%>
                                         <%--                                    <input type="hidden" name="" value="" id="selectedJibunAddr">--%>
-                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소"></label>
+                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소" id="zipcode"></label>
                                         <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 검색</span></button>
                                         <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
 
                                     <div class="inputbox">
-                                        <label class="inplabel"><input type="text" name="delivery" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery" maxlength="100"></label>
+                                        <label class="inplabel"><input type="text" name="order_delivery1" value="" placeholder="도로명 주소" id="order_delivery1" maxlength="100"></label>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" name="order_delivery2" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>
                                         <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
                                     <div class="inputbox">
@@ -809,59 +828,59 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
 
-                        <div class="box-toggle">
-                            <h3>
-                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">
-                                    <span class="row-title">총 결제금액</span>
-                                    <span class="row-value color-ff5340">
-		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>
-		                                            <strong id="main_totPayAmt">
-                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>
-                                                    </strong>원
-		                                        </span>
-                                    <i class="icon"></i>
-                                </button>
-                            </h3>
-                            <div class="accordion-panel" role="region" aria-label="">
-                                <ul class="row-list">
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">주문금액</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>
-                                        </div>
-                                    </li>
+<%--                        <div class="box-toggle">--%>
+<%--                            <h3>--%>
+<%--                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">--%>
+<%--                                    <span class="row-title">총 결제금액</span>--%>
+<%--                                    <span class="row-value color-ff5340">--%>
+<%--		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>--%>
+<%--		                                            <strong id="main_totPayAmt">--%>
+<%--                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>--%>
+<%--                                                    </strong>원--%>
+<%--		                                        </span>--%>
+<%--                                    <i class="icon"></i>--%>
+<%--                                </button>--%>
+<%--                            </h3>--%>
+<%--                            <div class="accordion-panel" role="region" aria-label="">--%>
+<%--                                <ul class="row-list">--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">주문금액</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
 
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">할인금액</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_discountAmt">
-                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>
-                                            </strong>원</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">배송비</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">배송비 할인</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">할인금액</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_discountAmt">--%>
+<%--                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>--%>
+<%--                                            </strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">배송비</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">배송비 할인</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
 
                         <div class="sticky-ui-wrapper util-option-sticky">
@@ -873,7 +892,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div id="orderAmt">
                                                 <span class="tit">총 판매금액</span>
-                                                <span class="txt"><strong>90000</strong>원</span>
+                                                <span class="txt"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
                                             </div>
                                             <div id="copnDcCoupon" class="hidden">
                                                 <span class="tit">쿠폰 사용</span>
@@ -938,7 +957,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
         var couponSeq=0;
         var discountCost=0;
-        var totalCost=$("input[name='totalCost']").val();
+        var totalCost=parseInt($("input[name='totalPrice']").val());
 
 
         $("#couponSelectorBtn").on("click", function(){
@@ -957,11 +976,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 },
                 success:function(discount){
                     console.log('쿠폰 할인가격: ', parseInt(discount));
-                    var totalCost=90000;
+                    // var totalCost=90000;
                     discount=parseInt(discount);
                     //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
                     //쿠폰Seq에 따른 cost를 불러와야 함
-
 
                     //discountCost=$("input[name='coupon_cost']").val();
                     //totalCouponPoint
@@ -1010,6 +1028,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         });
     </script>
 </main>
+<script type="text/javascript">
+    function openAddressListPup(){
+        var url="/user/openAddressListPup";
+        var popName="addressListPopUp"
+        var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+        window.open(url, popName, popOption);
+    }
+</script>
 <%--주문 상세 내역--%>
 <%--<script type="text/javascript">--%>
 <%--    $(".medium").click(function (){--%>

@@ -20,6 +20,7 @@ import org.team2.domain.UserVO;
 import org.team2.service.BasketService;
 import org.team2.service.CategoryService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class BasketController {
 
 //    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
     @RequestMapping("/basketList")
-    public ModelAndView order(@AuthenticationPrincipal UserVO userVO){
-        List<BasketVO> allByUserSeq = basketService.getAllByUserSeq(21L);
+    public ModelAndView order(@AuthenticationPrincipal UserVO userVO, Principal principal){
+        List<BasketVO> allByUserSeq = basketService.getAllByUserSeq(Long.valueOf(principal.getName()));
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("basket");
         ModelAndView mav = new ModelAndView();

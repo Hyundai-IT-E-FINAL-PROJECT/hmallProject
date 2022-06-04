@@ -20,7 +20,6 @@ public class QnAVO {
     private Long qc_email_receive;
     private Long order_seq;
     private Long product_code;
-    private Long option_code;
 
     private Date created_at;
     private Date updated_at;
