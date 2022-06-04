@@ -2,6 +2,7 @@ package org.team2.service;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.team2.domain.QaVO;
 import org.team2.domain.QnAVO;
 import org.team2.mapper.QnAMapper;
 
@@ -22,5 +23,10 @@ public class QnAServiceImpl implements QnAService{
     @Override
     public List<Map<String, String>> getQnAList() throws Exception {
         return qnAMapper.getQnAList();
+    }
+
+    @Override
+    public Integer addReply(QaVO vo) throws Exception {
+        return qnAMapper.addReply(vo);
     }
 }

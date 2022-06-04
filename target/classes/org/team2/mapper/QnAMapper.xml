@@ -5,7 +5,7 @@
     <insert id="registerQnA" statementType="CALLABLE">
         {
             call PACK_QC.proc_qc_insert(#{user_seq},#{qc_type}, #{qc_title}, #{qc_content}, #{qc_phone},
-                #{qc_email}, #{qc_email_receive}, #{order_seq}, #{product_code}, #{option_code})
+                #{qc_email}, #{qc_email_receive}, #{order_seq}, #{product_code})
         }
     </insert>
 
@@ -13,6 +13,16 @@
         select *
         from tbl_qc C, tbl_qa A
         where C.qc_seq =A.qc_seq
+    </select>
+
+    <select id="addReply">
+        update tbl_qa set
+                          qc_seq=#{qc_seq},
+                          user_seq=#{user_seq},
+                          qa_content=#{qa_content},
+                          r_created_at=sysdate,
+                          r_updated_at=sysdate
+        where tbl_qa.qa_seq=#{qa_seq}
     </select>
 
 </mapper>

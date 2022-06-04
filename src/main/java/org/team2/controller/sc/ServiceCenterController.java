@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.QaVO;
 import org.team2.domain.QnAVO;
 import org.team2.service.QnAService;
 
@@ -66,6 +67,21 @@ public class ServiceCenterController {
         try{
             vo.setUser_seq(41L);
             qnaService.registerQnA(vo);
+            mav.setViewName("customer.inquiryPage");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return mav;
+    }
+
+    @ResponseBody
+    @PostMapping("addReply")
+    public ModelAndView addReply(@RequestBody QaVO vo){
+        ModelAndView mav=new ModelAndView();
+        log.info("매핑 이동 확인");
+        log.info(vo.toString());
+        try{
+            //qnaService.addReply(vo);
             mav.setViewName("customer.inquiryPage");
         }catch (Exception e){
             e.printStackTrace();

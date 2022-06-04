@@ -19,4 +19,14 @@ public class CategorySerivceImpl implements CategoryService{
     public List<CategoryVO> getAll() {
         return categoryMapper.getAll();
     }
+
+    @Override
+    public CategoryVO getOne(Long first_category) {
+        return categoryMapper.getOne(first_category);
+    }
+
+    @Override
+    public List<CategoryVO> getSubCategoryList(Long first_category) {
+        return categoryMapper.getSubCategoryList(first_category);
+    }
 }

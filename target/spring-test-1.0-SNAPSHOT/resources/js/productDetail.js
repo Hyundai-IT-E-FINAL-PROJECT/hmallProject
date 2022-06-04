@@ -1,7 +1,7 @@
 function plusOrdQty() {
     let ordQtyObj = $("input[name=ordQty]");
     let ordQty = Number(ordQtyObj.val());
-    let sellPrc = Number(removeComma($("#product-discount").text()));
+    let sellPrc = Number(removeComma($(".product-discount").text()));
     ordQty += 1
 
     $(".sum-price .total-price strong").text(gfn_appendComma(sellPrc * ordQty));
@@ -17,7 +17,7 @@ function plusOrdQty() {
 function minusOrdQty() {
     let ordQtyObj = $("input[name=ordQty]");
     let ordQty = Number(ordQtyObj.val());
-    let sellPrc = Number(removeComma($("#product-discount").text()));
+    let sellPrc = Number(removeComma($(".product-discount").text()));
     ordQty -= 1
 
     $(".sum-price .total-price strong").text(gfn_appendComma(sellPrc * ordQty));

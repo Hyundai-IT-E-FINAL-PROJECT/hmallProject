@@ -1,11 +1,6 @@
 package org.team2.controller.product;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +12,6 @@ import org.team2.domain.CategoryVO;
 import org.team2.service.CategoryService;
 
 import java.util.List;
-import java.util.Map;
 
 @Log4j
 @RequestMapping(value = "/category/*")

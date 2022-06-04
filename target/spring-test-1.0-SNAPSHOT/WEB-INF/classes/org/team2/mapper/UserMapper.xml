@@ -112,4 +112,8 @@
         TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
         where US.user_id = #{user_id}
     </select>
+
+    <select id="readPoint" resultType="org.team2.domain.UserVO">
+        select * from tbl_user where user_seq=#{user_seq}
+    </select>
 </mapper>

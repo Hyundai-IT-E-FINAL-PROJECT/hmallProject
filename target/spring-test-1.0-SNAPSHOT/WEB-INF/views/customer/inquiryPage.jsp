@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <head>
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/mp/mypage.css">
 </head>
@@ -2447,6 +2449,8 @@
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${qnaList}" var="qna" varStatus="status">
+                                                <input type="hidden" name="qc_seq${status.index+1}" value="${qna.QC_SEQ}"/>
+                                                <input type="hidden" name="qa_seq${status.index+1}" value="${qna.QA_SEQ}"/>
                                                 <tr>
                                                     <td class="txt-center arrow"><div class="arrow>">${status.index+1}</div></td>
                                                     <c:choose>
@@ -2501,6 +2505,7 @@
                                                              </div>
                                                          </div>
                                                          <c:choose>
+<%--                                                             답변 내용이 있을 경우--%>
                                                             <c:when test="${qna.QA_CONTENT ne null}">
                                                                 <div class="consult-form-wrap">
                                                                     <h3>답변</h3>
@@ -2510,12 +2515,40 @@
                                                                             <div class="textareabox">
                                                                                 <label class="txtlabel">
                                                                                     <textarea readonly style="resize:none; width:100%; height:30px;">${qna.QA_CONTENT}</textarea>
+<%--                                                                                    <sec:authentication property="principal" var="pinfo" />--%>
+<%--                                                                                    ${pinfo.userVO.authList[0].user_auth_authority}--%>
+
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </c:when>
+                                                             <c:otherwise>
+                                                                 <div class="consult-form-wrap">
+                                                                     <h3>답변</h3>
+                                                                     <!--문의내용-->
+                                                                     <div class="consult-form">
+                                                                         <div class="field">
+                                                                             <div class="textareabox">
+                                                                                 <label class="txtlabel">
+                                                                                     <textarea name="replyArea${status.index+1}" placeholder="답변을 입력해주세요." style="resize:none; width:100%; height:30px;"></textarea>
+                                                                                     </label>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                                <div class="consult-form-wrap">
+                                                                    <button type="button" class="btn btn-default" onclick="addReply(${status.index+1});"><span>답변하기</span></button>
+                                                                </div>
+                                                             </c:otherwise>
+<%--                                                             and pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                                             답변 내용이 없을 경우+ 관리자일 경우&ndash;%&gt;--%>
+<%--                                                             <c:when test="${qna.QA_CONTENT ne null}">--%>
+<%--                                                                 <div>--%>
+
+<%--                                                                 </div>--%>
+<%--                                                             </c:when>--%>
                                                         </c:choose>
 
                                                      </td>
@@ -3375,5 +3408,48 @@
 
         });
     });
+
+
+    function addReply(index){
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        var areaName='replyArea'+String(index);
+        var qcName='qc_seq'+String(index);
+        var qaName='qa_seq'+String(index);
+        console.log();
+
+        var replyData={
+            qa_content:$("textarea[name='" + areaName + "']").val(),
+            qc_seq: $("input[name='" + qcName + "']").val(),
+            user_seq: 182, //user_seq 임의의 값 넣어줌
+            qa_seq: $("input[name='" + qaName + "']").val(),
+
+        };
+        console.log(replyData);
+
+        var data=JSON.stringify(replyData);
+
+
+
+        $.ajax({
+            url: "${contextPath}/customer/addReply",
+            type:"post",
+            data: data,
+            contentType: 'application/json',
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function(){
+                alert("답변을 성공적으로 달았습니다.");
+                location.href="/customer/inquiryPage";
+            },
+            error: function (request,status,error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        });
+
+    }
 </script>
 <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script><script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>

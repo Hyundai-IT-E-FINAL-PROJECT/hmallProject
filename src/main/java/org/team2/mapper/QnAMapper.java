@@ -1,5 +1,6 @@
 package org.team2.mapper;
 
+import org.team2.domain.QaVO;
 import org.team2.domain.QnAVO;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface QnAMapper {
     int registerQnA(QnAVO vo)  throws Exception;
 
     List<Map<String, String>> getQnAList() throws Exception;
+
+    Integer addReply(QaVO vo) throws Exception;
 }

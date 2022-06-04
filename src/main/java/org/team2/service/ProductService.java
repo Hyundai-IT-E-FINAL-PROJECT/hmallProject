@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface ProductService {
-    ProductVO getOne(Long seq);
+    ProductVO getOne(Long product_seq);
 
     List<ProductVO> getAll();
+
+    List<ProductVO> getAllWithCouponByFirstCategory(Long first_category, Long second_category, String search_text);
 
     List<ProductVO> getMain();
     int insert(ProductVO productVO);

@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.CategoryVO;
 import org.team2.domain.ImageVO;
 import org.team2.domain.ProductVO;
+import org.team2.service.CategoryService;
 import org.team2.service.ImageService;
 import org.team2.service.ProductService;
 
@@ -30,6 +32,9 @@ public class ProductController {
 
     @Setter(onMethod_ = @Autowired)
     private ImageService imageService;
+
+    @Setter(onMethod_ = @Autowired)
+    private CategoryService categoryService;
 
 
     // restAPI
@@ -100,12 +105,15 @@ public class ProductController {
 
         ProductVO productVO = productService.getOne(product_seq);
         List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("product");
 
         log.info(productVO.getProduct_name());
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("productVO", productVO);
         mav.addObject("imageVOList",  allByProductSeq);
+        mav.addObject("cssFileList", styleFileList);
 
         mav.setViewName("product.detail");
 
@@ -160,12 +168,26 @@ public class ProductController {
     }
 
     @RequestMapping("/all")
-    public ModelAndView all(){
+    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text){
         log.info("product controller all start!!");
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("product.all");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("search");
+        styleFileList.add("display");
+        styleFileList.add("prd-list");
 
+
+        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text);
+        CategoryVO categoryVO = categoryService.getOne(first_category);
+        List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
+
+        mav.setViewName("search.all");
+        mav.addObject("productVOList", allWithCouponByFirstCategory);
+        mav.addObject("categoryVO", categoryVO);
+        mav.addObject("subCategoryList", subCategoryList);
+        mav.addObject("className", "wrap display-3depth");
+        mav.addObject("cssFileList", styleFileList);
         return mav;
     }
 }

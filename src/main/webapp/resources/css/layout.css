@@ -636,7 +636,7 @@
 .pdlist-wrap ul .pdthumb .alimlike { position:absolute; right:0; bottom:0; z-index:2;}
 .pdlist-wrap ul .pdthumb .alimlike .btn-alim { width:26px; height:26px; background:url('//image.hmall.com/p/img/dp/icon/icon-alim-26.png') no-repeat;}
 .pdlist-wrap ul .pdthumb .alimlike .btn-alim .badge { position:absolute; top:-10px; left:50%; transform:translateX(-50%); padding:0 6px 0 7px; height:19px; line-height:17px; font-size:10px; color:#fff; font-weight:700; border:1px solid #B92818; border-radius:20px; background:#FF5340;  }
-.pdlist-wrap ul .pdthumb .alimlike .btn-like { margin-left:6px; width:26px; height:26px; background:url('//image.hmall.com/p/img/dp/icon/icon-like-26.png') no-repeat;}
+.pdlist-wrap ul .pdthumb .alimlike .btn-like { margin-left:6px; width:26px; height:26px; background:url("/resources/img/more.png") no-repeat; opacity: 40%}
 .pdlist-wrap ul .pdthumb .alimlike .btn-alim.on { background:url('//image.hmall.com/p/img/dp/icon/icon-alim-on-26.png') no-repeat;}
 .pdlist-wrap ul .pdthumb .alimlike .btn-like.on { background:url('//image.hmall.com/p/img/dp/icon/icon-like-on-26.png') no-repeat;}
 
