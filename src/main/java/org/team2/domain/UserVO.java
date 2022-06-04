@@ -1,8 +1,8 @@
 package org.team2.domain;
 
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserVO implements Serializable {
 
     //pk
@@ -21,14 +24,19 @@ public class UserVO implements Serializable {
     private String user_name;
     private String user_phone;
     private String user_email;
-    private String user_birth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date user_birth;
     private String user_gender;
     private String user_email_receive;
     private String user_sms_receive;
     private String user_level;
+<<<<<<< HEAD
     private Long enabled;
     private Long user_point;
     private Long user_deposit;
+=======
+    private String user_nickname;
+>>>>>>> hoon
     private List<AuthVO> authList;
     private List<AddressVO> addressList;
 
