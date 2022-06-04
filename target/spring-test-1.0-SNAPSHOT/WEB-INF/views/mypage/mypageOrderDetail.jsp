@@ -86,13 +86,24 @@
                                 <a href="javascript:goItemDetail('2137807436');">
                                     <span class="img"><img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&amp;AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')"></span>
                                     <div class="box">
-                                                        <span class="state sky">
-                                                                            ${list.ORDER_STATUS}
-                                                            <em class="color-999">
+                                        <c:choose>
+                                            <c:when test="${list.ORDER_STATUS eq '주문취소' or list.ORDER_STATUS eq '교환접수' or list.ORDER_STATUS eq '교환완료' or list.ORDER_STATUS eq '반품접수' or list.ORDER_STATUS eq '반품완료'}">
+                                                        <span class="state red">
+                                                                    ${list.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                                            </em>
+                                                        </em>
                                                         </span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                        <span class="state sky">
+                                                                 ${list.ORDER_STATUS}
+                                                        <em class="color-999">
 
+                                                        </em>
+                                                        </span>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <span class="tit">${list.PRODUCT_NAME}</span>
 
                                         <!--엄지펀딩 배송예정시작일 시작-->

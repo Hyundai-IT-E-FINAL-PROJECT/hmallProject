@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.DepositVO;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
 import org.team2.service.ExhibitService;
@@ -61,6 +62,7 @@ public class MypageController {
             return mav;
         }
         catch (Exception e) {
+
             mav.addObject("msg", "마이페이지 에러");
             mav.setViewName("accessError");
             return mav;
@@ -73,7 +75,10 @@ public class MypageController {
         log.info("level test");
 
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
         mav.addObject("className", "wrap wing-none mp-membership");
+        mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageLevel");
 
         return mav;
@@ -85,27 +90,50 @@ public class MypageController {
         log.info("detail test");
         log.info(odno);
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypage.mypageOrderDetail");
-
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+        try {
+            List<Map<String, Object>> list = mypageService.detailOrders(principal.getName(), odno);
+            mav.addObject("list", list);
+            mav.addObject("className", "wrap order-list-page");
+            mav.addObject("cssFileList", styleFileList);
+            log.info(list);
+            mav.setViewName("mypage.mypageOrderDetail");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", e.getMessage());
+            mav.setViewName("accessError");
+        }
         return mav;
     }
 
     // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
    @RequestMapping("mypageOrder")
    @PreAuthorize("isAuthenticated()")
-    public ModelAndView oreder(Principal principal, HttpServletRequest req) {
+    public ModelAndView oreder(Principal principal, HttpServletRequest req, @RequestParam("type") String type) {
         ModelAndView mav = new ModelAndView();
+
+       List<String> styleFileList = new ArrayList<>();
+       styleFileList.add("mypage");
 
         String ordStrtDt = req.getParameter("ordStrtDt");
         String ordEndDt = req.getParameter("ordEndDt");
         String seType =  req.getParameter("seType");
         String itemNm =  req.getParameter("itemNm");
 
+       List<Map<String, Object>> list;
         try {
-            List<Map<String,Object>> list = mypageService.periodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm);
+            if (type.equals("all"))  {
+                list = mypageService.periodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm);
+            }
+            else{
+                list = mypageService.cancelperiodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm, type);
+            }
             mav.addObject("list", list);
             mav.addObject("seType", seType);
             mav.addObject("className", "wrap mp-order");
+            mav.addObject("cssFileList", styleFileList);
+            mav.addObject("type", type);
             log.info(list);
             mav.setViewName("mypage.mypageOrder");
         }
@@ -123,10 +151,14 @@ public class MypageController {
 
         log.info("coupon test");
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
         try {
             List<Map<String,Object>> list = mypageService.couponList(principal.getName());
             mav.addObject("list", list);
             mav.addObject("className", "wrap mp-coupon");
+            mav.addObject("cssFileList", styleFileList);
             mav.setViewName("mypage.mypageCoupon");
         }
         catch (Exception e) {
@@ -137,10 +169,25 @@ public class MypageController {
     }
 
     @RequestMapping("mypagePoint")
-    public ModelAndView point(Principal principal) {
-        log.info("point test");
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView point(Principal principal,
+                              HttpServletRequest req) throws Exception {
 
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
+        String strtDt = req.getParameter("strtDt");
+        String endDt = req.getParameter("endDt");
+        String searchType =  req.getParameter("searchType");
         ModelAndView mav = new ModelAndView();
+
+        List<Map<String,Object>> list = mypageService.pointList(principal.getName(), strtDt, endDt, searchType);
+        log.info(list);
+        mav.addObject("className", "wrap mp-point");
+        mav.addObject("list", list);
+        mav.addObject("searchType", searchType);
+        mav.addObject("cssFileList", styleFileList);
+
         mav.setViewName("mypage.mypagePoint");
 
         return mav;
@@ -174,7 +221,11 @@ public class MypageController {
     public ModelAndView update() {
         log.info("update test");
 
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
         ModelAndView mav = new ModelAndView();
+        mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageUpdate");
 
         return mav;
@@ -186,7 +237,11 @@ public class MypageController {
     public ModelAndView delivery() {
         log.info("delivery test");
 
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
         ModelAndView mav = new ModelAndView();
+        mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageDelivery");
 
         return mav;
@@ -197,19 +252,52 @@ public class MypageController {
     public ModelAndView drop() {
         log.info("update test");
 
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypageLeave.mypageLeave");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
 
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("cssFileList", styleFileList);
+        mav.setViewName("mypage.mypageLeave");
         return mav;
     }
 
     @RequestMapping("mypageDeposit")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView deposit() {
+    public ModelAndView deposit(Principal principal,
+                                HttpServletRequest req) throws Exception{
         log.info("deposit test");
 
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
+        String strtDt = req.getParameter("strtDt");
+        String endDt = req.getParameter("endDt");
+        String searchType =  req.getParameter("searchType");
+
         ModelAndView mav = new ModelAndView();
+
+        List<DepositVO> depositVO  = mypageService.depositList(principal.getName(), strtDt, endDt, searchType);
+        log.info(depositVO);
+        mav.addObject("depositVO", depositVO);
+        mav.addObject("cssFileList", styleFileList);
+        mav.addObject("searchType", searchType);
         mav.setViewName("mypage.mypageDeposit");
+
+        return mav;
+    }
+
+    @RequestMapping("mypageOrderCancel")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView cancel() {
+        log.info("ordercancel test");
+
+        ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
+        mav.addObject("cssFileList", styleFileList);
+        mav.setViewName("mypage.mypageOrderCancel");
 
         return mav;
     }

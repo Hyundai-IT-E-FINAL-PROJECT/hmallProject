@@ -806,7 +806,7 @@
 .order-step ul li div .txt{display:block;margin-top:8px;color:#666;font-size:14px;}
 
 .order-step.return-step ul li{width:auto;padding:0 30px;}
-.order-step.return-step ul li:first-child{padding-left:6px;}
+.order-step.return-step ul li:first-child{padding-left:6px;margin-left:50px;}
 .order-step.return-step ul li:last-child{padding-right:0;}
 .order-step.return-step ul li:before{top:0;margin-top:0;width:1px;height:100%;background:#eee;}
 .order-step.return-step ul li:first-child a,
@@ -820,8 +820,8 @@
 .order-step.return-step ul li:first-child div:last-child{margin:0;padding:0;}
 .order-step.return-step ul li:first-child div:before,
 .order-step.return-step ul li:first-child div:last-child:before{display:none;}
-.order-step.return-step ul li div{position:relative;min-width:60px;padding:0;}
-.order-step.return-step ul li div:last-child{margin-left:48px;}
+.order-step.return-step ul li div{position:relative;min-width:60px;padding:0;margin-left:20px;}
+.order-step.return-step ul li div:last-child{margin-left:75px;margin-right: 20px}
 .order-step.return-step ul li div:last-child:before{content:'';display:block;position:absolute;left:-28px;top:50%;margin-top:-7px;width:8px;height:14px;background:url(//image.hmall.com/p/img/mp/icon/icon-arrow-right.png) no-repeat;}
 
 .review-head{position:relative;display:flex;justify-content:space-between;align-items:center;margin:20px 0 0;}
@@ -1332,7 +1332,7 @@
 .mypage-coupon-wrap .title22{margin:50px 0 20px;}
 .mypage-coupon-wrap .bg-gray-box .top-area{position:relative;top:50%;left:0;}
 .mypage-coupon-wrap .bg-gray-box .top-area .title{position:absolute;top:50%;left:0;color:#333;font-size:24px;transform:translateY(-50%);}
-.mypage-coupon-wrap .bg-gray-box .top-area .list{display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;padding:15px 55px 15px 210px;}
+.mypage-coupon-wrap .bg-gray-box .top-area .list{display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;padding:15px 55px 15px 370px;}
 .mypage-coupon-wrap .bg-gray-box .top-area .list li{position:relative;}
 .mypage-coupon-wrap .bg-gray-box .top-area .list li + li:before{content:'';display:block;position:absolute;top:50%;left:-65px;margin-top:-20px;width:1px;height:40px;background-color:#eee;}
 .mypage-coupon-wrap .bg-gray-box .top-area .list li a{display:inline-block;}
