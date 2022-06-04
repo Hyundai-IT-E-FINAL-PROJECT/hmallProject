@@ -138,7 +138,7 @@
                                     <script type="text/javascript">
                                         console.log("${basketVOList}")
                                     </script>
-<%--                                    <form method="post" action="${contextPath}/order/od" id="basketForm" name="basketForm">--%>
+                                    <%--                                    <form method="post" action="${contextPath}/order/od" id="basketForm" name="basketForm">--%>
                                     <c:forEach items="${basketVOList}" var="basketVO" varStatus="status">
                                         <div class="shipping-list" id="gen">
                                             <!-- .pdwrap -->
@@ -178,7 +178,7 @@
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2101560521_00001" onclick="showChgUitmPup(this, '2101560521', '00001', 0, 59900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
                                                         <button type="button" class="btn btn-linelgray" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2101560521"><span>선물하기</span></button>
-<%--                                                        <button type="button" class="btn btn-default" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2101560521"><span>바로구매</span></button>--%>
+                                                            <%--                                                        <button type="button" class="btn btn-default" onclick="setGiftOrder('Y');buyDirect(this);" id="buyDirectBtn_2101560521"><span>바로구매</span></button>--%>
                                                         <button type="button" class="btn btn-default" onclick="directBuyBtn(${status.index+1});" id="directBuy" name="directBuy"><span>바로구매</span></button>
                                                     </div>
                                                     <div class="prop-change" id="chgUitmLayer_2101560521_00001">
@@ -187,8 +187,8 @@
                                             </div>
                                         </div>
                                     </c:forEach>
-<%--                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
-<%--                                    </form>--%>
+                                    <%--                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+                                    <%--                                    </form>--%>
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
@@ -197,12 +197,9 @@
                 </div>
                 <script type="text/javascript">
                     function directBuyBtn(idx){
-
                         var csrfHeaderName = "${_csrf.headerName}";
                         var csrfTokenValue = "${_csrf.token}";
-
                         var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
-
                         <%--let myForm=document.getElementById('#basketForm');--%>
                         <%--let formData=new FormData(myForm[0]);--%>
                         <%--// formData.append('product_seq',product_seq);--%>
@@ -215,24 +212,14 @@
                         <%--        product_seq:product_seq--%>
                         <%--    })--%>
                         <%--});--%>
-
-
-
                         <%--let form=$("#basketForm");--%>
-
-
-
                         <%--form.attr("action", "${contextPath}/order/od");--%>
                         <%--form.attr('method','post');--%>
                         <%--form.attr("product_seq",product_seq);--%>
                         <%--form.appendTo('#basketForm');--%>
-
                         <%--// form.append(product_seq);--%>
                         <%--// console.log(product_seq);--%>
-
                         <%--form.submit();--%>
-
-
                         $.ajax({
                             type:'get',
                             url: '${contextPath}/order/od/'+product_seq,
@@ -246,12 +233,7 @@
                             error: function (request,status,error) {
                                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                             }
-
                         });
-
-
-
-
                     }
                 </script>
                 <div class="sticky-ui-wrapper util-option-sticky">

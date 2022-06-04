@@ -32,7 +32,7 @@ public class BasketController {
     @Setter(onMethod_ = @Autowired)
     private BasketService basketService;
 
-//    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
+    //    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
     @RequestMapping("/basketList")
     public ModelAndView order(@AuthenticationPrincipal UserVO userVO, Principal principal){
         List<BasketVO> allByUserSeq = basketService.getAllByUserSeq(Long.valueOf(principal.getName()));
