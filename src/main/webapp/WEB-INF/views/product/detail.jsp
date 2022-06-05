@@ -833,7 +833,7 @@
                                     </div>
                                     <div class="slider-thumbnaii no-slick">
                                         <ul>
-                                            <c:forEach var="imageVO" items="${imageVOList}">
+                                            <c:forEachgit var="imageVO" items="${imageVOList}">
                                                 <c:choose>
                                                     <c:when test="${imageVO.IMAGE_TYPE eq 'MAIN'}">
                                                         <li class="ui-thumbnaii ui-active"><a href="javascript:;"
@@ -854,7 +854,7 @@
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:forEach>
+                                            </c:forEachgit >
                                         </ul>
                                     </div>
                                 </div>
