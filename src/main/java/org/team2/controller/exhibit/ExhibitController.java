@@ -47,4 +47,18 @@ public class ExhibitController {
         log.info(exhibit_num);
     }
 
+    @ResponseBody
+    @RequestMapping("cosmetics")
+    public ModelAndView cosmetics(ExhibitVO exhibitVO) throws Exception{
+        log.info("미백순수 기획전 컨트롤러 도착");
+        log.info(exhibitVO.getExhibit_num());
+        ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("display");
+        mav.addObject("cssFileList", styleFileList);
+        mav.addObject("className","exhibition-wrap");
+        mav.setViewName("exhibition.cosmetics");
+        return mav;
+    }
+
 }

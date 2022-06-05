@@ -2623,11 +2623,13 @@
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
                                             <div>
-                                                <div class="items_main"
-                                                     style="width: 100%; vertical-align: top;">
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg"/>
-                                                </div>
+                                                <form id="cosmeticForm" method="post" action="${contextPath}/exhibition/cosmetics">
+                                                    <div class="items_main" style="width: 100%; vertical-align: top;">
+                                                        <input type="hidden" name="exhibit_num" value="2">
+                                                        <input type="image" class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg"/>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;">
@@ -2635,7 +2637,6 @@
                                                 <form id="euroForm" action="${contextPath}/exhibition/euro_exhibit" method="post">
                                                     <div class="items_main" style="width: 100%; vertical-align: top;">
                                                         <input type="hidden" name="exhibit_num" value="1">
-                                                        <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
                                                         <input type="image" class="img_1"  src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg"/>
                                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                                     </div>
