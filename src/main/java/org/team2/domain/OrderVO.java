@@ -16,6 +16,7 @@ public class OrderVO {
     private String userName;
     private String userNumber;
     private String delivery;
+    private String message;
 
     private Date createdAt;
     private Date updatedAt;

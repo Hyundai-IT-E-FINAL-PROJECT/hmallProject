@@ -1,16 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="/resources/js/addressapi.js"></script>
+</head>
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
         console.log("objName", objName);
         console.log("aplyCopn_yn", aplyCopn_yn);
-
         // renew2020 금액 reset
         $("#"+objName).val("0원");
-
         var selectedAlliCrd = isEmpty($("input[name=discountType1]:checked").val()) ? "N" : "Y";
-
         if ( $("input[name="+objName+"]:checked").val() == undefined ) {
             return;
         }
@@ -20,10 +21,8 @@
         var prchMdaGbcd = selectedCopnVal[11];
         var dtvItemYn = selectedCopnVal[12];
         var copnPblcNo = selectedCopnVal[8];
-
         if(isEmpty(copnNo)) {
             $("#pec007 #"+objName).parent().parent().find("input[name='copnInf']").val("");
-
             // 일반쿠폰 취소할 경우 플러스쿠폰 존재하는 경우 초기화 시킴
             if(copnTypeGbcd == "02") {
                 var plusObjName = objName.replace("gnrl", "plus");
@@ -37,7 +36,6 @@
             }
         } else {
             var kind = selectedAlliCrd == "Y" ? $("input[name=discountType1]:checked").attr("kind") : -1;
-
             if(copnTypeGbcd == "02") {  // 플러스쿠폰 (일반쿠폰 선택 후 선택 가능, 한주문에 한개만 사용 가능)
                 if(kind == '3') {
                     var tcCd = $("input[name=discountType1]:checked").val();
@@ -52,7 +50,6 @@
                         //return;
                     }
                 }
-
                 var gnrlObjName = objName.replace("plus", "gnrl");
                 if ( $("#pec007 #"+gnrlObjName).val() == "0원" ) {
                     alert("플러스쿠폰은 일반쿠폰과 같이 사용하셔야합니다.");
@@ -61,7 +58,6 @@
                     //return;
                 }
             }
-
             var tcDcType = isEmpty($("input[name=discountType1]:checked").attr("tcDcType")) ? "03" : $("input[name=discountType1]:checked").attr("tcDcType");
             if(tcDcType == "04") {
                 if((prchMdaGbcd == "20" || dtvItemYn == "Y") && (copnTypeGbcd == "03" || copnTypeGbcd == "04" || copnTypeGbcd == "05")) {  // 바로사용 쿠폰사용시 임직원 할인 사용 불가
@@ -79,8 +75,6 @@
                     }
                 }
             }
-
-
             if(copnTypeGbcd == "07") {  // 무적할인
                 if(kind == '3') {
                     var tcCd = $("input[name=discountType1]:checked").val();
@@ -92,9 +86,7 @@
                     }
                 }
             }
-
             if(copnTypeGbcd != "03" && copnTypeGbcd != "04") {
-
                 // 중복체크
                 var dupYn = false;
                 $("#pec007 input[name='copnInf']").each(function(index) {
@@ -103,7 +95,6 @@
                     if(!dupYn && !isEmpty($(this).val()) ) {//}&& copnInfIdx != index) {
                         var copnInfArr = $(this).val().split("|");
                         //console.log("copnNo:"+copnNo+":"+copnPblcNo);
-
                         if ( copnTypeGbcd == "05" ) {
                             if(copnNo != "" && copnInfArr[0] == copnNo && copnInfArr[8] == copnPblcNo) {
                                 alert("이미 사용중인 쿠폰입니다.");
@@ -117,19 +108,15 @@
                         }
                     }
                 });
-
                 if(dupYn) {
                     $("input[name="+objName+"]").eq(0).prop("checked", true);
                     //return;
                 }
             }
-
             $("#pec007 #"+objName).parent().parent().find("input[name='copnInf']").val($("input[name="+objName+"]:checked").val());
         }
-
         // 쿠폰이름 셋팅
         // renew2020 $("p.couponUse:eq(" + idx + ")").text($(obj).siblings("input[name='copnNm']").val());
-
         // 플러스 쿠폰 금액 초기화
         /* renew2020 구조변경으로 삭제. plus쿠폰은 쿠폰 적용시 reset한다.
 $("td.expiryDate:eq(" + tdIdx + ")").find("div.plusCopnSelectDiv tr").each(function() {
@@ -137,41 +124,33 @@ $("td.expiryDate:eq(" + tdIdx + ")").find("div.plusCopnSelectDiv tr").each(funct
     $(this).find(".copnDcPriceTd").text(gfn_appendComma(dcPrice));
 });
 */
-
         // 할인 금액 계산
         var dcPrice = 0;
         var gnrlCopnDcPrice = 0;
         var plusCopnDcPrice = 0;
         var sellPrcForCopn = $("#"+objName+"_layer").find("input[name='sellPrcForCopn']").val();
         var exstCopnDcAmt = $("#"+objName+"_layer").find("input[name='exstCopnDcAmt']").val();
-
         sellPrcForCopn = isEmpty(sellPrcForCopn) ? 0 : Number(sellPrcForCopn);
         exstCopnDcAmt = isEmpty(exstCopnDcAmt) ? 0 : Number(exstCopnDcAmt);
-
         // renew2020 $("td.expiryDate:eq(" + tdIdx + ") p.couponUse").each(function() {
         // renew2020    var copnUseIdx = $("p.couponUse").index(this);
         // renew2020    var copnInf = $("#cuponSearch input[name='copnInf']:eq(" + copnUseIdx + ")").val();
         var copnInf = $("#"+objName+"_layer input[name="+objName+"]:checked").val();
-
         var copnGb = "";
         if(!isEmpty(copnInf)) {
-
             var famtFxrtGbcd = copnInf.split("|")[4];
             var famtFxrtVal = copnInf.split("|")[5];
             var maxDcPossAmt = copnInf.split("|")[9];
             copnGb = copnInf.split("|")[6];
-
             // renew2020 plus일때 gnrl 금액을 빼고 계산한다.
             if(copnGb != "1") {
                 dcPrice = $("#"+objName.replace("plus", "gnrl")).parent().parent().find("input[name=copnDcAmt]").val();
             }
-
             if(famtFxrtGbcd == "1") {   // 정률
                 var dcAmt = Math.floor(Number((sellPrcForCopn - exstCopnDcAmt - dcPrice) * famtFxrtVal) / 1000) * 10;
                 if(maxDcPossAmt > 0 && dcAmt > maxDcPossAmt) {
                     dcAmt = Number(maxDcPossAmt);
                 }
-
                 dcPrice += dcAmt;
                 if(copnGb == "1") {
                     gnrlCopnDcPrice += dcAmt;
@@ -183,16 +162,13 @@ $("td.expiryDate:eq(" + tdIdx + ")").find("div.plusCopnSelectDiv tr").each(funct
                 if(maxDcPossAmt > 0 && dcAmt > maxDcPossAmt) {
                     dcAmt = Number(maxDcPossAmt);
                 }
-
                 dcPrice += dcAmt;
                 if(copnGb == "1") {
                     gnrlCopnDcPrice += dcAmt;
                 } else {
                     plusCopnDcPrice += dcAmt;
-
                 }
             }
-
             // renew2020 plus쿠폰 선택 후 일반쿠폰이 변경되었을때 plus쿠폰을 재계산한다.
             if(copnGb == "1") { // 일반쿠폰
                 $("input[name="+objName.replace("gnrl", "plus")+"]").eq(0).prop("checked", true);
@@ -202,20 +178,17 @@ $("td.expiryDate:eq(" + tdIdx + ")").find("div.plusCopnSelectDiv tr").each(funct
             var famtFxrtGbcdPlus = $(this).find("input[name='famtFxrtGbcd']").val();
             var famtFxrtValPlus = $(this).find("input[name='famtFxrtVal']").val();
             var maxDcPossAmtPlus = $(this).find("input[name='maxDcPossAmt']").val();
-
             if(famtFxrtGbcdPlus == "1") {   // 정률
                 var dcAmt = Math.floor(Number((sellPrcForCopn - exstCopnDcAmt - dcPrice) * famtFxrtValPlus) / 1000) * 10;
                 if(maxDcPossAmtPlus > 0 && dcAmt > maxDcPossAmtPlus) {
                     dcAmt = Number(maxDcPossAmtPlus);
                 }
-
                 $(this).find(".copnDcPriceTd").text(gfn_appendComma(dcAmt));
             } else {    // 정액
                 var dcAmt = Number(famtFxrtValPlus);
                 if(maxDcPossAmtPlus > 0 && dcAmt > maxDcPossAmtPlus) {
                     dcAmt = Number(maxDcPossAmtPlus);
                 }
-
                 $(this).find(".copnDcPriceTd").text(gfn_appendComma(dcAmt));
             }
         });
@@ -235,7 +208,6 @@ var copnDcAmt = 0;
 $("#pec007 input[name='copnDcAmt']").each(function() {
     copnDcAmt += Number($(this).val());
 });
-
 // 2019.10.08 HMALL개선이주형 무료배송비쿠폰 멀티사용처리
 var freeDlvCopnDcAmt = 0;
 $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
@@ -243,29 +215,22 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
     freeDlvCopnDcAmt += freeDlvAmt;
 });
 */
-
         // renew2020 $(".cuponInqTable1 tfoot span").text(gfn_appendComma(copnDcAmt));
         // renew2020 $(".cuponInqTable2 tfoot p span").text(gfn_appendComma(Number(copnDcAmt) + Number(freeDlvCopnDcAmt)));
-
         // renew2020 hideListLayer($(obj).parent().parent().parent().parent().parent().parent().parent().parent().find("p.couponUse"));
         if(aplyCopn_yn != "N"){
             aplyCopn();
         }
-
         $("#"+objName+"_layer").modal().hide();
     }
-
     function aplyCopn() {
         $("form[name='orderDataForm'] input[name='copnInf'], form[name='orderDataForm'] input[name='freeDlvCopnInf'], form[name='orderDataForm'] input[name=paymentCopnInf]").remove();
         // renew2020 $(".dcPriceTd input[name='copnDcAmt']").remove();
-
         $("#pec007 input[name='freeDlvCopnInf']").each(function(){
-
             if ( $(this).val() != "" ) {
                 $("form[name='orderDataForm']").append($(this).clone());
             }
         });
-
         $("#pec007 input[name='copnInf']").each(function() {
             if(!isEmpty($(this).val())) {
                 $("form[name='orderDataForm']").append($(this).clone());
@@ -273,7 +238,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         });
         // renew2020 $("#discountType1 option:first").attr("selected", true);
         // TODO : 제휴할인 선택되었을 경우 플러스 쿠폰 사용시 초기화 시켜야함
-
         // 쿠폰 선택 시 결제수단 선택 초기화
         //TODO 곽희섭 20170529 통합포인트 추가
         // $("input[name='useDeposit'], input[name='useHPoint'], input[name='useUPoint'], input[name='useWPoint'], input[name='useGcAmt']").val("");
@@ -283,7 +247,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         $("#allDeposit, #all1, #all2, #all3").attr("checked", false);
         clearPayTypeArea();
         $("input[name='payType']").attr("checked", false);
-
         //관세 금액 초기화 및 버튼 제어
         // renew2020 해외배송? checkFrgnDuteInfo();
         // 금액계산
@@ -302,34 +265,25 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         }
         cardCalculate();
         // gotoPlcc();
-
         if($("#payment-type-1").prop("checked")){
             hppCardMsg();
         }
-
         if($("#payment-type-2").prop("checked")){
             hppAccountMsg();
         }
-
         function fn_specialCardCheck(){
             var kind = $("input[name='discountType1']:checked").attr("kind");
-
             var alliCrdCd = $("input[name='discountType1']:checked").attr("crdCd");
-
             if(kind == "1" || kind == "2") {
                 if (!isEmpty(alliCrdCd)) {
                     if (alliCrdCd != "99") { // 무통장
                         return false;
-
                     }
                 }
             }
-
             return true;
         }
-
         var nonMember = "N";
-
         function hppAccountReceiptInit() {
             $("#hpp-account-receipt").removeClass("ui-active");
             $("input[name='receipt-option2']").attr("disabled", true);
@@ -339,13 +293,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             if(nonMember == "Y") {
                 $("#chk14_1").prop("checked",false);
             }
-
-
             $("#hppAccountCashRcpt_so_hp").addClass("hidden");
             $("#hppAccountCashRcpt_so_credit").addClass("hidden");
             $("#hppAccountCashRcpt_so_cash").addClass("hidden");
             $("#hppAccountCashRcpt_ji").addClass("hidden");
-
             $("select[name='receipt-option3'] option:eq(0)").attr("selected", true);
             $("input[name='hppAccountRgno1'], input[name='hppAccountRgno2'], input[name='hppAccountRgno3']").val("");
             $("input[name='HPPAccountCashRcptCreditCrdNum1'], input[name='HPPAccountCashRcptCreditCrdNum2'], input[name='HPPAccountCashRcptCreditCrdNum3'], input[name='HPPAccountCashRcptCreditCrdNum4']").val("");
@@ -355,21 +306,16 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             $("#hpp-account-receipt .receipt-content").removeClass("_active");
             $("#hpp-account-receipt .pay-subcase").hide();
         }
-
         /**
          * 결제수단 선택 영역 초기화
          */
         var hppPlccExist = "N";
-
         function clearPayTypeArea() {
             $("#order2016Alert, #order2016Alert div[name^='crdcCd']").hide();
-
             if(hppPlccExist == "Y"){
                 $(".hpp-carditem .ca-plcc").prev().hide();
             }
-
             if(!fn_specialCardCheck()) return false;
-
             $("input[name='multiStlmCrdAmt']").val("");     // 복합결제 카드 결제 금액 초기화
             if ( !isEmpty($("select[name='stlmCrdInf']").parent().selectbox()) ) {
                 $("select[name='stlmCrdInf']").parent().selectbox().selected(''); // 카드목록 초기화
@@ -380,16 +326,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             $("input[name='payType'], input[name='cardPoint'], input[name='saveService']").attr("checked", false);  // 결제방식 초기화, 포인트 사용 초기화
             $("input[name='payType']").filter("input[value='safeClck']").attr("checked", true);
             $("input[name='cardPoint']:eq(1)").prop("checked", true);
-
             var payType = "";
             if($("input[name='payment-type']:checked").val() == "3"){
                 payType = $("input[name='payType']:checked").val();
             }else{
                 payType = $("input[name='payment-type']:checked").val();
             }
-
-
-
             // 신용카드 분할결제 영역 초기화
             if(payType != '11' && typeof payType != 'undefined'){
                 // 신용카드 분할결제 1번째 영역 초기화
@@ -403,7 +345,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 //$("input[name='paymentTypeDiv1'], input[name='cardPointDiv1'], input[name='saveServiceDiv1']").prop("checked", false);
                 $("input[name='paymentTypeDiv1']").filter("input[value='safeClckDiv1']").prop("checked", true);
                 $("input[name='cardPointDiv1']:eq(1)").prop("checked", true);
-
                 // 신용카드 분할결제 2번째 영역 초기화
                 $("input[name='multiStlmCrdAmtDiv2']").val("");
                 if ( !isEmpty($("select[name='stlmCrdInfDiv2']").parent().selectbox()) ) {
@@ -416,22 +357,17 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 $("input[name='paymentTypeDiv2']").filter("input[value='safeClckDiv2']").prop("checked", true);
                 $("input[name='cardPointDiv2']:eq(1)").prop("checked", true);
             }
-
             if(payType != 12){
                 $("form[name='orderDataForm'] input[name='hdPlccCrdPrmoAplyYn']").val("");
                 $("form[name='orderDataForm'] input[name='hdPlccCrdPrmoYn']").val("N"); //제외여부체크
                 $("form[name='orderDataForm'] input[name='hdPlccCrdStlmYn']").val("N");
             }
-
             $(".crdKndExposureArea").addClass("hidden");
-
-
             // H.Point Pay 추가 Plcc 데이터 초기화 by j.b.w
             $("form[name='orderDataForm'] input[name='hdPlccCrdPrmoAplyYn']").val("");
             $("form[name='orderDataForm'] input[name='hdPlccCrdPrmoYn']").val("N");
             $("form[name='orderDataForm'] input[name='hdPlccCrdStlmYn']").val("N");
             hppAccountReceiptInit();
-
             $(".smileCrdArea").addClass("hidden");
             $("input[name='multiStlmWibkAmt']").val("");                    // 복합결제 무통장 금액 초기화
             $("select[name='wibkBankCd'] option").attr("selected", false);  // 입금은행 초기화
@@ -439,21 +375,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             $("form[name='paymentForm'] input[name='wibkCustNm']").val($("input.rcvCustNm").val());   // 입금자명 초기화
             //$("input[name='wibkAcntSmsYn']:first, input[name='wibkIamtInfSmsYn']:first").attr("checked", true);
             $("input[name='multiStlmAcntAmt']").val("");    // 복합결제 실시간계좌이체 금액 초기화
-
             $("input[name='receiptYn']").prop("checked", false);    // 현금영수증 초기화
             $("#cashRcptArea .receiptType").hide();
-
-
             $("#stlmCrdAmtDl strong").html("");
             $("#stlmAlliDcAmtDl strong").html("");
             $("#stlmCrdAmtDl strong").html("");
-
             $("#stlmCrdAmtDlDiv1 strong").html("");
             $("#stlmCrdAmtDlDiv2 strong").html("");
-
-
             $(".stlmDpArea").addClass("hidden");
-
             // 신용카드 분할결제
             if(payType == '11'){
                 var multiStlmCrdAmt = isEmpty($("input[name='multiStlmCrdAmtDiv1']").val()) ? 0 : Number(removeComma($("input[name='multiStlmCrdAmtDiv1']").val()));
@@ -465,25 +394,19 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             // renew2020 아래로 변경. $(".payTypeBox").not("#psnCucrInntCodePayTypeBox, #asianaPayTypeBox, #okcashbagPayTypeBox, #cardTypeArea1, #cardTypeArea2").hide();
             $(".pay-case-content, .payTypeBox").not("#psnCucrInntCodePayTypeBox, #asianaPayTypeBox, #okcashbagPayTypeBox").hide();
             $(".split-payments-wrap").hide();
-
-
             $("#stlmDcAmtDiv").hide();
-
             $("input[name=stlmDcPrmoNo]").val("");
             $("input[name=stlmDcAmt]").val("0");
-
             if($("input[name='payment-type']:checked").val() != "3"){
                 $(".hpp").show();
             }else{
                 $(".hpp").hide();
             }
-
             var drctVstLimitYn = 'N';
             if(drctVstLimitYn== 'Y'){
                 $("#order2016Alert").show();
             }
         }
-
     }
 </script>
 
@@ -516,8 +439,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             <div class="order-list" id="orderItems">
                                 <ul>
                                     <li name="orderItem">
-<%--                                        상품에 관한 정보들--%>
-                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.productVO.product_count}">
+                                        <%--                                        상품에 관한 정보들--%>
+                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.basket_count}">
 
 
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
@@ -527,11 +450,11 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                 <div class="info">
                                                     <ul>
                                                         <li>${directBasket.productVO.product_cost}원</li>
-                                                        <li>${directBasket.productVO.product_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
+                                                        <li>${directBasket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
                                                     </ul>
                                                 </div>
                                                 <%--                                                상품 값 받아와 함--%>
-                                                <span class="price"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
+                                                <span class="price"><strong>${directBasket.productVO.product_cost * directBasket.basket_count}</strong>원</span>
                                             </div>
                                         </a>
                                     </li>
@@ -597,7 +520,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <!-- //.ui-modal-dialog -->
                                 </div>
                                 <script type="text/javascript">
-
                                     // function checkOnlyOne(){
                                     //     const checkboxes=document.getElementById("discount2Tmp");
                                     //     checkboxes.forEach((cb)=>{
@@ -605,100 +527,86 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     //     })
                                     //     element.checked=true;
                                     // }
-
                                 </script>
                                 <div class="point-area">
-<%--
-                                    <ul class="row-list">
-                                        <li id="hpointUseLi">
-                                            <%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
-                                            <div class="row-title">
-                                                <label class="chklabel">
-<%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
-<%--                                                    <i class="icon"></i>--%>
-                                                    <span style="width: 100px">적립금</span>
-                                                    <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
-                                                    <span class="unit point">P</span>
-                                                    <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
-                                                    <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
-                                                    <span style="width: 300px">[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li id="depositLi">
-                                            <div class="row-title">
-                                                <label class="chklabel">
-                                                    <span style="width: 100px">예치금</span>
-                                                    <input type="number" placeholder="0" name="depositPoint" id="depositPoint" style="width: auto; text-align: right;">
-                                                    <span class="unit point">P</span>
-                                                    <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
-                                                    <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
-                                                    <span style="width: 300px">[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
-                                                </label>
-                                            </div>
-                                        </li>
+                                    <%--
+                                                                        <ul class="row-list">
+                                                                            <li id="hpointUseLi">
+                                                                                <%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
+                                    <div class="row-title">
+                                        <label class="chklabel">
+                                            <%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
+                                            <%--                                                    <i class="icon"></i>--%>
+                                            <span style="width: 100px">적립금</span>
+                                            <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
+                                            <span class="unit point">P</span>
+                                            <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
+                                            <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
+                                            <span style="width: 300px">[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
+                                        </label>
+                                    </div>
+                                    </li>
+                                    <li id="depositLi">
+                                        <div class="row-title">
+                                            <label class="chklabel">
+                                                <span style="width: 100px">예치금</span>
+                                                <input type="number" placeholder="0" name="depositPoint" id="depositPoint" style="width: auto; text-align: right;">
+                                                <span class="unit point">P</span>
+                                                <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
+                                                <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
+                                                <span style="width: 300px">[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
+                                            </label>
+                                        </div>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>
-                        <script type="text/javascript">
-
-                            //TODO: 화면에서는 적용되게 보이고 최종적으로 결제됐을 때 user의 point와 deposit를 바꿔준다.
-
-                            function useUserPoint(){
-                                var willUse=$("input[name='userPoint']").val();
-                                if (willUse>${userPoint}) {
-                                    alert("보유 적립금보다 금액이 큽니다!");
+                            <script type="text/javascript">
+                                //TODO: 화면에서는 적용되게 보이고 최종적으로 결제됐을 때 user의 point와 deposit를 바꿔준다.
+                                function useUserPoint(){
+                                    var willUse=$("input[name='userPoint']").val();
+                                    if (willUse>${userPoint}) {
+                                        alert("보유 적립금보다 금액이 큽니다!");
+                                        $("#userPoint").val(0);
+                                    }else{
+                                        alert("적용되었습니다!");
+                                        $("#totalUserPoint").val(willUse);
+                                        applyDiscount();
+                                    }
+                                }
+                                function cancelPoint(){
+                                    alert("적용이 취소되었습니다.");
                                     $("#userPoint").val(0);
-
-                                }else{
-                                    alert("적용되었습니다!");
-                                    $("#totalUserPoint").val(willUse);
+                                    $("#totalUserPoint").val(0);
                                     applyDiscount();
                                 }
-                            }
-
-                            function cancelPoint(){
-                                alert("적용이 취소되었습니다.");
-                                $("#userPoint").val(0);
-                                $("#totalUserPoint").val(0);
-                                applyDiscount();
-
-                            }
-
-                            function useDepositPoint(){
-                                var willUse=$("input[name='depositPoint']").val();
-                                if (willUse>${depositPoint}) {
-                                    alert("보유 적립금보다 금액이 큽니다!");
-                                    $("#userPoint").val(0);
-                                }else{
-                                    alert("적용되었습니다!");
-                                    $("#totalDepositPoint").val(willUse);
+                                function useDepositPoint(){
+                                    var willUse=$("input[name='depositPoint']").val();
+                                    if (willUse>${depositPoint}) {
+                                        alert("보유 적립금보다 금액이 큽니다!");
+                                        $("#userPoint").val(0);
+                                    }else{
+                                        alert("적용되었습니다!");
+                                        $("#totalDepositPoint").val(willUse);
+                                        applyDiscount();
+                                    }
+                                }
+                                function cancelDepositPoint(){
+                                    alert("적용이 취소되었습니다.");
+                                    $("#depositPoint").val(0);
+                                    $("#totalDepositPoint").val(0);
                                     applyDiscount();
                                 }
-                            }
-
-                            function cancelDepositPoint(){
-                                alert("적용이 취소되었습니다.");
-                                $("#depositPoint").val(0);
-                                $("#totalDepositPoint").val(0);
-                                applyDiscount();
-                            }
-
-                            function applyDiscount(){
-                                var totalCost=parseInt($("input[name='totalPrice']").val());
-
-                                var discount1=$("input[name='totalUserPoint']").val();
-                                var discount2=$("input[name='totalDepositPoint']").val();
-                                var discount3=$("input[name='totalCouponPoint']").val();
-
-
-                                //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
-                                totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-parseInt(discount3);
-
-                                $("#totalCost1").val(totalCost);
-                            }
-
-                        </script>
+                                function applyDiscount(){
+                                    var totalCost=parseInt($("input[name='totalPrice']").val());
+                                    var discount1=$("input[name='totalUserPoint']").val();
+                                    var discount2=$("input[name='totalDepositPoint']").val();
+                                    var discount3=$("input[name='totalCouponPoint']").val();
+                                    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+                                    totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-parseInt(discount3);
+                                    $("#totalCost1").val(totalCost);
+                                }
+                            </script>
 
 
                         </div> <!-- chkStlmType() 2번째 종료 -->
@@ -718,88 +626,149 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 <th scope="col">주문하시는 분</th>
                                 <sec:authorize access="isAuthenticated()">
                                     <sec:authentication property="principal" var="pinfo" />
-                                <th scope="col">${pinfo.userVO.user_name}</th>
-                                <th scope="col">보내시는 분</th>
-                                <th scope="col">${pinfo.userVO.user_name}</th>
+                                    <th scope="col">${pinfo.userVO.user_name}</th>
+                                    <th scope="col">보내시는 분</th>
+                                    <th scope="col">${pinfo.userVO.user_name}</th>
                                 </sec:authorize>
                             </tr>
 
                         </table>
                         </h3>
 
-                        <button class="btn btn-linelgray small30" type="button" onclick="openAddressListPup()"><span>이전 배송지</span></button> <!--마이페이지 1:1상담으로 이동-->
 
-                        <form id="orderPush" method="post" action="orderComplete">
 
-                            <div class="tab-content" style="padding: 10px;">
-                                <div role="tabpanel" class="tab-pane" id="addresslist">
+<%--                        <form id="orderPush" method="post" action="orderComplete">--%>
 
-                                    <div class="nodata"><span class="bgcircle"><i class="icon nodata-type15"></i></span><p>지정된 배송지가 없습니다.</p></div><div class="btngroup">
-                                    <button type="button" class="btn btn-default" onclick="selectDstnAddr();"><span>확인</span></button>
-                                    <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
-                                </div>
-                                </div>
-                                <%--test중--%>
-                                <sec:authorize access="isAuthenticated()">
-                                    <sec:authentication property="principal" var="pinfo" />
-                                    <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
-                                </sec:authorize>
+<%--                            <div class="tab-content" style="padding: 10px;">--%>
+<%--                                <div role="tabpanel" class="tab-pane" id="addresslist">--%>
 
-                                <input type="hidden" name="point" value="200" id="order_point">
-                                <input type="hidden" name="status" value="준비중" id="order_status">
-                                <input type="hidden" name="invoice" value=26473753 id="order_invoice">
+<%--                                    <div class="nodata"><span class="bgcircle"><i class="icon nodata-type15"></i></span><p>지정된 배송지가 없습니다.</p></div><div class="btngroup">--%>
+<%--                                    <button type="button" class="btn btn-default" onclick="selectDstnAddr();"><span>확인</span></button>--%>
+<%--                                    <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->--%>
+<%--                                </div>--%>
+<%--                                </div>--%>
+<%--                                &lt;%&ndash;test중&ndash;%&gt;--%>
+<%--                                <sec:authorize access="isAuthenticated()">--%>
+<%--                                    <sec:authentication property="principal" var="pinfo" />--%>
+<%--                                    <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">--%>
+<%--                                </sec:authorize>--%>
 
-                                <div role="tabpanel" class="tab-pane ui-active" id="addressadd" style="padding: 10px;">
-                                    <div class="inputbox">
-                                        <%--                                    <input type="hidden" name="" value="" id="adrKndGbcd">--%>
-                                        <%--                                    <input type="hidden" name="" value="" id="dlvType">--%>
-                                        <%--                                    <input type="hidden" name="" value="" id="selectedDstnSeq">--%>
-                                        <label class="inplabel"><input type="text"  name="userName" value="" placeholder="받으시는 분" id="order_user_name" maxlength="25"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
+<%--                                <input type="hidden" name="point" value="200" id="order_point">--%>
+<%--                                <input type="hidden" name="status" value="준비중" id="order_status">--%>
+<%--                                <input type="hidden" name="invoice" value=26473753 id="order_invoice">--%>
 
-                                    <div class="inputbox">
-                                        <%--                                    <input type="hidden" name="" value="" id="selectedPost">--%>
-                                        <%--                                    <input type="hidden" name="" value="" id="selectedJibunAddr">--%>
-                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소" id="zipcode"></label>
-                                        <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 검색</span></button>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
+<%--                                <div role="tabpanel" class="tab-pane ui-active" id="addressadd" style="padding: 10px;">--%>
+<%--                                    <div class="inputbox">--%>
+<%--                                        &lt;%&ndash;                                    <input type="hidden" name="" value="" id="adrKndGbcd">&ndash;%&gt;--%>
+<%--                                        &lt;%&ndash;                                    <input type="hidden" name="" value="" id="dlvType">&ndash;%&gt;--%>
+<%--                                        &lt;%&ndash;                                    <input type="hidden" name="" value="" id="selectedDstnSeq">&ndash;%&gt;--%>
+<%--                                        <label class="inplabel"><input type="text"  name="userName" value="" placeholder="받으시는 분" id="order_user_name" maxlength="25"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
 
-                                    <div class="inputbox">
-                                        <label class="inplabel"><input type="text" name="order_delivery1" value="" placeholder="도로명 주소" id="order_delivery1" maxlength="100"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
-                                    <div class="inputbox">
-                                        <label class="inplabel"><input type="text" name="order_delivery2" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
-                                    <div class="inputbox">
-                                        <label class="inplabel"><input type="text" class="onlyNumber" name="userNumber" value="" placeholder="연락처(필수입력) (예 : 01012345678)" id="order_user_number" maxlength="12"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
-                                    <div class="inputbox">
-                                        <label class="inplabel"><input type="text" class="onlyNumber" name="" value="" placeholder="휴대폰 (예 : 01012345678)" id="selectedDstnTel2" maxlength="12"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
-                                    <div class="inputbox">
-                                        <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>
-                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
-                                    </div>
-                                    <label class="chklabel">
-                                        <input type="checkbox" name="" id="selectedBaseYn" value="Y">
-                                        <i class="icon"></i>
-                                        <span>기본배송지로 지정</span>
-                                    </label>
-                                    <div class="btngroup">
-                                        <button class="btn btn-linelgray" onclick="$('#pec003').modal().hide();"><span>취소</span></button>
-                                        <button class="btn btn-default" onclick="modifyAddr('', $(this).parent().parent().find('#dlvType').val(), '');"><span>확인</span></button>
-                                        <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
-                                    </div>
-                                </div>
+<%--                                    <div class="inputbox">--%>
+<%--                                        &lt;%&ndash;                                    <input type="hidden" name="" value="" id="selectedPost">&ndash;%&gt;--%>
+<%--                                        &lt;%&ndash;                                    <input type="hidden" name="" value="" id="selectedJibunAddr">&ndash;%&gt;--%>
+<%--                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소" id="zipcode"></label>--%>
+<%--                                        <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 검색</span></button>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+
+<%--                                    <div class="inputbox">--%>
+<%--                                        <label class="inplabel"><input type="text" name="order_delivery1" value="" placeholder="도로명 주소" id="order_delivery1" maxlength="100"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                    <div class="inputbox">--%>
+<%--                                        <label class="inplabel"><input type="text" name="order_delivery2" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                    <div class="inputbox">--%>
+<%--                                        <label class="inplabel"><input type="text" class="onlyNumber" name="userNumber" value="" placeholder="연락처(필수입력) (예 : 01012345678)" id="order_user_number" maxlength="12"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                    <div class="inputbox">--%>
+<%--                                        <label class="inplabel"><input type="text" class="onlyNumber" name="" value="" placeholder="휴대폰 (예 : 01012345678)" id="selectedDstnTel2" maxlength="12"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                    <div class="inputbox">--%>
+<%--                                        <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>--%>
+<%--                                        &lt;%&ndash;                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                    <label class="chklabel">--%>
+<%--                                        <input type="checkbox" name="" id="selectedBaseYn" value="Y">--%>
+<%--                                        <i class="icon"></i>--%>
+<%--                                        <span>기본배송지로 지정</span>--%>
+<%--                                    </label>--%>
+<%--                                    <div class="btngroup">--%>
+<%--                                        <button class="btn btn-linelgray" onclick="$('#pec003').modal().hide();"><span>취소</span></button>--%>
+<%--                                        <button class="btn btn-default" onclick="modifyAddr('', $(this).parent().parent().find('#dlvType').val(), '');"><span>확인</span></button>--%>
+<%--                                        <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+<%--                        </form>--%>
+
+
+                        <span class="txt">※ 배송지 정보</span>
+                        <div class="board">
+                            <!--table-->
+                            <div class="tblwrap">
+                                <table>
+                                    <caption>주문고객/베송지 정보 테이블</caption>
+                                    <colgroup>
+                                        <col style="width:100px">
+                                        <col style="width:600px">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color: lightgrey">
+                                                배송지 선택
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <input type="radio" name="same" id="newAddress" value="">새로운 주소 &nbsp;
+                                                    <button type="button" class="btn btn-linelgray small30" onclick="addNewAddress();"><span>신규 배송지 저장</span></button>
+                                                    <button class="btn btn-linelgray small30" type="button" onclick="openAddressListPup()"><span>이전 배송지</span></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: lightgrey">받으시는 분</td>
+                                            <td><input type="text" name="receiveName" id="receiveName" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: lightgrey">연락처</td>
+                                            <td><input type="number" name="phoneNumber1" id="phoneNumber1" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: lightgrey">휴대폰</td>
+                                            <td><input type="number" name="phoneNumber2" id="phoneNumber2" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: lightgrey">주소</td>
+                                            <td>
+                                                <div style="display: flex;">
+                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address1}" placeholder="우편번호" id="zipcode" name="zipcode"></label>
+                                                    <button type="button" class="btn btn-linelgray small30" onclick="execPostCode();"><span>우편번호 검색</span></button>
+                                                </div>
+                                                <div>
+                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address2}" placeholder="도로명 주소" id="order_delivery1" name="order_delivery1"></label>
+                                                    <label class="inplabel"><input type="text" name="order_delivery2" value="${basicAddress.user_address_address3}" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: lightgrey">남기실 말씀</td>
+                                            <td>
+                                                <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                        </form>
+                        </div>
                         <div id="cost">
                             <h3 class="title22">결제 정보 선택</h3>
                             <div class="discount-box">
@@ -809,7 +778,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" id="method1" value="method1" onclick="checPaymentMethod()">
+                                                    <input type="radio" name="paymentMethod" id="paymentMethod1" value="paymentMethod1">
                                                     <span>신용카드</span>
                                                 </label>
                                             </div>
@@ -817,7 +786,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="radio" name="paymentMethod" id="method2" value="method2" onclick="checPaymentMethod()">
+                                                    <input type="radio" name="paymentMethod" id="paymentMethod2" value="paymentMethod2">
                                                     <span>무통장입금</span>
                                                 </label>
                                             </div>
@@ -828,59 +797,59 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
 
-<%--                        <div class="box-toggle">--%>
-<%--                            <h3>--%>
-<%--                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">--%>
-<%--                                    <span class="row-title">총 결제금액</span>--%>
-<%--                                    <span class="row-value color-ff5340">--%>
-<%--		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>--%>
-<%--		                                            <strong id="main_totPayAmt">--%>
-<%--                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>--%>
-<%--                                                    </strong>원--%>
-<%--		                                        </span>--%>
-<%--                                    <i class="icon"></i>--%>
-<%--                                </button>--%>
-<%--                            </h3>--%>
-<%--                            <div class="accordion-panel" role="region" aria-label="">--%>
-<%--                                <ul class="row-list">--%>
-<%--                                    <li>--%>
-<%--                                        <div class="row-title">--%>
-<%--                                            <p class="tit">주문금액</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="row-value">--%>
-<%--                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
+                        <%--                        <div class="box-toggle">--%>
+                        <%--                            <h3>--%>
+                        <%--                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">--%>
+                        <%--                                    <span class="row-title">총 결제금액</span>--%>
+                        <%--                                    <span class="row-value color-ff5340">--%>
+                        <%--		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>--%>
+                        <%--		                                            <strong id="main_totPayAmt">--%>
+                        <%--                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>--%>
+                        <%--                                                    </strong>원--%>
+                        <%--		                                        </span>--%>
+                        <%--                                    <i class="icon"></i>--%>
+                        <%--                                </button>--%>
+                        <%--                            </h3>--%>
+                        <%--                            <div class="accordion-panel" role="region" aria-label="">--%>
+                        <%--                                <ul class="row-list">--%>
+                        <%--                                    <li>--%>
+                        <%--                                        <div class="row-title">--%>
+                        <%--                                            <p class="tit">주문금액</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                        <div class="row-value">--%>
+                        <%--                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </li>--%>
 
-<%--                                    <li>--%>
-<%--                                        <div class="row-title">--%>
-<%--                                            <p class="tit">할인금액</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="row-value">--%>
-<%--                                            <p class="price"><strong id="main_discountAmt">--%>
-<%--                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>--%>
-<%--                                            </strong>원</p>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <div class="row-title">--%>
-<%--                                            <p class="tit">배송비</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="row-value">--%>
-<%--                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <div class="row-title">--%>
-<%--                                            <p class="tit">배송비 할인</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="row-value">--%>
-<%--                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
-<%--                                </ul>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                        <%--                                    <li>--%>
+                        <%--                                        <div class="row-title">--%>
+                        <%--                                            <p class="tit">할인금액</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                        <div class="row-value">--%>
+                        <%--                                            <p class="price"><strong id="main_discountAmt">--%>
+                        <%--                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>--%>
+                        <%--                                            </strong>원</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </li>--%>
+                        <%--                                    <li>--%>
+                        <%--                                        <div class="row-title">--%>
+                        <%--                                            <p class="tit">배송비</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                        <div class="row-value">--%>
+                        <%--                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </li>--%>
+                        <%--                                    <li>--%>
+                        <%--                                        <div class="row-title">--%>
+                        <%--                                            <p class="tit">배송비 할인</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                        <div class="row-value">--%>
+                        <%--                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </li>--%>
+                        <%--                                </ul>--%>
+                        <%--                            </div>--%>
+                        <%--                        </div>--%>
 
 
                         <div class="sticky-ui-wrapper util-option-sticky">
@@ -892,7 +861,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div id="orderAmt">
                                                 <span class="tit">총 판매금액</span>
-                                                <span class="txt"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
+                                                <span class="txt"><strong>${directBasket.productVO.product_cost * directBasket.basket_count}</strong>원</span>
                                             </div>
                                             <div id="copnDcCoupon" class="hidden">
                                                 <span class="tit">쿠폰 사용</span>
@@ -925,7 +894,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                     <label for="totalDepositPoint"></label>
                                                 <strong>
                                                     <label for="totalCost1"></label>
-                                                    <input value="0" name="totalCost1" id="totalCost1" style="border: none;width: 100px; text-align:right;">
+                                                    <input value="${directBasket.productVO.product_cost * directBasket.basket_count}" name="totalCost1" id="totalCost1" style="border: none;width: 100px; text-align:right;">
                                                 </strong>
                                                 </span>
                                             </div>
@@ -934,7 +903,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     </ul>
 
                                     <div class="btngroup">
-                                        <button type="submit" form="orderPush" class="btn btn-default medium"><span>결제</span></button>
+                                        <button type="button" class="btn btn-default medium" onclick="goToPay();"><span>결제</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -946,7 +915,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         <!-- //.container -->
     </div>
     <script type="text/javascript">
-
         // TODO: 체크버튼이 클릭 되어있을 때 값을 다시 계산해주는 식으로 전송: DB 연동으로 검사
         // checkbox name
         // 적립금: resPoint
@@ -954,12 +922,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         // 쿠폰: couponCheck
         // total= total-respoint+depositPoint-couponCheck //check안되어있을 시 0으로 간주하고 계산
         // 적립금, 예치금 화면에 띄우기, check안되어있을 때는 초기값으로 설정.
-
         var couponSeq=0;
         var discountCost=0;
         var totalCost=parseInt($("input[name='totalPrice']").val());
-
-
         $("#couponSelectorBtn").on("click", function(){
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
@@ -980,51 +945,32 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                     discount=parseInt(discount);
                     //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
                     //쿠폰Seq에 따른 cost를 불러와야 함
-
                     //discountCost=$("input[name='coupon_cost']").val();
                     //totalCouponPoint
                     //가격 할인
                     if(discount>100){
                         totalCost=parseInt(totalCost)
-
                         $("#couponDiscount").val(discount);
                         $("#totalCouponPoint").val(discount);
-
-
                         var discount1=$("input[name='totalUserPoint']").val();
                         var discount2=$("input[name='totalDepositPoint']").val();
-
                         //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
                         totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-discount;
-
                         $("#totalCost1").val(totalCost);
-
-
                     }else{//비율 할인
-
                         var ratioCost=parseInt(totalCost)*(discount/100);
-
                         $("#couponDiscount").val(ratioCost);
                         $("#totalCouponPoint").val(ratioCost);
-
-
                         totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-ratioCost;
-
                         //$("#couponCost").val(parseInt(totalCost)*(discount/100));
                         $("#totalCost").val(totalCost);
-
                     }
-
                     $('#pec007').modal().hide();
                 },
                 error:function(){
                     alert('쿠폰을 적용하지 못합니다.');
                 }
-
             });
-
-
-
         });
     </script>
 </main>
@@ -1034,6 +980,99 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         var popName="addressListPopUp"
         var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
         window.open(url, popName, popOption);
+    }
+
+    function execPostCode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                console.log(fullRoadAddr);
+                $("[name=zipcode]").val(data.zonecode);
+                $("[name=order_delivery1]").val(fullRoadAddr);
+                /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+                document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+            }
+        }).open();
+    }
+
+    function addNewAddress(){
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        $.ajax({
+            type: 'post',
+            data:{
+                user_address_address1: $("input[name='zipcode']").val(),
+                user_address_address2:$("input[name='order_delivery1']").val(),
+                user_address_address3:$("input[name='order_delivery2']").val(),
+                user_address_name:$("input[name='receiveName']").val(),
+                user_address_phone_num:$("input[name='phoneNumber1']").val(),
+                basic_address:0
+            },
+            url: '${contextPath}/user/addNewAddress',
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function (res){
+                alert("새로운 배송지가 등록되었습니다!")
+            },
+            error:function (){
+                alert("error");
+            }
+
+        });
+
+
+    }
+
+</script>
+<script type="text/javascript">
+    //결제
+    function goToPay(){
+        //결제 수단에 따른 페이지 이동 및 ..
+        if($('input:radio[name=paymentMethod]').is(':checked')){
+            console.log($("input:radio[name='paymentMethod']:checked").val());
+        }else{
+            alert("결제 수단을 선택해주세요!");
+        }
+
+
+
+        //TODO: 결제수단에 따른 결제 페이지 보여주기
+        //     $('input:radio[name=paymentMethod]').is(':checked');
+        //     //결제 수단: 1: 신용카드, 2: 무통장입금
+        //     console.log($("input:radio[name='paymentMethod']").val());
+        // }
+        // $("input[type=radio]").change(function(){
+        //     console.log($(this).val());
+        //     console.log($(this).attr("id"));
+        // })
+
     }
 </script>
 <%--주문 상세 내역--%>
@@ -1073,18 +1112,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--</script>--%>
 
 <script type="text/javascript">
-
     function applyCopnDc() {
-
         isAutoDcing = true;
         if ( $("input[name=copnDcAply]").prop("checked") ) {
             var recommandDisc = new Array();
-
             recommandDisc.push("00003560|2137894734|00002|0|1|10|1|0||0|03|40|N");
-
             var plusDisc = new Array();
-
-
             if ( recommandDisc.length > 0 ) {
                 for(var i = 0; i < recommandDisc.length; i++) {
                     $("input[value='"+recommandDisc[i]+"']").prop("checked", true);
@@ -1124,7 +1157,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                     for (var i = 0; i < bArr.length; i++) {
                         if ((j+1) == bArr[i].split("|")[2]) {
                             var slitmCd = bArr[i].split("|")[1];
-
                             $("div.pop-freeDlvCopnLayer").each(function() {
                                 var defSlitmCd = $(this).find("input[name='slitmCd']").val();
                                 if (slitmCd == defSlitmCd) {
@@ -1160,21 +1192,18 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                     }
                 }
             }
-
             // 결제금액할인쿠폰
             if($("input[name='paymentCopnInf']").length > 0 && $("input[name='selPaymentCopn']").length > 0) {
                 var isDisabled = $("#stlmAmtCopnDcDiv").css("display");
                 if(isDisabled != "none") {
                     var calDcAmtArr = new Array();
                     var maxDcAmt = 1000;
-
                     $("input[name='selPaymentCopn']").each(function(index) {
                         if($(this).parents(".coupon-box").css("display") != "none"
                             && $(this).parents(".coupon").css("display") != "none"
                             && !$(this).prop("disabled") && !isEmpty($(this).val())) {
                             $(this).prop("checked", true);
                             selectPaymentCopn();
-
                             // selectPaymentCopn에서 쿠폰 금액체크시 해제되는 케이스가 발생하여 쿠폰체크상태를 확인하고 진행한다.
                             if ( !isEmpty($(this).val()) && $(this).prop("checked") ) {
                                 var maxCopnData = $(this).val().split("|")[0];
@@ -1187,32 +1216,20 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             }
                         }
                     });
-
                     if(calDcAmtArr.length > 0){
                         $("input[name='selPaymentCopn']:eq(0)").prop("checked", true);
                         selectPaymentCopn();
-
                         var tmpTotDcAmtArray = new Array();
                         for(var i = 0; i < calDcAmtArr.length; i++) {
                             var totDcAmtCalc = calDcAmtArr[i].split("|")[0];
                             var arrayIndex = i < 10 ? "0" + i : String(i);
-
                             tmpTotDcAmtArray.push(totDcAmtCalc + arrayIndex);
                         }
-
                         var maxIndexVal = String(Math.max.apply(null, tmpTotDcAmtArray));
                         var maxIndex = Number(maxIndexVal.substring(maxIndexVal.length -2, maxIndexVal.length));
                         var eqIndex = calDcAmtArr[maxIndex].split("|")[1];
-
                         $("input[name='selPaymentCopn']:eq("+eqIndex+")").prop("checked", true);
-
                         selectPaymentCopn();
-
-
-
-
-
-
                         // selectPaymentCopn(chkPlcc);
                         // var chkHppCoup = $("input[name='selPaymentCopn']:eq("+eqIndex+")").val().split("|")[9];
                         // if(!isEmpty(chkHppCoup)){
@@ -1255,45 +1272,31 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         //     gotoPlcc();selPaymentCopn
         // }
         cardCalculate();
-
     }
 </script>
 <script type="text/javascript">
-
-    function checPaymentMethod(){
-        //TODO: 결제수단에 따른 결제 페이지 보여주기
-        $('input:radio[name=paymentMethod]').is(':checked');
-        //결제 수단: 1: 신용카드, 2: 무통장입금
-        console.log($("input:radio[name='paymentMethod']").val());
-    }
-
-    $("input[type=radio]").change(function(){
-        console.log($(this).val());
-        console.log($(this).attr("id"));
-    })
-
-
+    // function checkPaymentMethod(){
+    //     //TODO: 결제수단에 따른 결제 페이지 보여주기
+    //     $('input:radio[name=paymentMethod]').is(':checked');
+    //     //결제 수단: 1: 신용카드, 2: 무통장입금
+    //     console.log($("input:radio[name='paymentMethod']").val());
+    // }
+    // $("input[type=radio]").change(function(){
+    //     console.log($(this).val());
+    //     console.log($(this).attr("id"));
+    // })
     // function openAddressListPup(){
     //     var url="/"
     // }
-
-
 </script>
 <script type="text/javascript">
-
-//    var totalCost=0;
-//
-//    var discount1=$("input[name='totalUserPoint']").val();
-//    var discount2=$("input[name='totalDepositPoint']").val();
-//
-//    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
-//    totalCost=totalCost-parseInt(discount1)-parseInt(discount2);
-//
-//    $("#totalCost1").val(totalCost);
-
-
-
-
-
-
+    //    var totalCost=0;
+    //
+    //    var discount1=$("input[name='totalUserPoint']").val();
+    //    var discount2=$("input[name='totalDepositPoint']").val();
+    //
+    //    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+    //    totalCost=totalCost-parseInt(discount1)-parseInt(discount2);
+    //
+    //    $("#totalCost1").val(totalCost);
 </script>

@@ -23,4 +23,11 @@ public class AddressServiceImpl implements AddressService {
         log.info(userNum);
         userMapper.insertAddress(addressVO, userNum);
     }
+
+    @Override
+    public void insertNewAddress(AddressVO addressVO) throws Exception {
+        userMapper.insertNewAddress(addressVO);
+    }
+
+
 }

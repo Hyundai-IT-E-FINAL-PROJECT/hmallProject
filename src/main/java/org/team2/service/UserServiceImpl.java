@@ -107,4 +107,9 @@ public class UserServiceImpl implements UserService{
     public AddressVO selectAddress(Long user_address_seq) throws Exception {
         return userMapper.selectAddress(user_address_seq);
     }
+
+    @Override
+    public AddressVO selectBasicAddress(Long user_seq) throws Exception {
+        return userMapper.selectBasicAddress(user_seq);
+    }
 }

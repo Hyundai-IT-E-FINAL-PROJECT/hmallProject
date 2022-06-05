@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.BasketVO;
-import org.team2.domain.CouponVO;
-import org.team2.domain.OrderVO;
-import org.team2.domain.UserVO;
+import org.team2.domain.*;
 import org.team2.service.BasketService;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
@@ -59,7 +56,9 @@ public class OrderController {
         map.put("user_seq", Long.valueOf(principal.getName()));
         BasketVO directBasket=basketService.directBuy(map);
 
+        AddressVO basicAddress=userService.selectBasicAddress(Long.valueOf(principal.getName()));
         log.info(directBasket);
+        log.info(basicAddress);
 
         //예치금, 적립금도 불러오기
         Long user_seq=Long.valueOf(principal.getName());
@@ -70,6 +69,7 @@ public class OrderController {
         mav.addObject("directBasket",directBasket);
         mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
+        mav.addObject("basicAddress",basicAddress);
         mav.addObject("userPoint", user.getUser_point());
         mav.addObject("depositPoint",user.getUser_deposit());
         mav.addObject("cssFileList", styleFileList);
