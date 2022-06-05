@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<html>--%>
-<%--<title>Hi</title>--%>
-<%--<head>--%>
-<%--    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/od/order.css">--%>
-<%--<body>--%>
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
         console.log("objName", objName);
@@ -521,26 +516,22 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             <div class="order-list" id="orderItems">
                                 <ul>
                                     <li name="orderItem">
-                                        <input type="hidden" name="slitmNm" value="[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종">
-                                        <input type="hidden" name="uitmNm" value="블랙/95">
-                                        <input type="hidden" name="areaDlvCostAddYn" value="N">
-                                        <input type="hidden" name="jejuAddDlvCost" value="0">
-                                        <input type="hidden" name="irgnAddDlvCost" value="0">
-                                        <input type="hidden" name="bndlItemCnt" value="1">
-                                        <input type="hidden" name="grpItemNum" value="0">
-                                        <input type="hidden" name="ItemNum" value="0">
+<%--                                        상품에 관한 정보들--%>
+                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.productVO.product_count}">
+
+
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
                                             <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
                                             <div class="box">
-                                                <span class="tit">[DKNY GOLF] 22SS 여성 니트 반팔 카라티 1종</span>
+                                                <span class="tit">${directBasket.productVO.product_name}</span>
                                                 <div class="info">
                                                     <ul>
-                                                        <li>블랙/95</li>
-                                                        <li>1개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
+                                                        <li>${directBasket.productVO.product_cost}원</li>
+                                                        <li>${directBasket.productVO.product_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
                                                     </ul>
                                                 </div>
-<%--                                                상품 값 받아와 함--%>
-                                                <span class="price"><strong>99,000</strong>원</span>
+                                                <%--                                                상품 값 받아와 함--%>
+                                                <span class="price"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
                                             </div>
                                         </a>
                                     </li>
@@ -557,16 +548,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <ul class="row-list">
                                         <li id="copnSaleDiv" 1:0:="">
                                             <div class="row-title">
+                                                <button class="btn btn-linelgray small34" onclick="$('#pec007').modal().show();"><span>쿠폰 조회 및 변경</span></button>
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="couponCheck" onclick="applyCopnDc();">
-                                                    <i class="icon"></i>
-                                                    <span>쿠폰</span>
+                                                    <span><input name="couponDiscount" id="couponDiscount" value="" style="border: none; text-align: left;"/></span>
                                                 </label>
-                                                <button class="btn btn-linelgray small34" onclick="$('#pec007').modal().show();"><span>조회/변경</span></button>
                                             </div>
-<%--                                            <div class="row-value">--%>
-<%--                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>--%>
-<%--                                            </div>--%>
+                                            <%--                                            <div class="row-value">--%>
+                                            <%--                                                <p class="price"><strong id="copnDcAplyAmt">-4,900</strong>원</p>--%>
+                                            <%--                                            </div>--%>
                                         </li>
                                     </ul>
                                 </div>
@@ -582,13 +571,13 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                             <input type="radio" id="discount2" style="display:none;">
                                                             <label class="chklabel">
                                                                 <input type="radio" id="discount2Tmp" name="couponName" value="${coupon.coupon_seq}">
-<%--                                                                <i class="icon"></i>--%>
+                                                                    <%--                                                                <i class="icon"></i>--%>
                                                                 <span>${coupon.coupon_name}</span>
                                                                 <input type="hidden" name="coupon_ratio" value=${coupon.coupon_ratio}>
                                                                 <input type="hidden" name="coupon_cost" value=${coupon.coupon_cost}>
                                                                 <input type="hidden" name="coupon_ratio" value=${coupon.expired_at}>
                                                             </label>
-    <%--                                                        <input type="hidden" name="totPrmoDcAmt" value="175800">--%>
+                                                                <%--                                                        <input type="hidden" name="totPrmoDcAmt" value="175800">--%>
 
                                                         </div>
                                                     </div>
@@ -618,134 +607,127 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     // }
 
                                 </script>
-<%--                                쿠폰 시퀀스 가져오기--%>
-
-<%--                                <div>--%>
-<%--                                    <label>--%>
-<%--                                        <input type="text" id="couponSeq" name="coupon_seq" value="" readonly/>--%>
-<%--                                    </label>--%>
-<%--                                </div>--%>
-                                <div class="ui-modal pop-pec007-01 in coupon-detail-select_gnrlCopn_2137894734_00002_0_0 gnrlCopn" id="gnrlCopn_2137894734_00002_0_0_layer" tabindex="-1" role="dialog" aria-label="쿠폰 할인">
-                                    <div class="ui-modal-dialog" role="document">
-                                        <div class="content">
-                                            <p class="ui-title">쿠폰 할인</p>
-                                            <div class="content-body">
-                                                <div class="mycoupon-body">
-                                                    <c:forEach items="${couponList}" var="coupon">
-                                                    <div class="coupon-list">
-
-                                                            <input type="hidden" name="copnTypeCd" value="gnrlCopn">
-                                                            <input type="hidden" name="isCuponAreaShowN" value="">
-                                                            <input type="hidden" name="sellPrcForCopn" value="49000">
-                                                            <input type="hidden" name="exstCopnDcAmt" value="0">
-                                                            <input type="hidden" name="copnSlitmCd" value="2137894734">
-                                                            <input type="hidden" name="copnUitmCd" value="00002">
-                                                            <input type="hidden" name="copnItemIdx" value="0">
-                                                            <input type="hidden" name="slitmSellPrc" value="49000">
-                                                            <input type="hidden" name="setAutoDcDupYn" value="">
-                                                            <input type="hidden" name="copnInf" class="gnrlCopn" id="gnrlCopn_2137894734_00002_0_0" value="">
-
-                                                            <div class="coupon-box" style="display:none;">
-                                                                <input type="radio" class="noneCopn" name="gnrlCopn_2137894734_00002_0_0" id="dc-select-gcpn-0" checked="true" value="|2137894734|00002|0|||1|0|||">
-                                                                <label for="dc-select-gcpn-0">적용안함</label>
-                                                            </div>
-
-
-                                                            <div class="coupon-box">
-
-                                                                    <div class="coupon">
-                                                                        <ul>
-                                                                            <p class="discount"><strong>${coupon.coupon_ratio}</strong><b>%</b></p>
-                                                                            <li>
-                                                                                <div class="coupon-info">
-                                                                                    <p class="title"><strong>${coupon.coupon_name}</strong></p>
-
-                                                                                    <label class="radlabel">
-                                                                                        <input type="radio" name="gnrlCopn_2137894734_00002_0_0" id="dc-select-gcpn-0-" value="00003560|2137894734|00002|0|1|10|1|0||0|03|40|N">
-                                                                                        <i class="icon"></i>
-                                                                                        <span class="hiding">Default</span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </li>
-
-                                                                        </ul>
-                                                                        <!-- // .coupon-info -->
-                                                                    </div>
-
-                                                                <!-- // .coupon -->
-                                                                <div class="coupon-bg"><div></div><div></div></div>
-                                                            </div>
-                                                            <!-- //.coupon-box -->
-
-                                                        </div>
-
-                                                    <!-- //.coupon-list -->
-                                                </div>
-                                                </c:forEach>
-                                                <div class="btngroup">
-                                                    <button class="btn btn-linelgray" onclick="$('input[name=gnrlCopn_2137894734_00002_0_0]').eq(0).prop('checked', true);selectCopn('gnrlCopn_2137894734_00002_0_0');"><span>적용 안함</span></button>
-                                                    <button class="btn btn-default" onclick="selectCopn('gnrlCopn_2137894734_00002_0_0');"><span>적용하기</span></button>
-                                                    <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
-                                                </div>
-                                            </div>
-                                            <!-- //.content-body -->
-
-                                            <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-                                        </div>
-                                        <!-- //.content -->
-                                    </div>
-                                    <!-- //.ui-modal-dialog -->
-                                </div>
-                                <!-- //.ui-modal -->
                                 <div class="point-area">
+<%--
                                     <ul class="row-list">
                                         <li id="hpointUseLi">
-<%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
+                                            <%--                                            TODO: 적립금, 예치금 DB에서 가져온 값으로 갱신--%>
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">
-                                                    <i class="icon"></i>
-                                                    <span>적립금 <em class="num">99,000</em></span>
-                                                    <input type="hidden" name="uPoint" value="">
-                                                </label>
-                                                <button type="button" class="btn-tooltip" onclick="$('#pec009').modal().show();"><i class="icon que-mark"></i><span class="hiding">툴팁</span></button>
-                                            </div>
-                                            <div class="row-value">
-                                                <div class="inputbox sm">
-                                                    <label class="inplabel"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" name="useUPoint" value="" placeholder="0" onchange="directInsertUPoint(this);"></label>
+<%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
+<%--                                                    <i class="icon"></i>--%>
+                                                    <span style="width: 100px">적립금</span>
+                                                    <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
                                                     <span class="unit point">P</span>
-                                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                                </div>
+                                                    <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
+                                                    <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
+                                                    <span style="width: 300px">[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
+                                                </label>
                                             </div>
                                         </li>
                                         <li id="depositLi">
                                             <div class="row-title">
                                                 <label class="chklabel">
-                                                    <input type="checkbox" name="depositPoint" onclick="useUpoint()">
-                                                    <i class="icon"></i>
-                                                    <span>예치금 <em class="num">99,000</em></span>
-                                                    <input type="hidden" name="uPoint" value="">
-                                                </label>
-                                                <button type="button" class="btn-tooltip" onclick="$('#pec009').modal().show();"><i class="icon que-mark"></i><span class="hiding">툴팁</span></button>
-                                            </div>
-                                            <div class="row-value">
-                                                <div class="inputbox sm">
-                                                    <label class="inplabel"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');" name="useUPoint" value="" placeholder="0" onchange="directInsertUPoint(this);"></label>
+                                                    <span style="width: 100px">예치금</span>
+                                                    <input type="number" placeholder="0" name="depositPoint" id="depositPoint" style="width: auto; text-align: right;">
                                                     <span class="unit point">P</span>
-                                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                                </div>
+                                                    <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
+                                                    <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
+                                                    <span style="width: 300px">[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
+                                                </label>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+                        <script type="text/javascript">
+
+                            //TODO: 화면에서는 적용되게 보이고 최종적으로 결제됐을 때 user의 point와 deposit를 바꿔준다.
+
+                            function useUserPoint(){
+                                var willUse=$("input[name='userPoint']").val();
+                                if (willUse>${userPoint}) {
+                                    alert("보유 적립금보다 금액이 큽니다!");
+                                    $("#userPoint").val(0);
+
+                                }else{
+                                    alert("적용되었습니다!");
+                                    $("#totalUserPoint").val(willUse);
+                                    applyDiscount();
+                                }
+                            }
+
+                            function cancelPoint(){
+                                alert("적용이 취소되었습니다.");
+                                $("#userPoint").val(0);
+                                $("#totalUserPoint").val(0);
+                                applyDiscount();
+
+                            }
+
+                            function useDepositPoint(){
+                                var willUse=$("input[name='depositPoint']").val();
+                                if (willUse>${depositPoint}) {
+                                    alert("보유 적립금보다 금액이 큽니다!");
+                                    $("#userPoint").val(0);
+                                }else{
+                                    alert("적용되었습니다!");
+                                    $("#totalDepositPoint").val(willUse);
+                                    applyDiscount();
+                                }
+                            }
+
+                            function cancelDepositPoint(){
+                                alert("적용이 취소되었습니다.");
+                                $("#depositPoint").val(0);
+                                $("#totalDepositPoint").val(0);
+                                applyDiscount();
+                            }
+
+                            function applyDiscount(){
+                                var totalCost=parseInt($("input[name='totalPrice']").val());
+
+                                var discount1=$("input[name='totalUserPoint']").val();
+                                var discount2=$("input[name='totalDepositPoint']").val();
+                                var discount3=$("input[name='totalCouponPoint']").val();
+
+
+                                //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+                                totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-parseInt(discount3);
+
+                                $("#totalCost1").val(totalCost);
+                            }
+
+                        </script>
 
 
                         </div> <!-- chkStlmType() 2번째 종료 -->
                         <h3 class="title22" id="dlvTitleH3">주문고객/배송지 정보 입력</h3>
 
-                            <span class="txt">배송/결제 정보를 정확히 입력해주세요.</span>
+                        <span class="txt">※ 주문 고객 정보</span>
+                        <div style="height: 20px;"></div>
+                        <table>
+                            <caption>주문 고객 정보 테이블</caption>
+                            <colgroup>
+                                <col style="width:100px; ">
+                                <col style="width:150px; background-color:white; ">
+                                <col style="width:100px">
+                                <col style="width:150px; background-color:white; ">
+                            </colgroup>
+                            <tr>
+                                <th scope="col">주문하시는 분</th>
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal" var="pinfo" />
+                                <th scope="col">${pinfo.userVO.user_name}</th>
+                                <th scope="col">보내시는 분</th>
+                                <th scope="col">${pinfo.userVO.user_name}</th>
+                                </sec:authorize>
+                            </tr>
+
+                        </table>
                         </h3>
+
+                        <button class="btn btn-linelgray small30" type="button" onclick="openAddressListPup()"><span>이전 배송지</span></button> <!--마이페이지 1:1상담으로 이동-->
 
                         <form id="orderPush" method="post" action="orderComplete">
 
@@ -760,7 +742,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 <%--test중--%>
                                 <sec:authorize access="isAuthenticated()">
                                     <sec:authentication property="principal" var="pinfo" />
-                                        <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
+                                    <input type="hidden" name="user_seq" value=${pinfo.userVO.no} id="user_seq">
                                 </sec:authorize>
 
                                 <input type="hidden" name="point" value="200" id="order_point">
@@ -769,36 +751,40 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
                                 <div role="tabpanel" class="tab-pane ui-active" id="addressadd" style="padding: 10px;">
                                     <div class="inputbox">
-    <%--                                    <input type="hidden" name="" value="" id="adrKndGbcd">--%>
-    <%--                                    <input type="hidden" name="" value="" id="dlvType">--%>
-    <%--                                    <input type="hidden" name="" value="" id="selectedDstnSeq">--%>
-                                        <label class="inplabel"><input type="text"  name="userName" value="" placeholder="받으실 분" id="order_user_name" maxlength="25"></label>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <%--                                    <input type="hidden" name="" value="" id="adrKndGbcd">--%>
+                                        <%--                                    <input type="hidden" name="" value="" id="dlvType">--%>
+                                        <%--                                    <input type="hidden" name="" value="" id="selectedDstnSeq">--%>
+                                        <label class="inplabel"><input type="text"  name="userName" value="" placeholder="받으시는 분" id="order_user_name" maxlength="25"></label>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
 
                                     <div class="inputbox">
-    <%--                                    <input type="hidden" name="" value="" id="selectedPost">--%>
-    <%--                                    <input type="hidden" name="" value="" id="selectedJibunAddr">--%>
-                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소"></label>
-                                        <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 찾기</span></button>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <%--                                    <input type="hidden" name="" value="" id="selectedPost">--%>
+                                        <%--                                    <input type="hidden" name="" value="" id="selectedJibunAddr">--%>
+                                        <label class="inplabel btnlabel"><input type="text"  value="" placeholder="주소" id="zipcode"></label>
+                                        <button type="button" class="btn btn-lineblack btn-confirm"><span>우편번호 검색</span></button>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
 
                                     <div class="inputbox">
-                                        <label class="inplabel"><input type="text" name="delivery" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery" maxlength="100"></label>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <label class="inplabel"><input type="text" name="order_delivery1" value="" placeholder="도로명 주소" id="order_delivery1" maxlength="100"></label>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                    </div>
+                                    <div class="inputbox">
+                                        <label class="inplabel"><input type="text" name="order_delivery2" value="" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
                                     <div class="inputbox">
                                         <label class="inplabel"><input type="text" class="onlyNumber" name="userNumber" value="" placeholder="연락처(필수입력) (예 : 01012345678)" id="order_user_number" maxlength="12"></label>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
                                     <div class="inputbox">
                                         <label class="inplabel"><input type="text" class="onlyNumber" name="" value="" placeholder="휴대폰 (예 : 01012345678)" id="selectedDstnTel2" maxlength="12"></label>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
                                     <div class="inputbox">
                                         <label class="inplabel"><input type="text" name="" value="" placeholder="남기실 말씀을 입력해주세요." id="" maxlength="100"></label>
-    <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
+                                        <%--                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>--%>
                                     </div>
                                     <label class="chklabel">
                                         <input type="checkbox" name="" id="selectedBaseYn" value="Y">
@@ -819,7 +805,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             <div class="discount-box">
                                 <div class="point-area">
                                     <ul class="row-list">
-<%--                                        TODO: 결제수단에 따라 페이지 전환(무통장입금은 바로 주문접수 페이지, 신용카드는 결제 API 사용--%>
+                                        <%--                                        TODO: 결제수단에 따라 페이지 전환(무통장입금은 바로 주문접수 페이지, 신용카드는 결제 API 사용--%>
                                         <li>
                                             <div class="row-title">
                                                 <label class="chklabel">
@@ -842,101 +828,116 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
 
-                        <div class="box-toggle">
-                            <h3>
-                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">
-                                    <span class="row-title">총 결제금액</span>
-                                    <span class="row-value color-ff5340">
-		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>
-		                                            <strong id="main_totPayAmt">
-                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>
-                                                    </strong>원
-		                                        </span>
-                                    <i class="icon"></i>
-                                </button>
-                            </h3>
-                            <div class="accordion-panel" role="region" aria-label="">
-                                <ul class="row-list">
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">주문금액</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>
-                                        </div>
-                                    </li>
+<%--                        <div class="box-toggle">--%>
+<%--                            <h3>--%>
+<%--                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">--%>
+<%--                                    <span class="row-title">총 결제금액</span>--%>
+<%--                                    <span class="row-value color-ff5340">--%>
+<%--		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>--%>
+<%--		                                            <strong id="main_totPayAmt">--%>
+<%--                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>--%>
+<%--                                                    </strong>원--%>
+<%--		                                        </span>--%>
+<%--                                    <i class="icon"></i>--%>
+<%--                                </button>--%>
+<%--                            </h3>--%>
+<%--                            <div class="accordion-panel" role="region" aria-label="">--%>
+<%--                                <ul class="row-list">--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">주문금액</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
 
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">할인금액</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_discountAmt">
-                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>
-                                            </strong>원</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">배송비</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row-title">
-                                            <p class="tit">배송비 할인</p>
-                                        </div>
-                                        <div class="row-value">
-                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">할인금액</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_discountAmt">--%>
+<%--                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>--%>
+<%--                                            </strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">배송비</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <div class="row-title">--%>
+<%--                                            <p class="tit">배송비 할인</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="row-value">--%>
+<%--                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
 
                         <div class="sticky-ui-wrapper util-option-sticky">
                             <div class="sticky-placeholder" style=""></div>
                             <div class="util-option sticky" data-modules-sticky="padding:-40;breakPoint:.container;className:util-option-sticky;" style="">
-                            <div class="sticky-inner">
-                                <h4 class="title20">총 결제금액</h4>
-                                <ul class="payment-list">
-                                    <li>
-                                        <div id="orderAmt">
-                                            <span class="tit">총 판매금액</span>
-                                            <span class="txt"><strong>99,000</strong>원</span>
-                                        </div>
-                                        <div id="copnDcAmtDiv" class="hidden">
-                                            <span class="tit">적립금 사용</span>
-                                            <span class="txt"><strong>0</strong>원</span>
-                                        </div>
+                                <div class="sticky-inner">
+                                    <h4 class="title20">총 결제금액</h4>
+                                    <ul class="payment-list">
+                                        <li>
+                                            <div id="orderAmt">
+                                                <span class="tit">총 판매금액</span>
+                                                <span class="txt"><strong>${directBasket.productVO.product_cost * directBasket.productVO.product_count}</strong>원</span>
+                                            </div>
+                                            <div id="copnDcCoupon" class="hidden">
+                                                <span class="tit">쿠폰 사용</span>
+                                                <span class="txt">
+                                                    <label for="totalCouponPoint"></label>
+                                                    <strong><input value="0" name="totalCouponPoint" id="totalCouponPoint" style="border: none;width: 100px; text-align:right;"></strong>
+                                                    원</span>
+                                            </div>
+                                            <div id="copnDcAmtDiv" class="hidden">
+                                                <span class="tit">적립금 사용</span>
+                                                <span class="txt">
+                                                    <label for="totalUserPoint"></label>
+                                                    <strong><input value="0" name="totalUserPoint" id="totalUserPoint" style="border: none;width: 100px; text-align:right;"></strong>
+                                                    원</span>
+                                            </div>
 
-                                        <div class="hidden" id="alliDcAmtDiv">
-                                            <span class="tit">예치금 사용</span>
-                                            <span class="txt"><strong>0</strong>원</span>
-                                        </div>
-                                        <div class="hidden" id="stlmDcAmtDiv" style="display: none;">
-                                            <span class="tit">결제할인</span>
-                                            <span class="txt"><strong>0</strong>원</span>
-                                        </div>
-                                    </li>
+                                            <div class="hidden" id="alliDcAmtDiv">
+                                                <span class="tit">예치금 사용</span>
+                                                <span class="txt">
+                                                <label for="totalDepositPoint"></label>
+                                                <strong><input value="0" name="totalDepositPoint" id="totalDepositPoint" style="border: none;width: 100px; text-align:right;"></strong>
+                                                원</span>
+                                            </div>
+                                        </li>
 
-                                    <li>
-                                        <div class="total">
-                                            <span class="tit">최종 결제금액</span>
-                                            <span class="txt" id="lastStlmAmtDd"><strong>99,000</strong>원</span>
-                                        </div>
+                                        <li>
+                                            <div class="total">
+                                                <span class="tit">최종 결제금액</span>
+                                                <span class="txt" id="lastStlmAmtDd">
+                                                    <label for="totalDepositPoint"></label>
+                                                <strong>
+                                                    <label for="totalCost1"></label>
+                                                    <input value="0" name="totalCost1" id="totalCost1" style="border: none;width: 100px; text-align:right;">
+                                                </strong>
+                                                </span>
+                                            </div>
 
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
 
-                                <div class="btngroup">
-                                    <button type="submit" form="orderPush" class="btn btn-default medium"><span>결제</span></button>
+                                    <div class="btngroup">
+                                        <button type="submit" form="orderPush" class="btn btn-default medium"><span>결제</span></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -956,54 +957,69 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
         var couponSeq=0;
         var discountCost=0;
-        var totalCost=$("input[name='totalCost']").val();
+        var totalCost=parseInt($("input[name='totalPrice']").val());
+
 
         $("#couponSelectorBtn").on("click", function(){
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
             //할인 값 가져오는 ajax
             $.ajax({
-               type:'POST',
-               dataType:'text',
-               data:{
-                   couponSeq:$("input[name='couponName']:checked").val()
-               },
-               url:'${contextPath}/order/couponInfo',
-               beforeSend:function (xhr){
-                   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-               },
-               success:function(discount){
-                   console.log('쿠폰 할인가격: ', parseInt(discount));
+                type:'POST',
+                dataType:'text',
+                data:{
+                    couponSeq:$("input[name='couponName']:checked").val()
+                },
+                url:'${contextPath}/order/couponInfo',
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function(discount){
+                    console.log('쿠폰 할인가격: ', parseInt(discount));
+                    // var totalCost=90000;
                     discount=parseInt(discount);
-                   //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
-                   //쿠폰Seq에 따른 cost를 불러와야 함
-                   //discountCost=$("input[name='coupon_cost']").val();
+                    //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
+                    //쿠폰Seq에 따른 cost를 불러와야 함
 
-                   //가격 할인
-                   if(discount>100){
-                       totalCost=parseInt(totalCost)-discount;
-                       console.log("totalCost: ",totalCost)
+                    //discountCost=$("input[name='coupon_cost']").val();
+                    //totalCouponPoint
+                    //가격 할인
+                    if(discount>100){
+                        totalCost=parseInt(totalCost)
 
-                       //console.log("couponSeq:", couponSeq);
+                        $("#couponDiscount").val(discount);
+                        $("#totalCouponPoint").val(discount);
 
-                       $("#couponSeq").val(couponSeq);
-                       $("#couponCost").val(discount);
-                       $("#totalCost").val(totalCost);
 
-                   }else{//비율 할인
-                        totalCost=parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
-                        console.log("totalCost: ",totalCost)
+                        var discount1=$("input[name='totalUserPoint']").val();
+                        var discount2=$("input[name='totalDepositPoint']").val();
 
-                       $("#couponSeq").val(couponSeq);
-                       $("#couponCost").val(parseInt(totalCost)*(discount/100));
-                       $("#totalCost").val(totalCost);
-                   }
+                        //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+                        totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-discount;
 
-                   $('#pec007').modal().hide();
-               },
-               error:function(){
-                   alert('쿠폰을 적용하지 못합니다.');
-               }
+                        $("#totalCost1").val(totalCost);
+
+
+                    }else{//비율 할인
+
+                        var ratioCost=parseInt(totalCost)*(discount/100);
+
+                        $("#couponDiscount").val(ratioCost);
+                        $("#totalCouponPoint").val(ratioCost);
+
+
+                        totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-ratioCost;
+
+                        //$("#couponCost").val(parseInt(totalCost)*(discount/100));
+                        $("#totalCost").val(totalCost);
+
+                    }
+
+                    $('#pec007').modal().hide();
+                },
+                error:function(){
+                    alert('쿠폰을 적용하지 못합니다.');
+                }
 
             });
 
@@ -1012,6 +1028,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         });
     </script>
 </main>
+<script type="text/javascript">
+    function openAddressListPup(){
+        var url="/user/openAddressListPup";
+        var popName="addressListPopUp"
+        var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+        window.open(url, popName, popOption);
+    }
+</script>
 <%--주문 상세 내역--%>
 <%--<script type="text/javascript">--%>
 <%--    $(".medium").click(function (){--%>
@@ -1249,5 +1273,27 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
     })
 
 
-</script>
+    // function openAddressListPup(){
+    //     var url="/"
+    // }
 
+
+</script>
+<script type="text/javascript">
+
+//    var totalCost=0;
+//
+//    var discount1=$("input[name='totalUserPoint']").val();
+//    var discount2=$("input[name='totalDepositPoint']").val();
+//
+//    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+//    totalCost=totalCost-parseInt(discount1)-parseInt(discount2);
+//
+//    $("#totalCost1").val(totalCost);
+
+
+
+
+
+
+</script>

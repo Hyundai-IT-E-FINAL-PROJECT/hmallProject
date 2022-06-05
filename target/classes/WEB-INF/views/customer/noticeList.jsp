@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
     <script type="application/ld+json">
@@ -3076,131 +3077,55 @@
             <!-- // LNB 끝 -->
 
             <!-- .contents -->
+
             <div class="contents">
                 <!--공지사항-->
                 <div class="cus-wrap">
                     <h3>공지사항</h3>
                     <!--tblwrap tbl-list-->
                     <div class="tblwrap tbl-list">
-                        <table>
+                        <table id="noticeTable">
                             <caption>고객센터 공지사항</caption>
                             <colgroup>
-                                <col style="width:675px">
+                                <col style="width:70px">
+                                <col style="width:500px">
                                 <col style="width:125px">
                             </colgroup>
                             <thead>
                             <tr>
+                                <th scope="col">NO</th>
                                 <th scope="col">제목</th>
                                 <th scope="col">등록일</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                                <tr>
+                                    <td class="txt-center"><div class="arrow>">${status.index+1}</div></td>
+                                    <td class="txt-left nowrap">${notice.notice_title}</td>
+                                    <td class="txt-left nowrap">
+                                        <fmt:formatDate value="${notice.created_at}" pattern="yyyy-MM-dd"/>
+                                    </td>
 
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53744&amp;page=1&amp;topFixYn=N">현대홈쇼핑 멤버십 제도 개편 안내</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2022.05.02</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53740&amp;page=1&amp;topFixYn=N">현대홈쇼핑 상시채용 안내</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2022.04.15</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53722&amp;page=1&amp;topFixYn=N">개인정보처리방침 변경 안내(01/27)</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2022.01.27</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53597&amp;page=1&amp;topFixYn=N">현대홈쇼핑 금융소비자보호 내부통제기준 및 금융소비자보호기준</a>
-
-                                    <img src="https://image.hmall.com/m/img/co/icon/ico-file.svg" alt="첨부파일">
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.09.24</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53596&amp;page=1&amp;topFixYn=N">현대홈쇼핑 보험대리점등록증</a>
-
-                                    <img src="https://image.hmall.com/m/img/co/icon/ico-file.svg" alt="첨부파일">
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.09.24</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53584&amp;page=1&amp;topFixYn=N">개인정보처리방침 변경 안내(08/05)</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.08.05</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53581&amp;page=1&amp;topFixYn=N">개인정보처리방침 변경 안내(07/27)</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.07.27</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53575&amp;page=1&amp;topFixYn=N">개인정보처리방침 변경 안내(07/14)</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.07.14</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53559&amp;page=1&amp;topFixYn=N">개인정보처리방침 변경 안내(07/06)</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.07.06</span></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td class="nowrap">
-                                    <a href="/p/ccb/noticeView.do?ancmId=53538&amp;page=1&amp;topFixYn=N">[한국소비자원] 노후 딤채 김치냉장고 리콜 캠페인</a>
-
-                                </td>
-                                <td class="txt-center"><span class="date">2021.04.27</span></td>
-                            </tr>
-
-
+                                </tr>
+                                <tr>
+                                    <td  colspan="3">
+                                        <div class="consult-form-wrap">
+                                            <h3>공지 내용</h3>
+                                            <!--문의내용-->
+                                            <div class="consult-form" style="background-color:lavender; border-radius: 5px;">
+                                                <div class="field">
+                                                    <div>
+                                                        <label class="txtlabel">
+                                                            <textarea cols="28" rows="2" readonly style="resize:none; height:30px;">${notice.notice_content}</textarea>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -4059,138 +3984,20 @@
 
     </script>
 
-    <!-- 스카이 스크래퍼 -->
-    <div class="sticky-ui-wrapper wing-banner-sticky"><div class="sticky-placeholder"></div><div class="wing-banner banner-right" data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky">
-        <!-- fixed 클래스 추가 시 고정 -->
-        <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-            <div class="visit-indicator">바로접속
-
-
-                <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-            </div>
-        </a>
-        <div class="recent-view-area" id="skyScOnAirArea">
-
-
-
-
-
-
-
-
-
-            <a class="recent-view-title">ON AIR</a>
-            <ul id="banner-onair">
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2133860086&amp;bfmtNo=202205263018&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^닥터린 대마종자유 18개월분&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2133860086_닥터린 대마종자유 18개월분" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/0/0/86/33/2133860086_0.jpg?RS=140x140&amp;AR=0" alt="닥터린 대마종자유 18개월분" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220527020000">00:00:00</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2139992840&amp;bfmtNo=202205265020&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2139992840_[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/8/2/99/39/2139992840_0.jpg?RS=140x140&amp;AR=0" alt="[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220527015959">00:00:00</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-            </ul>
-
-        </div>
-        <div class="qr_view_area">
-            <span class="qr_txt">쇼핑라이브</span>
-            <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg" alt="쇼핑라이브 qr이미지"></span>
-        </div>
-        <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-
-
-
-
-
-
-
-            <ul>
-
-
-                <li style="">
-
-
-
-
-
-                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280846">
-                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-kb.png" alt="KB국민카드"></span>
-                        <span class="card-txt">
-		                            <strong class="card-name">KB국민카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      5%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- 페이징 -->
-
-
-
-
-
-            <!-- // 페이징 -->
-        </div>
-        <!-- // .wing-slide -->
-
-        <div class="btn-top"><a href="javascript:;">TOP</a></div>
-    </div></div>
-    <!-- // 스카이 스크래퍼 -->
-    <script type="text/javascript">
-
-        setTimeout(function() {
-            setOnAirSkySc();
-        }, 100);
-
-        /*
-    setTimeout(function() {
-    	setCardPromotion();
-    }, 300);
-    */
-    </script>
-    <!-- 스카이스크래퍼 -->
-
 
 </div>
 <script type="text/javascript">
-    initToggle(document.getElementById("faq-list"));
+    $(document).ready(function(){
+        $("#noticeTable tr:odd").addClass("odd");
+        $("#noticeTable tr:not(.odd)").hide();
+        $("#noticeTable tr:first-child").show(); //열머리글 보여주기
+
+        $("#noticeTable tr.odd").click(function(){
+            $(this).next("tr").toggle();
+            $(this).find("#toggle").toggleClass("up");
+
+        });
+    });
 </script>
 
 
