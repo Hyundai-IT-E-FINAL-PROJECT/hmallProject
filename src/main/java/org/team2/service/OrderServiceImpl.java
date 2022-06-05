@@ -4,6 +4,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.team2.domain.OrderVO;
+import org.team2.domain.ProductVO;
 import org.team2.mapper.OrderMapper;
 
 import java.util.List;
@@ -20,9 +21,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int insert(OrderVO vo) throws Exception {
-        return orderMapper.insert(vo);
+    public int insert(OrderVO orderVO, ProductVO productVO) throws Exception {
+        return orderMapper.insert(orderVO, productVO);
     }
+
+//    @Override
+//    public int insert(OrderVO vo) throws Exception {
+//        return orderMapper.insert(vo);
+//    }
 
     @Override
     public int delete(Long seq) throws Exception {

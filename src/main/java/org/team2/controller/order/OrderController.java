@@ -151,11 +151,13 @@ public class OrderController {
 //
 //    }
         @PostMapping("orderComplete")
-        public String sendOrderData(@ModelAttribute("vo") OrderVO vo, Model model) throws Exception {
+        public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO, Principal principal) throws Exception {
             log.info("데이터 이동 확인");
-            log.info(vo.toString());
+            orderVO.setUser_seq(Long.valueOf(principal.getName()));
+            log.info(orderVO.toString());
+            log.info(productVO.toString());
             try{
-                orderService.insert(vo);
+                orderService.insert(orderVO, productVO);
             }catch (Exception e){
                 e.printStackTrace();
             }

@@ -1,12 +1,14 @@
 package org.team2.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.team2.domain.OrderVO;
+import org.team2.domain.ProductVO;
 
 import java.util.List;
 
 public interface OrderMapper {
 
-    int insert(OrderVO vo);
+    int insert(@Param("OrderVO") OrderVO orderVO, @Param("ProductVO") ProductVO productVO) throws Exception;
 
     OrderVO readOne(Long seq);
 

@@ -44,21 +44,21 @@ public class OrderMapperTest {
         log.info(vo);
     }
     //주문 삽입 테스트 성공
-    @Test
-    public void testInsert(){
-        log.info("testInsert 시작");
-        OrderVO orderVO=new OrderVO();
-
-        orderVO.setUser_seq(19L);
-        orderVO.setStatus("ing");
-        orderVO.setUserName("bo");
-        orderVO.setUserNumber("0101");
-        orderVO.setDelivery("newDe");
-        orderVO.setInvoice(3L);
-        orderVO.setPoint(20L);
-
-        mapper.insert(orderVO);
-    }
+//    @Test
+//    public void testInsert(){
+//        log.info("testInsert 시작");
+//        OrderVO orderVO=new OrderVO();
+//
+//        orderVO.setUser_seq(19L);
+//        orderVO.setStatus("ing");
+//        orderVO.setUserName("bo");
+//        orderVO.setUserNumber("0101");
+//        orderVO.setDelivery("newDe");
+//        orderVO.setInvoice(3L);
+//        orderVO.setPoint(20L);
+//
+//        mapper.insert(orderVO);
+//    }
 
     @Test
     public void testUpdate(){

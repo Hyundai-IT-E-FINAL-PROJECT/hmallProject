@@ -4,6 +4,10 @@
 <head>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="/resources/js/addressapi.js"></script>
+<%--    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>--%>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
+<%--    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>--%>
 </head>
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
@@ -439,6 +443,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             <div class="order-list" id="orderItems">
                                 <ul>
                                     <li name="orderItem">
+                                        <input type="hidden" value="${directBasket.productVO.product_seq}" name="product_seq" id="product_seq"/>
                                         <%--                                        상품에 관한 정보들--%>
                                         <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.basket_count}">
 
@@ -446,6 +451,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
                                             <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
                                             <div class="box">
+                                                <input type="hidden" name="product_name" id="product_name" value="${directBasket.productVO.product_name}" />
                                                 <span class="tit">${directBasket.productVO.product_name}</span>
                                                 <div class="info">
                                                     <ul>
@@ -710,7 +716,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 <%--                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
 <%--                        </form>--%>
 
-
+                        <div style="height: 20px;"></div>
                         <span class="txt">※ 배송지 정보</span>
                         <div class="board">
                             <!--table-->
@@ -762,7 +768,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <tr>
                                             <td style="background-color: lightgrey">남기실 말씀</td>
                                             <td>
-                                                <label class="inplabel"><input type="text" name="order_messgae" value="" placeholder="남기실 말씀을 입력해주세요." id=""order_messgae maxlength="100"></label>
+                                                <label class="inplabel"><input type="text" name="order_message" value="" placeholder="남기실 말씀을 입력해주세요." id="order_message" maxlength="100"></label>
                                             </td>
                                         </tr>
 
@@ -1059,48 +1065,83 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         if($('input:radio[name=paymentMethod]').is(':checked')){
             //결제수단: 신용카드 -> 카카오API
             if($("input:radio[name='paymentMethod']:checked").val()==='paymentMethod1'){
+                //카카오 결제 API
+                var IMP=window.IMP;
+                IMP.init('imp40479509');
+                IMP.request_pay({
+                    pg:'kakaopay',
+                    pay_method:'card',
+                    merchant_uid:'merchant_'+new Date().getTime(), //주문번호
+                    name: $("input[name='product_name']").val(),//상품명
+                    amount:parseInt($("input[name='totalCost1']").val()),
+                    customer_uid:$("input[name='order_user_name']").val()+new Date().getTime(),
+                    buyer_name:$("input[name='order_user_name']").val(),
+                    buyer_tel:$("input[name='phoneNumber1']").val(),
+                }, function(rsp){//callback
+                    if(rsp.success){//결제 성공 시 로직
+                        console.log('빌링키 발급 성공', rsp);
+                        alert('결제가 완료되었습니다. 주문 내역으로 이동합니다.');
 
-            }else{//무통장입금 선택시 -> 자동 결제 되는 식으로
+                        orderProcess();
 
-                //적립금
-                var point=parseInt($("input[name='totalCost1']").val())*0.05;
-
-                var csrfHeaderName = "${_csrf.headerName}";
-                var csrfTokenValue = "${_csrf.token}";
-
-                var orderData={
-                    order_point:point,//총 결제금액의 5% 적립
-                    order_status: '준비중', //준비중
-                    order_user_name: $("input[name='order_user_name']").val(), //주문한 사람
-                    order_user_number:$("input[name='phoneNumber1']").val(),
-                    order_delivery:$("input[name='order_delivery1']").val(), //상세주소
-                    order_invoice:20492593, //랜덤으로 주기
-                    order_total_cost:$("input[name='totalCost1']").val(),
-                    order_message:$("input[name='order_message']").val()
-                };
-
-                $.ajax({
-                    url: '${contextPath}/order/orderComplete',
-                    type:'post',
-                    data:orderData,
-                    beforeSend:function (xhr){
-                        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-                    },
-                    success:function(){
-
-                    },
-                    error:function(){
-
+                    }else{// 결제 실패 시 로직
+                        var msg='결제에 실패하였습니다. 다시 시도해주세요!';
+                        alert(msg);
+                        return false;
                     }
-
-                })
-
+                });
+            }else{//무통장입금 선택시 -> 자동 결제 되는 식으로
+                orderProcess();
             }
         }else{
             alert("결제 수단을 선택해주세요!");
         }
 
+    }
 
+    function orderProcess(){
+        //적립금
+        var total_price=$("input[name='totalCost1']").val();
+        var point=parseInt(total_price)*0.05;
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        var orderData={
+            //orderVO
+            point:point,//총 결제금액의 5% 적립
+            status: '준비중', //준비중
+            userName: $("input[name='order_user_name']").val(), //주문한 사람
+            userNumber:$("input[name='phoneNumber1']").val(),
+            delivery:$("input[name='order_delivery1']").val(), //상세주소
+            invoice:20492593, //랜덤으로 주기
+            totalCost:total_price,
+            message:$("input[name='order_message']").val(),
+            //productVO
+            product_seq:$("input[name='product_seq']").val(),
+            op_count:1 //주문한 상품 개수
+
+        };
+
+        console.log(orderData);
+
+        $.ajax({
+            url: '${contextPath}/order/orderComplete',
+            type:'post',
+            data:orderData,
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function(){
+                alert("주문이 성공적으로 등록되었습니다.");
+                //결제완료 페이지로 넘어가야함
+                //pathVariable에 값 넘겨줌으로써 결제 화면 내역 보이게 하기!
+                //location.href='/order/orderComplete';
+            },
+            error: function (request,status,error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        })
     }
 </script>
 <%--주문 상세 내역--%>

@@ -37,9 +37,14 @@
     </select>
 
     <insert id="insert" statementType="CALLABLE">
+
         {
-        call pack_order.proc_order_insert(#{user_seq},#{point}, #{status}, #{userName}, #{userNumber}, #{delivery}, #{invoice})
+            call proc_order_process(#{OrderVO.user_seq}, #{OrderVO.point}, #{OrderVO.status},
+          #{OrderVO.userName}, #{OrderVO.userNumber}, #{OrderVO.delivery}, #{OrderVO.invoice},
+          #{OrderVO.totalCost}, #{OrderVO.message}, #{ProductVO.product_seq}, 1)
         }
+
+
     </insert>
 
     <delete id="delete" statementType="CALLABLE">
