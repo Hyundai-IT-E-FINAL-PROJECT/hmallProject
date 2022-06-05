@@ -464,7 +464,7 @@
                                 <div class="pdlist-wrap col4">
                                     <ul>
                                         <c:forEach items="${list}" var="euro" varStatus="status">
-                                            <c:if test="${euro.PRODUCT_BRAND eq 'ADIDAS'}">
+                                            <c:if test="${euro.PRODUCT_BRAND eq 'EURO'}">
                                                 <li class="pdthumb" ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                     <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
                                                         <div class="thumb">
@@ -511,7 +511,7 @@
                             <div class="pdlist-wrap col4">
                                 <ul>
                                     <c:forEach items="${list}" var="euro" varStatus="status">
-                                        <c:if test="${euro.PRODUCT_BRAND eq 'NIKE'}">
+                                        <c:if test="${euro.PRODUCT_BRAND eq 'LIOBELL'}">
                                             <li class="pdthumb " ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                 <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740678&amp;slitmCd=2141537482', this);">
                                                     <div class="thumb">
