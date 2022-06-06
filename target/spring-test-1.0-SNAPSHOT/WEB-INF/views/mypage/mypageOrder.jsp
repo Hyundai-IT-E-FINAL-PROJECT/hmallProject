@@ -183,17 +183,39 @@
                         </div>
 
 
-                        <c:forEach items="${list}" var="list" varStatus="vs">
-                            <div class="order-list">
-                                <dl>
-                                    <dt>
-                                        <div class="date">
-                                            <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${list.ORDER_SEQ})</span>
-                                        </div>
-                                        <div class="abs">
-                                            <a href="/mypageOrderDetail/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
-                                        </div>
-                                    </dt>
+                        <c:forEach items="${list}" var="odlist" varStatus="vs">
+<%--                            <c:if test="${vs.index != 0}">--%>
+<%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
+<%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
+<%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
+<%--                                <p>${!vs.last}</p>--%>
+<%--                            </c:if>--%>
+                            <c:if test="${vs.index == 0}">
+                                 <div class="order-list">
+                                    <dl>
+                                        <dt>
+                                            <div class="date">
+                                                <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
+                                            </div>
+                                            <div class="abs">
+                                                <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                            </div>
+                                        </dt>
+                            </c:if>
+                            <c:if test="${vs.index != 0}">
+                                <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
+                                    <div class="order-list">
+                                        <dl>
+                                            <dt>
+                                                <div class="date">
+                                                    <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
+                                                </div>
+                                                <div class="abs">
+                                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                                </div>
+                                            </dt>
+                                </c:if>
+                            </c:if>
     <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
                                     <!-- 가장최근주문 1건, 최대 10개 상품 -->
                                     <dd>
@@ -204,9 +226,9 @@
                                             </span>
                                             <div class="box">
                                                 <c:choose>
-                                                    <c:when test="${list.ORDER_STATUS eq '주문취소' or list.ORDER_STATUS eq '교환접수' or list.ORDER_STATUS eq '교환완료' or list.ORDER_STATUS eq '반품접수' or list.ORDER_STATUS eq '반품완료'}">
+                                                    <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
                                                         <span class="state red">
-                                                                    ${list.ORDER_STATUS}
+                                                                    ${odlist.ORDER_STATUS}
                                                         <em class="color-999">
 
                                                         </em>
@@ -214,37 +236,46 @@
                                                     </c:when>
                                                     <c:otherwise>
                                                         <span class="state sky">
-                                                                 ${list.ORDER_STATUS}
+                                                                 ${odlist.ORDER_STATUS}
                                                         <em class="color-999">
 
                                                         </em>
                                                         </span>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                <span class="tit"> ${list.PRODUCT_NAME}</span>
+                                                <span class="tit"> ${odlist.PRODUCT_NAME}</span>
                                                 <div class="info">
                                                     <ul>
-                                                        <li>${list.PRODUCT_INFO}</li>
+                                                        <li>${odlist.PRODUCT_INFO}</li>
                                                         <li>
-                                                                ${list.OP_COUNT} 개
+                                                                ${odlist.OP_COUNT} 개
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <span class="price"> <strong>${list.ORDER_TOTAL_COST}</strong>원 </span>
+                                                <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
                                             </div>
                                         </a>
 
                                         <div class="btngroup">
-                                            <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${list.ORDER_SEQ}'"><span>주문취소</span></button>
+                                            <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
                                             </c:if>
                                             <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
                                             <input type="hidden" name="copnStlmFixYn" value="" />
                                         </div>
                                     </dd>
-                                </dl>
-                            </div>
+                                    <c:if test="${vs.index != 0 or vs.last}">
+                                        <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
+                                                </dl>
+                                            </div>
+                                        </c:if>
+                                    </c:if>
+                                <c:if test="${vs.index == 0 and !vs.last}">
+                                        </dl>
+                                    </div>
+                                </c:if>
                         </c:forEach>
+
                         <c:if test="${list.size() == 0}">
                             <div class="nodata">
                                 <span class="bgcircle"><i class="icon nodata-type14"></i></span>
@@ -290,7 +321,7 @@
                             </tr>
                             <tr>
                                 <td>발송 준비중</td>
-                                <td>주문하신 상품을 택배사로 전달하는 단계입니다.</td>
+                                <td>주문하신 상품을 택배사로 전달하 `는 단계입니다.</td>
                             </tr>
                             <tr>
                                 <td>상품 발송</td>

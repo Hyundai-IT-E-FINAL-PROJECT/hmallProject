@@ -126,96 +126,97 @@
                     </h3>
 
 
-                    <c:forEach items="${list}" var="list" varStatus="vs">
-                    <div class="order-list">
-                        <!-- 결제완료 -->
-
-
-                        <dl>
+                    <c:forEach items="${list}" var="odlist" varStatus="vs">
+                        <%--                            <c:if test="${vs.index != 0}">--%>
+                        <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
+                        <%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>${!vs.last}</p>--%>
+                        <%--                            </c:if>--%>
+                        <c:if test="${vs.index == 0}">
+                            <div class="order-list">
+                            <dl>
                             <dt>
                                 <div class="date">
-                                    <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/>
-                                        (주문번호 : ${list.ORDER_SEQ})
-                                    </span>
+                                    <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                 </div>
-
                                 <div class="abs">
-                                    <a href="/mypageOrderDetail/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                 </div>
-
                             </dt>
-                            <input type="hidden" name="paymentYnOrdNo" value="" />
-
-                            <!-- 가장최근주문 1건, 최대 10개 상품 -->
-
-                            <dd>
-
-                                <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
-
-
-                                    <input type="hidden" name="slitmCd" value="2137807436">
-                                    <span class="img">
-	    	                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
-	                                    </span>
-                                    <div class="box">
-                                        <c:choose>
-                                            <c:when test="${list.ORDER_STATUS eq '주문취소' or list.ORDER_STATUS eq '교환접수' or list.ORDER_STATUS eq '교환완료' or list.ORDER_STATUS eq '반품접수' or list.ORDER_STATUS eq '반품완료'}">
-                                                        <span class="state red">
-                                                                    ${list.ORDER_STATUS}
-                                                        <em class="color-999">
-
-                                                        </em>
-                                                        </span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                        <span class="state sky">
-                                                                 ${list.ORDER_STATUS}
-                                                        <em class="color-999">
-
-                                                        </em>
-                                                        </span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <span class="tit">
-	                                        	${list.PRODUCT_NAME}
-	                                        </span>
-                                        <div class="info">
-                                            <ul>
-                                                <li>${list.PRODUCT_INFO}</li>
-                                                <li>
-                                                    ${list.OP_COUNT} 개
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <span class="price">
-
-																<strong>15,000</strong>원
-
-
-											</span>
+                        </c:if>
+                        <c:if test="${vs.index != 0}">
+                            <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
+                                <div class="order-list">
+                                <dl>
+                                <dt>
+                                    <div class="date">
+                                        <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                     </div>
-                                </a>
+                                    <div class="abs">
+                                        <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    </div>
+                                </dt>
+                            </c:if>
+                        </c:if>
+                        <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
+                        <!-- 가장최근주문 1건, 최대 10개 상품 -->
+                        <dd>
+                            <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                <input type="hidden" name="slitmCd" value="2137807436">
+                                <span class="img">
+                                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                            </span>
+                                <div class="box">
+                                    <c:choose>
+                                        <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
+                                                        <span class="state red">
+                                                                    ${odlist.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                <div class="btngroup">
+                                                        </em>
+                                                        </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                                        <span class="state sky">
+                                                                 ${odlist.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                    <!-- 20180626_특화배송조유진 -->
-                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                        <button class="btn btn-linelgray small30" type="button" onclick="location.href='mypageOrderCancel.jsp?product_seq=${list.PRODUCT_SEQ}'" ><span>주문취소</span></button>
-                                    </c:if>
-                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                    <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-                                    </c:if>
-                                    <input type="hidden" name="copnStlmFixYn" value="" />
+                                                        </em>
+                                                        </span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="tit"> ${odlist.PRODUCT_NAME}</span>
+                                    <div class="info">
+                                        <ul>
+                                            <li>${odlist.PRODUCT_INFO}</li>
+                                            <li>
+                                                    ${odlist.OP_COUNT} 개
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
                                 </div>
+                            </a>
 
-                            </dd>
-
-
-
-                        </dl>
-                        <!-- // 결제완료 -->
-
-                    </div>
+                            <div class="btngroup">
+                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                    <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
+                                </c:if>
+                                <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
+                                <input type="hidden" name="copnStlmFixYn" value="" />
+                            </div>
+                        </dd>
+                        <c:if test="${vs.index != 0 or vs.last}">
+                            <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
+                                </dl>
+                                </div>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${vs.index == 0 and !vs.last}">
+                            </dl>
+                            </div>
+                        </c:if>
                     </c:forEach>
                     <c:if test="${list.size() == 0}">
                         <div class="nodata">
