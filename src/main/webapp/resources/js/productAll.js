@@ -351,3 +351,21 @@ function search(keyword, first_category, second_category) {
         }
     });
 }
+
+function image_show(productVO) {
+    // 이미지 확대 모달
+    $.ajax({
+        type: "get"
+        , url: "http://localhost:8080/category/"
+        , dataType: "json"
+        , crossDomain: true
+        , success: function (data) {
+
+        }, complete: function () {
+
+        }, error: function (e) {
+            //cors 오류 시 기존 ajax 타도록 수정
+            console.log("error")
+        }
+    });
+}

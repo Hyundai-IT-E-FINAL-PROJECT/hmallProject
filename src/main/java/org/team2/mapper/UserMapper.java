@@ -14,11 +14,8 @@ public interface UserMapper {
     int emailCheck(String email) throws Exception;
     void insertAddress(@Param("AddressVO")AddressVO addressVO, @Param("userNum") int userNum) throws Exception;
     UserVO find_id(UserVO userVO) throws Exception;
-
     public UserVO readPoint(Long user_seq) throws Exception;
-
     List<AddressVO> readAddress(Long user_seq) throws Exception;
-
     AddressVO selectAddress(Long user_address_seq) throws Exception;
     UserVO find_pw(String email) throws Exception;
     int newPassword(UserVO userVO) throws Exception;
