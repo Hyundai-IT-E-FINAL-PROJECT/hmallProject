@@ -23,4 +23,5 @@ public class AddressVO {
 
     private Date created_at;
     private Date updated_at;
+    private int user_basic_address;
 }

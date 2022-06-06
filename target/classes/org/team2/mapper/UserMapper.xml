@@ -66,10 +66,11 @@
             #{AddressVO.user_address_address1},
             #{AddressVO.user_address_address2},
             #{AddressVO.user_address_address3},
-            #{AddressVO.user_address_name},
-            #{AddressVO.user_address_phone_num},
+            #{UserVO.user_name},
+            #{UserVO.user_phone},
             sysdate,
-            sysdate
+            sysdate,
+            1
             )
     </insert>
 

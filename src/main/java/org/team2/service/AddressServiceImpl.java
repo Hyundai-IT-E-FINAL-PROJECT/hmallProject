@@ -21,7 +21,7 @@ public class AddressServiceImpl implements AddressService {
     public void insertAddress(AddressVO addressVO, UserVO userVO) throws Exception{
         int userNum = userVO.getNo();
         log.info(userNum);
-        userMapper.insertAddress(addressVO, userNum);
+        userMapper.insertAddress(addressVO, userVO, userNum);
     }
 
     @Override
