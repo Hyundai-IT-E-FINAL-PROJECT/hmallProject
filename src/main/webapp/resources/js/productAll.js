@@ -17,8 +17,8 @@ function searchAutoCate(obj, first_category, second_category) {
             console.log(data)
             for (let productVO of data) {
                 console.log(productVO)
-
-                if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
+                productVO.PRODUCT_COST === productVO.DISCOUNTED_CO
+                if (ST) {
                     $(".pdlist-wrap ul").append(
                         `
                     <li class="pdthumb">

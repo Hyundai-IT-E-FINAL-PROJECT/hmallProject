@@ -18,6 +18,13 @@
             <%@ include file="mypageSide.jsp" %>
             <!-- // LNB 끝 -->
 
+            <c:set var = "sum" value = "0" />
+            <c:forEach var="list" items="${list}">
+                <c:if test="${list.LEFTTIME <= 30}">
+                    <c:set var= "sum" value="${sum + 1}"/>
+                </c:if>
+            </c:forEach>
+
             <div class="contents">
                 <div class="mypage-coupon-wrap">
                     <div class="bg-gray-box">
@@ -30,11 +37,7 @@
                                 </li>
                                 <li>
                                     <span class="tit">사용임박 쿠폰</span>
-                                    <span class="txt"><strong>2<span class="mdhTxt"></span></strong>장 (30일 이내)</span>
-                                </li>
-                                <li>
-                                    <span class="tit">사용한 쿠폰</span>
-                                    <span class="txt"><strong>0</strong>장</span>
+                                    <span class="txt"><strong><c:out value="${sum}"/><span class="mdhTxt"></span></strong>장 (30일 이내)</span>
                                 </li>
                             </ul>
                         </div>
@@ -69,12 +72,12 @@
                                             <strong>${list.COUPON_NAME}</strong>
                                         </p>
                                         <ul class="coupon-info-list">
-                                            <li> 기준금액: 50,000원 이상 </li>
+                                            <li> 기준금액: ${list.EXPIRED_COST}원 이상 </li>
 
                                             <li>기간: <fmt:formatDate value="${list.CREATED_AT}"/> ~ <fmt:formatDate value="${list.EXPIRED_DATE}"/> </li>
                                         </ul>
                                         <p class="type">
-                                            남은기간 : ${list.lefttime}일
+                                            남은기간 : ${list.LEFTTIME}일
                                         </p>
 
                                         <button class="btn btn-linelgray small30 abs" data-modules-modal="target:#applicable-item;" onclick="doSearchSlitmPop('02683299');return false;"><span>적용상품보기</span></button><!-- 2020-09-28 마크업 추가 -->

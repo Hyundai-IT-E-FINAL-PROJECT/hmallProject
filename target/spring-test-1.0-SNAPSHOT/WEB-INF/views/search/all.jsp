@@ -248,7 +248,7 @@
                                         </a>
                                         <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
 
-                                            <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info">
+                                            <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info" onclick="image_show(${productVO})">
                                                 <i class="icon"></i><span class="hiding">찜</span></a>
                                         </div>
                                     </li>

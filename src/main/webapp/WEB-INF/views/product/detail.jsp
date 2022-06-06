@@ -848,7 +848,7 @@
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:forEach>
+                                            </c:forEach >
                                         </ul>
                                     </div>
                                 </div>

@@ -16,8 +16,8 @@
             <li>
                 <a href="javascript:;">나의 쇼핑내역</a>
                 <ul class="sub-list">
-                    <li><a href="/mypageOrder">주문/배송조회</a></li>
-                    <li><a href="/mypageOrder">취소/교환/반품</a></li>
+                    <li><a href="/mypageOrder?type=all">주문/배송조회</a></li>
+                    <li><a href="/mypageOrder?type=cancel">취소/교환/반품</a></li>
                 </ul>
             </li>
             <li>

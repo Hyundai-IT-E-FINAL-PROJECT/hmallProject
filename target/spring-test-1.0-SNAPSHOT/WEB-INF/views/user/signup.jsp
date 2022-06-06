@@ -214,29 +214,6 @@
                                             <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" />
                                         </div>
                                     </div>
-                                                    prevText: '이전 달',
-                                                    nextText: '다음 달',
-                                                    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                                                    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                                                    dayNames: ['일','월','화','수','목','금','토'],
-                                                    dayNamesShort: ['일','월','화','수','목','금','토'],
-                                                    dayNamesMin: ['일','월','화','수','목','금','토'],
-                                                    yearSuffix: '년',
-                                                    changeMonth: true,
-                                                    changeYear: true
-                                                }
-                                                $(function() {
-                                                    $( "input[name='user_birth']" ).datepicker(config);
-                                                });
-                                                </script>
-                                                <!--// 생일-->
-                                                <div class="wrap_inp">
-                                                    <label for="datepicker" class="inp_tit">생년월일<span class="nec">*</span></label>
-                                                    <div class="inp_bundle registerPwd1">
-                                                       <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" />
-                                                   </div>
-                                                </div>
->>>>>>> hoon
 
                                     <!--// 성별-->
                                     <div class="wrap_inp">

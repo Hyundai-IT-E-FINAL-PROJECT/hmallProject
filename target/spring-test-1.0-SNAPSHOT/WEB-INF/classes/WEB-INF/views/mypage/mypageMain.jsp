@@ -48,7 +48,7 @@
 
                     ">
                         <div>
-                            <p class="myname"><a href="/passwordCheck/mypageUpdate"
+                            <p class="myname"><a href="/mypageUpdate"
                                                  class="btn-link"><em>${pinfo.userVO.user_name}님</em></a></p>
                             <div class="rating">
 
@@ -75,15 +75,15 @@
                                 <a href="/mypagePoint" onclick="doSearchUPntMainPop()">
                                 <%--<a href="javascript://" onclick="doSearchUPntMainPop()">--%>
                                     <span class="link">
-                                    <b>1111</b>P</span>
+                                    <b>${pinfo.userVO.user_point}</b>P</span>
 <%--                                    ${pinfo.userVO.point}--%>
                                     <span class="txt">포인트</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/mypagePoint">
-                                    <span class="link"><b>1231</b>원</span>
-                                    <span class="txt">예차금</span>
+                                <a href="/mypageDeposit">
+                                    <span class="link"><b>${pinfo.userVO.user_deposit}</b>원</span>
+                                    <span class="txt">예치금</span>
                                 </a>
                             </li>
                            <%-- <li>
@@ -120,96 +120,103 @@
                     <h3 class="title22">
                         최근 주문/배송 현황${userVO.no}
                         <div class="btngroup abs">
-                            <a href="/mypageOrder" class="btn atext"><span>전체보기</span><i
+                            <a href="/mypageOrder?type=all" class="btn atext"><span>전체보기</span><i
                                     class="arrow right"></i></a>
                         </div>
                     </h3>
 
 
-                    <c:forEach items="${list}" var="list" varStatus="vs">
-                    <div class="order-list">
-                        <!-- 결제완료 -->
-
-
-                        <dl>
+                    <c:forEach items="${list}" var="odlist" varStatus="vs">
+                        <%--                            <c:if test="${vs.index != 0}">--%>
+                        <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
+                        <%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>${!vs.last}</p>--%>
+                        <%--                            </c:if>--%>
+                        <c:if test="${vs.index == 0}">
+                            <div class="order-list">
+                            <dl>
                             <dt>
                                 <div class="date">
-                                    <span><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/>
-                                        (주문번호 : ${list.ORDER_SEQ})
-                                    </span>
+                                    <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                 </div>
-
                                 <div class="abs">
-                                    <a href="/mypageOrderDetail/${list.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
                                 </div>
-
                             </dt>
-                            <input type="hidden" name="paymentYnOrdNo" value="" />
-
-                            <!-- 가장최근주문 1건, 최대 10개 상품 -->
-
-                            <dd>
-
-                                <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
-
-
-                                    <input type="hidden" name="slitmCd" value="2137807436">
-                                    <span class="img">
-	    	                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
-	                                    </span>
-                                    <div class="box">
-	                                        <span class="state sky">
-
-
-
-															 ${list.ORDER_STATUS}
-
-
-
-                                            <em class="color-999">
-
-                                            </em>
-                                            </span>
-                                        <span class="tit">
-	                                        	${list.PRODUCT_NAME}
-	                                        </span>
-                                        <div class="info">
-                                            <ul>
-                                                <li>${list.PRODUCT_INFO}</li>
-                                                <li>
-                                                    ${list.OP_COUNT} 개
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <span class="price">
-
-																<strong>15,000</strong>원
-
-
-											</span>
+                        </c:if>
+                        <c:if test="${vs.index != 0}">
+                            <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
+                                <div class="order-list">
+                                <dl>
+                                <dt>
+                                    <div class="date">
+                                        <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                     </div>
-                                </a>
+                                    <div class="abs">
+                                        <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    </div>
+                                </dt>
+                            </c:if>
+                        </c:if>
+                        <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
+                        <!-- 가장최근주문 1건, 최대 10개 상품 -->
+                        <dd>
+                            <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                <input type="hidden" name="slitmCd" value="2137807436">
+                                <span class="img">
+                                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                            </span>
+                                <div class="box">
+                                    <c:choose>
+                                        <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
+                                                        <span class="state red">
+                                                                    ${odlist.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                <div class="btngroup">
+                                                        </em>
+                                                        </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                                        <span class="state sky">
+                                                                 ${odlist.ORDER_STATUS}
+                                                        <em class="color-999">
 
-                                    <!-- 20180626_특화배송조유진 -->
-                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                        <button class="btn btn-linelgray small30" type="button" onclick="openCnslAcptPup('20220513295854','1','exch');" ><span>주문취소</span></button>
-                                    </c:if>
-                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}" >
-                                    <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-                                    </c:if>
-                                    <input type="hidden" name="copnStlmFixYn" value="" />
+                                                        </em>
+                                                        </span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="tit"> ${odlist.PRODUCT_NAME}</span>
+                                    <div class="info">
+                                        <ul>
+                                            <li>${odlist.PRODUCT_INFO}</li>
+                                            <li>
+                                                    ${odlist.OP_COUNT} 개
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
                                 </div>
+                            </a>
 
-                            </dd>
-
-
-
-                        </dl>
-                        <!-- // 결제완료 -->
-
-                    </div>
+                            <div class="btngroup">
+                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                    <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
+                                </c:if>
+                                <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
+                                <input type="hidden" name="copnStlmFixYn" value="" />
+                            </div>
+                        </dd>
+                        <c:if test="${vs.index != 0 or vs.last}">
+                            <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
+                                </dl>
+                                </div>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${vs.index == 0 and !vs.last}">
+                            </dl>
+                            </div>
+                        </c:if>
                     </c:forEach>
                     <c:if test="${list.size() == 0}">
                         <div class="nodata">
@@ -221,7 +228,7 @@
 
 
                     <h3 class="title22">
-                        찜
+                        최근 상담내역
                         <div class="btngroup abs">
                             <a href="/p/mpc/sltdItemList.do" class="btn atext" onclick="gaTagging(this, '', '', '');"
                                ga-custom-name="마이페이지" ga-custom-position="찜한 상품" ga-custom-creative="전체보기"
@@ -247,3 +254,31 @@
         </div>
     </div>
 </main>
+<%--<script>--%>
+<%--    function orderCancel(productSeq) {--%>
+<%--        $.ajax({--%>
+<%--            url: "mypageOrderCancel/" + ${productSeq},--%>
+<%--            method: "get", // 요청방식은 post--%>
+<%--            // beforeSend: function(xhr) {--%>
+<%--            //     xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)--%>
+<%--            // },--%>
+<%--            success: function (result) {--%>
+<%--                if (result === "1") {--%>
+<%--                    // 비밀번호 입력 상단부 숨기고, 회원정보 수정 폼 보여주기--%>
+<%--                    document.getElementById("headerSection").style.display = "none";--%>
+<%--                    document.getElementById("bottomSection").style.display = "";--%>
+<%--                } else {--%>
+<%--                    // 비밀번호가 회원 정보와 일치하지 않는 경우 초기화 후 alert창 띄워주기--%>
+<%--                    $("div#divPassword").addClass("failed");--%>
+<%--                    $("i#alterPasswordIcon").addClass("error");--%>
+<%--                    $("span#alterPassword").text("비밀번호가 맞지 않습니다. 다시 확인하여 입력해주세요").show();--%>
+<%--                    //alert("비밀번호를 입력해 주세요.");--%>
+<%--                    $("input[name='pwd']").focus();--%>
+<%--                    $('#inputpwd').val('');--%>
+<%--                }--%>
+<%--            }, error: function (error) {--%>
+<%--                alert("AJAX요청 실패 : 에러코드=" + error.status); // status 에러확인--%>
+<%--            }--%>
+<%--        })--%>
+<%--    }--%>
+<%--</script>--%>

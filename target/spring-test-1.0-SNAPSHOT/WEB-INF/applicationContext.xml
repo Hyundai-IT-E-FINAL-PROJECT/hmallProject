@@ -40,6 +40,7 @@
     </bean>
 
     <mybatis-spring:scan base-package="org.team2.mapper"/>
+
     <context:component-scan base-package="org.team2"/>
 
 </beans>

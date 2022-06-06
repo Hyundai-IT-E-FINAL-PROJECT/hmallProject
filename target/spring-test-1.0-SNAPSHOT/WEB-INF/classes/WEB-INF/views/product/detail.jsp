@@ -9,7 +9,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% DecimalFormat decFormatdecFormat = new DecimalFormat("###,###"); %>
 <div class="wrap product-detail">
     <!-- 브랜드 검색 : 추천 브랜드  -->
     <div class="layer-popup brand" style="display:none;">
@@ -855,7 +854,7 @@
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:forEach>
+                                            </c:forEach >
                                         </ul>
                                     </div>
                                 </div>
@@ -912,7 +911,7 @@
                                     <!-- // .customer-use-info -->
                                 </div>
                             </div>
-ㅅ
+                            ㅅ
                             <div class="right-info">
                                 <div data-viewercontent="" class="">
                                     <p class="guide-txt">마우스 휠을 움직이면 상품 이미지를 더욱 상세히 보실 수 있습니다.</p>
@@ -926,7 +925,8 @@
                                     <input type="hidden" name="sellPrc" value="29900">
                                     <input type="hidden" name="dluMaxBuyQty" value="99">
                                     <input type="hidden" name="sectId" value="2731643">
-                                    <input type="hidden" name="slitmNm" value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )">
+                                    <input type="hidden" name="slitmNm"
+                                           value="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )">
                                     <input type="hidden" name="uitmCombYn" value="N">
                                     <input type="hidden" name="uitmChocPossYn" value="Y">
                                     <input type="hidden" name="sdlvcVenMinStlmAmt" value="">
@@ -1016,52 +1016,88 @@
                                             }
                                         </script>
                                     </div>
-                                    <div class="pdprice">
+                                    <c:choose>
+                                        <c:when test="${productVO.coupon_ratio == 0}">
+                                            <div class="pdprice">
                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                            <em class="rate" aria-label="할인율">3%</em>
                                         <p class="discount" aria-label="할인가">
-                                            <em id="product-discount">
-                                                <fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/>
-                                            </em>
-                                            <b>원</b>
-                                            <a href="#tooltipDiscount" data-modules-tooltip=""><i
-                                                    class="icon que-mark"></i></a>
+                                            <em class="product-discount">${productVO.product_cost}</em><b>원</b>
                                         </p>
-                                            <del class="normal" aria-label="정상가">
-                                                                                            <em>
-                                                <fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/>
-                                            </em>
-                                            <b>원</b>
-                                            </del>
                                     </span>
-                                        <div class="tooltip-box" id="tooltipDiscount">
-                                            <div class="thead">
-                                                <p class="tit">할인내역</p>
+                                                <div class="tooltip-box" id="tooltipDiscount">
+                                                    <div class="thead">
+                                                        <p class="tit">할인내역</p>
+                                                    </div>
+                                                    <dl class="cost-wrap">
+                                                        <dt>판매가</dt>
+                                                        <dd>
+                                                            <span class="enroll-price">${productVO.product_cost}<em>원</em></span>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="sumcost-wrap">
+                                                        <dt>혜택가</dt>
+                                                        <dd>
+                                                            <span class="sum-cost">${productVO.product_cost}<em>원</em></span>
+                                                            <p class="saleprice-per">
+                                                                0
+                                                                <em>원 할인</em>
+                                                            </p>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
                                             </div>
-                                            <dl class="cost-wrap">
-                                                <dt>판매가</dt>
-                                                <dd>
-                                                    <span class="enroll-price">30,900<em>원</em></span>
-                                                </dd>
-                                                <dt class="sale-name">TV방송할인</dt>
-                                                <dd>
-                                                    <span class="enroll-price">1,000<em>원</em></span>
-                                                </dd>
-                                            </dl>
-                                            <dl class="sumcost-wrap">
-                                                <dt>혜택가</dt>
-                                                <dd>
-                                                    <span class="sum-cost">29,900<em>원</em></span>
-                                                    <p class="saleprice-per">
-                                                        1,000
-                                                        <em>원 할인</em>
+                                        </c:when>
+                                        <c:when test="${productVO.coupon_ratio != 0}">
+                                            <div class="pdprice">
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <em class="rate" aria-label="할인율">${productVO.coupon_ratio}%</em>
+                                                    <p class="discount" aria-label="할인가">
+                                                        <em class="product-discount">
+                                                            <fmt:formatNumber value="${productVO.discounted_cost}"
+                                                                              pattern="#,###"/>
+                                                        </em>
+                                                        <b>원</b>
+                                                        <a href="#tooltipDiscount" data-modules-tooltip=""><i
+                                                                class="icon que-mark"></i></a>
                                                     </p>
-                                                </dd>
-                                            </dl>
-                                            <button class="btn-close"><i class="icon"></i><span class="hiding">닫기</span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                                        <del class="normal" aria-label="정상가">
+                                                                                                        <em>
+                                                            <fmt:formatNumber value="${productVO.product_cost}"
+                                                                              pattern="#,###"/>
+                                                        </em>
+                                                        <b>원</b>
+                                                        </del>
+                                                    </span>
+                                                <div class="tooltip-box" id="tooltipDiscount">
+                                                    <div class="thead">
+                                                        <p class="tit">할인내역</p>
+                                                    </div>
+                                                    <dl class="cost-wrap">
+                                                        <dt>판매가</dt>
+                                                        <dd>
+                                                            <span class="enroll-price">30,900<em>원</em></span>
+                                                        </dd>
+                                                        <dt class="sale-name">TV방송할인</dt>
+                                                        <dd>
+                                                            <span class="enroll-price">1,000<em>원</em></span>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="sumcost-wrap">
+                                                        <dt>혜택가</dt>
+                                                        <dd>
+                                                            <span class="sum-cost">29,900<em>원</em></span>
+                                                            <p class="saleprice-per">
+                                                                1,000
+                                                                <em>원 할인</em>
+                                                            </p>
+                                                        </dd>
+                                                    </dl>
+                                                    <button class="btn-close"><i class="icon"></i><span class="hiding">닫기</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                    </c:choose>
                                     <div class="box-type">
                                         <dl class="inf-reward">
                                             <dt>
@@ -1362,7 +1398,8 @@
 
                                     <div class="price-wrap">
                                         <p class="total-price">
-                                            <strong><fmt:formatNumber value="${productVO.product_cost}" pattern="#,###"/></strong>원
+                                            <strong><fmt:formatNumber value="${productVO.discounted_cost}"
+                                                                      pattern="#,###"/></strong>원
                                         </p>
                                     </div>
                                 </div>
@@ -2540,7 +2577,7 @@
 
                                                             <p>&nbsp;</p>
                                                             <p>
-<%--                                                                <img src="http://image.hyundaihmall.com/CO/EDITOR/20210302/140909557/26s1w.jpg">--%>
+                                                                <%--                                                                <img src="http://image.hyundaihmall.com/CO/EDITOR/20210302/140909557/26s1w.jpg">--%>
                                                                 ${productVO.product_detail}
                                                             </p>
                                                             <p>&nbsp;</p>
@@ -2573,7 +2610,7 @@
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;" tabindex="-1">
                                                                         <img src="/resources/i"
-                                                                        onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
+                                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
                                                                     </a>
                                                                 </div>
                                                             </div>

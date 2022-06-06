@@ -5,13 +5,12 @@ import oracle.ucp.proxy.annotation.Post;
 import org.json.JSONObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.BasketVO;
-import org.team2.domain.CouponVO;
-import org.team2.domain.OrderVO;
-import org.team2.domain.UserVO;
+import org.team2.domain.*;
 import org.team2.service.BasketService;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
@@ -59,7 +58,9 @@ public class OrderController {
         map.put("user_seq", Long.valueOf(principal.getName()));
         BasketVO directBasket=basketService.directBuy(map);
 
+        AddressVO basicAddress=userService.selectBasicAddress(Long.valueOf(principal.getName()));
         log.info(directBasket);
+        log.info(basicAddress);
 
         //예치금, 적립금도 불러오기
         Long user_seq=Long.valueOf(principal.getName());
@@ -70,6 +71,7 @@ public class OrderController {
         mav.addObject("directBasket",directBasket);
         mav.addObject("user_seq", user_seq);
         mav.addObject("couponList", couponList);
+        mav.addObject("basicAddress",basicAddress);
         mav.addObject("userPoint", user.getUser_point());
         mav.addObject("depositPoint",user.getUser_deposit());
         mav.addObject("cssFileList", styleFileList);
@@ -150,12 +152,22 @@ public class OrderController {
 //
 //
 //    }
+        @Transactional
         @PostMapping("orderComplete")
-        public String sendOrderData(@ModelAttribute("vo") OrderVO vo, Model model) throws Exception {
+        public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO, @ModelAttribute OpVO opVO,  Principal principal) throws Exception {
             log.info("데이터 이동 확인");
-            log.info(vo.toString());
+
+            orderVO.setUser_seq(Integer.parseInt(principal.getName()));
+            log.info(orderVO.toString());
+            log.info(productVO.toString());
             try{
-                orderService.insert(vo);
+
+                orderService.insert(orderVO);
+                log.info(orderVO.getNo());
+
+
+                // op_seq 반환한 값으로 href.location=~/op_seq로 결제한 정보 다 가져오기
+
             }catch (Exception e){
                 e.printStackTrace();
             }
