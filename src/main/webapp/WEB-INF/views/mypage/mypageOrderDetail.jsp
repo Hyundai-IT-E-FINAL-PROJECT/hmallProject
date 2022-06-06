@@ -8,19 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <main class="cmain mypage" role="main" id="mainContents">
+    <sec:authentication property="principal" var="pinfo" />
     <div class="container">
         <div class="gird-l2x">
             <!-- 비회원 주문조회 시 LNB영역 숨김 -->
             <%@ include file="mypageSide.jsp" %>
 
-            <c:forEach items="${list}" var="list">
+
             <div class="contents">
                 <div class="mypage-order-wrap">
                     <h3 class="title22">상세 주문 내역</h3>
 
+                    <c:set var="totalCost" value="0"/>
+                    <c:forEach items="${list}" var="list" varStatus="vs">
                     <!-- 주문접수/추가구상품 있는 경우 -->
+                        <c:if test="${vs.index == 0}">
                     <div class="order-list">
                         <dl>
                             <dt>
@@ -34,54 +39,9 @@
                                 </div>
 
                             </dt>
-
-
-                            <!--상품 및 배송지 정보 그룹-->
-
-
-                            <!--상품정보 테이블 컨테이너-->
-
-
-                            <!-- 주소정보 시작 -------------------------------------------------------- -->
-
-
-
-
-
-
-                            <!-- 주소정보 종료 -------------------------------------------------------- -->
-
-
-
-                            <!--  2020.07.31 박민성 묶음상품 조건 추가  -->
-
-
-                            <!-- 상품정보 시작 -------------------------------------------------------- -->
-
+                            </c:if>
                             <input type="hidden" name="lastOrdStatGbcdNm" value="배송완료">
 
-
-
-
-
-
-                            <!-- 20201230 날짜 조건추가  -->
-
-
-
-                            <!-- 배송비 변경 버튼 제어 조건  -->
-                            <!-- 묶음 상품일 경우 배송비비용발생번호와 같은 상품들끼리 카운트 및 추가 배송비를 합한다. -->
-
-
-
-
-
-
-
-                            <!-- 배송사 코드  -->
-
-
-                            <!-- 상품정보 세팅 -->
                             <dd class="btn-col2"><!-- 버튼 1개일경우 class="btn-col" 추가, 버튼 2개 이상일경우 class="btn-col2" 추가 -->
                                 <a href="javascript:goItemDetail('2137807436');">
                                     <span class="img"><img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&amp;AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')"></span>
@@ -118,7 +78,8 @@
                                         </div>
 
                                         <span class="price">
-                                            <strong>${list.ORDER_TOTAL_COST}</strong>원
+                                            <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
+                                            <c:set var="totalCost" value="${totalCost + list.PRODUCT_COST * list.OP_COUNT}"/>
                                         </span>
                                     </div>
                                 </a>
@@ -130,19 +91,22 @@
 <%--                                    openItemEvalPopup('2137807436', '00008', '20220513295854')--%>
                                 </div>
                             </dd> <!-- //.btn-col2 -->
-                        </dl>
-                    </div> <!-- //.order-list -->
+                        <c:if test="${vs.last}">
+                            </dl>
+                        </div> <!-- //.order-list -->
+                        </c:if>
+                    </c:forEach>
 
                     <h3 class="title22">배송지</h3>
 
                     <div class="address-box" data-dstnseq="0000000002">
                         <div class="top-box">
 
-                            <p class="name" name="rcvCustNm">${list.USER_ADDRESS_NAME}</p>
+                            <p class="name" name="rcvCustNm">${pinfo.userVO.user_name}</p>
                             <!-- 일반주소 -->
-                            <p class="add" name="dstnAdr">${list.USER_ADDRESS_ADDRESS1} ${list.USER_ADDRESS_ADDRESS2}<br>${list.USER_ADDRESS_ADDRESS3}</p>
+                            <p class="add" name="dstnAdr">${list[0].ORDER_DELIVERY}</p>
 
-                            <p class="tel" name="hpNo">${list.USER_ADDRESS_PHONE_NUM}</p>
+                            <p class="tel" name="hpNo">${list[0].ORDER_USER_NUMBER}</p>
                             <!-- 전화번호2 추가[2021.01.06] -->
 
                             <p class="tel" name="telNo"></p>
@@ -151,7 +115,7 @@
                         <div class="bottom-box">
                             <dl>
                                 <dt>주문자명</dt>
-                                <dd name="ordCustNm">${list.ORDER_USER_NAME}</dd>
+                                <dd name="ordCustNm">${list[0].ORDER_USER_NAME}</dd>
                             </dl>
                             <dl>
                                 <dt>배송메모</dt>
@@ -169,7 +133,7 @@
                                 <dl class="between top">
                                     <dt>총 주문금액</dt>
                                     <dd>
-                                        <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
+                                        <strong><c:out value="${totalCost}"/></strong>원
 
 
                                     </dd>
@@ -179,7 +143,7 @@
                                     <dt>주문금액</dt>
                                     <dd>
 
-                                        <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
+                                        <strong><c:out value="${totalCost}"/></strong>원
 
                                     </dd>
                                 </dl>
@@ -191,7 +155,7 @@
                                 <span class="minus-icon"><i class="icon"></i></span>
                                 <dl class="between top">
                                     <dt>할인금액</dt>
-                                    <dd><strong>${list.PRODUCT_COST * list.OP_COUNT - list.ORDER_TOTAL_COST}</strong>원</dd>
+                                    <dd><strong><c:out value="${totalCost - list[0].ORDER_TOTAL_COST}"/> </strong>원</dd>
                                 </dl>
 
                             </li>
@@ -200,14 +164,14 @@
                                 <dl class="between top">
                                     <dt>잔여 결제 금액</dt>
                                     <dd class="result">
-                                        <strong>${list.ORDER_TOTAL_COST}</strong>원
+                                        <strong>${list[0].ORDER_TOTAL_COST}</strong>원
                                     </dd>
                                 </dl>
 
 
                                 <dl class="between">
                                     <dt>결제하신 금액</dt>
-                                    <dd><strong>${list.ORDER_TOTAL_COST}</strong>원</dd>
+                                    <dd><strong>${list[0].ORDER_TOTAL_COST}</strong>원</dd>
                                 </dl>
 
                                 <dl class="between">
@@ -274,58 +238,12 @@
 
                                 <dl class="between">
                                     <dt>Point</dt>
-                                    <dd><strong>${list.ORDER_POINT}</strong>원</dd>
+                                    <dd><strong>${list[0].ORDER_POINT}</strong>원</dd>
                                 </dl>
                             </li>
 
                         </ul>
-                    </div> <!-- //.pay-info-box -->
-
-
-
-
-<%--                    <h3 class="title22">결제/취소 내역--%>
-<%--                        <div class="btngroup abs">--%>
-
-<%--                            <button id="btnCashReceipt" class="btn btn-linelgray small34"  data-delyhopeyn="자진발급신청가능"><span>현금영수증 조회</span></button>--%>
-<%--&lt;%&ndash;                            onclick="openCashRcptPrntInfPop(&quot;2022.05.13&quot;,&quot;2022.05.13&quot;,&quot;&quot;,&quot;&quot;,&quot;20220513295854&quot;,&quot;소득공제&quot;)"&ndash;%&gt;--%>
-
-
-
-<%--                        </div>--%>
-<%--                    </h3>--%>
-
-
-
-
-<%--                    <div class="history-box">--%>
-<%--                        <p class="ctypo15 bold">[결제] 2022. 05. 13</p>--%>
-<%--                        <ul>--%>
-
-<%--                            <li>--%>
-<%--                                <div class="tit-wrap">무통장입금&nbsp;[입금계좌 KB국민은행 : 130290-71-205907]</div>--%>
-<%--                                <div class="txt-wrap"><strong>15,000</strong>원</div>--%>
-<%--                            </li>--%>
-<%--                --%>
-<%--                            <!-- TODO 곽희섭 20170328 통합포인트 추가 시작 -->--%>
-
-<%--                        </ul>--%>
-<%--                    </div>--%>
-
-
-
-                    <!-- [2020.12.09] 기획에서 서비스 안내 영역 제거 요청
-                    <div class="guide-box">
-                        <h4 class="ctypo18">서비스 안내</h4>
-                        <ul class="dotlist">
-                            <li>반품, 교환 신청은 배송 완료 후 7일 이내에만 가능합니다. 16:00 이전 접수 문의는 당일 처리/답변을 원칙으로 하며, 16:00이후 접수문의는 익일 처리됩니다.</li>
-                            <li>반품 후 환불은 결제 수단에 따라 회수완료 시점으로부터 최대 7일 내 처리됩니다.</li>
-                            <li>현금결제수단(무통장, 실시간 계좌이체 등) 환불은 예치금으로 환불됩니다.</li>
-                            <li>주말이나 휴일 접수건의 경우 월요일 또는 익영업일에 처리 되오니 시간 양해 부탁드립니다.</li>
-                            <li>취소 신청은 주문 완료 후 주문 당일 24시까지만 가능합니다.</li>
-                        </ul>
                     </div>
-                    -->
 
                     <div class="guide-box">
                         <h4 class="ctypo18">청약 철회 청구 안내</h4>
@@ -368,5 +286,4 @@
             </div> <!-- // .contents -->
         </div> <!-- //.gird-l2x -->
     </div> <!-- //.container -->
-    </c:forEach>
 </main>

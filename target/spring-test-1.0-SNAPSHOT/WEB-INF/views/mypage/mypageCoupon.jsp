@@ -20,7 +20,7 @@
 
             <c:set var = "sum" value = "0" />
             <c:forEach var="list" items="${list}">
-                <c:if test="${list.lefttime <= 30}">
+                <c:if test="${list.LEFTTIME <= 30}">
                     <c:set var= "sum" value="${sum + 1}"/>
                 </c:if>
             </c:forEach>
@@ -77,7 +77,7 @@
                                             <li>기간: <fmt:formatDate value="${list.CREATED_AT}"/> ~ <fmt:formatDate value="${list.EXPIRED_DATE}"/> </li>
                                         </ul>
                                         <p class="type">
-                                            남은기간 : ${list.lefttime}일
+                                            남은기간 : ${list.LEFTTIME}일
                                         </p>
 
                                         <button class="btn btn-linelgray small30 abs" data-modules-modal="target:#applicable-item;" onclick="doSearchSlitmPop('02683299');return false;"><span>적용상품보기</span></button><!-- 2020-09-28 마크업 추가 -->

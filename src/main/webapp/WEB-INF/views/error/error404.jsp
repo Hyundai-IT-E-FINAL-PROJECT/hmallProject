@@ -18,7 +18,7 @@
             <strong>페이지를 찾을 수 없습니다.</strong>
             <p>해당 페이지 경로가 변경되었거나,<br>URL주소가 바르게 입력되어 있는지 다시 확인해주세요.</p>
           </div>
-          <button class="btn btn-default medium" onclick="location.href='/p/index.do'"><span>홈으로 이동</span></button>
+          <button class="btn btn-default medium" onclick="location.href='/'"><span>홈으로 이동</span></button>
         </div>
       </div>
       <!-- // 본문 컨텐츠 영역 끝 -->
