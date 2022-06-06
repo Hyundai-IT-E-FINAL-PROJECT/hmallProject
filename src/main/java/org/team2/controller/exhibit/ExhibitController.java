@@ -41,7 +41,6 @@ public class ExhibitController {
         mav.setViewName("exhibition.euro_exhibit");
         return mav;
     }
-
     @ResponseBody
     @RequestMapping("sort_exhibit")
     public ResponseEntity<List<Map<String, Object>>> sort_exhibit(@RequestParam("exhibit_num") String exhibit_num, @RequestParam("sort_value") String sort_value) throws Exception{
