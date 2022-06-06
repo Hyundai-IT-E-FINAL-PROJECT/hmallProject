@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,8 +80,9 @@ public class UserController {
         log.info(addressVO.toString());
         //log.info("잘된다!");
         try {
-            log.info(userVO.getNo());
+            log.info("컨트롤러 :"+ userVO.getNo());
             userService.insertSignup(userVO);
+            log.info("컨트롤러 :"+ userVO.getNo());
             addressService.insertAddress(addressVO, userVO);
             return "redirect:/";
         } catch (Exception e) {
