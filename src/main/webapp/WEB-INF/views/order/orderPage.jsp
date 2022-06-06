@@ -5,7 +5,7 @@
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="/resources/js/addressapi.js"></script>
 <%--    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>--%>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<%--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>--%>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 <%--    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>--%>
 </head>
@@ -1136,7 +1136,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 alert("주문이 성공적으로 등록되었습니다.");
                 //결제완료 페이지로 넘어가야함
                 //pathVariable에 값 넘겨줌으로써 결제 화면 내역 보이게 하기!
-                //location.href='/order/orderComplete';
+                //주문완료 내역 보여주기
+                //location.href='/order/orderComplete?op_seq=${op_seq}';
             },
             error: function (request,status,error) {
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -1342,30 +1343,4 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         // }
         cardCalculate();
     }
-</script>
-<script type="text/javascript">
-    // function checkPaymentMethod(){
-    //     //TODO: 결제수단에 따른 결제 페이지 보여주기
-    //     $('input:radio[name=paymentMethod]').is(':checked');
-    //     //결제 수단: 1: 신용카드, 2: 무통장입금
-    //     console.log($("input:radio[name='paymentMethod']").val());
-    // }
-    // $("input[type=radio]").change(function(){
-    //     console.log($(this).val());
-    //     console.log($(this).attr("id"));
-    // })
-    // function openAddressListPup(){
-    //     var url="/"
-    // }
-</script>
-<script type="text/javascript">
-    //    var totalCost=0;
-    //
-    //    var discount1=$("input[name='totalUserPoint']").val();
-    //    var discount2=$("input[name='totalDepositPoint']").val();
-    //
-    //    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
-    //    totalCost=totalCost-parseInt(discount1)-parseInt(discount2);
-    //
-    //    $("#totalCost1").val(totalCost);
 </script>

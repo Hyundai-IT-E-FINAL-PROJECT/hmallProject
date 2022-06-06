@@ -5,6 +5,8 @@ import oracle.ucp.proxy.annotation.Post;
 import org.json.JSONObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -150,14 +152,22 @@ public class OrderController {
 //
 //
 //    }
+        @Transactional
         @PostMapping("orderComplete")
-        public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO, Principal principal) throws Exception {
+        public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO, @ModelAttribute OpVO opVO,  Principal principal) throws Exception {
             log.info("데이터 이동 확인");
-            orderVO.setUser_seq(Long.valueOf(principal.getName()));
+
+            orderVO.setUser_seq(Integer.parseInt(principal.getName()));
             log.info(orderVO.toString());
             log.info(productVO.toString());
             try{
-                orderService.insert(orderVO, productVO);
+
+                orderService.insert(orderVO);
+                log.info(orderVO.getNo());
+
+
+                // op_seq 반환한 값으로 href.location=~/op_seq로 결제한 정보 다 가져오기
+
             }catch (Exception e){
                 e.printStackTrace();
             }

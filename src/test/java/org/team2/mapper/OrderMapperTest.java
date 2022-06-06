@@ -60,20 +60,7 @@ public class OrderMapperTest {
 //        mapper.insert(orderVO);
 //    }
 
-    @Test
-    public void testUpdate(){
-        log.info("update 수행중..");
-        Long targetSeq=8L;
-        OrderVO orderVO=new OrderVO();
-        orderVO.setUserNumber("011");
-        orderVO.setInvoice(20L);
-        orderVO.setDelivery("수정");
-        orderVO.setStatus("complete");
-        orderVO.setSeq(targetSeq);
-        orderVO.setPoint(200L);
 
-        mapper.updateOrder(orderVO);
-    }
 
     @Test
     public void testDelete(){
@@ -84,48 +71,6 @@ public class OrderMapperTest {
     private Connection conn;
 
     //order_pack.proc_order_select_all 불러오기 (O)
-    @Test
-    public void testSelect(){
-        log.info("test Select 중");
-
-        String runSp="{call pack_order.proc_order_select_all(?)}";
-        conn=null;
-        ArrayList<OrderVO> list=new ArrayList<>();
-
-        try{
-            conn=dataSource.getConnection();
-            CallableStatement callableStatement=conn.prepareCall(runSp);
-            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
-            callableStatement.execute();
-
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
-
-            while(resultSet.next()){
-                OrderVO order=new OrderVO();
-                order.setPoint(resultSet.getLong("order_point"));
-                order.setSeq(resultSet.getLong("order_seq"));
-                order.setStatus(resultSet.getString("order_status"));
-                order.setDelivery(resultSet.getString("order_delivery"));
-                order.setUserName(resultSet.getString("order_user_name"));
-                order.setUserNumber(resultSet.getString("order_user_number"));
-                order.setUser_seq(resultSet.getLong("user_seq"));
-                order.setCreatedAt(resultSet.getDate("created_at"));
-                order.setUpdatedAt(resultSet.getDate("updated_at"));
-                order.setInvoice(resultSet.getLong("order_invoice"));
-
-                list.add(order);
-            }
-            for(OrderVO vo:list){
-                log.info(vo);
-            }
-
-            callableStatement.close();
-            conn.close();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     //pack_order.proc_order_insert test success
     @Test
@@ -204,53 +149,53 @@ public class OrderMapperTest {
 
     }
 
-    @Test
-    public void testSelectOne(){
-
-
-        log.info("test Select One 중");
-
-        String runSp="{call pack_order.PROC_ORDER_SELECT(?,?)}";
-        conn=null;
-        ArrayList<OrderVO> list=new ArrayList<>();
-
-        try{
-            conn=dataSource.getConnection();
-            CallableStatement callableStatement=conn.prepareCall(runSp);
-
-            callableStatement.setLong(1,19);
-            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
-            callableStatement.execute();
-
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
-
-            while(resultSet.next()){
-                OrderVO order=new OrderVO();
-                order.setPoint(resultSet.getLong("order_point"));
-                order.setSeq(resultSet.getLong("order_seq"));
-                order.setStatus(resultSet.getString("order_status"));
-                order.setDelivery(resultSet.getString("order_delivery"));
-                order.setUserName(resultSet.getString("order_user_name"));
-                order.setUserNumber(resultSet.getString("order_user_number"));
-                order.setUser_seq(resultSet.getLong("user_seq"));
-                order.setCreatedAt(resultSet.getDate("created_at"));
-                order.setUpdatedAt(resultSet.getDate("updated_at"));
-                order.setInvoice(resultSet.getLong("order_invoice"));
-
-                list.add(order);
-            }
-            for(OrderVO vo:list){
-                log.info(vo);
-            }
-
-            log.info("test 성공");
-            callableStatement.close();
-            conn.close();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void testSelectOne(){
+//
+//
+//        log.info("test Select One 중");
+//
+//        String runSp="{call pack_order.PROC_ORDER_SELECT(?,?)}";
+//        conn=null;
+//        ArrayList<OrderVO> list=new ArrayList<>();
+//
+//        try{
+//            conn=dataSource.getConnection();
+//            CallableStatement callableStatement=conn.prepareCall(runSp);
+//
+//            callableStatement.setLong(1,19);
+//            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+//            callableStatement.execute();
+//
+//            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+//
+//            while(resultSet.next()){
+//                OrderVO order=new OrderVO();
+//                order.setPoint(resultSet.getLong("order_point"));
+////                order.setSeq(resultSet.getLong("order_seq"));
+//                order.setStatus(resultSet.getString("order_status"));
+//                order.setDelivery(resultSet.getString("order_delivery"));
+//                order.setUserName(resultSet.getString("order_user_name"));
+//                order.setUserNumber(resultSet.getString("order_user_number"));
+//                order.setUser_seq(resultSet.getLong("user_seq"));
+//                order.setCreatedAt(resultSet.getDate("created_at"));
+//                order.setUpdatedAt(resultSet.getDate("updated_at"));
+//                order.setInvoice(resultSet.getLong("order_invoice"));
+//
+//                list.add(order);
+//            }
+//            for(OrderVO vo:list){
+//                log.info(vo);
+//            }
+//
+//            log.info("test 성공");
+//            callableStatement.close();
+//            conn.close();
+//
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

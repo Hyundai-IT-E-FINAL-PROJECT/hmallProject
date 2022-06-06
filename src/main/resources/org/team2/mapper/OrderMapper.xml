@@ -36,15 +36,53 @@
 
     </select>
 
-    <insert id="insert" statementType="CALLABLE">
+<!--    op_seq값 반환-->
+    <insert id="insert" parameterType="org.team2.domain.OrderVO">
 
-        {
-            call proc_order_process(#{OrderVO.user_seq}, #{OrderVO.point}, #{OrderVO.status},
-          #{OrderVO.userName}, #{OrderVO.userNumber}, #{OrderVO.delivery}, #{OrderVO.invoice},
-          #{OrderVO.totalCost}, #{OrderVO.message}, #{ProductVO.product_seq}, 1)
-        }
+        INSERT INTO tbl_order(
+            order_seq,
+            user_seq,
+            order_point,
+            order_status,
+            order_user_name,
+            order_user_number,
+            order_delivery,
+            order_invoice,
+            order_total_cost,
+            order_message,
+            created_at,
+            updated_at
+        ) values(
+            #{no},
+            #{OrderVO.user_seq},
+            #{OrderVO.point},
+            #{OrderVO.status},
+            #{OrderVO.userName},
+            #{OrderVO.userNumber},
+            #{OrderVO.delivery},
+            #{OrderVO.invoice},
+            #{OrderVO.totalCost},
+            #{OrderVO.message},
+            sysdate,
+            sysdate
+        )
+
+        <selectKey keyProperty="no" resultType="long" order="BEFORE">
+            select seq_order.nextval from dual
+        </selectKey>
 
 
+
+    </insert>
+
+    <insert id="insertOp">
+
+        <selectKey keyProperty="op_seq" resultType="int" order="BEFORE">
+            select seq_op.nextval from dual
+        </selectKey>
+
+        insert into tbl_op(op_seq,order_seq, product_seq, op_count)
+        values(#{op_seq}, #{OpVO.order_seq}, #{ProductVO.product_seq}, 1)
     </insert>
 
     <delete id="delete" statementType="CALLABLE">
