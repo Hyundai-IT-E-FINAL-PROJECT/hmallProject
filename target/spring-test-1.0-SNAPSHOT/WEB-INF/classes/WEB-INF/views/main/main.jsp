@@ -2614,32 +2614,32 @@
                                     <div class="slick-track">
                                         <div class="slick-slide" style="width: 711px;">
                                             <div>
-                                                <div class="items_main"
-                                                     style="width: 100%; vertical-align: top;">
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg"/>
-                                                </div>
+                                                <form id="hitForm" method="get" action="${contextPath}/exhibition/hit">
+                                                    <div class="items_main" style="width: 100%; vertical-align: top;">
+                                                        <input type="hidden" name="exhibit_num" value="3">
+                                                    </div>
+                                                </form>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg" onclick="exhibit_3()"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
                                             <div>
-                                                <div class="items_main"
-                                                     style="width: 100%; vertical-align: top;">
-                                                    <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                    <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg"/>
-                                                </div>
+                                                <form id="cosmeticForm" method="get" action="${contextPath}/exhibition/cosmetics">
+                                                    <div class="items_main" style="width: 100%; vertical-align: top;">
+                                                        <input type="hidden" name="exhibit_num" value="2">
+                                                    </div>
+                                                </form>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg" onclick="exhibit_2()"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;">
                                             <div>
-                                                <form id="euroForm" action="${contextPath}/exhibition/euro_exhibit" method="post">
+                                                <form id="euroForm" action="${contextPath}/exhibition/euro_exhibit" method="get">
                                                     <div class="items_main" style="width: 100%; vertical-align: top;">
                                                         <input type="hidden" name="exhibit_num" value="1">
-                                                        <!--클릭 시 연결 url // url미연결시 default 기획전매장으로 이동-->
-                                                        <input type="image" class="img_1"  src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg"/>
-                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                                     </div>
                                                 </form>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();"/>
                                             </div>
                                         </div>
                                     </div>
@@ -2683,16 +2683,17 @@
                             });
                         </script>
 
-<%--                        <script>--%>
-<%--                            function submit_form(){--%>
-<%--                                let myform = document.getElementById('euroForm');--%>
-<%--                                formData = new FormData(myform);--%>
-<%--                                fetch('${contextPath}/exhibition/euro_exhibit',{--%>
-<%--                                    method:'post',--%>
-<%--                                    body: myform--%>
-<%--                                });--%>
-<%--                            }--%>
-<%--                        </script>--%>
+                        <script>
+                            function exhibit_1(){
+                                document.getElementById('euroForm').submit();
+                            }
+                            function exhibit_2(){
+                                document.getElementById('cosmeticForm').submit();
+                            }
+                            function exhibit_3(){
+                                document.getElementById('hitForm').submit();
+                            }
+                        </script>
 
 
                         <script>

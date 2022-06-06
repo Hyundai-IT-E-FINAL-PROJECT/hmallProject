@@ -10,6 +10,7 @@
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <bean id="customUserDetailsService" class="org.team2.security.CustomUserDetailsService"/>
     <security:http>
+<!--        <security:csrf disabled="true"/>-->
         <security:intercept-url pattern="/user/all" access="permitAll"/>
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>

@@ -5,9 +5,11 @@
   Time: 12:11 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="contents">
@@ -441,13 +443,18 @@
                 </div>
                     <div class="list-sort-area line">
                         <div class="sortOption">
-                            <a href="javascript:;" class="active" onclick="fnSortChg('sect_disp');">매장전시순</a>
-                            <a href="javascript:;" onclick="fnSortChg('sale_cnt');">많이팔린순</a>
-                            <a href="javascript:;" onclick="fnSortChg('new_item');">최근등록순</a>
-                            <a href="javascript:;" id="low_costt" data-value="1" onclick="low_cost();">낮은가격순</a>
-                            <a href="javascript:;" onclick="fnSortChg('sale_cost_u');">높은가격순</a>
-                            <a href="javascript:;" onclick="fnSortChg('review_cnt');">상품평수순</a>
-                            <a href="javascript:;" onclick="fnSortChg('md_item');">MD추천순</a>
+                            <input type="hidden" id="exhibit_num_many" value="1">
+                            <input type="hidden" id="sort_value_many" value="sell_count desc">
+                            <a href="javascript:;" onclick="sort_p('sell_count');">많이팔린순</a>
+                            <input type="hidden" id="exhibit_num_date" value="1">
+                            <input type="hidden" id="sort_value_date" value="tp.created_at">
+                            <a href="javascript:;" onclick="sort_p('tp.created_at');">최근등록순</a>
+                            <input type="hidden" id="exhibit_num_low" value="1">
+                            <input type="hidden" id="sort_value_low" value="product_cost">
+                            <a href="javascript:;" onclick="sort_p('product_cost');">낮은가격순</a>
+                            <input type="hidden" id="exhibit_num_high" value="1">
+                            <input type="hidden" id="sort_value_high" value="product_cost desc">
+                            <a href="javascript:;" onclick="sort_p('product_cost desc');">높은가격순</a>
                         </div>
                         <div>
                             <img id="btnKakao" class="link-icon kakao" onclick="shareKakao();" src="${contextPath}/resources/img/exhibitions/kakao.png" width="25" height="25"></img>
@@ -462,9 +469,10 @@
                             </div>
                             <!--반복문으로 유로 컬렉션 관련 리스트 값 받아오기-->
                                 <div class="pdlist-wrap col4">
+                                    <div class="eu">
                                     <ul>
                                         <c:forEach items="${list}" var="euro" varStatus="status">
-                                            <c:if test="${euro.PRODUCT_BRAND eq 'ADIDAS'}">
+                                            <c:if test="${euro.PRODUCT_BRAND eq 'EURO'}">
                                                 <li class="pdthumb" ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                     <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
                                                         <div class="thumb">
@@ -482,9 +490,9 @@
                                                             </div>
                                                             <div class="pdinfo">
                                                                 <div class="benefits">
-                                                                    <span class="flag"><em class="color-ec5baa">TV쇼핑</em></span>
-                                                                    <span>무10</span>
-                                                                    <span>무료배송</span>
+                                                                    <span class="flag"><em class="color-ec5baa">등록일자 : <fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em></span>
+                                                                    <span>판매량</span>
+                                                                    <span>${euro.SELL_COUNT}</span>
                                                                 </div>
                                                                 <p class="like-count">
                                                             </div>
@@ -498,6 +506,7 @@
                                             </c:if>
                                         </c:forEach>
                                     </ul>
+                                    </div>
                                 </div>
                         </div>
 
@@ -509,9 +518,10 @@
                                 <a href="#" class="btn-list-top">TOP<i class="icon"></i></a>
                             </div>
                             <div class="pdlist-wrap col4">
+                                <div class="lio">
                                 <ul>
-                                    <c:forEach items="${list}" var="euro" varStatus="status">
-                                        <c:if test="${euro.PRODUCT_BRAND eq 'NIKE'}">
+                                    <c:forEach items="${list}" var="euro">
+                                        <c:if test="${euro.PRODUCT_BRAND eq 'LIOBELL'}">
                                             <li class="pdthumb " ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                 <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740678&amp;slitmCd=2141537482', this);">
                                                     <div class="thumb">
@@ -528,9 +538,9 @@
                                                         </div>
                                                         <div class="pdinfo">
                                                             <div class="benefits">
-                                                                <span class="flag"><em class="color-ec5baa">TV쇼핑</em></span>
-                                                                <span>무3</span>
-                                                                <span>무료배송</span>
+                                                                <span class="flag"><em class="color-ec5baa">등록일자 : <fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em></span>
+                                                                <span>판매량</span>
+                                                                <span>${euro.SELL_COUNT}</span>
                                                             </div>
                                                             <p class="like-count">
                                                             </p>
@@ -545,6 +555,7 @@
                                         </c:if>
                                     </c:forEach>
                                 </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -559,7 +570,16 @@
 <script >
 
     var csrfHeaderName = "${_csrf.headerName}";
-    var csrfTokenValue = "${_csrf.token}"
+    var csrfTokenValue = "${_csrf.token}";
+
+    function getFormatDate(date){
+        var year = date.getFullYear();              //yyyy
+        var month = (1 + date.getMonth());          //M
+        month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+        var day = date.getDate();                   //d
+        day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+        return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+    }
 
     function shareKakao() {
         // 사용할 앱의 JavaScript 키 설정
@@ -576,28 +596,142 @@
                 imageUrl: "${contextPath}/resources/img/exhibitions/mainImg_5.jpeg", // 콘텐츠 URL
                 link: {
                     mobileWebUrl: "http://localhost:8080/exhibition/euro_exhibit",
-                    webUrl: "http://localhost:8080/exhibition/euro_exhibit"
+                    webUrl: "http://localhost:8080/exhibition/euro_exhibit?exhibit_num=1"
                 }
             }
         });
     }
 
-    function low_cost(){
-        var exhibit_num = document.getElementById('low_costt').getAttribute('data-value');
-        console.log(exhibit_num);
-        console.log("낮은 가격순 정렬");
+    function sort_p(st){
+        console.log(st);
+        if(st === 'product_cost') {
+            var exhibit_num = document.getElementById('exhibit_num_low').value;
+            var sort_value = document.getElementById('sort_value_low').value;
+            console.log(sort_value);
+        }else if(st === 'tp.created_at'){
+            var exhibit_num = document.getElementById('exhibit_num_date').value;
+            var sort_value = document.getElementById('sort_value_date').value;
+            console.log(sort_value);
+        }else if(st === 'sell_count'){
+            var exhibit_num = document.getElementById('exhibit_num_many').value;
+            var sort_value = document.getElementById('sort_value_many').value;
+            console.log(sort_value);
+        }else{
+            var exhibit_num = document.getElementById('exhibit_num_high').value;
+            var sort_value = document.getElementById('sort_value_high').value;
+            console.log(sort_value);
+        }
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        $(".autoCate").removeClass("ui-active");
+        $('.eu ul li').remove();
+        $('.lio ul li').remove();
+        var a;
+
         $.ajax({
-            url:"${contextPath}/exhibition/lowCost_exhibit",
+            url:"${contextPath}/exhibition/sort_exhibit",
             method: "post",
-            data:{"exhibit_num":exhibit_num},
+            data:{"exhibit_num":exhibit_num, "sort_value":sort_value},
+            dataType:"json",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
             },
-            success: function (){
-                alert("버튼 눌림");
+            success: function (result){
+                console.log(result);
+
+                for(let pp of result) {
+
+                    var date = new Date(pp.CREATED_AT);
+                    date = getFormatDate(date);
+
+                    console.log(pp);
+                    console.log(pp.PRODUCT_NAME);
+                    console.log(pp.PRODUCT_COST);
+                    console.log(pp.PRODUCT_BRAND);
+                    console.log(pp.CREATED_AT);
+                    console.log(pp.SELL_COUNT);
+                    var pn = pp.PRODUCT_NAME;
+                    var pc = pp.PRODUCT_COST;
+                    var pb = pp.PRODUCT_BRAND;
+                    var ps = pp.SELL_COUNT;
+                    var pd = date;
+                    if (pb === 'EURO') {
+                        $(".eu ul ").append(
+                            `
+                            <li class="pdthumb">
+                                 <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
+                                            <div class="thumb">
+                                                <img src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" alt="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                <div class="ready">
+                                                </div>
+                                            </div>
+                                            <div class="figcaption">
+                                                  <div class="pdname" aria-label="유로컬렉션 22FW 휘메일 풀스킨 호리젠탈 밍크 베스트">` + pn + `</div>
+                                                  <div class="pdprice">
+                                                      <span class="rateprice" aria-label="정상가 가격">
+                                                          <p class="discount" aria-label="정상가"><em>`
+                            + pc +
+                            `</em>원</p>
+                                                      </span>
+                                                  </div>
+                                                 <div class="pdinfo">
+                                                     <div class="benefits">
+                                                           <span class="flag"><em class="color-ec5baa">등록일자 : ` + pd + `</em></span>
+                                                           <span>판매량</span>
+                                                           <span>` + ps + `</span>
+                                                     </div>
+                                                     <p class="like-count"></p>
+                                                 </div>
+                                            </div>
+                                 </a>
+                                 <a href="javascript:;" class="hoverview" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this , '_blank');"><i class="icon"></i>새창열기</a>
+                                 <div class="alimlike" data-slitmcd="2141175088" data-bsitmcd="2141175088">
+                                     <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','016479','','2141175088', event);"> <i class="icon"></i><span class="hiding">찜</span></a>
+                                 </div>
+                            </li>
+                        `
+                        )
+                    }else{
+                        $(".lio ul ").append(
+                            `
+                            <li class="pdthumb">
+                                 <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
+                                            <div class="thumb">
+                                                <img src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" alt="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                <div class="ready">
+                                                </div>
+                                            </div>
+                                            <div class="figcaption">
+                                                  <div class="pdname" aria-label="유로컬렉션 22FW 휘메일 풀스킨 호리젠탈 밍크 베스트">` + pn + `</div>
+                                                  <div class="pdprice">
+                                                      <span class="rateprice" aria-label="정상가 가격">
+                                                          <p class="discount" aria-label="정상가"><em>`
+                            + pc +
+                            `</em>원</p>
+                                                      </span>
+                                                  </div>
+                                                 <div class="pdinfo">
+                                                     <div class="benefits">
+                                                           <span class="flag"><em class="color-ec5baa">등록일자 : ` + pd + `</em></span>
+                                                           <span>판매량</span>
+                                                           <span>` + ps + `</span>
+                                                     </div>
+                                                     <p class="like-count"></p>
+                                                 </div>
+                                            </div>
+                                 </a>
+                                 <a href="javascript:;" class="hoverview" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this , '_blank');"><i class="icon"></i>새창열기</a>
+                                 <div class="alimlike" data-slitmcd="2141175088" data-bsitmcd="2141175088">
+                                     <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','016479','','2141175088', event);"> <i class="icon"></i><span class="hiding">찜</span></a>
+                                 </div>
+                            </li>
+                        `
+                        )
+                    }
+                }
+            },error: function (e){
+                console.log('error', e);
             }
         });
     }
-
-
 </script>

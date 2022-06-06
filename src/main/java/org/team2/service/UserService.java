@@ -33,4 +33,7 @@ public interface UserService {
     List<AddressVO> readAddress(Long user_seq) throws Exception;
 
     AddressVO selectAddress(Long user_address_seq) throws Exception;
+
+    AddressVO selectBasicAddress(Long user_seq) throws Exception;
+
 }
