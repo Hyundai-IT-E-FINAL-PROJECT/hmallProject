@@ -352,20 +352,146 @@ function search(keyword, first_category, second_category) {
     });
 }
 
-function image_show(productVO) {
+function image_slide(obj, curPos) {
+
+    // 하이라이팅
+    $(".ui-active.ui-active").removeClass("ui-active")
+    $(obj).parent("li").addClass("ui-active")
+
+    // 이미지
+    $(".slick-track").css('transform', `translateX(${-520 + (curPos * -520)}px)`).css('transition', `all 0.7s ease 0s`)
+
+}
+
+function image_show(product_seq) {
+    console.log("image show")
+    console.log(product_seq)
+    $(".slick-track").empty()
+    $(".slider-thumbnaii ul").empty()
+
     // 이미지 확대 모달
     $.ajax({
         type: "get"
-        , url: "http://localhost:8080/category/"
+        , url: `http://localhost:8080/api/image/?product_seq=${product_seq}`
         , dataType: "json"
         , crossDomain: true
         , success: function (data) {
-
+            for (const [index, element] of data.entries()) {
+                console.log(element)
+                if (index === 0) {
+                    $(".slick-track").append(
+                        `
+                            <div class="slick-slide slick-current slick-active" data-slick-index=${index} aria-hidden="true" style="width: 520px;" tabindex="-1">
+                                <div>
+                                    <div class="item" data-item=""
+                                         data-outputsrc="/resources/img/${element.IMAGE_NAME}.jpg"
+                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                        <a href="javascript:;"
+                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                           tabindex="-1"><img
+                                                src="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                alt="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    )
+                    $(".slider-thumbnaii ul").append(
+                        `
+                            <li class="ui-thumbnaii ui-active">
+                                <a href="javascript:;"
+                                   onclick="image_slide(this, ${index});"
+                                   draggable="false">
+                                    <img src="/resources/img/thumb/${element.IMAGE_NAME}.jpg"
+                                         alt="2122712699_0.jpg"
+                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')">
+                                </a>
+                            </li>
+                        `
+                    )
+                } else {
+                    $(".slick-track").append(
+                        `
+                            <div class="slick-slide" data-slick-index="${index}" aria-hidden="true" style="width: 520px;" tabindex="-1">
+                                <div>
+                                    <div class="item" data-item=""
+                                         data-outputsrc="/resources/img/${element.IMAGE_NAME}.jpg"
+                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                        <a href="javascript:;"
+                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                           tabindex="-1"><img
+                                                src="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                alt="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    )
+                    $(".slider-thumbnaii ul").append(
+                        `
+                            <li class="ui-thumbnaii">
+                                <a href="javascript:;"
+                                   onclick="image_slide(this, ${index});"
+                                   draggable="false">
+                                    <img src="/resources/img/thumb/${element.IMAGE_NAME}.jpg"
+                                         alt="2122712699_0.jpg"
+                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')">
+                                </a>
+                            </li>
+                        `
+                    )
+                }
+            }
         }, complete: function () {
-
+            $(".slick-track").prepend(
+                `
+            <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
+                <div>
+                    <div class="item" data-item=""
+                         data-outputsrc="/resources/img/image_example1.jpg"
+                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                         style="width: 100%; display: inline-block; vertical-align: top;">
+                        <a href="javascript:;"
+                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                           tabindex="-1"><img
+                                src="/resources/img/image_example1.jpg"
+                                alt="2139858205_4.png"
+                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                    </div>
+                </div>
+            </div>
+        `
+            )
+            $(".slick-track").append(
+                `
+            <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
+                <div>
+                    <div class="item" data-item=""
+                         data-outputsrc="/resources/img/image_example1.jpg"
+                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                         style="width: 100%; display: inline-block; vertical-align: top;">
+                        <a href="javascript:;"
+                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                           tabindex="-1"><img
+                                src="/resources/img/image_example1.jpg"
+                                alt="2139858205_4.png"
+                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                    </div>
+                </div>
+            </div>
+        `
+            )
         }, error: function (e) {
-            //cors 오류 시 기존 ajax 타도록 수정
             console.log("error")
         }
     });
+
+
 }
+
