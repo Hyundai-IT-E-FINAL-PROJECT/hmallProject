@@ -153,10 +153,31 @@
     </select>
 
     <select id="readAddress" resultType="org.team2.domain.AddressVO">
-        select * from tbl_user_address where user_seq=#{use_seq}
+        select * from tbl_user_address where user_seq=#{user_seq}
     </select>
 
     <select id="selectAddress" resultType="org.team2.domain.AddressVO">
         select * from tbl_user_address where user_address_seq=#{user_address_seq}
     </select>
+
+    <select id="selectBasicAddress" resultType="org.team2.domain.AddressVO">
+        select * from tbl_user_address where user_seq=#{user_seq}
+                                         and basic_address=1
+    </select>
+
+    <insert id="insertNewAddress">
+        INSERT INTO TBL_USER_ADDRESS(user_address_seq, user_seq, user_address_address1,user_address_address2,user_address_address3
+        ,user_address_name,user_address_phone_num,basic_address)
+        VALUES
+            (
+                SEQ_USER_ADDRESS.NEXTVAL,
+                #{user_seq},
+                #{user_address_address1},
+                #{user_address_address2},
+                #{user_address_address3},
+                #{user_address_name},
+                #{user_address_phone_num},
+                #{basic_address}
+            )
+    </insert>
 </mapper>

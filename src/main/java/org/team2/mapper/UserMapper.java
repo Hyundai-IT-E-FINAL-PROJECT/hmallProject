@@ -26,4 +26,8 @@ public interface UserMapper {
     void myPage_newNickname(UserVO userVO) throws Exception;
     List<UserVO> getUserinfo(long no) throws Exception;
     void myPage_newBirthday(Date user_birth, String user_id) throws Exception;
+
+    AddressVO selectBasicAddress(Long user_seq) throws Exception;
+
+    void insertNewAddress(AddressVO addressVO) throws Exception;
 }

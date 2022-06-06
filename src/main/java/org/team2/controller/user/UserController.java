@@ -290,4 +290,21 @@ public class UserController {
         log.info("약관동의");
         return "user.user_agree";
     }
+
+    @ResponseBody
+    @PostMapping("addNewAddress")
+    public String insertNewAddress(AddressVO addressVO, Principal principal) throws Exception {
+        log.info("add new address");
+        addressVO.setUser_seq(Integer.parseInt(principal.getName()));
+        log.info(addressVO);
+        try{
+            addressService.insertNewAddress(addressVO);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
+
+    }
+
+
 }

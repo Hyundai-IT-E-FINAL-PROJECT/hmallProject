@@ -19,6 +19,8 @@ public class AddressVO {
     private String user_address_name;
     private String user_address_phone_num;
 
+    private Long basic_address;
+
     private Date created_at;
     private Date updated_at;
 }
