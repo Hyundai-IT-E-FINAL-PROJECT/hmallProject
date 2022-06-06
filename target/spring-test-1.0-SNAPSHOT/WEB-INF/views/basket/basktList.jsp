@@ -455,6 +455,11 @@
                 return;
             }
 
+            for (const product of checkedProduct){
+                var pr=document.getElementById(product);
+                console.log(pr);
+            }
+
 
 
 
