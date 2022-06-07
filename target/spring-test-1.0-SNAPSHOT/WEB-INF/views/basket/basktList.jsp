@@ -180,6 +180,10 @@
                                                     </div>
                                                     <div class="btngroup">
                                                         <input type="hidden" name="product_seq${status.index+1}" value="${basketVO.productVO.product_seq}"/>
+                                                        <input type="hidden" name="product_name${status.index+1}" value="${basketVO.productVO.product_name}"/>
+                                                        <input type="hidden" name="product_cost${status.index+1}" value="${basketVO.productVO.product_cost}"/>
+                                                        <input type="hidden" name="basket_count${status.index+1}" value="${basketVO.basket_count}"/>
+                                                        <input type="hidden" name="basket_seq${status.index+1}" value="${basketVO.basket_seq}"/>
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2101560521_00001" onclick="showChgUitmPup(this, '2101560521', '00001', 0, 59900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
@@ -244,40 +248,7 @@
 
                         submitForm.submit();
 
-                        let contents = "";
-
-
-                        // for (const product of checkedProduct) {
-                        //     var item = document.getElementById(product);
-                        //     contents+= "<input name='baketList["+idx+"].product_name' type='hidden' value='"+item.querySelector("input[name=product_name]").value+"'>";
-                        //     contents+= "<input name='baketList["+idx+"].basket_count' type='hidden' value='"+item.querySelector("input[name=basket_count]").value+"'>";
-                        //     contents+= "<input name='baketList["+idx+"].product_seq' type='hidden' value='"+item.querySelector("input[name=product_seq]").value+"'>";
-                        //     contents+= "<input name='baketList["+idx+"].product_cost' type='hidden' value='"+item.querySelector("input[name=product_cost]").value+"'>";
-                        //     idx++;
-                        // }
-                        contents+="<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />";
-                        //
-                        // $(".basketForm").html(contents);
-                        // $(".basketForm").submit();
-
-
-
-                        // $('form[name="basketForm"]').serialize();
-                        // $('form[name="basketForm"]').attr('method', 'POST');
-                        // $('form[name="basketForm"]').attr('action', '/order/test');
-                        //
-                        // $('form[name="basketForm"]').submit();
                     }
-
-                    // $('#submit').click(function() {
-                    //     $('form[name="testForm"]').serialize();
-                    //     $('form[name="testForm"]').attr('method', 'POST');
-                    //     $('form[name="testForm"]').attr('action', '/tables/save');
-                    //
-                    //     $('form[name="testForm"]').submit();
-                    // });
-
-
 
 
 
@@ -286,41 +257,47 @@
                     function directBuyBtn(idx){
                         var csrfHeaderName = "${_csrf.headerName}";
                         var csrfTokenValue = "${_csrf.token}";
-                        var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
-                        <%--let myForm=document.getElementById('#basketForm');--%>
-                        <%--let formData=new FormData(myForm[0]);--%>
-                        <%--// formData.append('product_seq',product_seq);--%>
-                        <%--fetch('${contextPath}/order/od',{--%>
-                        <%--    headers: {--%>
-                        <%--        'Content-Type': 'application/x-www-form-urlencoded'--%>
+                        //var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
+
+
+
+                        var submitForm=$('<form></form>');
+                        submitForm.attr('action', '${contextPath}/order/od');
+                        submitForm.attr('method','post');
+                        submitForm.appendTo('body');
+                        let index=0;
+
+                        // for (const product of checkedProduct) {
+                        //     var item = document.getElementById(product);
+                            submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden' value='"+$("input[name='" + 'basket_count'+String(idx) + "']").val()+"'>"));
+                            submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden' value='"+$("input[name='" + 'basket_seq'+String(idx) + "']").val()+"'>"));
+                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name='" + 'product_seq'+String(idx) + "']").val()+"'>"));
+                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden' value='"+$("input[name='" + 'product_cost'+String(idx) + "']").val()+"'>"));
+                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
+                        //
+                        //     index++;
+                        // }
+
+                        submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
+
+
+                        submitForm.submit();
+
+
+                        <%--$.ajax({--%>
+                        <%--    type:'get',--%>
+                        <%--    url: '${contextPath}/order/od/'+product_seq,--%>
+                        <%--    beforeSend:function (xhr){--%>
+                        <%--        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
                         <%--    },--%>
-                        <%--    method:'POST',--%>
-                        <%--    body:new URLSearchParams({--%>
-                        <%--        product_seq:product_seq--%>
-                        <%--    })--%>
+                        <%--    success:function(){--%>
+                        <%--        alert("주문 작성 페이지로 이동합니다.");--%>
+                        <%--        location.href='${contextPath}/order/od/'+product_seq;--%>
+                        <%--    },--%>
+                        <%--    error: function (request,status,error) {--%>
+                        <%--        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);--%>
+                        <%--    }--%>
                         <%--});--%>
-                        <%--let form=$("#basketForm");--%>
-                        <%--form.attr("action", "${contextPath}/order/od");--%>
-                        <%--form.attr('method','post');--%>
-                        <%--form.attr("product_seq",product_seq);--%>
-                        <%--form.appendTo('#basketForm');--%>
-                        <%--// form.append(product_seq);--%>
-                        <%--// console.log(product_seq);--%>
-                        <%--form.submit();--%>
-                        $.ajax({
-                            type:'get',
-                            url: '${contextPath}/order/od/'+product_seq,
-                            beforeSend:function (xhr){
-                                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-                            },
-                            success:function(){
-                                alert("주문 작성 페이지로 이동합니다.");
-                                location.href='${contextPath}/order/od/'+product_seq;
-                            },
-                            error: function (request,status,error) {
-                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                            }
-                        });
                     }
                 </script>
                 <div class="sticky-ui-wrapper util-option-sticky">
