@@ -122,5 +122,23 @@
         set USER_EMAIL_RECEIVE = #{emaailval} , USER_SMS_RECEIVE = #{smsval}, user_gender = #{genderval}
         where user_id = #{userid}
     </update>
+
+    <select id="deliveryList"  statementType="CALLABLE" parameterType="Hashmap">
+        {
+            CALL PROC_USER_ADDERSS_SELECT(
+                #{no},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+            )
+        }
+    </select>
+
+    <select id="orderStatus"  statementType="CALLABLE" parameterType="Hashmap">
+        {
+            CALL PROC_MYPAGE_ORDERSTATUS(
+                #{no},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+            )
+        }
+    </select>
 </mapper>
 

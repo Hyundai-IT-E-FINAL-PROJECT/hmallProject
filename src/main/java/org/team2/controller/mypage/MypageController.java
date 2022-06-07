@@ -113,7 +113,7 @@ public class MypageController {
     // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
    @RequestMapping("mypageOrder")
    @PreAuthorize("isAuthenticated()")
-    public ModelAndView oreder(Principal principal, HttpServletRequest req, @RequestParam("type") String type) {
+    public ModelAndView oreder(Principal principal, HttpServletRequest req) throws Exception {
         ModelAndView mav = new ModelAndView();
 
         List<String> styleFileList = new ArrayList<>();
@@ -124,21 +124,23 @@ public class MypageController {
         String ordEndDt = req.getParameter("ordEndDt");
         String seType =  req.getParameter("seType");
         String itemNm =  req.getParameter("itemNm");
+        Map mapStatus = mypageService.orderStatus(no);
 
-        Map map;
+        log.info(mapStatus.get("resultList"));
+        Map mapOrder;
         try {
-            map = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
+            mapOrder = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
 //            if (type.equals("all"))  {
 //
 //            }
 //            else{
 //                list = mypageService.cancelperiodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm, type);
 //            }
-            mav.addObject("list", map.get("resultList"));
+            mav.addObject("list", mapOrder.get("resultList"));
+            mav.addObject("status", mapStatus.get("resultList"));
             mav.addObject("seType", seType);
             mav.addObject("className", "wrap mp-order");
             mav.addObject("cssFileList", styleFileList);
-            mav.addObject("type", type);
             mav.setViewName("mypage.mypageOrder");
         }
         catch (Exception e) {
@@ -148,7 +150,43 @@ public class MypageController {
         return mav;
     }
 
+    @RequestMapping("mypageReturn")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView returnOrder(Principal principal, HttpServletRequest req) throws Exception {
+        ModelAndView mav = new ModelAndView();
 
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("mypage");
+
+        long no = Long.parseLong(principal.getName());
+        String ordStrtDt = req.getParameter("ordStrtDt");
+        String ordEndDt = req.getParameter("ordEndDt");
+        String seType =  req.getParameter("seType");
+        String itemNm =  req.getParameter("itemNm");
+        Map mapStatus = mypageService.orderStatus(no);
+
+        log.info(mapStatus.get("resultList"));
+        Map mapOrder;
+
+        List<Map<String, Object>> list;
+        try {
+            list = mypageService.cancelperiodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm);
+
+            mav.addObject("list", list);
+            mav.addObject("status", mapStatus.get("resultList"));
+            mav.addObject("seType", seType);
+            mav.addObject("className", "wrap mp-order");
+            mav.addObject("cssFileList", styleFileList);
+            mav.setViewName("mypage.mypageReturn");
+        }
+        catch (Exception e) {
+            mav.addObject("msg", e.getMessage());
+            mav.setViewName("accessError");
+        }
+        return mav;
+    }
+
+    // 마이페이지 쿠폰페이지 로그인 된 유저가 보유한 쿠폰 내역 조회
     @RequestMapping("mypageCoupon")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView coupon(Principal principal) throws Exception {
@@ -173,7 +211,8 @@ public class MypageController {
         return mav;
     }
 
-    @RequestMapping("mypagePoint")
+    // 마이페이지 포인트페이지 로그인 된 유저가 보유한 포인트와 사용내역 조회
+   @RequestMapping("mypagePoint")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView point(Principal principal,
                               HttpServletRequest req) throws Exception {
@@ -239,13 +278,20 @@ public class MypageController {
 
     @RequestMapping("mypageDelivery")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView delivery() {
+    public ModelAndView delivery(Principal principal) throws Exception {
         log.info("delivery test");
 
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
 
         ModelAndView mav = new ModelAndView();
+
+        long no = Long.parseLong(principal.getName());
+        Map map = mypageService.deliveryList(no);
+
+        log.info(map.get("resultList"));
+
+        mav.addObject("list", map.get("resultList"));
         mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageDelivery");
 
@@ -267,6 +313,7 @@ public class MypageController {
         return mav;
     }
 
+    // 마이페이지 예치금페이지 로그인 된 유저가 보유한 예치금과 사용내역 조회
     @RequestMapping("mypageDeposit")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView deposit(Principal principal,
@@ -292,6 +339,7 @@ public class MypageController {
         return mav;
     }
 
+    // 주문 취소 페이지
     @RequestMapping("mypageOrderCancel")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView cancel() {
@@ -307,6 +355,7 @@ public class MypageController {
         return mav;
     }
 
+    // 마이페이지 회원 정보 수정 비밀번호 모달창 수정시 이동하는 컨트롤러
     @ResponseBody
     @PostMapping("myPage_pwUpdate")
     public ResponseEntity<String> myPage_pwUpate(@RequestParam("oldPassword") String oldPassword,
@@ -336,6 +385,7 @@ public class MypageController {
         return entity;
     }
 
+    // 마이페이지 회원 정보 수정 닉네임 모달창 등록시 이동하는 컨트롤러
     @ResponseBody
     @PostMapping("myPage_newNickname")
     public ResponseEntity<String> myPage_newNickname(@RequestParam("user_nickname") String user_nickname, @RequestParam("user_id") String user_id,
@@ -357,6 +407,7 @@ public class MypageController {
         return entity;
     }
 
+    // 마이페이지 회원 정보 수정한 것을 다시 보여주기 위해 user정보를 조회하는 컨트롤러
     @RequestMapping(value = "getUserInfo/{no}")
     public ResponseEntity<List<UserVO>> list(@PathVariable("no") long no) throws Exception{
         log.info("getUserInfo Mapping 완료");
@@ -369,6 +420,7 @@ public class MypageController {
         return entity;
     }
 
+    // 마이페이지 회원정보 수정 닉네임 모달창에서 중복확인 컨트롤러
     @ResponseBody
     @GetMapping("mypageNknmChk")
     public ResponseEntity<String> niknameCheck(@RequestParam("tmpNknm") String tmpNknm) throws Exception {
@@ -386,6 +438,7 @@ public class MypageController {
         return entity;
     }
 
+    // 마이페이지 회원정보 수정 생일 모달창에서 수정시 이동하는 컨트롤러
     @ResponseBody
     @PostMapping("myPage_newBirthday")
     public ResponseEntity<String> myPage_newBirthday(@RequestParam("birthday") String birthday, @RequestParam("user_id") String user_id,
@@ -407,6 +460,8 @@ public class MypageController {
 
         return entity;
     }
+
+    // 마이페이지 회원정보 수정 성별, 이메일, 문자 체크여부 수정하는 컨트롤러
     @ResponseBody
     @PostMapping("checkUpdate")
     public ResponseEntity<String> checkUpdate (@RequestParam("emaailval") String emaailval,

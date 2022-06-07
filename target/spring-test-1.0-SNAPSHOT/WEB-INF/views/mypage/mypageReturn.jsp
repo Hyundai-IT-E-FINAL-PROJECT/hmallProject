@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minsu
-  Date: 2022-05-20
-  Time: 오후 3:45
+  Date: 2022-06-08
+  Time: 오전 1:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -43,226 +43,223 @@
             <%@ include file="mypageSide.jsp" %>
             <sec:authentication property="principal" var="pinfo" />
 
-                 <form id="searchForm" name="searchForm" action="/mypageOrder" method="get">
-                     <input type='hidden' name='seType' 		id='seType' 		value="" />
-                     <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
-                     <input type='hidden' name='ordEndDt' 		id='ordEndDt' 		value="" />
-                     <input type='hidden' name='itemNm' 		id='itemNm'			value="" />
-                 </form>
+            <form id="searchForm" name="searchForm" action="/mypageReturn" method="get">
+                <input type='hidden' name='seType' 		id='seType' 		value="" />
+                <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
+                <input type='hidden' name='ordEndDt' 		id='ordEndDt' 		value="" />
+                <input type='hidden' name='itemNm' 		id='itemNm'			value="" />
+            </form>
 
-                <div class="contents">
-                    <div class="mypage-order-wrap">
+            <div class="contents">
+                <div class="mypage-order-wrap">
 
-                        <c:set var="order" value="0"/>
-                        <c:set var="complete" value="0"/>
-                        <c:set var="ready" value="0"/>
-                        <c:set var="send" value="0"/>
-                        <c:set var="sendcp" value="0"/>
+                    <c:set var="ordercancel" value="0"/>
+                    <c:set var="returnorder" value="0"/>
+                    <c:set var="returncp" value="0"/>
+                    <c:set var="exchange" value="0"/>
+                    <c:set var="exchangecp" value="0"/>
 
-                        <c:forEach items="${status}" var="status">
-                            <c:if test="${status.ORDER_STATUS eq '주문접수'}">
-                                <c:set var="order" value="${status.COUNT}"/>
-                            </c:if>
-                            <c:if test="${status.ORDER_STATUS eq '결제완료'}">
-                                <c:set var="complete" value="${status.COUNT}"/>
-                            </c:if>
-                            <c:if test="${status.ORDER_STATUS eq '상품준비중'}">
-                                <c:set var="ready" value="${status.COUNT}"/>
-                            </c:if>
-                            <c:if test="${status.ORDER_STATUS eq '상품발송'}">
-                                <c:set var="send" value="${status.COUNT}"/>
-                            </c:if>
-                            <c:if test="${status.ORDER_STATUS eq '배송완료'}">
-                                <c:set var="sendcp" value="${status.COUNT}"/>
-                            </c:if>
-                        </c:forEach>
-                        <h3 class="title22">주문/배송 현황</h3>
+                    <c:forEach items="${status}" var="status">
+                        <c:if test="${status.ORDER_STATUS eq '주문취소'}">
+                            <c:set var="ordercancel" value="${status.COUNT}"/>
+                        </c:if>
+                        <c:if test="${status.ORDER_STATUS eq '반품접수'}">
+                            <c:set var="returnorder" value="${status.COUNT}"/>
+                        </c:if>
+                        <c:if test="${status.ORDER_STATUS eq '반품완료'}">
+                            <c:set var="returncp" value="${status.COUNT}"/>
+                        </c:if>
+                        <c:if test="${status.ORDER_STATUS eq '교환접수'}">
+                            <c:set var="exchange" value="${status.COUNT}"/>
+                        </c:if>
+                        <c:if test="${status.ORDER_STATUS eq '교환완료'}">
+                            <c:set var="exchangecp" value="${status.COUNT}"/>
+                        </c:if>
+                    </c:forEach>
 
-                        <div class="order-step">
-                            <p class="txt-right">(최근 2개월)</p>
-                            <!-- [02/04]_수정(작성가능한 상품평 제외 a태그 -> div태그로 수정) -->
-                            <ul>
+                    <h3 class="title22">취소/반품/교환/AS현황</h3>
+
+                    <div class="order-step return-step">
+                        <p class="txt-right">(최근 2개월)</p>
+
+                        <ul>
+                            <li>
+                                <div>
+                                    <strong class="num"><c:out value="${ordercancel}"/></strong>
+                                    <span class="txt">주문취소</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong class="num"><c:out value="${returnorder}"/></strong>
+                                    <span class="txt">반품접수</span>
+                                </div>
+                                <div>
+                                    <strong class="num"><c:out value="${returncp}"/></strong>
+                                    <span class="txt">반품완료</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong class="num"><c:out value="${exchange}"/></strong>
+                                    <span class="txt">교환접수</span>
+                                </div>
+                                <div>
+                                    <strong class="num"><c:out value="${exchangecp}"/></strong>
+                                    <span class="txt">교환완료</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="dotlist">
+                        <li>취소/반품/교환 요청: 취소/반품/교환 신청은 상품발송 후 7일 이내에만 가능합니다.</li>
+                    </ul>
+
+
+                    <div class="filter-box">
+                        <div class="search-filter">
+                            <ul class="radiolist">
                                 <li>
-                                    <div>
-                                        <strong class="num"><c:out value="${order}"/></strong>
-                                        <span class="txt">주문접수</span>
-                                    </div>
+                                    <input type="radio" name="order" id="order01" value="2" aria-checked=&#034;true&#034; checked=&#034;&#034;>
+                                    <label for="order01" onclick="setPeriod(2);">최근 14일</label>
                                 </li>
                                 <li>
-                                    <div>
-                                        <strong class="num"><c:out value="${complete}"/></strong>
-                                        <span class="txt">결제완료</span>
-                                    </div>
+                                    <input type="radio" name="order" id="order02" value="3" aria-checked=&#034;false&#034;>
+                                    <label for="order02" onclick="setPeriod(3);">최근 3개월</label>
                                 </li>
                                 <li>
-                                    <div>
-                                        <strong class="num"><c:out value="${ready}"/></strong>
-                                        <span class="txt">상품준비중</span>
-                                    </div>
+                                    <input type="radio" name="order" id="order03" value="6" aria-checked=&#034;false&#034;>
+                                    <label for="order03" onclick="setPeriod(6);">최근 6개월</label>
                                 </li>
                                 <li>
-                                    <div>
-                                        <strong class="num"><c:out value="${send}"/></strong>
-                                        <span class="txt">상품발송</span>
-                                    </div>
+                                    <input type="radio" name="order" id="order04" value="0" aria-checked=&#034;false&#034;>
+                                    <label for="order04" onclick="setPeriod(0);">2022년</label>
                                 </li>
                                 <li>
-                                    <a href="https://www.hmall.com/p/mpb/selectItemEvalAtclListPagingByCondtion.do">
-                                        <strong class="num"><c:out value="${sendcp}"/></strong>
-                                        <span class="txt">작성 가능한 상품평</span>
-                                    </a>
+                                    <input type="radio" name="order" id="order05" value="-1" aria-checked=&#034;false&#034;>
+                                    <label for="order05" onclick="setPeriod(-1);">2021년</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="order" id="order06" value="-2" aria-checked=&#034;false&#034;>
+                                    <label for="order06" onclick="setPeriod(-2);">2020년</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="order" id="order07" value="-3" aria-checked=&#034;false&#034;>
+                                    <label for="order07" onclick="setPeriod(-3);">전체</label>
                                 </li>
                             </ul>
-                        </div>
-                        <ul class="dotlist">
-                            <li>구매확정이 완료된 주문은 진행중인 주문에 포함되지 않으며, 진행상태에 따라 배송지 변경, 취소, 교환, 반품신청이 가능합니다.</li>
-                            <li>가전, 가구 등 설치 상품은 물류 이동으로 인해 상품발송 후 설치 방문까지 2~3일 정도 기간이 추가될 수 있습니다.</li>
-                        </ul>
+                            <input type="hidden" id="searchType" name="searchType" value=""/>
+                            <input type="hidden" class="from" name="strtDt" id="txtOrdStrtDt" maxlength="8" value="" />
+                            <input type="hidden" class="to" name="endDt" id="txtOrdEndDt" maxlength="8" value=""/>
 
-                        <div class="filter-box">
-                            <div class="search-filter">
-                                <ul class="radiolist">
-                                    <li>
-                                        <input type="radio" name="order" id="order01" value="2" aria-checked=&#034;true&#034; checked=&#034;&#034;>
-                                        <label for="order01" onclick="setPeriod(2);">최근 14일</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order02" value="3" aria-checked=&#034;false&#034;>
-                                        <label for="order02" onclick="setPeriod(3);">최근 3개월</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order03" value="6" aria-checked=&#034;false&#034;>
-                                        <label for="order03" onclick="setPeriod(6);">최근 6개월</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order04" value="0" aria-checked=&#034;false&#034;>
-                                        <label for="order04" onclick="setPeriod(0);">2022년</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order05" value="-1" aria-checked=&#034;false&#034;>
-                                        <label for="order05" onclick="setPeriod(-1);">2021년</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order06" value="-2" aria-checked=&#034;false&#034;>
-                                        <label for="order06" onclick="setPeriod(-2);">2020년</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="order" id="order07" value="-3" aria-checked=&#034;false&#034;>
-                                        <label for="order07" onclick="setPeriod(-3);">전체</label>
-                                    </li>
-                                </ul>
-                                <input type="hidden" id="searchType" name="searchType" value=""/>
-                                <input type="hidden" class="from" name="strtDt" id="txtOrdStrtDt" maxlength="8" value="" />
-                                <input type="hidden" class="to" name="endDt" id="txtOrdEndDt" maxlength="8" value=""/>
-
-                                <div class="inputbox sm">
-                                    <label class="inplabel icon-find"><input type="text" name="txtItemNm" id="txtItemNm" value="" placeholder="상품명 검색"></label>
-                                    <button class="btn btn-find" type="button" id="serach"><i class="icon find"></i><span class="hiding">검색</span></button>
-                                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                                </div>
+                            <div class="inputbox sm">
+                                <label class="inplabel icon-find"><input type="text" name="txtItemNm" id="txtItemNm" value="" placeholder="상품명 검색"></label>
+                                <button class="btn btn-find" type="button" id="serach"><i class="icon find"></i><span class="hiding">검색</span></button>
+                                <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                             </div>
                         </div>
+                    </div>
 
 
-                        <c:forEach items="${list}" var="odlist" varStatus="vs">
-<%--                            <c:if test="${vs.index != 0}">--%>
-<%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
-<%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
-<%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
-<%--                                <p>${!vs.last}</p>--%>
-<%--                            </c:if>--%>
-                            <c:if test="${vs.index == 0}">
-                                 <div class="order-list">
-                                    <dl>
-                                        <dt>
-                                            <div class="date">
-                                                <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
-                                            </div>
-                                            <div class="abs">
-                                                <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
-                                            </div>
-                                        </dt>
+                    <c:forEach items="${list}" var="odlist" varStatus="vs">
+                        <%--                            <c:if test="${vs.index != 0}">--%>
+                        <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
+                        <%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
+                        <%--                                <p>${!vs.last}</p>--%>
+                        <%--                            </c:if>--%>
+                        <c:if test="${vs.index == 0}">
+                            <div class="order-list">
+                            <dl>
+                            <dt>
+                                <div class="date">
+                                    <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
+                                </div>
+                                <div class="abs">
+                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                </div>
+                            </dt>
+                        </c:if>
+                        <c:if test="${vs.index != 0}">
+                            <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
+                                <div class="order-list">
+                                <dl>
+                                <dt>
+                                    <div class="date">
+                                        <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
+                                    </div>
+                                    <div class="abs">
+                                        <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                    </div>
+                                </dt>
                             </c:if>
-                            <c:if test="${vs.index != 0}">
-                                <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
-                                    <div class="order-list">
-                                        <dl>
-                                            <dt>
-                                                <div class="date">
-                                                    <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
-                                                </div>
-                                                <div class="abs">
-                                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
-                                                </div>
-                                            </dt>
-                                </c:if>
-                            </c:if>
-    <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
-                                    <!-- 가장최근주문 1건, 최대 10개 상품 -->
-                                    <dd>
-                                        <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
-                                            <input type="hidden" name="slitmCd" value="2137807436">
-                                            <span class="img">
+                        </c:if>
+                        <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
+                        <!-- 가장최근주문 1건, 최대 10개 상품 -->
+                        <dd>
+                            <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                <input type="hidden" name="slitmCd" value="2137807436">
+                                <span class="img">
                                                 <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
                                             </span>
-                                            <div class="box">
-                                                <c:choose>
-                                                    <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
+                                <div class="box">
+                                    <c:choose>
+                                        <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
                                                         <span class="state red">
                                                                     ${odlist.ORDER_STATUS}
                                                         <em class="color-999">
 
                                                         </em>
                                                         </span>
-                                                    </c:when>
-                                                    <c:otherwise>
+                                        </c:when>
+                                        <c:otherwise>
                                                         <span class="state sky">
                                                                  ${odlist.ORDER_STATUS}
                                                         <em class="color-999">
 
                                                         </em>
                                                         </span>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <span class="tit"> ${odlist.PRODUCT_NAME}</span>
-                                                <div class="info">
-                                                    <ul>
-                                                        <li>${odlist.PRODUCT_INFO}</li>
-                                                        <li>
-                                                                ${odlist.OP_COUNT} 개
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
-                                            </div>
-                                        </a>
-
-                                        <div class="btngroup">
-                                            <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
-                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
-                                            </c:if>
-                                            <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-                                            <input type="hidden" name="copnStlmFixYn" value="" />
-                                        </div>
-                                    </dd>
-                                    <c:if test="${vs.index != 0 or vs.last}">
-                                        <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
-                                                </dl>
-                                            </div>
-                                        </c:if>
-                                    </c:if>
-                                <c:if test="${!vs.last and vs.index == 0 and vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
-                                        </dl>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="tit"> ${odlist.PRODUCT_NAME}</span>
+                                    <div class="info">
+                                        <ul>
+                                            <li>${odlist.PRODUCT_INFO}</li>
+                                            <li>
+                                                    ${odlist.OP_COUNT} 개
+                                            </li>
+                                        </ul>
                                     </div>
-                                </c:if>
-                        </c:forEach>
+                                    <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
+                                </div>
+                            </a>
 
-                        <c:if test="${list.size() == 0}">
-                            <div class="nodata">
-                                <span class="bgcircle"><i class="icon nodata-type14"></i></span>
-                                <p>해당 기간동안 주문/배송 내역이 없습니다.</p>
+                            <div class="btngroup">
+                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                    <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
+                                </c:if>
+                                <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
+                                <input type="hidden" name="copnStlmFixYn" value="" />
+                            </div>
+                        </dd>
+                        <c:if test="${vs.index != 0 or vs.last}">
+                            <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
+                                </dl>
+                                </div>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${!vs.last and vs.index == 0 and vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
+                            </dl>
                             </div>
                         </c:if>
+                    </c:forEach>
+
+                    <c:if test="${list.size() == 0}">
+                        <div class="nodata">
+                            <span class="bgcircle"><i class="icon nodata-type14"></i></span>
+                            <p>해당 기간동안 주문/배송 내역이 없습니다.</p>
+                        </div>
+                    </c:if>
 
                     <div class="paging">
 

@@ -108,7 +108,7 @@
     </update>
 
     <select id="getUserinfo" resultType="org.team2.domain.UserVO">
-        select user_nickname, user_phone, user_email, user_birth, user_email_receive, user_sms_receive, user_genger from tbl_user where user_seq = #{no}
+        select user_nickname, user_phone, user_email, user_birth, user_email_receive, user_sms_receive, user_gender from tbl_user where user_seq = #{no}
     </select>
 
     <update id="myPage_newBirthday">

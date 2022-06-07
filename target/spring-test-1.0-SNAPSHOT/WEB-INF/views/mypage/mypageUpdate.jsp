@@ -143,8 +143,8 @@
                       <div class="wrap_chk">
                         <span class="checkbox_ui type1">
                           <input type='radio' name='gender' id="maleGender" value="M" />&nbsp;남&nbsp;
-                          <input type='radio' name='gender' id="maleGender" value="F" />&nbsp;여&nbsp;
-                          <input type='radio' name='gender' id="maleGender" value="N" />&nbsp;미입력
+                          <input type='radio' name='gender' id="femaleGender" value="F" />&nbsp;여&nbsp;
+                          <input type='radio' name='gender' id="noneGender" value="N" />&nbsp;미입력
 <%--                          <label class="chklabel sm">--%>
 <%--                            <input type='checkbox' name='maleGender' id="maleGender" value="M" /><i class="icon"></i>--%>
 <%--                            <p>&nbsp;남&nbsp;</p>--%>
@@ -385,12 +385,17 @@
     $(document).ready(function () {
       var emaailval = $('input[name="emailyn"]').val();
       var smsval = $('input[name="smsyn"]').val();
+      var genderval = $('input[name="userGender"]').val();
 
       if(emaailval == 1) $("#emailMarketing").prop("checked", true);
       else $("#emailMarketing").prop("checked", false);
 
       if(smsval == 1) $("#smsMarketing").prop("checked", true);
       else $("#smsMarketing").prop("checked", false);
+
+      if(genderval === "M") $("#maleGender").prop("checked", true);
+      else if(genderval === "F") $("#femaleGender").prop("checked", true);
+      else $("#noneGender").prop("checked", true);
     });
 
     $("input[name='oldPassword'], input[name='newPassword'], input[name='reNewPassword']").keyup(function() {
@@ -1943,7 +1948,18 @@
           $('#baseInfoBirthday').html(str);
         }
         else if (type === "check") {
+          var emailYN = document.querySelector('input[name="emailyn"]');
+          var smsYN = document.querySelector('input[name="smsyn"]');
+          var genderCK = document.querySelector('input[name="userGender"]');
+          console.log(this.user_email_receive + " " + this.user_sms_receive + " " + this.user_gender);
 
+          emailYN.value = this.user_email_receive;
+          smsYN.value = this.user_sms_receive;
+          genderCK.value = this.user_gender;
+
+          // $('input[name="emailyn"]').val(this.user_email_receive);
+          // $('input[name="smsyn"]').val(this.user_sms_receive);
+          // $('input[name="userGender"]').val('this.user_gender');
         }
       })
     });
