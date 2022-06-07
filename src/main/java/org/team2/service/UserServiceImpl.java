@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
         log.info(userVO.getUser_pw());
         userMapper.insertSignup(userVO);
         int userNum = userVO.getNo();
-        log.info(userNum);
+        log.info("서비스"+ userNum);
         userMapper.insertAuth(userNum);
     }
 

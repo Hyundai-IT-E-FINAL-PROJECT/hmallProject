@@ -17,8 +17,8 @@ function searchAutoCate(obj, first_category, second_category) {
             console.log(data)
             for (let productVO of data) {
                 console.log(productVO)
-
-                if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
+                productVO.PRODUCT_COST === productVO.DISCOUNTED_CO
+                if (ST) {
                     $(".pdlist-wrap ul").append(
                         `
                     <li class="pdthumb">
@@ -348,6 +348,24 @@ function search(keyword, first_category, second_category) {
         }
         , error: function (e) {
             console.log('error', e);
+        }
+    });
+}
+
+function image_show(productVO) {
+    // 이미지 확대 모달
+    $.ajax({
+        type: "get"
+        , url: "http://localhost:8080/category/"
+        , dataType: "json"
+        , crossDomain: true
+        , success: function (data) {
+
+        }, complete: function () {
+
+        }, error: function (e) {
+            //cors 오류 시 기존 ajax 타도록 수정
+            console.log("error")
         }
     });
 }

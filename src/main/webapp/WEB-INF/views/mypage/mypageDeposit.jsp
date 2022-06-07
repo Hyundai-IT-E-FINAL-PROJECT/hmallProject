@@ -6,23 +6,53 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<script>
+  $(document).ready(function () {
+    let searchType = '${searchType}';
+
+    let ccid = $('input[name="order"]:checked').val();
+
+
+    if(searchType != "") {
+      $(":radio[name='order']").each(function () {
+                var $this = $(this);
+                if ($this.val() == ccid)
+                  $this.attr('checked', false);
+              }
+      );
+
+      $(":radio[name='order']").each(function () {
+                var $this = $(this);
+                if ($this.val() == searchType)
+                  $this.attr('checked', true);
+              }
+      );
+      ccid = $('input[name="order"]:checked').attr('id');
+      console.log("ccid : " + ccid);
+    }
+  });
+</script>
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
+  <sec:authentication property="principal" var="pinfo" />
   <div class="container">
     <div class="gird-l2x">
       <%@ include file="mypageSide.jsp" %>
       <div class="contents">
         <div class="hpoint-wrap">
-          <h2 class="hiding">포인트</h2>
+          <h2 class="hiding">예치금</h2>
           <div class="point-head">
-            <p>김민수님의 포인트</p>
+            <p>${pinfo.userVO.user_name}님의 예치금</p>
           </div>
           <!--tabgroup-->
           <div class="tabgroup point-tab">
 
             <!--ui-tab-->
             <ul class="ui-tab" role="tablist">
-              <li role="presentation"><a href="/p/mpe/selectHPntTabPage.do" role="tab" aria-controls="viewReserve"><span>적립금 <em>0원</em></span></a></li>
-              <li role="presentation" class="ui-active"><a href="/p/mpe/selectCdpstTabPage.do" role="tab" aria-controls="viewDeposit"><span>예치금 <em>0원</em></span></a></li>
+              <li role="presentation"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em>${pinfo.userVO.user_point}원</em></span></a></li>
+              <li role="presentation" class="ui-active"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em>${pinfo.userVO.user_deposit}원</em></span></a></li>
             </ul>
             <!--//ui-tab-->
             <!--Tab panes-->
@@ -34,8 +64,8 @@
                   <div class="point-wrap">
                     <!--w포인트 , 예치금일 경우 class="point-fl point-only"추가시-->
                     <div class="point-fl point-only">
-                      <span class="ctypo17 bold"><em class="name">김민수</em>님의 예치금</span>
-                      <span class="txt-point"><em class="mydeposit">0</em>원</span>
+                      <span class="ctypo17 bold"><em class="name">${pinfo.userVO.user_name}</em>님의 예치금</span>
+                      <span class="txt-point"><em class="mydeposit">${pinfo.userVO.user_deposit}</em>원</span>
                     </div>
                   </div>
                 </div>
@@ -49,78 +79,137 @@
                 </div>
                 <!--//point-progresstxt-->
 
-                <!--filter-box-->
+                <!--//filter-box-->
                 <div class="filter-box">
-                  <div class="search-filter rel">
-                    <div class="selectwrap"><div class="custom-selectbox sm" data-modules-selectbox="">
-                      <select id="listSize" name="listSize">
-                        <option value="10" selected="">10개씩 보기</option>
-                        <option value="20">20개씩 보기</option>
-                        <option value="50">50개씩 보기</option>
-                      </select>
-                      <div class="ui-label"><a href="#1">10개씩 보기</a></div><div class="ui-selectbox"><div class="selectbox_area"><ul><li><a href="#1">10개씩 보기</a></li><li><a href="#2">20개씩 보기</a></li><li><a href="#3">50개씩 보기</a></li></ul></div></div></div></div>
-                    <!-- 2020-09-28 마크업 수정 -->
-                    <ul id="searchTermCondition" class="radiolist abs">
-                      <li id="1">
-                        <input type="radio" name="filter4" id="filter4-01" aria-checked="true">
-                        <label for="filter4-01">최근 14일</label>
+                  <div class="search-filter">
+                    <ul class="radiolist">
+                      <li>
+                        <input type="radio" name="order" id="order01" value="2" aria-checked=&#034;true&#034; checked=&#034;&#034;>
+                        <label for="order01" onclick="setPeriod(2);">최근 14일</label>
                       </li>
-                      <li id="2">
-                        <input type="radio" name="filter4" id="filter4-02" aria-checked="false">
-                        <label for="filter4-02">최근 3개월</label>
+                      <li>
+                        <input type="radio" name="order" id="order02" value="3" aria-checked=&#034;false&#034;>
+                        <label for="order02" onclick="setPeriod(3);">최근 3개월</label>
                       </li>
-                      <li id="3">
-                        <input type="radio" name="filter4" id="filter4-03" aria-checked="false">
-                        <label for="filter4-03">최근 6개월</label>
+                      <li>
+                        <input type="radio" name="order" id="order03" value="6" aria-checked=&#034;false&#034;>
+                        <label for="order03" onclick="setPeriod(6);">최근 6개월</label>
                       </li>
-                      <li id="4">
-                        <input type="radio" name="filter4" id="filter4-04" aria-checked="false">
-                        <label for="filter4-04">2022년</label>
+                      <li>
+                        <input type="radio" name="order" id="order04" value="0" aria-checked=&#034;false&#034;>
+                        <label for="order04" onclick="setPeriod(0);">2022년</label>
                       </li>
-                      <li id="5">
-                        <input type="radio" name="filter4" id="filter4-05" aria-checked="false">
-                        <label for="filter4-05">2021년</label>
+                      <li>
+                        <input type="radio" name="order" id="order05" value="-1" aria-checked=&#034;false&#034;>
+                        <label for="order05" onclick="setPeriod(-1);">2021년</label>
                       </li>
-                      <li id="6">
-                        <input type="radio" name="filter4" id="filter4-06" aria-checked="false">
-                        <label for="filter4-06">2020년</label>
+                      <li>
+                        <input type="radio" name="order" id="order06" value="-2" aria-checked=&#034;false&#034;>
+                        <label for="order06" onclick="setPeriod(-2);">2020년</label>
                       </li>
-                      <li id="7">
-                        <input type="radio" name="filter4" id="filter4-07" aria-checked="false">
-                        <label for="filter4-07">전체</label>
+                      <li>
+                        <input type="radio" name="order" id="order07" value="-3" aria-checked=&#034;false&#034;>
+                        <label for="order07" onclick="setPeriod(-3);">전체</label>
                       </li>
                     </ul>
-                    <!-- // 2020-09-28 마크업 수정 -->
+                    <form id="serachForm" action="/mypageDeposit" method="get">
+                      <input type="hidden" id="searchType" name="searchType" value=""/>
+                      <input type="hidden" class="from" name="strtDt" id="txtOrdStrtDt" maxlength="8" value="" />
+                      <input type="hidden" class="to" name="endDt" id="txtOrdEndDt" maxlength="8" value=""/>
+                    </form>
                   </div>
                 </div>
-                <!--//filter-box-->
+
+                  <c:if test="${depositVO.size() != 0}">
+                    <c:forEach items="${depositVO}" var="vo">
+                      <div class="list-wrap" style="margin-top: 10px">
+
+                        <ul class="list">
+
+                          <li>
+
+                            <div class="cell">
+                              <p>
+                                <span class="date"><fmt:formatDate value="${vo.created_at}" pattern="yyyy-MM-dd"/></span>
+
+                                <c:if test="${vo.deposit_use == 0}">
+                                  <strong class="accu">환불</strong>
+                                </c:if>
+                                <c:if test="${vo.deposit_save == 0}">
+                                  <strong class="exp-accu">사용</strong>
+                                </c:if>
+
+
+                              </p>
+
+
+                              <p class="pdname nowrap">${vo.deposit_content}</p>
+
+
+                              <p>처리상태 : ${vo.deposit_status}</p>
 
 
 
-                <!--hpoint list-->
-                <div class="list-wrap">
+                            </div>
+                            <div class="cell">
+                              <c:if test="${vo.deposit_use == 0}">
+                                <span class="point-up">+${vo.deposit_save}원</span>
+                              </c:if>
+                              <c:if test="${vo.deposit_save == 0}">
+                                <span class="point-down">-${vo.deposit_use}원</span>
+                              </c:if>
+                              <sub></sub>
 
 
-                  <!--내역이 없을 경우-->
-                  <div class="nodata">
-                    <span class="bgcircle"><i class="icon nodata-type18"></i></span>
-                    <p>예치금 내역이 없습니다.</p>
-                  </div>
-                  <!--//내역이 없을 경우-->
+                            </div>
+                          </li>
 
-                  <!--paging-->
-                  <div class="paging">
+
+                        </ul>
 
 
 
+                      </div>
+                    </c:forEach>
+                    <!--hpoint list-->
+                    <!--paging-->
+                    <div class="paging">
 
 
 
 
-                  </div>
+
+                      <div class="page-prevarea">
+
+
+
+
+
+
+                        <strong aria-label="현재 선택페이지">1</strong>
+
+
+
+
+
+
+                      </div>
+
+
+
+                    </div>
+                  </c:if>
                   <!--//paging-->
-                </div>
-                <!--hpoint list-->
+                  <c:if test="${depositVO.size() == 0}">
+                    <div class="list-wrap">
+                      <!--내역이 없을 경우-->
+                      <div class="nodata">
+                        <span class="bgcircle"><i class="icon nodata-type18"></i></span>
+                        <p>예치금 내역이 없습니다.</p>
+                      </div>
+                      <!--//내역이 없을 경우-->
+                    </div>
+                  </c:if>
 
                 <!--point-progresstxt-->
                 <div class="point-progresstxt apply">
@@ -295,3 +384,57 @@
   <!-- //.container -->
 
 </main>
+<script>
+  function setPeriod(period) {
+    var d = new Date();
+    var endDateStr = getDateStr(d);
+    var dt ,startDateStr;
+
+    if (period == 2){
+      dt = new Date(d.setDate(d.getDate() - 14));
+      startDateStr = getDateStr(dt);
+    } else if (period == 3){
+      dt = new Date(d.setMonth(d.getMonth() - 3));
+      startDateStr = getDateStr(dt);
+    } else if (period == 6) {
+      dt = new Date(d.setMonth(d.getMonth() - 6));
+      startDateStr = getDateStr(dt);
+    } else if (period == 0) {
+      startDateStr = endDateStr.substr(0,4)+"0101";
+      endDateStr = endDateStr.substr(0,4)+"1231";
+    } else if (period == -1) {
+      d.setFullYear(new Date().getFullYear() - 1);
+      startDateStr = getDateStr(d).substr(0,4)+"0101";
+      endDateStr = startDateStr.substr(0,4)+"1231";
+    } else if (period == -2) {
+      d.setFullYear(new Date().getFullYear() - 2);
+      startDateStr = getDateStr(d).substr(0,4)+"0101";
+      endDateStr = startDateStr.substr(0,4)+"1231";
+    } else { // 전체
+      startDateStr = "";
+      endDateStr = "";
+    }
+
+
+    $("#txtOrdStrtDt").val(startDateStr);
+    $("#txtOrdEndDt").val(endDateStr);
+    $("#searchType").val(period);
+
+    document.getElementById('serachForm').submit();
+
+  }
+
+  function getDateStr(dt){
+    var year = dt.getFullYear();
+    var month = dt.getMonth();
+    month++;
+    if( month < 10 ){
+      month = "0" + month;
+    }
+    var date = dt.getDate();
+    if( date < 10){
+      date = "0" + date;
+    }
+    return year + "" +  month + "" + date;
+  }
+</script>

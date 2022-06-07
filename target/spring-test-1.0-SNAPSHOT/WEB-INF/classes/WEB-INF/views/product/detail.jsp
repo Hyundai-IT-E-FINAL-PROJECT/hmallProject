@@ -744,83 +744,75 @@
                                              data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
                                             <div class="slick-list">
                                                 <div class="slick-track"
-                                                     style="opacity: 1; width: 2600px; transform: translate(-520px, 0px);">
+                                                     style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
                                                     <div class="slick-slide slick-cloned" data-slick-index="-1"
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
+                                                                 data-outputsrc="/resources/img/image_example1.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
                                                                    onclick="goGaEvent('상품상세','상단_이미지확대','')"
                                                                    tabindex="-1"><img
-                                                                        src="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=520x520&amp;AR=0"
-                                                                        alt="2122712699_2.jpg"
+                                                                        src="/resources/img/image_example1.jpg"
+                                                                        alt="2139858205_4.png"
                                                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="slick-slide slick-current slick-active"
-                                                         data-slick-index="0" aria-hidden="false" style="width: 520px;">
-                                                        <div>
-                                                            <div class="item" data-item=""
-                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                 onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                 style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                <a href="javascript:;"
-                                                                   onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                   tabindex="0"><img
-                                                                        src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                        alt="${imageVOList[0].IMAGE_NAME}"
-                                                                        onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="1" aria-hidden="true"
-                                                         style="width: 520px;" tabindex="-1">
-                                                        <div>
-                                                            <div class="item" data-item=""
-                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                 onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                 style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                <a href="javascript:;"
-                                                                   onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                   tabindex="-1"><img
-                                                                        src="https://image.hmall.com/static/6/2/71/22/2122712699_1.jpg?RS=520x520&amp;AR=0"
-                                                                        alt="2122712699_1.jpg"
-                                                                        onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide" data-slick-index="2" aria-hidden="true"
-                                                         style="width: 520px;" tabindex="-1">
-                                                        <div>
-                                                            <div class="item" data-item=""
-                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                 onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                 style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                <a href="javascript:;"
-                                                                   onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                   tabindex="-1"><img
-                                                                        src="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=520x520&amp;AR=0"
-                                                                        alt="2122712699_2.jpg"
-                                                                        onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide slick-cloned" data-slick-index="3"
+                                                    <c:forEach items="${imageVOList}" var="imageVO" varStatus="status">
+                                                        <c:choose>
+                                                            <c:when test="${status.index == 0}">
+                                                                <div class="slick-slide slick-current slick-active" data-slick-index="${status.index}" aria-hidden="true"
+                                                                     style="width: 520px;" tabindex="-1">
+                                                                    <div>
+                                                                        <div class="item" data-item=""
+                                                                             data-outputsrc="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                                                             style="width: 100%; display: inline-block; vertical-align: top;">
+                                                                            <a href="javascript:;"
+                                                                               onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                                                               tabindex="-1"><img
+                                                                                    src="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                                    alt="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                                    onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="slick-slide" data-slick-index="${status.index}" aria-hidden="true"
+                                                                     style="width: 520px;" tabindex="-1">
+                                                                    <div>
+                                                                        <div class="item" data-item=""
+                                                                             data-outputsrc="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                                                             style="width: 100%; display: inline-block; vertical-align: top;">
+                                                                            <a href="javascript:;"
+                                                                               onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                                                               tabindex="-1"><img
+                                                                                    src="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                                    alt="/resources/img/${imageVO.IMAGE_NAME}.jpg"
+                                                                                    onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                    <div class="slick-slide slick-cloned" data-slick-index="5"
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
                                                             <div class="item" data-item=""
-                                                                 data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
+                                                                 data-outputsrc="/resources/img/image_example1.jpg"
                                                                  onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                  style="width: 100%; display: inline-block; vertical-align: top;">
                                                                 <a href="javascript:;"
                                                                    onclick="goGaEvent('상품상세','상단_이미지확대','')"
                                                                    tabindex="-1"><img
-                                                                        src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                        alt="2122712699_0.jpg"
+                                                                        src="/resources/img/image_example1.jpg"
+                                                                        alt="2139858205_0.png"
                                                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
                                                             </div>
                                                         </div>
@@ -829,24 +821,26 @@
                                             </div>
                                         </div>
                                         <div class="ui-angle"
-                                             style="display: none; width: 260px; height: 260px; top: 0px; left: 260px;"></div>
+                                             style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
                                     </div>
                                     <div class="slider-thumbnaii no-slick">
                                         <ul>
-                                            <c:forEach var="imageVO" items="${imageVOList}">
+                                            <c:forEach var="imageVO" items="${imageVOList}" varStatus="status">
                                                 <c:choose>
                                                     <c:when test="${imageVO.IMAGE_TYPE eq 'MAIN'}">
-                                                        <li class="ui-thumbnaii ui-active"><a href="javascript:;"
-                                                                                              onclick="GA_Event('상품상세','상단_이미지확대','');"
-                                                                                              draggable="false"><img
-                                                                src="/resources/img/thumb/${imageVO.IMAGE_NAME}.jpg"
-                                                                alt="2122712699_0.jpg"
-                                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a>
+                                                        <li class="ui-thumbnaii ui-active">
+                                                            <a href="javascript:;"
+                                                               onclick="image_slide(this, ${status.index});"
+                                                               draggable="false">
+                                                                <img src="/resources/img/thumb/${imageVO.IMAGE_NAME}.jpg"
+                                                                     alt="2122712699_0.jpg"
+                                                                     onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')">
+                                                            </a>
                                                         </li>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <li class="ui-thumbnaii"><a href="javascript:;"
-                                                                                    onclick="GA_Event('상품상세','상단_이미지확대','');"
+                                                                                    onclick="image_slide(this, ${status.index});"
                                                                                     draggable="false"><img
                                                                 src="/resources/img/thumb/${imageVO.IMAGE_NAME}.jpg"
                                                                 alt="2122712699_0.jpg"
@@ -911,7 +905,6 @@
                                     <!-- // .customer-use-info -->
                                 </div>
                             </div>
-                            ㅅ
                             <div class="right-info">
                                 <div data-viewercontent="" class="">
                                     <p class="guide-txt">마우스 휠을 움직이면 상품 이미지를 더욱 상세히 보실 수 있습니다.</p>
@@ -964,7 +957,7 @@
                                            ga-custom-etc="urlAction">
 
                                             <span class="img"><img
-                                                    src="/resources/img/${imageVOList[0].image_name}.jpg"
+                                                    src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                     alt="아이사랑"
                                                     onerror="noImage(this, 'http:////image.hmall.com/p/img/co/logo-brand-default.jpg')"></span>
 
@@ -1050,7 +1043,8 @@
                                         <c:when test="${productVO.coupon_ratio != 0}">
                                             <div class="pdprice">
                                                     <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                                        <em class="rate" aria-label="할인율">${productVO.coupon_ratio}%</em>
+                                                        <em class="rate"
+                                                            aria-label="할인율">${productVO.coupon_ratio}%</em>
                                                     <p class="discount" aria-label="할인가">
                                                         <em class="product-discount">
                                                             <fmt:formatNumber value="${productVO.discounted_cost}"
@@ -1124,7 +1118,7 @@
                                             <p><strong>[모바일 구매혜택]</strong></p>
                                             <p>
                                                 <a href="#" data-modules-modal="target:#modalImmeDiscount-02;"
-                                                   onclick="GA_Event('상품상세','구매혜택 더보기','즉시할인');">
+                                                   onclick="image_slide('상품상세','구매혜택 더보기','즉시할인');">
                                                     <em>5</em>% KB국민카드 (<em>50,000</em>원↑)<i
                                                         class="icon icon-arrow"></i>
                                                 </a>
@@ -1168,7 +1162,7 @@
                                         <dd>
 
 
-                                            <p><a href="#" onclick="GA_Event('상품상세','구매혜택 더보기','무이자할부');"
+                                            <p><a href="#" onclick="image_slide('상품상세','구매혜택 더보기','무이자할부');"
                                                   data-modules-modal="target:#modalInterestFree;">카드 무이자 특별행사 안내<i
                                                     class="icon icon-arrow"></i></a></p>
 
@@ -1216,7 +1210,7 @@
                                         <dd>
 
 
-                                            <a href="#" onclick="GA_Event('상품상세','구매혜택 더보기','H.Point');"
+                                            <a href="#" onclick="image_slide('상품상세','구매혜택 더보기','H.Point');"
                                                data-modules-modal="target:#modalAccumBenefit;">H.Point 40P<i
                                                     class="icon icon-arrow"></i></a>
 
@@ -1285,7 +1279,7 @@
                                         <dd class="deliver-percent">
 
 
-                                            <a href="javascript://" onclick="GA_Event('상품상세','배송 더보기','배송확률');"
+                                            <a href="javascript://" onclick="image_slide('상품상세','배송 더보기','배송확률');"
                                                class="deliver-percent" data-modules-modal="target:#modalDeliverPercent">06/03(금)까지
                                                 배송 확률 <strong>62%</strong><i class="icon icon-arrow"></i></a>
                                             <a href="#tooltipCont2" class="deliver-day" data-modules-tooltip=""><i
@@ -1536,7 +1530,7 @@
 
                                             </dl>
 
-                                            <a onclick="GA_Event('상품상세', '즉시할인가', 'KB국민카드 5%');"
+                                            <a onclick="image_slide('상품상세', '즉시할인가', 'KB국민카드 5%');"
                                                id="bizItemPtc_discount-imme-detail"
                                                href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280848"
                                                class="more-info" target="_blank">자세히 보기</a>
@@ -2135,7 +2129,7 @@
                                 <div class="content-body">
                                     <div class="basket-item">
                                         <div class="thumbswrap">
-                                            <img src="/resources/img/${imageVOList[0].image_name}.jpg"
+                                            <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
                                                  alt="[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )"
                                                  onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=600x600&amp;AR=0')">
                                         </div>
@@ -2601,74 +2595,56 @@
                                                  data-modules-slick="dots:false; arrows:false; infinite:true; thumbnaiList:.slider-thumbnaii-ver;">
                                                 <div class="slick-list draggable">
                                                     <div class="slick-track"
-                                                         style="opacity: 1; width: 2805px; transform: translate(-561px, 0px);">
+                                                         style="opacity: 1; width: 3640px; transform: translate(-2600px, 0px);">
                                                         <div class="slick-slide slick-cloned" data-slick-index="-1"
-                                                             aria-hidden="true" style="width: 561px;" tabindex="-1">
+                                                             aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_2.jpg?RS=140&amp;AR=0"
+                                                                     data-outputsrc="/resources/img/image_example1.jpg"
+                                                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;" tabindex="-1">
-                                                                        <img src="/resources/i"
-                                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
-                                                                    </a>
+                                                                    <a href="javascript:;"
+                                                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                                                       tabindex="-1"><img
+                                                                            src="https://image.hmall.com/static/2/8/85/39/2139858205_4.png?RS=520x520&amp;AR=0"
+                                                                            alt="2139858205_4.png"
+                                                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="slick-slide slick-current slick-active"
-                                                             data-slick-index="0" aria-hidden="false"
-                                                             style="width: 561px;">
-                                                            <div>
-                                                                <div class="item" data-item=""
-                                                                     data-outputsrc="https://image.hmall.com/static/6/2/71/22/2122712699_0.jpg?RS=140&amp;AR=0"
-                                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;" tabindex="0">
-                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                             alt="상품이미지" "=""
-                                                                        onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
-                                                                    </a>
+                                                        <c:forEach items="${imageVOList}" var="imageVO"
+                                                                   varStatus="status">
+                                                            <div class="slick-slide" data-slick-index="${status.index}"
+                                                                 aria-hidden="true"
+                                                                 style="width: 520px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="item" data-item=""
+                                                                         data-outputsrc="/resources/img/image_example1.jpg"
+                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                                                        <a href="javascript:;"
+                                                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                                                           tabindex="-1"><img
+                                                                                src="/resources/img/${imageVO.IMAGE_NAME}"
+                                                                                alt="2139858205_0.png"
+                                                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="slick-slide" data-slick-index="1" aria-hidden="true"
-                                                             style="width: 561px;" tabindex="-1">
+                                                        </c:forEach>
+                                                        <div class="slick-slide slick-cloned" data-slick-index="5"
+                                                             aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
+                                                                     data-outputsrc="/resources/img/image_example1.jpg"
+                                                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;" tabindex="-1">
-                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                             alt="상품이미지" "=""
-                                                                        onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="slick-slide" data-slick-index="2" aria-hidden="true"
-                                                             style="width: 561px;" tabindex="-1">
-                                                            <div>
-                                                                <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;" tabindex="-1">
-                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                             alt="상품이미지" "=""
-                                                                        onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="slick-slide slick-cloned" data-slick-index="3"
-                                                             aria-hidden="true" style="width: 561px;" tabindex="-1">
-                                                            <div>
-                                                                <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;" tabindex="-1">
-                                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                                             alt="상품이미지" "=""
-                                                                        onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'">
-                                                                    </a>
+                                                                    <a href="javascript:;"
+                                                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                                                       tabindex="-1"><img
+                                                                            src="https://image.hmall.com/static/2/8/85/39/2139858205_0.png?RS=520x520&amp;AR=0"
+                                                                            alt="2139858205_0.png"
+                                                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2882,7 +2858,7 @@
                                             <div class="accparent">
                                                 <!--01: -h3/accordion-panel에 selected 시 열림-->
                                                 <h3 class="selected">
-                                                    <button onclick="GA_Event('상품상세','기본정보','상품 필수정보 및 인증정보')"
+                                                    <button onclick="image_slide('상품상세','기본정보','상품 필수정보 및 인증정보')"
                                                             data-modules-collapse="parent:.accparent;"
                                                             class="accordion-trigger" aria-expanded="true"><i
                                                             class="icon question"></i><span>상품 필수정보 및 인증정보</span><i
@@ -2951,7 +2927,7 @@
                                                 <!--02: -h3/accordion-panel에 selected 시 열림-->
 
                                                 <h3>
-                                                    <button onclick="GA_Event('상품상세','기본정보','배송/교환/환불/AS/유의사항')"
+                                                    <button onclick="image_slide('상품상세','기본정보','배송/교환/환불/AS/유의사항')"
                                                             data-modules-collapse="parent:.accparent;"
                                                             class="accordion-trigger" aria-expanded="false"><i
                                                             class="icon question"></i><span>배송/교환/환불/AS/유의사항</span><i

@@ -248,7 +248,7 @@
                                         </a>
                                         <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
 
-                                            <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info">
+                                            <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info" onclick="image_show(${productVO})">
                                                 <i class="icon"></i><span class="hiding">찜</span></a>
                                         </div>
                                     </li>
@@ -377,83 +377,16 @@
 
                                         <div class="slider-thumbnaii ">
                                             <ul>
-
-
-
-
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii ui-active"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_0.jpg?RS=100x100&amp;AR=0" alt="2139859206_0.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_1.jpg?RS=100x100&amp;AR=0" alt="2139859206_1.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_2.jpg?RS=100x100&amp;AR=0" alt="2139859206_2.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_3.jpg?RS=100x100&amp;AR=0" alt="2139859206_3.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_4.jpg?RS=100x100&amp;AR=0" alt="2139859206_4.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_5.jpg?RS=100x100&amp;AR=0" alt="2139859206_5.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_6.jpg?RS=100x100&amp;AR=0" alt="2139859206_6.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_7.jpg?RS=100x100&amp;AR=0" alt="2139859206_7.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_8.jpg?RS=100x100&amp;AR=0" alt="2139859206_8.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
-
-
-
                                                 <li class="ui-thumbnaii"><a href="javascript:;" onclick="GA_Event('상품상세','상단_이미지확대','');" draggable="false"><img src="https://image.hmall.com/static/2/9/85/39/2139859206_9.jpg?RS=100x100&amp;AR=0" alt="2139859206_9.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')"></a></li>
-
-
-
                                             </ul>
                                         </div>
 

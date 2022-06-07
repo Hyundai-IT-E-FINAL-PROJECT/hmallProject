@@ -3899,6 +3899,7 @@
             _showRectAngle: function () {
                 var _ = this;
                 var src = _.element.find('.slick-active [data-item]').attr('data-outputsrc')
+                console.log(src)
                 _.rectAngle.show();
                 _.viewercontent.addClass(activeClass);
                 _.viewercontent.append('<div class="viewer-image"><img src="' + src + '"></div>');

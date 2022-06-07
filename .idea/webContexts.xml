@@ -4,14 +4,10 @@
     <option name="state">
       <map>
 <<<<<<< HEAD
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/inquiryPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer" />
-=======
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage/mypageUpdate.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage" />
->>>>>>> hoon
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order/basktList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order/orderPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/detail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product" />
+=======
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exhibition/euro_exhibit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exhibition" />
+>>>>>>> bccc3d05e3c15c2be533b2aa62e7c7fc5995fc32
       </map>
     </option>
   </component>

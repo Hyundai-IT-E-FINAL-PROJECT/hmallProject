@@ -6,12 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="contents">
             <link href="//image.hmall.com/p/css/co/video-js.css" rel="stylesheet">
             <script src="//image.hmall.com/p/js/co/video.js"></script>
             <script src="//image.hmall.com/p/js/co/videojs-http-streaming.js"></script>
+            <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
             <div class="exhibition-wrap">
                 <div class="exh-thumb" style="text-align: center;"><p style="TEXT-ALIGN: justify"></p></div>
             </div>
@@ -122,64 +126,6 @@
                     }
                 });
 
-                // function loadDcPageSet(data){
-                //     $("#productSearchInitDiv").hide();
-                //     $("#displayListDiv").html(data);
-                //     $("#displayListDiv").show();
-                //     initObserver();
-                //     personalSet(); //찜리스트 체크
-                //     moreLoading(false, $("#displayListDiv"));
-                //     if(sessionStorage.getItem('p_sectScrollTop') && sessionStorage.getItem('p_sectScrollTop') > 0){
-                //         $(window).scrollTop(sessionStorage.getItem('p_sectScrollTop'));
-                //     }
-                //
-                //     firstScrollFlag = false;
-                // }
-                //
-                // function loadDcPage() {
-                //     firstScrollFlag = true;
-                //     moreLoading(true, $("#displayListDiv"),true);
-                //     $(".load-bar").css('z-index',0);
-                //     $(".load-bar").css('align-items','start');
-                //     $(".load-bar").css('height',window.innerHeight);
-                //
-                //     $.ajax({
-                //         type : "get",
-                //         url : "https://www.hmall.com/p/dpa/searchSpexAjaxItemList.do",
-                //         dataType : "html",
-                //         data : {
-                //             sectId : sectId,
-                //             sortType : sortType,
-                //             EHAdltCertYn : '',
-                //             preview : preview
-                //         },
-                //         async : true,
-                //         success : function(data) {
-                //             loadDcPageSet(data);
-                //         },
-                //         error : function(data) {
-                //             $.ajax({
-                //                 type : "get",
-                //                 url : "https://www.hmall.com/p/dpa/searchSpexAjaxItemList.do",
-                //                 dataType : "html",
-                //                 data : {
-                //                     sectId : sectId,
-                //                     sortType : sortType,
-                //                     EHAdltCertYn : ''
-                //                 },
-                //                 async : true,
-                //                 success : function(data) {
-                //                     loadDcPageSet(data);
-                //                 },
-                //                 error : function(data) {
-                //                     moreLoading(false, $("#displayListDiv"));
-                //                     firstScrollFlag = false;
-                //                 }
-                //             });
-                //         }
-                //     });
-                // }
-
                 function fnKeywordSearchItem() {
 
                     moreLoading(true, $("#displaySearchListDiv"),true);
@@ -264,54 +210,50 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane ui-active" id="pd-2799844">
                         <div class="list-head">
+                            <img id="btnKakao" class="link-icon kakao" onclick="shareKakao();" src="${contextPath}/resources/img/exhibitions/kakao.png" width="25" height="25" style="float: right"/>
                             <h3 class="title22">미백순수22</h3>
-                            <a href="#" class="btn-list-top">TOP<i class="icon"></i></a>
                         </div>
                         <div class="pdlist-wrap col5">
                             <ul>
-                                <!--  상품기본정보 start -->
-                                <!-- ctSectTmplId:spex/ancer01 itemAuthGrp:Y EHAdltCertYn:N ctHmallExclYn:Y-->
-                                <!-- 혜택 영역 -->
-                                <!-- //혜택 영역 -->
-                                <li class="pdthumb" ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
-                                    <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2799844&amp;slitmCd=2140259421', this);">
-                                        <div class="thumb">
-                                            <img src="https://image.hmall.com/static/4/9/25/40/2140259421_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/9/25/40/2140259421_0.jpg?RS=400x400&amp;AR=0" alt="NEW 미백순수22 비타민C앰플 시즌2 더블구성" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
-                                            <div class="ready">
-                                                <span class="playtime"><i class="icon"></i><em>00:53</em></span>
-                                            </div>
-                                        </div>
-                                        <div class="figcaption">
-                                            <div class="pdname" aria-label="TVCF동일 이보희 NEW 미백순수 비타민앰플 로즈골드에디션">TVCF동일 이보희 NEW 미백순수 비타민앰플 로즈골드에디션</div>
-                                            <div class="pdprice">
-                                                <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                                    <p class="discount" aria-label="할인가"><em>89,910</em>원 外</p>
-                                                    <em class="rate" aria-label="할인율">10<i>%</i></em>
-                                                    <del class="normal" aria-label="정상가">99,900</del>
-                                                </span>
-                                            </div>
-                                            <div class="pdinfo">
-                                                <div class="benefits">
-                                                    <span class="flag"><em class="color-ec5baa">TV쇼핑</em></span>
-                                                    <span>무3</span>
-                                                    <span>무료배송</span>
+                                <c:forEach items="${list}" var="cosmetics" varStatus="status">
+                                    <li class="pdthumb" ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
+                                        <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2799844&amp;slitmCd=2140259421', this);">
+                                            <div class="thumb">
+                                                <img src="${contextPath}/resources/img/exhibitions/${cosmetics.IMAGE_NAME}.jpg" data-io-src="https://image.hmall.com/static/4/9/25/40/2140259421_0.jpg?RS=400x400&amp;AR=0" alt="NEW 미백순수22 비타민C앰플 시즌2 더블구성" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                <div class="ready">
+                                                    <span class="playtime"><i class="icon"></i><em>00:53</em></span>
                                                 </div>
-                                                <p class="like-count">
-                                                    <!-- 옵션상품 && 딜상품 -->
-                                                </p>
                                             </div>
+                                            <div class="figcaption">
+                                                <div class="pdname" aria-label="TVCF동일 이보희 NEW 미백순수 비타민앰플 로즈골드에디션">${cosmetics.PRODUCT_NAME}</div>
+                                                <div class="pdprice">
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <p class="discount" aria-label="할인가"><em><fmt:formatNumber value="${cosmetics.DISCOUNTED_COST}" pattern="#,###"/></em>원 外</p>
+                                                        <em class="rate" aria-label="할인율">${cosmetics.COUPON_RATIO}<i>%</i></em>
+                                                        <del class="normal" aria-label="정상가"><fmt:formatNumber value="${cosmetics.PRODUCT_COST}" pattern="#,###"/></del>
+                                                    </span>
+                                                </div>
+                                                <div class="pdinfo">
+                                                    <div class="benefits">
+                                                        <span class="flag"><em class="color-ec5baa">적립금</em></span>
+                                                        <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${cosmetics.PRODUCT_COST * 0.05}" /></span>
+                                                    </div>
+                                                    <p class="like-count">
+                                                        <!-- 옵션상품 && 딜상품 -->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:;" class="hoverview" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2799844&amp;slitmCd=2140259421', this , '_blank');"><i class="icon"></i>새창열기</a>
+                                        <div class="alimlike" data-slitmcd="2140259421" data-bsitmcd="2140259421">
+                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','017766','','2140259421', event);"> <i class="icon"></i><span class="hiding">찜</span></a>
                                         </div>
-                                    </a>
-                                    <a href="javascript:;" class="hoverview" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2799844&amp;slitmCd=2140259421', this , '_blank');"><i class="icon"></i>새창열기</a>
-                                    <div class="alimlike" data-slitmcd="2140259421" data-bsitmcd="2140259421">
-                                        <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','017766','','2140259421', event);"> <i class="icon"></i><span class="hiding">찜</span></a>
-                                    </div>
-                                </li>
-                                <!--  상품기본정보 start -->
-                                <!-- ctSectTmplId:spex/ancer01 itemAuthGrp:Y EHAdltCertYn:N ctHmallExclYn:Y-->
-                                <!-- 혜택 영역 -->
-                                <!-- //혜택 영역 -->
-
+                                    </li>
+                                    <!--  상품기본정보 start -->
+                                    <!-- ctSectTmplId:spex/ancer01 itemAuthGrp:Y EHAdltCertYn:N ctHmallExclYn:Y-->
+                                    <!-- 혜택 영역 -->
+                                    <!-- //혜택 영역 -->
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -321,3 +263,24 @@
         </div>
     </div>
 </main>
+<script>
+    function shareKakao() {
+        // 사용할 앱의 JavaScript 키 설정
+        Kakao.init('caf33407aea23e6cbd7ad732e602b5ad');
+
+        // 카카오링크 버튼 생성
+        Kakao.Link.createDefaultButton({
+            container: '#btnKakao', // 카카오공유버튼ID
+            objectType: 'feed',
+            content: {
+                title: "금주의 히트예감 대공개", // 보여질 제목
+                description: "미백순수22 파격 기획전", // 보여질 설명
+                imageUrl: "${contextPath}/resources/img/exhibitions/mainImg_4.jpeg", // 콘텐츠 URL
+                link: {
+                    mobileWebUrl: "http://localhost:8080/exhibition/cosmetics?exhibit_num=2",
+                    webUrl: "http://localhost:8080/exhibition/cosmetics?exhibit_num=2"
+                }
+            }
+        });
+    }
+</script>
