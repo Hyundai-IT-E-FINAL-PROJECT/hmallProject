@@ -733,6 +733,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             </div>
                                         </li>
                                     </ul>
+                                    <input type="hidden" value="" name="payMethod" id="payMethod">
                                 </div>
                             </div>
                         </div> <!-- chkStlmType() 2번째 종료 -->
@@ -836,7 +837,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                     <label for="totalDepositPoint"></label>
                                                 <strong>
                                                     <label for="totalCost1"></label>
-                                                    <input value="${directBasket.productVO.product_cost * directBasket.basket_count}" name="totalCost1" id="totalCost1" style="border: none;width: 100px; text-align:right;">
+                                                    <input value="${total_price}" name="totalCost1" id="totalCost1" style="border: none;width: 100px; text-align:right;">
                                                 </strong>
                                                 </span>
                                             </div>
@@ -865,6 +866,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             if($('input:radio[name=paymentMethod]').is(':checked')){
                 //결제수단: 신용카드 -> 카카오API
                 if($("input:radio[name='paymentMethod']:checked").val()==='paymentMethod1'){
+                    $("#payMethod").val('카카오페이');
                     //카카오 결제 API
                     var IMP=window.IMP;
                     IMP.init('imp40479509');
@@ -891,6 +893,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         }
                     });
                 }else{//무통장입금 선택시 -> 자동 결제 되는 식으로
+                    $("#payMethod").val('무통장입금');
                     orderProcess();
                 }
             }else{
@@ -947,7 +950,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 // opData:opData
                 "basket_list":basket_list,
                 "product_list":product_list,
-                coupon_seq:$("input[name='couponName']:checked").val()
+                coupon_seq:$("input[name='couponName']:checked").val(),
+                receiveName:$("input[name='receiveName']").val(),
+                order_method:$("input[name='payMethod']").val()
 
             };
 
@@ -963,7 +968,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 },
                 success:function(data){
                     alert("주문이 완료되었습니다. 결제 완료 페이지로 넘어갑니다!");
-                    location.href='${contextPath}/order/orderComplete/'+data;
+                    location.href='${contextPath}/order/od/'+data;
 
                 },
                 error: function (request,status,error) {

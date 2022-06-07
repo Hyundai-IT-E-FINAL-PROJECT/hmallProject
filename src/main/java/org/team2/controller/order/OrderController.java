@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
-import org.team2.service.BasketService;
 import org.team2.service.CouponService;
 import org.team2.service.OrderService;
 import org.team2.service.UserService;
@@ -27,53 +26,23 @@ public class OrderController {
     private OrderService orderService;
     private CouponService couponService;
     private UserService userService;
-    private BasketService basketService;
-
-//    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
-//    @RequestMapping("")
-//    public ModelAndView order(){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("order.basktList");
-//        return mav;
-//    }
 
 
+    @ResponseBody
+    @RequestMapping(value = "od/{order_seq}", method = RequestMethod.GET)
+    public ModelAndView sendOrderComplete(Principal principal, @PathVariable Long order_seq) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("order");
 
-//    //장바구니 -> 상품 하나 선택했을 때 Controller
-//    @ResponseBody
-//    @RequestMapping(value = "od/{product_seq}", method = RequestMethod.GET)
-//    public ModelAndView sendOrderData(Principal principal, @PathVariable Long product_seq) throws Exception {
-////    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
-//        ModelAndView mav = new ModelAndView();
-//        List<String> styleFileList = new ArrayList<>();
-//        styleFileList.add("order");
-//
-//            //장바구니 가져오기(물품 한 개일 때)
-//        Map<String, Long> map=new HashMap<>();
-//        map.put("product_seq", product_seq);
-//        map.put("user_seq", Long.valueOf(principal.getName()));
-//        BasketVO directBasket=basketService.directBuy(map);
-//
-//        AddressVO basicAddress=userService.selectBasicAddress(Long.valueOf(principal.getName()));
-//        log.info(directBasket);
-//        log.info(basicAddress);
-//
-//        //예치금, 적립금도 불러오기
-//        Long user_seq=Long.valueOf(principal.getName());
-//        mav.addObject("className","wrap order-main");
-//        log.info("데이터 이동");
-//        List<CouponVO> couponList=couponService.getCouponList(user_seq);
-//        UserVO user=userService.readPoint(user_seq);
-//        mav.addObject("directBasket",directBasket);
-//        mav.addObject("user_seq", user_seq);
-//        mav.addObject("couponList", couponList);
-//        mav.addObject("basicAddress",basicAddress);
-//        mav.addObject("userPoint", user.getUser_point());
-//        mav.addObject("depositPoint",user.getUser_deposit());
-//        mav.addObject("cssFileList", styleFileList);
-//        mav.setViewName("order.orderPage");
-//        return mav;
-//    }
+        List<Map<String, Object>> historyOrder=orderService.justanOrderSelect(order_seq);
+        log.info(historyOrder);
+
+        mav.addObject("historyOrder", historyOrder);
+        mav.addObject("cssFileList", styleFileList);
+        mav.setViewName("order.orderComplete");
+        return mav;
+    }
 
     @ResponseBody
     @PostMapping("od")
@@ -122,23 +91,6 @@ public class OrderController {
     }
 
 
-//    @ResponseBody
-//    @PostMapping("orderComplete")
-//    public ResponseEntity<String> sendOrderData(@RequestBody OrderVO vo) throws Exception {
-//
-//        //orderService.insert(vo);
-//        //log.info("데이터 삽입 성공");
-//
-//        String jsonStr=new Gson().toJson(vo);
-//        log.info(jsonStr);
-//        HttpHeaders resHeader=new HttpHeaders();
-//
-//        resHeader.add("Content-Type", "application/json; charset=UTF-8");
-//
-//        return new ResponseEntity<>(jsonStr, resHeader, HttpStatus.OK);
-//
-//
-//    }
 
         @Transactional
         @ResponseBody

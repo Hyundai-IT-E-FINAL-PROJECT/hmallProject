@@ -9,6 +9,8 @@ import org.team2.domain.*;
 import org.team2.mapper.OrderMapper;
 
 import java.util.List;
+import java.util.Map;
+
 @Log4j
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -57,5 +59,8 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.deleteUseCoupon(cuVO);
     }
 
-
+    @Override
+    public List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception {
+        return orderMapper.justanOrderSelect(order_seq);
+    }
 }

@@ -104,6 +104,8 @@
             order_invoice,
             order_total_cost,
             order_message,
+            order_method,
+            order_receive_name,
             created_at,
             updated_at
         ) values(
@@ -117,6 +119,8 @@
             #{invoice},
             #{totalCost},
             #{message},
+            #{order_method},
+            #{receiveName},
             sysdate,
             sysdate
         )
@@ -128,7 +132,7 @@
             select seq_op.nextval from dual
         </selectKey>
         insert into tbl_op(op_seq,order_seq, product_seq, op_count)
-        values(#{op_seq}, #{order_seq}, #{product_seq}, 1)
+        values(#{op_seq}, #{order_seq}, #{product_seq}, #{op_count})
     </insert>
 
 
@@ -151,7 +155,7 @@
         delete from tbl_cu where coupon_seq=#{coupon_seq} and user_seq=#{user_seq}
     </delete>
 
-    <select id="justanOrderSelect">
+    <select id="justanOrderSelect" resultType="map">
 -- 방금 주문한 주문내역 보여주기
         select *
         from tbl_order, tbl_op, tbl_product

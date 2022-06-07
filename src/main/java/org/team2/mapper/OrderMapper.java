@@ -3,6 +3,7 @@ package org.team2.mapper;
 import org.team2.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderMapper {
 
@@ -29,4 +30,6 @@ public interface OrderMapper {
     void productSellUpdate(ProductVO productVO) throws Exception;
 
     void deleteUseCoupon(CuVO cuVO) throws Exception;
+
+    List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
 }

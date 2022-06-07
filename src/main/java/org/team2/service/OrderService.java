@@ -3,6 +3,7 @@ package org.team2.service;
 import org.team2.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
     List<OrderVO> packageSelect() throws Exception;
@@ -18,5 +19,7 @@ public interface OrderService {
     void productSellUpdate(ProductVO productVO) throws Exception;
 
     void deleteUseCoupon(CuVO cuVO) throws Exception;
+
+    List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
 
 }
