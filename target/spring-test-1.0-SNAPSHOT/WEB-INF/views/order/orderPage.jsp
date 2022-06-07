@@ -444,31 +444,34 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         <div class="accordion-panel selected" role="region" aria-label="">
                             <div class="order-list" id="orderItems">
                                 <c:set var="total_price" value="0"/>
+                                <input type="hidden" name="basketListLength" value="${fn:length(basketList)}" />
                                 <ul>
-                                    <c:forEach items="${basketList}" var="basket">
-                                    <li name="orderItem">
-                                        <input type="hidden" value="${basket.productVO.product_seq}" name="product_seq" id="product_seq"/>
-                                        <%--                                        상품에 관한 정보들--%>
-<%--                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${basket.productVO.product_cost * basket.basket_count}">--%>
+                                    <c:forEach items="${basketList}" var="basket" varStatus="status">
+                                        <input type="hidden" name="prSeq${status.index}" value="${basket.productVO.product_seq}" />
+                                        <input type="hidden" name="baCount${status.index}" value="${basket.basket_count}" />
+                                        <li name="orderItem">
+                                            <input type="hidden" value="${basket.productVO.product_seq}" name="product_seq" id="product_seq"/>
+                                            <%--                                        상품에 관한 정보들--%>
+    <%--                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${basket.productVO.product_cost * basket.basket_count}">--%>
 
 
-                                        <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
-                                            <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
-                                            <div class="box">
-                                                <input type="hidden" name="product_name" id="product_name" value="${basket.productVO.product_name}" />
-                                                <span class="tit">${basket.productVO.product_name}</span>
-                                                <div class="info">
-                                                    <ul>
-                                                        <li>${basket.productVO.product_cost}원</li>
-                                                        <li>${basket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
-                                                    </ul>
+                                            <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
+                                                <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
+                                                <div class="box">
+                                                    <input type="hidden" name="product_name" id="product_name" value="${basket.productVO.product_name}" />
+                                                    <span class="tit">${basket.productVO.product_name}</span>
+                                                    <div class="info">
+                                                        <ul>
+                                                            <li>${basket.productVO.product_cost}원</li>
+                                                            <li>${basket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
+                                                        </ul>
+                                                    </div>
+                                                    <%--                                                상품 값 받아와 함--%>
+                                                    <span class="price"><strong>${basket.productVO.product_cost * basket.basket_count}</strong>원</span>
+                                                    <c:set var="total_price" value="${total_price+(basket.productVO.product_cost * basket.basket_count)}" />
                                                 </div>
-                                                <%--                                                상품 값 받아와 함--%>
-                                                <span class="price"><strong>${basket.productVO.product_cost * basket.basket_count}</strong>원</span>
-                                                <c:set var="total_price" value="${total_price+(basket.productVO.product_cost * basket.basket_count)}" />
-                                            </div>
-                                        </a>
-                                    </li>
+                                            </a>
+                                        </li>
                                     </c:forEach>
                                 </ul>
                             </div>
@@ -717,7 +720,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <div class="row-title">
                                                 <label class="chklabel">
                                                     <input type="radio" name="paymentMethod" id="paymentMethod1" value="paymentMethod1">
-                                                    <span>신용카드</span>
+                                                    <span>카카오페이</span>
                                                 </label>
                                             </div>
                                         </li>
@@ -844,6 +847,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <div class="btngroup">
                                         <button type="button" class="btn btn-default medium" onclick="goToPay();"><span>결제</span></button>
                                     </div>
+                                    <input type="hidden" value="${basketList}" name="basketList"/>
+
                                 </div>
                             </div>
                         </div>
@@ -853,6 +858,122 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         </div>
         <!-- //.container -->
     </div>
+    <script type="text/javascript">
+        //결제
+        function goToPay(){
+            //결제 수단에 따른 페이지 이동 및 ..
+            if($('input:radio[name=paymentMethod]').is(':checked')){
+                //결제수단: 신용카드 -> 카카오API
+                if($("input:radio[name='paymentMethod']:checked").val()==='paymentMethod1'){
+                    //카카오 결제 API
+                    var IMP=window.IMP;
+                    IMP.init('imp40479509');
+                    IMP.request_pay({
+                        pg:'kakaopay',
+                        pay_method:'card',
+                        merchant_uid:'merchant_'+new Date().getTime(), //주문번호
+                        name: $("input[name='product_name']").val(),//상품명
+                        amount:parseInt($("input[name='totalCost1']").val()),
+                        customer_uid:$("input[name='order_user_name']").val()+new Date().getTime(),
+                        buyer_name:$("input[name='order_user_name']").val(),
+                        buyer_tel:$("input[name='phoneNumber1']").val(),
+                    }, function(rsp){//callback
+                        if(rsp.success){//결제 성공 시 로직
+                            console.log('빌링키 발급 성공', rsp);
+                            alert('결제가 완료되었습니다. 주문 내역으로 이동합니다.');
+
+                            orderProcess();
+
+                        }else{// 결제 실패 시 로직
+                            var msg='결제에 실패하였습니다. 다시 시도해주세요!';
+                            alert(msg);
+                            return false;
+                        }
+                    });
+                }else{//무통장입금 선택시 -> 자동 결제 되는 식으로
+                    orderProcess();
+                }
+            }else{
+                alert("결제 수단을 선택해주세요!");
+            }
+
+        }
+
+        function orderProcess(){
+            //적립금
+            var total_price=$("input[name='totalCost1']").val();
+            var point1=parseInt(total_price)*0.05;
+            var point2=(parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val());
+
+
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfTokenValue = "${_csrf.token}";
+
+            // for (const item of $("input[name='basketList']").val()){
+            //     console.log(item);
+            // }
+
+            let basket_list=[];
+            let product_list=[];
+
+            //tbl_op 삽입시 필요한 컬럼들을  json으로 묶음
+            let opData=[];
+            for(var i=0; i< parseInt($("input[name='basketListLength']").val()); ++i){
+                // opData.push({
+                //    "basket_count":$("input[name='" + 'baCount'+String(i) + "']").val(),
+                //     "product_seq:":$("input[name='" + 'prSeq'+String(i) + "']").val()
+                // });
+                basket_list.push($("input[name='" + 'baCount'+String(i) + "']").val());
+                product_list.push($("input[name='" + 'prSeq'+String(i) + "']").val())
+            }
+            console.log(basket_list, product_list);
+
+            var orderData={
+                //orderVO
+                user_point:point2,// 업데이트될 포인트 금액
+                point: point1,// 적립된 포인트(총 결제금액의 5% 적립)
+                status: '주문접수', //준비중
+                userName: $("input[name='order_user_name']").val(), //주문한 사람
+                userNumber:$("input[name='phoneNumber1']").val(),
+                delivery:$("input[name='order_delivery1']").val(), //상세주소
+                invoice:20492593, //랜덤으로 주기
+                totalCost:total_price,
+                message:$("input[name='order_message']").val(),
+                //productVO
+                product_seq:$("input[name='product_seq']").val(),
+                user_deposit:$("input[name='totalDepositPoint']").val(),
+                op_count:1, //주문한 상품 개수, basket_count로 바꾸기
+                // opData: JSON.stringify(opData)// 상품별 개수 op테이블에 넣을 데이터
+                // opData:opData
+                "basket_list":basket_list,
+                "product_list":product_list,
+                coupon_seq:$("input[name='couponName']:checked").val()
+
+            };
+
+            console.log(orderData);
+
+            $.ajax({
+                url: '${contextPath}/order/orderComplete',
+                type:'post',
+                data:orderData,
+                dataType: 'text',
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function(data){
+                    alert("orderSeq:"+data+"주문이 성공적으로 등록되었습니다.");
+                    //결제완료 페이지로 넘어가야함
+                    //pathVariable에 값 넘겨줌으로써 결제 화면 내역 보이게 하기!
+                    //주문완료 내역 보여주기
+                    //location.href='/order/orderComplete?op_seq=${op_seq}';
+                },
+                error: function (request,status,error) {
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            })
+        }
+    </script>
     <script type="text/javascript">
         // TODO: 체크버튼이 클릭 되어있을 때 값을 다시 계산해주는 식으로 전송: DB 연동으로 검사
         // checkbox name
@@ -865,6 +986,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         var discountCost=0;
         var totalCost=parseInt($("input[name='totalPrice']").val());
         $("#couponSelectorBtn").on("click", function(){
+
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
             //할인 값 가져오는 ajax
@@ -912,6 +1034,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             });
         });
     </script>
+
 </main>
 <script type="text/javascript">
     function openAddressListPup(){
@@ -990,128 +1113,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
     }
 
 </script>
-<script type="text/javascript">
-    //결제
-    function goToPay(){
-        //결제 수단에 따른 페이지 이동 및 ..
-        if($('input:radio[name=paymentMethod]').is(':checked')){
-            //결제수단: 신용카드 -> 카카오API
-            if($("input:radio[name='paymentMethod']:checked").val()==='paymentMethod1'){
-                //카카오 결제 API
-                var IMP=window.IMP;
-                IMP.init('imp40479509');
-                IMP.request_pay({
-                    pg:'kakaopay',
-                    pay_method:'card',
-                    merchant_uid:'merchant_'+new Date().getTime(), //주문번호
-                    name: $("input[name='product_name']").val(),//상품명
-                    amount:parseInt($("input[name='totalCost1']").val()),
-                    customer_uid:$("input[name='order_user_name']").val()+new Date().getTime(),
-                    buyer_name:$("input[name='order_user_name']").val(),
-                    buyer_tel:$("input[name='phoneNumber1']").val(),
-                }, function(rsp){//callback
-                    if(rsp.success){//결제 성공 시 로직
-                        console.log('빌링키 발급 성공', rsp);
-                        alert('결제가 완료되었습니다. 주문 내역으로 이동합니다.');
-
-                        orderProcess();
-
-                    }else{// 결제 실패 시 로직
-                        var msg='결제에 실패하였습니다. 다시 시도해주세요!';
-                        alert(msg);
-                        return false;
-                    }
-                });
-            }else{//무통장입금 선택시 -> 자동 결제 되는 식으로
-                orderProcess();
-            }
-        }else{
-            alert("결제 수단을 선택해주세요!");
-        }
-
-    }
-
-    function orderProcess(){
-        //적립금
-        var total_price=$("input[name='totalCost1']").val();
-        var point=parseInt(total_price)*0.05;
-
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-
-        var orderData={
-            //orderVO
-            point:point,//총 결제금액의 5% 적립
-            status: '준비중', //준비중
-            userName: $("input[name='order_user_name']").val(), //주문한 사람
-            userNumber:$("input[name='phoneNumber1']").val(),
-            delivery:$("input[name='order_delivery1']").val(), //상세주소
-            invoice:20492593, //랜덤으로 주기
-            totalCost:total_price,
-            message:$("input[name='order_message']").val(),
-            //productVO
-            product_seq:$("input[name='product_seq']").val(),
-            op_count:1 //주문한 상품 개수, basket_count
-
-        };
-
-        console.log(orderData);
-
-        $.ajax({
-            url: '${contextPath}/order/orderComplete',
-            type:'post',
-            data:orderData,
-            beforeSend:function (xhr){
-                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-            },
-            success:function(){
-                alert("주문이 성공적으로 등록되었습니다.");
-                //결제완료 페이지로 넘어가야함
-                //pathVariable에 값 넘겨줌으로써 결제 화면 내역 보이게 하기!
-                //주문완료 내역 보여주기
-                //location.href='/order/orderComplete?op_seq=${op_seq}';
-            },
-            error: function (request,status,error) {
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-        })
-    }
-</script>
-<%--주문 상세 내역--%>
-<%--<script type="text/javascript">--%>
-<%--    $(".medium").click(function (){--%>
-<%--        console.log("실행중");--%>
-
-<%--        var orderVO={--%>
-<%--            seq:$("#order_seq").val(),--%>
-<%--            user_seq: 19,--%>
-<%--            point:$("#order_point").val(),--%>
-<%--            status:$("#order_status").val(),--%>
-<%--            userName:$("#order_user_name").val(),--%>
-<%--            userNumber:$("#order_user_number").val(),--%>
-<%--            delivery:$("#order_delivery").val(),--%>
-<%--            invoice:$("#order_invoice").val(),--%>
-<%--        };--%>
-<%-- 주문내역 불러오고
-<%--        var data=JSON.stringify(orderVO);--%>
-<%--        console.log(orderVO);--%>
-<%--        $.ajax({--%>
-<%--            url:"/order/orderComplete",--%>
-<%--            data:data,--%>
-<%--            type:"post",--%>
-<%--            contentType: 'application/json',--%>
-<%--            dataType:"json",--%>
-<%--            async: false,--%>
-<%--            success: function(data){--%>
-<%--                location.href='/order/orderComplete';--%>
-<%--                alert("success"+data);--%>
-<%--            },--%>
-<%--            error:function(){--%>
-<%--                alert("error");--%>
-<%--            }--%>
-<%--        })--%>
-<%--    })--%>
-<%--</script>--%>
 
 <script type="text/javascript">
     function applyCopnDc() {
