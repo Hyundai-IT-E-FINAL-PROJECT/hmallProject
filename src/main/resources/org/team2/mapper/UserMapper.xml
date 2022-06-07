@@ -104,11 +104,11 @@
     </update>
 
     <select id="getUserinfo" resultType="org.team2.domain.UserVO">
-        select user_nickname, user_phone, user_email from tbl_user where user_seq = #{no}
+        select user_nickname, user_phone, user_email, user_birth, user_email_receive, user_sms_receive, user_genger from tbl_user where user_seq = #{no}
     </select>
 
     <update id="myPage_newBirthday">
-        update tbl_user set user_birth = #{user_birth} where user_id = #{user_id}
+        update tbl_user set user_birth = TO_DATE(#{user_birth}, 'YY/MM/DD') where user_id = #{user_id}
     </update>
 
     <resultMap id="userMap" type="org.team2.domain.UserVO">
@@ -126,6 +126,9 @@
         <result property="user_phone" column="user_phone"/>
         <result property="user_nickname" column="user_nickname"/>
         <result property="user_birth" column="user_birth"/>
+        <result property="user_gender" column="user_gender"/>
+        <result property="user_email_receive" column="user_email_receive"/>
+        <result property="user_sms_receive" column="user_sms_receive"/>
         <collection property="authList" resultMap="authMap">
         </collection>
         <collection property="addressList" resultMap="addressMap">
@@ -145,7 +148,7 @@
 
     <select id="read" resultMap="userMap">
         SELECT US.USER_SEQ, US.USER_ID, USER_PW, USER_NAME, ENABLED, US.CREATED_AT, US.UPDATED_AT, USER_AUTH_AUTHORITY, USER_LEVEL,
-            US.USER_EMAIL, US.USER_PHONE, US.USER_NICKNAME, US.USER_BIRTH, USER_POINT, USER_DEPOSIT
+            US.USER_EMAIL, US.USER_PHONE, US.USER_NICKNAME, US.USER_BIRTH, USER_POINT, USER_DEPOSIT, USER_EMAIL_RECEIVE, USER_SMS_RECEIVE, USER_GENDER
         FROM
         TBL_USER US LEFT OUTER JOIN TBL_USER_AUTH AU ON US.user_seq = AU.user_seq
         where US.user_id = #{user_id}

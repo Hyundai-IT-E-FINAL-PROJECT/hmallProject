@@ -76,5 +76,10 @@ public class MypageServiceImpl implements MypageService {
         return mypageMapper.niknameCheck(nknm);
     }
 
+    @Override
+    public int checkUpdate(String emaailval, String smsval, String genderval, String userid) throws Exception {
+        return mypageMapper.checkUpdate(emaailval, smsval, genderval, userid);
+    }
+
 
 }

@@ -116,5 +116,11 @@
         from tbl_user
         where user_nickname = #{nknm}
     </select>
+
+    <update id="checkUpdate">
+        update tbl_user
+        set USER_EMAIL_RECEIVE = #{emaailval} , USER_SMS_RECEIVE = #{smsval}, user_gender = #{genderval}
+        where user_id = #{userid}
+    </update>
 </mapper>
 
