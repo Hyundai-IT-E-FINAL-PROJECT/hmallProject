@@ -38,6 +38,5 @@ public interface UserService {
 
     int email_dup(String total_email) throws Exception;
     int myPage_pwUpate(String password, String userid) throws Exception;
-
     void insertFirstCoupon(int no) throws Exception;
 }
