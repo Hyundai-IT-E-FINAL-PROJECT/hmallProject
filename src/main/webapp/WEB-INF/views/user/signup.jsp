@@ -111,9 +111,9 @@
                                         <div class="inp_bundle registerCustId">
                                             <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" />
                                             <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
-                                            <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.</span>
-                                            <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.</span>
-                                            <%--                                                        <button class="idCheck" type="button" id="idCheck" onclick="checkId();" value="N">중복확인</button>--%>
+                                            <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.&nbsp;&nbsp;</span>
+                                            <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.&nbsp;&nbsp;</span>
+                                            <button class="idCheck" type="button" id="idCheck" onclick="check_id_length();" value="N">아이디 사용하기</button>
                                             <!-- oninput은 사용자의 입력을 받으면 실행되는 이벤트이다. 즉 커서를 다른 곳으로 옮기지 않아도 입력 즉시 DB에서 id를 비교할 수 있다.-->
                                         </div>
                                     </div>
@@ -275,13 +275,13 @@
                                             <p class="wrap_chk">
                                             <div class="wrap_chk">
                                                                 <span class="checkbox_ui type1">
-                                                                   <input type="checkbox" id="notice" name="notice" class="mktCheckbox"/>
+                                                                   <input type="checkbox" id="notice" name="notice" class="mktCheckbox" value="0"/>
                                                                    <label for="notice">이메일</label>
                                                                     <input type="hidden" id="user_email_receive" name="user_email_receive"/>
                                                                 </span>
 
                                                 <span class="checkbox_ui type1">
-                                                                    <input type="checkbox" name="notice_sms" id="notice_sms" class="mktCheckbox" />
+                                                                    <input type="checkbox" name="notice_sms" id="notice_sms" class="mktCheckbox" value="0"/>
                                                                     <label for="notice_sms">SMS</label>
                                                                     <input type="hidden" id="user_sms_receive" name="user_sms_receive"/>
                                                                 </span>
@@ -310,12 +310,14 @@
 
 <script type="text/javascript">
 
-    // function check_id_length(){
-    //     var id_length = document.getElementById('id').value;
-    //     if(id_length.length < 6 || id_length.length > 16){
-    //         window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-    //     }
-    // }
+    function check_id_length(){
+        var id_length = document.getElementById('id').value;
+        if(id_length.length < 6 || id_length.length > 16){
+            window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+        }else{
+            window.alert('사용 가능한 아이디 입니다.');
+        }
+    }
 
     function checkId(){
         var id = $('#id').val();
@@ -345,6 +347,8 @@
                     alert("에러입니다.");
                 }
             });
+        }else{
+            console.log("아이디 길이가 짧습니다.");
         }
     };
 
@@ -419,6 +423,22 @@
                 $("#user_sms_receive").val('1');
             }else{
                 $("#user_sms_receive").val('0');
+            }
+        }
+    )
+
+    $("#allAgree2").change(
+        function (){
+            if($("#allAgree2").is(":checked")){
+                $("#user_sms_receive").val('1');
+                $("#user_email_receive").val('1');
+                $("#notice").prop('checked',true);
+                $("#notice_sms").prop('checked',true);
+            }else{
+                $("#user_sms_receive").val('0');
+                $("#user_email_receive").val('0');
+                $("#notice").prop('checked',false);
+                $("#notice_sms").prop('checked',false);
             }
         }
     )
