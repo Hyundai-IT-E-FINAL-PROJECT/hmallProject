@@ -62,8 +62,8 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm, String type) throws Exception {
-        return mypageMapper.cancelperiodOrders(no, ordStrtDt, ordEndDt, seType, itemNm, type);
+    public List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception {
+        return mypageMapper.cancelperiodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
     }
 
     @Override
@@ -79,6 +79,22 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public int checkUpdate(String emaailval, String smsval, String genderval, String userid) throws Exception {
         return mypageMapper.checkUpdate(emaailval, smsval, genderval, userid);
+    }
+
+    @Override
+    public Map deliveryList(long no) throws Exception {
+        Map map = new HashMap();
+        map.put("no", no);
+        mypageMapper.deliveryList(map);
+        return map;
+    }
+
+    @Override
+    public Map orderStatus(long no) throws Exception {
+        Map map = new HashMap();
+        map.put("no", no);
+        mypageMapper.orderStatus(map);
+        return map;
     }
 
 

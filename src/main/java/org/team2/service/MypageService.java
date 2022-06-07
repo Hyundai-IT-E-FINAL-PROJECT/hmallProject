@@ -16,11 +16,15 @@ public interface MypageService {
 
     List<Map<String, Object>> pointList(String no, String strtDt, String endDt, String searchType) throws Exception;
 
-    List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm, String type) throws Exception;
+    List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
 
     List<DepositVO> depositList(String no, String strtDt, String endDt, String searchType) throws Exception;
 
     int niknameCheck(String nknm) throws Exception;
 
     int checkUpdate(String emaailval, String smsval, String genderval, String userid) throws Exception;
+
+    Map deliveryList(long no) throws Exception;
+
+    Map orderStatus(long no) throws Exception;
 }

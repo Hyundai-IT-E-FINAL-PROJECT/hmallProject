@@ -24,8 +24,7 @@ public interface MypageMapper {
                                                  @Param("ordStrtDt") String ordStrtDt,
                                                  @Param("ordEndDt") String ordEndDt,
                                                  @Param("seType") String seType,
-                                                 @Param("itemNm") String itemNm,
-                                                 @Param("type") String type) throws Exception;
+                                                 @Param("itemNm") String itemNm) throws Exception;
 
     List<DepositVO> depositList(@Param("no") String no,
                                 @Param("strtDt") String strtDt,
@@ -38,4 +37,8 @@ public interface MypageMapper {
                     @Param("smsval") String smsval,
                     @Param("genderval") String genderval,
                     @Param("userid") String userid);
+
+    void deliveryList(Map<String,Object> map) throws Exception;
+
+    void orderStatus(Map<String,Object> map) throws Exception;
 }
