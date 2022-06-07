@@ -77,7 +77,7 @@
 
 
                                             <div class="checkbox">
-                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="2122712699|00002|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
+                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.basket_seq}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
                                             </div>
                                             <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2122712699|00002|0|12|29900');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                             <div class="pdlist-wrap">
@@ -142,9 +142,15 @@
                                     <c:forEach items="${basketVOList}" var="basketVO" varStatus="status">
                                         <div class="shipping-list" id="gen">
                                             <!-- .pdwrap -->
-                                            <div class="pdwrap pdlist ml" style="display:;" id="013817_000000_9">
+                                            <div class="pdwrap pdlist ml" style="display:;" id="${basketVO.basket_seq}">
+                                                <input type="hidden" name="basket_seq" value="${basketVO.basket_seq}">
+                                                <input type="hidden" name="basket_count" value="${basketVO.basket_count}">
+                                                <input type="hidden" name="product_seq" value="${basketVO.productVO.product_seq}">
+                                                <input type="hidden" name="product_name" value="${basketVO.productVO.product_name}">
+                                                <input type="hidden" name="product_cost" value="${basketVO.productVO.product_cost}">
+
                                                 <div class="checkbox">
-                                                    <label class="chklabel"><input type="checkbox" name="basktInf" value="2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
+                                                    <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.basket_seq}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
                                                 <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                                 <div class="pdlist-wrap">
@@ -174,6 +180,10 @@
                                                     </div>
                                                     <div class="btngroup">
                                                         <input type="hidden" name="product_seq${status.index+1}" value="${basketVO.productVO.product_seq}"/>
+                                                        <input type="hidden" name="product_name${status.index+1}" value="${basketVO.productVO.product_name}"/>
+                                                        <input type="hidden" name="product_cost${status.index+1}" value="${basketVO.productVO.product_cost}"/>
+                                                        <input type="hidden" name="basket_count${status.index+1}" value="${basketVO.basket_count}"/>
+                                                        <input type="hidden" name="basket_seq${status.index+1}" value="${basketVO.basket_seq}"/>
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2101560521_00001" onclick="showChgUitmPup(this, '2101560521', '00001', 0, 59900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
@@ -192,48 +202,74 @@
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
+                            <form name="basketForm" id="basketForm" method="post" action="${contextPath}/order/test">
+                                <%--                                선택된 상품 동적으로 삽입--%>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <script type="text/javascript">
+                    var csrfHeaderName = "${_csrf.headerName}";
+                    var csrfTokenValue = "${_csrf.token}";
+                    function orderSelect() {//선택상품 구매하기 버튼 이벤트
+                        const checkedProduct = new Array();
+                        $("input[name='basktInf']:checked").each(function () {
+                            checkedProduct.push(this.value);
+                        });
+                        console.log(checkedProduct); //선택한 장바구니 시퀀스
+                        if (checkedProduct.length === 0) {
+                            alert("상품을 선택해주세요!");
+                            return;
+                        }
+                        var submitForm=$('<form></form>');
+                        submitForm.attr('action', '${contextPath}/order/od');
+                        submitForm.attr('method','post');
+                        submitForm.appendTo('body');
+                        let idx=0;
+                        for (const product of checkedProduct) {
+                            var item = document.getElementById(product);
+                            submitForm.append($("<input name='basketList["+idx+"].basket_count' type='hidden' value='"+item.querySelector("input[name=basket_count]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].basket_seq' type='hidden' value='"+item.querySelector("input[name=basket_seq]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_seq' type='hidden' value='"+item.querySelector("input[name=product_seq]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_cost' type='hidden' value='"+item.querySelector("input[name=product_cost]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_name' type='hidden' value='"+item.querySelector("input[name=product_name]").value+"'>"));
+                            idx++;
+                        }
+                        submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
+                        submitForm.submit();
+                    }
+                </script>
+                <script type="text/javascript">
                     function directBuyBtn(idx){
                         var csrfHeaderName = "${_csrf.headerName}";
                         var csrfTokenValue = "${_csrf.token}";
-                        var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
-                        <%--let myForm=document.getElementById('#basketForm');--%>
-                        <%--let formData=new FormData(myForm[0]);--%>
-                        <%--// formData.append('product_seq',product_seq);--%>
-                        <%--fetch('${contextPath}/order/od',{--%>
-                        <%--    headers: {--%>
-                        <%--        'Content-Type': 'application/x-www-form-urlencoded'--%>
+                        //var product_seq= Number($("input[name='" + 'product_seq'+String(idx) + "']").val());
+                        var submitForm=$('<form></form>');
+                        submitForm.attr('action', '${contextPath}/order/od');
+                        submitForm.attr('method','post');
+                        submitForm.appendTo('body');
+                        let index=0;
+                        submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden' value='"+$("input[name='" + 'basket_count'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden' value='"+$("input[name='" + 'basket_seq'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name='" + 'product_seq'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden' value='"+$("input[name='" + 'product_cost'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
+                        submitForm.submit();
+                        <%--$.ajax({--%>
+                        <%--    type:'get',--%>
+                        <%--    url: '${contextPath}/order/od/'+product_seq,--%>
+                        <%--    beforeSend:function (xhr){--%>
+                        <%--        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
                         <%--    },--%>
-                        <%--    method:'POST',--%>
-                        <%--    body:new URLSearchParams({--%>
-                        <%--        product_seq:product_seq--%>
-                        <%--    })--%>
+                        <%--    success:function(){--%>
+                        <%--        alert("주문 작성 페이지로 이동합니다.");--%>
+                        <%--        location.href='${contextPath}/order/od/'+product_seq;--%>
+                        <%--    },--%>
+                        <%--    error: function (request,status,error) {--%>
+                        <%--        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);--%>
+                        <%--    }--%>
                         <%--});--%>
-                        <%--let form=$("#basketForm");--%>
-                        <%--form.attr("action", "${contextPath}/order/od");--%>
-                        <%--form.attr('method','post');--%>
-                        <%--form.attr("product_seq",product_seq);--%>
-                        <%--form.appendTo('#basketForm');--%>
-                        <%--// form.append(product_seq);--%>
-                        <%--// console.log(product_seq);--%>
-                        <%--form.submit();--%>
-                        $.ajax({
-                            type:'get',
-                            url: '${contextPath}/order/od/'+product_seq,
-                            beforeSend:function (xhr){
-                                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-                            },
-                            success:function(){
-                                alert("주문 작성 페이지로 이동합니다.");
-                                location.href='${contextPath}/order/od/'+product_seq;
-                            },
-                            error: function (request,status,error) {
-                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                            }
-                        });
                     }
                 </script>
                 <div class="sticky-ui-wrapper util-option-sticky">
@@ -442,5 +478,8 @@
             </div>
         </div>
     </div>
+
+
+
 </main>
 <script src="/resources/js/basket.js"></script>
