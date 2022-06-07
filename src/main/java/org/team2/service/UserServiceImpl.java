@@ -113,4 +113,10 @@ public class UserServiceImpl implements UserService{
     public AddressVO selectBasicAddress(Long user_seq) throws Exception {
         return userMapper.selectBasicAddress(user_seq);
     }
+
+    @Override
+    public int email_dup(String total_email) throws Exception {
+        int result = userMapper.email_dup(total_email);
+        return result;
+    }
 }

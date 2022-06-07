@@ -36,4 +36,5 @@ public interface UserService {
 
     AddressVO selectBasicAddress(Long user_seq) throws Exception;
 
+    int email_dup(String total_email) throws Exception;
 }

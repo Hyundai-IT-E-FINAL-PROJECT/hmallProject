@@ -308,5 +308,11 @@ public class UserController {
 
     }
 
-
+    @ResponseBody
+    @RequestMapping("email_dup")
+    public int email_dup(@RequestParam("total_email") String total_email) throws Exception{
+        log.info(total_email);
+        int result = userService.email_dup(total_email);
+        return result;
+    }
 }

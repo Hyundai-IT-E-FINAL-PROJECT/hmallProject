@@ -91,6 +91,10 @@
         select * from tbl_user where user_email = #{email}
     </select>
 
+    <select id="email_dup" resultType="int">
+        select count(*) from tbl_user where user_email = #{total_email}
+    </select>
+
     <update id="newPassword" parameterType="org.team2.domain.UserVO">
         update tbl_user set user_pw = #{user_pw} where user_email = #{user_email}
     </update>

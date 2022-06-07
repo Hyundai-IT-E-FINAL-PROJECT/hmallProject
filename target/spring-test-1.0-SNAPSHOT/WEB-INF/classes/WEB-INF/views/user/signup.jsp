@@ -173,6 +173,7 @@
                                                 <option value="@gmail.com">@gmail.com</option>
                                                 <option value="@nate.com">@nate.com</option>
                                             </select>
+                                            <button type="button" class="btn btn-default" onclick="email_dup();">중복 확인&nbsp;&nbsp;&nbsp;</button>
                                             <span id="emailChk" class="doubleChk">인증번호 보내기</span><br/>
                                             <input type="hidden" id="total_email" name="user_email" value="" >
                                         </div>
@@ -405,6 +406,31 @@
             $("#total_email").val(email+address);
         }
     };
+
+    function email_dup(){
+        console.log("이메일 중복확인");
+        const total_email = document.getElementById("total_email").value;
+        console.log(total_email);
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        $.ajax({
+            url:"${contextPath}/user/email_dup",
+            type:"post",
+            dataType: "json",
+            data: {"total_email":total_email},
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },success: function (result){
+                if(result == 1){
+                    alert("중복된 이메일 입니다.");
+                }else if(result == 0){
+                    alert("사용가능한 이메일 입니다.");
+                }else {
+                    alert("이메일을 입력해주세요");
+                }
+            }
+        })
+    }
 
     //체크박스 클릭 여부에 따른 값 변화
     $("#notice").change(

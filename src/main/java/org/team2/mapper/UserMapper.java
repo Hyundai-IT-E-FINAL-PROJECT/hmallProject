@@ -28,4 +28,6 @@ public interface UserMapper {
     AddressVO selectBasicAddress(Long user_seq) throws Exception;
 
     void insertNewAddress(AddressVO addressVO) throws Exception;
+
+    int email_dup(String total_email) throws Exception;
 }
