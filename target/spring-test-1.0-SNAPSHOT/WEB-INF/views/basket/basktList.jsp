@@ -267,19 +267,14 @@
                         submitForm.appendTo('body');
                         let index=0;
 
-                        // for (const product of checkedProduct) {
-                        //     var item = document.getElementById(product);
-                            submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden' value='"+$("input[name='" + 'basket_count'+String(idx) + "']").val()+"'>"));
-                            submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden' value='"+$("input[name='" + 'basket_seq'+String(idx) + "']").val()+"'>"));
-                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name='" + 'product_seq'+String(idx) + "']").val()+"'>"));
-                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden' value='"+$("input[name='" + 'product_cost'+String(idx) + "']").val()+"'>"));
-                            submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
-                        //
-                        //     index++;
-                        // }
+                        submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden' value='"+$("input[name='" + 'basket_count'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden' value='"+$("input[name='" + 'basket_seq'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name='" + 'product_seq'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden' value='"+$("input[name='" + 'product_cost'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
+
 
                         submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
-
 
                         submitForm.submit();
 

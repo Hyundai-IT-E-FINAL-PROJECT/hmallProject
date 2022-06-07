@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <head>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="/resources/js/addressapi.js"></script>
@@ -438,15 +440,16 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             </ol>
                         </div>
 
-                        <h3 class="title22 selected only"><button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">상품정보 <span class="num" id="ordItemCnt">1</span><i class="icon"></i></button></h3>
+                        <h3 class="title22 selected only"><button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">상품정보 <span class="num" id="ordItemCnt">${fn:length(basketList)}</span><i class="icon"></i></button></h3>
                         <div class="accordion-panel selected" role="region" aria-label="">
                             <div class="order-list" id="orderItems">
+                                <c:set var="total_price" value="0"/>
                                 <ul>
                                     <c:forEach items="${basketList}" var="basket">
                                     <li name="orderItem">
                                         <input type="hidden" value="${basket.productVO.product_seq}" name="product_seq" id="product_seq"/>
                                         <%--                                        상품에 관한 정보들--%>
-                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${basket.productVO.product_cost * basket.basket_count}">
+<%--                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${basket.productVO.product_cost * basket.basket_count}">--%>
 
 
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
@@ -462,6 +465,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                 </div>
                                                 <%--                                                상품 값 받아와 함--%>
                                                 <span class="price"><strong>${basket.productVO.product_cost * basket.basket_count}</strong>원</span>
+                                                <c:set var="total_price" value="${total_price+(basket.productVO.product_cost * basket.basket_count)}" />
                                             </div>
                                         </a>
                                     </li>
@@ -870,7 +874,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <li>
                                             <div id="orderAmt">
                                                 <span class="tit">총 판매금액</span>
-                                                <span class="txt"><strong>${directBasket.productVO.product_cost * directBasket.basket_count}</strong>원</span>
+                                                <input type="hidden" value="${total_price}" name="totalPrice" />
+                                                <span class="txt"><strong>${total_price}</strong>원</span>
                                             </div>
                                             <div id="copnDcCoupon" class="hidden">
                                                 <span class="tit">쿠폰 사용</span>
