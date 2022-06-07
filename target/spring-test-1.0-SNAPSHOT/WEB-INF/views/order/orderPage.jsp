@@ -550,11 +550,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <%--                                                    <input type="checkbox" name="resPoint" onclick="useUpoint()">--%>
                                             <%--                                                    <i class="icon"></i>--%>
                                             <span style="width: 100px">적립금</span>
+                                            <c:set var="userPoint" value="${userPoint}"/>
                                             <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
                                             <span class="unit point">P</span>
                                             <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
                                             <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
-                                            <span style="width: 300px">[보유 적립금 : <em class="num">${userPoint}</em> ]</span>
+                                            <span style="width: 300px">[보유 적립금 : <em class="num"><c:out value="${userPoint}"/></em> ]</span>
                                         </label>
                                     </div>
                                     </li>
@@ -583,6 +584,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     }else{
                                         alert("적용되었습니다!");
                                         $("#totalUserPoint").val(willUse);
+                                        <c:set var="userPoint" value="${userPoint-willUse}"/>
                                         applyDiscount();
                                     }
                                 }
