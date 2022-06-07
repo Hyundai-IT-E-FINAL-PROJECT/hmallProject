@@ -81,7 +81,11 @@
                                                 <label class="chklabel">
                                                     <input type="checkbox" name="idSaveYn">
                                                     <i class="icon"></i>
-                                                    <span>아이디 저장</span>
+                                                    <span>
+                                                        <c:if test="${LoginFailMessage!=null}">
+                                                            <p><c:out value="${LoginFailMessage}"/> </p>
+                                                        </c:if>
+                                                    </span>
                                                 </label>
                                             </div>
                                         </div>
@@ -127,6 +131,7 @@
                                 <div>
                                     <input type="submit" value="로그인">
                                 </div>
+                                ${requestScope.loginFailMsg}
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             </form>
                         </div>
@@ -170,6 +175,7 @@
                                         <label class="chklabel">
                                             <input type="checkbox" name="save_id_hp" id="idSaveYn1">
                                             <i class="icon"></i><span>아이디 저장</span>
+                                            ${requestScope.loginFailMsg}
                                         </label>
                                     </div>
                                 </div>

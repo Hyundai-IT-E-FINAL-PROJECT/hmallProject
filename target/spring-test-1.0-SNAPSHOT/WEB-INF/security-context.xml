@@ -9,11 +9,19 @@
     <bean id="customLoginSuccess" class="org.team2.security.CustomLoginSuccessHandler"/>
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <bean id="customUserDetailsService" class="org.team2.security.CustomUserDetailsService"/>
+    <bean id="userLoginFailHandler" class="org.team2.security.UserLoginFailHandler"/>
+
+
     <security:http>
 <!--        <security:csrf disabled="true"/>-->
         <security:intercept-url pattern="/user/all" access="permitAll"/>
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
-        <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
+        <security:form-login login-page="/customLogin"
+                             username-parameter="username"
+                             password-parameter="password"
+                             login-processing-url="/login"
+                             authentication-failure-handler-ref="userLoginFailHandler"
+                                    authentication-success-handler-ref="customLoginSuccess"/>
         <security:access-denied-handler ref="customAccessDenied"/>
         <security:logout logout-url="/customLogout" logout-success-url="/" invalidate-session="true"/>
     </security:http>
