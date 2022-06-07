@@ -37,6 +37,12 @@ function image_slide(obj, curPos){
     $(".ui-active.ui-active").removeClass("ui-active")
     $(obj).parent("li").addClass("ui-active")
 
+    // default 이미지
+    $(".slick-current").removeClass("slick-active")
+    $(".slick-current").removeClass("slick-current")
+    $(`.slick-slide[data-slick-index=${curPos}]`).addClass("slick-active")
+    $(`.slick-slide[data-slick-index=${curPos}]`).addClass("slick-current")
+
     // 이미지
     $(".slick-track").css('transform', `translateX(${-520 + (curPos * -520)}px)`).css('transition', `all 0.7s ease 0s`)
 

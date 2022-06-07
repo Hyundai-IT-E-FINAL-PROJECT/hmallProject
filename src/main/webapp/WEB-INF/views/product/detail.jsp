@@ -943,13 +943,6 @@
                                     <input type="hidden" name="fundingYn" value="N">
                                     <input type="hidden" name="uitmCdInf" value="0^00002|1"></form>
                                 <div class="basic-info">
-
-
-                                    <!-- 브랜드샵 -->
-
-
-
-
                                     <div class="brand-info">
                                         <a href="javascript://" ga-custom-name="상품상세" ga-custom-position="브랜드샵"
                                            ga-custom-creative="아이사랑" ga-custom-id="" ga-custom-title="상품>상품상세>메인"
@@ -2598,7 +2591,7 @@
                                                              aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                             <div>
                                                                 <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/image_example1.jpg"
+                                                                     data-outputsrc="/resources/img/image_example2.jpg"
                                                                      onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                      style="width: 100%; display: inline-block; vertical-align: top;">
                                                                     <a href="javascript:;"
@@ -2617,7 +2610,7 @@
                                                                  style="width: 520px;" tabindex="-1">
                                                                 <div>
                                                                     <div class="item" data-item=""
-                                                                         data-outputsrc="/resources/img/image_example1.jpg"
+                                                                         data-outputsrc="/resources/img/${imageVO.IMAGE_NAME}.jpg"
                                                                          onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
                                                                          style="width: 100%; display: inline-block; vertical-align: top;">
                                                                         <a href="javascript:;"

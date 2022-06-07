@@ -281,9 +281,9 @@ function setCategory(url) {
                         <li data-catecode="${category.CATEGORY_SEQ}"><a href="#">${category.CATEGORY_NAME}</a></li>
                     )
                     $("#category-menu-wrap").append(
-                        <div className="category-list-contents" data-catecode="${category.CATEGORY_SEQ}">
-                            <div className="center-area"><strong className="depth1-title">${category.CATEGORY_NAME}</strong>
-                                <div className="sub-category">
+                        <div class="category-list-contents" data-catecode="${category.CATEGORY_SEQ}">
+                            <div class="center-area"><strong class="depth1-title">${category.CATEGORY_NAME}</strong>
+                                <div class="sub-category">
                                     <ul>
 
                                     </ul>
