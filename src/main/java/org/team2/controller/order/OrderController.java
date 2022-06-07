@@ -1,13 +1,8 @@
 package org.team2.controller.order;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import oracle.ucp.proxy.annotation.Post;
-import org.json.JSONObject;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
@@ -78,6 +73,65 @@ public class OrderController {
         mav.setViewName("order.orderPage");
         return mav;
     }
+
+    @ResponseBody
+    @PostMapping("od")
+    public ModelAndView getOrderList(@ModelAttribute(value="basketList") BasketListVO basketListVO,Principal principal) throws Exception {
+//    public ModelAndView sendOrderData(@RequestParam("user_seq") Long user_seq) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("order");
+
+        //장바구니 가져오기(물품 한 개일 때)
+//        Map<String, Long> map=new HashMap<>();
+//        map.put("product_seq", product_seq);
+//        map.put("user_seq", Long.valueOf(principal.getName()));
+//        BasketVO directBasket=basketService.directBuy(map);
+
+        AddressVO basicAddress=userService.selectBasicAddress(Long.valueOf(principal.getName()));
+        //log.info(directBasket);
+        log.info(basicAddress);
+
+        //예치금, 적립금도 불러오기
+        Long user_seq=Long.valueOf(principal.getName());
+        mav.addObject("className","wrap order-main");
+        log.info("데이터 이동");
+        List<CouponVO> couponList=couponService.getCouponList(user_seq);
+        UserVO user=userService.readPoint(user_seq);
+        //mav.addObject("directBasket",directBasket);
+
+        List<BasketVO> basketList=new ArrayList<>();
+        for (int i=0; i<basketListVO.getBasketList().size(); i++){
+            basketList.add(basketListVO.getBasketList().get(i));
+        }
+        log.info(basketList);
+        mav.addObject("basketList", basketList);
+
+        mav.addObject("user_seq", user_seq);
+        mav.addObject("couponList", couponList);
+        mav.addObject("basicAddress",basicAddress);
+        mav.addObject("userPoint", user.getUser_point());
+        mav.addObject("depositPoint",user.getUser_deposit());
+        mav.addObject("cssFileList", styleFileList);
+        mav.setViewName("order.orderPage");
+        return mav;
+    }
+//
+//    @PostMapping("test")
+//    public ModelAndView getOrderList(@ModelAttribute(value="basketList") BasketListVO basketListVO, Principal principal){
+//        log.info("test controller...");
+//        ModelAndView mv=new ModelAndView();
+//        mv.setViewName("order.test");
+//
+//        List<BasketVO> basketList=new ArrayList<>();
+//        for (int i=0; i<basketListVO.getBasketList().size(); i++){
+//            basketList.add(basketListVO.getBasketList().get(i));
+//        }
+//        log.info(basketList);
+//        mv.addObject("basketList", basketList);
+//
+//        return mv;
+//    }
 
 
 //

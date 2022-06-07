@@ -442,28 +442,30 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         <div class="accordion-panel selected" role="region" aria-label="">
                             <div class="order-list" id="orderItems">
                                 <ul>
+                                    <c:forEach items="${basketList}" var="basket">
                                     <li name="orderItem">
-                                        <input type="hidden" value="${directBasket.productVO.product_seq}" name="product_seq" id="product_seq"/>
+                                        <input type="hidden" value="${basket.productVO.product_seq}" name="product_seq" id="product_seq"/>
                                         <%--                                        상품에 관한 정보들--%>
-                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${directBasket.productVO.product_cost * directBasket.basket_count}">
+                                        <input type="hidden" name="totalPrice" id="totalPrice" value="${basket.productVO.product_cost * basket.basket_count}">
 
 
                                         <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
                                             <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
                                             <div class="box">
-                                                <input type="hidden" name="product_name" id="product_name" value="${directBasket.productVO.product_name}" />
-                                                <span class="tit">${directBasket.productVO.product_name}</span>
+                                                <input type="hidden" name="product_name" id="product_name" value="${basket.productVO.product_name}" />
+                                                <span class="tit">${basket.productVO.product_name}</span>
                                                 <div class="info">
                                                     <ul>
-                                                        <li>${directBasket.productVO.product_cost}원</li>
-                                                        <li>${directBasket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
+                                                        <li>${basket.productVO.product_cost}원</li>
+                                                        <li>${basket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
                                                     </ul>
                                                 </div>
                                                 <%--                                                상품 값 받아와 함--%>
-                                                <span class="price"><strong>${directBasket.productVO.product_cost * directBasket.basket_count}</strong>원</span>
+                                                <span class="price"><strong>${basket.productVO.product_cost * basket.basket_count}</strong>원</span>
                                             </div>
                                         </a>
                                     </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

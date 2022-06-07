@@ -142,7 +142,13 @@
                                     <c:forEach items="${basketVOList}" var="basketVO" varStatus="status">
                                         <div class="shipping-list" id="gen">
                                             <!-- .pdwrap -->
-                                            <div class="pdwrap pdlist ml" style="display:;" id="013817_000000_9">
+                                            <div class="pdwrap pdlist ml" style="display:;" id="${basketVO.basket_seq}">
+                                                <input type="hidden" name="basket_seq" value="${basketVO.basket_seq}">
+                                                <input type="hidden" name="basket_count" value="${basketVO.basket_count}">
+                                                <input type="hidden" name="product_seq" value="${basketVO.productVO.product_seq}">
+                                                <input type="hidden" name="product_name" value="${basketVO.productVO.product_name}">
+                                                <input type="hidden" name="product_cost" value="${basketVO.productVO.product_cost}">
+
                                                 <div class="checkbox">
                                                     <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.basket_seq}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
@@ -192,9 +198,90 @@
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
+                            <form name="basketForm" id="basketForm" method="post" action="${contextPath}/order/test">
+<%--                                선택된 상품 동적으로 삽입--%>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    var csrfHeaderName = "${_csrf.headerName}";
+                    var csrfTokenValue = "${_csrf.token}";
+
+                    function orderSelect() {//선택상품 구매하기 버튼 이벤트
+
+
+                        const checkedProduct = new Array();
+                        $("input[name='basktInf']:checked").each(function () {
+                            checkedProduct.push(this.value);
+                        });
+                        console.log(checkedProduct); //선택한 장바구니 시퀀스
+
+                        if (checkedProduct.length === 0) {
+                            alert("상품을 선택해주세요!");
+                            return;
+                        }
+
+                        var submitForm=$('<form></form>');
+                        submitForm.attr('action', '${contextPath}/order/od');
+                        submitForm.attr('method','post');
+                        submitForm.appendTo('body');
+                        let idx=0;
+
+                        for (const product of checkedProduct) {
+                            var item = document.getElementById(product);
+                            submitForm.append($("<input name='basketList["+idx+"].basket_count' type='hidden' value='"+item.querySelector("input[name=basket_count]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].basket_seq' type='hidden' value='"+item.querySelector("input[name=basket_seq]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_seq' type='hidden' value='"+item.querySelector("input[name=product_seq]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_cost' type='hidden' value='"+item.querySelector("input[name=product_cost]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_name' type='hidden' value='"+item.querySelector("input[name=product_name]").value+"'>"));
+
+                            idx++;
+                        }
+
+                        submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
+
+
+                        submitForm.submit();
+
+                        let contents = "";
+
+
+                        // for (const product of checkedProduct) {
+                        //     var item = document.getElementById(product);
+                        //     contents+= "<input name='baketList["+idx+"].product_name' type='hidden' value='"+item.querySelector("input[name=product_name]").value+"'>";
+                        //     contents+= "<input name='baketList["+idx+"].basket_count' type='hidden' value='"+item.querySelector("input[name=basket_count]").value+"'>";
+                        //     contents+= "<input name='baketList["+idx+"].product_seq' type='hidden' value='"+item.querySelector("input[name=product_seq]").value+"'>";
+                        //     contents+= "<input name='baketList["+idx+"].product_cost' type='hidden' value='"+item.querySelector("input[name=product_cost]").value+"'>";
+                        //     idx++;
+                        // }
+                        contents+="<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />";
+                        //
+                        // $(".basketForm").html(contents);
+                        // $(".basketForm").submit();
+
+
+
+                        // $('form[name="basketForm"]').serialize();
+                        // $('form[name="basketForm"]').attr('method', 'POST');
+                        // $('form[name="basketForm"]').attr('action', '/order/test');
+                        //
+                        // $('form[name="basketForm"]').submit();
+                    }
+
+                    // $('#submit').click(function() {
+                    //     $('form[name="testForm"]').serialize();
+                    //     $('form[name="testForm"]').attr('method', 'POST');
+                    //     $('form[name="testForm"]').attr('action', '/tables/save');
+                    //
+                    //     $('form[name="testForm"]').submit();
+                    // });
+
+
+
+
+
+                </script>
                 <script type="text/javascript">
                     function directBuyBtn(idx){
                         var csrfHeaderName = "${_csrf.headerName}";
@@ -442,24 +529,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function orderSelect(){//선택상품 구매하기 버튼 이벤트
-            const checkedProduct=new Array();
-            $("input[name='basktInf']:checked").each(function(){
-                checkedProduct.push(this.value);
-            });
-            console.log(checkedProduct); //선택한 장바구니 시퀀스
-
-            if(checkedProduct.length===0){
-                alert("상품을 선택해주세요!");
-                return;
-            }
 
 
 
-
-
-        }
-    </script>
 </main>
 <script src="/resources/js/basket.js"></script>
