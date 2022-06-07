@@ -109,11 +109,12 @@
                                         <label for="id" class="inp_tit">아이디<span class="nec">*</span></label>
                                         <!-- input에 값을 잘 못 입력하면 .inp_bundle에 클래스 "error" 추가해주세요. (포커스되고 값이 입력되면 "focus" 클래스가 붙음) -->
                                         <div class="inp_bundle registerCustId">
-                                            <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()" />
+                                            <input type="text" title="아이디 입력" id="id" name="user_id" maxlength="20" class="inp flex" placeholder="아이디" oninput="checkId()"/>
+                                            <input type="hidden" id="id_check" value="">
                                             <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
                                             <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.&nbsp;&nbsp;</span>
                                             <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.&nbsp;&nbsp;</span>
-                                            <button class="idCheck" type="button" id="idCheck" onclick="check_id_length();" value="N">아이디 사용하기</button>
+<%--                                            <button class="idCheck" type="button" id="idCheck" onclick="check_id_length();" value="N">아이디 사용하기</button>--%>
                                             <!-- oninput은 사용자의 입력을 받으면 실행되는 이벤트이다. 즉 커서를 다른 곳으로 옮기지 않아도 입력 즉시 DB에서 id를 비교할 수 있다.-->
                                         </div>
                                     </div>
@@ -212,7 +213,7 @@
                                     <div class="wrap_inp">
                                         <label for="datepicker" class="inp_tit">생년월일<span class="nec">*</span></label>
                                         <div class="inp_bundle registerPwd1">
-                                            <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" />
+                                            <input type="text" title="생년월일 입력" id="datepicker" name="user_birth" maxlength="30" class="inp flex" readonly/>
                                         </div>
                                     </div>
 
@@ -294,7 +295,7 @@
 
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <input type="submit" value="회원가입">
+                            <button type="button" onclick="joinForm_check();">회원가입</button>
                         </form>
 
                     </div>
@@ -311,14 +312,119 @@
 
 <script type="text/javascript">
 
-    function check_id_length(){
-        var id_length = document.getElementById('id').value;
-        if(id_length.length < 6 || id_length.length > 16){
-            window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-        }else{
-            window.alert('사용 가능한 아이디 입니다.');
+    function joinForm_check(){
+        var uid = document.getElementById("id").value;
+        var pwd = document.getElementById("pw1").value;
+        var repwd = document.getElementById("pw2").value;
+        var uname = document.getElementById("registerName1").value;
+        var uphone = document.getElementById("registerPnum1").value;
+        var uemail1 = document.getElementById("email1").value;
+        var uemail2 = document.getElementById("email2").value;
+        var ubirth = document.getElementById("datepicker").value;
+        var uaddress1 = document.getElementById("addr1").value;
+        var uaddress2 = document.getElementById("addr2").value;
+        var uaddress3 = document.getElementById("addr3").value;
+        var uid_check = document.getElementById("id_check").value;
+
+        if(uid_check == "0"){
+            alert("사용할 수 없는 아이디 입니다.");
+            $("#id_check").focus();
+            return false;
         }
+
+        if(uid == ""){
+            alert("아이디를 입력하세요.");
+            $("#id").focus();
+            return false;
+        }
+
+        if(pwd ==""){
+            alert("비밀번호를 입력하세요.");
+            $("#pw1").focus();
+            return false;
+        }
+
+        var pwdCheck = /^(?=.*[a-zA])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+        if(!pwdCheck.test(pwd)){
+            alert("영문, 숫자, 특수문자를 포함 8~30 자리로 입력해주세요.");
+            $("#pw1").focus();
+            return false;
+        }
+
+        if(pwd !== repwd){
+            alert("비밀번호가 일치하지 않습니다.");
+            $("#pw1").focus();
+            return false;
+        }
+
+        if(uname ==""){
+            alert("이름을 입력하세요.");
+            $("#registerName1").focus();
+            return false;
+        }
+
+        var reg = /^[0-9]+/g;
+
+        if(uphone == ""){
+            alert("휴대폰 번호를 입력하세요.");
+            $("#registerPnum1").focus();
+            return false;
+        }
+
+        if(!reg.test(uphone)){
+            alert("전화번호는 숫자만 입력할 수 있습니다.");
+            $("#registerPnum1").focus();
+            return false;
+        }
+
+        if(uemail1 == ""){
+            alert("이메일을 입력하세요.");
+            $("#email1").focus();
+            return false;
+        }
+
+        if(uemail2 =="직접입력"){
+            alert("이메일을 제대로 입력해주세요.");
+            $("#email2").focus();
+            return false;
+        }
+
+        if(ubirth == ""){
+            alert("생일을 입력해주세요.");
+            $("#datepicker").focus();
+            return false;
+        }
+
+        if(uaddress1==""){
+            alert("주소를 입력해주세요.");
+            $("#user_address_address1").focus();
+            return false;
+        }
+        if(uaddress2==""){
+            alert("주소를 입력해주세요.");
+            $("#user_address_address2").focus();
+            return false;
+        }
+        if(uaddress3==""){
+            alert("주소를 입력해주세요.");
+            $("#user_address_address3").focus();
+            return false;
+        }
+
+        document.joinForm.submit();
+
     }
+
+    // function check_id_length(){
+    //     var id_length = document.getElementById('id').value;
+    //     if(id_length.length <= 6 || id_length.length > 16){
+    //         window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+    //         document.getElementById('id').value = "";
+    //     }else{
+    //         window.alert('사용 가능한 아이디 입니다.');
+    //     }
+    // }
 
     function checkId(){
         var id = $('#id').val();
@@ -339,9 +445,11 @@
                     if(cnt == '<Integer>0</Integer>') {
                         $('.id_ok').css("display", "inline-block");
                         $('.id_already').css("display", "none")
+                        $('input[id=id_check]').attr('value',"1");
                     }else if(cnt == '<Integer>1</Integer>'){
                         $('.id_already').css("display","inline-block");
                         $('.id_ok').css("display","none");
+                        $('input[id=id_check]').attr('value',"0");
                     }
                 },
                 error:function (){
@@ -423,10 +531,10 @@
             },success: function (result){
                 if(result == 1){
                     alert("중복된 이메일 입니다.");
-                }else if(result == 0){
+                    document.getElementById("email1").value = "";
+                    document.getElementById("email2").value = "직접입력";
+                }else{
                     alert("사용가능한 이메일 입니다.");
-                }else {
-                    alert("이메일을 입력해주세요");
                 }
             }
         })
@@ -524,6 +632,13 @@
     var code = " ";
     $("#emailChk").click(function (){
         var total_email = $("#total_email").val();
+        var email1 = $("#email1").val();
+        var email2 = $("#email2").val();
+        if(email1 == "" && email2 == "직접입력"){
+            alert("이메일을 입력해주세요");
+            $("#email1").focus();
+            return false;
+        }
         console.log(total_email);
         $.ajax({
             type: "GET",
@@ -555,6 +670,7 @@
             $(".successEmailChk").text("인증번호가 일치하지 않습니다. 다시 확인해주세요!.");
             $(".successEmailChk").css("color","red");
             $("#email_ch").attr("autofocus",true);
+            document.getElementById("email_ch").value = "";
         }
     })
 

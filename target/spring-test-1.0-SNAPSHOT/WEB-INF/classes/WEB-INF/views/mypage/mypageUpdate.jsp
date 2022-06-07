@@ -15,10 +15,12 @@
 <section id="bottomSection">
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
   <div class="container">
-    <form name="updateMemberForm" method="post">
-      <input type="hidden" name="name" value="김민수">
-      <input type="hidden" name="birthdayInLaw" value="19980429">
-      <input type="hidden" name="sex" value="2">
+
+
+      <input type="hidden" name="userid" value="${pinfo.userVO.user_id}">
+      <input type="hidden" name="userGender" value="${pinfo.userVO.user_gender}">
+      <input type="hidden" name="emailyn" value="${pinfo.userVO.user_email_receive}">
+      <input type="hidden" name="smsyn" value="${pinfo.userVO.user_sms_receive}">
 
       <div class="gird-l2x">
           <%@ include file="mypageSide.jsp" %>
@@ -59,7 +61,6 @@
                   <tr>
                     <th scope="row" class="txt-left">이름</th>
                     <td>
-                      <sec:authentication property="principal" var="pinfo" />
                       <span id="baseInfoName">${pinfo.userVO.user_name}</span>
                     </td>
                   </tr>
@@ -133,25 +134,31 @@
                   <tr>
                     <th scope="row" class="txt-left">생년월일</th>
                     <td><span id="baseInfoBirthday"><fmt:formatDate value="${pinfo.userVO.user_birth}" pattern="yyyy년 MM월 dd일"/></span>
-                      <button type="button" class="btn btn-linelgray small30" onclick="$('#brithday_change_modal').modal().show()"><span>수정</span></button>
+                      <button type="button" class="btn btn-linelgray small30" onclick="$('#changeBirthdayPup').modal().show()"><span>수정</span></button>
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="txt-left">휴면방지기간</th>
+                    <th scope="row" class="txt-left">성별</th>
                     <td>
-                      <div class="selectwrap"><div class="custom-selectbox sm w_160" data-modules-selectbox="">
-                        <select id="vlidTermGbcd" name="vlidTermGbcd">
-                          <option value="1" selected="selected">1년</option>
-                          <option value="2">2년</option>
-                          <option value="3">3년</option>
-                          <option value="4">4년</option>
-                          <option value="5">5년</option>
-                          <option value="99">회원탈퇴시까지</option>
-                        </select>
-                        <div class="ui-label"><a href="#1">1년</a></div><div class="ui-selectbox"><div class="selectbox_area"><ul><li><a href="#1">1년</a></li><li><a href="#2">2년</a></li><li><a href="#3">3년</a></li><li><a href="#4">4년</a></li><li><a href="#5">5년</a></li><li><a href="#6">회원탈퇴시까지</a></li></ul></div></div></div></div>
-                      <ul class="dotlist">
-                        <li>장기 미접속 시에도 휴면계정전환 및 자동탈퇴를 방지할 수 있습니다.</li>
-                      </ul>
+                      <div class="wrap_chk">
+                        <span class="checkbox_ui type1">
+                          <input type='radio' name='gender' id="maleGender" value="M" />&nbsp;남&nbsp;
+                          <input type='radio' name='gender' id="maleGender" value="F" />&nbsp;여&nbsp;
+                          <input type='radio' name='gender' id="maleGender" value="N" />&nbsp;미입력
+<%--                          <label class="chklabel sm">--%>
+<%--                            <input type='checkbox' name='maleGender' id="maleGender" value="M" /><i class="icon"></i>--%>
+<%--                            <p>&nbsp;남&nbsp;</p>--%>
+<%--                          </label>--%>
+<%--                          <label class="chklabel sm">--%>
+<%--                            <input type='checkbox' name='femaleGender' id="femaleGender" value="F" /><i class="icon"></i>--%>
+<%--                            <p>&nbsp;여&nbsp;</p>--%>
+<%--                          </label>--%>
+<%--                          <label class="chklabel sm">--%>
+<%--                            <input type='checkbox' name='noneGender' id="noneGender" value="N" /><i class="icon"></i>--%>
+<%--                            <p>&nbsp;미입력&nbsp;</p>--%>
+                          </label>
+                        </span>
+                      </div>
                     </td>
                   </tr>
                   </tbody>
@@ -181,129 +188,169 @@
               </div>
               <div class="btngroup w_510">
                 <button type="button" class="btn btn-linelgray medium" onclick="cancelMember();"><span>취소</span></button>
-                <button type="button" class="btn btn-default medium" id="aBtnSubmit" onclick="updateMember();"><span>확인</span></button>
+                <button type="button" class="btn btn-default medium" id="aBtnSubmit" onclick="updateSubmit();"><span>확인</span></button>
               </div>
             </div>
 
         </div> <!-- // .contents -->
       </div>
-    </form>
   </div> <!-- //.container -->
 
-  <!--비밀번호 변경 모달창-->
-  <div class="ui-modal password-change in" id="changePasswordPup" tabindex="-1" role="dialog" aria-label="비밀번호 수정" style="z-index: 1031; display: none; padding-right: 0px;">
-      <div class="ui-modal-dialog" role="document">
-        <div class="content">
-          <p class="ui-title">비밀번호 수정</p>
-          <!-- //.content-head -->
-          <div class="content-body">
-            <div class="form-wrap">
-                  <!-- 현재비밀번호 ------ -->
-                  <div class="inputbox" id="divOldPwd"><!-- 실패시 class="failed" 추가 -->
-                    <label class="inplabel icon-lock"><input type="password" placeholder="현재 비밀번호 입력" id='iPwd' name="oldPassword" maxlength="30"></label>
-                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                  </div>
-                  <p class="failed-msg" id="failedOldPwd" style="display:none">
-                    <i class="icon" id="alertOldPasswdIcon"></i><span id="alertOldPasswd"></span>
-                  </p> <!-- // 실패시 노출 -->
+      <!--비밀번호 변경 모달창-->
+      <div class="ui-modal password-change in" id="changePasswordPup" tabindex="-1" role="dialog" aria-label="비밀번호 수정" style="z-index: 1031; display: none; padding-right: 0px;">
+          <div class="ui-modal-dialog" role="document">
+            <div class="content">
+              <p class="ui-title">비밀번호 수정</p>
+              <!-- //.content-head -->
+              <div class="content-body">
+                <div class="form-wrap">
+                      <!-- 현재비밀번호 ------ -->
+                      <div class="inputbox" id="divOldPwd"><!-- 실패시 class="failed" 추가 -->
+                        <label class="inplabel icon-lock"><input type="password" placeholder="현재 비밀번호 입력" id='iPwd' name="oldPassword" maxlength="30"></label>
+                        <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                      </div>
+                      <p class="failed-msg" id="failedOldPwd" style="display:none">
+                        <i class="icon" id="alertOldPasswdIcon"></i><span id="alertOldPasswd"></span>
+                      </p> <!-- // 실패시 노출 -->
 
-                  <!-- 신규비밀번호 ------ -->
-                  <div class="inputbox" id="divNewPwd"><!-- 실패시 class="failed" 추가 -->
-                    <label class="inplabel icon-lock" id="uPwdChk1"><input type="password" placeholder="비밀번호 (영문, 숫자 조합 6자리 이상)" id='iPwd1' name="newPassword" maxlength="30"></label>
-                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                    <em class="" id="lockNewPwd"></em>
-                  </div>
-                  <p class="failed-msg" id="failedNewPwd" style="display:none">
-                    <i class="icon" id="alertNewPasswdIcon"></i><span id="alertNewPasswd"></span>
-                  </p> <!-- // 실패시 노출 -->
+                      <!-- 신규비밀번호 ------ -->
+                      <div class="inputbox" id="divNewPwd"><!-- 실패시 class="failed" 추가 -->
+                        <label class="inplabel icon-lock" id="uPwdChk1"><input type="password" placeholder="비밀번호 (영문, 숫자 조합 6자리 이상)" id='iPwd1' name="newPassword" maxlength="30"></label>
+                        <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                        <em class="" id="lockNewPwd"></em>
+                      </div>
+                      <p class="failed-msg" id="failedNewPwd" style="display:none">
+                        <i class="icon" id="alertNewPasswdIcon"></i><span id="alertNewPasswd"></span>
+                      </p> <!-- // 실패시 노출 -->
 
-                  <!-- 비밀번호확인 ------ -->
-                  <div class="inputbox" id="divReNewPwd"><!-- 실패시 class="failed" 추가 -->
-                    <label class="inplabel icon-lock" id="uPwdChk2"><input type="password" placeholder="비밀번호 재확인" id='iPwd2' name="reNewPassword" maxlength="30"></label>
-                    <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                    <em class="" id="lockReNewPwd"></em>
-                  </div>
-                  <p class="failed-msg" id="failedReNewPwd" style="display:none">
-                    <i class="icon" id="alertReNewPasswdIcon"></i><span id="alertReNewPasswd"></span>
-                  </p> <!-- // 실패시 노출 -->
+                      <!-- 비밀번호확인 ------ -->
+                      <div class="inputbox" id="divReNewPwd"><!-- 실패시 class="failed" 추가 -->
+                        <label class="inplabel icon-lock" id="uPwdChk2"><input type="password" placeholder="비밀번호 재확인" id='iPwd2' name="reNewPassword" maxlength="30"></label>
+                        <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                        <em class="" id="lockReNewPwd"></em>
+                      </div>
+                      <p class="failed-msg" id="failedReNewPwd" style="display:none">
+                        <i class="icon" id="alertReNewPasswdIcon"></i><span id="alertReNewPasswd"></span>
+                      </p> <!-- // 실패시 노출 -->
 
-            </div>
+                </div>
 
-            <ul class="dotlist">
-              <li>영문, 숫자를 포함한 6자 이상 ~ 30자 이내 (공백 입력 불가)</li>
-              <li>영문+숫자 10자 이상 혹은 영문+숫자+특수문자 8자 이상을 권장</li>
-              <li>다른 사이트와 같지 않은 비밀번호를 추천</li>
-            </ul>
+                <ul class="dotlist">
+                  <li>영문, 숫자를 포함한 6자 이상 ~ 30자 이내 (공백 입력 불가)</li>
+                  <li>영문+숫자 10자 이상 혹은 영문+숫자+특수문자 8자 이상을 권장</li>
+                  <li>다른 사이트와 같지 않은 비밀번호를 추천</li>
+                </ul>
 
-            <div class="btngroup">
-              <button class="btn btn-linelgray" data-dismiss="modal" id="btnChangePwdCancel"><span>취소</span></button>
-              <button class="btn btn-default medium" id="btnChangePwdConfirm"><span>확인</span></button>
-            </div>
-          </div>
-          <!-- //.content-body -->
+                <div class="btngroup">
+                  <button class="btn btn-linelgray" data-dismiss="modal" id="btnChangePwdCancel"><span>취소</span></button>
+                  <button class="btn btn-default medium" id="btnChangePwdConfirm"><span>확인</span></button>
+                </div>
+              </div>
+              <!-- //.content-body -->
 
-          <button class="btn btn-close" data-dismiss="modal" id="btnChangePwdX"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-        </div> <!-- //.content -->
-      </div> <!-- //.ui-modal-dialog -->
-    </div> <!-- //.ui-modal -->
+              <button class="btn btn-close" data-dismiss="modal" id="btnChangePwdX"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
+            </div> <!-- //.content -->
+          </div> <!-- //.ui-modal-dialog -->
+        </div> <!-- //.ui-modal -->
 
-  <!--닉네임 변경 모달창-->
-  <div class="ui-modal nickname-change in" id="changeNicknamePup" tabindex="-1" role="dialog" aria-label="닉네임 등록 및 수정" style="z-index: 1031; display: none; padding-right: 0px;">
-    <div class="ui-modal-dialog" role="document">
-      <div class="content">
+      <!--닉네임 변경 모달창-->
+      <div class="ui-modal nickname-change in" id="changeNicknamePup" tabindex="-1" role="dialog" aria-label="닉네임 등록 및 수정" style="z-index: 1031; display: none; padding-right: 0px;">
+        <div class="ui-modal-dialog" role="document">
+          <div class="content">
 
-        <p class="ui-title">닉네임 등록</p>
-
-
-        <div class="content-body">
-          <div class="form-wrap">
-            <div class="inputbox" id="divChangeNickname">
-
-              <label class="inplabel"><input type="text" id="new-nickname" value="" onkeyup="this.value=this.value.replace(/[^0-9a-zA-Zㄱ-힣]/g, '');" placeholder="닉네임 입력" title="닉네임을 입력해주세요" maxlength="8"></label>
+            <p class="ui-title">닉네임 등록</p>
 
 
-              <button class="btn btn-lineblack btn-confirm" type="button" onclick="nknmChk()"><span>중복확인</span></button>
-              <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-            </div>
-            <p class="failed-msg">
-              <i class="icon" id="alertNicknameIcon"></i>
-              <span id="alertNickname"></span>
-            </p>
-          </div>
-          <div class="btngroup">
-            <button class="btn btn-linelgray" data-dismiss="modal"><span>취소</span></button>
-            <button class="btn btn-default medium" id="btnChangeNickname"><span>확인</span></button>
-          </div>
-        </div> <!-- //.content-body -->
-        <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-      </div> <!-- //.content -->
-    </div>
-  </div>
+            <div class="content-body">
+              <div class="form-wrap">
+                <div class="inputbox" id="divChangeNickname">
 
-  <!--생년월일 수정 모달-->
-  <div class="ui-modal birth-change in" id="brithday_change_modal" tabindex="-1" role="dialog" aria-label="생년월일 수정" style="z-index: 1031; display: none; padding-right: 0px;">
-    <div class="ui-modal-dialog" role="document">
-      <div class="content">
-        <p class="ui-title">생년월일 수정</p>
-        <!-- //.content-head -->
-        <div class="content-body">
-          <div class="form-wrap">
-            <!-- input disabled이면 inputbox에 class disabled 추가, readonly 동일, focus시 selected 추가 입력 오류 시 inputbox class failed 추가 class="inputbox failed" -->
-            <div class="inputbox" id="divBirth">
-              <label class="inplabel"><input type="text" name="user_birth" id="user_birth" value="" onkeypress="return isNumberKey(event)" maxlength="8" placeholder="생년월일 (예: 1990824)" title="생년월일을 입력해주세요"></label>
-              <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-            </div>
-            <p class="failed-msg" id="alertBirthday" style="display: none;"></p>
-          </div>
-          <div class="btngroup">
-            <button class="btn btn-linelgray" data-dismiss="modal" id="btnChangeBirthCancel"><span>취소</span></button>
-            <button class="btn btn-default medium" id="btnChangeBirthConfirm" onclick="update_birthday()"><span>확인</span></button>
-          </div>
-        </div> <!-- //.content-body -->
-        <button class="btn btn-close" data-dismiss="modal" id="btnChangeBirthX"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
-      </div> <!-- //.content -->
-    </div> <!-- //.ui-modal-dialog -->
-  </div>
+                  <label class="inplabel"><input type="text" id="new-nickname" value="" onkeyup="this.value=this.value.replace(/[^0-9a-zA-Zㄱ-힣]/g, '');" placeholder="닉네임 입력" title="닉네임을 입력해주세요" maxlength="8"></label>
+
+
+                  <button class="btn btn-lineblack btn-confirm" type="button" onclick="nknmChk()"><span>중복확인</span></button>
+                  <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                </div>
+                <p class="failed-msg">
+                  <i class="icon" id="alertNicknameIcon"></i>
+                  <span id="alertNickname"></span>
+                </p>
+              </div>
+              <div class="btngroup">
+                <button class="btn btn-linelgray" data-dismiss="modal"><span>취소</span></button>
+                <button class="btn btn-default medium" id="btnChangeNickname"><span>확인</span></button>
+              </div>
+            </div> <!-- //.content-body -->
+            <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
+          </div> <!-- //.content -->
+        </div>
+      </div>
+
+      <!--생년월일 수정 모달-->
+      <div class="ui-modal birth-change in" id="changeBirthdayPup" tabindex="-1" role="dialog" aria-label="생년월일 수정" style="z-index: 1031; display: none; padding-right: 0px;">
+        <div class="ui-modal-dialog" role="document">
+          <div class="content">
+            <p class="ui-title">생년월일 수정</p>
+            <!-- //.content-head -->
+            <div class="content-body">
+              <div class="form-wrap">
+                <!-- input disabled이면 inputbox에 class disabled 추가, readonly 동일, focus시 selected 추가 입력 오류 시 inputbox class failed 추가 class="inputbox failed" -->
+                <div class="inputbox" id="divBirth">
+                  <label class="inplabel"><input type="text" name="newBirthday" value="" onkeypress="return isNumberKey(event)" maxlength="8" placeholder="생년월일 (예: 1990824)" title="생년월일을 입력해주세요"></label>
+                  <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
+                </div>
+                <p class="failed-msg" id="alertBirthday">
+                  <i class="icon error" id="alertBirthdayIcon" style="display:none"></i>
+                  <span></span>
+                </p>
+              </div>
+              <div class="btngroup">
+                <button class="btn btn-linelgray" data-dismiss="modal" id="btnChangeBirthCancel"><span>취소</span></button>
+                <button class="btn btn-default medium" id="btnChangeBirthConfirm"><span>확인</span></button>
+              </div>
+            </div> <!-- //.content-body -->
+            <button class="btn btn-close" data-dismiss="modal" id="btnChangeBirthX"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
+          </div> <!-- //.content -->
+        </div> <!-- //.ui-modal-dialog -->
+      </div>
+
+      <!-- 맞춤형 마케팅 동의 -->
+      <div class="ui-modal mp-member-info in" id="mkAgrPopup" tabindex="-1" role="dialog" aria-label="맞춤형 마케팅 동의 (선택)" style="z-index: 1031; display: none; padding-right: 0px;">
+        <div class="ui-modal-dialog" role="document">
+          <div class="content">
+            <p class="ui-title">맞춤형 마케팅 동의 (선택)</p>
+            <!-- //.content-head -->
+            <div class="content-body">
+              <div class="tblwrap mt_10">
+                <table>
+                  <caption>마케팅 정보 수신여부</caption>
+                  <colgroup>
+                    <col style="width:180px;">
+                    <col style="width:auto;">
+                    <col style="width:195px;">
+                  </colgroup>
+                  <thead>
+                  <tr>
+                    <th scope="col" class="major-headings">목적</th>
+                    <th scope="col" class="major-headings">항목</th>
+                    <th scope="col">보유기간</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="txt-center">맞춤형 서비스 <br>제공 및 마케팅</td>
+                    <td class="txt-center">이메일, 휴대폰 번호, 생년월일, 서비스 이용기록</td>
+                    <td class="txt-center"><strong>회원탈퇴 시 <br>또는 법정 의무 보유기간</strong></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- //.content-body -->
+            <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span class="hiding">레이어 닫기</span></button>
+          </div> <!-- //.content -->
+        </div> <!-- //.ui-modal-dialog -->
+      </div>
+
     </div>
   </main>
 </section>
@@ -314,6 +361,7 @@
 </html>
 
 <script type="text/javascript">
+
   var isValidMobilePhone = false;
   var isValidPasswd = false;
   var isValidRePasswd = false;
@@ -333,6 +381,17 @@
   var isNknmAjax = false;
 
   jQuery(function($) {
+
+    $(document).ready(function () {
+      var emaailval = $('input[name="emailyn"]').val();
+      var smsval = $('input[name="smsyn"]').val();
+
+      if(emaailval == 1) $("#emailMarketing").prop("checked", true);
+      else $("#emailMarketing").prop("checked", false);
+
+      if(smsval == 1) $("#smsMarketing").prop("checked", true);
+      else $("#smsMarketing").prop("checked", false);
+    });
 
     $("input[name='oldPassword'], input[name='newPassword'], input[name='reNewPassword']").keyup(function() {
       var str = $(this).val();
@@ -645,8 +704,8 @@
         ,success : function(data) {
           if(data == "success") {
             alert("닉네임이 등록되었습니다.");
-            location.reload();
-            return;
+            $('#changeNicknamePup').modal('hide')
+            getNewInfo("nick");
           }
         },
         error : function() {
@@ -910,50 +969,7 @@
     return;
   }
 
-  //회원정보 확인
-  function confirmMemberInfo() {
 
-    var confirmName = $("input[name=confirmName]").val();
-    var confirmMobile = $("input[name=confirmMobile]").val();
-
-    if (confirmName == null || confirmName == '') {
-      alert("이름을 입력해 주세요.");
-    } else if (confirmMobile == null || confirmMobile == '') {
-      alert("휴대폰번호를 입력해 주세요.");
-    } else {
-      $.ajax({
-        url: "/p/mpd/confirmMemberInfoFormMain.do"
-        , type: 'POST'
-        , data: {confirmName:confirmName, confirmMobile:confirmMobile}
-        , dataType: "json"
-        , async:false
-        , success: function(data) {
-          if (data != null && data.confirmYn == "Y") {
-            $("#baseInfoName").text(data.name);
-            $("#baseInfoId").text(data.id);
-            $("#baseInfoMobilePhone").text( $("#cnryNm").val() + " - " +
-                    data.mobilePhone.substring(0,3) + "-" +
-                    data.mobilePhone.substring(3,7) + "-" +
-                    data.mobilePhone.substring(7,11)
-            );
-            // email, birthday 없을 수 있음.
-            if (!isEmpty(data.email)) {
-              $("#baseInfoEmail").text(data.email);
-            }
-            if (!isEmpty(data.birthday)) {
-              $("#baseInfoBirthday").text(data.birthday.substring(0,4) + "년 " + data.birthday.substring(4,6) + "월 " + data.birthday.substring(6,8) + "일");
-            }
-            $("#divConfirmMemberInfo").hide();
-          } else {
-            alert("입력하신 이름과 휴대폰번호가 일치하지 않습니다.");
-          }
-        }
-        , error: function() {
-          alert("일시적인 오류 입니다. 잠시후 다시 시도하여 주세요.");
-        }
-      });
-    }
-  }
 
   // 2018.11.26 이메일인증 또는 전화번호 수정을 위한 이메일 인증
   function popCertEmail(pCertType) {
@@ -1011,13 +1027,6 @@
         alert("시스템 오류입니다. 다시 시도해주세요.");
       }
     });
-  }
-
-
-  function closePopup() {
-    var $pu = $('.mm-pu');
-    var $dim = $('.dimscreen');
-    $dim.add($pu).removeClass('_on');
   }
 
 
@@ -1101,16 +1110,6 @@
     init($("input[name='newBirthday']"));
 
     //*** 이메일 인증 팝업 clear ****
-  }
-
-  function init(obj) {
-    obj.val("");
-    /*
-    if ($(obj).siblings('.mm-placeholder').length > 0){
-        if ($(obj).val().length > 0) $(obj).siblings('.mm-placeholder').addClass('hide');
-        else $(obj).siblings('.mm-placeholder').removeClass('hide');
-    }
-    */
   }
 
   ////////////////////////////////////////레이어팝업////////////////////////////////////////
@@ -1268,13 +1267,14 @@
     var csrfHeaderName = "${_csrf.headerName}";
     var csrfTokenValue = "${_csrf.token}";
 
+    var userid = "${pinfo.userVO.user_id}";
     var userPassword = "${pinfo.userVO.user_pw}";
 
     if (confirm("비밀번호를 수정하시겠습니까?")) {
       $.ajax({
         type: "POST"
         , url: "myPage_pwUpdate"
-        , data: {oldPassword: oPwd.val(), newPassword: nPwd.val(), "userPassword" : userPassword}
+        , data: {oldPassword: oPwd.val(), newPassword: nPwd.val(), "userPassword" : userPassword, "userid" : userid}
         , beforeSend: function(xhr) {
                   xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
           }
@@ -1291,9 +1291,7 @@
           } else {
               if(data === "success") {
                 alert("비밀번호가 수정되었습니다.");
-                //puClear();
-                //closePopup();
-                location.reload();
+                $('#changePasswordPup').modal('hide')
                 return;
             }
           }
@@ -1310,7 +1308,7 @@
 
   // 취소
   function cancelMember() {
-    window.location.href = serverHost + "/p/mpf/selectMyPageMain.do";
+    window.location.href = "/mypage";
   }
 
   //닉네임 중복, 블랙키워드 확인
@@ -1522,18 +1520,23 @@
       return;
     }
 
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+    var user_id = "${pinfo.userVO.user_id}";
+
     if (confirm("생년월일을 수정하시겠습니까?")) {
       $.ajax({
         type: "POST"
-        , url: "/p/mpd/changeBirth.do"
-        , data: {birthday: birthday}
-        , dataType: "json"
+        , url: "myPage_newBirthday"
+        , data: {birthday: birthday ,"user_id": user_id}
+        ,beforeSend: function(xhr) {
+          xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        }
         , success : function(data) {
-          if (data.errorMessages.length > 0) {
-            alert(data.errorMessages[0]);
-          } else {
+          if (data == "success") {
             alert("생년월일이 수정되었습니다.");
-            location.reload();
+            $('#changeBirthdayPup').modal('hide')
+            getNewInfo("birth");
             return;
           }
         }
@@ -1688,35 +1691,30 @@
     var hiddenIdText = null;
 
     if (idText == "emailMarketing") {
-      hiddenIdText = "emailReceiveYn";
+      hiddenIdText = "emailyn";
     }
 
     if (idText == "smsMarketing") {
-      hiddenIdText = "smsReceiveYn";
+      hiddenIdText = "smsyn";
     }
 
-    if (idText == "phoneMarketing") {
-      hiddenIdText = "fObReceiveYn";
-    }
 
     var chkObj = $("#" + idText).is(":checked");
 
     if(chkObj) {
-      $("#" + hiddenIdText).val("Y");
+      $('input[name="' + hiddenIdText + '"]').val(1);
+      // $("#" + hiddenIdText).attr("1");
     } else {
-      $("#" + hiddenIdText).val("N");
+      $('input[name="' + hiddenIdText + '"]').val(0);
+      //$("#" + hiddenIdText).attr("0");
     }
 
     var emailChkObj = $("#emailMarketing").is(":checked");
     var smsChkObj = $("#smsMarketing").is(":checked");
-    var phoneChkObj = $("#phoneMarketing").is(":checked");
-    var pushChkObj = $("#pushMarketing").is(":checked");
 
-    if(!emailChkObj && !smsChkObj && !phoneChkObj && !pushChkObj) {
-      $("#marketingAgreementYn").val("Y");
+    if(!emailChkObj && !smsChkObj) {
       $("#agreeMarketing").prop("checked", false);
     } else {
-      $("#marketingAgreementYn").val("N");
       $("#agreeMarketing").prop("checked", true);
     }
 
@@ -1726,124 +1724,51 @@
   // 맞춤형 마케팅 동의 전체 체크 또는 해제
   function checkAgreeMarketing() {
     if ($("#agreeMarketing").is(":checked")) {
-      $("#marketingAgreementYn").val("N");
-      $("#emailReceiveYn, #smsReceiveYn, #fObReceiveYn").val("Y");
-      $("#emailMarketing, #smsMarketing, #phoneMarketing").prop("checked", true);
+      $("#emailyn, #smsyn").val("1");
+      $("#emailMarketing, #smsMarketing").prop("checked", true);
     } else {
-      $("#marketingAgreementYn").val("Y");
-      $("#emailReceiveYn, #smsReceiveYn, #fObReceiveYn").val("N");
-      $("#emailMarketing, #smsMarketing, #phoneMarketing").prop("checked", false);
+      $("#emailyn, #smsyn").val("0");
+      $("#emailMarketing, #smsMarketing").prop("checked", false);
     }
   }
 
-  function updateMember() {
-    $("input[name='onepassMemberSub.id']").val($("input[name='id']").val());
-    var cashRcptHpTel1 = $("input[name='cashRcptHpTel1']").val();
-    var cashRcptHpTel2 = $("input[name='cashRcptHpTel2']").val();
-    var cashRcptHpTel3 = $("input[name='cashRcptHpTel3']").val();
-    $("input[name='cashRcptHpTel']").val(cashRcptHpTel1 + cashRcptHpTel2 + cashRcptHpTel3);
-    var evdnRgno1 = $("input[name='evdnRgno1']").val();
-    var evdnRgno2 = $("input[name='evdnRgno2']").val();
-    var evdnRgno3 = $("input[name='evdnRgno3']").val();
-    $("input[name='evdnRgno']").val(evdnRgno1 + evdnRgno2 + evdnRgno3);
-
-    var mobilePhone = $("input[name='mobilePhone']").val();
-    var orgMobilePhone = $("input[name='orgMobilePhone']").val();
-    var email = $("input[name='email']").val();
-    var orgEmail = $("input[name='orgEmail']").val();
-
-    updateSubmit();
-  }
 
   function updateSubmit() {
-
-    var cashRcptHpTel = $("input[name='cashRcptHpTel']").val();
-    var evdnRgno = $("input[name='evdnRgno']").val();
-    if (!isEmpty(cashRcptHpTel) && isEmpty(evdnRgno)) {
-      $("input[name='cashRcptGbcd']").val("1");
-    } else if (!isEmpty(evdnRgno) && isEmpty(cashRcptHpTel)) {
-      $("input[name='cashRcptGbcd']").val("2");
-    } else if (!isEmpty(evdnRgno) && !isEmpty(cashRcptHpTel)) {
-      $("input[name='cashRcptGbcd']").val("3");
-    }
-
-    var vlidTerm = $("select[name='vlidTermGbcd']").val();  // 2018.11.14 회원가입개선Prj-추가
-
     if (isCertYn || confirm("수정하시겠습니까?")) {
-      showLoadingBar(parseInt($("#aBtnSubmit").offset().left + 5) + "px",  parseInt($("#aBtnSubmit").offset().top - 10) + "px");
 
-      $("form[name='updateMemberForm']").ajaxSubmit({
-        url: "/p/mpd/updateMember.do"
-        , data: {vlidTerm: vlidTerm}    // 2018.11.14 회원가입개선Prj-추가
-        , dataType: "json"
-        , async : false
-        , success: function(data) {
-          if (data.errorMessages.length > 0) {
-            hideLoadingBar();
-            alert(data.errorMessages[0]);
-          } else {
-            hideLoadingBar();
-            //여기 수정
-            var marketingAgreementYn = $("#marketingAgreementYn").val();
-            var emailReceiveYn = $("input[name='emailReceiveYn']").val();
-            var fObReceiveYn = $("input[name='fObReceiveYn']").val();
-            var smsReceiveYn = $("input[name='smsReceiveYn']").val();
+      var genderval = $(":input:radio[name=gender]:checked").val();
+      var emaailval = $('input[name="emailyn"]').val();
+      var smsval = $('input[name="smsyn"]').val();
+      var userid = $('input[name="userid"]').val();
 
-            var sEmail, sSms, sFob;
+      var csrfHeaderName = "${_csrf.headerName}";
+      var csrfTokenValue = "${_csrf.token}";
 
-            if(emailReceiveYn == 'Y') sEmail = "동의";
-            else sEmail = "거부";
-
-            if(smsReceiveYn == 'Y') sSms = "동의";
-            else sSms = "거부";
-
-            if(fObReceiveYn == 'Y') sFob = "동의";
-            else sFob = "거부";
-
-            $("#confirmMarketingPup #nameForMarketing").text("김민수"+"님");
-            $("#confirmMarketingPup #dateForMarketing").text(dateCheck());
-            $("#confirmMarketingPup #emailReceiveYnMk").text(sEmail);
-            $("#confirmMarketingPup #fObReceiveYnMk").text(sSms);
-            $("#confirmMarketingPup #smsReceiveYnMk").text(sFob);
-
-            $("#confirmMarketingPup").modal().show();
-
-            /*var msg = "김민수 님의 " + dateCheck() + "마케팅 정보 수신여부가 아래와 같이 처리되었습니다.\n\n";
-            if(emailReceiveYn == 'Y'){
-                msg = msg + "e-mail : 동의";
-            }else{
-                msg = msg + "e-mail : 거부";
-            }
-
-            if(smsReceiveYn == 'Y'){
-                msg = msg + "\n문자(SMS) : 동의";
-            }else{
-                msg = msg + "\n문자(SMS) : 거부";
-            }
-
-            if(fObReceiveYn == 'Y'){
-                msg = msg + "\n전화상담 : 동의";
-            }else{
-                msg = msg + "\n전화상담 : 거부";
-            }
-            alert(msg);*/
-
-            //alert("개인정보가 변경되었습니다.");
-            //location.reload();
-            //window.location.href = serverHost + "/p/mpf/selectMyPageMain.do";
+      $.ajax({
+        type: 'POST'
+        ,url : "checkUpdate"
+        ,data: {"emaailval": emaailval, "smsval": smsval, "genderval": genderval, "userid": userid}
+        , beforeSend: function(xhr) {
+          xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        }
+        ,success: function(data) {
+          if (data === "success") {
+            getNewInfo("check");
+            confirmMk();
           }
         }
+        ,error: function(e) {
+          isEmail = false;
+        }
       });
-    }
 
-    return false;
+    }
   }
 
   function confirmMk() {
     alert("개인정보가 변경되었습니다.");
-    window.location.href = serverHost + "/p/mpf/selectMyPageMain.do";
+    window.location.href = "/mypage";
   }
-
 
   function updateEmailCertInfo() {
     jQuery.ajax({
@@ -1995,4 +1920,32 @@
     }
   }
 
+  function getNewInfo(type){
+    $.getJSON("${contextPath}/getUserInfo/"+${pinfo.userVO.no}, function (data){
+      console.log(data);
+      var str = "";
+
+      $(data).each(function (){
+        if (type === "nick") {
+          $('#baseInfoNickname').empty();
+          str += this.user_nickname;
+          $('#baseInfoNickname').html(str);
+        }
+        else if (type === "birth") {
+          var timestamp = this.user_birth;
+          var birth = new Date(timestamp);
+
+          var year = birth.getFullYear();
+          var month = birth.getMonth()+1;
+          var date = birth.getDate();
+          $('#baseInfoBirthday').empty();
+          str += year + "년 " + month + "월 " + date + "일";
+          $('#baseInfoBirthday').html(str);
+        }
+        else if (type === "check") {
+
+        }
+      })
+    });
+  }
 </script>
