@@ -84,6 +84,7 @@ public class UserController {
             userService.insertSignup(userVO);
             log.info("컨트롤러 :"+ userVO.getNo());
             addressService.insertAddress(addressVO, userVO);
+            userService.insertFirstCoupon(userVO.getNo());
             return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();

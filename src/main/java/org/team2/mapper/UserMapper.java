@@ -30,4 +30,6 @@ public interface UserMapper {
     void insertNewAddress(AddressVO addressVO) throws Exception;
 
     int email_dup(String total_email) throws Exception;
+
+    void insertFirstCoupon(int no) throws Exception;
 }

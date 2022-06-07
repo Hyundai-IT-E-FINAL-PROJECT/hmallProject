@@ -74,6 +74,23 @@
             )
     </insert>
 
+    <insert id="insertFirstCoupon">
+        insert into tbl_cu(
+                           cu_seq,
+                           coupon_seq,
+                           user_seq,
+                           created_at,
+                           updated_at
+                           )
+                     values(
+                            seq_cu.nextval,
+                            22,
+                            #{no},
+                            sysdate,
+                            sysdate
+                            )
+    </insert>
+
     <select id="idCheck" parameterType="String" resultType="int">
         select count(user_id) from tbl_user where user_id = #{user_id}
     </select>

@@ -119,4 +119,10 @@ public class UserServiceImpl implements UserService{
         int result = userMapper.email_dup(total_email);
         return result;
     }
+
+    @Transactional
+    @Override
+    public void insertFirstCoupon(int no) throws Exception {
+        userMapper.insertFirstCoupon(no);
+    }
 }
