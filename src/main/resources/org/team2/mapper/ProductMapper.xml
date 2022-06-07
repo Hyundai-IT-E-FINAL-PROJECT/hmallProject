@@ -171,9 +171,20 @@
 
     <select id="getMain" resultType="map">
         <![CDATA[
-        SELECT *
-        FROM (SELECT * FROM tbl_product)
-        WHERE ROWNUM <= 10
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    tbl_product p
+                        LEFT JOIN tbl_image   i ON p.product_seq = i.product_seq
+                ORDER BY
+                    p.sell_count DESC
+            )
+        WHERE
+            ROWNUM <= 10
         ]]>
     </select>
 

@@ -13,15 +13,7 @@
 
     <!-- ajax 새로고침 영역 설정-->
     <div id="reflashArea" class="container" style="margin-top: 68px">
-
-
-        <!-- 매장전시이주형 searchResult 변수를 중복사용하고 있어서 다른 변수로 선언함 -->
-
-
         <form name="searchPageNation" action="/p/dpa/searchSectItem.do?sectId=2731753" method="post"></form>
-
-
-        <!-- 검색을 위한 Form 영역 -->
         <form name="pdeSearchForm" action="/p/dpa/searchSectItem.do?sectId=2731753" method="post">
 
             <div class="pdeSearchFormHiddenInput" style="display: none">
@@ -57,15 +49,9 @@
                 <input type="hidden" name="searchTerm" value="A">
                 <input type="hidden" name="autoCate" value="">
             </div>
-
             <div class="gird-l2x">
-
-                <!-- 필터 -->
-
                 <div class="side-content">
                     <ul class="detail-filter-list">
-
-                        <!-- 매장 내 검색 -->
                         <li>
                             <input id="filter-title-14" class="filter-title _rescan _def" type="checkbox"
                                    name="detail-filter" checked="checked">
@@ -100,32 +86,18 @@
                 <!-- 필터 //-->
 
                 <div class="contents" id="pl_main">
-
-
                     <div class="display-list-wrap" id="itemListArea">
-
-
-                        <h2 class="title30" first_category="${categoryVO.category_seq}"><span>${categoryVO.category_name}</span> <em>(${productVOList.size()})</em>
-                        </h2>
-
-
-                        <!-- 선택된 탭 표시 -->
-
+                        <h2 class="title30" first_category="${categoryVO.category_seq}"><span>${categoryVO.category_name}</span> <em>(${productVOList.size()})</em></h2>
                         <ul class="ui-tab _selectCategory" role="tablist">
-                            <!-- 전체 -->
                             <li role="presentation" class="autoCate ui-active" value=""><a
                                     onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, 0);"
                                     role="tab">전체</a></li>
-                            <%--                            다른 하위 카테고리--%>
                             <c:forEach items="${subCategoryList}" var="subCategory">
                                 <li role="presentation" class="autoCate" value="${subCategory.category_seq}"><a
                                         onclick="javascript:searchAutoCate(this, ${categoryVO.category_seq}, ${subCategory.category_seq});"
                                         role="tab">${subCategory.category_name}</a></li>
                             </c:forEach>
-
                         </ul>
-
-
                         <div class="list-sort-area">
                             <div class="sortOption">
                                 <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="date" class="active">
@@ -180,55 +152,27 @@
                             <a href="javascript:searchInit();" class="reload"><i class="icon"></i><span>초기화</span></a>
                         </div>
 
-
                         <div class="pdlist-wrap" id="pdListDiv">
                             <ul>
                             </ul>
                         </div>
 
                         <div class="paging">
-
-
                             <div class="page-prevarea">
-
-
                                 <strong aria-label="현재 선택페이지">1</strong>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=2&amp;sort=REG_DTM%40DESC">2</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=3&amp;sort=REG_DTM%40DESC">3</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=4&amp;sort=REG_DTM%40DESC">4</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=5&amp;sort=REG_DTM%40DESC">5</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=6&amp;sort=REG_DTM%40DESC">6</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=7&amp;sort=REG_DTM%40DESC">7</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=8&amp;sort=REG_DTM%40DESC">8</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=9&amp;sort=REG_DTM%40DESC">9</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=10&amp;sort=REG_DTM%40DESC">10</a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=11&amp;sort=REG_DTM%40DESC"
                                    class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
-
-
                                 <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=762&amp;sort=REG_DTM%40DESC"
                                    class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
-
                             </div>
 
 
@@ -240,7 +184,7 @@
                          aria-label="방송채널 안내" style="z-index: 1031; display: none;">
                         <div class="ui-modal-dialog" role="document">
                             <div class="content">
-                                <p class="ui-title">방송채널 안내</p>
+                                <p class="ui-title" style="font-size: initial;"></p>
                                 <!-- //.content-head -->
                                 <div class="content-body">
                                     <div class="product-banner-wrap">

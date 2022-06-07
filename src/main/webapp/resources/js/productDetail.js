@@ -31,6 +31,9 @@ function minusOrdQty() {
     ordQtyObj.val(ordQty);
 }
 
+/*
+ * 상품 이미지 슬라이드
+ */
 function image_slide(obj, curPos){
 
     // 하이라이팅
@@ -45,5 +48,4 @@ function image_slide(obj, curPos){
 
     // 이미지
     $(".slick-track").css('transform', `translateX(${-520 + (curPos * -520)}px)`).css('transition', `all 0.7s ease 0s`)
-
 }

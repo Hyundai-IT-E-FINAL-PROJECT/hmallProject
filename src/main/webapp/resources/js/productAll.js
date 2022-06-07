@@ -487,6 +487,15 @@ function image_show(product_seq) {
     console.log(product_seq)
     $(".slick-track").empty()
     $(".slider-thumbnaii ul").empty()
+    $.ajax({
+        type: "get",
+        url: `http://localhost:8080/api/product/${product_seq}`,
+        dataType: "json",
+        crossDomain: true,
+        success: function (data) {
+            $(".ui-title").text(data.product_name + " 상세보기")
+        }
+    })
 
     // 이미지 확대 모달
     $.ajax({
@@ -495,11 +504,12 @@ function image_show(product_seq) {
         , dataType: "json"
         , crossDomain: true
         , success: function (data) {
-            for (const [index, element] of data.entries()) {
-                console.log(element)
-                if (index === 0) {
-                    $(".slick-track").append(
-                        `
+            if (data.length !== 0) {
+                for (const [index, element] of data.entries()) {
+                    console.log(element)
+                    if (index === 0) {
+                        $(".slick-track").append(
+                            `
                             <div class="slick-slide slick-current slick-active" data-slick-index=${index} aria-hidden="true" style="width: 520px;" tabindex="-1">
                                 <div>
                                     <div class="item" data-item=""
@@ -516,9 +526,9 @@ function image_show(product_seq) {
                                 </div>
                             </div>
                         `
-                    )
-                    $(".slider-thumbnaii ul").append(
-                        `
+                        )
+                        $(".slider-thumbnaii ul").append(
+                            `
                             <li class="ui-thumbnaii ui-active">
                                 <a href="javascript:;"
                                    onclick="image_slide(this, ${index});"
@@ -529,10 +539,10 @@ function image_show(product_seq) {
                                 </a>
                             </li>
                         `
-                    )
-                } else {
-                    $(".slick-track").append(
-                        `
+                        )
+                    } else {
+                        $(".slick-track").append(
+                            `
                             <div class="slick-slide" data-slick-index="${index}" aria-hidden="true" style="width: 520px;" tabindex="-1">
                                 <div>
                                     <div class="item" data-item=""
@@ -549,9 +559,9 @@ function image_show(product_seq) {
                                 </div>
                             </div>
                         `
-                    )
-                    $(".slider-thumbnaii ul").append(
-                        `
+                        )
+                        $(".slider-thumbnaii ul").append(
+                            `
                             <li class="ui-thumbnaii">
                                 <a href="javascript:;"
                                    onclick="image_slide(this, ${index});"
@@ -562,50 +572,102 @@ function image_show(product_seq) {
                                 </a>
                             </li>
                         `
-                    )
+                        )
+                    }
                 }
+                $(".slick-track").prepend(
+                    `
+                    <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                                 aria-hidden="true" style="width: 520px;" tabindex="-1">
+                        <div>
+                            <div class="item" data-item=""
+                                 data-outputsrc="/resources/img/image_example1.jpg"
+                                 onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                 style="width: 100%; display: inline-block; vertical-align: top;">
+                                <a href="javascript:;"
+                                   onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                   tabindex="-1"><img
+                                        src="/resources/img/image_example1.jpg"
+                                        alt="2139858205_4.png"
+                                        onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                            </div>
+                        </div>
+                    </div>
+                `
+                )
+                $(".slick-track").append(
+                    `
+                    <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                                 aria-hidden="true" style="width: 520px;" tabindex="-1">
+                        <div>
+                            <div class="item" data-item=""
+                                 data-outputsrc="/resources/img/image_example1.jpg"
+                                 onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                 style="width: 100%; display: inline-block; vertical-align: top;">
+                                <a href="javascript:;"
+                                   onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                   tabindex="-1"><img
+                                        src="/resources/img/image_example1.jpg"
+                                        alt="2139858205_4.png"
+                                        onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                            </div>
+                        </div>
+                    </div>
+                `
+                )
+            } else {
+                $(".slick-track").append(
+                    `
+                        <div class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 520px;" tabindex="-1">
+                            <div>
+                                <div class="item" data-item=""
+                                     data-outputsrc="/resources/img/image_example1.jpg"
+                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                     style="width: 100%; display: inline-block; vertical-align: top;">
+                                    <a href="javascript:;"
+                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                       tabindex="-1"><img
+                                            src="/resources/img/image_example1.jpg"
+                                            alt="2139858205_4.png"
+                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slick-slide slick-current slick-active" data-slick-index=${index} aria-hidden="true" style="width: 520px;" tabindex="-1">
+                                <div>
+                                    <div class="item" data-item=""
+                                         data-outputsrc="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"
+                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                        <a href="javascript:;"
+                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                           tabindex="-1"><img
+                                                src="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"
+                                                alt="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"
+                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                                     aria-hidden="true" style="width: 520px;" tabindex="-1">
+                            <div>
+                                <div class="item" data-item=""
+                                     data-outputsrc="/resources/img/image_example1.jpg"
+                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                     style="width: 100%; display: inline-block; vertical-align: top;">
+                                    <a href="javascript:;"
+                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                       tabindex="-1"><img
+                                            src="/resources/img/image_example1.jpg"
+                                            alt="2139858205_4.png"
+                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                )
             }
         }, complete: function () {
-            $(".slick-track").prepend(
-                `
-            <div class="slick-slide slick-cloned" data-slick-index="-1"
-                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
-                <div>
-                    <div class="item" data-item=""
-                         data-outputsrc="/resources/img/image_example1.jpg"
-                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                         style="width: 100%; display: inline-block; vertical-align: top;">
-                        <a href="javascript:;"
-                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                           tabindex="-1"><img
-                                src="/resources/img/image_example1.jpg"
-                                alt="2139858205_4.png"
-                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                    </div>
-                </div>
-            </div>
-        `
-            )
-            $(".slick-track").append(
-                `
-            <div class="slick-slide slick-cloned" data-slick-index="-1"
-                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
-                <div>
-                    <div class="item" data-item=""
-                         data-outputsrc="/resources/img/image_example1.jpg"
-                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                         style="width: 100%; display: inline-block; vertical-align: top;">
-                        <a href="javascript:;"
-                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                           tabindex="-1"><img
-                                src="/resources/img/image_example1.jpg"
-                                alt="2139858205_4.png"
-                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                    </div>
-                </div>
-            </div>
-        `
-            )
         }, error: function (e) {
             console.log("error")
         }
