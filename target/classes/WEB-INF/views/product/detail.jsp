@@ -743,8 +743,7 @@
                                         <div class="product-mainbanner slick-initialized slick-slider"
                                              data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
                                             <div class="slick-list">
-                                                <div class="slick-track"
-                                                     style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
+                                                <div class="slick-track" style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
                                                     <div class="slick-slide slick-cloned" data-slick-index="-1"
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
@@ -820,8 +819,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ui-angle"
-                                             style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
+                                        <div class="ui-angle" style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
                                     </div>
                                     <div class="slider-thumbnaii no-slick">
                                         <ul>
@@ -950,6 +948,8 @@
                                     <!-- 브랜드샵 -->
 
 
+
+
                                     <div class="brand-info">
                                         <a href="javascript://" ga-custom-name="상품상세" ga-custom-position="브랜드샵"
                                            ga-custom-creative="아이사랑" ga-custom-id="" ga-custom-title="상품>상품상세>메인"
@@ -966,6 +966,10 @@
                                         </a>
                                     </div>
                                     <div class="prduct-title-info">
+                                        <c:set var="total_price" value="0"/>
+                                        <input type="hidden" value="${productVO.product_name}" name="product_name"/>
+                                        <input type="hidden" value="${productVO.product_cost}" name="product_cost"/>
+                                        <input type="hidden" value="${productVO.product_seq}" name="product_seq"/>
 
 
                                         <strong class="prduct-name">${productVO.product_name}</strong>
@@ -1034,6 +1038,7 @@
                                                             <p class="saleprice-per">
                                                                 0
                                                                 <em>원 할인</em>
+                                                                <c:set var="total_price" value="${productVO.product_cost}" />
                                                             </p>
                                                         </dd>
                                                     </dl>
@@ -1060,6 +1065,7 @@
                                                                               pattern="#,###"/>
                                                         </em>
                                                         <b>원</b>
+                                                        <c:set var="total_price" value="${productVO.discounted_cost}" />
                                                         </del>
                                                     </span>
                                                 <div class="tooltip-box" id="tooltipDiscount">
@@ -1480,14 +1486,6 @@
                         <span style="line-height: 20px;"><img class="card " style="height: 20px;" src="
 
                                                     https://image.hmall.com/p/img/co/ico-card_kb.png
-
-
-
-
-
-
-
-
 
 
 
@@ -5398,6 +5396,28 @@
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
+        <script type="text/javascript">
+            function buyDirect(){
+
+                var submitForm=$('<form></form>');
+                submitForm.attr('action', '${contextPath}/order/od');
+                submitForm.attr('method','post');
+                submitForm.appendTo('body');
+                let index=0;
+
+                submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden'  value='"+$("input[name=ordQty]").val()+"'>"));
+                // submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden'  value='"+$("input[name=ordQty]").val()+"'>"));
+                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name=product_seq]").val()+"'>"));
+                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden'  value='${total_price}'>"));
+                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden'  value='"+$("input[name=product_name]").val()+"'>"));
+
+
+                submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
+
+                submitForm.submit();
+
+            }
+        </script>
     </main>
 </div>
 <script src="/resources/js/productDetail.js"></script>
