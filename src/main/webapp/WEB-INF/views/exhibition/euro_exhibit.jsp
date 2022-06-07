@@ -10,6 +10,11 @@
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    a.active{
+        color: blue;
+    }
+</style>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="contents">
@@ -445,16 +450,16 @@
                         <div class="sortOption">
                             <input type="hidden" id="exhibit_num_many" value="1">
                             <input type="hidden" id="sort_value_many" value="sell_count desc">
-                            <a href="javascript:;" onclick="sort_p('sell_count');">많이팔린순</a>
+                            <a href="javascript:;" id="sell_class" onclick="sort_p('sell_count');">많이팔린순</a>
                             <input type="hidden" id="exhibit_num_date" value="1">
-                            <input type="hidden" id="sort_value_date" value="tp.created_at">
-                            <a href="javascript:;" onclick="sort_p('tp.created_at');">최근등록순</a>
+                            <input type="hidden" id="sort_value_date" value="tp.created_at desc">
+                            <a href="javascript:;" id="create_class" onclick="sort_p('tp.created_at desc');">최근등록순</a>
                             <input type="hidden" id="exhibit_num_low" value="1">
                             <input type="hidden" id="sort_value_low" value="product_cost">
-                            <a href="javascript:;" onclick="sort_p('product_cost');">낮은가격순</a>
+                            <a href="javascript:;" id="low_cost" onclick="sort_p('product_cost');">낮은가격순</a>
                             <input type="hidden" id="exhibit_num_high" value="1">
                             <input type="hidden" id="sort_value_high" value="product_cost desc">
-                            <a href="javascript:;" onclick="sort_p('product_cost desc');">높은가격순</a>
+                            <a href="javascript:;" id="high_cost" onclick="sort_p('product_cost desc');">높은가격순</a>
                         </div>
                         <div>
                             <img id="btnKakao" class="link-icon kakao" onclick="shareKakao();" src="${contextPath}/resources/img/exhibitions/kakao.png" width="25" height="25"></img>
@@ -485,16 +490,18 @@
                                                             <div class="pdname" aria-label="유로컬렉션 22FW 휘메일 풀스킨 호리젠탈 밍크 베스트">${euro.PRODUCT_NAME}</div>
                                                             <div class="pdprice">
                                                                 <span class="rateprice" aria-label="정상가 가격">
-                                                                <p class="discount" aria-label="정상가"><em>${euro.PRODUCT_COST}</em>원</p>
+                                                                <p class="discount" aria-label="정상가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST}"/></em>원</p>
                                                                 </span>
                                                             </div>
                                                             <div class="pdinfo">
                                                                 <div class="benefits">
-                                                                    <span class="flag"><em class="color-ec5baa">등록일자 : <fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em></span>
-                                                                    <span>판매량</span>
-                                                                    <span>${euro.SELL_COUNT}</span>
+                                                                    <span class="flag"><em class="color-ec5baa">적립금</em></span>
+                                                                    <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST * 0.05}"/></span>
                                                                 </div>
                                                                 <p class="like-count">
+                                                                    <em><fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em>
+                                                                    <b>(${euro.SELL_COUNT})</b>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -533,16 +540,17 @@
                                                         <div class="pdname" aria-label="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종">${euro.PRODUCT_NAME}</div>
                                                         <div class="pdprice">
                                                             <span class="rateprice" aria-label="정상가 가격">
-                                                            <p class="discount" aria-label="정상가"><em>${euro.PRODUCT_COST}</em>원</p>
+                                                            <p class="discount" aria-label="정상가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST}"/></em>원</p>
                                                             </span>
                                                         </div>
                                                         <div class="pdinfo">
                                                             <div class="benefits">
-                                                                <span class="flag"><em class="color-ec5baa">등록일자 : <fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em></span>
-                                                                <span>판매량</span>
-                                                                <span>${euro.SELL_COUNT}</span>
+                                                                <span class="flag"><em class="color-ec5baa">적립금</em></span>
+                                                                <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST * 0.05}"/></span>
                                                             </div>
                                                             <p class="like-count">
+                                                                <em><fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em>
+                                                                <b>(${euro.SELL_COUNT})</b>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -604,21 +612,26 @@
 
     function sort_p(st){
         console.log(st);
+        $(".sortOption a").removeClass("active")
+        //$(".sortOption a").addClass("active")
         if(st === 'product_cost') {
             var exhibit_num = document.getElementById('exhibit_num_low').value;
             var sort_value = document.getElementById('sort_value_low').value;
+            document.getElementById('low_cost').classList.add("active");
             console.log(sort_value);
-        }else if(st === 'tp.created_at'){
+        }else if(st === 'tp.created_at desc'){
             var exhibit_num = document.getElementById('exhibit_num_date').value;
             var sort_value = document.getElementById('sort_value_date').value;
             console.log(sort_value);
+            document.getElementById('create_class').classList.add("active");
         }else if(st === 'sell_count'){
             var exhibit_num = document.getElementById('exhibit_num_many').value;
             var sort_value = document.getElementById('sort_value_many').value;
-            console.log(sort_value);
+            document.getElementById('sell_class').classList.add("active");
         }else{
             var exhibit_num = document.getElementById('exhibit_num_high').value;
             var sort_value = document.getElementById('sort_value_high').value;
+            document.getElementById('high_cost').classList.add("active");
             console.log(sort_value);
         }
         var csrfHeaderName = "${_csrf.headerName}";
@@ -651,10 +664,11 @@
                     console.log(pp.CREATED_AT);
                     console.log(pp.SELL_COUNT);
                     var pn = pp.PRODUCT_NAME;
-                    var pc = pp.PRODUCT_COST;
+                    var pc = (pp.PRODUCT_COST).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
                     var pb = pp.PRODUCT_BRAND;
                     var ps = pp.SELL_COUNT;
                     var pd = date;
+                    var point = (pp.PRODUCT_COST * 0.05).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
                     if (pb === 'EURO') {
                         $(".eu ul ").append(
                             `
@@ -676,11 +690,13 @@
                                                   </div>
                                                  <div class="pdinfo">
                                                      <div class="benefits">
-                                                           <span class="flag"><em class="color-ec5baa">등록일자 : ` + pd + `</em></span>
-                                                           <span>판매량</span>
-                                                           <span>` + ps + `</span>
+                                                           <span class="flag"><em class="color-ec5baa">적립금</em></span>
+                                                           <span>` + point + `</span>
                                                      </div>
-                                                     <p class="like-count"></p>
+                                                     <p class="like-count">
+                                                        <em>` + pd + `</em>
+                                                        <b>(` + ps + `)</b>
+                                                     </p>
                                                  </div>
                                             </div>
                                  </a>
@@ -712,11 +728,13 @@
                                                   </div>
                                                  <div class="pdinfo">
                                                      <div class="benefits">
-                                                           <span class="flag"><em class="color-ec5baa">등록일자 : ` + pd + `</em></span>
-                                                           <span>판매량</span>
-                                                           <span>` + ps + `</span>
+                                                           <span class="flag"><em class="color-ec5baa">적립금</em></span>
+                                                           <span>` + point + `</span>
                                                      </div>
-                                                     <p class="like-count"></p>
+                                                     <p class="like-count">
+                                                        <em>` + pd + `</em>
+                                                        <b>(` + ps + `)</b>
+                                                     </p>
                                                  </div>
                                             </div>
                                  </a>
@@ -734,4 +752,5 @@
             }
         });
     }
+
 </script>
