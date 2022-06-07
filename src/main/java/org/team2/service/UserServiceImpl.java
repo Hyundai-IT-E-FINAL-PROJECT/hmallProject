@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public int idCheck(String id) throws Exception{
         int cnt = userMapper.idCheck(id);
-        log.info("cnt: "+cnt);
+        log.info("!cnt: "+cnt);
         return cnt;
     }
 
