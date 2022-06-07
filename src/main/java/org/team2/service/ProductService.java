@@ -10,7 +10,7 @@ public interface ProductService {
 
     List<ProductVO> getAll();
 
-    List<ProductVO> getAllWithCouponByFirstCategory(Long first_category, Long second_category, String search_text);
+    List<ProductVO> getAllWithCouponByFirstCategory(Long first_category, Long second_category, String search_text, String sort);
 
     List<ProductVO> getMain();
     int insert(ProductVO productVO);

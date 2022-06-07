@@ -165,7 +165,7 @@ public class ProductController {
     }
 
     @RequestMapping("/all")
-    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text){
+    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value="sort", required=false) String sort){
         log.info("product controller all start!!");
 
         ModelAndView mav = new ModelAndView();
@@ -175,7 +175,7 @@ public class ProductController {
         styleFileList.add("prd-list");
 
 
-        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text);
+        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text, sort);
         CategoryVO categoryVO = categoryService.getOne(first_category);
         List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
 

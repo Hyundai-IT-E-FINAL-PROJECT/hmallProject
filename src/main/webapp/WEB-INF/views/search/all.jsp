@@ -105,7 +105,7 @@
                     <div class="display-list-wrap" id="itemListArea">
 
 
-                        <h2 class="title30"><span>${categoryVO.category_name}</span> <em>(${productVOList.size()})</em>
+                        <h2 class="title30" first_category="${categoryVO.category_seq}"><span>${categoryVO.category_name}</span> <em>(${productVOList.size()})</em>
                         </h2>
 
 
@@ -128,39 +128,24 @@
 
                         <div class="list-sort-area">
                             <div class="sortOption">
-                                <!--// 활성화시 a태그에 active 클래스 추가 REG_DTM@DESC-->
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);" class="active">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="date" class="active">
                                     <input type="hidden" class="sort" value="REG_DTM@DESC">최근등록순
                                 </a>
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="sell">
                                     <input type="hidden" class="sort" value="SELL_QTY@DESC">많이팔린순
                                 </a>
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="date">
                                     <input type="hidden" class="sort" value="BASIC@DESC">MD추천순
                                 </a>
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="low_cost">
                                     <input type="hidden" class="sort" value="SELL_PRC@ASC">낮은가격순
                                 </a>
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="high_cost">
                                     <input type="hidden" class="sort" value="SELL_PRC@DESC">높은가격순
                                 </a>
-
-
-                                <a href="javascript://" onclick="javascript:searchSortProc(this);">
+                                <a href="javascript://" onclick="javascript:searchSortProc(this, ${categoryVO.category_seq});" sort="date">
                                     <input type="hidden" class="sort" value="ITEM_EVAL_CNT@DESC">상품평수순
                                 </a>
-
-
                             </div>
 
                             <div class="sort-form">
@@ -198,79 +183,6 @@
 
                         <div class="pdlist-wrap" id="pdListDiv">
                             <ul>
-                                <c:forEach items="${productVOList}" var="productVO">
-                                    <li class="pdthumb">
-                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
-
-                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}"
-                                           onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
-                                            <div class="thumb">
-
-                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg"
-                                                     alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img"
-                                                     onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="제품명">
-                                                        ${productVO.PRODUCT_NAME}
-                                                </div>
-
-                                                <c:choose>
-                                                    <c:when test="${productVO.PRODUCT_COST == productVO.DISCOUNTED_COST}">
-                                                        <div class="pdprice">
-                                                            <span class="rateprice" aria-label="정상가 가격">
-                                                                <p class="discount"
-                                                                   aria-label="정상가"><em><fmt:formatNumber
-                                                                        value="${productVO.PRODUCT_COST}"
-                                                                        pattern="#,###"/></em>원</p>
-                                                            </span>
-                                                        </div>
-                                                    </c:when>
-                                                    <c:when test="${productVO.PRODUCT_COST != productVO.DISCOUNTED_COST}">
-                                                        <div class="pdprice">
-                                                            <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                                                <p class="discount"
-                                                                   aria-label="할인가"><em><fmt:formatNumber
-                                                                        value="${productVO.DISCOUNTED_COST}"
-                                                                        pattern="#,###"/></em>원</p>
-                                                                <em class="rate"
-                                                                    aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
-                                                                <del class="normal" aria-label="정상가"><fmt:formatNumber
-                                                                        value="${productVO.PRODUCT_COST}"
-                                                                        pattern="#,###"/></del>
-                                                            </span>
-                                                        </div>
-                                                    </c:when>
-                                                </c:choose>
-
-                                                <div class="pdinfo">
-                                                    <div class="benefits" style="line-height: 20px;">
-                                                        <span class="flag hdshop"> <em>적립금</em></span>
-                                                        <span><fmt:formatNumber
-                                                                value="${productVO.DISCOUNTED_COST * 0.05}"
-                                                                pattern="#,###"/>원</span>
-                                                    </div>
-                                                    <p class="like-count">
-                                                        <em>4.5점</em>
-                                                        <b>(2)</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="javascript://"
-                                           onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');"
-                                           class="hoverview">
-                                            <i class="icon"></i>새창열기
-                                        </a>
-                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
-
-                                            <a href="javascript:;" class="btn btn-like"
-                                               data-modules-modal="target:#broadcast-channel-info"
-                                               onclick="image_show(${productVO.PRODUCT_SEQ})">
-                                                <i class="icon"></i><span class="hiding">찜</span></a>
-                                        </div>
-                                    </li>
-                                </c:forEach>
                             </ul>
                         </div>
 

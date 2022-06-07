@@ -56,7 +56,7 @@
     </select>
 
     <select id="searchProducts" resultType="map" parameterType="map">
-        SELECT *
+        SELECT s.created_at, s.product_seq, s.product_code, s.product_cost, s.product_count, s.product_country, s.discounted_cost, s.coupon_ratio, s.sell_count, s.product_name, i.image_name, i.image_type
         FROM (SELECT p.product_seq,
         CASE
         WHEN aa.coupon_ratio IS NULL THEN
@@ -74,6 +74,9 @@
         p.product_count,
         p.category_seq,
         p.product_cost,
+        p.created_at,
+        p.updated_at,
+        p.sell_count,
         aa.coupon_ratio
         FROM tbl_product p
         LEFT JOIN (SELECT c.coupon_ratio,
@@ -94,6 +97,24 @@
         </if>
         <if test="search_text != null">
             AND s.product_name LIKE '%' ||  #{search_text} || '%'
+        </if>
+        <if test="sort == 'date'">
+            ORDER BY created_at DESC
+        </if>
+        <if test="sort == 'sell'">
+            ORDER BY sell_count DESC
+        </if>
+        <if test="sort == 'md'">
+            ORDER BY created_at DESC
+        </if>
+        <if test="sort == 'low_cost'">
+            ORDER BY discounted_cost ASC
+        </if>
+        <if test="sort == 'high_cost'">
+            ORDER BY discounted_cost DESC
+        </if>
+        <if test="sort == 'review'">
+            ORDER BY created_at DESC
         </if>
     </select>
 

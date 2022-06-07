@@ -7,7 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.ImageVO;
@@ -21,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @Log4j
 @RequestMapping("/api/product/*")
 public class ProductAPIController {
@@ -167,18 +166,13 @@ public class ProductAPIController {
     }
 
     @RequestMapping("/all")
-    public ResponseEntity<List<ProductVO>> all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text){
+    public ResponseEntity<List<ProductVO>> all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value = "sort", required = false) String sort){
         log.info("product controller all start!!");
 
-        ModelAndView mav = new ModelAndView();
-        List<String> styleFileList = new ArrayList<>();
-        styleFileList.add("search");
-        styleFileList.add("display");
-        styleFileList.add("prd-list");
+        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text, sort);
+        HttpHeaders resHeader = new HttpHeaders();
+        resHeader.add("Content-Type", "application/json; charset=UTF-8");
 
-
-        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text);
-
-        return ResponseEntity.ok().body(allWithCouponByFirstCategory);
+        return new ResponseEntity<>(allWithCouponByFirstCategory, resHeader, HttpStatus.OK);
     }
 }

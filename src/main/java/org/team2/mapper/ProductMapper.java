@@ -13,7 +13,7 @@ public interface ProductMapper {
 
     List<ProductVO> getAll();
 
-    List<ProductVO> searchProducts(@Param("first_category") Long first_category, @Param("second_category") Long second_category, @Param("search_text") String search_text);
+    List<ProductVO> searchProducts(@Param("first_category") Long first_category, @Param("second_category") Long second_category, @Param("search_text") String search_text, @Param("sort") String sort);
 
     int delete(Long seq);
 

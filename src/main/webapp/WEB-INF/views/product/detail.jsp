@@ -743,8 +743,7 @@
                                         <div class="product-mainbanner slick-initialized slick-slider"
                                              data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
                                             <div class="slick-list">
-                                                <div class="slick-track"
-                                                     style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
+                                                <div class="slick-track" style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
                                                     <div class="slick-slide slick-cloned" data-slick-index="-1"
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
@@ -820,8 +819,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ui-angle"
-                                             style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
+                                        <div class="ui-angle" style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
                                     </div>
                                     <div class="slider-thumbnaii no-slick">
                                         <ul>
