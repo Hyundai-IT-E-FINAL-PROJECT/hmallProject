@@ -20,10 +20,10 @@ public interface UserMapper {
     AddressVO selectAddress(Long user_address_seq) throws Exception;
     UserVO find_pw(String email) throws Exception;
     int newPassword(UserVO userVO) throws Exception;
-    UserVO myPage_pwUpdate(UserVO userVO) throws Exception;
+    int myPage_pwUpdate(@Param("user_pw") String user_pw, @Param("user_id") String user_id) throws Exception;
     void myPage_newNickname(UserVO userVO) throws Exception;
     List<UserVO> getUserinfo(long no) throws Exception;
-    void myPage_newBirthday(Date user_birth, String user_id) throws Exception;
+    void myPage_newBirthday(@Param("user_birth") String user_birth, @Param("user_id") String user_id) throws Exception;
 
     AddressVO selectBasicAddress(Long user_seq) throws Exception;
 

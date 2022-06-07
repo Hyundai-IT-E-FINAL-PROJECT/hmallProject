@@ -118,7 +118,7 @@
                     </div>
 
                     <h3 class="title22">
-                        최근 주문/배송 현황${userVO.no}
+                        최근 주문/배송 현황
                         <div class="btngroup abs">
                             <a href="/mypageOrder?type=all" class="btn atext"><span>전체보기</span><i
                                     class="arrow right"></i></a>

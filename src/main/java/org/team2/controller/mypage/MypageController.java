@@ -24,6 +24,8 @@ import org.team2.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -310,7 +312,7 @@ public class MypageController {
     public ResponseEntity<String> myPage_pwUpate(@RequestParam("oldPassword") String oldPassword,
                                                  @RequestParam("newPassword") String newPassword,
                                                  @RequestParam("userPassword") String userPassword,
-                                                 UserVO userVO, Principal principal) throws Exception {
+                                                 @RequestParam("userid") String userid) throws Exception {
         log.info("비번 변경 도착");
         log.info("비밀번호 변경 파라미터 확인 : " + oldPassword + " " + newPassword);
 
@@ -320,9 +322,8 @@ public class MypageController {
         try {
             if (result) {
                 String password = pwencoder.encode(newPassword);
-                log.info(userVO);
-                //userService.myPage_pwUpate(userVO);
-                entity = new ResponseEntity<String>("success", HttpStatus.OK);
+                int udresult = userService.myPage_pwUpate(password, userid);
+                if(udresult == 1) entity = new ResponseEntity<String>("success", HttpStatus.OK);
             } else {
                 entity = new ResponseEntity<String>("discode", HttpStatus.OK);
             }
@@ -387,16 +388,45 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("myPage_newBirthday")
-    public void myPage_newBirthday(@RequestParam("user_birth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date user_birth, @RequestParam("user_id") String user_id,
-                                   UserVO userVO) throws Exception{
+    public ResponseEntity<String> myPage_newBirthday(@RequestParam("birthday") String birthday, @RequestParam("user_id") String user_id,
+                                                     UserVO userVO) throws Exception{
+
+        ResponseEntity<String> entity = null;
+
         log.info("생년월일 변경 도착");
-        log.info(user_birth);
+        log.info(birthday);
         log.info(user_id);
 
         try {
-            userService.myPage_newBirthday(user_birth, user_id);
+            userService.myPage_newBirthday(birthday, user_id);
+            entity = new ResponseEntity<String>("success", HttpStatus.OK);
         }catch (Exception e) {
             e.printStackTrace();
+            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+
+        return entity;
+    }
+    @ResponseBody
+    @PostMapping("checkUpdate")
+    public ResponseEntity<String> checkUpdate (@RequestParam("emaailval") String emaailval,
+                                               @RequestParam("smsval") String smsval,
+                                               @RequestParam("genderval") String genderval,
+                                               @RequestParam("userid") String userid) throws Exception {
+        ResponseEntity<String> entity = null;
+
+        log.info(emaailval);
+        log.info(smsval);
+        log.info(genderval);
+        log.info(userid);
+        try {
+            mypageService.checkUpdate(emaailval, smsval, genderval, userid);
+            entity = new ResponseEntity<String>("success", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
     }
 }

@@ -33,4 +33,9 @@ public interface MypageMapper {
                                 @Param("searchType") String searchType) throws Exception;
 
     int niknameCheck(String nknm) throws Exception;
+
+    int checkUpdate(@Param("emaailval") String emaailval,
+                    @Param("smsval") String smsval,
+                    @Param("genderval") String genderval,
+                    @Param("userid") String userid);
 }
