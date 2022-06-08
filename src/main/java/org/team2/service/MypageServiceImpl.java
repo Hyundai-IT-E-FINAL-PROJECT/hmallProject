@@ -76,5 +76,10 @@ public class MypageServiceImpl implements MypageService {
         return mypageMapper.niknameCheck(nknm);
     }
 
+    @Override
+    public void DropUser(int no) throws Exception {
+        mypageMapper.DropUser(no);
+    }
+
 
 }

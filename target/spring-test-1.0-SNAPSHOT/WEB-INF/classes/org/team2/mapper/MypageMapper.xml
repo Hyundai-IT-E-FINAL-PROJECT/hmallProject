@@ -116,5 +116,9 @@
         from tbl_user
         where user_nickname = #{nknm}
     </select>
+
+    <delete id="DropUser">
+        delete from tbl_user where user_seq = #{no}
+    </delete>
 </mapper>
 

@@ -33,4 +33,6 @@ public interface MypageMapper {
                                 @Param("searchType") String searchType) throws Exception;
 
     int niknameCheck(String nknm) throws Exception;
+
+    void DropUser(int no) throws Exception;
 }

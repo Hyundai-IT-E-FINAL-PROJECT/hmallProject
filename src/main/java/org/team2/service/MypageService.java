@@ -21,4 +21,6 @@ public interface MypageService {
     List<DepositVO> depositList(String no, String strtDt, String endDt, String searchType) throws Exception;
 
     int niknameCheck(String nknm) throws Exception;
+
+    void DropUser(int no) throws Exception;
 }
