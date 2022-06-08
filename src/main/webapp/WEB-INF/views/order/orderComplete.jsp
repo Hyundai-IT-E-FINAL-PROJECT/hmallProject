@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -7,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<sec:authentication property="principal" var="pinfo" />
 <html>
     <title>주문완료</title>
     <head>
@@ -17,7 +19,7 @@
         <div class="container">
             <div class="cbody gird-full">
                 <div class="contents">
-                    <div class="order-wrap">
+                    <div class="order-wrap" id="printarea">
                         <div class="order-top">
                             <h2 class="title30">주문완료</h2>
                             <ol class="list-step">
@@ -35,6 +37,20 @@
                                 </li>
                             </ol>
                         </div>
+                        <div class="order-info-box" style="display: flex;">
+
+                            <div class="tit-wrap" style="width: 200px">${pinfo.userVO.user_name}고객님의 혜택 정보</div>&nbsp;&nbsp;
+                            <div class="txt-wrap">
+                                <p class="txt">회원등급:  ${pinfo.userVO.user_level}</p>
+                            </div>&nbsp;&nbsp;
+                            <div class="txt-wrap">
+                                <p class="txt">적립금:  ${pinfo.userVO.user_point}</p>
+                            </div>&nbsp;&nbsp;
+                            <div class="txt-wrap">
+                                <p class="txt">쿠폰:  ${couponCount}</p>
+                            </div>
+
+                        </div>
 
                         <div class="order-complete-box">
                             <span class="bgcircle check-on-sm"><i class="icon check-on"></i></span>
@@ -43,7 +59,8 @@
                             <p class="tit">(주문번호 : <em>${historyOrder[0].ORDER_INVOICE}</em>)</p>
                         </div>
 
-                        <h3 class="title22">주문상품 내역 및 배송정보</h3>
+                        <h3 class="title22">주문상품 내역</h3>
+
                         <div class="board">
                         <div class="tblwrap">
 
@@ -61,29 +78,37 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${historyOrder}" var="history">
+                                    <div class="order-list">
+                                        <dl>
                                         <tr style="background-color:white;">
                                             <td>
                                                 <dd>
                                                     <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
-                                                        <span class="img">
-                                                            <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
-                                                        </span>
-                                                        <div class="box">
-                                                            <span class="tit"> ${history.PRODUCT_NAME}</span>
-                                                            <div class="info">
-                                                                <ul>
-                                                                    <li>
-                                                                            ${history.OP_COUNT} 개
-                                                                    </li>
-                                                                </ul>
+                                                        <div style="display:flex;">
+                                                            <div>
+                                                                <span class="img">
+                                                                    <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=100x100&AR=0" alt="SPC삼립" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                                                </span>
                                                             </div>
-                                                            <span class="price"> <strong>${history.PRODUCT_COST}</strong>원 </span>
+                                                            <div class="box" style="margin-left:20px; ">
+                                                                <span class="tit"> ${history.PRODUCT_NAME}</span>
+                                                                <div class="info">
+                                                                    <ul>
+                                                                        <li>
+                                                                                ${history.OP_COUNT} 개
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <span class="price"> <strong>${history.PRODUCT_COST}</strong>원 </span>
+                                                            </div>
                                                         </div>
                                                     </a>
                                                 </dd>
                                             </td>
                                             <td class="txt-center">${history.OP_COUNT}</td>
                                         </tr>
+                                        </dl>
+                                    </div>
                                     </c:forEach>
                                 </tbody>
                             </table>
@@ -147,25 +172,34 @@
                                         <p class="txt">${historyOrder[0].ORDER_METHOD}</p>
                                     </div>
                                 </li>
-
-
-
                             </ul>
+                        </div>
+                        <div style="justify-content: center; display: flex; margin-top: 30px;">
+                            <button class="btn btn-linered small ui-btn-linered" style="margin:10px;" type="button" onclick="location.href='${contextPath}/mypage'" >
+                                                  <span>
+                                                      나의 쇼핑내역
+                                                   </span>
+                            </button>
+                            <button class="btn btn-linered small ui-btn-linered" style="margin:10px;" type="button" onclick="window.print();" >
+                                                  <span>
+                                                      주문내역 인쇄
+                                                   </span>
+                            </button>
+                            <button class="btn btn-linered small ui-btn-linered" style="margin:10px;" type="button"  onclick="location.href='${contextPath}/'">
+                                                  <span>
+                                                      쇼핑 계속하기
+                                                   </span>
+                            </button>
                         </div>
 
                     </div>
                     <!-- //shoppingPerInfo -->
                 </div>
+<%--                <div class="btngroup">--%>
+
             </div>
         </div>
         <!-- //container area -->
-
-
-
-
-
-
-
 
         <div class="ui-modal chanel-membership" id="pec042" tabindex="-1" role="dialog" aria-label="샤넬 멤버쉽 팝업">
             <div class="ui-modal-dialog" role="document">

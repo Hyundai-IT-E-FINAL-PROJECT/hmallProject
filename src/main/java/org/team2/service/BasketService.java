@@ -10,4 +10,6 @@ public interface BasketService {
      List<BasketVO> getAllByUserSeq(Long user_seq);
 
      BasketVO directBuy(Map<String, Long> map);
+
+     Map<String, String> getBasketOne(Map<String, Long> map);
 }
