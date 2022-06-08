@@ -10,12 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main class="cmain main" role="main" id="mainContents">
-
-    <!-- ajax 새로고침 영역 설정-->
     <div id="reflashArea" class="container" style="margin-top: 68px">
         <form name="searchPageNation" action="/p/dpa/searchSectItem.do?sectId=2731753" method="post"></form>
         <form name="pdeSearchForm" action="/p/dpa/searchSectItem.do?sectId=2731753" method="post">
-
             <div class="pdeSearchFormHiddenInput" style="display: none">
                 <input type="hidden" class="nonClear" name="weightYn" value="">
                 <input type="hidden" name="sectDispGbcd" value="01"> <!-- 화면에서만 사용하는 변수 -->
@@ -58,9 +55,7 @@
                             <label for="filter-title-14" class="filter-label">
                                 <span><em>매장 내 검색</em></span>
                             </label>
-                            <button type="button" class="btn init" onclick="javascript:initKeyword();"><i
-                                    class="icon"></i><span>검색초기화</span></button>
-
+                            <button type="button" class="btn init" onclick="javascript:initKeyword();"><i class="icon"></i><span>검색초기화</span></button>
                             <div class="filter-content">
                                 <div class="except-search">
                                     <div class="inputbox">
@@ -225,7 +220,5 @@
             </div>
         </form>
     </div>
-    <!-- //.container -->
-
 </main>
 <script src="/resources/js/productAll.js"></script>
