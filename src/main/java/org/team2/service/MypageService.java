@@ -27,4 +27,5 @@ public interface MypageService {
     Map deliveryList(long no) throws Exception;
 
     Map orderStatus(long no) throws Exception;
+    void DropUser(int no) throws Exception;
 }

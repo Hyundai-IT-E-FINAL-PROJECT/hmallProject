@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="passwordCheck.jsp" %>
 <section id="bottomSection">
@@ -147,19 +151,33 @@
                         </div>
                         <ul class="dotlist">
                             <li>진행 중인 주문, 교환, 반품, A/S가 있을 시 탈퇴가 불가능합니다. 해당사항 진행 완료 후 탈퇴를 하실 수 있습니다.</li>
+                            <sec:authentication property="principal" var="pinfo" />
                         </ul>
                     </div>
-
-                    <div class="btngroup w_510">
-                        <button class="btn btn-linelgray medium" onclick="goMypage();"><span>취소</span></button>
-                        <button class="btn btn-default medium" onclick="openLeaveMemberPup(); return false;"><span>회원탈퇴</span></button>
-                    </div>
+                        <form id="DropUserForm" method="post" action="/drop_user">
+                        <sec:authentication property="principal" var="pinfo" />
+                            <input type="hidden" id="no" name="no" value="${pinfo.userVO.no}">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <div class="btngroup w_510">
+                                    <button class="btn btn-linelgray medium" onclick="goMypage();"><span>취소</span></button>
+                                    <button class="btn btn-default medium" onclick="openLeaveMember(); return false;"><span>회원탈퇴</span></button>
+                                </div>
+                        </form>
                 </div>
             </div>
             <!-- // .contents -->
         </div>
     </div>
     <!-- //.container -->
-
 </main>
 </section>
+<script>
+    function openLeaveMember(){
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        var useq = document.getElementById("no").value;
+        console.log(useq);
+        document.DropUserForm.submit();
+    }
+</script>
