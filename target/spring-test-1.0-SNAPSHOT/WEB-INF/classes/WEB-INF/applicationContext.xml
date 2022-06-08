@@ -13,9 +13,9 @@
 <!--    </bean>-->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>
-        <property name="username" value="c##teamKim"/>
-        <property name="password" value="team2"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@dbteam2_high?TNS_ADMIN=/Users/kimbyeounghoon/Wallet_DBTeam2"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="Asdfg1234567!"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
