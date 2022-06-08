@@ -3040,6 +3040,7 @@
                     <ul>
                         <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                         <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
+                        <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                         <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                     </ul>
                 </div>

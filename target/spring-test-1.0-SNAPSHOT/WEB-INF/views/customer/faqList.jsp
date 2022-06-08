@@ -3203,6 +3203,7 @@
                     <ul>
                         <li><a class="#" href="/p/ccc/faqList.do">자주 묻는 질문</a></li>
                         <li><a href="#" onclick="location.href='${contextPath}/customer/inquiryPage';">1:1 문의하기</a></li>
+                        <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                         <li><a href="/customer/noticeList">공지사항</a></li>
                     </ul>
                 </div>
