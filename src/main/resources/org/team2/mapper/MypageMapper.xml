@@ -140,8 +140,21 @@
             )
         }
     </select>
+
     <delete id="DropUser">
         delete from tbl_user where user_seq = #{no}
     </delete>
+
+    <delete id="deleteDelivery">
+        DELETE FROM TBL_USER_ADDRESS WHERE USER_ADDRESS_SEQ = #{adno}
+    </delete>
+
+    <update id="baseDelivery">
+        UPDATE TBL_USER_ADDRESS SET BASIC_ADDRESS = 1 WHERE USER_ADDRESS_SEQ = #{adno}
+    </update>
+
+    <update id="changeDelivery">
+        UPDATE TBL_USER_ADDRESS SET BASIC_ADDRESS = 0 WHERE BASIC_ADDRESS = 1;
+    </update>
 </mapper>
 
