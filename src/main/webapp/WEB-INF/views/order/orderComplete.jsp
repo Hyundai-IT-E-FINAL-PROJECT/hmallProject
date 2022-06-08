@@ -40,261 +40,118 @@
                             <span class="bgcircle check-on-sm"><i class="icon check-on"></i></span>
                             <p class="tit">홈쇼핑을 이용해주셔서 감사합니다.</p>
                             <p class="txt">주문하신 내역은 마이페이지>나의 쇼핑내역> 주문/배송조회에서 확인하실 수 있습니다.</p>
-                            <p class="tit">(주문번호 : <em>${vo.invoice}</em>)</p>
-                            <div class="btngroup">
-                                <button class="btn btn-default medium" onclick="goPage('/p/mpa/selectOrdDlvCrst.do');"><span>주문 확인&amp;변경</span></button>
-                            </div>
+                            <p class="tit">(주문번호 : <em>${historyOrder[0].ORDER_INVOICE}</em>)</p>
                         </div>
 
-                        <h3 class="title22">상품상품 내역 및 배송 정보</h3>
-                        <div class="order-info-box">
-                            <ul class="list">
-                                <li>
-                                    <div class="tit-wrap">주문상품</div>
-                                    <div class="txt-wrap">
-                                        <p class="txt">삼성 블루스카이 공기청정기 3000 [AX40A5311WMD] 1+1 패키지 </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="tit-wrap">배송지</div>
-                                    <div class="txt-wrap">
-                                        <ul class="user-info">
-                                            <li>${vo.userName}</li>
-                                            <li>${vo.userNumber}</li>
-                                        </ul>
-                                        <p class="txt">${vo.delivery}</p>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="order-info-box">
-                            <div class="line-box">
-                                <p class="tit2">${vo.userName} 고객님</p>
-                                <p class="txt2">5월 Hmall에서 <span class="color-ff5340">1건 &amp; 0원 </span> 이상 추가 구매시, <span class="gold-lvtxt">6월 GOLD</span> 등급으로 승급됩니다!</p>
-                                <button class="btn atext" onclick="location.href='/pevent/eva/evntFamilyZoneMain.do'"><span>등급 혜택 자세히 보기</span><i class="arrow right"></i></button>
-                            </div>
-                        </div>
-                        <h3 class="title22 hidden" id="rcmm1_title">LEVEL UP! 추천상품</h3>
-                        <div class="pdlist-wrap col5 hidden" id="rcmm1_list">
-                        </div>
-                        <h3 class="title22">결제 정보</h3>
-                        <div class="order-info-box">
+                        <h3 class="title22">주문상품 내역 및 배송정보</h3>
+                        <div class="board">
+                        <div class="tblwrap">
 
                             <table>
                                 <caption>결제 정보</caption>
                                 <colgroup>
-                                    <col style="width:95px">
                                     <col style="width:auto">
-                                    <col style="width:100%">
+                                    <col style="width:100px">
                                 </colgroup>
+                                <thead>
+                                    <tr style="background-color:lightpink;">
+                                        <th class="txt-center">상품정보</th>
+                                        <th class="txt-center">수량</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">주문 금액</th>
-                                    <td>
-                                        <p class="price"><strong>448,000</strong>원</p>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-
-                                    <th scope="row" rowspan="1">결제 방법</th>
-
-                                    <td>
-                                        <p class="price">
-                                            <strong>
-
-
-                                                398,000
-
-
-
-                                            </strong>원
-                                        </p>
-                                    </td>
-                                    <td>
-
-
-
-
-
-
-
-                                        <p class="txt">(무통장입금)</p>
-                                        <button class="btn btn-linelgray small25" onclick="openStlmWayChgPup('20220523316722');"><span>결제수단 변경</span></button>
-
-
-
-
-
-
-
-
-                                    </td>
-                                </tr>
-
+                                    <c:forEach items="${historyOrder}" var="history">
+                                        <tr style="background-color:white;">
+                                            <td>
+                                                <dd>
+                                                    <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                                        <span class="img">
+                                                            <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                                        </span>
+                                                        <div class="box">
+                                                            <span class="tit"> ${history.PRODUCT_NAME}</span>
+                                                            <div class="info">
+                                                                <ul>
+                                                                    <li>
+                                                                            ${history.OP_COUNT} 개
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <span class="price"> <strong>${history.PRODUCT_COST}</strong>원 </span>
+                                                        </div>
+                                                    </a>
+                                                </dd>
+                                            </td>
+                                            <td class="txt-center">${history.OP_COUNT}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
+                        </div>
+                        </div>
 
-                            <div class="bg-gray-box">
-                                <p class="bank"><strong>신한은행</strong> <em>562-11362-825018</em></p>
-                                <p class="txt">고객전용 계좌번호가 생성됩니다. <br>주문 완료 화면에서 확인하실 수 있습니다.</p>
-                            </div>
-                            <ul class="dotlist color-red">
-                                <li>결제완료 순서대로 배송이 진행되므로, 입금이 늦어지면 결제가 되었더라도 품절 및 재고부족으로 주문이 취소될 수 있습니다.</li>
+                        <h3 class="title22">배송지 정보</h3>
+
+                        <div class="order-info-box">
+                            <ul class="list">
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">받으시는 분</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_RECEIVE_NAME}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">연락처</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_USER_NUMBER}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">주소</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_DELIVERY}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">남기실 말씀</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_MESSAGE}</p>
+                                    </div>
+                                </li>
+
+
+
+
                             </ul>
-
-
                         </div>
 
+                        <h3 class="title22">결제 내역</h3>
+
+                        <div class="order-info-box">
+                            <ul class="list">
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">결제금액</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_TOTAL_COST}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">적립예정금액</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_POINT}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tit-wrap" style="width: 200px">결제방법</div>
+                                    <div class="txt-wrap">
+                                        <p class="txt">${historyOrder[0].ORDER_METHOD}</p>
+                                    </div>
+                                </li>
 
 
 
-
-
-
-
-
-                        <div class="order-bg-white">
-                            <h4 class="title20" id="rcmm2_title">구매하신 상품과 연관된 추천상품</h4>
-                            <div class="pdlist-wrap col5" id="rcmm2_list">
-
-
-
-
-
-
-
-
-
-
-
-                                <ul>
-
-
-
-                                    <li class="pdthumb">
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140919281&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140919281_22SS 마스케라 썸머 린넨모자 2종 SET" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동">
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/2/9/91/40/2140919281_0.jpg?RS=300x300&amp;AR=0" alt="22SS 마스케라 썸머 린넨모자 2종 SET" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="22SS 마스케라 썸머 린넨모자 2종 SET">22SS 마스케라 썸머 린넨모자 2종 SET</div>
-                                                <div class="pdprice">
-<span class="rateprice" aria-label="할인율이 적용된 가격">
-<p class="discount" aria-label="할인가"><em>89,900</em>원</p>
-</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140919281&amp;sectId=&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" class="hoverview" target="_blank" onclick="gaTagging(this, '', '', '');" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140919281_22SS 마스케라 썸머 린넨모자 2종 SET" customgacreative="2140919281_22SS 마스케라 썸머 린넨모자 2종 SET" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동"><i class="icon"></i>새창열기</a> <!--// 새창열기 a태그로 변경 후 위치이동 -->
-                                    </li>
-
-
-
-
-
-                                    <li class="pdthumb">
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140852553&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140852553_[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동">
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/5/2/85/40/2140852553_0.jpg?RS=300x300&amp;AR=0" alt="[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트">[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트</div>
-                                                <div class="pdprice">
-<span class="rateprice" aria-label="할인율이 적용된 가격">
-<p class="discount" aria-label="할인가"><em>33,150</em>원</p>
-</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140852553&amp;sectId=&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" class="hoverview" target="_blank" onclick="gaTagging(this, '', '', '');" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140852553_[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트" customgacreative="2140852553_[코인코즈](DW2MS135)뒷밴딩 벨티드 핀턱포인트 롱 플레어 스커트" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동"><i class="icon"></i>새창열기</a> <!--// 새창열기 a태그로 변경 후 위치이동 -->
-                                    </li>
-
-
-
-
-
-                                    <li class="pdthumb">
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140708775&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140708775_[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 " ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동">
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/7/8/70/40/2140708775_0.jpg?RS=300x300&amp;AR=0" alt="[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 " onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 ">[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 </div>
-                                                <div class="pdprice">
-<span class="rateprice" aria-label="할인율이 적용된 가격">
-<p class="discount" aria-label="할인가"><em>360,050</em>원</p>
-</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140708775&amp;sectId=&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" class="hoverview" target="_blank" onclick="gaTagging(this, '', '', '');" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140708775_[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 " customgacreative="2140708775_[공식수입원 정품/ 백화점동일상품] 부가티 커트러리 4인조 알라딘 (aladdin) 풀세트 " ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동"><i class="icon"></i>새창열기</a> <!--// 새창열기 a태그로 변경 후 위치이동 -->
-                                    </li>
-
-
-
-
-
-                                    <li class="pdthumb">
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140597546&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140597546_22SS 라씨엔토 린넨 블렌딩 셔츠 3종" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동">
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/5/7/59/40/2140597546_0.jpg?RS=300x300&amp;AR=0" alt="22SS 라씨엔토 린넨 블렌딩 셔츠 3종" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="22SS 라씨엔토 린넨 블렌딩 셔츠 3종">22SS 라씨엔토 린넨 블렌딩 셔츠 3종</div>
-                                                <div class="pdprice">
-<span class="rateprice" aria-label="할인율이 적용된 가격">
-<p class="discount" aria-label="할인가"><em>89,900</em>원</p>
-</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140597546&amp;sectId=&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" class="hoverview" target="_blank" onclick="gaTagging(this, '', '', '');" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140597546_22SS 라씨엔토 린넨 블렌딩 셔츠 3종" customgacreative="2140597546_22SS 라씨엔토 린넨 블렌딩 셔츠 3종" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동"><i class="icon"></i>새창열기</a> <!--// 새창열기 a태그로 변경 후 위치이동 -->
-                                    </li>
-
-
-
-
-
-                                    <li class="pdthumb">
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140589320&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140589320_선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동">
-                                            <div class="thumb">
-                                                <img src="https://image.hmall.com/static/3/9/58/40/2140589320_0.png?RS=300x300&amp;AR=0" alt="선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt">선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt</div>
-                                                <div class="pdprice">
-<span class="rateprice" aria-label="할인율이 적용된 가격">
-<p class="discount" aria-label="할인가"><em>38,250</em>원</p>
-</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                        <a href="/p/pda/itemPtc.do?slitmCd=2140589320&amp;sectId=&amp;bdTrkArea=25&amp;bdTrkAlgrth=1&amp;bdTrkOpt=A" class="hoverview" target="_blank" onclick="gaTagging(this, '', '', '');" ga-custom-name="주문완료" ga-custom-position="구매하신 상품과 연관된 추천상품" ga-custom-title="주문/장바구니>주문완료" ga-custom-etc="urlAction" ga-custom-id="2140589320_선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt" customgacreative="2140589320_선택5번)_[널디] 바시티 반팔 티셔츠 PNEU22KG05 Varsity ½ Sleeve T-shirt" ga-custom-creative="BDA_bdTrkArea=25&amp;bdTrkAlgrth=1_자동"><i class="icon"></i>새창열기</a> <!--// 새창열기 a태그로 변경 후 위치이동 -->
-                                    </li>
-
-
-
-
-                                </ul>
-                                <!-- // pdlist-wrap -->
-                            </div>
-
-
-
-
-
-
+                            </ul>
                         </div>
-
-
 
                     </div>
                     <!-- //shoppingPerInfo -->
@@ -1489,133 +1346,6 @@ frm.submit();
 
         </script>
 
-        <!-- 스카이 스크래퍼 -->
-        <div class="sticky-ui-wrapper wing-banner-sticky"><div class="sticky-placeholder" style=""></div><div class="wing-banner banner-right ui-break" data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky" style="top: 122.587px;">
-            <!-- fixed 클래스 추가 시 고정 -->
-            <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-                <div class="visit-indicator">바로접속
-
-
-                    <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-                </div>
-            </a>
-            <div class="recent-view-area" id="skyScOnAirArea">
-
-
-
-
-
-
-
-
-
-                <a class="recent-view-title">ON AIR</a>
-                <ul id="banner-onair">
-
-
-                    <li>
-
-                        <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2140771937&amp;bfmtNo=202205233005&amp;brodDt=20220523&amp;brodStrtDtm=11:40&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[대용량세트] 땡스소윤 시즌3 냉동실 전용용기(프레시백 증정)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2140771937_[대용량세트] 땡스소윤 시즌3 냉동실 전용용기(프레시백 증정)" ga-custom-etc="home">
-                            <img src="https://image.hmall.com/static/9/1/77/40/2140771937_0.jpg?RS=140x140&amp;AR=0" alt="[대용량세트] 땡스소윤 시즌3 냉동실 전용용기(프레시백 증정)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                            <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220523124000">00:12:22</em>
-		                        </span>
-                        </a>
-
-
-                    </li>
-
-
-
-                    <li>
-
-                        <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2123487549&amp;bfmtNo=202205235007&amp;brodDt=20220523&amp;brodStrtDtm=11:40&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^삼성 블루스카이 공기청정기 3000 [AX40A5311WMD] 1+1 패키지&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2123487549_삼성 블루스카이 공기청정기 3000 [AX40A5311WMD] 1+1 패키지" ga-custom-etc="home">
-                            <img src="https://image.hmall.com/static/5/7/48/23/2123487549_0.jpg?RS=140x140&amp;AR=0" alt="삼성 블루스카이 공기청정기 3000 [AX40A5311WMD] 1+1 패키지" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                            <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220523123959">00:11:22</em>
-		                        </span>
-                        </a>
-
-
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="qr_view_area">
-                <span class="qr_txt">쇼핑라이브</span>
-                <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg" alt="쇼핑라이브 qr이미지"></span>
-            </div>
-            <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-
-
-
-
-
-
-
-                <ul>
-
-
-                    <li style="">
-
-
-
-
-
-                        <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280852">
-                            <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-samsung.png" alt="삼성카드"></span>
-                            <span class="card-txt">
-		                            <strong class="card-name">삼성카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      5%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                        </a>
-                    </li>
-
-                </ul>
-                <!-- 페이징 -->
-
-
-
-
-
-                <!-- // 페이징 -->
-            </div>
-            <!-- // .wing-slide -->
-
-            <div class="btn-top"><a href="javascript:;">TOP</a></div>
-        </div></div>
-        <!-- // 스카이 스크래퍼 -->
-        <script type="text/javascript">
-
-            setTimeout(function() {
-                setOnAirSkySc();
-            }, 100);
-
-            /*
-    setTimeout(function() {
-    	setCardPromotion();
-    }, 300);
-    */
-        </script>
-        <!-- 스카이스크래퍼 -->
 
         <div class="popup shipping_productlist" style="width:550px;" id="shipping_productlist_detail"></div>
 

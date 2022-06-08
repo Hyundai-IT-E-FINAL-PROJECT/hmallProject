@@ -263,8 +263,8 @@
                         <%--        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
                         <%--    },--%>
                         <%--    success:function(){--%>
-                        <%--        alert("주문 작성 페이지로 이동합니다.");--%>
-                        <%--        location.href='${contextPath}/order/od/'+product_seq;--%>
+                        <%--        alert("주문 작성 페이지로 이동합location.href='${contextPath}/order/od/'+product_seq;니다.");--%>
+                        <%--        --%>
                         <%--    },--%>
                         <%--    error: function (request,status,error) {--%>
                         <%--        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);--%>
