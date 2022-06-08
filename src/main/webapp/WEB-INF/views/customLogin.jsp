@@ -242,7 +242,8 @@
            dataType:"text",
            beforeSend:function (xhr){
                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-           },success: function (){
+           },success: function (data){
+               // console.log(data);
                parent.opener.parent.location.reload();
                window.close();
            }
