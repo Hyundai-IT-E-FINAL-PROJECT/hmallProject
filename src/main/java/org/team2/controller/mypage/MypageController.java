@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.team2.domain.AddressVO;
 import org.team2.domain.DepositVO;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
@@ -32,10 +33,7 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Log4j
@@ -54,7 +52,7 @@ public class MypageController {
     public Date date;
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(Principal principal, @AuthenticationPrincipal UserVO vo) throws Exception {
+    public ModelAndView mypage(Principal principal) throws Exception {
 
         log.info("tiles test");
         ModelAndView mav = new ModelAndView();
@@ -104,6 +102,7 @@ public class MypageController {
         long no = Long.parseLong(principal.getName());
         try {
             Map map = mypageService.detailOrders(no, odno);
+            log.info(map.get("resultList"));
             mav.addObject("list", map.get("resultList"));
             mav.addObject("className", "wrap order-list-page");
             mav.addObject("cssFileList", styleFileList);
@@ -136,12 +135,7 @@ public class MypageController {
         Map mapOrder;
         try {
             mapOrder = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
-//            if (type.equals("all"))  {
-//
-//            }
-//            else{
-//                list = mypageService.cancelperiodOrders(principal.getName(), ordStrtDt, ordEndDt, seType, itemNm, type);
-//            }
+
             mav.addObject("list", mapOrder.get("resultList"));
             mav.addObject("status", mapStatus.get("resultList"));
             mav.addObject("seType", seType);
@@ -218,7 +212,7 @@ public class MypageController {
     }
 
     // 마이페이지 포인트페이지 로그인 된 유저가 보유한 포인트와 사용내역 조회
-   @RequestMapping("mypagePoint")
+    @RequestMapping("mypagePoint")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView point(Principal principal,
                               HttpServletRequest req) throws Exception {
@@ -302,6 +296,58 @@ public class MypageController {
         mav.setViewName("mypage.mypageDelivery");
 
         return mav;
+    }
+    @ResponseBody
+    @GetMapping("deliveryList")
+    public ResponseEntity<Object> deliveryList(Principal principal) throws Exception {
+
+        ResponseEntity<Object> entity = null;
+
+        long no = Long.parseLong(principal.getName());
+
+        Map map = mypageService.deliveryList(no);
+
+        log.info(map.get("resultList").getClass().getSimpleName());
+
+        entity = new ResponseEntity<>(map.get("resultList"), HttpStatus.OK);
+
+        return entity;
+    }
+
+    @ResponseBody
+    @GetMapping("deleteDelivery")
+    public ResponseEntity<Object> deleteDelivery(@RequestParam("adno") long adno) throws Exception {
+
+        ResponseEntity<Object> entity = null;
+
+        int result = mypageService.deleteDelivery(adno);
+
+        try {
+            if (result == 1) entity = new ResponseEntity<>("delSuccess", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
+    }
+
+    @ResponseBody
+    @GetMapping("baseDelivery")
+    public ResponseEntity<Object> baseDelivery(@RequestParam("adno") long adno) throws Exception {
+
+        ResponseEntity<Object> entity = null;
+
+        int result = mypageService.baseDelivery(adno);
+
+        try {
+            if (result == 1) entity = new ResponseEntity<>("baseSuccess", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
     }
 
     @RequestMapping("mypageLeave")

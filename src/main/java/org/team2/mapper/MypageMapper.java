@@ -41,5 +41,12 @@ public interface MypageMapper {
     void deliveryList(Map<String,Object> map) throws Exception;
 
     void orderStatus(Map<String,Object> map) throws Exception;
+
     void DropUser(int no) throws Exception;
+
+    int deleteDelivery(long adno) throws Exception;
+
+    int baseDelivery(long adno) throws Exception;
+
+    int changeDelivery() throws Exception;
 }
