@@ -41,4 +41,5 @@ public interface MypageMapper {
     void deliveryList(Map<String,Object> map) throws Exception;
 
     void orderStatus(Map<String,Object> map) throws Exception;
+    void DropUser(int no) throws Exception;
 }

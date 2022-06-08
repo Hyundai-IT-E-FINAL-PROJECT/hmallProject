@@ -96,6 +96,9 @@ public class MypageServiceImpl implements MypageService {
         mypageMapper.orderStatus(map);
         return map;
     }
+    public void DropUser(int no) throws Exception {
+        mypageMapper.DropUser(no);
+    }
 
 
 }

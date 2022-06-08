@@ -10,11 +10,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team2.domain.DepositVO;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
@@ -22,7 +25,10 @@ import org.team2.service.ExhibitService;
 import org.team2.service.MypageService;
 import org.team2.service.UserService;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -300,7 +306,7 @@ public class MypageController {
 
     @RequestMapping("mypageLeave")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView drop() {
+    public ModelAndView drop(Principal principal) {
         log.info("update test");
 
         List<String> styleFileList = new ArrayList<>();
@@ -483,5 +489,16 @@ public class MypageController {
         }
 
         return entity;
+    }
+
+    @RequestMapping(value = "drop_user", method = RequestMethod.POST)
+    public String DropUser(UserVO userVO, HttpServletResponse response) throws Exception{
+        log.info("회원정보 삭제 컨트롤러 도착");
+        log.info(userVO.getNo());
+        mypageService.DropUser(userVO.getNo());
+        Cookie kc = new Cookie("JSESSIONID",null);
+        kc.setMaxAge(0);
+        response.addCookie(kc);
+        return "redirect:/";
     }
 }
