@@ -11,6 +11,7 @@
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 <%--    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>--%>
 </head>
+<sec:authentication property="principal" var="pinfo" />
 <script type="text/javascript">
     function selectCopn(objName, aplyCopn_yn) {
         console.log("objName", objName);
@@ -438,6 +439,17 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <span>주문완료</span>
                                 </li>
                             </ol>
+                        </div>
+
+                        <div class="order-info-box" style="display: flex;">
+
+                            <div class="tit-wrap" style="width: 200px">${pinfo.userVO.user_name}고객님의 혜택 정보</div>&nbsp;&nbsp;
+                            <div class="txt-wrap">
+                                <p class="txt">회원등급:  ${pinfo.userVO.user_level}</p>
+                            </div>&nbsp;&nbsp;
+                            <div class="txt-wrap">
+                                <p class="txt">적립금:  ${pinfo.userVO.user_point}</p>
+                            </div>&nbsp;&nbsp;
                         </div>
 
                         <h3 class="title22 selected only"><button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">상품정보 <span class="num" id="ordItemCnt">${fn:length(basketList)}</span><i class="icon"></i></button></h3>

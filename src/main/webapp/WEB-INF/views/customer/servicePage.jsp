@@ -54,13 +54,8 @@
                 <div class="side-menu-list">
                     <ul>
                         <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
-                        <!--20200826 수요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
-                        <li><a href="customer/inquiryPage">1:1 문의하기</a></li>
+                        <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
                         <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
-                        <!-- <li><a href="javascript:;">쇼핑가이드</a></li> -->
-                        <!--20200827 목요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
-                        <li><a href="#" onclick="openCustBoardPup();">고객의 의견</a></li>
-                        <li><a href="/p/mpa/selectOrdDlvCrst.do?pageType=ALL" onclick="openLoginPopup(this.href);return false;">비회원 주문/배송조회</a></li>
                     </ul>
                 </div>
                 <!-- // .side-menu-list -->

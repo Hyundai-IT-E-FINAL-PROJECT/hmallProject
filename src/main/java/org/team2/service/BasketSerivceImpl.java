@@ -25,4 +25,9 @@ public class BasketSerivceImpl implements BasketService{
     public BasketVO directBuy(Map<String, Long> map) {
         return basketMapper.directBuy(map);
     }
+
+    @Override
+    public Map<String, String> getBasketOne(Map<String, Long> map) {
+        return basketMapper.getBasketOne(map);
+    }
 }

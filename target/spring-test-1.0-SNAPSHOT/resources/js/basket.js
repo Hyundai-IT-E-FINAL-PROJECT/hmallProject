@@ -145,9 +145,12 @@ function calculateSelect() {
         if ($(this).prop("checked")) {
             let discounted_cost = $(this).val().split('|')[0]
             let basket_count = $(this).val().split('|')[1]
+            let basket_seq= $(this).val().split('|')[2]
 
             selCnt++;
             selSlitmAmt += (discounted_cost * basket_count);
+
+
         }
     });
 

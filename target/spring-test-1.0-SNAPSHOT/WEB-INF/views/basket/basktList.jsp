@@ -77,7 +77,7 @@
 
 
                                             <div class="checkbox">
-                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
+                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}|${basketVO.basket_seq}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
                                             </div>
                                             <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2122712699|00002|0|12|29900');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                             <div class="pdlist-wrap">
@@ -146,8 +146,10 @@
                                                 <input type="hidden" name="product_name" value="${basketVO.productVO.product_name}">
                                                 <input type="hidden" name="product_cost" value="${basketVO.productVO.discounted_cost}">
 
+
+
                                                 <div class="checkbox">
-                                                    <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
+                                                    <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}|${basketVO.basket_seq}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
                                                 <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                                 <div class="pdlist-wrap">
@@ -203,13 +205,26 @@
                     </div>
                 </div>
                 <script type="text/javascript">
+
+
+
+
                     var csrfHeaderName = "${_csrf.headerName}";
                     var csrfTokenValue = "${_csrf.token}";
                     function orderSelect() {//선택상품 구매하기 버튼 이벤트
                         const checkedProduct = new Array();
-                        $("input[name='basktInf']:checked").each(function () {
-                            checkedProduct.push(this.value);
-                        });
+
+
+
+                        $("input[name='basktInf']").each(function () {
+                            if ($(this).prop("checked")) {
+                                let basket_seq= $(this).val().split('|')[2];
+                                checkedProduct.push(basket_seq);
+
+                        }});
+
+
+
                         console.log(checkedProduct); //선택한 장바구니 시퀀스
                         if (checkedProduct.length === 0) {
                             alert("상품을 선택해주세요!");

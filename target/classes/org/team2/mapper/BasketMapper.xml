@@ -11,13 +11,6 @@
             b.user_seq = ${user_seq}
     </select>
 
-    <select id="directBuy" resultMap="basketMap" parameterType="Map">
-        select *
-        from tbl_product p
-                 join (select * from tbl_basket where user_seq = #{user_seq}) b on p.product_seq = b.product_seq
-        where p.product_seq=#{product_seq}
-    </select>
-
     <resultMap id="basketMap" type="org.team2.domain.BasketVO">
         <result property="basket_seq" column="basket_seq" />
         <result property="basket_count" column="basket_count" />

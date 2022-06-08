@@ -34,13 +34,16 @@
         <result property="coupon_seq" column="coupon_seq" />
     </resultMap>
 
-
-
-
     <delete id="deleteCoupon">
         delete from tbl_cu
         where coupon_seq=#{coupon_seq}
     </delete>
+
+    <select id="couponCount" resultType="int">
+        select  count(*) from tbl_cu where user_seq=#{user_seq}
+    </select>
+
+
 
 
 </mapper>

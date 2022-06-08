@@ -28,4 +28,9 @@ public class CouponServiceImpl implements CouponService{
     public CouponVO couponDiscount(Long coupon_seq) throws Exception {
         return couponMapper.couponDiscount(coupon_seq);
     }
+
+    @Override
+    public int couponCount(Long user_seq) throws Exception {
+        return couponMapper.couponCount(user_seq);
+    }
 }
