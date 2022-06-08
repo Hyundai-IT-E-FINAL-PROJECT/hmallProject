@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Log4j
@@ -17,7 +18,8 @@ public class CommonController {
         model.addAttribute("msg", "Access Denied");
     }
 
-    @GetMapping("/customLogin")
+
+    @RequestMapping("/customLogin")
     public void loginInput(String error, String logout, Model model){
         log.info("error: "+error);
         log.info("logout: "+logout);

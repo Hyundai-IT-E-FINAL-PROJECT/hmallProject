@@ -3,9 +3,12 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.BasketMapper">
     <select id="getProductsByUserSeq" resultMap="basketMap">
-        select *
-        from tbl_product p
-                 join (select * from tbl_basket where user_seq = ${user_seq}) b on p.product_seq = b.product_seq
+        SELECT
+            *
+        FROM
+            tbl_basket b left join p_image_discount a on a.product_seq = b.product_seq
+        WHERE
+            b.user_seq = ${user_seq}
     </select>
 
     <select id="directBuy" resultMap="basketMap" parameterType="Map">
@@ -34,6 +37,8 @@
         <result property="product_country" column="product_country" />
         <result property="product_count" column="product_count" />
         <result property="product_cost" column="product_cost" />
+        <result property="discounted_cost" column="discounted_cost"/>
+        <result property="image_name" column="image_name"/>
     </resultMap>
 
 </mapper>

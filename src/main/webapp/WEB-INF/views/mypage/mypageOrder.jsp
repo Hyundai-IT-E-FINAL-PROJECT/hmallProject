@@ -48,46 +48,67 @@
                      <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
                      <input type='hidden' name='ordEndDt' 		id='ordEndDt' 		value="" />
                      <input type='hidden' name='itemNm' 		id='itemNm'			value="" />
-                     <input type="hidden" name='type'           id='type'           value="${type}" />
                  </form>
 
                 <div class="contents">
                     <div class="mypage-order-wrap">
 
+                        <c:set var="order" value="0"/>
+                        <c:set var="complete" value="0"/>
+                        <c:set var="ready" value="0"/>
+                        <c:set var="send" value="0"/>
+                        <c:set var="sendcp" value="0"/>
 
-                        <c:if test="${type eq 'all'}">
+                        <c:forEach items="${status}" var="status">
+                            <c:if test="${status.ORDER_STATUS eq '주문접수'}">
+                                <c:set var="order" value="${status.COUNT}"/>
+                            </c:if>
+                            <c:if test="${status.ORDER_STATUS eq '결제완료'}">
+                                <c:set var="complete" value="${status.COUNT}"/>
+                            </c:if>
+                            <c:if test="${status.ORDER_STATUS eq '상품준비중'}">
+                                <c:set var="ready" value="${status.COUNT}"/>
+                            </c:if>
+                            <c:if test="${status.ORDER_STATUS eq '상품발송'}">
+                                <c:set var="send" value="${status.COUNT}"/>
+                            </c:if>
+                            <c:if test="${status.ORDER_STATUS eq '배송완료'}">
+                                <c:set var="sendcp" value="${status.COUNT}"/>
+                            </c:if>
+                        </c:forEach>
                         <h3 class="title22">주문/배송 현황</h3>
+
                         <div class="order-step">
                             <p class="txt-right">(최근 2개월)</p>
                             <!-- [02/04]_수정(작성가능한 상품평 제외 a태그 -> div태그로 수정) -->
                             <ul>
                                 <li>
                                     <div>
-                                        <strong class="num">1</strong>
+                                        <strong class="num"><c:out value="${order}"/></strong>
                                         <span class="txt">주문접수</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <strong class="num">0</strong>
+                                        <strong class="num"><c:out value="${complete}"/></strong>
                                         <span class="txt">결제완료</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <strong class="num">0</strong>
+                                        <strong class="num"><c:out value="${ready}"/></strong>
                                         <span class="txt">상품준비중</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <strong class="num">0</strong>
+                                        <strong class="num"><c:out value="${send}"/></strong>
                                         <span class="txt">상품발송</span>
                                     </div>
                                 </li>
                                 <li>
                                     <a href="https://www.hmall.com/p/mpb/selectItemEvalAtclListPagingByCondtion.do">
-                                        <strong class="num">1</strong>
+                                        <strong class="num"><c:out value="${sendcp}"/></strong>
                                         <span class="txt">작성 가능한 상품평</span>
                                     </a>
                                 </li>
@@ -97,46 +118,6 @@
                             <li>구매확정이 완료된 주문은 진행중인 주문에 포함되지 않으며, 진행상태에 따라 배송지 변경, 취소, 교환, 반품신청이 가능합니다.</li>
                             <li>가전, 가구 등 설치 상품은 물류 이동으로 인해 상품발송 후 설치 방문까지 2~3일 정도 기간이 추가될 수 있습니다.</li>
                         </ul>
-                        </c:if>
-
-                        <c:if test="${type eq 'cancel'}">
-                            <h3 class="title22">취소/반품/교환/AS현황</h3>
-                                <div class="order-step return-step">
-                                    <p class="txt-right">(최근 2개월)</p>
-
-                            <ul>
-                                <li>
-                                    <div>
-                                        <strong class="num">2</strong>
-                                        <span class="txt">주문취소</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <strong class="num">0</strong>
-                                        <span class="txt">반품접수</span>
-                                    </div>
-                                    <div>
-                                        <strong class="num">0</strong>
-                                        <span class="txt">반품완료</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <strong class="num">0</strong>
-                                        <span class="txt">교환접수</span>
-                                    </div>
-                                    <div>
-                                        <strong class="num">0</strong>
-                                        <span class="txt">교환완료</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="dotlist">
-                            <li>취소/반품/교환 요청: 취소/반품/교환 신청은 상품발송 후 7일 이내에만 가능합니다.</li>
-                        </ul>
-                        </c:if>
 
                         <div class="filter-box">
                             <div class="search-filter">
@@ -270,7 +251,7 @@
                                             </div>
                                         </c:if>
                                     </c:if>
-                                <c:if test="${vs.index == 0 and !vs.last}">
+                                <c:if test="${!vs.last and vs.index == 0 and vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
                                         </dl>
                                     </div>
                                 </c:if>

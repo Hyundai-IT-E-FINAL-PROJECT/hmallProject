@@ -1,3 +1,117 @@
+$(document).ready(function() {
+    console.log("hello")
+    var first_category = $(".title30").attr("first_category")
+    console.log(first_category)
+    $(".pdlist-wrap ul li").remove();
+    $.ajax({
+        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=&sort=date`
+        , type: "get"
+        , dataType: "json"
+        , success: function (data) {
+            console.log("success")
+            console.log(data)
+            for (let productVO of data) {
+                if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
+                    $(".pdlist-wrap ul").append(
+                        `
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
+        
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
+        
+                                        <div class="pdprice">
+                                                    <span class="rateprice" aria-label="정상가 가격">
+                                                        <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                    </span>
+                                                </div>
+        
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+        
+                                    <a href="javascript:;" class="btn btn-like"
+                                       data-modules-modal="target:#broadcast-channel-info"
+                                       onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                        <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
+                    )
+                } else {
+                    $(".pdlist-wrap ul").append(
+                        `
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
+
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
+
+                                                <div class="pdprice">
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                        <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                        <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
+                                                    </span>
+                                                </div>
+
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+
+                                    <a href="javascript:;" class="btn btn-like"
+                                               data-modules-modal="target:#broadcast-channel-info"
+                                               onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
+                    )
+                }
+            }
+        }
+        , error: function (e) {
+            console.log('error', e);
+        }
+    });
+});
+
 function searchAutoCate(obj, first_category, second_category) {
     console.log(obj);
     $(".autoCate").removeClass("ui-active");
@@ -16,99 +130,97 @@ function searchAutoCate(obj, first_category, second_category) {
             console.log("success")
             console.log(data)
             for (let productVO of data) {
-                console.log(productVO)
-                productVO.PRODUCT_COST === productVO.DISCOUNTED_CO
-                if (ST) {
+                if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
                     $(".pdlist-wrap ul").append(
                         `
-                    <li class="pdthumb">
-                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
-
-                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
-                                            <div class="thumb">
-
-                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="제품명">
-                                                        ${productVO.PRODUCT_NAME}
-                                                </div>
-
-                                                <div class="pdprice">
-                                                            <span class="rateprice" aria-label="정상가 가격">
-                                                                <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
-                                                            </span>
-                                                        </div>
-
-                                                <div class="pdinfo">
-                                                    <div class="benefits" style="line-height: 20px;">
-                                                        <span class="flag hdshop"> <em>적립금</em></span>
-                                                        <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
-                                                    </div>
-                                                    <p class="like-count">
-                                                        <em>4.5점</em>
-                                                        <b>(2)</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
-                                            <i class="icon"></i>새창열기
-                                        </a>
-                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
-
-                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','011870','129084','2141512848', event);">
-                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
+        
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
                                         </div>
-                                    </li>
-                    `
+        
+                                        <div class="pdprice">
+                                                    <span class="rateprice" aria-label="정상가 가격">
+                                                        <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                    </span>
+                                                </div>
+        
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+        
+                                    <a href="javascript:;" class="btn btn-like"
+                                       data-modules-modal="target:#broadcast-channel-info"
+                                       onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                        <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
                     )
                 } else {
                     $(".pdlist-wrap ul").append(
                         `
-                    <li class="pdthumb">
-                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
 
-                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
-                                            <div class="thumb">
-
-                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="제품명">
-                                                        ${productVO.PRODUCT_NAME}
-                                                </div>
-
-                                                        <div class="pdprice">
-                                                            <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                                                <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
-                                                                <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
-                                                                <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
-                                                            </span>
-                                                        </div>
-
-                                                <div class="pdinfo">
-                                                    <div class="benefits" style="line-height: 20px;">
-                                                        <span class="flag hdshop"> <em>적립금</em></span>
-                                                        <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
-                                                    </div>
-                                                    <p class="like-count">
-                                                        <em>4.5점</em>
-                                                        <b>(2)</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
-                                            <i class="icon"></i>새창열기
-                                        </a>
-                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
-
-                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','011870','129084','2141512848', event);">
-                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
                                         </div>
-                                    </li>
-                    `
+
+                                                <div class="pdprice">
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                        <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                        <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
+                                                    </span>
+                                                </div>
+
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+
+                                    <a href="javascript:;" class="btn btn-like"
+                                               data-modules-modal="target:#broadcast-channel-info"
+                                               onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
                     )
                 }
             }
@@ -119,125 +231,132 @@ function searchAutoCate(obj, first_category, second_category) {
     });
 }
 
-function clickFilter(filter) {
-    var filterNm = $(filter).attr("data-filter-nm");
-    var filterId = $(filter).prop("id");
+function searchSortProc(obj, first_category) {
+    console.log(obj);
+    $(".sortOption .active").removeClass("active")
+    $(obj).addClass("active")
 
-    var isChcked = $(filter).is(':checked');
-    var isCategory = $(filter).is("[class*=csfCategory]");
-    var isNotAllCategory = $(filter).is("#allCate");
-    var isPrice = $(filter).is("#priceRangeVal");
-    var isBrand = $(filter).is("[name=makecoInfo]");
-    var isBrandPopup = $(filter).is("#brndApply");
-    var isSelected = isChcked || isCategory || isNotAllCategory || isPrice;
-
-    if (isPrice) { // 가격직접입력
-        filterNm = getDirPriceFilterNm();
+    // 변수
+    var second_category = $(".autoCate.ui-active").val()
+    console.log(second_category)
+    if (second_category === 0) {
+        second_category = ''
     }
+    $(".pdlist-wrap ul li").remove();
+    $.ajax({
+        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=${second_category}&sort=${$(obj).attr("sort")}`
+        , type: "get"
+        , dataType: "json"
+        , success: function (data) {
+            console.log("success")
+            console.log(data)
+            for (let productVO of data) {
+                if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
+                    $(".pdlist-wrap ul").append(
+                        `
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
+        
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
+        
+                                        <div class="pdprice">
+                                                    <span class="rateprice" aria-label="정상가 가격">
+                                                        <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                    </span>
+                                                </div>
+        
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+        
+                                    <a href="javascript:;" class="btn btn-like"
+                                       data-modules-modal="target:#broadcast-channel-info"
+                                       onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                        <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
+                    )
+                } else {
+                    $(".pdlist-wrap ul").append(
+                        `
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
 
-    if (isBrand) {
-        filterId = $(filter).attr("data-filter-id");
-    }
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
 
-    // 브랜드 팝업 적용
-    if (isBrandPopup) {
-        $(".brands-show").find("input[name='makecoInfo']:checked").each(function () {
-            filterNm = $(this).attr("data-filter-nm");
-            filterId = $(this).attr("data-filter-id");
+                                                <div class="pdprice">
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                        <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                        <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
+                                                    </span>
+                                                </div>
 
-            appendSelectedFilter(filterNm, filterId);
-        });
-    } else if (filterNm != undefined && filterId != undefined) {
-        if (isCategory) {
-            $("[data-filter-id*='csfCategory']").detach();
-        }
-        if (isSelected) {
-            appendSelectedFilter(filterNm, filterId);
-        } else {
-            $("[data-filter-id='" + filterId + "']").detach();
-        }
-    }
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
 
-    reArrangeFilter();
-}
-
-function reArrangeFilter() {
-
-    // 언체크된 필터 제거
-    removeUncheckedFilter($(".selected-filter-list .sel"));
-
-    // 선택필터 영역 노출 여부
-    let $selectedList = $(".selected-filter-list");
-    var len = $selectedList.find(".sel").length;
-    if (len > 0) {
-        $selectedList.css("display", "flex");
-    } else {
-        $selectedList.css("display", "none");
-    }
-
-    setSimpleFilter();
-}
-
-function appendSelectedFilter(filterNm, filterId) {
-    if (existsFilter(filterId)) {
-        return false;
-    }
-    $(".selected-filter-list").find("ul").append('<li class="ui-nav sel" data-filter-id="' + filterId + '" data-filter-nm="' + filterNm + '"><span>' + filterNm + ' <button class="del" onclick="uncheckFilter(this);"><span class="hiding">삭제</span></button></span></li>');
-}
-
-function existsFilter(filterId) {
-    try {
-        return $(".selected-filter-list").find('[data-filter-id="' + filterId + '"]').length > 0;
-    } catch (e) {
-
-    }
-    return false;
-}
-
-function removeUncheckedFilter(filterList) {
-    $(filterList).each(function () {
-        var filterId = $(this).attr("data-filter-id");
-        if (filterId == undefined) {
-            $(this).detach();
-            return true;
-            // 카테고리
-        } else if (filterId.indexOf("csfCategory") >= 0) {
-            return true;
-            // 가격직접입력
-        } else if (filterId.indexOf("priceRangeVal") >= 0) {
-            if (getDirPriceFilterNm() == undefined) {
-                $(this).detach();
+                                    <a href="javascript:;" class="btn btn-like"
+                                               data-modules-modal="target:#broadcast-channel-info"
+                                               onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                                <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                        `
+                    )
+                }
             }
-            return true;
-            // 브랜드
-        } else if (filterId.indexOf("brnd") >= 0) {
-            if (!isCheckedBrnd(filterId)) {
-                $(this).detach();
-            }
-            return true;
         }
-        // 체크여부
-        var isChecked = $("#" + filterId).prop("checked");
-        if (!isChecked) {
-            $(this).detach();
+        , error: function (e) {
+            console.log('error', e);
         }
     });
 }
 
-function setSimpleFilter() {
-    // 선택필터 영역 세션에 저장
-    if ($(".selected-filter-list").css("display") != "none") {
-        var simpleFilter = $(".selected-filter-list").html();
-        sessionStorage.setItem("selected-filter-list", saveHtmlDataEdit(simpleFilter));
-    } else {
-        sessionStorage.removeItem("selected-filter-list");
-    }
-}
-
-function search(keyword, first_category, second_category) {
+function search(keyword, first_category, second_category, sort) {
     console.log(keyword)
     console.log(first_category)
     console.log(second_category)
+    console.log(sort)
     if (second_category === 0) {
         second_category = ''
     }
@@ -255,93 +374,93 @@ function search(keyword, first_category, second_category) {
                 if (productVO.PRODUCT_COST === productVO.DISCOUNTED_COST) {
                     $(".pdlist-wrap ul").append(
                         `
-                    <li class="pdthumb">
-                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
 
-                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
-                                            <div class="thumb">
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
 
-                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="제품명">
-                                                        ${productVO.PRODUCT_NAME}
+                                        <div class="pdprice">
+                                                    <span class="rateprice" aria-label="정상가 가격">
+                                                        <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                    </span>
                                                 </div>
+                                        <div class="pdinfo">
+                                            <div class="benefits" style="line-height: 20px;">
+                                                <span class="flag hdshop"> <em>적립금</em></span>
+                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+                                            </div>
+                                            <p class="like-count">
+                                                <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                <b>(${productVO.SELL_COUNT})</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+
+                                    <a href="javascript:;" class="btn btn-like"
+                                       data-modules-modal="target:#broadcast-channel-info"
+                                       onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                        <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
+                    `
+                    )
+                } else {
+                    $(".pdlist-wrap ul").append(
+                        `
+                            <li class="pdthumb">
+                                <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
+                                    <div class="thumb">
+
+                                        <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
+                                    </div>
+                                    <div class="figcaption">
+                                        <div class="pdname" aria-label="제품명">
+                                                ${productVO.PRODUCT_NAME}
+                                        </div>
 
                                                 <div class="pdprice">
-                                                            <span class="rateprice" aria-label="정상가 가격">
-                                                                <p class="discount" aria-label="정상가"><em>${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
-                                                            </span>
-                                                        </div>
+                                                    <span class="rateprice" aria-label="할인율이 적용된 가격">
+                                                        <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
+                                                        <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
+                                                        <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
+                                                    </span>
+                                                </div>
+
                                                 <div class="pdinfo">
                                                     <div class="benefits" style="line-height: 20px;">
                                                         <span class="flag hdshop"> <em>적립금</em></span>
                                                         <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
                                                     </div>
                                                     <p class="like-count">
-                                                        <em>4.5점</em>
-                                                        <b>(2)</b>
+                                                        <em>${new Date(productVO.CREATED_AT).format("yyyy-MM-dd")}</em>
+                                                        <b>(${productVO.SELL_COUNT})</b>            
                                                     </p>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
-                                            <i class="icon"></i>새창열기
-                                        </a>
-                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
+                                    </div>
+                                </a>
+                                <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
+                                    <i class="icon"></i>새창열기
+                                </a>
+                                <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
 
-                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','011870','129084','2141512848', event);">
-                                                <i class="icon"></i><span class="hiding">찜</span></a>
-                                        </div>
-                                    </li>
-                    `
-                    )
-                } else {
-                    $(".pdlist-wrap ul").append(
+                                    <a href="javascript:;" class="btn btn-like"
+                                       data-modules-modal="target:#broadcast-channel-info"
+                                       onclick="image_show(${productVO.PRODUCT_SEQ})">
+                                        <i class="icon"></i><span class="hiding">찜</span></a>
+                                </div>
+                            </li>
                         `
-                    <li class="pdthumb">
-                                        <!-- 2020.11.26 icj 가중치 weightYn 옵션시에 이미지 위에 상품코드 노출, a 태그로 이동하지 않도록 밖으로 배치 -->
-
-                                        <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}" onclick="itemDetailLinkProc('/p/pda/itemPtc.do?slitmCd=2141512848&amp;sectId=431541', 'DV0001_U02', 'A');">
-                                            <div class="thumb">
-
-                                                <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" alt="[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm" id="2141512848_img" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
-                                            </div>
-                                            <div class="figcaption">
-                                                <div class="pdname" aria-label="제품명">
-                                                        ${productVO.PRODUCT_NAME}
-                                                </div>
-
-                                                        <div class="pdprice">
-                                                            <span class="rateprice" aria-label="할인율이 적용된 가격">
-                                                                <p class="discount" aria-label="할인가"><em>${productVO.DISCOUNTED_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</em>원</p>
-                                                                <em class="rate" aria-label="할인율">${productVO.COUPON_RATIO}<i>%</i></em>
-                                                                <del class="normal" aria-label="정상가">${productVO.PRODUCT_COST.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</del>
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="pdinfo">
-                                                            <div class="benefits" style="line-height: 20px;">
-                                                                <span class="flag hdshop"> <em>적립금</em></span>
-                                                                <span>${(productVO.DISCOUNTED_COST * 0.05).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
-                                                            </div>
-                                                            <p class="like-count">
-                                                                <em>4.5점</em>
-                                                                <b>(2)</b>
-                                                            </p>
-                                                        </div>
-                                            </div>
-                                        </a>
-                                        <a href="javascript://" onclick="sendSlitmClickNewWin('[2HOT] 윌맥스 잉글랜드 줄리아 면기 20cm','2141512848','검색결과','/p/pda/itemPtc.do?slitmCd=2141512848&amp;overL=nw');" class="hoverview">
-                                            <i class="icon"></i>새창열기
-                                        </a>
-                                        <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
-
-                                            <a href="javascript:;" class="btn btn-like" onclick="javascript:goChioceProcess('00','011870','129084','2141512848', event);">
-                                                <i class="icon"></i><span class="hiding">찜</span></a>
-                                        </div>
-                                    </li>
-                    `
                     )
                 }
             }
@@ -352,20 +471,146 @@ function search(keyword, first_category, second_category) {
     });
 }
 
-function image_show(productVO) {
+function image_slide(obj, curPos) {
+
+    // 하이라이팅
+    $(".ui-active.ui-active").removeClass("ui-active")
+    $(obj).parent("li").addClass("ui-active")
+
+    // 이미지
+    $(".slick-track").css('transform', `translateX(${-520 + (curPos * -520)}px)`).css('transition', `all 0.7s ease 0s`)
+
+}
+
+function image_show(product_seq) {
+    console.log("image show")
+    console.log(product_seq)
+    $(".slick-track").empty()
+    $(".slider-thumbnaii ul").empty()
+
     // 이미지 확대 모달
     $.ajax({
         type: "get"
-        , url: "http://localhost:8080/category/"
+        , url: `http://localhost:8080/api/image/?product_seq=${product_seq}`
         , dataType: "json"
         , crossDomain: true
         , success: function (data) {
-
+            for (const [index, element] of data.entries()) {
+                console.log(element)
+                if (index === 0) {
+                    $(".slick-track").append(
+                        `
+                            <div class="slick-slide slick-current slick-active" data-slick-index=${index} aria-hidden="true" style="width: 520px;" tabindex="-1">
+                                <div>
+                                    <div class="item" data-item=""
+                                         data-outputsrc="/resources/img/${element.IMAGE_NAME}.jpg"
+                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                        <a href="javascript:;"
+                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                           tabindex="-1"><img
+                                                src="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                alt="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    )
+                    $(".slider-thumbnaii ul").append(
+                        `
+                            <li class="ui-thumbnaii ui-active">
+                                <a href="javascript:;"
+                                   onclick="image_slide(this, ${index});"
+                                   draggable="false">
+                                    <img src="/resources/img/thumb/${element.IMAGE_NAME}.jpg"
+                                         alt="2122712699_0.jpg"
+                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')">
+                                </a>
+                            </li>
+                        `
+                    )
+                } else {
+                    $(".slick-track").append(
+                        `
+                            <div class="slick-slide" data-slick-index="${index}" aria-hidden="true" style="width: 520px;" tabindex="-1">
+                                <div>
+                                    <div class="item" data-item=""
+                                         data-outputsrc="/resources/img/${element.IMAGE_NAME}.jpg"
+                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                                         style="width: 100%; display: inline-block; vertical-align: top;">
+                                        <a href="javascript:;"
+                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                                           tabindex="-1"><img
+                                                src="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                alt="/resources/img/${element.IMAGE_NAME}.jpg"
+                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    )
+                    $(".slider-thumbnaii ul").append(
+                        `
+                            <li class="ui-thumbnaii">
+                                <a href="javascript:;"
+                                   onclick="image_slide(this, ${index});"
+                                   draggable="false">
+                                    <img src="/resources/img/thumb/${element.IMAGE_NAME}.jpg"
+                                         alt="2122712699_0.jpg"
+                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=100x100&amp;AR=0')">
+                                </a>
+                            </li>
+                        `
+                    )
+                }
+            }
         }, complete: function () {
-
+            $(".slick-track").prepend(
+                `
+            <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
+                <div>
+                    <div class="item" data-item=""
+                         data-outputsrc="/resources/img/image_example1.jpg"
+                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                         style="width: 100%; display: inline-block; vertical-align: top;">
+                        <a href="javascript:;"
+                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                           tabindex="-1"><img
+                                src="/resources/img/image_example1.jpg"
+                                alt="2139858205_4.png"
+                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                    </div>
+                </div>
+            </div>
+        `
+            )
+            $(".slick-track").append(
+                `
+            <div class="slick-slide slick-cloned" data-slick-index="-1"
+                                                         aria-hidden="true" style="width: 520px;" tabindex="-1">
+                <div>
+                    <div class="item" data-item=""
+                         data-outputsrc="/resources/img/image_example1.jpg"
+                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
+                         style="width: 100%; display: inline-block; vertical-align: top;">
+                        <a href="javascript:;"
+                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
+                           tabindex="-1"><img
+                                src="/resources/img/image_example1.jpg"
+                                alt="2139858205_4.png"
+                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
+                    </div>
+                </div>
+            </div>
+        `
+            )
         }, error: function (e) {
-            //cors 오류 시 기존 ajax 타도록 수정
             console.log("error")
         }
     });
+
+
 }
+

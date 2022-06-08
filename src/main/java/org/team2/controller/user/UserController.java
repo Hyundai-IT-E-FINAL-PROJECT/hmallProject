@@ -84,6 +84,7 @@ public class UserController {
             userService.insertSignup(userVO);
             log.info("컨트롤러 :"+ userVO.getNo());
             addressService.insertAddress(addressVO, userVO);
+            userService.insertFirstCoupon(userVO.getNo());
             return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();
@@ -308,5 +309,11 @@ public class UserController {
 
     }
 
-
+    @ResponseBody
+    @RequestMapping("email_dup")
+    public int email_dup(@RequestParam("total_email") String total_email) throws Exception{
+        log.info(total_email);
+        int result = userService.email_dup(total_email);
+        return result;
+    }
 }

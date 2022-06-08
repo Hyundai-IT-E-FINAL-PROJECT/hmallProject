@@ -17,6 +17,8 @@ public class OrderVO {
     private String delivery;
     private Long totalCost;
     private String message;
+    private String receiveName;
+    private String order_method;
 
     private Date createdAt;
     private Date updatedAt;

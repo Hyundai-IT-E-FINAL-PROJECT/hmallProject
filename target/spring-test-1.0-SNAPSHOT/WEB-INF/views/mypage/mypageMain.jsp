@@ -118,7 +118,7 @@
                     </div>
 
                     <h3 class="title22">
-                        최근 주문/배송 현황${userVO.no}
+                        최근 주문/배송 현황
                         <div class="btngroup abs">
                             <a href="/mypageOrder?type=all" class="btn atext"><span>전체보기</span><i
                                     class="arrow right"></i></a>
@@ -213,7 +213,7 @@
                                 </div>
                             </c:if>
                         </c:if>
-                        <c:if test="${vs.index == 0 and !vs.last}">
+                        <c:if test="${vs.index == 0 and !vs.last and vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
                             </dl>
                             </div>
                         </c:if>

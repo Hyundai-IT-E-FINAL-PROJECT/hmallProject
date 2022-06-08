@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface UserService {
-    void myPage_newBirthday(Date user_birth, String user_id) throws Exception;
+    void myPage_newBirthday(String user_birth, String user_id) throws Exception;
     void insertSignup(UserVO userVO) throws Exception;
     public int idCheck(String id) throws Exception;
     UserVO find_id(UserVO userVO) throws Exception;
@@ -19,7 +19,6 @@ public interface UserService {
 
     int newPassword(UserVO userVO) throws Exception;
 
-    UserVO myPage_pwUpate(UserVO userVO) throws Exception;
 
     void myPage_newNickname(UserVO userVO) throws Exception;
 
@@ -36,4 +35,8 @@ public interface UserService {
 
     AddressVO selectBasicAddress(Long user_seq) throws Exception;
 
+
+    int email_dup(String total_email) throws Exception;
+    int myPage_pwUpate(String password, String userid) throws Exception;
+    void insertFirstCoupon(int no) throws Exception;
 }

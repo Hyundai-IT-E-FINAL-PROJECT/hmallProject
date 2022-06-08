@@ -749,6 +749,7 @@
                 }
             },error: function (e){
                 console.log('error', e);
+                console.log("에러다");
             }
         });
     }

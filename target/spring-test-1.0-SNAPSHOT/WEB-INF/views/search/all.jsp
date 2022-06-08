@@ -72,13 +72,8 @@
                                 </div>
                             </div>
                         </li>
-                        <!-- 매장 내 검색 // -->
-
                     </ul>
-                    <!-- //.detail-filter-list -->
                 </div>
-                <!-- //.side-content -->
-                <!-- 필터 //-->
 
                 <div class="contents" id="pl_main">
                     <div class="display-list-wrap" id="itemListArea">

@@ -13,7 +13,7 @@
                         <div class="cart-head">
                             <div class="cart-top">
                                 <div class="cart-all">
-                                    <strong>장바구니</strong> <span>(<em class="cart-count">3</em>)</span>
+                                    <strong>장바구니</strong> <span>(<em class="cart-count">${basketVOList.size()}</em>)</span>
                                 </div>
                                 <ol class="cart-list-num">
                                     <li class="active"> <!-- active일 경우 style 변경 -->
@@ -53,7 +53,7 @@
                             <sec:authorize access="isAuthenticated()">
                                 <sec:authentication property="principal" var="pinfo" />
                                 ${pinfo.userVO.user_name} 고객님의 혜택 정보 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                적립금: ${pinfo.userVO.no}
+                                적립금: ${pinfo.userVO.user_point}
                             </sec:authorize>
                         </div>
 
@@ -67,7 +67,7 @@
                                             <label class="chklabel"><input type="checkbox" name="all" id="gen"
                                                                            onclick="check(this, 'gen', 'all', '');"><i
                                                     class="icon"></i><span>일반상품</span></label>
-                                            <span class="cart-count">(<strong>2</strong>/<em>2</em>)</span>
+                                            <span class="cart-count">(<strong>0</strong>/<em>${basketVOList.size()}</em>)</span>
                                         </div>
                                         <button type="button" class="btn btn-linelgray sm"
                                                 onclick="deleteBasktItem(this)"><span>선택삭제</span></button>
@@ -77,7 +77,7 @@
 
 
                                             <div class="checkbox">
-                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.basket_seq}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
+                                                <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
                                             </div>
                                             <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2122712699|00002|0|12|29900');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                             <div class="pdlist-wrap">
@@ -105,9 +105,6 @@
                                                                 </div>
                                                             </a>
                                                         </figcaption>
-                                                        <div class="pdlike">
-                                                            <a href="javascript:;" onclick="zzimItem(this, '2122712699', '00002');" class="btn btn-like" id="zzim_2122712699:00002"><i class="icon"></i><span class="hiding">찜</span></a>
-                                                        </div>
                                                     </figure>
                                                 </div>
                                                 <!-- //.pditem -->
@@ -150,7 +147,7 @@
                                                 <input type="hidden" name="product_cost" value="${basketVO.productVO.product_cost}">
 
                                                 <div class="checkbox">
-                                                    <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.basket_seq}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
+                                                    <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>
                                                 </div>
                                                 <button type="button" class="btn btn-cart-del" onclick="deleteBasktSlitem('2101560521|00001|0|${basketVO.basket_count}|${basketVO.productVO.product_cost}');"><i class="icon cart-del"></i><span class="hiding">삭제</span></button>
                                                 <div class="pdlist-wrap">
@@ -158,7 +155,7 @@
                                                         <figure class="pdthumb">
                                                             <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2101560521&amp;sectId=920435">
                                                                 <div class="thumb">
-                                                                    <img src="https://image.hmall.com/static/5/0/56/01/2101560521_0.jpg?RS=120x120&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')">
+                                                                    <img src="/resources/img/thumb/${basketVO.productVO.image_name}.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')">
                                                                 </div>
                                                             </a>
                                                             <figcaption>
@@ -166,22 +163,19 @@
                                                                     <div class="pdprice">
                                                                         <input type="hidden" name="sellPrc" value="${basketVO.productVO.product_cost}">
                                                                         <input type="hidden" name="bbprc" value="${basketVO.productVO.product_cost}">
-                                                                        <ins class="normal" aria-label="정상가"><em><fmt:formatNumber value="${basketVO.productVO.product_cost}" pattern="#,###"/></em><b>원</b></ins>
+                                                                        <ins class="normal" aria-label="정상가"><em><fmt:formatNumber value="${basketVO.productVO.discounted_cost * basketVO.basket_count}" pattern="#,###"/></em><b>원</b></ins>
                                                                     </div>
                                                                     <div class="pdoption" aria-label="옵션/수량">
                                                                         <span class="count">수량: <em><fmt:formatNumber value="${basketVO.basket_count}" pattern="#,###"/>개</em></span>
                                                                     </div>
                                                                 </a>
                                                             </figcaption>
-                                                            <div class="pdlike">
-                                                                <a href="javascript:;" onclick="zzimItem(this, '2101560521', '00001');" class="btn btn-like" id="zzim_2101560521:00001"><i class="icon"></i><span class="hiding">찜</span></a>
-                                                            </div>
                                                         </figure>
                                                     </div>
                                                     <div class="btngroup">
                                                         <input type="hidden" name="product_seq${status.index+1}" value="${basketVO.productVO.product_seq}"/>
                                                         <input type="hidden" name="product_name${status.index+1}" value="${basketVO.productVO.product_name}"/>
-                                                        <input type="hidden" name="product_cost${status.index+1}" value="${basketVO.productVO.product_cost}"/>
+                                                        <input type="hidden" name="product_cost${status.index+1}" value="${basketVO.productVO.discounted_cost}"/>
                                                         <input type="hidden" name="basket_count${status.index+1}" value="${basketVO.basket_count}"/>
                                                         <input type="hidden" name="basket_seq${status.index+1}" value="${basketVO.basket_seq}"/>
                                                         <div class="pdfunc">
@@ -263,8 +257,8 @@
                         <%--        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
                         <%--    },--%>
                         <%--    success:function(){--%>
-                        <%--        alert("주문 작성 페이지로 이동합니다.");--%>
-                        <%--        location.href='${contextPath}/order/od/'+product_seq;--%>
+                        <%--        alert("주문 작성 페이지로 이동합location.href='${contextPath}/order/od/'+product_seq;니다.");--%>
+                        <%--        --%>
                         <%--    },--%>
                         <%--    error: function (request,status,error) {--%>
                         <%--        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);--%>

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public void myPage_newBirthday(Date user_birth, String user_id) throws Exception {
+    public void myPage_newBirthday(String user_birth, String user_id) throws Exception {
         userMapper.myPage_newBirthday(user_birth,user_id);
     }
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public int idCheck(String id) throws Exception{
         int cnt = userMapper.idCheck(id);
-        log.info("cnt: "+cnt);
+        log.info("!cnt: "+cnt);
         return cnt;
     }
 
@@ -82,10 +82,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserVO myPage_pwUpate(UserVO userVO) throws Exception {
-        userVO.setUser_pw(pwencoder.encode(userVO.getUser_pw()));
-        userMapper.myPage_pwUpdate(userVO);
-        return userMapper.myPage_pwUpdate(userVO);
+    public int myPage_pwUpate(String password, String userid) throws Exception {
+        return userMapper.myPage_pwUpdate(password, userid);
     }
 
     @Override
@@ -112,5 +110,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public AddressVO selectBasicAddress(Long user_seq) throws Exception {
         return userMapper.selectBasicAddress(user_seq);
+    }
+
+    @Override
+    public int email_dup(String total_email) throws Exception {
+        int result = userMapper.email_dup(total_email);
+        return result;
+    }
+
+    @Transactional
+    @Override
+    public void insertFirstCoupon(int no) throws Exception {
+        userMapper.insertFirstCoupon(no);
     }
 }
