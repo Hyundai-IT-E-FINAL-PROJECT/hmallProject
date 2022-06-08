@@ -34,6 +34,7 @@ public class BasketController {
 
     //    @PreAuthorize("isAuthenticated()")  //로그인 안되어있을 때 로그인 창으로 넘어감
     @RequestMapping("/basketList")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView order(@AuthenticationPrincipal UserVO userVO, Principal principal){
         List<BasketVO> allByUserSeq = basketService.getAllByUserSeq(Long.valueOf(principal.getName()));
         List<String> styleFileList = new ArrayList<>();
