@@ -2376,18 +2376,12 @@
                     <input type="hidden" name="mcustNo" value="">
                 </form>
                 <div class="side-content">
-
                     <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
                     <div class="side-menu-list">
                         <ul>
                             <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
-                            <!--20200826 수요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
-                            <li><a href="customer/inquiryPage">1:1 문의하기</a></li>
+                            <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
                             <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
-                            <!-- <li><a href="javascript:;">쇼핑가이드</a></li> -->
-                            <!--20200827 목요일 윈도우 팝업 적용 // data-modules-winpopup 으로 윈도우 팝업 사이즈 조절-->
-                            <li><a href="#" onclick="openCustBoardPup();">고객의 의견</a></li>
-                            <li><a href="/p/mpa/selectOrdDlvCrst.do?pageType=ALL" onclick="openLoginPopup(this.href);return false;">비회원 주문/배송조회</a></li>
                         </ul>
                     </div>
                     <!-- // .side-menu-list -->
@@ -2411,7 +2405,7 @@
                             <p>언제나 고객님의 입장에서 빠르고 정확한 답변을 드리는 홈쇼핑이 되겠습니다.</p>
                             <p></p>
                             <div class="btngroup inline-block">
-                                <a type="button" a href="/customer/writeInquiryPage" class="btn btn-linelgray small34" type="button" ><i class="icon write"></i><span>1:1 문의하기</span></a>
+                                <a type="button" a href="/customer/writeInquiryPage" class="btn btn-linelgray small34" type="button" style="margin:10px"><i class="icon write"></i><span>1:1 문의하기</span></a>
                             </div>
                         </div>
 
