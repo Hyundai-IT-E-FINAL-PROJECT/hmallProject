@@ -674,8 +674,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <sec:authentication property="principal" var="pinfo" />
                                     <th scope="col">${pinfo.userVO.user_name}</th>
                                     <th scope="col">보내시는 분</th>
-                                    <th scope="col">${pinfo.userVO.user_name}</th>
-                                    <input type="hidden" name="order_user_name" value="${pinfo.userVO.user_name}" />
+                                    <th scope="col"><input type="text" name="order_user_name" value="${pinfo.userVO.user_name}" style="color: black; font-size: 15.5px; text-align: center;"/></th>
                                 </sec:authorize>
                             </tr>
 
@@ -909,7 +908,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 user_point:point2,// 업데이트될 포인트 금액
                 point: point1,// 적립된 포인트(총 결제금액의 5% 적립)
                 status: '주문접수', //준비중
-                userName: $("input[name='order_user_name']").val(), //주문한 사람
+                userName: $("input[name='order_user_name']").val(), //보내시는 분
                 userNumber:$("input[name='phoneNumber1']").val(),
                 delivery:$("input[name='order_delivery1']").val(), //상세주소
                 invoice:invoiceNum, //랜덤으로 주기
