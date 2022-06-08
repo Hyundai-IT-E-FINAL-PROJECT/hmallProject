@@ -26,6 +26,11 @@ public class QnAServiceImpl implements QnAService{
     }
 
     @Override
+    public List<Map<String, String>> getMyQnAList(Long user_seq) throws Exception {
+        return qnAMapper.getMyQnAList(user_seq);
+    }
+
+    @Override
     public Integer addReply(QaVO vo) throws Exception {
         return qnAMapper.addReply(vo);
     }

@@ -92,7 +92,7 @@
 
 
 
-                    <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
+                    <li><a class="mypage" href="/mypage" ><span>마이페이지</span></a></li>
 
                 <li>
                     <a href="javascript:;" class="recently" id="recentlyImg"
@@ -154,7 +154,7 @@
                     <sec:authentication property="principal" var="pinfo"/>
                     <sec:authorize access="isAnonymous()">
 <%--                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>--%>
-                        <li><a ga-category="헤더" ga-action="로그인" onclick="showLoginPopup();">로그인</a></li>
+                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
                         <li><a href="${contextPath}/user/user_agree">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
