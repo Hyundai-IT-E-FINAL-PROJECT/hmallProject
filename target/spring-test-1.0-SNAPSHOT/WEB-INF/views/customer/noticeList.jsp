@@ -3091,7 +3091,7 @@
                                 <tr>
                                     <td  colspan="3">
                                         <div class="consult-form-wrap">
-                                            <h3>공지 내용</h3>
+                                            <h3 style="margin-top: -20px;">공지 내용</h3>
                                             <!--문의내용-->
                                             <div class="consult-form" style="background-color:lavender; border-radius: 5px;">
                                                 <div class="field">

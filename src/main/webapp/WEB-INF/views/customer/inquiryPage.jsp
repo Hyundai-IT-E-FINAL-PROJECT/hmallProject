@@ -2381,6 +2381,7 @@
                         <ul>
                             <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                             <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
+                            <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                             <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                         </ul>
                     </div>
@@ -2479,7 +2480,7 @@
                                                 <tr>
                                                      <td  colspan="6">
                                                          <div class="consult-form-wrap">
-                                                             <h3>문의한 내용</h3>
+                                                             <h3 style="margin-top: -20px;">문의한 내용</h3>
                                                              <!--문의내용-->
                                                              <div class="consult-form" style="background-color:aliceblue; border-radius: 5px;">
                                                                  <div class="field">
@@ -2495,7 +2496,7 @@
 <%--                                                             답변 내용이 있을 경우--%>
                                                             <c:when test="${qna.QA_CONTENT ne null}">
                                                                 <div class="consult-form-wrap" style="background-color:aliceblue; border-radius: 5px;">
-                                                                    <h3>답변</h3>
+                                                                    <h3 style="margin-top: -20px;">답변</h3>
                                                                     <!--문의내용-->
                                                                     <div class="consult-form">
                                                                         <div class="field">

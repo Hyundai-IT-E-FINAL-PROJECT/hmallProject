@@ -17,6 +17,7 @@ import org.team2.service.CategoryService;
 import org.team2.service.ImageService;
 import org.team2.service.ProductService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,11 +121,11 @@ public class ProductController {
         return mav;
     }
     @GetMapping("openOrderListPup")
-    public ModelAndView openOrderListPup(){
+    public ModelAndView openOrderListPup(Principal principal){
         log.info("orderList Popup 접속");
         ModelAndView mav = new ModelAndView();
 
-        List<Map<String, String>> userOrderList=productService.getUserOrder(41L);
+        List<Map<String, String>> userOrderList=productService.getUserOrder(Long.valueOf(principal.getName()));
         log.info(userOrderList);
         mav.addObject("userOrderList",userOrderList);
         mav.setViewName("layerPup/openOrderListPup.empty");
