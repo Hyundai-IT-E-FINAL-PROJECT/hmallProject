@@ -144,7 +144,7 @@
                                                 <input type="hidden" name="basket_count" value="${basketVO.basket_count}">
                                                 <input type="hidden" name="product_seq" value="${basketVO.productVO.product_seq}">
                                                 <input type="hidden" name="product_name" value="${basketVO.productVO.product_name}">
-                                                <input type="hidden" name="product_cost" value="${basketVO.productVO.product_cost}">
+                                                <input type="hidden" name="product_cost" value="${basketVO.productVO.discounted_cost}">
 
                                                 <div class="checkbox">
                                                     <label class="chklabel"><input type="checkbox" name="basktInf"  value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}" onclick="check(this, 'gen', '2101560521', '00001');"><i class="icon"></i><span>${basketVO.productVO.product_name}</span></label>

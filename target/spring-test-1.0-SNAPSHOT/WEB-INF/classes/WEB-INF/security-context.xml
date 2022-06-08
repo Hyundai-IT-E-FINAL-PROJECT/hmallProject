@@ -21,7 +21,7 @@
                              password-parameter="password"
                              login-processing-url="/login"
                              authentication-failure-handler-ref="userLoginFailHandler"
-                                    authentication-success-handler-ref="customLoginSuccess"/>
+                             authentication-success-handler-ref="customLoginSuccess"/>
         <security:access-denied-handler ref="customAccessDenied"/>
         <security:logout logout-url="/customLogout" logout-success-url="/" invalidate-session="true"/>
     </security:http>
