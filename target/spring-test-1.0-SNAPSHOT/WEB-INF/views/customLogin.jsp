@@ -9,10 +9,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="org.springframework.security.core.Authentication" %>
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/login.css">
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/common.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/layout.css"><!-- 공통 Layout css -->
@@ -36,20 +36,19 @@
                         <div role="tabpanel" class="tab-pane ui-active" id="hmallLogin">
 <%--                            <h2><c:out value="${error}"/></h2>--%>
 <%--                            <h2><c:out value="${logout}"/></h2>--%>
-                            <form method="post" action="/login">
 
                                 <div role="tabpanel" class="tab-pane ui-active" id="hmall">
                                     <div class="login-form">
                                         <div class="inputbox xl">
                                             <label class="inplabel">
-                                                <input type="text" maxlength="30" tabindex="1" name="username" placeholder="아이디 입력">
+                                                <input type="text" id="username" maxlength="30" tabindex="1" name="username" placeholder="아이디 입력">
                                             </label>
                                             <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                                             <i class="icon person"></i>
                                         </div>
                                         <div class="inputbox xl">
                                             <label class="inplabel">
-                                                <input type="password" tabindex="2" size="30" maxlength="30" name="password" placeholder="비밀번호">
+                                                <input type="password" id="password" tabindex="2" size="30" maxlength="30" name="password" placeholder="비밀번호">
                                             </label>
                                             <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
                                             <i class="icon lock"></i>
@@ -92,7 +91,7 @@
                                     </div>
                                     <!-- //.login-relate -->
                                     <!-- <div class="btngroup btnlen1"> -->
-                                    <button id="loginCheck" class="btn btn-login btn-default" onclick="memberLogin('ajax');return false;" tabindex="3"><span>로그인</span></button>
+                                    <button id="loginCheck" class="btn btn-login btn-default" tabindex="3" onclick="close_popup()"><span>로그인</span></button>
                                     <!-- </div> -->
 
                                     <ul class="login-find">
@@ -133,7 +132,6 @@
                                 </div>
                                 ${requestScope.loginFailMsg}
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="hpointLogin">
                             <div class="login-form">
@@ -228,3 +226,26 @@
 </div>
 </body>
 </html>
+<script>
+    function close_popup(){
+        console.log("도착");
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        console.log(username);
+        console.log(password);
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+       $.ajax({
+           url:"/login",
+           type:"post",
+           data:{"username":username,"password":password},
+           dataType:"text",
+           beforeSend:function (xhr){
+               xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+           },success: function (){
+               parent.opener.parent.location.reload();
+               window.close();
+           }
+       });
+    }
+</script>
