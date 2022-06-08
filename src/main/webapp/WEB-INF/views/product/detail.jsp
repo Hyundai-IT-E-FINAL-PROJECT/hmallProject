@@ -963,6 +963,8 @@
                                         <input type="hidden" value="${productVO.product_name}" name="product_name"/>
                                         <input type="hidden" value="${productVO.product_cost}" name="product_cost"/>
                                         <input type="hidden" value="${productVO.product_seq}" name="product_seq"/>
+                                        <input type="hidden" value="${imageVOList[0].IMAGE_NAME}" name="image_name"/>
+
 
 
                                         <strong class="prduct-name">${productVO.product_name}</strong>
@@ -5403,6 +5405,7 @@
                 submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name=product_seq]").val()+"'>"));
                 submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden'  value='${total_price}'>"));
                 submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden'  value='"+$("input[name=product_name]").val()+"'>"));
+                submitForm.append($("<input name='basketList["+0+"].ProductVO.image_name' type='hidden'  value='"+$("input[name=image_name]").val()+"'>"));
 
 
                 submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));

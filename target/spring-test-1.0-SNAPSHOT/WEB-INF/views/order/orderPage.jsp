@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -448,7 +449,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 <p class="txt">회원등급:  ${pinfo.userVO.user_level}</p>
                             </div>&nbsp;&nbsp;
                             <div class="txt-wrap">
-                                <p class="txt">적립금:  ${pinfo.userVO.user_point}</p>
+                                <p class="txt">적립금: <fmt:formatNumber value="${pinfo.userVO.user_point}"
+                                                                       pattern="#,###"/></p>
                             </div>&nbsp;&nbsp;
                         </div>
 
@@ -468,18 +470,21 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
 
                                             <a href="http://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137171063&amp;sectId=2731506" target="_blank">
-                                                <span class="img"><img src="https://image.hmall.com/static/0/1/17/37/2137171063_0.jpg?RS=140x140&amp;AR=0" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')"></span>
+                                                <span class="img">
+                                                    <img src="/resources/img/thumb/${basket.productVO.image_name}.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=120x120&amp;AR=0')"></span>
                                                 <div class="box">
                                                     <input type="hidden" name="product_name" id="product_name" value="${basket.productVO.product_name}" />
                                                     <span class="tit">${basket.productVO.product_name}</span>
                                                     <div class="info">
                                                         <ul>
-                                                            <li>${basket.productVO.product_cost}원</li>
+                                                            <li><fmt:formatNumber value="${basket.productVO.product_cost}"
+                                                                                  pattern="#,###"/>원</li>
                                                             <li>${basket.basket_count}개<input type="hidden" name="ordQty" value="1" readonly="readonly"></li>
                                                         </ul>
                                                     </div>
                                                     <%--                                                상품 값 받아와 함--%>
-                                                    <span class="price"><strong>${basket.productVO.product_cost * basket.basket_count}</strong>원</span>
+                                                    <span class="price"><strong><fmt:formatNumber value="${basket.productVO.product_cost * basket.basket_count}"
+                                                                                                  pattern="#,###"/></strong>원</span>
                                                     <c:set var="total_price" value="${total_price+(basket.productVO.product_cost * basket.basket_count)}" />
                                                 </div>
                                             </a>
@@ -570,7 +575,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <span class="unit point">P</span>
                                             <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
                                             <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
-                                            <span style="width: 300px">[보유 적립금 : <em class="num"><c:out value="${userPoint}"/></em> ]</span>
+                                            <span style="width: 300px">[보유 적립금 : <em class="num"><fmt:formatNumber value="${userPoint}" pattern="#,###"/></em> ]</span>
                                         </label>
                                     </div>
                                     </li>
@@ -582,7 +587,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                                 <span class="unit point">P</span>
                                                 <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
                                                 <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
-                                                <span style="width: 300px">[보유 예치금 : <em class="num">${depositPoint}</em> ]</span>
+                                                <span style="width: 300px">[보유 예치금 : <em class="num"><fmt:formatNumber value="${depositPoint}" pattern="#,###"/></em> ]</span>
                                             </label>
                                         </div>
                                     </li>
@@ -773,7 +778,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <div id="orderAmt">
                                                 <span class="tit">총 판매금액</span>
                                                 <input type="hidden" value="${total_price}" name="totalPrice" />
-                                                <span class="txt"><strong>${total_price}</strong>원</span>
+                                                <span class="txt"><strong><fmt:formatNumber value="${total_price}"
+                                                                                            pattern="#,###"/></strong>원</span>
                                             </div>
                                             <div id="copnDcCoupon" class="hidden">
                                                 <span class="tit">쿠폰 사용</span>
@@ -880,31 +886,19 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             let invoiceNum=randomNum (1000000000, 9999999999);
 
 
-
-
             //적립금
             var total_price=$("input[name='totalCost1']").val();
             var point1=parseInt(total_price)*0.05;
             var point2=(parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val());
 
-
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
-
-            // for (const item of $("input[name='basketList']").val()){
-            //     console.log(item);
-            // }
 
             let basket_list=[];
             let product_list=[];
 
-            //tbl_op 삽입시 필요한 컬럼들을  json으로 묶음
             let opData=[];
             for(var i=0; i< parseInt($("input[name='basketListLength']").val()); ++i){
-                // opData.push({
-                //    "basket_count":$("input[name='" + 'baCount'+String(i) + "']").val(),
-                //     "product_seq:":$("input[name='" + 'prSeq'+String(i) + "']").val()
-                // });
                 basket_list.push($("input[name='" + 'baCount'+String(i) + "']").val());
                 product_list.push($("input[name='" + 'prSeq'+String(i) + "']").val())
             }

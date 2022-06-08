@@ -165,8 +165,6 @@
     </select>
 
 
-
-
     <delete id="delete" statementType="CALLABLE">
         {
             call pack_order.proc_order_delete(#{order_seq})
@@ -176,7 +174,5 @@
     <resultMap id="orderMap" type="org.team2.domain.OrderVO">
         <result property="order_seq" column="order_seq" />
     </resultMap>
-
-
 
 </mapper>
