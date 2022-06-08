@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <header class="header">
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+             pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <div class="header-top">
         <h1 class="logo"><a href="${contextPath}/" title="현대Hmall">Hmall</a></h1>
         <div class="search" role="search">
@@ -192,7 +192,8 @@
                 <ul style="display: flex;">
                     <sec:authentication property="principal" var="pinfo"/>
                     <sec:authorize access="isAnonymous()">
-                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
+<%--                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>--%>
+                        <li><a ga-category="헤더" ga-action="로그인" onclick="showLoginPopup();">로그인</a></li>
                         <li><a href="${contextPath}/user/user_agree">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
@@ -209,3 +210,12 @@
         </div>
     </div>
 </header>
+<script>
+    function showLoginPopup(){
+        // var popupWidth = 600;
+        // var popupHigh = 700;
+        // var popupX = (window.screen.width/2) - (popupWidth/2);
+        // var popupY = (window.screen.height/2) - (popupHigh/2);
+        window.open("${contextPath}/customLogin","a","width=550, height=700, left=100, top=50");
+    }
+</script>
