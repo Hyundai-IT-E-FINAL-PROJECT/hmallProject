@@ -13,4 +13,6 @@ public interface QnAMapper {
     List<Map<String, String>> getQnAList() throws Exception;
 
     Integer addReply(QaVO vo) throws Exception;
+
+    List<Map<String, String>> getMyQnAList(Long user_seq) throws Exception;
 }

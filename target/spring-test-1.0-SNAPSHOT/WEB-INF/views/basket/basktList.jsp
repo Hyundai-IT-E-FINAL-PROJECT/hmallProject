@@ -206,15 +206,11 @@
                 </div>
                 <script type="text/javascript">
 
-
-
-
                     var csrfHeaderName = "${_csrf.headerName}";
                     var csrfTokenValue = "${_csrf.token}";
+
                     function orderSelect() {//선택상품 구매하기 버튼 이벤트
                         const checkedProduct = new Array();
-
-
 
                         $("input[name='basktInf']").each(function () {
                             if ($(this).prop("checked")) {
@@ -222,8 +218,6 @@
                                 checkedProduct.push(basket_seq);
 
                         }});
-
-
 
                         console.log(checkedProduct); //선택한 장바구니 시퀀스
                         if (checkedProduct.length === 0) {
@@ -265,20 +259,6 @@
                         submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
                         submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
                         submitForm.submit();
-                        <%--$.ajax({--%>
-                        <%--    type:'get',--%>
-                        <%--    url: '${contextPath}/order/od/'+product_seq,--%>
-                        <%--    beforeSend:function (xhr){--%>
-                        <%--        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
-                        <%--    },--%>
-                        <%--    success:function(){--%>
-                        <%--        alert("주문 작성 페이지로 이동합location.href='${contextPath}/order/od/'+product_seq;니다.");--%>
-                        <%--        --%>
-                        <%--    },--%>
-                        <%--    error: function (request,status,error) {--%>
-                        <%--        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);--%>
-                        <%--    }--%>
-                        <%--});--%>
                     }
                 </script>
                 <div class="sticky-ui-wrapper util-option-sticky">

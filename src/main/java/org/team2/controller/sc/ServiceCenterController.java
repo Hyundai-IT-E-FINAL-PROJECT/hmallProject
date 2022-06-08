@@ -73,6 +73,24 @@ public class ServiceCenterController {
         return mav;
     }
 
+    @GetMapping("myInquiryPage")
+    public ModelAndView myInquiryPage(Principal principal) throws Exception {
+        ModelAndView mav=new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("customer");
+        styleFileList.add("mypage");
+
+
+        log.info("My 1:1 문의하기 게시판 이동");
+        List<Map<String, String>> myQnaList=qnaService.getMyQnAList(Long.valueOf(principal.getName()));
+        log.info(myQnaList);
+        mav.addObject("myQnaList", myQnaList);
+        mav.addObject("cssFileList", styleFileList);
+        mav.addObject("className","wrap consult-main");
+        mav.setViewName("customer.myInquiryPage");
+        return mav;
+    }
+
     @GetMapping("writeInquiryPage")
     public ModelAndView writeInquiryPage(){
         ModelAndView mav=new ModelAndView();
