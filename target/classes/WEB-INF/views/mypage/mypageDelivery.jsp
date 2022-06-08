@@ -26,25 +26,31 @@
                         <div class="delivery-box">
                             <ul class="list">
 
+<%--                                <input type="hidden" name="dstnSeq" value="0000000002">--%>
+<%--                                <input type="hidden" id="baseYn" name="baseYn" value="Y">--%>
+<%--                                <input type="hidden" id="rcvCustNm" name="rcvCustNm" value="김민수">--%>
+<%--                                <input type="hidden" id="dstnPostNo" name="dstnPostNo" value="02060">--%>
+<%--                                <input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr"--%>
+<%--                                       value="서울특별시 중랑구  망우로71가길 11-5(망우동, 어반캐슬)">--%>
+<%--                                <input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="203호">--%>
+<%--                                <input type="hidden" id="dstnHpIdntNo" name="dstnHpIdntNo" value="010">--%>
+<%--                                <input type="hidden" id="dstnTela" name="dstnTela" value="">--%>
+<%--                                <input type="hidden" id="dstnTels" name="dstnTels" value="">--%>
+<%--                                <input type="hidden" id="dstnTeli" name="dstnTeli" value="">--%>
+
+<%--                                <input type="hidden" id="adrKndGbcd" name="adrKndGbcd" value="2">--%>
+<%--                                <input type="hidden" id="dstnPostNoSum" name="dstnPostNoSum" value="02060">--%>
+<%--                                <input type="hidden" id="dstnNknm" name="dstnNknm" value="김민수">--%>
+
                                 <c:forEach items="${list}" var="list">
                                 <li>
-                                    <input type="hidden" name="dstnSeq" value="0000000002">
-                                    <input type="hidden" id="baseYn" name="baseYn" value="Y">
-                                    <input type="hidden" id="rcvCustNm" name="rcvCustNm" value="김민수">
-                                    <input type="hidden" id="dstnPostNo" name="dstnPostNo" value="02060">
+                                    <input type="hidden" name="dstnSeq" value="${list.USER_ADDRESS_SEQ}">
+                                    <input type="hidden" id="baseYn" name="baseYn" value="${list.BASIC_ADDRESS}">
+                                    <input type="hidden" id="rcvCustNm" name="rcvCustNm" value="${list.USER_ADDRESS_NAME}">
+                                    <input type="hidden" id="dstnPostNo" name="dstnPostNo" value="${list.USER_ADDRESS_ADDRESS1}">
                                     <input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr"
-                                           value="서울특별시 중랑구  망우로71가길 11-5(망우동, 어반캐슬)">
-                                    <input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="203호">
-                                    <input type="hidden" id="dstnHpIdntNo" name="dstnHpIdntNo" value="010">
-                                    <input type="hidden" id="dstnHpIntmNo" name="dstnHpIntmNo" value="9398">
-                                    <input type="hidden" id="dstnHpBckNo" name="dstnHpBckNo" value="9130">
-                                    <input type="hidden" id="dstnTela" name="dstnTela" value="">
-                                    <input type="hidden" id="dstnTels" name="dstnTels" value="">
-                                    <input type="hidden" id="dstnTeli" name="dstnTeli" value="">
-
-                                    <input type="hidden" id="adrKndGbcd" name="adrKndGbcd" value="2">
-                                    <input type="hidden" id="dstnPostNoSum" name="dstnPostNoSum" value="02060">
-                                    <input type="hidden" id="dstnNknm" name="dstnNknm" value="김민수">
+                                           value="${list.USER_ADDRESS_ADDRESS2}">
+                                    <input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="${list.USER_ADDRESS_ADDRESS3}">
 
                                     <p class="name">${list.USER_ADDRESS_NAME}
 
@@ -58,7 +64,7 @@
 
                                     <c:if test="${list.BASIC_ADDRESS != 1}">
                                     <button name="setBaseDstnAdr" class="btn btn-linelgray small30"
-                                            data-dstnseq="0000000001"><span>기본배송지로</span></button>
+                                            data-dstnseq="${list.USER_ADDRESS_SEQ}"><span>기본배송지로</span></button>
                                     </c:if>
 
                                     <div class="btngroup abs">
@@ -68,8 +74,8 @@
                                     <c:if test="${list.BASIC_ADDRESS != 1}">
                                     <button id="deleteDstnAdr" name="deleteDstnAdr"
                                             class="btn btn-linelgray small30"><span>삭제</span></button>
-                                    </div>
                                     </c:if>
+                                    </div>
                                 </li>
 
                                 </c:forEach>
@@ -119,17 +125,53 @@
     </main>
 </section>
 <script type="text/javascript">
+
+    // 배송지 목록을 불러오는 함수
+    function getDeliverys() {
+        $.getJSON("/deliveryList" , function (data) {
+            console.log(data);
+            var str = "";
+
+            $(".delivery-box .list").empty();
+            $(data).each(function () {
+                if(this.BASIC_ADDRESS == 1) {
+                    str +=  '<li><input type="hidden" name="dstnSeq" value="' + this.USER_ADDRESS_SEQ + '">'
+                        + '<input type="hidden" id="baseYn" name="baseYn" value="' + this.BASIC_ADDRESS + '">'
+                        + '<input type="hidden" id="rcvCustNm" name="rcvCustNm" value="' + this.USER_ADDRESS_NAME + '">'
+                        + '<input type="hidden" id="dstnPostNo" name="dstnPostNo" value="' + this.USER_ADDRESS_ADDRESS1 + '">'
+                        + '<input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr" value="' + this.USER_ADDRESS_ADDRESS2 + '">'
+                        + '<input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="' + this.USER_ADDRESS_ADDRESS3 + '">'
+                        + '<p class="name">' + this.USER_ADDRESS_NAME + '<span class="tag red">기본 배송지</span></p>'
+                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + this.USER_ADDRESS_ADDRESS2 + this.USER_ADDRESS_ADDRESS3 + '</p>'
+                        + '<p class="tel" id="mobile">' + this.USER_ADDRESS_PHONE_NUM + '</p>'
+                        + '<div class="btngroup abs"><button id="modifyDstnAdr" name="modifyDstnAdr"class="btn btn-linelgray small30"><span>수정</span></button></div></li>';
+                }
+                else {
+                    str +=  '<li><input type="hidden" name="dstnSeq" value="' + this.USER_ADDRESS_SEQ + '">'
+                        + '<input type="hidden" id="baseYn" name="baseYn" value="' + this.BASIC_ADDRESS + '">'
+                        + '<input type="hidden" id="rcvCustNm" name="rcvCustNm" value="' + this.USER_ADDRESS_NAME + '">'
+                        + '<input type="hidden" id="dstnPostNo" name="dstnPostNo" value="' + this.USER_ADDRESS_ADDRESS1 + '">'
+                        + '<input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr" value="' + this.USER_ADDRESS_ADDRESS2 + '">'
+                        + '<input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="' + this.USER_ADDRESS_ADDRESS3 + '">'
+                        + '<p class="name">' + this.USER_ADDRESS_NAME + '</p>'
+                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + this.USER_ADDRESS_ADDRESS2 + this.USER_ADDRESS_ADDRESS3 + '</p>'
+                        + '<p class="tel" id="mobile">' + this.USER_ADDRESS_PHONE_NUM + '</p>'
+                        + '<button name="setBaseDstnAdr" class="btn btn-linelgray small30" data-dstnseq="'+ this.USER_ADDRESS_SEQ +'"><span>기본배송지로</span></button>'
+                        + '<div class="btngroup abs"><button id="modifyDstnAdr" name="modifyDstnAdr"class="btn btn-linelgray small30"><span>수정</span></button>'
+                        + '<button id="deleteDstnAdr" name="deleteDstnAdr" class="btn btn-linelgray small30"><span>삭제</span></button></div></li>';
+                }
+            });
+            $(".delivery-box .list").html(str);
+        });
+    }
+
     jQuery(function($){
-
-
-
-        $("button[name=deleteDstnAdr]").click(function() {
+        $(document).on('click', 'button[name=deleteDstnAdr]',function() {
             dstnSeqforDelete = $(this).parents("li").find("input[name=dstnSeq]").val();
             $("#deliveryDrop").modal().show();
         });
 
-
-        $("button[name=modifyDstnAdr]").click(function() {
+        $(document).on('click', 'button[name=modifyDstnAdr]',function() {
             var dstnSeq = $(this).parents("li").find("input[name=dstnSeq]").val();
             window.open("/p/mpd/selectAddDstnAdr.do?type=update&dstnSeq=" + dstnSeq, "MPDAddDstnAdr", "width=645, height=783, style:overflow-x:hidden, overflow-y:hidden");
         });
@@ -141,15 +183,33 @@
             window.open("/p/mpd/selectAddDstnAdr.do?type=new", "MPDAddDstnAdr", "width=645, height=783, style:overflow-x:hidden, overflow-y:hidden");
         });
 
-
-        $("button[name=setBaseDstnAdr]").click(function() {
+        $(document).on('click', 'button[name=setBaseDstnAdr]',function() {
             var dstnSeq = $(this).data("dstnseq");
-            $("form[name=updateBaseYn]").append("<input type='hidden' name='baseYn' value='Y'/>");
-            $("form[name=updateBaseYn]").append("<input type='hidden' name='dstnSeq' value='"+dstnSeq+"'/>");
-            $("form[name=updateBaseYn]").submit();
+
+            console.log(dstnSeq);
+            console.log("클릭");
+
+            $.ajax({
+                type : "get",
+                url : "baseDelivery?adno=" + dstnSeq,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
+                // headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" },
+                dataType : "text",
+                success : function (result) {
+                    console.log("result : " + result);
+                    if (result == "baseSuccess") {
+                        console.log("기본 배송지 변경 완료!");
+                        getDeliverys(); // 댓글 목록 갱신
+                    }
+                }
+            });
         })
 
     })
+
+
 
     // 배송지 삭제를 위한 전역변수
     var dstnSeqforDelete = "";
@@ -157,8 +217,29 @@
         if (isEmpty(dstnSeqforDelete)) {
             return false;
         }
-        $("form[name=deleteDstnAdrForm]").append("<input type='hidden' name='dstnSeq' value='"+dstnSeqforDelete+"'/>");
-        $("form[name=deleteDstnAdrForm]").submit();
+        // $("form[name=deleteDstnAdrForm]").append("<input type='hidden' name='dstnSeq' value='"+dstnSeqforDelete+"'/>");
+        // $("form[name=deleteDstnAdrForm]").submit();
+
+
+        console.log(dstnSeqforDelete);
+
+        $.ajax({
+            type : "get",
+            url : "deleteDelivery?adno=" + dstnSeqforDelete,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            // headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" },
+            dataType : "text",
+            success : function (result) {
+                console.log("result : " + result);
+                if (result == "delSuccess") {
+                    console.log("댓글 삭제 완료!");
+                    $("#deliveryDrop").modal().hide(); // Modal 닫기
+                    getDeliverys(); // 댓글 목록 갱신
+                }
+            }
+        });
     }
 
     function refreshPage() {

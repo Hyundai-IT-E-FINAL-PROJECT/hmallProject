@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -44,7 +45,8 @@
                                 <p class="txt">회원등급:  ${pinfo.userVO.user_level}</p>
                             </div>&nbsp;&nbsp;
                             <div class="txt-wrap">
-                                <p class="txt">적립금:  ${pinfo.userVO.user_point}</p>
+                                <p class="txt">적립금:  <fmt:formatNumber value="${pinfo.userVO.user_point}"
+                                                                       pattern="#,###"/></p>
                             </div>&nbsp;&nbsp;
                             <div class="txt-wrap">
                                 <p class="txt">쿠폰:  ${couponCount}</p>
@@ -99,7 +101,8 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                                <span class="price"> <strong>${history.PRODUCT_COST}</strong>원 </span>
+                                                                <span class="price"> <strong><fmt:formatNumber value="${history.PRODUCT_COST}"
+                                                                                                               pattern="#,###"/></strong>원 </span>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -157,13 +160,15 @@
                                 <li>
                                     <div class="tit-wrap" style="width: 200px">결제금액</div>
                                     <div class="txt-wrap">
-                                        <p class="txt">${historyOrder[0].ORDER_TOTAL_COST}</p>
+                                        <p class="txt"><fmt:formatNumber value="${historyOrder[0].ORDER_TOTAL_COST}"
+                                                                         pattern="#,###"/>원</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="tit-wrap" style="width: 200px">적립예정금액</div>
                                     <div class="txt-wrap">
-                                        <p class="txt">${historyOrder[0].ORDER_POINT}</p>
+                                        <p class="txt"><fmt:formatNumber value="${historyOrder[0].ORDER_POINT}"
+                                                                         pattern="#,###"/>포인트</p>
                                     </div>
                                 </li>
                                 <li>

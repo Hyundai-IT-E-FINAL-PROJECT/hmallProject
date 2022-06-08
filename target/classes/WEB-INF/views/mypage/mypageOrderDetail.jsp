@@ -120,7 +120,7 @@
                             <dl>
                                 <dt>배송메모</dt>
                                 <dd name="dsrvCoMsg">
-                                    배송메모 컬럼 있어야 할 듯
+                                    ${list[0].ORDER_MESSAGE}
                                 </dd>
                             </dl>
                         </div>
@@ -201,28 +201,28 @@
 
                                     <div class="paycase">
                                         <p class="case-tit">
-                                            <strong>무통장입금</strong>
-                                            <span><strong>15,000</strong>원
+                                            <strong>${list[0].ORDER_METHOD}</strong>
+                                            <span><strong>${list[0].ORDER_TOTAL_COST}</strong>원
 
                                                             </span>
                                         </p>
                                     </div>
 
-                                    <div class="paycase"></div> <!-- 무통장 한 건이면 div하나 추가해준다. 퍼블에서 요청 -->
+<%--                                    <div class="paycase"></div> <!-- 무통장 한 건이면 div하나 추가해준다. 퍼블에서 요청 -->--%>
 
-                                    <dl class="list">
+<%--                                    <dl class="list">--%>
 
-                                        <dt>KB국민은행</dt>
-                                        <dd><strong>130290-71-205907</strong>
-                                            <div class="btngroup">
-                                                <button type="button" class="btn btn-linelgray small25" onclick=""><span>복사</span></button>
-<%--                                                copyEcrytFncIstnNo(this);--%>
-                                            </div>
-                                        </dd>
-                                        <dt>입금자명</dt>
-                                        <dd>김민수</dd>
+<%--                                        <dt>KB국민은행</dt>--%>
+<%--                                        <dd><strong>130290-71-205907</strong>--%>
+<%--                                            <div class="btngroup">--%>
+<%--                                                <button type="button" class="btn btn-linelgray small25" onclick=""><span>복사</span></button>--%>
+<%--&lt;%&ndash;                                                copyEcrytFncIstnNo(this);&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                        </dd>--%>
+<%--                                        <dt>입금자명</dt>--%>
+<%--                                        <dd>김민수</dd>--%>
 
-                                    </dl>
+<%--                                    </dl>--%>
 
 
 
