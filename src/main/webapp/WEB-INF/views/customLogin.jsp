@@ -227,6 +227,7 @@
 </div>
 </body>
 </html>
+<<<<<<< HEAD
 <%--<script>--%>
 <%--    function close_popup(){--%>
 <%--        console.log("도착");--%>
@@ -250,3 +251,29 @@
 <%--       });--%>
 <%--    }--%>
 <%--</script>--%>
+=======
+<script>
+    function close_popup(){
+        console.log("도착");
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        console.log(username);
+        console.log(password);
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+       $.ajax({
+           url:"/login",
+           type:"post",
+           data:{"username":username,"password":password},
+           dataType:"text",
+           beforeSend:function (xhr){
+               xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+           },success: function (data){
+               // console.log(data);
+               parent.opener.parent.location.reload();
+               window.close();
+           }
+       });
+    }
+</script>
+>>>>>>> 0ce5d7f (pull)
