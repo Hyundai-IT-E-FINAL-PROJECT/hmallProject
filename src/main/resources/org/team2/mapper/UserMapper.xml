@@ -39,7 +39,7 @@
                      #{user_email_receive},
                      #{user_sms_receive},
                      0,
-                     0,
+                     '실버',
                      1,
                      0,
                      0)

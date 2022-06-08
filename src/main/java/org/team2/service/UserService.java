@@ -27,7 +27,7 @@ public interface UserService {
 
     UserVO readPoint(Long user_seq) throws Exception;
 
-//    public int idCheck(String id) throws  Exception;
+    //public int idCheck(String id) throws  Exception;
 
     List<AddressVO> readAddress(Long user_seq) throws Exception;
 
