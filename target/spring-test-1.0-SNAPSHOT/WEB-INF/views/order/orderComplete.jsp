@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -77,7 +78,8 @@
                                                                     </li>
                                                                 </ul>
                                                             </div>
-                                                            <span class="price"> <strong>${history.PRODUCT_COST}</strong>원 </span>
+                                                            <span class="price"> <strong><fmt:formatNumber value="${history.PRODUCT_COST}" pattern="#,###"/>
+                                                                    </strong>원 </span>
                                                         </div>
                                                     </a>
                                                 </dd>
