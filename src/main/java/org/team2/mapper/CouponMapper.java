@@ -11,4 +11,6 @@ public interface CouponMapper {
     int deleteCoupon(Long coupon_seq) throws Exception;
 
     CouponVO couponDiscount(Long coupon_seq) throws Exception;
+
+    int couponCount(Long user_seq) throws Exception;
 }

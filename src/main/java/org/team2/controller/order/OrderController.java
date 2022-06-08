@@ -35,9 +35,11 @@ public class OrderController {
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("order");
 
+        int couponCount=couponService.couponCount(Long.valueOf(principal.getName()));
+
         List<Map<String, Object>> historyOrder=orderService.justanOrderSelect(order_seq);
         log.info(historyOrder);
-
+        mav.addObject("couponCount", couponCount);
         mav.addObject("historyOrder", historyOrder);
         mav.addObject("cssFileList", styleFileList);
         mav.setViewName("order.orderComplete");
