@@ -590,16 +590,20 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                 </div>
                             </div>
                             <script type="text/javascript">
-                                //TODO: 화면에서는 적용되게 보이고 최종적으로 결제됐을 때 user의 point와 deposit를 바꿔준다.
+                                //화면에서는 적용되게 보이고 최종적으로 결제됐을 때 user의 point와 deposit를 바꿔준다.
                                 function useUserPoint(){
                                     var willUse=$("input[name='userPoint']").val();
                                     if (willUse>${userPoint}) {
                                         alert("보유 적립금보다 금액이 큽니다!");
                                         $("#userPoint").val(0);
                                     }else{
-                                        alert("적용되었습니다!");
                                         $("#totalUserPoint").val(willUse);
-                                        applyDiscount();
+                                        if(applyDiscount()==="ok"){
+                                            alert("적용되었습니다!");
+                                        }else{
+                                            $("#userPoint").val(0);
+                                            $("#totalUserPoint").val(0);
+                                        }
                                     }
                                 }
                                 function cancelPoint(){
@@ -614,9 +618,13 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         alert("보유 적립금보다 금액이 큽니다!");
                                         $("#userPoint").val(0);
                                     }else{
-                                        alert("적용되었습니다!");
                                         $("#totalDepositPoint").val(willUse);
-                                        applyDiscount();
+                                        if(applyDiscount()==="ok"){
+                                            alert("적용되었습니다!");
+                                        }else{
+                                            $("#userPoint").val(0);
+                                            $("#totalDepositPoint").val(0);
+                                        }
                                     }
                                 }
                                 function cancelDepositPoint(){
@@ -630,9 +638,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     var discount1=$("input[name='totalUserPoint']").val();
                                     var discount2=$("input[name='totalDepositPoint']").val();
                                     var discount3=$("input[name='totalCouponPoint']").val();
-                                    //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
                                     totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-parseInt(discount3);
+
+                                    if(totalCost<0){
+                                        alert("할인 금액이 결제할 금액보다 큽니다!");
+                                        return "deny";
+                                    }
                                     $("#totalCost1").val(totalCost);
+                                    return "ok";
                                 }
                             </script>
 
@@ -750,62 +763,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                             </div>
                         </div> <!-- chkStlmType() 2번째 종료 -->
 
-
-                        <%--                        <div class="box-toggle">--%>
-                        <%--                            <h3>--%>
-                        <%--                                <button data-modules-collapse="" class="accordion-trigger" aria-expanded="false">--%>
-                        <%--                                    <span class="row-title">총 결제금액</span>--%>
-                        <%--                                    <span class="row-value color-ff5340">--%>
-                        <%--		                                            <em class="tag" id="main_totDiscountRate" style="display: none;"></em>--%>
-                        <%--		                                            <strong id="main_totPayAmt">--%>
-                        <%--                                                        <input value=99000 id="totalCost" name="totalCost" style="border: none; width: 80px; "/>--%>
-                        <%--                                                    </strong>원--%>
-                        <%--		                                        </span>--%>
-                        <%--                                    <i class="icon"></i>--%>
-                        <%--                                </button>--%>
-                        <%--                            </h3>--%>
-                        <%--                            <div class="accordion-panel" role="region" aria-label="">--%>
-                        <%--                                <ul class="row-list">--%>
-                        <%--                                    <li>--%>
-                        <%--                                        <div class="row-title">--%>
-                        <%--                                            <p class="tit">주문금액</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                        <div class="row-value">--%>
-                        <%--                                            <p class="price"><strong id="main_orderAmt">99,000</strong>원</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                    </li>--%>
-
-                        <%--                                    <li>--%>
-                        <%--                                        <div class="row-title">--%>
-                        <%--                                            <p class="tit">할인금액</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                        <div class="row-value">--%>
-                        <%--                                            <p class="price"><strong id="main_discountAmt">--%>
-                        <%--                                                <input value="0" id="couponCost" name="couponCost" style="border: none; width: 50px; "/>--%>
-                        <%--                                            </strong>원</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                    </li>--%>
-                        <%--                                    <li>--%>
-                        <%--                                        <div class="row-title">--%>
-                        <%--                                            <p class="tit">배송비</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                        <div class="row-value">--%>
-                        <%--                                            <p class="price"><strong id="main_dlvcAmt">0</strong>원</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                    </li>--%>
-                        <%--                                    <li>--%>
-                        <%--                                        <div class="row-title">--%>
-                        <%--                                            <p class="tit">배송비 할인</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                        <div class="row-value">--%>
-                        <%--                                            <p class="price"><strong id="main_discountDlvcAmt">0</strong>원</p>--%>
-                        <%--                                        </div>--%>
-                        <%--                                    </li>--%>
-                        <%--                                </ul>--%>
-                        <%--                            </div>--%>
-                        <%--                        </div>--%>
-
-
                         <div class="sticky-ui-wrapper util-option-sticky">
                             <div class="sticky-placeholder" style=""></div>
                             <div class="util-option sticky" data-modules-sticky="padding:-40;breakPoint:.container;className:util-option-sticky;" style="">
@@ -915,29 +872,27 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         }
 
         function orderProcess(){
+
+            // 운송장 번호 랜덤 추출(같은 자리수)
+            function randomNum (lower, upper) {
+                return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+            }
+            let invoiceNum=randomNum (1000000000, 9999999999);
+
+
             //적립금
             var total_price=$("input[name='totalCost1']").val();
             var point1=parseInt(total_price)*0.05;
             var point2=(parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val());
 
-
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
-
-            // for (const item of $("input[name='basketList']").val()){
-            //     console.log(item);
-            // }
 
             let basket_list=[];
             let product_list=[];
 
-            //tbl_op 삽입시 필요한 컬럼들을  json으로 묶음
             let opData=[];
             for(var i=0; i< parseInt($("input[name='basketListLength']").val()); ++i){
-                // opData.push({
-                //    "basket_count":$("input[name='" + 'baCount'+String(i) + "']").val(),
-                //     "product_seq:":$("input[name='" + 'prSeq'+String(i) + "']").val()
-                // });
                 basket_list.push($("input[name='" + 'baCount'+String(i) + "']").val());
                 product_list.push($("input[name='" + 'prSeq'+String(i) + "']").val())
             }
@@ -951,15 +906,12 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 userName: $("input[name='order_user_name']").val(), //주문한 사람
                 userNumber:$("input[name='phoneNumber1']").val(),
                 delivery:$("input[name='order_delivery1']").val(), //상세주소
-                invoice:20492593, //랜덤으로 주기
+                invoice:invoiceNum, //랜덤으로 주기
                 totalCost:total_price,
                 message:$("input[name='order_message']").val(),
                 //productVO
                 product_seq:$("input[name='product_seq']").val(),
                 user_deposit:$("input[name='totalDepositPoint']").val(),
-                op_count:1, //주문한 상품 개수, basket_count로 바꾸기
-                // opData: JSON.stringify(opData)// 상품별 개수 op테이블에 넣을 데이터
-                // opData:opData
                 "basket_list":basket_list,
                 "product_list":product_list,
                 coupon_seq:$("input[name='couponName']:checked").val(),
@@ -1017,28 +969,31 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 },
                 success:function(discount){
                     console.log('쿠폰 할인가격: ', parseInt(discount));
-                    // var totalCost=90000;
                     discount=parseInt(discount);
-                    //couponSeq=$("input[name='couponName']:checked").val(); //coupon Sequence값을 불러들임.
-                    //쿠폰Seq에 따른 cost를 불러와야 함
-                    //discountCost=$("input[name='coupon_cost']").val();
-                    //totalCouponPoint
                     //가격 할인
                     if(discount>100){
                         totalCost=parseInt(totalCost)
-                        $("#couponDiscount").val(discount);
-                        $("#totalCouponPoint").val(discount);
+
                         var discount1=$("input[name='totalUserPoint']").val();
                         var discount2=$("input[name='totalDepositPoint']").val();
-                        //parseInt(totalCost)-(parseInt(totalCost)*(discount/100));
+
                         totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-discount;
+                        if(totalCost<0){
+                            alert("할인 금액이 결제할 금액보다 큽니다!");
+                            return;
+                        }
+                        $("#couponDiscount").val(discount);
+                        $("#totalCouponPoint").val(discount);
                         $("#totalCost1").val(totalCost);
                     }else{//비율 할인
                         var ratioCost=parseInt(totalCost)*(discount/100);
+                        totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-ratioCost;
+                        if(totalCost<0){
+                            alert("할인 금액이 결제할 금액보다 큽니다!");
+                            return;
+                        }
                         $("#couponDiscount").val(ratioCost);
                         $("#totalCouponPoint").val(ratioCost);
-                        totalCost=totalCost-parseInt(discount1)-parseInt(discount2)-ratioCost;
-                        //$("#couponCost").val(parseInt(totalCost)*(discount/100));
                         $("#totalCost").val(totalCost);
                     }
                     $('#pec007').modal().hide();
