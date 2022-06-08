@@ -97,5 +97,21 @@ public class MypageServiceImpl implements MypageService {
         return map;
     }
 
+    @Override
+    public int deleteDelivery(long adno) throws Exception{
+        return mypageMapper.deleteDelivery(adno);
+    }
+
+    @Override
+    public int baseDelivery(long adno) throws Exception {
+        int result1 = mypageMapper.changeDelivery();
+        int result2 = mypageMapper.baseDelivery(adno);
+
+        if(result1 == 1 && result2 == 1) {
+            return 1;
+        }
+        return 0;
+    }
+
 
 }
