@@ -889,7 +889,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             //적립금
             var total_price=$("input[name='totalCost1']").val();
             var point1=Math.ceil(parseInt(total_price)*0.05);
-            var point2=Math.ceil(parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val());
+            var point2=Math.ceil((parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val()));
 
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
