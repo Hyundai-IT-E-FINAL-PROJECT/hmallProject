@@ -210,19 +210,21 @@ public class UserController {
         return "user.find_pw_with_email";
     }
 
-    @RequestMapping(value = "/find_pw_email_check")
+    @PostMapping(value = "/find_pw_email_check")
     public ModelAndView find_pw_email_check(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws  Exception{
+        log.info("이메일 컨트롤러 도착");
         String email = (String)request.getParameter("user_email");
         String name = (String)request.getParameter("user_name");
         log.info(email);
         log.info(name);
         UserVO vo = userService.find_pw(email);
-
+        log.info(vo);
         if(vo != null){
             Random r = new Random();
             int num = r.nextInt(999999);
 
             if(vo.getUser_name().equals(name)){
+
                 session.setAttribute("email",vo.getUser_email());
 
                 String setfrom ="test@gmail.com";
@@ -248,6 +250,7 @@ public class UserController {
                 ModelAndView mav = new ModelAndView();
                 mav.setViewName("user.pw_auth");
                 mav.addObject("num", num);
+                log.info("user.pw_auth 로 이동");
                 return mav;
             }else {
                 ModelAndView mav = new ModelAndView();
