@@ -22,6 +22,11 @@ public class BasketSerivceImpl implements BasketService{
     }
 
     @Override
+    public void addBasket(Long user_seq, Long product_seq, Long basket_count) {
+        basketMapper.addBasket(user_seq, product_seq, basket_count);
+    }
+
+    @Override
     public BasketVO directBuy(Map<String, Long> map) {
         return basketMapper.directBuy(map);
     }

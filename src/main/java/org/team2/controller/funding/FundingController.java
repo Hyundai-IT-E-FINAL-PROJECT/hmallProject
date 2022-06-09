@@ -30,4 +30,19 @@ public class FundingController {
         mav.addObject("className", "wrap display-3depth");
         return mav;
     }
+
+    @GetMapping( "detail")
+    public ModelAndView openFundingDetail(){
+        log.info("fundingMain 접속");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("funding.fundingDetail");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("search");
+        styleFileList.add("display");
+        styleFileList.add("prd-list");
+
+        mav.addObject("cssFileList", styleFileList);
+        mav.addObject("className", "wrap display-3depth");
+        return mav;
+    }
 }

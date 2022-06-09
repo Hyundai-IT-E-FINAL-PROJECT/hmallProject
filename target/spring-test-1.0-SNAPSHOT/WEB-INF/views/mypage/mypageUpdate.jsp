@@ -17,10 +17,10 @@
   <div class="container">
 
 
-      <input type="hidden" name="userid" value="${pinfo.userVO.user_id}">
-      <input type="hidden" name="userGender" value="${pinfo.userVO.user_gender}">
-      <input type="hidden" name="emailyn" value="${pinfo.userVO.user_email_receive}">
-      <input type="hidden" name="smsyn" value="${pinfo.userVO.user_sms_receive}">
+      <input type="hidden" name="userid" value="${userVO.user_id}">
+      <input type="hidden" name="userGender" value="${userVO.user_gender}">
+      <input type="hidden" name="emailyn" value="${userVO.user_email_receive}">
+      <input type="hidden" name="smsyn" value="${userVO.user_sms_receive}">
 
       <div class="gird-l2x">
           <%@ include file="mypageSide.jsp" %>
@@ -61,13 +61,13 @@
                   <tr>
                     <th scope="row" class="txt-left">이름</th>
                     <td>
-                      <span id="baseInfoName">${pinfo.userVO.user_name}</span>
+                      <span id="baseInfoName">${userVO.user_name}</span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row" class="txt-left">아이디</th>
                     <td>
-                      <span id="baseInfoId">${pinfo.userVO.user_id}</span>
+                      <span id="baseInfoId">${userVO.user_id}</span>
                     </td>
                   </tr>
                   <tr>
@@ -92,8 +92,8 @@
 
                     <td>
 
-                      <sec:authentication property="principal" var="pinfo" />
-                      <span id="baseInfoMobilePhone">대한민국 (82) - ${pinfo.userVO.user_phone}</span>
+
+                      <span id="baseInfoMobilePhone">대한민국 (82) - ${userVO.user_phone}</span>
                       <input type="hidden" id="cnryNm" value="대한민국 (82)">
                       <button type="button" class="btn btn-linelgray small30" onclick="popChangeMobilePhone();"><span>수정</span></button>
                     </td>
@@ -116,8 +116,7 @@
                   <tr>
                     <th scope="row" class="txt-left">닉네임</th>
                     <td>
-                      <sec:authentication property="principal" var="pinfo" />
-                      <span id="baseInfoNickname">${pinfo.userVO.user_nickname}</span>
+                      <span id="baseInfoNickname">${userVO.user_nickname}</span>
                       <button type="button" class="btn btn-linelgray small30" onclick="$('#changeNicknamePup').modal().show()"><span>등록</span></button>
                     </td>
                   </tr>
@@ -126,14 +125,13 @@
                   <tr>
                     <th scope="row" class="txt-left">이메일</th>
                     <td>
-                      <sec:authentication property="principal" var="pinfo" />
-                      <span id="baseInfoEmail">${pinfo.userVO.user_email}</span>
+                      <span id="baseInfoEmail">${userVO.user_email}</span>
                       <button type="button" class="btn btn-linelgray small30" onclick="popChangeEmail();"><span>수정</span></button>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row" class="txt-left">생년월일</th>
-                    <td><span id="baseInfoBirthday"><fmt:formatDate value="${pinfo.userVO.user_birth}" pattern="yyyy년 MM월 dd일"/></span>
+                    <td><span id="baseInfoBirthday"><fmt:formatDate value="${userVO.user_birth}" pattern="yyyy년 MM월 dd일"/></span>
                       <button type="button" class="btn btn-linelgray small30" onclick="$('#changeBirthdayPup').modal().show()"><span>수정</span></button>
                     </td>
                   </tr>
@@ -696,7 +694,7 @@
 
       var csrfHeaderName = "${_csrf.headerName}";
       var csrfTokenValue = "${_csrf.token}";
-      var user_id = "${pinfo.userVO.user_id}"
+      var user_id = $('input[name="userid"]').val();
 
       $.ajax({
         type: "post"
@@ -1272,8 +1270,8 @@
     var csrfHeaderName = "${_csrf.headerName}";
     var csrfTokenValue = "${_csrf.token}";
 
-    var userid = "${pinfo.userVO.user_id}";
-    var userPassword = "${pinfo.userVO.user_pw}";
+    var userid = $('input[name="userid"]').val();
+    var userPassword = "${userVO.user_pw}";
 
     if (confirm("비밀번호를 수정하시겠습니까?")) {
       $.ajax({
@@ -1527,8 +1525,7 @@
 
     var csrfHeaderName = "${_csrf.headerName}";
     var csrfTokenValue = "${_csrf.token}";
-    var user_id = "${pinfo.userVO.user_id}";
-
+    var user_id = $('input[name="userid"]').val();
     if (confirm("생년월일을 수정하시겠습니까?")) {
       $.ajax({
         type: "POST"
@@ -1758,7 +1755,6 @@
         }
         ,success: function(data) {
           if (data === "success") {
-            getNewInfo("check");
             confirmMk();
           }
         }
@@ -1926,7 +1922,7 @@
   }
 
   function getNewInfo(type){
-    $.getJSON("${contextPath}/getUserInfo/"+${pinfo.userVO.no}, function (data){
+    $.getJSON("/getUserInfo", function (data){
       console.log(data);
       var str = "";
 
@@ -1946,20 +1942,6 @@
           $('#baseInfoBirthday').empty();
           str += year + "년 " + month + "월 " + date + "일";
           $('#baseInfoBirthday').html(str);
-        }
-        else if (type === "check") {
-          var emailYN = document.querySelector('input[name="emailyn"]');
-          var smsYN = document.querySelector('input[name="smsyn"]');
-          var genderCK = document.querySelector('input[name="userGender"]');
-          console.log(this.user_email_receive + " " + this.user_sms_receive + " " + this.user_gender);
-
-          emailYN.value = this.user_email_receive;
-          smsYN.value = this.user_sms_receive;
-          genderCK.value = this.user_gender;
-
-          // $('input[name="emailyn"]').val(this.user_email_receive);
-          // $('input[name="smsyn"]').val(this.user_sms_receive);
-          // $('input[name="userGender"]').val('this.user_gender');
         }
       })
     });

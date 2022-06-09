@@ -22,6 +22,7 @@ import org.team2.domain.AddressVO;
 import org.team2.domain.DepositVO;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
+import org.team2.service.CouponService;
 import org.team2.service.ExhibitService;
 import org.team2.service.MypageService;
 import org.team2.service.UserService;
@@ -49,7 +50,9 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
-    public Date date;
+    @Setter(onMethod_ = @Autowired)
+    private CouponService couponService;
+
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(Principal principal) throws Exception {
@@ -63,6 +66,9 @@ public class MypageController {
 
         try {
             Map map = mypageService.recentOrders(no);
+            int couponCount=couponService.couponCount(Long.valueOf(principal.getName()));
+
+            mav.addObject("couponCount", couponCount);
             mav.addObject("list", map.get("resultList"));
             mav.addObject("className", "wrap mp-main");
             mav.addObject("cssFileList", styleFileList);
@@ -262,13 +268,16 @@ public class MypageController {
 
     @RequestMapping("mypageUpdate")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView update() {
+    public ModelAndView update(Principal principal) throws Exception {
         log.info("update test");
 
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
 
         ModelAndView mav = new ModelAndView();
+        UserVO userVO = userService.readPoint(Long.valueOf(principal.getName()));
+
+        mav.addObject("userVO", userVO);
         mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageUpdate");
 
@@ -337,11 +346,10 @@ public class MypageController {
     public ResponseEntity<Object> baseDelivery(@RequestParam("adno") long adno) throws Exception {
 
         ResponseEntity<Object> entity = null;
-
-        int result = mypageService.baseDelivery(adno);
+        mypageService.baseDelivery(adno);
 
         try {
-            if (result == 1) entity = new ResponseEntity<>("baseSuccess", HttpStatus.OK);
+            entity = new ResponseEntity<>("baseSuccess", HttpStatus.OK);
         }
         catch (Exception e) {
             entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -349,6 +357,7 @@ public class MypageController {
 
         return entity;
     }
+
 
     @RequestMapping("mypageLeave")
     @PreAuthorize("isAuthenticated()")
@@ -460,14 +469,13 @@ public class MypageController {
     }
 
     // 마이페이지 회원 정보 수정한 것을 다시 보여주기 위해 user정보를 조회하는 컨트롤러
-    @RequestMapping(value = "getUserInfo/{no}")
-    public ResponseEntity<List<UserVO>> list(@PathVariable("no") long no) throws Exception{
+    @RequestMapping(value = "getUserInfo")
+    public ResponseEntity<List<UserVO>> list(Principal principal) throws Exception{
         log.info("getUserInfo Mapping 완료");
-        log.info(no);
+
         ResponseEntity<List<UserVO>> entity = null;
-        List<UserVO> list_2 = userService.getUserinfo(no);
-        log.info(list_2);
-        entity = new ResponseEntity<List<UserVO>>(userService.getUserinfo(no),HttpStatus.OK);
+
+        entity = new ResponseEntity<List<UserVO>>(userService.getUserinfo(Long.parseLong(principal.getName())),HttpStatus.OK);
         log.info(entity);
         return entity;
     }
@@ -519,13 +527,14 @@ public class MypageController {
     public ResponseEntity<String> checkUpdate (@RequestParam("emaailval") String emaailval,
                                                @RequestParam("smsval") String smsval,
                                                @RequestParam("genderval") String genderval,
-                                               @RequestParam("userid") String userid) throws Exception {
+                                               @RequestParam("userid") String userid,
+                                               Principal principal, UserVO userVO) throws Exception {
         ResponseEntity<String> entity = null;
 
-        log.info(emaailval);
-        log.info(smsval);
-        log.info(genderval);
-        log.info(userid);
+        userVO.setUser_email_receive(emaailval);
+        userVO.setUser_sms_receive(smsval);
+        userVO.setUser_gender(genderval);
+
         try {
             mypageService.checkUpdate(emaailval, smsval, genderval, userid);
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
@@ -546,5 +555,15 @@ public class MypageController {
         kc.setMaxAge(0);
         response.addCookie(kc);
         return "redirect:/";
+    }
+
+    // 마이페이지 배송지등록 페이지 추가 버튼 팝업창 컨트롤러
+    @GetMapping("openDeliveryAppendPup")
+    public ModelAndView openOrderListPup(Principal principal) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        log.info("openDeliveryAppendPup  접속");
+
+        mav.setViewName("layerPup/openDeliveryAppendPup.empty");
+        return mav;
     }
 }

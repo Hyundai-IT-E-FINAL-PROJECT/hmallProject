@@ -9,6 +9,8 @@ import java.util.Map;
 public interface BasketService {
      List<BasketVO> getAllByUserSeq(Long user_seq);
 
+     void addBasket(Long user_seq, Long product_seq, Long basket_count);
+
      BasketVO directBuy(Map<String, Long> map);
 
      Map<String, String> getBasketOne(Map<String, Long> map);

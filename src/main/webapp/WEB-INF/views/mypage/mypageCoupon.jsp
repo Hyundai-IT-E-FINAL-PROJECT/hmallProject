@@ -61,7 +61,7 @@
                                         </c:when>
                                         <c:when test="${list.COUPON_RATIO == 0}">
                                             <p class="discount">
-                                                <strong>${list.COUPON_COST}</strong>
+                                                <strong><fmt:formatNumber  value="${list.COUPON_COST}" pattern="#,###"/></strong>
                                                 <b>원 할인</b>
                                             </p>
                                         </c:when>
@@ -72,7 +72,7 @@
                                             <strong>${list.COUPON_NAME}</strong>
                                         </p>
                                         <ul class="coupon-info-list">
-                                            <li> 기준금액: ${list.EXPIRED_COST}원 이상 </li>
+                                            <li> 기준금액: <fmt:formatNumber  value="${list.EXPIRED_COST}" pattern="#,###"/>원 이상 </li>
 
                                             <li>기간: <fmt:formatDate value="${list.CREATED_AT}"/> ~ <fmt:formatDate value="${list.EXPIRED_DATE}"/> </li>
                                         </ul>
