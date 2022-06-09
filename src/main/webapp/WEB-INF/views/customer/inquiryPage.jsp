@@ -2379,21 +2379,11 @@
                     <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
                     <div class="side-menu-list">
                         <ul>
-                            <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                             <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
                             <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                             <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                         </ul>
                     </div>
-                    <!-- // .side-menu-list -->
-
-                    <!--side-info-->
-                    <div class="side-info">
-                        <p class="banner"><strong>현대Hmall</strong><em>1600-0000</em><span>(유료)</span></p>
-                        <p class="banner"><strong>모바일 현대Hmall</strong><em>1600-0009</em><span>(유료)</span></p>
-                        <p class="txt"><span>평일 09:00~20:00<br>주말, 공휴일 휴무</span></p>
-                    </div>
-                    <!--//side-info-->
                 </div>
 
 
@@ -2419,9 +2409,9 @@
                                         <colgroup>
                                             <col style="width:60px">
                                             <col style="width:100px">
-                                            <col style="width:400px">
-                                            <col style="width:100px">
-                                            <col style="width:100px">
+                                            <col style="width:360px">
+                                            <col style="width:120px">
+                                            <col style="width:120px">
                                             <col style="width:100px">
                                         </colgroup>
                                         <thead>
@@ -2455,7 +2445,7 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <td class="txt-left nowrap">${qna.QC_TITLE}</td>
-                                                    <td class="txt-left nowrap">
+                                                    <td class="txt-center nowrap">
                                                         <fmt:formatDate value="${qna.CREATED_AT}" pattern="yyyy-MM-dd"/>
                                                     </td>
                                                     <c:choose>
@@ -2463,7 +2453,7 @@
                                                             <td></td>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <td class="txt-left nowrap">
+                                                            <td class="txt-center nowrap">
                                                                 <fmt:formatDate value="${qna.R_CREATED_AT}" pattern="yyyy-MM-dd"/>
                                                             </td>
                                                         </c:otherwise>

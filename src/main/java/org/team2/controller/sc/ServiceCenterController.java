@@ -28,12 +28,15 @@ public class ServiceCenterController {
     private NoticeService noticeService;
 
     @GetMapping("")
-    public ModelAndView cart() {
+    public ModelAndView main() throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("customer.servicePage");
         //css파일 적용
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("customer");
+        List<NoticeVO> noticeList=noticeService.read();
+        log.info(noticeList);
+        mav.addObject("noticeList", noticeList);
         mav.addObject("cssFileList", styleFileList);
         return mav;
     }

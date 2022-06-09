@@ -1882,7 +1882,7 @@
       },
       success: function () {
         alert("문의가 성공적으로 등록되었습니다!");
-        location.href='${contextPath}/customer/inquiryPage';
+        location.href='${contextPath}/customer/myInquiryPage';
       },
       error: function (request,status,error) {
         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

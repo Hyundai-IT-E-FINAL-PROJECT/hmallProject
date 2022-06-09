@@ -23,5 +23,5 @@ public interface ProductMapper {
 
     List<Map<String, String>> getUserOrder(Long user_seq);
 
-    Map<String, String> getProductInfo(Long order_seq);
+    List<Map<String, String>> getProductInfo(Long order_seq);
 }
