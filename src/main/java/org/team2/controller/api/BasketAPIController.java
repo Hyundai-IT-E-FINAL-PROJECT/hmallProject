@@ -34,6 +34,7 @@ public class BasketAPIController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity insertBasket(Principal principal, @RequestParam("product_seq") Long product_seq, @RequestParam("basket_count") Long basket_count){
         Long user_seq = Long.valueOf(principal.getName());
+        log.info(user_seq);
 
         HttpHeaders resHeader = new HttpHeaders();
         resHeader.add("Content-Type", "application/json; charset=UTF-8");

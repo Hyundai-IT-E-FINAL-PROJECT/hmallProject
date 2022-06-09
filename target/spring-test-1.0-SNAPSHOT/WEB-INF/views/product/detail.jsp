@@ -5424,3 +5424,29 @@
     </main>
 </div>
 <script src="/resources/js/productDetail.js"></script>
+<script language="JavaScript">
+    function go_basket(product_seq) {
+        console.log("go_basket")
+        let ordQtyObj = $("input[name=ordQty]");
+        let ordQty = Number(ordQtyObj.val());
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log(product_seq)
+        console.log(ordQty)
+
+        $.ajax({
+            type: "post"
+            , url: "http://localhost:8080/api/basket/?product_seq=" + product_seq + "&basket_count=" + ordQty
+            , crossDomain: true
+            , beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            }
+            , success: function () {
+                console.log("success")
+                window.location.href = 'http://localhost:8080/basket/basketList';
+            }, error: function () {
+                // window.location.href = 'http://localhost:8080/customLogin';
+            }
+        });
+    }
+</script>
