@@ -9,17 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/login.css">
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/common.css"><!-- 공통 css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/layout.css"><!-- 공통 Layout css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/popup.css"><!-- 공통 Popup css -->
-    <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
-</head>
-<body>
 <div class="popup-win wp-log-hmall" style="display: inline-block;>
     <div class="pop-wrap" tabindex="0">
         <div class="pop-content-wrap">
@@ -221,11 +210,8 @@
                 <!-- //.tabgroup -->
             </div>
         </div>
-
     </div>
 </div>
-</body>
-</html>
 <script>
     function close_popup(){
         console.log("도착");
