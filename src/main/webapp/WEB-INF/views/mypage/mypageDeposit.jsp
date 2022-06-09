@@ -51,8 +51,8 @@
 
             <!--ui-tab-->
             <ul class="ui-tab" role="tablist">
-              <li role="presentation"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em>${pinfo.userVO.user_point}원</em></span></a></li>
-              <li role="presentation" class="ui-active"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em>${pinfo.userVO.user_deposit}원</em></span></a></li>
+              <li role="presentation"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/>원</em></span></a></li>
+              <li role="presentation" class="ui-active"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/>원</em></span></a></li>
             </ul>
             <!--//ui-tab-->
             <!--Tab panes-->
@@ -65,7 +65,7 @@
                     <!--w포인트 , 예치금일 경우 class="point-fl point-only"추가시-->
                     <div class="point-fl point-only">
                       <span class="ctypo17 bold"><em class="name">${pinfo.userVO.user_name}</em>님의 예치금</span>
-                      <span class="txt-point"><em class="mydeposit">${pinfo.userVO.user_deposit}</em>원</span>
+                      <span class="txt-point"><em class="mydeposit"><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/></em>원</span>
                     </div>
                   </div>
                 </div>
@@ -153,10 +153,10 @@
                             </div>
                             <div class="cell">
                               <c:if test="${vo.deposit_use == 0}">
-                                <span class="point-up">+${vo.deposit_save}원</span>
+                                <span class="point-up">+<fmt:formatNumber  value="${vo.deposit_save}" pattern="#,###"/>원</span>
                               </c:if>
                               <c:if test="${vo.deposit_save == 0}">
-                                <span class="point-down">-${vo.deposit_use}원</span>
+                                <span class="point-down">-<fmt:formatNumber  value="${vo.deposit_use}" pattern="#,###"/>원</span>
                               </c:if>
                               <sub></sub>
 

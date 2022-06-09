@@ -63,10 +63,14 @@
     const csrfHeaderName = "${_csrf.headerName}";
     const csrfTokenValue = "${_csrf.token}";
 
-    $(function () {
-        $("#inputPwd").keyup(function () {
+    $("input[name='inputPwd']").keyup(function (e) {
+        if (e.keyCode == 13) {
             $("#passworddBtn").click();
-        })
+        }
+    })
+
+    $(function () {
+
 
         $("#passworddBtn").click(function () {
             let userPwd = document.getElementById("userpwd").value;

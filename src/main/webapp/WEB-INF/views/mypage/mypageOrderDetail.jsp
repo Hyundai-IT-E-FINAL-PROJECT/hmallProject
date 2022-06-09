@@ -43,8 +43,8 @@
                             <input type="hidden" name="lastOrdStatGbcdNm" value="배송완료">
 
                             <dd class="btn-col2"><!-- 버튼 1개일경우 class="btn-col" 추가, 버튼 2개 이상일경우 class="btn-col2" 추가 -->
-                                <a href="javascript:goItemDetail('2137807436');">
-                                    <span class="img"><img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&amp;AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')"></span>
+                                <a href="${contextPath}/product/detail?product_seq=${list.PRODUCT_SEQ}">
+                                    <span class="img"><img src="/resources/img/${list.IMAGE_NAME}.jpg" alt="${list.PRODUCT_NAME}"/></span>
                                     <div class="box">
                                         <c:choose>
                                             <c:when test="${list.ORDER_STATUS eq '주문취소' or list.ORDER_STATUS eq '교환접수' or list.ORDER_STATUS eq '교환완료' or list.ORDER_STATUS eq '반품접수' or list.ORDER_STATUS eq '반품완료'}">
@@ -78,7 +78,8 @@
                                         </div>
 
                                         <span class="price">
-                                            <strong>${list.PRODUCT_COST * list.OP_COUNT}</strong>원
+
+                                            <strong><fmt:formatNumber  value="${list.PRODUCT_COST * list.OP_COUNT}" pattern="#,###"/></strong>원
                                             <c:set var="totalCost" value="${totalCost + list.PRODUCT_COST * list.OP_COUNT}"/>
                                         </span>
                                     </div>
@@ -133,7 +134,7 @@
                                 <dl class="between top">
                                     <dt>총 주문금액</dt>
                                     <dd>
-                                        <strong><c:out value="${totalCost}"/></strong>원
+                                        <strong><fmt:formatNumber  value="${totalCost}" pattern="#,###"/></strong>원
 
 
                                     </dd>
@@ -143,7 +144,7 @@
                                     <dt>주문금액</dt>
                                     <dd>
 
-                                        <strong><c:out value="${totalCost}"/></strong>원
+                                        <strong><fmt:formatNumber  value="${totalCost}" pattern="#,###"/></strong>원
 
                                     </dd>
                                 </dl>
@@ -155,7 +156,7 @@
                                 <span class="minus-icon"><i class="icon"></i></span>
                                 <dl class="between top">
                                     <dt>할인금액</dt>
-                                    <dd><strong><c:out value="${totalCost - list[0].ORDER_TOTAL_COST}"/> </strong>원</dd>
+                                    <dd><strong><fmt:formatNumber  value="${list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원</dd>
                                 </dl>
 
                             </li>
@@ -164,7 +165,7 @@
                                 <dl class="between top">
                                     <dt>잔여 결제 금액</dt>
                                     <dd class="result">
-                                        <strong>${list[0].ORDER_TOTAL_COST}</strong>원
+                                        <strong><fmt:formatNumber  value="${list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원
                                     </dd>
                                 </dl>
 
@@ -202,7 +203,7 @@
                                     <div class="paycase">
                                         <p class="case-tit">
                                             <strong>${list[0].ORDER_METHOD}</strong>
-                                            <span><strong>${list[0].ORDER_TOTAL_COST}</strong>원
+                                            <span><strong><fmt:formatNumber  value="${list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원
 
                                                             </span>
                                         </p>
@@ -238,7 +239,7 @@
 
                                 <dl class="between">
                                     <dt>Point</dt>
-                                    <dd><strong>${list[0].ORDER_POINT}</strong>원</dd>
+                                    <dd><strong><fmt:formatNumber  value="${list[0].ORDER_POINT}" pattern="#,###"/></strong>원</dd>
                                 </dl>
                             </li>
 

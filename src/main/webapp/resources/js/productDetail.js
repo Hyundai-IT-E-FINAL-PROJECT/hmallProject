@@ -1,3 +1,4 @@
+
 const IMAGE_WIDTH = 640;
 /*
  * 속성 수량  더하기

@@ -51,8 +51,9 @@
                     <div class="tabgroup point-tab">
                         <!--ui-tab-->
                         <ul class="ui-tab" role="tablist">
-                            <li role="presentation" class="ui-active"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em>${pinfo.userVO.user_point}원</em></span></a></li>
-                            <li role="presentation"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em>${pinfo.userVO.user_deposit}원</em></span></a></li>
+
+                            <li role="presentation" class="ui-active"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/>원</em></span></a></li>
+                            <li role="presentation"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/>원</em></span></a></li>
                         </ul>
                         <!--//ui-tab-->
                         <!--Tab panes-->
@@ -64,7 +65,7 @@
                                     <div class="point-wrap">
                                         <div class="point-fl">
                                             <span class="ctypo17 bold"><em class="name">${pinfo.userVO.user_name}</em>님의 적립금</span>
-                                            <span class="txt-point"><em class="myreserve"></em>${pinfo.userVO.user_point}원</span>
+                                            <span class="txt-point"><em class="myreserve"></em><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/>원</span>
                                         </div>
                                         <div class="point-fr">
                                             <dl>
@@ -183,10 +184,10 @@
                                             </div>
                                             <div class="cell">
                                                 <c:if test="${list.POINT_USE == 0}">
-                                                    <span class="point-up">+${list.POINT_SAVE}p</span>
+                                                    <span class="point-up">+<fmt:formatNumber  value="${list.POINT_SAVE}" pattern="#,###"/>p</span>
                                                 </c:if>
                                                 <c:if test="${list.POINT_SAVE == 0}">
-                                                    <span class="point-down">-${list.POINT_USE}p</span>
+                                                    <span class="point-down">-<fmt:formatNumber  value="${list.POINT_USE}" pattern="#,###"/>p</span>
                                                 </c:if>
                                                 <sub></sub>
 

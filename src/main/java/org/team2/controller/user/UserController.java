@@ -3,15 +3,10 @@ package org.team2.controller.user;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,18 +16,18 @@ import org.team2.service.AddressService;
 import org.team2.service.UserService;
 
 import javax.mail.internet.MimeMessage;
-import javax.swing.*;
 import java.security.Principal;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Random;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Random;
 
 @Log4j
 @RequestMapping("/user")
@@ -78,6 +73,9 @@ public class UserController {
         log.info("데이터 잘 넘어옴 !");
         log.info(userVO.toString());
         log.info(addressVO.toString());
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("agree");
+        model.addAttribute("cssFileList",styleFileList);
         //log.info("잘된다!");
         try {
             log.info("컨트롤러 :"+ userVO.getNo());
@@ -135,8 +133,11 @@ public class UserController {
     }
 
     @GetMapping("/finduser_info")
-    public String find_user_info(){
+    public String find_user_info(Model model){
         log.info("hi");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.finduser_info";
     }
 
@@ -145,12 +146,16 @@ public class UserController {
     public ModelAndView find_id(UserVO userVO){
 
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
         mav.setViewName("user.find_id");
+        styleFileList.add("login");
         log.info("hi");
         log.info(userVO.getUser_name());
         log.info(userVO.getUser_email());
         try {
             UserVO vo = userService.find_id(userVO);
+
+            mav.addObject("cssFileList", styleFileList);
             mav.addObject("find", vo);
         }catch(Exception e){
             e.printStackTrace();
@@ -182,7 +187,10 @@ public class UserController {
     }
 
     @GetMapping("/find_pw")
-    public String find_user_pw(){
+    public String find_user_pw(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.find_pw";
     }
 
@@ -199,23 +207,30 @@ public class UserController {
     }
 
     @GetMapping("/find_pw_with_email")
-    public String find_pw_with_email(){
+    public String find_pw_with_email(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.find_pw_with_email";
     }
 
-    @RequestMapping(value = "/find_pw_email_check")
+    @PostMapping(value = "/find_pw_email_check")
     public ModelAndView find_pw_email_check(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws  Exception{
+        log.info("이메일 컨트롤러 도착");
         String email = (String)request.getParameter("user_email");
         String name = (String)request.getParameter("user_name");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
         log.info(email);
         log.info(name);
         UserVO vo = userService.find_pw(email);
-
+        log.info(vo);
         if(vo != null){
             Random r = new Random();
             int num = r.nextInt(999999);
 
             if(vo.getUser_name().equals(name)){
+
                 session.setAttribute("email",vo.getUser_email());
 
                 String setfrom ="test@gmail.com";
@@ -241,6 +256,8 @@ public class UserController {
                 ModelAndView mav = new ModelAndView();
                 mav.setViewName("user.pw_auth");
                 mav.addObject("num", num);
+                mav.addObject("cssFileList", styleFileList);
+                log.info("user.pw_auth 로 이동");
                 return mav;
             }else {
                 ModelAndView mav = new ModelAndView();
@@ -258,10 +275,13 @@ public class UserController {
     public ModelAndView pw_set(@RequestParam(value = "checking_email") String checking_email, @RequestParam(value = "num") String num, UserVO userVO ) throws Exception{
         log.info("셋미 도착 ");
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
 //        UserVO vo = new UserVO();
         try {
             if(checking_email.equals(num)){
                 mav.addObject("email",userVO.getUser_email());
+                mav.addObject("cssFileList", styleFileList);
                 mav.setViewName("user.pw_new");
             }else{
 
@@ -274,9 +294,12 @@ public class UserController {
 
     //비밀번호 찾기 후 비밀번호 변경
     @RequestMapping(value = "/newPassWord")
-    public String newPassWord(UserVO userVO) throws Exception{
+    public String newPassWord(UserVO userVO, Model model) throws Exception{
         log.info(userVO.getUser_pw());
         log.info(userVO.getUser_email());
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         int result = userService.newPassword(userVO);
         log.info(result);
         if(result == 1){
@@ -289,7 +312,12 @@ public class UserController {
 
     //약관동의
     @GetMapping("/user_agree")
-    public String user_agree(){
+    public String user_agree(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("agree");
+        styleFileList.add("join");
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         log.info("약관동의");
         return "user.user_agree";
     }

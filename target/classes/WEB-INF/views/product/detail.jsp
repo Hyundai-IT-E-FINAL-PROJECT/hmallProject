@@ -743,7 +743,8 @@
                                         <div class="product-mainbanner slick-initialized slick-slider"
                                              data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
                                             <div class="slick-list">
-                                                <div class="slick-track" style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
+                                                <div class="slick-track"
+                                                     style="opacity: 1; width: 3640px; transform: translate(-520px, 0px);">
                                                     <div class="slick-slide slick-cloned" data-slick-index="-1"
                                                          aria-hidden="true" style="width: 520px;" tabindex="-1">
                                                         <div>
@@ -763,7 +764,9 @@
                                                     <c:forEach items="${imageVOList}" var="imageVO" varStatus="status">
                                                         <c:choose>
                                                             <c:when test="${status.index == 0}">
-                                                                <div class="slick-slide slick-current slick-active" data-slick-index="${status.index}" aria-hidden="true"
+                                                                <div class="slick-slide slick-current slick-active"
+                                                                     data-slick-index="${status.index}"
+                                                                     aria-hidden="true"
                                                                      style="width: 520px;" tabindex="-1">
                                                                     <div>
                                                                         <div class="item" data-item=""
@@ -781,7 +784,9 @@
                                                                 </div>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <div class="slick-slide" data-slick-index="${status.index}" aria-hidden="true"
+                                                                <div class="slick-slide"
+                                                                     data-slick-index="${status.index}"
+                                                                     aria-hidden="true"
                                                                      style="width: 520px;" tabindex="-1">
                                                                     <div>
                                                                         <div class="item" data-item=""
@@ -819,7 +824,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ui-angle" style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
+                                        <div class="ui-angle"
+                                             style="display: none; width: 260px; height: 260px; top: 57px; left: 260px;"></div>
                                     </div>
                                     <div class="slider-thumbnaii no-slick">
                                         <ul>
@@ -846,7 +852,7 @@
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:forEach >
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -966,7 +972,6 @@
                                         <input type="hidden" value="${imageVOList[0].IMAGE_NAME}" name="image_name"/>
 
 
-
                                         <strong class="prduct-name">${productVO.product_name}</strong>
                                         <p class="prduct-origin">
                                             원산지 : 상세설명 / 기본정보 참고
@@ -1033,7 +1038,8 @@
                                                             <p class="saleprice-per">
                                                                 0
                                                                 <em>원 할인</em>
-                                                                <c:set var="total_price" value="${productVO.product_cost}" />
+                                                                <c:set var="total_price"
+                                                                       value="${productVO.product_cost}"/>
                                                             </p>
                                                         </dd>
                                                     </dl>
@@ -1060,7 +1066,7 @@
                                                                               pattern="#,###"/>
                                                         </em>
                                                         <b>원</b>
-                                                        <c:set var="total_price" value="${productVO.discounted_cost}" />
+                                                        <c:set var="total_price" value="${productVO.discounted_cost}"/>
                                                         </del>
                                                     </span>
                                                 <div class="tooltip-box" id="tooltipDiscount">
@@ -1431,14 +1437,15 @@
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 시작-->
 
 
-                                    <button class="btn btn-linelgray large btn-cart">
-                                        <a href="${contextPath}/basket/basketList"><span>장바구니</span></a></button>
+                                    <button class="btn btn-linelgray large btn-cart" onclick="go_basket(${productVO.product_seq})">
+                                        <a><span>장바구니</span></a></button>
 
 
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 끝-->
                                     <!-- 선물하기 시작-->
 
-                                    <button class="btn btn-linelgray large btn-gift"
+                                    <button class=" btn btn-linelgray large btn-gift
+                                    "
                                             onclick="setGiftOrder('Y');buyDirect();"><span>선물하기</span></button>
 
                                     <!-- 선물하기 끝-->
@@ -5392,20 +5399,20 @@
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/901_Insight_WebAnalytics.js"></script>
         <script type="text/javascript" async="" src="//image.hmall.com/p/js/co/tagging.collector-1.3.min.js"></script>
         <script type="text/javascript">
-            function buyDirect(){
+            function buyDirect() {
 
-                var submitForm=$('<form></form>');
+                var submitForm = $('<form></form>');
                 submitForm.attr('action', '${contextPath}/order/od');
-                submitForm.attr('method','post');
+                submitForm.attr('method', 'post');
                 submitForm.appendTo('body');
-                let index=0;
+                let index = 0;
 
-                submitForm.append($("<input name='basketList["+0+"].basket_count' type='hidden'  value='"+$("input[name=ordQty]").val()+"'>"));
+                submitForm.append($("<input name='basketList[" + 0 + "].basket_count' type='hidden'  value='" + $("input[name=ordQty]").val() + "'>"));
                 // submitForm.append($("<input name='basketList["+0+"].basket_seq' type='hidden'  value='"+$("input[name=ordQty]").val()+"'>"));
-                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name=product_seq]").val()+"'>"));
-                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden'  value='${total_price}'>"));
-                submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden'  value='"+$("input[name=product_name]").val()+"'>"));
-                submitForm.append($("<input name='basketList["+0+"].ProductVO.image_name' type='hidden'  value='"+$("input[name=image_name]").val()+"'>"));
+                submitForm.append($("<input name='basketList[" + 0 + "].ProductVO.product_seq' type='hidden' value='" + $("input[name=product_seq]").val() + "'>"));
+                submitForm.append($("<input name='basketList[" + 0 + "].ProductVO.product_cost' type='hidden'  value='${total_price}'>"));
+                submitForm.append($("<input name='basketList[" + 0 + "].ProductVO.product_name' type='hidden'  value='" + $("input[name=product_name]").val() + "'>"));
+                submitForm.append($("<input name='basketList[" + 0 + "].ProductVO.image_name' type='hidden'  value='" + $("input[name=image_name]").val() + "'>"));
 
 
                 submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));

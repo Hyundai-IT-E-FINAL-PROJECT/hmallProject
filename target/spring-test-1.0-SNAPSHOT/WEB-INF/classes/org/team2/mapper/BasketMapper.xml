@@ -11,6 +11,24 @@
             b.user_seq = ${user_seq}
     </select>
 
+    <insert id="addBasket" parameterType="map">
+        INSERT INTO tbl_basket (
+            basket_seq,
+            user_seq,
+            product_seq,
+            basket_count,
+            created_at,
+            updated_at
+        ) VALUES (
+                     seq_basket.NEXTVAL,
+                     #{user_seq},
+                     #{product_seq},
+                     #{basket_count},
+                     sysdate,
+                     sysdate
+                 )
+    </insert>
+
     <resultMap id="basketMap" type="org.team2.domain.BasketVO">
         <result property="basket_seq" column="basket_seq" />
         <result property="basket_count" column="basket_count" />

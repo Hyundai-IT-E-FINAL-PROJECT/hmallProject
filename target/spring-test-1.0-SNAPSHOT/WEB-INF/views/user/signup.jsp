@@ -70,8 +70,6 @@
 
     <script type="text/javascript" src="/js/etc/flatpickr.js"></script>
     <link rel="stylesheet" href="/css/flatpickr.min.css" />
-
-    <--주소 api-->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="/resources/js/addressapi.js"></script>
 
@@ -114,7 +112,7 @@
                                             <!-- <button type="button" class="btn_right btn_typeC2" onclick="checkDuplicateId();"><span>중복확인</span></button> -->
                                             <span class="id_ok" style="color:#008000; display: none;">사용 가능한 아이디 입니다.&nbsp;&nbsp;</span>
                                             <span class="id_already" style="color:#008000; display: none;">누군가 이 아이디를 사용하고 있어요.&nbsp;&nbsp;</span>
-<%--                                            <button class="idCheck" type="button" id="idCheck" onclick="check_id_length();" value="N">아이디 사용하기</button>--%>
+                                            <%--                                            <button class="idCheck" type="button" id="idCheck" onclick="check_id_length();" value="N">아이디 사용하기</button>--%>
                                             <!-- oninput은 사용자의 입력을 받으면 실행되는 이벤트이다. 즉 커서를 다른 곳으로 옮기지 않아도 입력 즉시 DB에서 id를 비교할 수 있다.-->
                                         </div>
                                     </div>
@@ -295,9 +293,12 @@
 
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <button type="button" onclick="joinForm_check();">회원가입</button>
+                            <div class="btn_area btn_ac" style="margin-top: 20px;">
+                                <a href="${contextPath}/" class="btn_typeB1">
+                                    <span>취소</span></a>
+                                <button class="btn_typeB2" onclick="joinForm_check();"><span>회원가입</span></button>
+                            </div>
                         </form>
-
                     </div>
                 </div>
             </section>

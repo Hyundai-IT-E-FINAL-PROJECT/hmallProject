@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @Log4j
 public class CommonController {
@@ -23,6 +26,9 @@ public class CommonController {
     public void loginInput(String error, String logout, Model model){
         log.info("error: "+error);
         log.info("logout: "+logout);
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         if(error != null){
             model.addAttribute("error", "Login Error Check Your Account");
         }
@@ -30,6 +36,7 @@ public class CommonController {
             model.addAttribute("logout","Logout !!!!");
         }
     }
+
     @GetMapping("/customLogout")
     public void logoutGET(){
         log.info("custom Logout");
