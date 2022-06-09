@@ -74,6 +74,9 @@ public class UserController {
         log.info("데이터 잘 넘어옴 !");
         log.info(userVO.toString());
         log.info(addressVO.toString());
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("agree");
+        model.addAttribute("cssFileList",styleFileList);
         //log.info("잘된다!");
         try {
             log.info("컨트롤러 :"+ userVO.getNo());
@@ -146,11 +149,13 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
         mav.setViewName("user.find_id");
+        styleFileList.add("login");
         log.info("hi");
         log.info(userVO.getUser_name());
         log.info(userVO.getUser_email());
         try {
             UserVO vo = userService.find_id(userVO);
+
             mav.addObject("cssFileList", styleFileList);
             mav.addObject("find", vo);
         }catch(Exception e){
@@ -215,6 +220,8 @@ public class UserController {
         log.info("이메일 컨트롤러 도착");
         String email = (String)request.getParameter("user_email");
         String name = (String)request.getParameter("user_name");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
         log.info(email);
         log.info(name);
         UserVO vo = userService.find_pw(email);
@@ -250,6 +257,7 @@ public class UserController {
                 ModelAndView mav = new ModelAndView();
                 mav.setViewName("user.pw_auth");
                 mav.addObject("num", num);
+                mav.addObject("cssFileList", styleFileList);
                 log.info("user.pw_auth 로 이동");
                 return mav;
             }else {
@@ -268,10 +276,13 @@ public class UserController {
     public ModelAndView pw_set(@RequestParam(value = "checking_email") String checking_email, @RequestParam(value = "num") String num, UserVO userVO ) throws Exception{
         log.info("셋미 도착 ");
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
 //        UserVO vo = new UserVO();
         try {
             if(checking_email.equals(num)){
                 mav.addObject("email",userVO.getUser_email());
+                mav.addObject("cssFileList", styleFileList);
                 mav.setViewName("user.pw_new");
             }else{
 
@@ -284,9 +295,12 @@ public class UserController {
 
     //비밀번호 찾기 후 비밀번호 변경
     @RequestMapping(value = "/newPassWord")
-    public String newPassWord(UserVO userVO) throws Exception{
+    public String newPassWord(UserVO userVO, Model model) throws Exception{
         log.info(userVO.getUser_pw());
         log.info(userVO.getUser_email());
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         int result = userService.newPassword(userVO);
         log.info(result);
         if(result == 1){
@@ -299,7 +313,12 @@ public class UserController {
 
     //약관동의
     @GetMapping("/user_agree")
-    public String user_agree(){
+    public String user_agree(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("agree");
+        styleFileList.add("join");
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         log.info("약관동의");
         return "user.user_agree";
     }
