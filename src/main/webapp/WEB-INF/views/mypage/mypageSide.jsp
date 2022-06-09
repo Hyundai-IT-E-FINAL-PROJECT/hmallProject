@@ -40,8 +40,8 @@
             <li>
                 <a href="javascript:;">고객센터</a>
                 <ul class="sub-list">
-                    <li><a href="https://www.hmall.com/p/ccd/selectCnslOrdReqDtl.do">1:1 상담</a></li>
-                    <li><a href="https://www.hmall.com/p/mpb/selectItemQNAPagingByCondition.do">상품 Q&A</a></li>
+                    <li><a href="/customer/inquiryPage">1:1 상담</a></li>
+                    <li><a href="/customer/faqList">자주 묻는 질문</a></li>
                 </ul>
             </li>
 

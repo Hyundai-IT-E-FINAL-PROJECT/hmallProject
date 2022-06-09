@@ -68,8 +68,6 @@
                                     </c:if>
 
                                     <div class="btngroup abs">
-                                        <button id="modifyDstnAdr" name="modifyDstnAdr"
-                                                class="btn btn-linelgray small30"><span>수정</span></button>
 
                                     <c:if test="${list.BASIC_ADDRESS != 1}">
                                     <button id="deleteDstnAdr" name="deleteDstnAdr"
@@ -82,21 +80,6 @@
 
                             </ul>
                         </div>
-                        <div class="paging">
-
-
-                            <div class="page-prevarea">
-
-
-                                <strong aria-label="현재 선택페이지">1</strong>
-
-
-                            </div>
-
-
-                        </div>
-
-
                     </div>
                 </div>
                 <!-- // .contents -->
@@ -126,6 +109,7 @@
 </section>
 <script type="text/javascript">
 
+
     // 배송지 목록을 불러오는 함수
     function getDeliverys() {
         $.getJSON("/deliveryList" , function (data) {
@@ -142,9 +126,9 @@
                         + '<input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr" value="' + this.USER_ADDRESS_ADDRESS2 + '">'
                         + '<input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="' + this.USER_ADDRESS_ADDRESS3 + '">'
                         + '<p class="name">' + this.USER_ADDRESS_NAME + '<span class="tag red">기본 배송지</span></p>'
-                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + this.USER_ADDRESS_ADDRESS2 + this.USER_ADDRESS_ADDRESS3 + '</p>'
+                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + ' ' +this.USER_ADDRESS_ADDRESS2 + ' ' +this.USER_ADDRESS_ADDRESS3 + '</p>'
                         + '<p class="tel" id="mobile">' + this.USER_ADDRESS_PHONE_NUM + '</p>'
-                        + '<div class="btngroup abs"><button id="modifyDstnAdr" name="modifyDstnAdr"class="btn btn-linelgray small30"><span>수정</span></button></div></li>';
+                        + '<div class="btngroup abs"></div></li>';
                 }
                 else {
                     str +=  '<li><input type="hidden" name="dstnSeq" value="' + this.USER_ADDRESS_SEQ + '">'
@@ -154,10 +138,10 @@
                         + '<input type="hidden" id="dstnBaseAdr" name="dstnBaseAdr" value="' + this.USER_ADDRESS_ADDRESS2 + '">'
                         + '<input type="hidden" id="dstnPtcAdr" name="dstnPtcAdr" value="' + this.USER_ADDRESS_ADDRESS3 + '">'
                         + '<p class="name">' + this.USER_ADDRESS_NAME + '</p>'
-                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + this.USER_ADDRESS_ADDRESS2 + this.USER_ADDRESS_ADDRESS3 + '</p>'
+                        + '<p class="add">' + this.USER_ADDRESS_ADDRESS1 + ' ' + this.USER_ADDRESS_ADDRESS2 + ' ' + this.USER_ADDRESS_ADDRESS3 + '</p>'
                         + '<p class="tel" id="mobile">' + this.USER_ADDRESS_PHONE_NUM + '</p>'
                         + '<button name="setBaseDstnAdr" class="btn btn-linelgray small30" data-dstnseq="'+ this.USER_ADDRESS_SEQ +'"><span>기본배송지로</span></button>'
-                        + '<div class="btngroup abs"><button id="modifyDstnAdr" name="modifyDstnAdr"class="btn btn-linelgray small30"><span>수정</span></button>'
+                        + '<div class="btngroup abs">'
                         + '<button id="deleteDstnAdr" name="deleteDstnAdr" class="btn btn-linelgray small30"><span>삭제</span></button></div></li>';
                 }
             });
@@ -166,28 +150,27 @@
     }
 
     jQuery(function($){
+
+        // 삭제 클릭 이벤트
         $(document).on('click', 'button[name=deleteDstnAdr]',function() {
             dstnSeqforDelete = $(this).parents("li").find("input[name=dstnSeq]").val();
             $("#deliveryDrop").modal().show();
         });
 
-        $(document).on('click', 'button[name=modifyDstnAdr]',function() {
-            var dstnSeq = $(this).parents("li").find("input[name=dstnSeq]").val();
-            window.open("/p/mpd/selectAddDstnAdr.do?type=update&dstnSeq=" + dstnSeq, "MPDAddDstnAdr", "width=645, height=783, style:overflow-x:hidden, overflow-y:hidden");
+        // 배송지추가 클릭 이벤트
+        $(document).on('click', '#addDstnAdr',function() {
+            var popup = window.open("/openDeliveryAppendPup", "MPDAddDstnAdr", "width=640, height=680, style:overflow-x:hidden, overflow-y:hidden");
+
+            // 팝업창 닫힘 이벤트리스너
+            // 배송지 목록 갱신
+            popup.addEventListener('beforeunload', function() {
+                getDeliverys();
+            });
         });
 
-
-        $("#addDstnAdr").click(function() {
-            dstnSeqforDelete = $(this).parents("li").find("input[name=dstnSeq]").val();
-            //$("#PHH009").modal().show();
-            window.open("/p/mpd/selectAddDstnAdr.do?type=new", "MPDAddDstnAdr", "width=645, height=783, style:overflow-x:hidden, overflow-y:hidden");
-        });
-
+        // 기본배송지 클릭 이벤트
         $(document).on('click', 'button[name=setBaseDstnAdr]',function() {
             var dstnSeq = $(this).data("dstnseq");
-
-            console.log(dstnSeq);
-            console.log("클릭");
 
             $.ajax({
                 type : "get",
@@ -201,7 +184,7 @@
                     console.log("result : " + result);
                     if (result == "baseSuccess") {
                         console.log("기본 배송지 변경 완료!");
-                        getDeliverys(); // 댓글 목록 갱신
+                        getDeliverys();
                     }
                 }
             });
@@ -209,20 +192,12 @@
 
     })
 
-
-
     // 배송지 삭제를 위한 전역변수
     var dstnSeqforDelete = "";
     function deleteDstnAdr() {
         if (isEmpty(dstnSeqforDelete)) {
             return false;
         }
-        // $("form[name=deleteDstnAdrForm]").append("<input type='hidden' name='dstnSeq' value='"+dstnSeqforDelete+"'/>");
-        // $("form[name=deleteDstnAdrForm]").submit();
-
-
-        console.log(dstnSeqforDelete);
-
         $.ajax({
             type : "get",
             url : "deleteDelivery?adno=" + dstnSeqforDelete,
@@ -236,23 +211,9 @@
                 if (result == "delSuccess") {
                     console.log("댓글 삭제 완료!");
                     $("#deliveryDrop").modal().hide(); // Modal 닫기
-                    getDeliverys(); // 댓글 목록 갱신
+                    getDeliverys();
                 }
             }
         });
-    }
-
-    function refreshPage() {
-        location.href = "/p/mpd/selectMemberDstnAdr.do?pwdInYn=Y";
-    }
-
-    function getSelectedValue(dstnSeq, key) {
-        var obj = $("input[name=dstnSeq][value=" + dstnSeq + "]");
-        return $(obj).parent().find("input[name=" + key + "]").val();
-    }
-
-    // 현재 등록된 배송지 갯수를 조회(팝업에서 사용)
-    function getDstnCount() {
-        return $(".delivery-box .list li").length;
     }
 </script>

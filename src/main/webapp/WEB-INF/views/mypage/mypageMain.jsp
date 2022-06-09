@@ -162,10 +162,10 @@
                         <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
                         <!-- 가장최근주문 1건, 최대 10개 상품 -->
                         <dd>
-                            <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                            <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}">
                                 <input type="hidden" name="slitmCd" value="2137807436">
                                 <span class="img">
-                                                <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=300x300&AR=0" alt="SPC삼립 돌아온 포켓몬빵 8종 10봉 랜덤배송 (피카츄/푸린/파이리/로켓단/디그다/꼬부기/고오스/발챙이)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                                <img src="/resources/img/${odlist.IMAGE_NAME}.jpg" alt="${odlist.PRODUCT_NAME}"/>
                                             </span>
                                 <div class="box">
                                     <c:choose>
@@ -195,7 +195,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <span class="price"> <strong>${odlist.PRODUCT_COST * odlist.OP_COUNT}</strong>원 </span>
+                                    <span class="price"> <strong><fmt:formatNumber  value="${odlist.PRODUCT_COST * odlist.OP_COUNT}" pattern="#,###"/></strong>원 </span>
                                 </div>
                             </a>
 

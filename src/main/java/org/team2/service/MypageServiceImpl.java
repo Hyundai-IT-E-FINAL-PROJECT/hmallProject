@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.team2.domain.DepositVO;
 import org.team2.mapper.MypageMapper;
 
@@ -105,15 +106,11 @@ public class MypageServiceImpl implements MypageService {
         return mypageMapper.deleteDelivery(adno);
     }
 
+    @Transactional
     @Override
-    public int baseDelivery(long adno) throws Exception {
-        int result1 = mypageMapper.changeDelivery();
-        int result2 = mypageMapper.baseDelivery(adno);
-
-        if(result1 == 1 && result2 == 1) {
-            return 1;
-        }
-        return 0;
+    public void baseDelivery(long adno) throws Exception {
+        mypageMapper.changeDelivery();
+        mypageMapper.baseDelivery(adno);
     }
 
 
