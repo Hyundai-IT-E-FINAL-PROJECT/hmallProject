@@ -293,7 +293,7 @@
 
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <div class="btn_area btn_ac">
+                            <div class="btn_area btn_ac" style="margin-top: 20px;">
                                 <a href="${contextPath}/" class="btn_typeB1">
                                     <span>취소</span></a>
                                 <button class="btn_typeB2" onclick="joinForm_check();"><span>회원가입</span></button>
