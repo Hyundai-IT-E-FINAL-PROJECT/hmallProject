@@ -156,11 +156,12 @@ To change this template use File | Settings | File Templates.
                 </div>
                 <div id="list_category" style="border-top: 1px solid rgb(221, 221, 221);">
                     <div class="common_sub_top_menu common_stm_detail">
-                        <div class="reward-menu"><a class="pointerCursor active"><span
-                                class="webcrowdy-font-bold">스토리</span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">새소식 <em>0</em></span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">댓글 <em>1</em></span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">안내</span></a></div>
+                        <div class="reward-menu">
+                            <a id="story_page" class="pointerCursor active" onclick="pagingsort('story');"><span class="webcrowdy-font-bold">스토리</span></a>
+                            <a id="news_page" class="pointerCursor" onclick="pagingsort('news');"><span class="webcrowdy-font-bold">새소식 <em>0</em></span></a>
+                            <a id="reply_page" class="pointerCursor" onclick="pagingsort('reply');"><span class="webcrowdy-font-bold">댓글 <em>1</em></span></a>
+                            <a id="inf_page" class="pointerCursor" onclick="pagingsort('inf');"><span class="webcrowdy-font-bold">안내</span></a>
+                        </div>
                     </div>
                 </div>
                 <div class="mt40 xs-mt20 mb100">
@@ -368,7 +369,7 @@ To change this template use File | Settings | File Templates.
                 <div>
                     <div class="reward-choice-container">
                         <div class="reward-choice-shareBtn"></div>
-                        <div class="reward-choice-btn">펀딩하기<span aria-hidden="true"
+                        <div id="displayFunding" class="reward-choice-btn" onclick="displayFunding();">펀딩하기<span aria-hidden="true"
                                                                  class="ml10 glyphicon glyphicon-chevron-up"></span>
                         </div>
                         <div class="option-space-shadow"></div>
@@ -378,7 +379,7 @@ To change this template use File | Settings | File Templates.
                             <div class="reward-choice-boxBack-pc">
                                 <div class="reward-choice-storyBackBtn"><i class="fa fa-angle-left"
                                                                            aria-hidden="true"></i>
-                                    <div class="reward-choice-storyBackText">스토리 돌아가기</div>
+                                    <div class="reward-choice-storyBackText" onclick="closeFunding();">스토리 돌아가기</div>
                                 </div> <!----></div>
                             <div class="reward-choice-boxBack-mobile"><!----> <!---->
                                 <div class="menu-trigger mt5 active_1"><span></span><span></span><span></span></div>
@@ -709,3 +710,37 @@ To change this template use File | Settings | File Templates.
         </div>
 </main>
 <script src="/resources/js/productAll.js"></script>
+<script>
+    function displayFunding(){
+        console.log("funding display click!!");
+        const element = document.getElementById("choiceBox");
+        console.log(element);
+        console.log(element.style.display);
+        if(element.style.display === 'none'){
+            element.style.display = 'block';
+        }else{
+            element.style.display = 'none';
+        }
+    }
+
+    function closeFunding(){
+        const element = document.getElementById("choiceBox");
+        if(element.style.display === 'block'){
+            element.style.display = 'none';
+        }
+    }
+
+    function pagingsort(a){
+        console.log(a);
+        $(".reward-menu a").removeClass("active");
+        if(a === 'story'){
+            document.getElementById('story_page').classList.add("active");
+        } else if(a === 'news'){
+            document.getElementById('news_page').classList.add("active");
+        }else if(a === 'reply'){
+            document.getElementById('reply_page').classList.add("active");
+        }else{
+            document.getElementById('inf_page').classList.add("active");
+        }
+    }
+</script>
