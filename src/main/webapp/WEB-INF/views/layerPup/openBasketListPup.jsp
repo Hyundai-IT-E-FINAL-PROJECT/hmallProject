@@ -465,21 +465,6 @@
         var etc2 =      $(obj_GA).attr("ga-custom-etc2") == undefined ? "" : $(obj_GA).attr("ga-custom-etc2");
 
         setGaPromotion(title, name, position, creative, id);
-        //마케팅플랫폼 전용 >>> 마케팅 플랫폼은 Tab명이 다르기 때문에 if문 처리
-        /*
-        if(gaForTabNm != "" && gaForTabNm != null && gaForTabNm != undefined && etc2 == "Y"){
-            title = "메인>"+gaForTabNm;
-            name = "메인_"+gaForTabNm+"탭";
-        }
-
-        if(etc2 == "N"){//마케팅플랫폼 전용 >>> 마케팅플랫폼 jsp가 기획전에도 쓰이기 때문에 if문 처리.(mainTabYn)
-            //추후 이곳에 마케팅플랫폼 기획전일 경우 분기분 넣는다...
-
-        }else{
-            console.log("setGaPromotion()................1");
-            setGaPromotion(title, name, position, creative, id);
-        }
-    */
 
         if (etc == "home"){
             bizSpringTagForHome(msg1, msg2, msg3);
@@ -765,7 +750,6 @@
                                     </table>
                                 </div>
                             </div>
-                            <%--                            TODO: 확인버튼 눌렀을 때 product seq 값 반환, product controller: getOne--%>
                             <button class="btn btn-default small34" onclick="closePopup();"><span>확인</span></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="myNoti">
@@ -795,7 +779,7 @@
 
         //주문번호, 상품코드, 옵션 코드 가져오기, 데이터만 가져오기.
         $.ajax({
-            url:"${contextPath}/basket/getBasketOne",
+            url:"${contextPath}/product/getBasketOne",
             type:"get",
             dataType : "text",
             data: {

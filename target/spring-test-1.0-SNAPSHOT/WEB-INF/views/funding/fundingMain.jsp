@@ -89,7 +89,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="card-reward-list">
                                     <div class="card-row-01">
                                         <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="/r/wwwlalaitscom" class="card-reward-item" style="cursor: pointer;">
+                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}" class="card-reward-item" style="cursor: pointer;">
                                                 <div class="card-reward-img">
                                                     <div class="card-newStatus-icon">NEW</div> <img
                                                         src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"

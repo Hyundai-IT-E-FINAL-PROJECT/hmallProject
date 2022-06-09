@@ -165,6 +165,17 @@ public class ProductController {
         return mav;
     }
 
+    @ResponseBody
+    @GetMapping("getBasketOne")
+    public String getBasketOne(@RequestParam("product_seq") Long product_seq){
+        log.info("getProduct 접속");
+        ProductVO vo=productService.getOne(product_seq);
+        String product_code= String.valueOf(vo.getProduct_code());
+        log.info(product_code);
+
+        return product_code;
+    }
+
     @RequestMapping("/all")
     public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value="sort", required=false) String sort){
         log.info("product controller all start!!");

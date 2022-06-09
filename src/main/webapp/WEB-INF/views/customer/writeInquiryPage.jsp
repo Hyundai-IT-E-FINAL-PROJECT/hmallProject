@@ -957,13 +957,14 @@
       var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
       window.open(url, popName, popOption);
     }
-    //
-    // function openBasketListPup(){
-    //   var url="/basket/openBasketListPup";
-    //   var popName="openBasketListPup"
-    //   var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
-    //   window.open(url, popName, popOption);
-    // }
+
+
+    function openBasketListPup(){
+      var url="/basket/openBasketListPup";
+      var popName="openBasketListPup"
+      var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
+      window.open(url, popName, popOption);
+    }
 
     /*
      * 웹 이미지 업로드
@@ -1621,6 +1622,7 @@
           문의 상품 정보 &nbsp;&nbsp;&nbsp;
           <button class="btn btn-linelgray small30" type="button" onclick="openOrderListPup()"><span>주문 내역에서 찾기</span></button> <!--마이페이지 1:1상담으로 이동-->
           <button class="btn btn-linelgray small30" type="button" onclick="openBasketListPup()"><span>장바구니에서 찾기</span></button> <!--마이페이지 1:1상담으로 이동-->
+
 
           <!--choice-item-->
           <div id="choiceItemDiv" style="display: block;">
