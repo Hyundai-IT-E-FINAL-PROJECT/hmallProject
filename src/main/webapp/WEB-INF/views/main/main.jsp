@@ -1074,55 +1074,32 @@
                         //for chrome debugger
                         //# sourceURL=script-for-main-dprenew.js
                     </script>
-                    <div class="hshop-fullbox" id="brodMainFullBexArea">
+                    <div class="hshop-fullbox" id="brodMainFullBexArea" style="height: 670px;">
                         <div class="hshop-full">
                             <div class="onair-box brodEtvArea">
                                 <!--onair-top-->
                                 <div class="onair-top">
-                                    <h3>TV쇼핑</h3>
+                                    <h3>펀딩 프로젝트 이름</h3>
                                     <div class="onair-timer">
-                                        <!-- 모바일 maa004와 동일
-                                            onair-timer label background 색상
-                                            기본 : tv 쇼핑 : background-color:#ff5340;
-                                            tvshop  background-color:#FE3BB0;
-                                            studio  background-color: #408aeb;
-                                            shoplive background-color: #610fe6;
-                                        -->
-
-                                        <span class="label shopping">ON AIR</span>
                                         <span class="timer" id="etvLeftTime">01 : 06 : 09</span>
 
 
                                         <!--온에어 아닐 시 방송 예정시간 노출-->
                                         <!-- <p class="tag-extime">9/28 (월) 16:00 ~ 17:00</p> -->
                                     </div>
-                                    <ul class="link-wrap">
-
-                                        <li>
-                                            <a href="javascript:;"
-                                               onclick="gaTagging(this, '/p/bmc/brodPordPbdv.do', '', '');"
-                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                               ga-custom-position="온에어_TV쇼핑" ga-custom-creative="편성표" ga-custom-id=""
-                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:2">
-
-                                                <i class="icon tvplan"></i>
-                                                <span>편성표</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <!--//onair-top-->
                                 <!--product-list-->
                                 <div class="product-list">
                                     <div class="pdthumb">
-
-
                                         <!-- 동영상 다시보기 -->
                                         <div class="video-window" id="etvLeftReload"
                                              style="display: none; height: 260px">
-                                            <button type="button" class="btn-replay-video"
-                                                    onclick="brodMainReload('home2', 'etv', '.brodEtvArea', 'https://livejj.hyundaihmall.com:8443/live/ngrp:hmall.stream_pc/playlist.m3u8')"></button>
-                                            <span>방송종료 다음방송</span>
+                                            <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
+                                            style="height: 270px; width: 529px;">
+<%--                                            <button type="button" class="btn-replay-video"--%>
+<%--                                                    onclick="brodMainReload('home2', 'etv', '.brodEtvArea', 'https://livejj.hyundaihmall.com:8443/live/ngrp:hmall.stream_pc/playlist.m3u8')"></button>--%>
+<%--                                            <span>방송종료 다음방송</span>--%>
                                         </div>
                                         <figure ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
                                                 ga-custom-position="온에어_TV쇼핑" ga-custom-creative="영상재생"
@@ -1667,117 +1644,26 @@
                                                    ga-custom-position="온에어_TV쇼핑" ga-custom-creative="방송상품"
                                                    ga-custom-id="2124792589_종근당 프로메가 알티지 오메가3 듀얼(18+2개월) + 벨레스 포켓 팬"
                                                    ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:3">
-                                                    <div class="pdname" aria-label="제품명">종근당 프로메가 알티지 오메가3 듀얼(18+2개월) +
-                                                        벨레스 포켓 팬
+                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">크라우딩 펀딩 내용 블라블라
                                                     </div>
-                                                    <div class="pdprice">
-    <span class="rateprice" aria-label="할인율이 적용된 가격">
-        <em class="rate" aria-label="할인율">10<i>%</i></em>
-        <ins class="discount" aria-label="할인가"><em>267,000</em>원</ins>
-        <del class="normal" aria-label="정상가">297,000</del>
-    </span>
-                                                    </div>
+
 
                                                 </a>
-                                                <!--pdinfo-->
-                                                <div class="pdinfo">
-                                                    <div class="benefits">
-
-
-                                                        <span>롯데5%</span>
-
-                                                        <span>무료배송</span>
-
-
-                                                    </div>
-                                                    <div class="pdfunc">
-                                          <span class="alimlike">
-                                              <button class="btn btn-linered small ui-btn-linered" type="button"
-                                                      onclick="gaTagging(this, '', '', '');;location.href='/p/pda/itemPtc.do?slitmCd=2124792589'"
-                                                      ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                      ga-custom-position="온에어_TV쇼핑" ga-custom-creative="구매하기"
-                                                      ga-custom-id="2124792589_종근당 프로메가 알티지 오메가3 듀얼(18+2개월) + 벨레스 포켓 팬"
-                                                      ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:4">
-                                                  <span>
-                                                      구매하기
-                                                   </span>
-                                              </button>
-                                          </span>
-                                                    </div>
-                                                </div>
                                                 <!--//pdinfo-->
                                                 <!--함께방송중인상품-->
 
 
                                                 <div class="multi">
-                                                    <div class="multi-wrap">
-                                                        <a href="javascript:;" class="multi-more"
-                                                           data-modules-customtoggle="parent:.multi;grouping:.hshop-fullbox;"><em>1개
-                                                            상품 더보기</em><span class="more" data-text="">더보기</span></a>
-                                                        <div class="multi-cnt-wrap">
-                                                            <div class="product-wrap pdslide">
-                                                                <div class="pdlist-wrap col5">
-                                                                    <!-- slide 형태가 아닌 fade 형태인 경우 data-modules-slick 옵션에 fade:true; 추가 -->
-                                                                    <div class="pdlist slick-initialized slick-slider slick-single"
-                                                                         data-modules-slick="paging:false;dots:false;infinite:false;">
-                                                                        <div class="slick-list draggable">
-                                                                            <div class="slick-track"
-                                                                                 style="opacity: 1; width: 0px; transform: translate(0px, 0px);">
-                                                                                <div class="slick-slide slick-current slick-active"
-                                                                                     data-slick-index="0"
-                                                                                     aria-hidden="false"
-                                                                                     style="width: 0px;">
-                                                                                    <div>
-                                                                                        <div class="items"
-                                                                                             style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                                            <ul>
+                                                    <div class="pdprice" style="justify-content: space-between; margin-top: 80px;">
+                                                        <div>
+                                                        <span class="rateprice" aria-label="할인율이 적용된 가격">
 
-
-                                                                                                <li class="pdthumb">
-                                                                                                    <a href="javascript:;"
-                                                                                                       onclick="gaTagging(this, '/p/pda/itemPtc.do?slitmCd=2095244806', '', '');"
-                                                                                                       ga-custom-title="메인>홈쇼핑"
-                                                                                                       ga-custom-name="메인_홈쇼핑탭"
-                                                                                                       ga-custom-position="온에어_TV쇼핑"
-                                                                                                       ga-custom-creative="방송상품 더보기"
-                                                                                                       ga-custom-id="2095244806_종근당 프로메가 알티지 오메가3 듀얼(6개월)"
-                                                                                                       ga-custom-etc="urlAction"
-                                                                                                       tag-comment="GA요청:홈쇼핑탭:5"
-                                                                                                       tabindex="0">
-
-                                                                                                        <div class="thumb">
-                                                                                                            <img src="https://image.hmall.com/static/8/4/24/95/2095244806_0.jpg?RS=400x400&amp;AR=0"
-                                                                                                                 alt="종근당 프로메가 알티지 오메가3 듀얼(6개월)"
-                                                                                                                 onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
-                                                                                                        </div>
-                                                                                                        <div class="figcaption">
-                                                                                                            <div class="pdname"
-                                                                                                                 aria-label="제품명">
-                                                                                                                종근당 프로메가
-                                                                                                                알티지 오메가3
-                                                                                                                듀얼(6개월)
-                                                                                                            </div>
-                                                                                                            <div class="pdprice">
-    <span class="rateprice" aria-label="할인율이 적용된 가격">
-    <p class="discount" aria-label="할인가"><em>128,000</em>원</p>
-    </span>
-                                                                                                            </div>
-
-                                                                                                        </div>
-                                                                                                    </a>
-                                                                                                </li>
-
-
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- //.pdlist-wrap col5 -->
-                                                            </div>
+                                                            <ins class="discount" aria-label="할인가"><em>5,454,000</em>원 펀딩</ins>
+                                                        </span>
+                                                        </div>
+                                                        <div style="display: flex; align-items: center;">
+                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">5,454<i  style="color:#002fa3;">%</i></em>
+                                                            <p style="margin-left:10px;">D-17</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1872,41 +1758,10 @@
                             <div class="onair-box brodDtvArea">
                                 <!--onair-top-->
                                 <div class="onair-top">
-                                    <h3>TV+샵</h3>
-                                    <!-- 모바일 maa004와 동일
-                                        onair-timer label background 색상
-                                        기본 : tv 쇼핑 : background-color:#ff5340;
-                                        tvshop  background-color:#FE3BB0;
-                                        studio  background-color: #408aeb;
-                                        shoplive background-color: #610fe6;
-                                    -->
+                                    <h3>펀딩 프로젝트 이름</h3>
                                     <div class="onair-timer">
-
-                                        <span class="label tvshop">ON AIR</span>
                                         <span class="timer" id="dtvLeftTime">00 : 05 : 10</span>
-
-
-                                        <!-- <p class="tag-extime">9/28<em>(월)</em><strong>16:00 ~ 17:00</strong></p> -->
                                     </div>
-                                    <ul class="link-wrap">
-                                        <!--편성표만있을경우-->
-                                        <!-- <li>
-                                            <a href="#">
-                                                <i class="icon talk"></i>
-                                                <span>Talk</span>
-                                            </a>
-                                        </li> -->
-                                        <li>
-                                            <a href="javascript:;"
-                                               onclick="gaTagging(this, '/p/bmc/dtvBrodFmtb.do', '', '');"
-                                               ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                               ga-custom-position="온에어_TV+샵" ga-custom-creative="편성표" ga-custom-id=""
-                                               ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:2">
-                                                <i class="icon tvplan"></i>
-                                                <span>편성표</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <!--//onair-top-->
                                 <!--product-list-->
@@ -2459,51 +2314,34 @@
 
                                             <div class="figcaption">
                                                 <a href="javascript:;"
-                                                   onclick="gaTagging(this, '/p/pda/itemPtc.do?slitmCd=2140535883', '', '');"
+                                                   onclick="gaTagging(this, '/p/pda/itemPtc.do?slitmCd=2124792589', '', '');"
                                                    ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                   ga-custom-position="온에어_TV+샵" ga-custom-creative="방송상품"
+                                                   ga-custom-position="온에어_TV쇼핑" ga-custom-creative="방송상품"
                                                    ga-custom-id="2124792589_종근당 프로메가 알티지 오메가3 듀얼(18+2개월) + 벨레스 포켓 팬"
                                                    ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:3">
-                                                    <div class="pdname" aria-label="제품명">에스콰이아 썬더 소가죽 핸드백 2종+미니백 1종
+                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">크라우딩 펀딩 내용 블라블라
                                                     </div>
-                                                    <div class="pdprice">
-    <span class="rateprice" aria-label="할인율이 적용된 가격">
-        <em class="rate" aria-label="할인율">10<i>%</i></em>
-        <ins class="discount" aria-label="할인가"><em>161,100</em>원</ins>
-        <del class="normal" aria-label="정상가">179,000</del>
-    </span>
-                                                    </div>
+
 
                                                 </a>
-                                                <!--pdinfo-->
-                                                <div class="pdinfo">
-                                                    <div class="benefits">
-
-
-                                                        <span>롯데5%</span>
-
-                                                        <span>무료배송</span>
-
-
-                                                    </div>
-                                                    <div class="pdfunc">
-                                           <span class="alimlike">
-                                              <button class="btn btn-linered small ui-btn-linered" type="button"
-                                                      onclick="gaTagging(this, '', '', '');;location.href='/p/pda/itemPtc.do?slitmCd=2140535883'"
-                                                      ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                      ga-custom-position="온에어_TV+샵" ga-custom-creative="구매하기"
-                                                      ga-custom-id="2140535883_에스콰이아 썬더 소가죽 핸드백 2종+미니백 1종"
-                                                      ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:4">
-                                                    <span>
-                                                     구매하기
-                                                    </span>
-                                                </button>
-                                            </span>
-                                                    </div>
-                                                </div>
                                                 <!--//pdinfo-->
                                                 <!--함께방송중인상품-->
 
+
+                                                <div class="multi">
+                                                    <div class="pdprice" style="justify-content: space-between; margin-top: 80px;">
+                                                        <div>
+                                                        <span class="rateprice" aria-label="할인율이 적용된 가격">
+
+                                                            <ins class="discount" aria-label="할인가"><em>5,454,000</em>원 펀딩</ins>
+                                                        </span>
+                                                        </div>
+                                                        <div style="display: flex; align-items: center;">
+                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">5,454<i  style="color:#002fa3;">%</i></em>
+                                                            <p style="margin-left:10px;">D-17</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <!--//함께방송중인상품-->
                                             </div>
@@ -2586,7 +2424,28 @@
 
                             </script>
                         </div>
+                        <div style="max-width:473px;
+                            height: 56px;
+                            background-color: #002fa3;
+                            cursor: pointer;
+                            font-size: 22px;
+                            font-weight: 700;
+                            letter-spacing: -.3px;
+                            color: #fff;
+                            text-align: center;
+                            line-height: 56px;
+                            margin: 0 auto;
+                            margin-top: -15px;
+                            border-radius: 10px;" onclick="location.href='${contextPath}/fund/main'">펀딩 프로젝트 더 보기
+
+                        </div>
+<%--                        <div style="width: 426px; border: solid 3px #eaebed; border-radius: 4px; text-align: center;--%>
+<%--                    height: 42px; cursor: pointer; margin: 0 auto; letter-spacing: -.5px; line-height: 41px;--%>
+<%--                    display: flex; justify-content: center; background: white;">--%>
+<%--                            <button type="button" style="color: #464646; font-family: 'sans-serif';">펀딩 프로젝트 더 보기</button>--%>
+<%--                        </div>--%>
                     </div>
+
                     <script type="text/javascript">
                         if ($("#brodMainFullBexArea .onair-box").length == 0) {
                             $("#brodMainFullBexArea").hide();
