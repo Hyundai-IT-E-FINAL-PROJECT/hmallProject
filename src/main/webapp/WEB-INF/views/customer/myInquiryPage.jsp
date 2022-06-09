@@ -2380,27 +2380,17 @@
                 <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
                 <div class="side-menu-list">
                     <ul>
-                        <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                         <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
                         <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                         <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                     </ul>
                 </div>
-                <!-- // .side-menu-list -->
-
-                <!--side-info-->
-                <div class="side-info">
-                    <p class="banner"><strong>현대Hmall</strong><em>1600-0000</em><span>(유료)</span></p>
-                    <p class="banner"><strong>모바일 현대Hmall</strong><em>1600-0009</em><span>(유료)</span></p>
-                    <p class="txt"><span>평일 09:00~20:00<br>주말, 공휴일 휴무</span></p>
-                </div>
-                <!--//side-info-->
             </div>
 
 
             <div class="contents">
                 <div class="mypage-consult-wrap">
-                    <h3 class="title22">1:1 상담</h3>
+                    <h3 class="title22">내 상담내역 조회하기</h3>
                     <%--                        <span>${pinfo.userVO.authList[0].user_auth_authority}</span>--%>
                     <div class="border-gray-box">
                         <p class="ctypo15">고객님이 문의하신 내역입니다.</p>

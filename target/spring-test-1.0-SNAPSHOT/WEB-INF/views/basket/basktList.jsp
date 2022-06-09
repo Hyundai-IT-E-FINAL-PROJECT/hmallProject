@@ -288,7 +288,7 @@
                             <div id="uobtnprsnbox" class="btngroup _gift" style="">
                                 <button class="btn btn-linelgray" onclick="setGiftOrder('Y');orderSelect();"><span>선물하기</span>
                                 </button>
-                                <button class="btn btn-purchase" onclick="setGiftOrder('N');orderSelect();"><span>바로구매</span>
+                                <button class="btn btn-purchase" onclick="orderSelect();"><span>바로구매</span>
                                 </button>
                             </div>
                             <div id="uobtnbox" class="btngroup" style="display: none;">

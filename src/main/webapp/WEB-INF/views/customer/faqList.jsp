@@ -3201,21 +3201,12 @@
                 <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
                 <div class="side-menu-list">
                     <ul>
-                        <li><a class="#" href="/p/ccc/faqList.do">자주 묻는 질문</a></li>
                         <li><a href="#" onclick="location.href='${contextPath}/customer/inquiryPage';">1:1 문의하기</a></li>
                         <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                         <li><a href="/customer/noticeList">공지사항</a></li>
                     </ul>
                 </div>
-                <!-- // .side-menu-list -->
 
-                <!--side-info-->
-                <div class="side-info">
-                    <p class="banner"><strong>현대Hmall</strong><em>1600-0000</em><span>(유료)</span></p>
-                    <p class="banner"><strong>모바일 현대Hmall</strong><em>1600-0009</em><span>(유료)</span></p>
-                    <p class="txt"><span>평일 09:00~20:00<br>주말, 공휴일 휴무</span></p>
-                </div>
-                <!--//side-info-->
             </div>
             <!-- // LNB 끝 -->
 
@@ -3223,71 +3214,17 @@
             <div class="contents">
                 <!--search : 자주 묻는 질문-->
                 <div class="cus-wrap">
-                    <h3>자주 묻는 질문</h3>
-                    <!-- 20200909 시안 08/26 기준 작업 -->
-                    <div class="search-area">
-                        <form name="searchForm" method="get" action="/p/ccc/faqList.do">
-                            <div class="inputbox">
-                                <input hidden="hidden">
-                                <label class="inplabel icon-find"><input type="text" name="ancmCntn" placeholder="질문을 검색해보세요" title="검색어 입력" value=""></label>
-                                <button type="button" class="btn btn-find" onclick="searchCntn();"><i class="icon find-sm"></i><span class="hiding">검색</span></button>
-                                <button type="button" class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                            </div>
-                            <input type="hidden" name="sort" id="sort" value="false">
-                            <input type="hidden" name="faqMCsfNo" id="faqMCsfNo" value="">
-                        </form>
-                    </div>
-                    <!-- 20200909 시안 08/26 기준 작업 -->
-                </div>
-                <!--//search : 자주 묻는 질문-->
-
-
-                <!--faq-tab-->
-                <div class="cus-wrap">
                     <div class="faq-tab">
                         <ul class="faq-full">
                             <li class="on"><a href="/p/ccc/faqList.do"><span>전체</span></a></li>
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=01"><span>회원</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=02"><span>상품</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=03"><span>주문/결제</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=04"><span>배송</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=05"><span>취소/반품/교환/AS</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=07"><span>이벤트/혜택</span></a></li>
-
-
-
-
                             <li><a href="/p/ccc/faqList.do?faqLCsfNo=08"><span>사이트 이용</span></a></li>
-
-
-
-
-                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=09"><span>모바일</span></a></li>
-
-
-
+                            <li><a href="/p/ccc/faqList.do?faqLCsfNo=09"><span>크라우드 펀딩</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -4294,135 +4231,6 @@
         }
 
     </script>
-
-    <!-- 스카이 스크래퍼 -->
-    <div class="sticky-ui-wrapper wing-banner-sticky"><div class="sticky-placeholder"></div><div class="wing-banner banner-right" data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky">
-        <!-- fixed 클래스 추가 시 고정 -->
-        <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-            <div class="visit-indicator">바로접속
-
-
-                <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-            </div>
-        </a>
-        <div class="recent-view-area" id="skyScOnAirArea">
-
-
-
-
-
-
-
-
-
-            <a class="recent-view-title">ON AIR</a>
-            <ul id="banner-onair">
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2133860086&amp;bfmtNo=202205263018&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^닥터린 대마종자유 18개월분&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2133860086_닥터린 대마종자유 18개월분" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/0/0/86/33/2133860086_0.jpg?RS=140x140&amp;AR=0" alt="닥터린 대마종자유 18개월분" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220527020000">00:33:55</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2139992840&amp;bfmtNo=202205265020&amp;brodDt=20220526&amp;brodStrtDtm=01:00&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2139992840_[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/8/2/99/39/2139992840_0.jpg?RS=140x140&amp;AR=0" alt="[플로라] 키리아 KF94 새부리형 컬러 마스크 200장 (대형)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220527015959">00:32:55</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-            </ul>
-
-        </div>
-        <div class="qr_view_area">
-            <span class="qr_txt">쇼핑라이브</span>
-            <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg" alt="쇼핑라이브 qr이미지"></span>
-        </div>
-        <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-
-
-
-
-
-
-
-            <ul>
-
-
-                <li style="">
-
-
-
-
-
-                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280846">
-                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-kb.png" alt="KB국민카드"></span>
-                        <span class="card-txt">
-		                            <strong class="card-name">KB국민카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      5%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- 페이징 -->
-
-
-
-
-
-            <!-- // 페이징 -->
-        </div>
-        <!-- // .wing-slide -->
-
-        <div class="btn-top"><a href="javascript:;">TOP</a></div>
-    </div></div>
-    <!-- // 스카이 스크래퍼 -->
-    <script type="text/javascript">
-
-        setTimeout(function() {
-            setOnAirSkySc();
-        }, 100);
-
-        /*
-    setTimeout(function() {
-    	setCardPromotion();
-    }, 300);
-    */
-    </script>
-    <!-- 스카이스크래퍼 -->
-
 
 </div>
 <script type="text/javascript">

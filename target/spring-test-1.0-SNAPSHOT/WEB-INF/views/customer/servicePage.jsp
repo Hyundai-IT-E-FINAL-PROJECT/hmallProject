@@ -7,12 +7,38 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%--<body class="vsc-initialized">--%>
 <%--<div class="wrap customer-center"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->--%>
 <%--    <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>--%>
 
+<style>
+    #quickMenu div{
+        padding: 20px;
+        background: lightslategrey;
+        border-radius: 10px;
+        font-size: 16px;
+        color: white;
+        font-weight: 600;
+        width: 200px;
+        margin: 0 30px 0 30px;
+        text-align: center;
+    }
+    #quickMenu div:hover{
+        padding: 20px;
+        background: #91D0E8;
+        border-radius: 10px;
+        font-size: 16px;
+        color: white;
+        font-weight: 600;
+        width: 200px;
+        margin: 0 30px 0 30px;
+        text-align: center;
+        cursor: pointer;
 
+    :hover
+    }
+</style>
     <main class="cmain customer" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
         <div class="container">
 
@@ -53,21 +79,11 @@
                 <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
                 <div class="side-menu-list">
                     <ul>
-                        <li><a class="#" href="${contextPath}/customer/faqList">자주 묻는 질문</a></li>
                         <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
                         <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
                         <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
                     </ul>
                 </div>
-                <!-- // .side-menu-list -->
-
-                <!--side-info-->
-                <div class="side-info">
-                    <p class="banner"><strong>현대Hmall</strong><em>1600-0000</em><span>(유료)</span></p>
-                    <p class="banner"><strong>모바일 현대Hmall</strong><em>1600-0009</em><span>(유료)</span></p>
-                    <p class="txt"><span>평일 09:00~20:00<br>주말, 공휴일 휴무</span></p>
-                </div>
-                <!--//side-info-->
             </div>
             <!-- // LNB 끝 -->
 
@@ -75,20 +91,6 @@
                 <!--search : 자주 묻는 질문-->
                 <div class="cus-wrap">
                     <h3>자주 묻는 질문</h3>
-                    <!-- 20200909 시안 08/26 기준 작업 -->
-                    <div class="search-area">
-                        <form name="searchForm" method="get" action="/customer/faqList.do">
-                            <div class="inputbox">
-                                <input hidden="hidden">
-                                <label class="inplabel icon-find"><input type="text" name="ancmCntn" placeholder="질문을 검색해보세요" title="검색어 입력" value=""></label>
-                                <button type="button" class="btn btn-find" onclick="searchCntn();"><i class="icon find-sm"></i><span class="hiding">검색</span></button>
-                                <button type="button" class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                            </div>
-                            <input type="hidden" name="sort" id="sort" value="false">
-                            <input type="hidden" name="faqMCsfNo" id="faqMCsfNo" value="">
-                        </form>
-                    </div>
-                    <!-- 20200909 시안 08/26 기준 작업 -->
                 </div>
                 <!--//search : 자주 묻는 질문-->
 
@@ -97,7 +99,6 @@
                 <div class="cus-wrap">
                     <div class="tit-wrap">
                         <h3>베스트 FAQ 10</h3>
-                        <p><a class="#" href="/p/ccc/faqList.do">전체보기</a></p> <!--pjb002로이동-->
                     </div>
                     <!--accparent-->
                     <div class="accparent">
@@ -213,10 +214,10 @@
                 <div class="cus-wrap noti">
                     <!--1:1 문의하기-->
                     <div class="question-wrap">
-                        <h3>1:1 문의하기</h3>
+                        <h3>바로가기</h3>
                         <div class="btngroup">
-                            <button class="btn btn-board" onclick="openCnslAcptPup(); return false;"><span><i class="icon"></i>게시판 상담</span></button>
-                            <button class="btn btn-chat" type="button" onclick="openCnslChat();"><span><i class="icon"></i>채팅 상담</span></button>
+                            <button class="btn btn-chat" type="button" onclick="location.href='${contextPath}/customer/inquiryPage';"><span><i class="icon"></i>1:1 문의하기</span></button>
+                            <button class="btn btn-board" onclick="location.href='${contextPath}/customer/noticeList'; return false;"><span><i class="icon"></i>공지사항 바로가기</span></button>
                         </div>
                     </div>
                     <!--//1:1 문의하기-->
@@ -224,7 +225,7 @@
                     <div class="noti-wrap">
                         <div class="tit-wrap">
                             <h3>공지사항</h3>
-                            <p><a href="/p/ccb/noticeList.do">전체보기</a></p>
+                            <p><a href="${contextPath}/customer/noticeList">전체보기</a></p>
                         </div>
                         <!--tblwrap tbl-list-->
                         <div class="tblwrap tbl-list">
@@ -235,103 +236,16 @@
                                     <col style="width:75px">
                                 </colgroup>
                                 <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <tr>
-                                    <td class="nowrap"><a href="/p/ccb/noticeView.do?ancmId=53744&amp;page=1">현대홈쇼핑 멤버십 제도 개편 안내</a></td>
-                                    <td class="txt-center"><span class="date">2022.05.02</span></td>
-                                </tr>
-
-
-
-
-
-
-
-                                <tr>
-                                    <td class="nowrap"><a href="/p/ccb/noticeView.do?ancmId=53740&amp;page=1">현대홈쇼핑 상시채용 안내</a></td>
-                                    <td class="txt-center"><span class="date">2022.04.15</span></td>
-                                </tr>
-
-
-
-
-
-
-
-                                <tr>
-                                    <td class="nowrap"><a href="/p/ccb/noticeView.do?ancmId=53722&amp;page=1">개인정보처리방침 변경 안내(01/27)</a></td>
-                                    <td class="txt-center"><span class="date">2022.01.27</span></td>
-                                </tr>
-
-
-
-
-
-
-
-                                <tr>
-                                    <td class="nowrap"><a href="/p/ccb/noticeView.do?ancmId=53597&amp;page=1">현대홈쇼핑 금융소비자보호 내부통제기준 및 금융소비자보호기준</a></td>
-                                    <td class="txt-center"><span class="date">2021.09.24</span></td>
-                                </tr>
-
-
-
-
-
-
-
-                                <tr>
-                                    <td class="nowrap"><a href="/p/ccb/noticeView.do?ancmId=53596&amp;page=1">현대홈쇼핑 보험대리점등록증</a></td>
-                                    <td class="txt-center"><span class="date">2021.09.24</span></td>
-                                </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                <c:forEach items="${noticeList}" var="notice" varStatus="status" begin="0" end="4">
+                                    <tr>
+                                        <td class="nowrap">${notice.notice_title}</td>
+                                        <td class="txt-center">
+                                            <span class="date">
+                                                <fmt:formatDate value="${notice.created_at}" pattern="yyyy-MM-dd"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -339,23 +253,20 @@
                     </div>
                     <!--//공지사항-->
                 </div>
-                <!--//1:1문의하기 / 공지사항-->
-
-                <!--고객평가단/채널모니터링-->
-                <div class="cus-wrap monitering">
-                    <a href="javascript:checkCseg()">
-                        <dl class="cus-rating">
-                            <dt>고객 평가단</dt>
-                            <dd>현대홈쇼핑 고객평가단의 <br> 커뮤니티 공간</dd>
-                        </dl>
-                    </a>
-                    <a href="javascript:checkMtrg()">
-                        <dl class="cus-channel">
-                            <dt>채널 모니터링</dt>
-                            <dd>케이블 TV의 상태를 모니터하는 <br> 회원들의 공간</dd>
-                        </dl>
-                    </a>
+                <div class="cus-wrap noti" style="margin-left: -50px;">
+                    <div class="noti-wrap">
+                        <div class="tit-wrap">
+                            <h3>Quick Menu</h3>
+                        </div>
+                    </div>
                 </div>
+                <div id="quickMenu" style="display: flex; justify-content: center;">
+                    <div onclick="location.href='${contextPath}/mypageOrder'">주문/배송 조회</div>
+                    <div onclick="location.href='${contextPath}/user/finduser_info'">아이디 찾기</div>
+                    <div onclick="location.href='${contextPath}/user/find_pw'">비밀번호 찾기</div>
+                </div>
+
+
                 <!--//고객평가단/채널모니터링-->
             </div>
             <!-- // .contents -->
@@ -1159,134 +1070,6 @@
         }
 
     </script>
-
-    <!-- 스카이 스크래퍼 -->
-    <div class="sticky-ui-wrapper wing-banner-sticky"><div class="sticky-placeholder" style=""></div><div class="wing-banner banner-right ui-break" data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky" style="">
-        <!-- fixed 클래스 추가 시 고정 -->
-        <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-            <div class="visit-indicator">바로접속
-
-
-                <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-            </div>
-        </a>
-        <div class="recent-view-area" id="skyScOnAirArea">
-
-
-
-
-
-
-
-
-
-            <a class="recent-view-title">ON AIR</a>
-            <ul id="banner-onair">
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2140403405&amp;bfmtNo=202205233017&amp;brodDt=20220523&amp;brodStrtDtm=01:25&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^[86TV] LG 울트라 HD TV 217cm [86UP8300KNA] (사은품 : LG사운드바 + 쿠첸밥솥)&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2140403405_[86TV] LG 울트라 HD TV 217cm [86UP8300KNA] (사은품 : LG사운드바 + 쿠첸밥솥)" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/4/3/40/40/2140403405_0.png?RS=140x140&amp;AR=0" alt="[86TV] LG 울트라 HD TV 217cm [86UP8300KNA] (사은품 : LG사운드바 + 쿠첸밥솥)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime" data-brodenddtm="20220524021500">00:24:48</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-
-
-                <li>
-
-                    <a href="javascript:;" class="tv-shopping" onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2139655715&amp;bfmtNo=202205235027&amp;brodDt=20220523&amp;brodStrtDtm=01:20&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^22SS 르까프 남성 썸머 트랙수트 2종&quot;)" ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑" ga-custom-creative="방송상품" ga-custom-id="2139655715_22SS 르까프 남성 썸머 트랙수트 2종" ga-custom-etc="home">
-                        <img src="https://image.hmall.com/static/7/5/65/39/2139655715_0.jpg?RS=140x140&amp;AR=0" alt="22SS 르까프 남성 썸머 트랙수트 2종" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                        <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime" data-brodenddtm="20220524015959">00:08:48</em>
-		                        </span>
-                    </a>
-
-
-                </li>
-
-            </ul>
-
-        </div>
-        <div class="qr_view_area">
-            <span class="qr_txt">쇼핑라이브</span>
-            <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg" alt="쇼핑라이브 qr이미지"></span>
-        </div>
-        <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-
-
-
-
-
-
-
-            <ul>
-
-
-                <li style="">
-
-
-
-
-
-                    <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280907">
-                        <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-samsung.png" alt="삼성카드"></span>
-                        <span class="card-txt">
-		                            <strong class="card-name">삼성카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      7%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- 페이징 -->
-
-
-
-
-
-            <!-- // 페이징 -->
-        </div>
-        <!-- // .wing-slide -->
-
-        <div class="btn-top"><a href="javascript:;">TOP</a></div>
-    </div></div>
-    <!-- // 스카이 스크래퍼 -->
-    <script type="text/javascript">
-
-        setTimeout(function() {
-            setOnAirSkySc();
-        }, 100);
-
-        /*
-        setTimeout(function() {
-            setCardPromotion();
-        }, 300);
-        */
-    </script>
-
     <script type="text/javascript">
         function searchCntn() {
             var ancmCntn = $("input[name='ancmCntn']").val().trim();

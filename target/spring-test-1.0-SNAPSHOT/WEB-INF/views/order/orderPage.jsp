@@ -7,6 +7,7 @@
 <head>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="/resources/js/addressapi.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%--    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>--%>
 <%--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>--%>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
@@ -561,6 +562,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     // }
                                 </script>
                                 <div class="point-area">
+                                    <ul class="row-list">
+                                        <li id="hpointUseLi">
                                     <%--
                                                                         <ul class="row-list">
                                                                             <li id="hpointUseLi">
@@ -571,10 +574,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             <%--                                                    <i class="icon"></i>--%>
                                             <span style="width: 100px">적립금</span>
                                             <c:set var="userPoint" value="${userPoint}"/>
-                                            <input type="number" placeholder="0" name="userPoint" id="userPoint" style="width: auto; text-align: right;">
+                                            <input type="number" value="0" placeholder="0" name="userPoint" id="userPoint" style="width: 100px; text-align: right;">
                                             <span class="unit point">P</span>
                                             <button class="btn btn-linelgray small34" onclick="useUserPoint();"><span>사용하기</span></button>
-                                            <button class="btn btn-linelgray small34" onclick="cancelPoint();"><span>사용취소</span></button>
+                                            <button class="btn btn-linelgray small34" onclick="cancelPoint();" style="margin-right: 10px;"><span>사용취소</span></button>
                                             <span style="width: 300px">[보유 적립금 : <em class="num"><fmt:formatNumber value="${userPoint}" pattern="#,###"/></em> ]</span>
                                         </label>
                                     </div>
@@ -583,10 +586,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         <div class="row-title">
                                             <label class="chklabel">
                                                 <span style="width: 100px">예치금</span>
-                                                <input type="number" placeholder="0" name="depositPoint" id="depositPoint" style="width: auto; text-align: right;">
+                                                <input type="number" value="0" placeholder="0" name="depositPoint" id="depositPoint" style="width: 100px; text-align: right;">
                                                 <span class="unit point">P</span>
                                                 <button class="btn btn-linelgray small34" onclick="useDepositPoint();"><span>사용하기</span></button>
-                                                <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();"><span>사용취소</span></button>
+                                                <button class="btn btn-linelgray small34" onclick="cancelDepositPoint();" style="margin-right: 10px;"><span>사용취소</span></button>
                                                 <span style="width: 300px">[보유 예치금 : <em class="num"><fmt:formatNumber value="${depositPoint}" pattern="#,###"/></em> ]</span>
                                             </label>
                                         </div>
@@ -615,7 +618,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     alert("적용이 취소되었습니다.");
                                     $("#userPoint").val(0);
                                     $("#totalUserPoint").val(0);
-                                    applyDiscount();
                                 }
                                 function useDepositPoint(){
                                     var willUse=$("input[name='depositPoint']").val();
@@ -636,7 +638,6 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     alert("적용이 취소되었습니다.");
                                     $("#depositPoint").val(0);
                                     $("#totalDepositPoint").val(0);
-                                    applyDiscount();
                                 }
                                 function applyDiscount(){
                                     var totalCost=parseInt($("input[name='totalPrice']").val());
@@ -658,7 +659,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                         </div> <!-- chkStlmType() 2번째 종료 -->
                         <h3 class="title22" id="dlvTitleH3">주문고객/배송지 정보 입력</h3>
 
-                        <span class="txt">※ 주문 고객 정보</span>
+                        <span class="txt" style="margin: 10px 0 10px 0;">※ 주문 고객 정보 &nbsp;(보내시는 분 수정할 수 있습니다)</span>
                         <div style="height: 20px;"></div>
                         <table>
                             <caption>주문 고객 정보 테이블</caption>
@@ -674,14 +675,14 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                     <sec:authentication property="principal" var="pinfo" />
                                     <th scope="col">${pinfo.userVO.user_name}</th>
                                     <th scope="col">보내시는 분</th>
-                                    <th scope="col"><input type="text" name="order_user_name" value="${pinfo.userVO.user_name}" style="color: black; font-size: 15.5px; text-align: center;"/></th>
+                                    <th scope="col"><input type="text" name="order_user_name" value="${pinfo.userVO.user_name}" style="color: black; font-size: 15.5px; text-align: center; padding: 7px;"/></th>
                                 </sec:authorize>
                             </tr>
 
                         </table>
                         <div style="height: 20px;"></div>
                         <span class="txt">※ 배송지 정보</span>
-                        <div class="board">
+                        <div class="board" style="margin-top: 15px;">
                             <!--table-->
                             <div class="tblwrap">
                                 <table>
@@ -697,7 +698,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                             </td>
                                             <td>
                                                 <div>
-                                                    <input type="radio" name="same" id="newAddress" value="">새로운 주소 &nbsp;
+                                                    &nbsp;
                                                     <button type="button" class="btn btn-linelgray small30" onclick="addNewAddress();"><span>신규 배송지 저장</span></button>
                                                     <button class="btn btn-linelgray small30" type="button" onclick="openAddressListPup()"><span>이전 배송지</span></button>
                                                 </div>
@@ -705,33 +706,33 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                                         </tr>
                                         <tr>
                                             <td style="background-color: lightgrey">받으시는 분</td>
-                                            <td><input type="text" name="receiveName" id="receiveName" value=""></td>
+                                            <td><input type="text" name="receiveName" id="receiveName" value="" style="padding: 7px;"></td>
                                         </tr>
                                         <tr>
                                             <td style="background-color: lightgrey">연락처</td>
-                                            <td><input type="number" name="phoneNumber1" id="phoneNumber1" value=""></td>
+                                            <td><input type="number" name="phoneNumber1" id="phoneNumber1" value="" style="padding: 7px;"></td>
                                         </tr>
                                         <tr>
                                             <td style="background-color: lightgrey">휴대폰</td>
-                                            <td><input type="number" name="phoneNumber2" id="phoneNumber2" value=""></td>
+                                            <td><input type="number" name="phoneNumber2" id="phoneNumber2" value="" style="padding: 7px;"></td>
                                         </tr>
                                         <tr>
                                             <td style="background-color: lightgrey">주소</td>
                                             <td>
                                                 <div style="display: flex;">
-                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address1}" placeholder="우편번호" id="zipcode" name="zipcode"></label>
+                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address1}" placeholder="우편번호" id="zipcode" name="zipcode" style="padding: 7px;"></label>
                                                     <button type="button" class="btn btn-linelgray small30" onclick="execPostCode();"><span>우편번호 검색</span></button>
                                                 </div>
                                                 <div>
-                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address2}" placeholder="도로명 주소" id="order_delivery1" name="order_delivery1"></label>
-                                                    <label class="inplabel"><input type="text" name="order_delivery2" value="${basicAddress.user_address_address3}" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100"></label>
+                                                    <label class="inplabel btnlabel"><input type="text"  value="${basicAddress.user_address_address2}" placeholder="도로명 주소" id="order_delivery1" name="order_delivery1" style="padding: 7px;"></label>
+                                                    <label class="inplabel"><input type="text" name="order_delivery2" value="${basicAddress.user_address_address3}" placeholder="상세 주소를 입력해주세요." id="order_delivery2" maxlength="100" style="padding: 7px;"></label>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="background-color: lightgrey">남기실 말씀</td>
                                             <td>
-                                                <label class="inplabel"><input type="text" name="order_message" value="" placeholder="남기실 말씀을 입력해주세요." id="order_message" maxlength="100"></label>
+                                                <label class="inplabel"><input type="text" name="order_message" value="" placeholder="남기실 말씀을 입력해주세요." id="order_message" maxlength="100" style="padding: 7px;"></label>
                                             </td>
                                         </tr>
 
@@ -1017,6 +1018,33 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
         var popName="addressListPopUp"
         var popOption="height=616, width=800, fullscreen=no, location=no, scrollbars=yes, menubar=no, toolbar=no, titlebar=no, directories=no, resizable=no";
         window.open(url, popName, popOption);
+    }
+
+    function gfn_appendComma(nNumber,nDetail) {
+        if (nNumber == null)    return "";
+        if (nDetail == null)    nDetail = 0;
+
+        nNumber             = parseFloat(nNumber);
+        nNumber             = Math.round(nNumber, nDetail);
+
+        var strNumber       = new String(nNumber);
+        var arrNumber       = strNumber.split(".");
+        var strFormatNum    = "";
+        var j = 0;
+
+        for (var i = arrNumber[0].length - 1; i >= 0; i--) {
+            if (i != strNumber.length && j == 3) {
+                strFormatNum = arrNumber[0].charAt(i) + "," + strFormatNum;
+                j = 0;
+            } else {
+                strFormatNum = arrNumber[0].charAt(i) + strFormatNum;
+            }
+            j++;
+        }
+
+        if (arrNumber.length > 1)   strFormatNum = strFormatNum + "." + arrNumber[1];
+
+        return strFormatNum;
     }
 
     function execPostCode() {

@@ -137,13 +137,13 @@ public class ProductAPIController {
 
         log.info("getProductInfo Controller 접속");
         log.info(order_seq);
-        Map<String, String> productInfo =productService.getProductInfo(order_seq);
+        List<Map<String, String>> productInfo =productService.getProductInfo(order_seq);
 //
 
 //        //log.info(productInfo);
 //        HashMap<String, String> info=new HashMap<>();
-        resultMap.put("ORDER_SEQ",String.valueOf(productInfo.get("ORDER_SEQ")));
-        resultMap.put("PRODUCT_CODE",String.valueOf(productInfo.get("PRODUCT_CODE")));
+        resultMap.put("ORDER_SEQ",String.valueOf(productInfo.get(0).get("ORDER_SEQ")));
+        resultMap.put("PRODUCT_CODE",String.valueOf(productInfo.get(0).get("PRODUCT_CODE")));
 
         entity=new ResponseEntity<HashMap<String ,String >>(resultMap, HttpStatus.OK);
 
