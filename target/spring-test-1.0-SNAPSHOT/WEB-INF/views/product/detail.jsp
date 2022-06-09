@@ -5431,8 +5431,6 @@
         let ordQty = Number(ordQtyObj.val());
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
-        console.log(product_seq)
-        console.log(ordQty)
 
         $.ajax({
             type: "post"
@@ -5445,7 +5443,7 @@
                 console.log("success")
                 window.location.href = 'http://localhost:8080/basket/basketList';
             }, error: function () {
-                // window.location.href = 'http://localhost:8080/customLogin';
+                console.log()
             }
         });
     }

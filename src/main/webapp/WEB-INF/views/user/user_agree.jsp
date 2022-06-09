@@ -55,13 +55,13 @@
         <div>
             <!-- 약관동의 -->
             <section class="step2_container">
-                <div class="layout1">
+                <div class="layout1" style="margin-left: 350px">
                     <div class="wrap_box">
                             <input type="hidden" name="hdgmMktTcm"  value="Y" />
                             <input type="hidden" name="prtnrMktTcm" value="Y"/>
-                            <div class="inner808">
+                            <div class="inner808" style="margin-top: 30px">
 
-                                <h3 class="sect_tit">H.Point 회원가입을 위해 약관동의를 진행해주세요.</h3>
+                                <h3 class="sect_tit" style="margin-bottom: 20px">H.Point 회원가입을 위해 약관동의를 진행해주세요.</h3>
                                 <div class="wrap_terms_agree">
                                     <div class="agree_all">
                                       <span class="checkbox_ui type1">
@@ -182,13 +182,13 @@
                                     <li>필수항목에 동의하지 않으실 경우 서비스 가입이 불가합니다.</li>
                                     <li><em>선택항목에 동의하지 않으셔도 서비스 가입이 가능하나, 관련 서비스는 제공받으실 수 없습니다.</em></li>
                                 </ul>
-                                <div class="btn_area btn_ac">
-                                    <a href="https://www.hmall.com/p/index.do" class="btn_typeB1">
-                                        <span>취소</span></a>
-                                    <button class="btn_typeB2" id="joinSubmit" onclick="next()" ><span>다음</span></button>
-                                </div>
                             </div>
                     </div>
+                </div>
+                <div class="btn_area btn_ac" style="margin-top: 30px">
+                    <a href="https://www.hmall.com/p/index.do" class="btn_typeB1">
+                        <span>취소</span></a>
+                    <button class="btn_typeB2" id="joinSubmit" onclick="next()" ><span>다음</span></button>
                 </div>
             </section>
             <div class="sub_bottom_blank1"></div>
