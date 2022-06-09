@@ -67,7 +67,7 @@
                         <ul class="infowrap">
                             <li>
                                 <a href="/mypageCoupon">
-                                    <span class="link"><b>0</b>장</span>
+                                    <span class="link"><b>${couponCount}</b>장</span>
                                     <span class="txt">보유 쿠폰</span>
                                 </a>
                             </li>
@@ -75,14 +75,14 @@
                                 <a href="/mypagePoint" onclick="doSearchUPntMainPop()">
                                 <%--<a href="javascript://" onclick="doSearchUPntMainPop()">--%>
                                     <span class="link">
-                                    <b>${pinfo.userVO.user_point}</b>P</span>
+                                    <b><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/></b>P</span>
 <%--                                    ${pinfo.userVO.point}--%>
                                     <span class="txt">포인트</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="/mypageDeposit">
-                                    <span class="link"><b>${pinfo.userVO.user_deposit}</b>원</span>
+                                    <span class="link"><b><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/></b>원</span>
                                     <span class="txt">예치금</span>
                                 </a>
                             </li>

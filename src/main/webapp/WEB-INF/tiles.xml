@@ -22,4 +22,6 @@
 <!--        <put-attribute name="dynamic_css" value="/resources/css/{1}.css"/>-->
         <put-attribute name="content" value="/WEB-INF/views/layerPup/{1}.jsp" />
     </definition>
+
+
 </tiles-definitions>

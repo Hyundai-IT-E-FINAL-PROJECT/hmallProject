@@ -36,7 +36,7 @@
                         <div role="tabpanel" class="tab-pane ui-active" id="hmallLogin">
 <%--                            <h2><c:out value="${error}"/></h2>--%>
 <%--                            <h2><c:out value="${logout}"/></h2>--%>
-
+                                <form action="/login" method="post">
                                 <div role="tabpanel" class="tab-pane ui-active" id="hmall">
                                     <div class="login-form">
                                         <div class="inputbox xl">
@@ -127,11 +127,12 @@
                                     <!-- //Hmall 아이디 로그인에서만 노출 -->
 
                                 </div>
-                                <div>
-                                    <input type="submit" value="로그인">
-                                </div>
-                                ${requestScope.loginFailMsg}
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <div>
+                                        <input type="submit" value="로그인">
+                                    </div>
+                                    ${requestScope.loginFailMsg}
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="hpointLogin">
                             <div class="login-form">
@@ -226,26 +227,52 @@
 </div>
 </body>
 </html>
-<script>
-    function close_popup(){
-        console.log("도착");
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        console.log(username);
-        console.log(password);
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-       $.ajax({
-           url:"/login",
-           type:"post",
-           data:{"username":username,"password":password},
-           dataType:"text",
-           beforeSend:function (xhr){
-               xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-           },success: function (){
-               parent.opener.parent.location.reload();
-               window.close();
-           }
-       });
-    }
-</script>
+<%--<script>--%>
+<%--    function close_popup(){--%>
+<%--        console.log("도착");--%>
+<%--        var username = document.getElementById("username").value;--%>
+<%--        var password = document.getElementById("password").value;--%>
+<%--        console.log(username);--%>
+<%--        console.log(password);--%>
+<%--        var csrfHeaderName = "${_csrf.headerName}";--%>
+<%--        var csrfTokenValue = "${_csrf.token}";--%>
+<%--       $.ajax({--%>
+<%--           url:"/login",--%>
+<%--           type:"post",--%>
+<%--           data:{"username":username,"password":password},--%>
+<%--           dataType:"text",--%>
+<%--           beforeSend:function (xhr){--%>
+<%--               xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
+<%--           },success: function (){--%>
+<%--               parent.opener.parent.location.reload();--%>
+<%--               // window.close();--%>
+<%--           }--%>
+<%--       });--%>
+<%--    }--%>
+<%--</script>--%>
+<%--=======--%>
+<%--<script>--%>
+<%--    function close_popup(){--%>
+<%--        console.log("도착");--%>
+<%--        var username = document.getElementById("username").value;--%>
+<%--        var password = document.getElementById("password").value;--%>
+<%--        console.log(username);--%>
+<%--        console.log(password);--%>
+<%--        var csrfHeaderName = "${_csrf.headerName}";--%>
+<%--        var csrfTokenValue = "${_csrf.token}";--%>
+<%--       $.ajax({--%>
+<%--           url:"/login",--%>
+<%--           type:"post",--%>
+<%--           data:{"username":username,"password":password},--%>
+<%--           dataType:"text",--%>
+<%--           beforeSend:function (xhr){--%>
+<%--               xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
+<%--           },success: function (data){--%>
+<%--               // console.log(data);--%>
+<%--               parent.opener.parent.location.reload();--%>
+<%--               window.close();--%>
+<%--           }--%>
+<%--       });--%>
+<%--    }--%>
+<%--</script>--%>
+<%--ef--%>

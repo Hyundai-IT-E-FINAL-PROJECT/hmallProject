@@ -145,6 +145,7 @@
                                                 <input type="hidden" name="product_seq" value="${basketVO.productVO.product_seq}">
                                                 <input type="hidden" name="product_name" value="${basketVO.productVO.product_name}">
                                                 <input type="hidden" name="product_cost" value="${basketVO.productVO.discounted_cost}">
+                                                <input type="hidden" name="image_name" value="${basketVO.productVO.image_name}" >
 
 
 
@@ -180,6 +181,7 @@
                                                         <input type="hidden" name="product_cost${status.index+1}" value="${basketVO.productVO.discounted_cost}"/>
                                                         <input type="hidden" name="basket_count${status.index+1}" value="${basketVO.basket_count}"/>
                                                         <input type="hidden" name="basket_seq${status.index+1}" value="${basketVO.basket_seq}"/>
+                                                        <input type="hidden" name="image_name${status.index+1}" value="${basketVO.productVO.image_name}"/>
                                                         <div class="pdfunc">
                                                             <button type="button" class="btn btn-linelgray sm btn-prop" id="optBtn_2101560521_00001" onclick="showChgUitmPup(this, '2101560521', '00001', 0, 59900, '');"><span>수량/속성변경</span><i class="icon"></i></button>
                                                         </div>
@@ -236,6 +238,7 @@
                             submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_seq' type='hidden' value='"+item.querySelector("input[name=product_seq]").value+"'>"));
                             submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_cost' type='hidden' value='"+item.querySelector("input[name=product_cost]").value+"'>"));
                             submitForm.append($("<input name='basketList["+idx+"].ProductVO.product_name' type='hidden' value='"+item.querySelector("input[name=product_name]").value+"'>"));
+                            submitForm.append($("<input name='basketList["+idx+"].ProductVO.image_name' type='hidden' value='"+item.querySelector("input[name=image_name]").value+"'>"));
                             idx++;
                         }
                         submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
@@ -257,6 +260,7 @@
                         submitForm.append($("<input name='basketList["+0+"].ProductVO.product_seq' type='hidden' value='"+$("input[name='" + 'product_seq'+String(idx) + "']").val()+"'>"));
                         submitForm.append($("<input name='basketList["+0+"].ProductVO.product_cost' type='hidden' value='"+$("input[name='" + 'product_cost'+String(idx) + "']").val()+"'>"));
                         submitForm.append($("<input name='basketList["+0+"].ProductVO.product_name' type='hidden' value='"+$("input[name='" + 'product_name'+String(idx) + "']").val()+"'>"));
+                        submitForm.append($("<input name='basketList["+0+"].ProductVO.image_name' type='hidden' value='"+$("input[name='" + 'image_name'+String(idx) + "']").val()+"'>"));
                         submitForm.append($("<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />"));
                         submitForm.submit();
                     }

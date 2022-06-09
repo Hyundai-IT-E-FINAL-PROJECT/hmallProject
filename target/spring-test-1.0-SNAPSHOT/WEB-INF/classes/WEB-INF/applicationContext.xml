@@ -5,6 +5,12 @@
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+<!--    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">-->
+<!--        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>-->
+<!--        <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>-->
+<!--        <property name="username" value="c##teamKim"/>-->
+<!--        <property name="password" value="team2"/>-->
+<!--    </bean>-->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>
@@ -22,9 +28,9 @@
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/> <!-- 메이서버 호스트 -->
-        <property name="port" value="587"/> <!-- 메이서버 포트번호 -->
+        <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
         <property name="username" value="qudgns1115@gmail.com"/> <!-- 자신의 이메일 아이디 -->
-        <property name="password" value="rlaqudgns159@"/> <!-- 자신의 비밀번호 -->
+        <property name="password" value="mipwemrolwyzwfse"/> <!-- 자신의 비밀번호 -->
         <!-- 보안연결 SSL과 관련된 설정 -->
         <property name="javaMailProperties">
             <props>
