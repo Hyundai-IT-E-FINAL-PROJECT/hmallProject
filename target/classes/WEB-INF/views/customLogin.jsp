@@ -227,7 +227,6 @@
 </div>
 </body>
 </html>
-<<<<<<< HEAD
 <%--<script>--%>
 <%--    function close_popup(){--%>
 <%--        console.log("도착");--%>

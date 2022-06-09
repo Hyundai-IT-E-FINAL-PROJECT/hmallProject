@@ -23,16 +23,12 @@ import org.team2.service.UserService;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 import java.security.Principal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Random;
 
 @Log4j
 @RequestMapping("/user")
@@ -135,8 +131,11 @@ public class UserController {
     }
 
     @GetMapping("/finduser_info")
-    public String find_user_info(){
+    public String find_user_info(Model model){
         log.info("hi");
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.finduser_info";
     }
 
@@ -145,12 +144,14 @@ public class UserController {
     public ModelAndView find_id(UserVO userVO){
 
         ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
         mav.setViewName("user.find_id");
         log.info("hi");
         log.info(userVO.getUser_name());
         log.info(userVO.getUser_email());
         try {
             UserVO vo = userService.find_id(userVO);
+            mav.addObject("cssFileList", styleFileList);
             mav.addObject("find", vo);
         }catch(Exception e){
             e.printStackTrace();
@@ -182,7 +183,10 @@ public class UserController {
     }
 
     @GetMapping("/find_pw")
-    public String find_user_pw(){
+    public String find_user_pw(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.find_pw";
     }
 
@@ -199,7 +203,10 @@ public class UserController {
     }
 
     @GetMapping("/find_pw_with_email")
-    public String find_pw_with_email(){
+    public String find_pw_with_email(Model model){
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("login");
+        model.addAttribute("cssFileList",styleFileList);
         return "user.find_pw_with_email";
     }
 
