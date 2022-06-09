@@ -22,6 +22,7 @@ import org.team2.domain.AddressVO;
 import org.team2.domain.DepositVO;
 import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
+import org.team2.service.CouponService;
 import org.team2.service.ExhibitService;
 import org.team2.service.MypageService;
 import org.team2.service.UserService;
@@ -49,7 +50,9 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private PasswordEncoder pwencoder;
 
-    public Date date;
+    @Setter(onMethod_ = @Autowired)
+    private CouponService couponService;
+
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(Principal principal) throws Exception {
@@ -63,6 +66,9 @@ public class MypageController {
 
         try {
             Map map = mypageService.recentOrders(no);
+            int couponCount=couponService.couponCount(Long.valueOf(principal.getName()));
+
+            mav.addObject("couponCount", couponCount);
             mav.addObject("list", map.get("resultList"));
             mav.addObject("className", "wrap mp-main");
             mav.addObject("cssFileList", styleFileList);
