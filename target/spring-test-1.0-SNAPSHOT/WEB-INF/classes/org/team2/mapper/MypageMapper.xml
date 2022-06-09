@@ -29,7 +29,7 @@
     <select id="cancelperiodOrders" resultType="map">
         select *
         from       (SELECT *
-                    FROM (SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_name, c.product_cost, c.product_info, d.image_name
+                    FROM (SELECT a.order_status, b.order_seq, b.op_count, b.created_at, c.product_seq, c.product_name, c.product_cost, c.product_info, d.image_name
                             FROM tbl_order a, tbl_op b, tbl_product c, tbl_image d
                             WHERE #{no} = a.user_seq
                             AND a.order_seq = b.order_seq
@@ -154,7 +154,7 @@
     </update>
 
     <update id="changeDelivery">
-        UPDATE TBL_USER_ADDRESS SET BASIC_ADDRESS = 0 WHERE BASIC_ADDRESS = 1;
+        UPDATE TBL_USER_ADDRESS SET BASIC_ADDRESS = 0 WHERE BASIC_ADDRESS = 1
     </update>
 </mapper>
 
