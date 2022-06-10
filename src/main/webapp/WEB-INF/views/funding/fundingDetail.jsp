@@ -441,17 +441,28 @@ To change this template use File | Settings | File Templates.
                                 <div>
                                     <div style="display: flex;">
                                         <div style="display: flex; align-items: center; margin-right: 10px;">
-                                            <span class="qty-minus"></span>
+                                            <span class="qty-minus" onclick="fnCalCount('m');"></span>
                                             <label for="qtyInput"></label>
-                                            <input type="tel" autocomplete="new-password" pattern="[0-9]*" inputmode="numeric"
-                                                                                 value="1" maxlength="11" id="qtyInput" class="qty-input">
-                                            <span class="qty-add"></span>
+                                            <input type="tel" autocomplete="new-password" pattern="[0-9]*" inputmode="numeric" readonly
+                                                                             id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
+                                            <span class="qty-add" onclick="fnCalCount('p');"></span>
                                         </div>
                                         <div class="reward-option-bottomStepBtn" style="width: 200px;">다음단계</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <script type="text/javascript">
+                            function fnCalCount(type){
+                                var  reward_count= $("input[name='reward_count']").val();
+
+                                if(type==='p'){
+                                    $("#reward_count").val(Number(reward_count)+1);
+                                }else{
+                                    if(reward_count-1>0){$("#reward_count").val(Number(reward_count)-1);}
+                                }
+                            }
+                        </script>
                     </div>
                     <div class="reward-option-bottomBtn">
                         <div class="reward-option-bottomStepBtn">다음단계</div>

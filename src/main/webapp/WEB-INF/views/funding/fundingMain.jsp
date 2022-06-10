@@ -10,39 +10,14 @@ To change this template use File | Settings | File Templates.
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<style>--%>
-<%--    .spstart_vi_wrap1 .spstart_vi_frame {--%>
-<%--        background-image: url(img/spstart_vi_img01.png);--%>
-<%--        position: relative;--%>
-<%--        left: -100px;--%>
-<%--    }--%>
-<%--</style>--%>
 <main class="cmain main" role="main" id="mainContents">
-
-    <%--    <link href="/resources/font/NotoSansCJKkr/font.min.css" rel="stylesheet">--%>
-
-    <%--    <link rel="shortcut icon" href="//image-se.ycrowdy.com/crowdyCss/img/favicon.ico">--%>
-    <%--    <link rel="icon" sizes="32x32" type="image/png" href="//image-se.ycrowdy.com/crowdyCss/img/favicon-32x32.png">--%>
-    <%--    <link rel="icon" sizes="16x16" type="image/png" href="//image-se.ycrowdy.com/crowdyCss/img/favicon-16x16.png">--%>
-
-    <%--    <link rel="apple-touch-icon" href="//image-se.ycrowdy.com/crowdyCss/img/apple-touch-icon.png">--%>
-    <%--    <link rel="apple-touch-icon" sizes="57x57" href="//image-se.ycrowdy.com/crowdyCss/img/apple-touch-icon-57x57.png">--%>
-    <%--    <link rel="apple-touch-icon" sizes="72x72" href="//image-se.ycrowdy.com/crowdyCss/img/apple-touch-icon-72x72.png">--%>
-    <%--    <link rel="apple-touch-icon" sizes="114x114" href="//image-se.ycrowdy.com/crowdyCss/img/apple-touch-icon-114x114.png">--%>
-    <%--    <link rel="apple-touch-icon" sizes="180x180" href="//image-se.ycrowdy.com/crowdyCss/img/apple-touch-icon-180x180.png">--%>
-
-    <%--    <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">--%>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/theme.min.css?v=20220331_01">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyNav.min.css?v=20220331_01">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/common.min.css?v=20220513_01">
-
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
     <link href="/resources/css/crowdy/crowdy.css?v=20220330_01" rel="stylesheet">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
-    <!--link href="/resources/css/crowdy/crowdyCardUI.css?v=20211207_01" rel="stylesheet" /-->
-    <%--    <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/datepickerCustom.css">--%>
     <div>
         <div id="reflashArea" style="margin-top: 68px">
             <form name="searchPageNation" action="/p/dpa/searchSectItem.do?sectId=2731753" method="post"></form>
@@ -99,309 +74,354 @@ To change this template use File | Settings | File Templates.
                             </div>
                             <div param-art-type="0">
                                 <div class="card-reward-list">
-                                    <div class="card-row-01">
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
+<%--                                    <div class="pdlist-wrap" id="pdListDiv">--%>
+                                        <ul>
+                                            <% for(int i=0; i<10; i++){  %>
+                                                <li class="pthumb">
+                                                    <div class="col-sm-4 col-xs-6">
+                                                        <figure><a href="${contextPath}/fund/detail"
+                                                                   class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
+                                                            <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
+                                                                <div class="card-newStatus-icon">NEW</div>
+                                                                <img
+                                                                        src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
+                                                                        alt="..." class="img-responsive">
+                                                                <!---->
+                                                                <!---->
+                                                            </div>
+                                                            <figcaption>
+                                                                <div class="card-reward-content">
+                                                                    <div class="card-reward-name">(주) 라라잇츠</div>
+                                                                    <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
+                                                                        페이셜 기능성크림
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-reward-row">
+                                                                    <!---->
+                                                                    <div class="card-reward-price crowdy-color-blue"> 5,308,300원
+                                                                        펀딩
+                                                                    </div>
+                                                                    <div class="card-reward-day">D - 18
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="card-reward-persent">5,308%</div>
+                                                                    <!---->
+                                                                    <!---->
+                                                                </div>
+                                                            </figcaption>
+                                                        </a></figure>
                                                     </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
+                                                </li>
+                                            <% }%>
+                                        </ul>
                                     </div>
-                                    <div class="card-row-01">
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                    </div>
-                                    <div class="card-row-01">
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                        <div class="col-sm-4 col-xs-6">
-                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"
-                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                    <div class="card-newStatus-icon">NEW</div>
-                                                    <img
-                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                            alt="..." class="img-responsive">
-                                                    <!---->
-                                                    <!---->
-                                                </div>
-                                                <figcaption>
-                                                    <div class="card-reward-content">
-                                                        <div class="card-reward-name">(주) 라라잇츠</div>
-                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                            페이셜 기능성크림
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-reward-row">
-                                                        <!---->
-                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                            펀딩
-                                                        </div>
-                                                        <div class="card-reward-day">D - 18
-                                                            <!---->
-                                                        </div>
-                                                        <div class="card-reward-persent">5,308%</div>
-                                                        <!---->
-                                                        <!---->
-                                                    </div>
-                                                </figcaption>
-                                            </a></figure>
-                                        </div>
-                                    </div>
+<%--                             --%>
+<%--                                    <div class="card-row-01">--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+
+<%--                                    <div class="card-row-01">--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="card-row-01">--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-sm-4 col-xs-6">--%>
+<%--                                            <figure><a href="${contextPath}/fund/fundingDetail/${fund_seq}"--%>
+<%--                                                       class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">--%>
+<%--                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">--%>
+<%--                                                    <div class="card-newStatus-icon">NEW</div>--%>
+<%--                                                    <img--%>
+<%--                                                            src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"--%>
+<%--                                                            alt="..." class="img-responsive">--%>
+<%--                                                    <!---->--%>
+<%--                                                    <!---->--%>
+<%--                                                </div>--%>
+<%--                                                <figcaption>--%>
+<%--                                                    <div class="card-reward-content">--%>
+<%--                                                        <div class="card-reward-name">(주) 라라잇츠</div>--%>
+<%--                                                        <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름--%>
+<%--                                                            페이셜 기능성크림--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="card-reward-row">--%>
+<%--                                                        <!---->--%>
+<%--                                                        <div class="card-reward-price crowdy-color-blue"> 5,308,300원--%>
+<%--                                                            펀딩--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-day">D - 18--%>
+<%--                                                            <!---->--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="card-reward-persent">5,308%</div>--%>
+<%--                                                        <!---->--%>
+<%--                                                        <!---->--%>
+<%--                                                    </div>--%>
+<%--                                                </figcaption>--%>
+<%--                                            </a></figure>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                        --%>
+<%--                        --%>
 
                                 </div>
 
