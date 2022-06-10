@@ -171,13 +171,13 @@
                                                 </p>
 
 
-                                                <p class="pdname nowrap">${list.PRODUCT_NAME}</p>
+                                                <p class="pdname nowrap">${list.POINT_CONTENT}</p>
 
 
 
 
 
-                                                <p>주문번호 : ${list.PRODUCT_SEQ}</p>
+<%--                                                <p>주문번호 : ${list.ORDER_SEQ}</p>--%>
 
 
 

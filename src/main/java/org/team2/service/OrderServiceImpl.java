@@ -63,4 +63,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception {
         return orderMapper.justanOrderSelect(order_seq);
     }
+
+    @Override
+    public void pointInsert(PointVO pointVO) throws Exception {
+        orderMapper.pointInsert(pointVO);
+    }
 }

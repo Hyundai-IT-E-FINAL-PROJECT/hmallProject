@@ -158,7 +158,7 @@
                         <li><a href="${contextPath}/user/user_agree">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+                        <li><a href="${contextPath}/mypage">${pinfo.userVO.user_name}님</a></li>
                         <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
                         <form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
                             <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>

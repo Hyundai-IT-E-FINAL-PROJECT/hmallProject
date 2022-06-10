@@ -22,4 +22,5 @@ public interface OrderService {
 
     List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
 
+    void pointInsert(PointVO pointVO) throws Exception;
 }

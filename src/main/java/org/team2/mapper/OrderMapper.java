@@ -32,4 +32,6 @@ public interface OrderMapper {
     void deleteUseCoupon(CuVO cuVO) throws Exception;
 
     List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
+
+    void pointInsert(PointVO pointVO) throws Exception;
 }
