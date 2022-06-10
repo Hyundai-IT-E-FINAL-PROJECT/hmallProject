@@ -49,90 +49,37 @@
                             </div>
                         </li>
                     </ul>
-                    <div style="cursor: pointer;"><img
-                            src="https://image-se.ycrowdy.com/crowdyCss/img/mypage_banner.png"
-                            style="width: 180px; padding-right: 10px;"></div>
+                    <div style="cursor: pointer;">
+                        <img src="https://image-se.ycrowdy.com/crowdyCss/img/mypage_banner.png" style="width: 180px; padding-right: 10px;">
+                    </div>
                 </div>
             </div>
+
             <div id="basic_info" class="col-md-10 col-line" style="display: block">
                 <div class="row not-space">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-11">
                         <div class="md-ml30">
-                            <form id="projectForm" method="get" action="#" class="form-horizontal">
+
                                 <div class="form-group row-mobile-n mt40 mb30">
                                     <label for="project_type1" class="col-xs-12 control-label control-label-big">
-                                    <div class="text-left mb10">프로젝트의 성공 조건 &amp; 수수료 안내</div>
-                                        <p class="form-control-static mb10 mt0"></p>
-                                        <div style="text-align: left">
-                                            <p style="color: rgb(51, 51, 51);">프로젝트 종료일 기준 모금액이 목표금액의 100% 이상인 경우에만 프로젝트가
-                                                성공하게 됩니다.</p>
-                                            <p style="color: rgb(51, 51, 51);">프로젝트가 성공한 경우, 크라우디는 모금액에서 수수료를 제한 금액을
-                                                정산해드립니다.</p>
-                                            <p>* 수수료 (vat 별도) 크라우디 수수료 10% + 결제 수수료 3%</p>
-                                            <p></p>
-                                        </div>
+                                        <div class="text-left mb10">프로젝트의 성공 조건 &amp; 수수료 안내</div>
+                                            <p class="form-control-static mb10 mt0"></p>
+                                            <div style="text-align: left">
+                                                <p style="color: rgb(51, 51, 51);">프로젝트 종료일 기준 모금액이 목표금액의 100% 이상인 경우에만 프로젝트가
+                                                    성공하게 됩니다.</p>
+                                                <p style="color: rgb(51, 51, 51);">프로젝트가 성공한 경우, 크라우디는 모금액에서 수수료를 제한 금액을
+                                                    정산해드립니다.</p>
+                                                <p>* 수수료 (vat 별도) 크라우디 수수료 10% + 결제 수수료 3%</p>
+                                                <p></p>
+                                            </div>
                                     </label>
                                 </div>
-                                <div class="form-group row-mobile-n mb30">
-                                    <label for="project_subject" class="col-xs-12 control-label control-label-big">
-                                    <div class="text-left mb10">프로젝트의 제목을 적어주세요</div>
-                                        <div style="text-align: left">
-                                            <p class="form-control-static mb10 mt0">프로젝트의 핵심 내용을 담을 수 있고 간결한 제목을 정해주세요.</p>
-                                        </div>
-                                    </label>
-                                    <div class="col-xs-12 col-sm-8"><input type="text" id="project_subject" maxlength="40" class="form-control"></div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <span class="textarea_text_leng webfont2 mt10">
-                                        <span id="charNum">0</span> / 40</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row-mobile-n mb30"><label for="project_price" class="col-xs-12 control-label control-label-big">
-                                    <div class="text-left mb10">목표 금액을 적어주세요</div>
-                                    <div style="text-align: left">
-                                        <p class="form-control-static mb10 mt0"><a class="red-800">최소 100,000원 이상</a>이어야 합니다.</p>
-                                    </div>
-                                </label>
-                                    <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control"></div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <div class="textarea_text_leng mt10">원</div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-10 basic_info">
-                                        <div class="fees_info">
-                                            <div class="fees_info_frame">
-                                                <div class="row not-space">
-                                                    <div class="col-xs-8">
-                                                        펀딩 결제 수수료(카드 수수료 + 계좌이체 수수료)
-                                                    </div>
-                                                    <div class="col-xs-4 text-right"><span id="pg_fees">0</span>원
-                                                    </div>
-                                                </div>
-                                                <div class="row not-space">
-                                                    <div class="col-xs-8">
-                                                        크라우디 플랫폼 이용 수수료
-                                                    </div>
-                                                    <div class="col-xs-4 text-right"><span id="platform_fees">0</span>원
-                                                    </div>
-                                                </div>
-                                                <div class="row not-space">
-                                                    <div class="col-xs-8">
-                                                        프로젝트를 성공했을 경우 예상 정산 금액
-                                                    </div>
-                                                    <div class="col-xs-4 text-right text-big"><span id="totalSum"
-                                                                                                    class="red-800">0</span>원
-                                                    </div>
-                                                </div>
-                                                <ul>
-                                                    <li>1. 위 금액은 예상이므로, 실제 정산 금액은 조금 다를 수 있습니다.</li>
-                                                    <li>2. 목표금액을 초과달성하여도 수수료는 동일한 비율로 적용됩니다.</li>
-                                                    <li>
-                                                        3. 수수료의 비율은 다음과 같습니다.
-                                                        <ul>
-                                                            <li> - 크라우디 플랫폼 이용 수수료 (결제승인금액의 7% + 부가가치세 10%)</li>
-                                                            <li> - PG 수수료 (카드결제승인금액의 1.7-2% + 부가가치세 10%)</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
+                                    <div class="form-group row-mobile-n mb30">
+                                        <label for="project_subject" class="col-xs-12 control-label control-label-big">
+                                        <div class="text-left mb10">프로젝트의 제목을 적어주세요</div>
+                                            <div style="text-align: left">
+                                                <p class="form-control-static mb10 mt0">프로젝트의 핵심 내용을 담을 수 있고 간결한 제목을 정해주세요.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -196,37 +143,35 @@
                                     <!---->
                                     <div class="row row-mobile-n">
                                         <label for="rewards_ea" class="col-xs-2 control-label">
-                                            <div class="text-left">리워드 제공 가능 수</div>
+                                            <div class="text-left">리워드 제공 가능 수</div>å
                                         </label>
-                                        <div class="row row-mobile-n mb25">
-
-                                            <div class="col-xs-2"><input id="max_num" type="tel" maxlength="100" placeholder="제공 가능 수량" class="form-control"></div>
-                                            <div class="col-xs-1">
-                                                <div class="mt10 textarea_text_leng webfont2">개</div>
-                                            </div>
+                                        <div class="col-xs-12 col-sm-8"><input type="text" id="project_subject" maxlength="40" class="form-control"></div>
+                                        <div class="col-xs-12 col-sm-2">
+                                            <span class="textarea_text_leng webfont2 mt10">
+                                            <span id="charNum">0</span> / 40</span>
                                         </div>
                                     </div>
-                                    <div class="row row-mobile-n mb25"><label for="rewards_date" class="col-xs-2 control-label">
-                                        <div class="text-left">예상 배송일</div>
+                                    <div class="form-group row-mobile-n mb30"><label for="project_price" class="col-xs-12 control-label control-label-big">
+                                        <div class="text-left mb10">목표 금액을 적어주세요</div>
+                                        <div style="text-align: left">
+                                            <p class="form-control-static mb10 mt0"><a class="red-800">최소 100,000원 이상</a>이어야 합니다.</p>
+                                        </div>
                                     </label>
-                                        <div class="col-xs-3">
-                                            <input type="text" class="form-control datetimepicker" id="estimated_deliveryDate">
+                                        <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control"></div>
+                                        <div class="col-xs-12 col-sm-2">
+                                            <div class="textarea_text_leng mt10">원</div>
                                         </div>
-                                    </div>
-                                    <div class="row row-mobile-n mb30">
-                                        <div class="col-xs-2 control-label">
-                                            <div class="text-left mb10">리워드 옵션</div>
-                                        </div>
-                                        <div class="col-xs-9">
-                                            <button type="button" id="option_btn" class="btn btn-block btn-primary-outline" style="display: block" onclick="showOptions();">리워드 옵션 추가하기</button>
-                                            <div id="option_group1" class="option_group"  style="display: none">
-                                                <div class="row row-mobile-n option_select">
-                                                    <div class="col-xs-12 text-right" style="text-align: left!important;">
-                                                        <div class="mt5">
-                                                            <a id="plus_option1" onclick="plusOptions(1);" class="btn_none_icon btn_plus blue-800">추가하기</a>
-                                                            <a id="minus_option1" onclick="minusOptions(1);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                        <div class="col-xs-12 col-sm-10 basic_info">
+                                            <div class="fees_info">
+                                                <div class="fees_info_frame">
+                                                    <div class="row not-space">
+                                                        <div class="col-xs-8">
+                                                            펀딩 결제 수수료(카드 수수료 + 계좌이체 수수료)
+                                                        </div>
+                                                        <div class="col-xs-4 text-right"><span id="pg_fees">0</span>원
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
                                                 </div>
                                                 <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
@@ -252,34 +197,24 @@
                                                         <div class="mt5">
                                                             <a id="plus_option2" onclick="plusOptions(2);" class="btn_none_icon btn_plus blue-800">추가하기</a>
                                                             <a id="minus_option2" onclick="minusOptions(2);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+=======
+                                                    <div class="row not-space">
+                                                        <div class="col-xs-8">
+                                                            크라우디 플랫폼 이용 수수료
+                                                        </div>
+                                                        <div class="col-xs-4 text-right"><span id="platform_fees">0</span>원
+>>>>>>> 1d9a7b1 ([FIX]: CRUD....)
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div id="option1_contents2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
-                                                    <div class="col-xs-8">
-                                                        <input id="product_name2" name ="fund_reward_name2" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
-                                                    </div>
-                                                    <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row row-mobile-n mb25">
-                                                    <div class="col-xs-8">
-                                                        <input id="product_cost2" name="fund_reward_cost2" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
-                                                    </div>
-                                                    <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="option_group3" class="option_group"  style="display: none">
-                                                <div class="row row-mobile-n option_select">
-                                                    <div class="col-xs-12 text-right" style="text-align: left!important;">
-                                                        <div class="mt5">
-                                                            <a id="plus_option3" onclick="plusOptions(3);" class="btn_none_icon btn_plus blue-800">추가하기</a>
-                                                            <a id="minus_option3" onclick="minusOptions(3);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                    <div class="row not-space">
+                                                        <div class="col-xs-8">
+                                                            프로젝트를 성공했을 경우 예상 정산 금액
+                                                        </div>
+                                                        <div class="col-xs-4 text-right text-big"><span id="totalSum"
+                                                                                                        class="red-800">0</span>원
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
                                                 </div>
                                                 <div id="option1_contents3" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
@@ -297,86 +232,255 @@
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2">원</div>
                                                     </div>
+=======
+                                                    <ul>
+                                                        <li>1. 위 금액은 예상이므로, 실제 정산 금액은 조금 다를 수 있습니다.</li>
+                                                        <li>2. 목표금액을 초과달성하여도 수수료는 동일한 비율로 적용됩니다.</li>
+                                                        <li>
+                                                            3. 수수료의 비율은 다음과 같습니다.
+                                                            <ul>
+                                                                <li> - 크라우디 플랫폼 이용 수수료 (결제승인금액의 7% + 부가가치세 10%)</li>
+                                                                <li> - PG 수수료 (카드결제승인금액의 1.7-2% + 부가가치세 10%)</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+>>>>>>> 1d9a7b1 ([FIX]: CRUD....)
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="row row-mobile-n pt15 mb30">
-                                        <div class="col-xs-4"></div>
-                                        <div class="col-xs-2"><button type="button" class="btn btn-block btn-primary">
-                                            등록
-                                            <!---->
-                                        </button></div>
-                                        <div class="col-xs-2"><button type="button"
-                                                                      class="btn btn-block btn-primary-outline">
-                                            초기화
-                                            <!---->
-                                        </button></div>
-                                        <div class="col-xs-4"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group row-mobile-n mt90">
-                                    <div class="col-sm-11">
-                                        <div class="form-group row-mobile-n">
-                                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                                <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                                    <div class="form-group row-mobile-n mb30"><label for="project_start" class="col-xs-12 control-label control-label-big">
+                                        <div class="text-left mb10">프로젝트의 진행 기간을 적어주세요</div>
+                                        <div style="text-align: left">
+                                            <p class="form-control-static mb10 mt0">최소 7일부터 최대 60일까지 가능합니다.</p>
+                                        </div>
+                                    </label>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="row row-mobile-n">
+                                                <div class="col-xs-5"><input type="text" max="60" placeholder="" disabled="disabled" class="form-control"></div>
+                                                <div class="col-xs-2 col-sm-2">
+                                                    <div class="textarea_text_leng mt10">일 남음</div>
+                                                </div>
+                                                <div class="col-xs-5" style="z-index: 10;"><input class="form-control datetimepicker" id="duration_project" value=""></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group row-mobile-n mb30"><label for="project_img" class="col-xs-12 control-label control-label-big">
+                                        <div class="text-left mb10">프로젝트 대표 이미지를 등록해주세요</div>
+                                        <div style="text-align: left">
+                                            <p class="form-control-static mb10 mt0">홈페이지와 외부 공유를 했을 때 보여집니다. 프로젝트를 한 눈에 나타낼 수 있는 이미지를 등록해주세요.</p>
+                                        </div>
+                                    </label>
+                                    </div>
+                                    <div class="form-group row-mobile-n mt90">
+                                        <div class="col-sm-11">
+                                            <div class="form-group row-mobile-n">
+                                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                                    <div class="btn btn-block btn-primary-outline">저장하기</div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">다음단계</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="story" class="col-md-10 col-line" style="display: none">
-                <div class="row not-space">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-11">
-                        <div class="md-ml30">
-                            <form id="combinationForm" method="get" action="#" class="form-horizontal">
-
-                                <div class="form-group row-mobile-n"><label for="project_story" class="col-xs-12 control-label control-label-big">
-                                    <div class="text-left mb10">프로젝트 스토리를 적어주세요</div>
-                                    <div style="text-align: left">
-                                        <p class="form-control-static mb10 mt0"><a class="red-800">프로젝트를 시작하기 위해 필요한 내용이 없다면 승인이 되지 않습니다. 프로젝트 가이드북</a>을 읽어보시고 매력적인 스토리를 적어주세요.</p>
+                <div id="reword" class="col-md-10 col-line" style="display: none">
+                    <div class="row not-space">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <div class="md-ml30">
+                                    <div class="form-group row-mobile-n mt40">
+                                                <div class="col-xs-12 control-label control-label-big">
+                                                    <div class="text-left mb10">
+                                                        프로젝트 리워드를 구성해주세요
+                                                    </div>
+                                                    <div style="text-align: left">
+                                                    <p class="form-control-static mb10 mt0">프로젝트 시작을 위해서는
+                                                        <a class="red-800">최소 1개 이상의 최대 3개의 리워드가 있어야 합니다.</a> 배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.</p>
+                                                    </div>
+                                                </div>
                                     </div>
-                                </label>
-                                    <div class="col-xs-12">
-                                        <div>
-                                            <div class="row common-flex-between-center">
-                                                <div class="mb15 col-xs-9">
-                                                    Enter(↵) : 문단 나눔, Shift + Enter : 줄바꿈입니다! <br>
-                                                    적절한 문단/줄 바꿈만으로 멋진 프로젝트를 완성 할 수 있습니다! <br>
-                                                    이미지와 영상은 꼭 버튼을 이용하여 첨부해주세요.
-                                                </div>
-                                                <div class="col-xs-3"><a href="https://drive.google.com/file/d/1SpeaG3Jj3gSwCQwZ51jDuFXiBelZPtiA/view" target="_blank" class="btn btn-block btn-primary" style="color: #fff4f3">디자인 가이드 보기</a>
-                                                </div>
-                                            </div>
-                                            <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
-                                                <div class="text-left mb10">프로젝트 스토리</div>
+                                        <div class="ps-wrap mb80">
+                                        <!---->
+                                        <div class="row row-mobile-n">
+                                            <label for="rewards_ea" class="col-xs-2 control-label">
+                                                <div class="text-left">리워드 제공 가능 수</div>
                                             </label>
-                                                <div class="col-xs-8"><textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
-                                                                                class="form-control"></textarea></div>
+                                            <div class="row row-mobile-n mb25">
+
+                                                <div class="col-xs-2"><input id="max_num" type="tel" maxlength="100" placeholder="제공 가능 수량" class="form-control"></div>
+                                                <div class="col-xs-1">
+                                                    <div class="mt10 textarea_text_leng webfont2">개</div>
+                                                </div>
                                             </div>
-                                            </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
+                                        </div>
+                                        <div class="row row-mobile-n mb25"><label for="rewards_date" class="col-xs-2 control-label">
+                                            <div class="text-left">예상 배송일</div>
+                                        </label>
+                                            <div class="col-xs-3">
+                                                <input type="text" class="form-control datetimepicker" id="estimated_deliveryDate">
+                                            </div>
+                                        </div>
+                                        <div class="row row-mobile-n mb30">
+                                            <div class="col-xs-2 control-label">
+                                                <div class="text-left mb10">리워드 옵션</div>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <button type="button" id="option_btn" class="btn btn-block btn-primary-outline" style="display: block" onclick="showOptions();">리워드 옵션 추가하기</button>
+                                                <div id="option_group1" class="option_group"  style="display: none">
+                                                    <div class="row row-mobile-n option_select">
+                                                        <div class="col-xs-12 text-right" style="text-align: left!important;">
+                                                            <div class="mt5">
+                                                                <a id="plus_option1" onclick="plusOptions(1);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                                <a id="minus_option1" onclick="minusOptions(1);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_name1" name ="fund_reward_name1" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row row-mobile-n mb25">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_cost1" name="fund_reward_cost1" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="option_group2" class="option_group"  style="display: none">
+                                                    <div class="row row-mobile-n option_select">
+                                                        <div class="col-xs-12 text-right" style="text-align: left!important;">
+                                                            <div class="mt5">
+                                                                <a id="plus_option2" onclick="plusOptions(2);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                                <a id="minus_option2" onclick="minusOptions(2);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="option1_contents2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_name2" name ="fund_reward_name2" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row row-mobile-n mb25">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_cost2" name="fund_reward_cost2" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="option_group3" class="option_group"  style="display: none">
+                                                    <div class="row row-mobile-n option_select">
+                                                        <div class="col-xs-12 text-right" style="text-align: left!important;">
+                                                            <div class="mt5">
+                                                                <a id="plus_option3" onclick="plusOptions(3);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                                <a id="minus_option3" onclick="minusOptions(3);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="option1_contents3" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_name3" name ="fund_reward_name3" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row row-mobile-n mb25">
+                                                        <div class="col-xs-8">
+                                                            <input id="product_cost3" name="fund_reward_cost3" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        </div>
+                                                        <div class="col-xs-2">
+                                                            <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row row-mobile-n pt15 mb30">
+                                            <div class="col-xs-4"></div>
+                                            <div class="col-xs-2"><button type="button" class="btn btn-block btn-primary">
+                                                등록
+                                                <!---->
+                                            </button></div>
+                                            <div class="col-xs-2"><button type="button"
+                                                                          class="btn btn-block btn-primary-outline">
+                                                초기화
+                                                <!---->
+                                            </button></div>
+                                            <div class="col-xs-4"></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row-mobile-n mt90">
-                                    <div class="col-sm-11">
-                                        <div class="form-group row-mobile-n">
-                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary-outline">저장하기</button></div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_story();">다음단계</button></div>
+                                    <div class="form-group row-mobile-n mt90">
+                                        <div class="col-sm-11">
+                                            <div class="form-group row-mobile-n">
+                                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                                    <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div id="story" class="col-md-10 col-line" style="display: none">
+                    <div class="row not-space">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <div class="md-ml30">
+                                    <div class="form-group row-mobile-n"><label for="project_story" class="col-xs-12 control-label control-label-big">
+                                        <div class="text-left mb10">프로젝트 스토리를 적어주세요</div>
+                                        <div style="text-align: left">
+                                            <p class="form-control-static mb10 mt0"><a class="red-800">프로젝트를 시작하기 위해 필요한 내용이 없다면 승인이 되지 않습니다. 프로젝트 가이드북</a>을 읽어보시고 매력적인 스토리를 적어주세요.</p>
+                                        </div>
+                                    </label>
+                                        <div class="col-xs-12">
+                                            <div>
+                                                <div class="row common-flex-between-center">
+                                                    <div class="mb15 col-xs-9">
+                                                        Enter(↵) : 문단 나눔, Shift + Enter : 줄바꿈입니다! <br>
+                                                        적절한 문단/줄 바꿈만으로 멋진 프로젝트를 완성 할 수 있습니다! <br>
+                                                        이미지와 영상은 꼭 버튼을 이용하여 첨부해주세요.
+                                                    </div>
+                                                    <div class="col-xs-3"><a href="https://drive.google.com/file/d/1SpeaG3Jj3gSwCQwZ51jDuFXiBelZPtiA/view" target="_blank" class="btn btn-block btn-primary" style="color: #fff4f3">디자인 가이드 보기</a>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
+                                                    <div class="text-left mb10">프로젝트 스토리</div>
+                                                </label>
+                                                    <div class="col-xs-8"><textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
+                                                                                    class="form-control"></textarea></div>
+                                                </div>
+                                                </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-mobile-n mt90">
+                                        <div class="col-sm-11">
+                                            <div class="form-group row-mobile-n">
+                                                <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary-outline">저장하기</button></div>
+                                                <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_story();">다음단계</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
