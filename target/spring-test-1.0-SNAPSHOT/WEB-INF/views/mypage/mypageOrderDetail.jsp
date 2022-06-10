@@ -38,6 +38,18 @@
                                     <strong style="display:none">PC주문</strong>
                                 </div>
 
+                                <div class="btngroup">
+                                    <c:if test="${list.ORDER_STATUS eq '주문접수'}">
+                                        <button class="btn btn-linelgray small30" type="button" onclick="location.href='${contextPath}/mypageOrderCancel?order_seq=${list.ORDER_SEQ}'"><span>주문취소</span></button>
+                                    </c:if>
+                                    <c:if test="${list.ORDER_STATUS eq '상품발송' or list.ORDER_STATUS eq '배송완료'}">
+                                        <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>
+                                        <%--                                    openDlvTrcUrlPup('20220513295854', '1')--%>
+                                        <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>
+                                        <%--                                    openItemEvalPopup('2137807436', '00008', '20220513295854')--%>
+                                    </c:if>
+                                </div>
+
                             </dt>
                             </c:if>
                             <input type="hidden" name="lastOrdStatGbcdNm" value="배송완료">
@@ -85,12 +97,6 @@
                                     </div>
                                 </a>
 
-                               <div class="btngroup">
-                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>
-<%--                                    openDlvTrcUrlPup('20220513295854', '1')--%>
-                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>
-<%--                                    openItemEvalPopup('2137807436', '00008', '20220513295854')--%>
-                                </div>
                             </dd> <!-- //.btn-col2 -->
                         <c:if test="${vs.last}">
                             </dl>
@@ -156,7 +162,7 @@
                                 <span class="minus-icon"><i class="icon"></i></span>
                                 <dl class="between top">
                                     <dt>할인금액</dt>
-                                    <dd><strong><fmt:formatNumber  value="${list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원</dd>
+                                    <dd><strong><fmt:formatNumber  value="${totalCost - list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원</dd>
                                 </dl>
 
                             </li>

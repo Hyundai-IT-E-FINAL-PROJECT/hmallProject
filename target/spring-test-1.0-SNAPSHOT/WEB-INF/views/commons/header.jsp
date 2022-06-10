@@ -170,7 +170,7 @@
                                 <li><a href="mypageOrder">관리자 ${pinfo.userVO.user_name}님</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+                                <li><a href="${contextPath}/mypage">${pinfo.userVO.user_name}님</a></li>
                             </c:otherwise>
                         </c:choose>
                         <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>

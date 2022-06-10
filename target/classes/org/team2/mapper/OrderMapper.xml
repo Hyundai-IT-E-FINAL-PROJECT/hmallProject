@@ -183,4 +183,9 @@
         <result property="order_seq" column="order_seq" />
     </resultMap>
 
+    <insert id="pointInsert" statementType="CALLABLE" parameterType="org.team2.domain.PointVO">
+        {
+            call PROC_POINT_INSERT(#{point_cost}, #{user_seq}, #{order_seq})
+        }
+    </insert>
 </mapper>
