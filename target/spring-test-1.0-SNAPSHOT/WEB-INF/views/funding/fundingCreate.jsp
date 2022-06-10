@@ -5,6 +5,7 @@
   Time: 11:51 PM
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
@@ -30,6 +31,20 @@
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/datepickerCustom.css">
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include summernote css/js-->
+<link  href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="${contextPath}/resources/js/summernote-ko-KR.js"></script>
+
+
 <div class="common_sub_layout">
     <div class="container">
         <div class="row not-space">
@@ -357,9 +372,15 @@
                                             <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
                                                 <div class="text-left mb10">프로젝트 스토리</div>
                                             </label>
-                                                <div class="col-xs-8"><textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
-                                                                                class="form-control"></textarea></div>
+                                                <div class="col-xs-8">
+                                                    <textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
+                                                                                class="form-control"></textarea>
+
+                                                </div>
                                             </div>
+                                            <form method="post">
+                                                <textarea id="summernote" name="content"></textarea>
+                                            </form>
                                             </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
                                         </div>
                                     </div>
@@ -524,4 +545,29 @@
             $("#d_day").val(result-30);
         });
     });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            // toolbar: [
+            //     // [groupName, [list of button]]
+            //     ['fontname', ['fontname']],
+            //     ['fontsize', ['fontsize']],
+            //     ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+            //     ['color', ['forecolor','color']],
+            //     ['table', ['table']],
+            //     ['para', ['ul', 'ol', 'paragraph']],
+            //     ['height', ['height']],
+            //     ['insert',['picture','link','video']],
+            //     ['view', ['fullscreen', 'help']]
+            // ],
+            // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+            // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+            placeholder: 'content',
+            minHeight: 370,
+            maxHeight: null,
+            focus: true,
+            lang : 'ko-KR'
+        });
+    })
 </script>
