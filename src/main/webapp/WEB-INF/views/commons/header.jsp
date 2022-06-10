@@ -89,11 +89,20 @@
                         <span>장바구니</span>
                     </a>
                 </li>
-
-
-
-                    <li><a class="mypage" href="/mypage" ><span>마이페이지</span></a></li>
-
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal" var="pinfo" />
+                    <c:choose>
+                        <c:when test="${pinfo.userVO.authList.size() == 2}">
+                            <li><a class="mypage" href="/mypageOrder"><span>주문관리</span></a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                    <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
+                </sec:authorize>
                 <li>
                     <a href="javascript:;" class="recently" id="recentlyImg"
                        onclick="openRecentShopping(); return false;">
@@ -151,14 +160,19 @@
                 <h2 class="hiding">유틸메뉴</h2>
                 <!-- 로그인 전 -->
                 <ul style="display: flex;">
-                    <sec:authentication property="principal" var="pinfo"/>
                     <sec:authorize access="isAnonymous()">
-<%--                        <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>--%>
                         <li><a ga-category="헤더" ga-action="로그인" href="${contextPath}/customLogin">로그인</a></li>
                         <li><a href="${contextPath}/user/user_agree">회원가입</a></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <li><a href="mypage">${pinfo.userVO.user_name}님</a></li>
+                        <c:choose>
+                            <c:when test="${pinfo.userVO.authList.size() == 2}">
+                                <li><a href="mypageOrder">관리자 ${pinfo.userVO.user_name}님</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="${contextPath}/mypage">${pinfo.userVO.user_name}님</a></li>
+                            </c:otherwise>
+                        </c:choose>
                         <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
                         <form id="logout-form" action='<c:url value='/customLogout'/>' method="POST">
                             <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
@@ -172,7 +186,7 @@
     </div>
 </header>
 <script>
-    function showLoginPopup(){
-        window.open("${contextPath}/customLogin","a","width=550, height=700, left=100, top=50");
+    function showLoginPopup() {
+        window.open("${contextPath}/customLogin", "a", "width=550, height=700, left=100, top=50");
     }
 </script>

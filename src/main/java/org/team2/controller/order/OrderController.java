@@ -99,7 +99,7 @@ public class OrderController {
         @PostMapping("orderComplete")
         public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO,
                                     @ModelAttribute UserVO userVO, @ModelAttribute OpVO opVO,
-                                    @ModelAttribute CuVO cuVO,
+                                    @ModelAttribute CuVO cuVO, @ModelAttribute PointVO pointVO,
                                     @RequestParam(value="basket_list[]") List<String> basket_list,
                                     @RequestParam(value="product_list[]") List<String> product_list,
                                     Principal principal) throws Exception {
@@ -125,7 +125,18 @@ public class OrderController {
                 }
                 //update userPoint, deposit query
                 userVO.setNo(Integer.parseInt(principal.getName()));
-                orderService.userPointUpdate(userVO);
+
+                // 구매한 금액에 따른 적립금 insert
+
+                //orderService.userPointUpdate(userVO);  // -> point 적립되는 것은 관리자가 구매확정을 누를 때 부여하는 것으로 로직 변경
+
+                // 적립금 사용시 insert
+                if(pointVO.getPoint_cost()!=null) {
+                    pointVO.setOrder_seq(orderVO.getNo());
+                    pointVO.setUser_seq(Long.valueOf(principal.getName()));
+                    orderService.pointInsert(pointVO);
+                }
+
                 //coupon delete
                 if(cuVO.getCoupon_seq()!=null){ //coupon 선택 했을 시
                     cuVO.setUser_seq(Long.valueOf(principal.getName()));

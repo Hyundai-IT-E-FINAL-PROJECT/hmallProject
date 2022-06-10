@@ -11,6 +11,8 @@ public interface MypageMapper {
 
     void periodOrders(Map<String,Object> map) throws Exception;
 
+    void adminPeriodOrders(Map<String,Object> map) throws Exception;
+
     void detailOrders(Map<String,Object> map) throws Exception;
 
     void couponList(Map<String,Object> map) throws Exception;

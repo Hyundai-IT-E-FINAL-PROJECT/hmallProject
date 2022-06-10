@@ -45,6 +45,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void confirmOrder(Long order_seq) {
+        orderMapper.confirmOrder(order_seq);
+    }
+
+    @Override
     public int delete(Long seq) throws Exception {
         return orderMapper.delete(seq);
     }
@@ -62,5 +67,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception {
         return orderMapper.justanOrderSelect(order_seq);
+    }
+
+    @Override
+    public void pointInsert(PointVO pointVO) throws Exception {
+        orderMapper.pointInsert(pointVO);
     }
 }

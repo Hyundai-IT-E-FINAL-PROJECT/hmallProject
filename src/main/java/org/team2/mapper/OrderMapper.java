@@ -1,5 +1,6 @@
 package org.team2.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.team2.domain.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface OrderMapper {
 
     OrderVO readOne(Long seq);
 
-    int updateOrder(OrderVO vo);
+    void confirmOrder(@Param("order_seq") Long order_seq);
 
    // int insertOp(@Param("OrderVO") OrderVO orderVO, @Param("ProductVO") ProductVO productVO, @Param("OpVO") OpVO opVO) throws Exception;
 
@@ -32,4 +33,6 @@ public interface OrderMapper {
     void deleteUseCoupon(CuVO cuVO) throws Exception;
 
     List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
+
+    void pointInsert(PointVO pointVO) throws Exception;
 }

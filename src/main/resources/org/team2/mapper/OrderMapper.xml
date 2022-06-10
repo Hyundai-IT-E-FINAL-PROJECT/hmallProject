@@ -19,6 +19,14 @@
         where order_seq=#{seq}
     </update>
 
+    <update id="confirmOrder" statementType="CALLABLE">
+        {
+            CALL PROC_MYPAGE_ORDERCONFIRM(
+                #{order_seq}
+            )
+            }
+    </update>
+
     <delete id="deleteOne">
         delete from tbl_order where order_seq=#{seq}
     </delete>
@@ -175,4 +183,9 @@
         <result property="order_seq" column="order_seq" />
     </resultMap>
 
+    <insert id="pointInsert" statementType="CALLABLE" parameterType="org.team2.domain.PointVO">
+        {
+            call PROC_POINT_INSERT(#{point_cost}, #{user_seq}, #{order_seq})
+        }
+    </insert>
 </mapper>

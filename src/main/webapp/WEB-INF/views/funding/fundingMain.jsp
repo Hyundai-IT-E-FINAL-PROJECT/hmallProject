@@ -76,7 +76,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="card-reward-list">
 <%--                                    <div class="pdlist-wrap" id="pdListDiv">--%>
                                         <ul>
-                                            <% for(int i=0; i<10; i++){  %>
+                                            <% for(int i=0; i<20; i++){  %>
                                                 <li class="pthumb">
                                                     <div class="col-sm-4 col-xs-6">
                                                         <figure><a href="${contextPath}/fund/detail"

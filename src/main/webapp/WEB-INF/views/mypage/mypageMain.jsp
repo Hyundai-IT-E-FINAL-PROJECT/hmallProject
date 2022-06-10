@@ -127,12 +127,6 @@
 
 
                     <c:forEach items="${list}" var="odlist" varStatus="vs">
-                        <%--                            <c:if test="${vs.index != 0}">--%>
-                        <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
-                        <%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
-                        <%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
-                        <%--                                <p>${!vs.last}</p>--%>
-                        <%--                            </c:if>--%>
                         <c:if test="${vs.index == 0}">
                             <div class="order-list">
                             <dl>
@@ -199,22 +193,41 @@
                                 </div>
                             </a>
 
-                            <div class="btngroup">
-                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
-                                    <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
-                                </c:if>
-                                <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-                                <input type="hidden" name="copnStlmFixYn" value="" />
-                            </div>
                         </dd>
                         <c:if test="${vs.index != 0 or vs.last}">
                             <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
-                                </dl>
+<%--                                        <dd>--%>
+<%--                                            <div class="btngroup">--%>
+<%--                                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}">--%>
+<%--                                                    <button class="btn btn-linelgray small30" type="button" onclick="location.href='${contextPath}/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>--%>
+<%--                                                </c:if>--%>
+<%--                                                <c:if test="${odlist.ORDER_STATUS eq '상품발송' or odlist.ORDER_STATUS eq '배송완료'}">--%>
+<%--                                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>--%>
+<%--                                                    &lt;%&ndash;                                    openDlvTrcUrlPup('20220513295854', '1')&ndash;%&gt;--%>
+<%--                                                    <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>--%>
+<%--                                                    &lt;%&ndash;                                    openItemEvalPopup('2137807436', '00008', '20220513295854')&ndash;%&gt;--%>
+<%--                                                </c:if>--%>
+<%--                                            </div>--%>
+<%--                                        </dd>--%>
+                                    </dl>
                                 </div>
                             </c:if>
                         </c:if>
                         <c:if test="${vs.index == 0 and !vs.last and vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
-                            </dl>
+<%--                                    <dd>--%>
+<%--                                        <div class="btngroup">--%>
+<%--                                            <c:if test="${odlist.ORDER_STATUS eq '주문접수'}">--%>
+<%--                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='${contextPath}/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>--%>
+<%--                                            </c:if>--%>
+<%--                                            <c:if test="${odlist.ORDER_STATUS eq '상품발송' or odlist.ORDER_STATUS eq '배송완료'}">--%>
+<%--                                                <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>--%>
+<%--                                                &lt;%&ndash;                                    openDlvTrcUrlPup('20220513295854', '1')&ndash;%&gt;--%>
+<%--                                                <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>--%>
+<%--                                                &lt;%&ndash;                                    openItemEvalPopup('2137807436', '00008', '20220513295854')&ndash;%&gt;--%>
+<%--                                            </c:if>--%>
+<%--                                        </div>--%>
+<%--                                    </dd>--%>
+                                </dl>
                             </div>
                         </c:if>
                     </c:forEach>
@@ -230,8 +243,8 @@
                     <h3 class="title22">
                         최근 상담내역
                         <div class="btngroup abs">
-                            <a href="/p/mpc/sltdItemList.do" class="btn atext" onclick="gaTagging(this, '', '', '');"
-                               ga-custom-name="마이페이지" ga-custom-position="찜한 상품" ga-custom-creative="전체보기"
+                            <a href="/customer/myInquiryPage" class="btn atext" onclick="gaTagging(this, '', '', '');"
+                               ga-custom-name="마이페이지" ga-custom-position="최근 상담내역" ga-custom-creative="전체보기"
                                ga-custom-title="마이페이지>메인" ga-custom-etc="urlAction"><span>전체보기</span><i
                                     class="arrow right"></i></a>
                         </div>
