@@ -7,15 +7,16 @@ To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .spstart_vi_wrap1 .spstart_vi_frame {
-        background-image: url(img/spstart_vi_img01.png);
-        position: relative;
-        left: -100px;
-    }
-</style>
+<%--<style>--%>
+<%--    .spstart_vi_wrap1 .spstart_vi_frame {--%>
+<%--        background-image: url(img/spstart_vi_img01.png);--%>
+<%--        position: relative;--%>
+<%--        left: -100px;--%>
+<%--    }--%>
+<%--</style>--%>
 <main class="cmain main" role="main" id="mainContents">
 
     <%--    <link href="/resources/font/NotoSansCJKkr/font.min.css" rel="stylesheet">--%>
@@ -68,7 +69,8 @@ To change this template use File | Settings | File Templates.
                                                             </div>
                                                         </div>
                                                         <div class="hidden-xs">
-                                                            <div class="btn btn-sps btn-shadow btn-primary" style="font-weight: bold;">프로젝트
+                                                            <div class="btn btn-sps btn-shadow btn-primary" style="font-weight: bold;"
+                                                                 onclick="location.href='${contextPath}/fund/create'">프로젝트
                                                                 만들기
                                                             </div>
                                                         </div>
