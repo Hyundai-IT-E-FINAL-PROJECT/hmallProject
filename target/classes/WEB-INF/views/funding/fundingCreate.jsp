@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div style="text-align: left">
                                                 <p class="form-control-static mb10 mt0">프로젝트 시작을 위해서는
-                                                    <a class="red-800">최소 1개 이상의 리워드가 있어야 합니다.</a> 배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.</p>
+                                                    <a class="red-800">최소 1개 이상의 최대 3개의 리워드가 있어야 합니다.</a> 배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.</p>
                                                 </div>
                                             </div>
                                 </div>
@@ -200,7 +200,7 @@
                                         </label>
                                         <div class="row row-mobile-n mb25">
 
-                                            <div class="col-xs-2"><input type="tel" maxlength="100" placeholder="제공 가능 수량" class="form-control"></div>
+                                            <div class="col-xs-2"><input id="max_num" type="tel" maxlength="100" placeholder="제공 가능 수량" class="form-control"></div>
                                             <div class="col-xs-1">
                                                 <div class="mt10 textarea_text_leng webfont2">개</div>
                                             </div>
@@ -219,17 +219,18 @@
                                         </div>
                                         <div class="col-xs-9">
                                             <button type="button" id="option_btn" class="btn btn-block btn-primary-outline" style="display: block" onclick="showOptions();">리워드 옵션 추가하기</button>
-                                            <div id="option_group" class="option_group" style="display: none">
+                                            <div id="option_group1" class="option_group"  style="display: none">
                                                 <div class="row row-mobile-n option_select">
-                                                    <div class="col-xs-12 text-right">
+                                                    <div class="col-xs-12 text-right" style="text-align: left!important;">
                                                         <div class="mt5">
-                                                            <a id="plus_option" onclick="plusOptions();" class="btn_none_icon btn_plus blue-800">추가하기</a>
-                                                            <a id="minus_option" onclick="minusOptions();" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                            <a id="plus_option1" onclick="plusOptions(1);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                            <a id="minus_option1" onclick="minusOptions(1);" class="btn_none_icon btn_delete red-800">삭제하기</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="option1_contents_radio2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
-                                                    <div class="col-xs-8"><input type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_name1" name ="fund_reward_name1" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
@@ -237,7 +238,59 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost1" name="fund_reward_cost1" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="option_group2" class="option_group"  style="display: none">
+                                                <div class="row row-mobile-n option_select">
+                                                    <div class="col-xs-12 text-right" style="text-align: left!important;">
+                                                        <div class="mt5">
+                                                            <a id="plus_option2" onclick="plusOptions(2);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                            <a id="minus_option2" onclick="minusOptions(2);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="option1_contents2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_name2" name ="fund_reward_name2" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_cost2" name="fund_reward_cost2" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="option_group3" class="option_group"  style="display: none">
+                                                <div class="row row-mobile-n option_select">
+                                                    <div class="col-xs-12 text-right" style="text-align: left!important;">
+                                                        <div class="mt5">
+                                                            <a id="plus_option3" onclick="plusOptions(3);" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                            <a id="minus_option3" onclick="minusOptions(3);" class="btn_none_icon btn_delete red-800">삭제하기</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="option1_contents3" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_name3" name ="fund_reward_name3" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_cost3" name="fund_reward_cost3" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2">원</div>
@@ -327,7 +380,7 @@
 </div>
 <script>
 
-    var i = 0;
+    var i = 3;
 
     function show(a){
         console.log("리워드 버튼 누름");
@@ -366,35 +419,40 @@
 
     function showOptions(){
         const element_option_btn = document.getElementById("option_btn");
-        const element_reward = document.getElementById("option_group");
+        const element_reward = document.getElementById("option_group1");
 
         element_option_btn.style.display = 'none';
         element_reward.style.display = 'block';
     }
 
-    function plusOptions(){
-        const copyDiv = document.getElementById('option_group');
-        const newNode = copyDiv.cloneNode(true);
-        newNode.id = 'optionNode';
-        copyDiv.after(newNode);
-        console.log("플러스"+i);
-        i++;
+    function plusOptions(a){
+        const max_num = document.getElementById("max_num").value;
+        if(a < max_num){
+            if(a === 1){
+                const element_reward2 = document.getElementById("option_group2");
+                element_reward2.style.display = 'block';
+            }else if(a === 2){
+                const element_reward3 = document.getElementById("option_group3");
+                element_reward3.style.display = 'block';
+            }
+        }else{
+            alert("최대 리워드 갯수를 초과했습니다.");
+        }
     }
 
-    function minusOptions(){
-        const element_option_btn = document.getElementById("option_btn");
-        const deleteDiv = document.getElementById("optionNode");
-        const deleteAll = document.getElementById("option_group");
-        var n = $("div[id=optionNode]").length;
-        // console.log(n);
-        if(n != 0){
-            deleteDiv.remove();
-            i--;
-        }else{
-            deleteAll.style.display = 'none';
+    function minusOptions(a){
+        if(a === 1){
+            const element_option_btn = document.getElementById("option_btn");
+            const element_reward = document.getElementById("option_group1");
             element_option_btn.style.display = 'block';
+            element_reward.style.display = 'none';
+        }else if(a === 2){
+            const element_reward2 = document.getElementById("option_group2");
+            element_reward2.style.display = 'none';
+        }else if(a === 3){
+            const element_reward3 = document.getElementById("option_group3");
+            element_reward3.style.display = 'none';
         }
-        console.log("마이너스: "+i)
     }
 
     $('#duration_project').change(function (){
@@ -424,6 +482,11 @@
         element_basic.style.display = 'none';
         elememt_reword.style.display = 'block';
         element_story.style.display = 'none';
+    }
+
+    function plus(a){
+        console.log(a);
+        a++;
     }
 
 </script>
