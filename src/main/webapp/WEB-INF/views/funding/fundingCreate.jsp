@@ -145,7 +145,7 @@
                                 </label>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="row row-mobile-n">
-                                            <div class="col-xs-5"><input type="text" max="60" placeholder="" disabled="disabled" class="form-control"></div>
+                                            <div class="col-xs-5"><input type="text" max="60" placeholder="" disabled="disabled" class="form-control" name="d_day" id="d_day"></div>
                                             <div class="col-xs-2 col-sm-2">
                                                 <div class="textarea_text_leng mt10">일 남음</div>
                                             </div>
@@ -223,13 +223,14 @@
                                                 <div class="row row-mobile-n option_select">
                                                     <div class="col-xs-12 text-right">
                                                         <div class="mt5">
-                                                            <a id="plus_option" onclick="plusOptions();" class="btn_none_icon btn_plus blue-800">추가하기</a>
+                                                            <a id="plus_option" onclick="<c:set var="index" value="${index}+1"/>  plusOptions();" class="btn_none_icon btn_plus blue-800">추가하기</a>
                                                             <a id="minus_option" onclick="minusOptions();" class="btn_none_icon btn_delete red-800">삭제하기</a>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <c:set var="index" value="1" />
                                                 <div id="option1_contents_radio2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
-                                                    <div class="col-xs-8"><input type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                    <div class="col-xs-8"><input name="rewardTitle${index}" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
@@ -237,7 +238,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input  name="rewardCost${index}" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2">원</div>
@@ -366,20 +367,13 @@
 
     function showOptions(){
         const element_option_btn = document.getElementById("option_btn");
-        const element_reward = document.getElementById("option_group");
+        const element_reward = document.getElementById("option_group1");
 
         element_option_btn.style.display = 'none';
         element_reward.style.display = 'block';
     }
 
-    function plusOptions(){
-        const copyDiv = document.getElementById('option_group');
-        const newNode = copyDiv.cloneNode(true);
-        newNode.id = 'optionNode';
-        copyDiv.after(newNode);
-        console.log("플러스"+i);
-        i++;
-    }
+
 
     function minusOptions(){
         const element_option_btn = document.getElementById("option_btn");
@@ -444,8 +438,18 @@
         changeYear: true
     }
     $(function() {
+        var today=new Date();
         $("#estimated_deliveryDate").datepicker(config);
         $("#duration_project").datepicker(config);
-        // $('input[id=duration_project]').attr('value')
+        $("#duration_project").on("change", function(){
+            let year= parseInt($(this).val().split('-')[0]);
+            let month= parseInt($(this).val().split('-')[1]);
+            let day= parseInt($(this).val().split('-')[2]);
+            console.log(year, month, day);
+            var d_day=new Date(year, month, day);
+            var gap=d_day.getTime()-today.getTime();
+            var result=Math.ceil(gap/(1000*60*60*24));
+            $("#d_day").val(result-30);
+        });
     });
 </script>
