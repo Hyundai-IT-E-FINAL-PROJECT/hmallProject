@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--datePicker-->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -92,7 +93,7 @@
                                         <p class="form-control-static mb10 mt0"><a class="red-800">최소 100,000원 이상</a>이어야 합니다.</p>
                                     </div>
                                 </label>
-                                    <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control"></div>
+                                    <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control" id="goal_cost"></div>
                                     <div class="col-xs-12 col-sm-2">
                                         <div class="textarea_text_leng mt10">원</div>
                                     </div>
@@ -227,7 +228,7 @@
                                                 </div>
                                                 <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name1" name ="fund_reward_name1" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name1" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
 
                                                     </div>
                                                     <div class="col-xs-2">
@@ -236,7 +237,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost1" name="fund_reward_cost1" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2">원</div>
@@ -254,7 +255,7 @@
                                                 </div>
                                                 <div id="option1_contents2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name2" name ="fund_reward_name2" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name2" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
@@ -262,7 +263,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost2" name="fund_reward_cost2" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost2" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2">원</div>
@@ -280,7 +281,7 @@
                                                 </div>
                                                 <div id="option1_contents3" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name3" name ="fund_reward_name3" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name3" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
@@ -288,7 +289,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost3" name="fund_reward_cost3" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost3" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
 
                                                     </div>
                                                     <div class="col-xs-2">
@@ -317,7 +318,7 @@
                                     <div class="col-sm-11">
                                         <div class="form-group row-mobile-n">
                                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                                <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                                                <button type="button" class="btn btn-block btn-primary" onclick="insertFund();">등록하기</button>
                                             </div>
                                         </div>
                                     </div>
@@ -480,11 +481,50 @@
         element_story.style.display = 'none';
     }
 
-    function plus(a){
-        console.log(a);
-        a++;
-    }
+    //펀드 등록하기 함수
+    function insertFund(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
 
+        var fund_product_end_date = document.getElementById('duration_project').value;
+        var fund_product_title = document.getElementById('project_subject').value;
+        var fund_product_goal_cost = document.getElementById('goal_cost').value;
+        var fund_reward_name1 = document.getElementById('product_name1').value;
+        var fund_reward_cost1 = document.getElementById('product_cost1').value;
+        var fund_reward_name2 = document.getElementById('product_name2').value;
+        var fund_reward_cost2 = document.getElementById('product_cost2').value;
+
+        let fund_reward_titleList = [];
+        let fund_reward_countList = [];
+        var rewardLength = document.getElementById('max_num').value;
+        for(var i = 1 ; i <= rewardLength ; i++){
+            fund_reward_titleList.push($("input[id='"+'product_name'+String(i)+"']").val());
+            fund_reward_countList.push($("input[id='"+'product_cost'+String(i)+"']").val());
+        }
+
+        console.log(fund_reward_titleList, fund_reward_countList);
+
+        var rewardData = {
+            fund_product_end_date:fund_product_end_date,
+            fund_product_title:fund_product_title,
+            fund_product_goal_cost:parseInt(fund_product_goal_cost),
+            fund_reward_seq:1,
+            // fund_product_seq:1,
+            //
+            "fund_reward_titleList" : fund_reward_titleList
+            // fund_reward_content: 'asd',
+            // "fund_reward_count" : fund_reward_count
+        }
+        console.log(rewardData);
+        $.ajax({
+            url:"${contextPath}/fund/insertFund",
+            method:"post",
+            data:rewardData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            }
+        })
+    }
 </script>
 
 <script>
