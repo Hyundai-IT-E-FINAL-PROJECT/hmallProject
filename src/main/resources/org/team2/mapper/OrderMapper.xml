@@ -19,6 +19,14 @@
         where order_seq=#{seq}
     </update>
 
+    <update id="confirmOrder" statementType="CALLABLE">
+        {
+            CALL PROC_MYPAGE_ORDERCONFIRM(
+                #{order_seq}
+            )
+            }
+    </update>
+
     <delete id="deleteOne">
         delete from tbl_order where order_seq=#{seq}
     </delete>

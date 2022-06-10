@@ -10,6 +10,8 @@ public interface MypageService {
 
     Map periodOrders(long no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
 
+    Map adminPeriodOrders(String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
+
     Map detailOrders(long no, long odno) throws Exception;
 
     Map couponList(long no)  throws Exception;

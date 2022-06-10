@@ -116,6 +116,7 @@ function searchAutoCate(obj, first_category, second_category) {
     console.log(obj);
     $(".autoCate").removeClass("ui-active");
     $(obj).closest("li").addClass("ui-active");
+    let search_text = $("#searchKeyword").val();
     console.log(first_category)
     console.log(second_category)
     if (second_category === 0) {
@@ -123,7 +124,7 @@ function searchAutoCate(obj, first_category, second_category) {
     }
     $(".pdlist-wrap ul li").remove();
     $.ajax({
-        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=${second_category}`
+        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=${second_category}&search_text=${search_text}`
         , type: "get"
         , dataType: "json"
         , success: function (data) {
@@ -224,6 +225,7 @@ function searchAutoCate(obj, first_category, second_category) {
                     )
                 }
             }
+            $("#product-count").text(`(${data.length})`)
         }
         , error: function (e) {
             console.log('error', e);
@@ -235,6 +237,7 @@ function searchSortProc(obj, first_category) {
     console.log(obj);
     $(".sortOption .active").removeClass("active")
     $(obj).addClass("active")
+    let search_text = $("#searchKeyword").val()
 
     // 변수
     var second_category = $(".autoCate.ui-active").val()
@@ -244,7 +247,7 @@ function searchSortProc(obj, first_category) {
     }
     $(".pdlist-wrap ul li").remove();
     $.ajax({
-        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=${second_category}&sort=${$(obj).attr("sort")}`
+        url: `http://localhost:8080/api/product/all?first_category=${first_category}&second_category=${second_category}&sort=${$(obj).attr("sort")}&search_text=${search_text}`
         , type: "get"
         , dataType: "json"
         , success: function (data) {
@@ -345,6 +348,7 @@ function searchSortProc(obj, first_category) {
                     )
                 }
             }
+            $("#product-count").text(`(${data.length})`)
         }
         , error: function (e) {
             console.log('error', e);
@@ -464,6 +468,7 @@ function search(keyword, first_category, second_category, sort) {
                     )
                 }
             }
+            $("#product-count").text(`(${data.length})`)
         }
         , error: function (e) {
             console.log('error', e);
@@ -676,3 +681,6 @@ function image_show(product_seq) {
 
 }
 
+function initKeyword() {
+    $("#searchKeyword").val("")
+}

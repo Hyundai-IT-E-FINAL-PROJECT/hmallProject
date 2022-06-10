@@ -42,7 +42,6 @@
         <div class="gird-l2x">
             <%@ include file="mypageSide.jsp" %>
             <sec:authentication property="principal" var="pinfo" />
-
                  <form id="searchForm" name="searchForm" action="/mypageOrder" method="get">
                      <input type='hidden' name='seType' 		id='seType' 		value="" />
                      <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />

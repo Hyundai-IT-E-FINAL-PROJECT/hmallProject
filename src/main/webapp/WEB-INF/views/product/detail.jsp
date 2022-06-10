@@ -1018,7 +1018,8 @@
                                             <div class="pdprice">
                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
                                         <p class="discount" aria-label="할인가">
-                                            <em class="product-discount">${productVO.product_cost}</em><b>원</b>
+                                            <em class="product-discount"><fmt:formatNumber value="${productVO.discounted_cost}"
+                                                                                           pattern="#,###"/></em><b>원</b>
                                         </p>
                                     </span>
                                                 <div class="tooltip-box" id="tooltipDiscount">
@@ -1028,13 +1029,15 @@
                                                     <dl class="cost-wrap">
                                                         <dt>판매가</dt>
                                                         <dd>
-                                                            <span class="enroll-price">${productVO.product_cost}<em>원</em></span>
+                                                            <span class="enroll-price"><fmt:formatNumber value="${productVO.product_cost}"
+                                                                                                         pattern="#,###"/><em>원</em></span>
                                                         </dd>
                                                     </dl>
                                                     <dl class="sumcost-wrap">
                                                         <dt>혜택가</dt>
                                                         <dd>
-                                                            <span class="sum-cost">${productVO.product_cost}<em>원</em></span>
+                                                            <span class="sum-cost"><fmt:formatNumber value="${productVO.product_cost}"
+                                                                                                     pattern="#,###"/><em>원</em></span>
                                                             <p class="saleprice-per">
                                                                 0
                                                                 <em>원 할인</em>
@@ -1218,7 +1221,7 @@
 
 
                                             <a href="#" onclick="image_slide('상품상세','구매혜택 더보기','H.Point');"
-                                               data-modules-modal="target:#modalAccumBenefit;">H.Point 40P<i
+                                               data-modules-modal="target:#modalAccumBenefit;">적립금 ${Math.round(productVO.discounted_cost * 0.05)} 원<i
                                                     class="icon icon-arrow"></i></a>
 
 
@@ -1343,10 +1346,10 @@
                                                 <div class="figcaption">
                                                     <div class="pdoption" aria-label="옵션/수량">
                                                             <span class="option">색상/속성 : <em>
-                                                                    6kg(3kg * 2박스)
+                                                                    ${productVO.product_info}
                                                            </em>
                                                            </span>
-                                                        <span class="stock-num">남은수량 : <em>83,464</em></span>
+                                                        <span class="stock-num">남은수량 : <em>${productVO.product_count}</em></span>
                                                     </div>
                                                     <div class="quantity">
                                                         <div class="count">

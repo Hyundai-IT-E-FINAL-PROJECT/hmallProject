@@ -45,6 +45,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void confirmOrder(Long order_seq) {
+        orderMapper.confirmOrder(order_seq);
+    }
+
+    @Override
     public int delete(Long seq) throws Exception {
         return orderMapper.delete(seq);
     }

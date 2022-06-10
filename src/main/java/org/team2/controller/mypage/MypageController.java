@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,7 +58,6 @@ public class MypageController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(Principal principal) throws Exception {
 
-        log.info("tiles test");
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
@@ -73,6 +73,7 @@ public class MypageController {
             mav.addObject("className", "wrap mp-main");
             mav.addObject("cssFileList", styleFileList);
             mav.setViewName("mypage.mypageMain");
+
             return mav;
         }
         catch (Exception e) {
@@ -81,7 +82,6 @@ public class MypageController {
             mav.setViewName("accessError");
             return mav;
         }
-
     }
 
     @RequestMapping("level")
@@ -124,37 +124,60 @@ public class MypageController {
     // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
    @RequestMapping("mypageOrder")
    @PreAuthorize("isAuthenticated()")
-    public ModelAndView oreder(Principal principal, HttpServletRequest req) throws Exception {
+    public ModelAndView oreder(Principal principal, Authentication authentication, HttpServletRequest req) throws Exception {
         ModelAndView mav = new ModelAndView();
 
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
 
-        long no = Long.parseLong(principal.getName());
-        String ordStrtDt = req.getParameter("ordStrtDt");
-        String ordEndDt = req.getParameter("ordEndDt");
-        String seType =  req.getParameter("seType");
-        String itemNm =  req.getParameter("itemNm");
-        Map mapStatus = mypageService.orderStatus(no);
+       if (authentication.getAuthorities().size() == 2) {
+           String ordStrtDt = req.getParameter("ordStrtDt");
+           String ordEndDt = req.getParameter("ordEndDt");
+           String seType =  req.getParameter("seType");
+           String itemNm =  req.getParameter("itemNm");
 
-        log.info(mapStatus.get("resultList"));
-        Map mapOrder;
-        try {
-            mapOrder = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
+           Map mapOrder;
+           try {
+               mapOrder = mypageService.adminPeriodOrders(ordStrtDt, ordEndDt, seType, itemNm);
 
-            mav.addObject("list", mapOrder.get("resultList"));
-            mav.addObject("status", mapStatus.get("resultList"));
-            mav.addObject("seType", seType);
-            mav.addObject("className", "wrap mp-order");
-            mav.addObject("cssFileList", styleFileList);
-            mav.setViewName("mypage.mypageOrder");
-        }
-        catch (Exception e) {
-            mav.addObject("msg", e.getMessage());
-            mav.setViewName("accessError");
-        }
+               mav.addObject("list", mapOrder.get("resultList"));
+               mav.addObject("seType", seType);
+               mav.addObject("className", "wrap mp-order");
+               mav.addObject("cssFileList", styleFileList);
+               mav.setViewName("mypage.mypageOrderAdmin");
+           }
+           catch (Exception e) {
+               mav.addObject("msg", e.getMessage());
+               mav.setViewName("accessError");
+           }
+       } else {
+           long no = Long.parseLong(principal.getName());
+           String ordStrtDt = req.getParameter("ordStrtDt");
+           String ordEndDt = req.getParameter("ordEndDt");
+           String seType =  req.getParameter("seType");
+           String itemNm =  req.getParameter("itemNm");
+           Map mapStatus = mypageService.orderStatus(no);
+
+           log.info(mapStatus.get("resultList"));
+           Map mapOrder;
+           try {
+               mapOrder = mypageService.periodOrders(no, ordStrtDt, ordEndDt, seType, itemNm);
+
+               mav.addObject("list", mapOrder.get("resultList"));
+               mav.addObject("status", mapStatus.get("resultList"));
+               mav.addObject("seType", seType);
+               mav.addObject("className", "wrap mp-order");
+               mav.addObject("cssFileList", styleFileList);
+               mav.setViewName("mypage.mypageOrder");
+           }
+           catch (Exception e) {
+               mav.addObject("msg", e.getMessage());
+               mav.setViewName("accessError");
+           }
+       }
         return mav;
     }
+
 
     @RequestMapping("mypageReturn")
     @PreAuthorize("isAuthenticated()")

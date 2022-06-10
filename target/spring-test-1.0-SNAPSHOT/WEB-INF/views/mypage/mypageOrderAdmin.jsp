@@ -40,8 +40,9 @@
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
     <div class="container">
         <div class="gird-l2x">
-            <%@ include file="mypageSide.jsp" %>
+            <%@ include file="mypageAdminSide.jsp" %>
             <sec:authentication property="principal" var="pinfo" />
+
                  <form id="searchForm" name="searchForm" action="/mypageOrder" method="get">
                      <input type='hidden' name='seType' 		id='seType' 		value="" />
                      <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
@@ -173,12 +174,14 @@
                             <c:if test="${vs.index == 0}">
                                  <div class="order-list">
                                     <dl>
-                                        <dt>
+                                        <dt style="display: flow-root">
                                             <div class="date">
                                                 <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                             </div>
-                                            <div class="abs">
-                                                <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                            <div class="btngroup" style="float: right">
+                                                <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                                    <button class="btn btn-linelgray small30" type="button" onclick="javascript:orderConfirm(${odlist.ORDER_SEQ});"><span>주문접수</span></button>
+                                                </c:if>
                                             </div>
                                         </dt>
                             </c:if>
@@ -186,18 +189,18 @@
                                 <c:if test="${vs.current.ORDER_SEQ != list[vs.index-1].ORDER_SEQ}">
                                     <div class="order-list">
                                         <dl>
-                                            <dt>
+                                            <dt style="display: flow-root">
                                                 <div class="date">
                                                     <span><fmt:formatDate value="${odlist.CREATED_AT}" pattern="yyyy-MM-dd"/> (주문번호 : ${odlist.ORDER_SEQ})</span>
                                                 </div>
-                                                <div class="abs">
-                                                    <a href="/mypageOrderDetail/${odlist.ORDER_SEQ}" class="btn alink"><span>주문/배송 상세</span></a>
+                                                <div class="btngroup" style="float: right">
+                                                    <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
+                                                        <button class="btn btn-linelgray small30" type="button" onclick="javascript:orderConfirm(${odlist.ORDER_SEQ});"><span>주문접수</span></button>
+                                                    </c:if>
                                                 </div>
                                             </dt>
                                 </c:if>
                             </c:if>
-    <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
-                                    <!-- 가장최근주문 1건, 최대 10개 상품 -->
                                     <dd>
                                         <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}">
                                             <input type="hidden" name="slitmCd" value="2137807436">
@@ -235,14 +238,6 @@
                                                 <span class="price"> <strong><fmt:formatNumber  value="${odlist.PRODUCT_COST * odlist.OP_COUNT}" pattern="#,###"/></strong>원 </span>
                                             </div>
                                         </a>
-
-                                        <div class="btngroup">
-                                            <c:if test="${odlist.ORDER_STATUS eq '주문접수'}" >
-                                                <button class="btn btn-linelgray small30" type="button" onclick="location.href='/mypageOrderCancel?order_seq=${odlist.ORDER_SEQ}'"><span>주문취소</span></button>
-                                            </c:if>
-                                            <button class="btn btn-linelgray small30" type="button" onClick="openDlvTrcUrlPup('20220513295854', '1')" ><span>배송조회</span></button>
-                                            <input type="hidden" name="copnStlmFixYn" value="" />
-                                        </div>
                                     </dd>
                                     <c:if test="${vs.index != 0 or vs.last}">
                                         <c:if test="${vs.last or vs.current.ORDER_SEQ != list[vs.index+1].ORDER_SEQ}">
@@ -458,7 +453,7 @@
                     d.setFullYear(new Date().getFullYear() - 2);
                     startDateStr = getDateStr(d).substr(0,4)+"0101";
                     endDateStr = startDateStr.substr(0,4)+"1231";
-                } else { // 전체
+                } else {
                     startDateStr = "";
                     endDateStr = "";
                 }
@@ -476,10 +471,7 @@
                 $("#itemNm").val(itemNm);
                 document.getElementById('searchForm').submit();
             });
-
         });
-
-
 
         function setPeriod(period) {
             var d = new Date();
@@ -511,13 +503,11 @@
                 endDateStr = "";
             }
 
-
             $("#txtOrdStrtDt").val(startDateStr);
             $("#txtOrdEndDt").val(endDateStr);
             $("#searchType").val(period);
             $("#serach").click();
         }
-
 
         function getDateStr(dt){
             var year = dt.getFullYear();
@@ -535,3 +525,19 @@
     </script>
 </main>
 <!-- //.cmain -->
+<script language="JavaScript">
+    function orderConfirm(order_seq) {
+        $.ajax({
+            type: "post"
+            ,url: "http://localhost:8080/api/admin/?order_seq=" + order_seq
+            ,async: true
+            ,success : function() {
+                alert("주문 접수를 완료했습니다.")
+                window.location.reload()
+            },
+            error : function(){
+                console.log("json error");
+            }
+        });
+    }
+</script>

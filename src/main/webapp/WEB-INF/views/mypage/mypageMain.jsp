@@ -127,12 +127,6 @@
 
 
                     <c:forEach items="${list}" var="odlist" varStatus="vs">
-                        <%--                            <c:if test="${vs.index != 0}">--%>
-                        <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
-                        <%--                                <p>이전 주문 번호 : ${list[vs.index-1].ORDER_SEQ}</p>--%>
-                        <%--                                <p>다음 주문 번호 : ${list[vs.index+1].ORDER_SEQ}</p>--%>
-                        <%--                                <p>${!vs.last}</p>--%>
-                        <%--                            </c:if>--%>
                         <c:if test="${vs.index == 0}">
                             <div class="order-list">
                             <dl>

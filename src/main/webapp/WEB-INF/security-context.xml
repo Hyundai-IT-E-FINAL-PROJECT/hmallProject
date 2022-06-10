@@ -13,7 +13,7 @@
 
 
     <security:http>
-<!--        <security:csrf disabled="true"/>-->
+        <security:csrf disabled="true"/>
         <security:intercept-url pattern="/user/all" access="permitAll"/>
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:form-login login-page="/customLogin"

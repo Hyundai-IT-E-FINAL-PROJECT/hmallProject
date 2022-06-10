@@ -14,6 +14,8 @@ public interface OrderService {
 
     int insertOp(OpVO opVO) throws Exception;
 
+    void confirmOrder(Long order_seq);
+
     int delete(Long seq) throws Exception;
 
     void productSellUpdate(ProductVO productVO) throws Exception;

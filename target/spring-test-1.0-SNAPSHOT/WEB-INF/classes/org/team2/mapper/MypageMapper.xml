@@ -26,6 +26,18 @@
         }
     </select>
 
+    <select id="adminPeriodOrders" statementType="CALLABLE" parameterType="Hashmap">
+        {
+            CALL PROC_MYPAGE_ADMIN_PERIODORDERS(
+                #{ordStrtDt, jdbcType=VARCHAR},
+                #{ordEndDt, jdbcType=VARCHAR},
+                #{seType, jdbcType=VARCHAR},
+                #{itemNm, jdbcType=VARCHAR},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+            )
+            }
+    </select>
+
     <select id="cancelperiodOrders" resultType="map">
         select *
         from       (SELECT *
