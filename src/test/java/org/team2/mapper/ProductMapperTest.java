@@ -35,13 +35,6 @@ public class ProductMapperTest {
     }
 
     @Test
-    public void getProductInfo(){
-        Map<String, String> map = mapper.getProductInfo(81L);
-        log.info(map);
-
-    }
-
-    @Test
     public void 상품등록() {
         ProductVO vo = new ProductVO();
 

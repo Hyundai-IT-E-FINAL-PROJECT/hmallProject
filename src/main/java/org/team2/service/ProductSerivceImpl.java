@@ -69,8 +69,8 @@ public class ProductSerivceImpl implements ProductService {
 
 
     @Override
-    public Map<String, String> getProductInfo(Long order_seq) {
-        Map<String, String> productInfo=productMapper.getProductInfo(order_seq);
+    public List<Map<String, String>> getProductInfo(Long order_seq) {
+        List<Map<String, String>> productInfo=productMapper.getProductInfo(order_seq);
         return productInfo;
     }
 }

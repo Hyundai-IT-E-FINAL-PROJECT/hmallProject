@@ -156,11 +156,12 @@ To change this template use File | Settings | File Templates.
                 </div>
                 <div id="list_category" style="border-top: 1px solid rgb(221, 221, 221);">
                     <div class="common_sub_top_menu common_stm_detail">
-                        <div class="reward-menu"><a class="pointerCursor active"><span
-                                class="webcrowdy-font-bold">스토리</span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">새소식 <em>0</em></span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">댓글 <em>1</em></span></a> <a class="pointerCursor"><span
-                                class="webcrowdy-font-bold">안내</span></a></div>
+                        <div class="reward-menu">
+                            <a id="story_page" class="pointerCursor active" onclick="pagingsort('story');"><span class="webcrowdy-font-bold">스토리</span></a>
+                            <a id="news_page" class="pointerCursor" onclick="pagingsort('news');"><span class="webcrowdy-font-bold">새소식 <em>0</em></span></a>
+                            <a id="reply_page" class="pointerCursor" onclick="pagingsort('reply');"><span class="webcrowdy-font-bold">댓글 <em>1</em></span></a>
+                            <a id="inf_page" class="pointerCursor" onclick="pagingsort('inf');"><span class="webcrowdy-font-bold">안내</span></a>
+                        </div>
                     </div>
                 </div>
                 <div class="mt40 xs-mt20 mb100">
@@ -368,7 +369,7 @@ To change this template use File | Settings | File Templates.
                 <div>
                     <div class="reward-choice-container">
                         <div class="reward-choice-shareBtn"></div>
-                        <div class="reward-choice-btn">펀딩하기<span aria-hidden="true"
+                        <div id="displayFunding" class="reward-choice-btn" onclick="displayFunding();">펀딩하기<span aria-hidden="true"
                                                                  class="ml10 glyphicon glyphicon-chevron-up"></span>
                         </div>
                         <div class="option-space-shadow"></div>
@@ -378,7 +379,7 @@ To change this template use File | Settings | File Templates.
                             <div class="reward-choice-boxBack-pc">
                                 <div class="reward-choice-storyBackBtn"><i class="fa fa-angle-left"
                                                                            aria-hidden="true"></i>
-                                    <div class="reward-choice-storyBackText">스토리 돌아가기</div>
+                                    <div class="reward-choice-storyBackText" onclick="closeFunding();">스토리 돌아가기</div>
                                 </div> <!----></div>
                             <div class="reward-choice-boxBack-mobile"><!----> <!---->
                                 <div class="menu-trigger mt5 active_1"><span></span><span></span><span></span></div>
@@ -393,16 +394,25 @@ To change this template use File | Settings | File Templates.
                             <div class="reward-choice-margin">
                                 <div class="common-flex-between" style="align-items: center;"><span
                                         class="reward-choice-title mt10 xs-mt0 mb25">리워드 선택</span> <!----></div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active">
-                                    <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
-                                    <div class="reward-choice-boxamount">19,600 원 펀딩</div>
-                                    <div class="reward-choice-boxrow"><!----> <span><b>199개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
-                                        <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
-                                                class="fas fa-caret-right" aria-hidden="true"></i></div>
-                                    <div class="reward-choice-boxtitle">[나혼산 세트] 댓츠잇 너겟 2개입</div>
-                                    <div class="reward-choice-boxdesc">달콤양념 1 + 청양간장 1</div>
+                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
+                                    <div style="align-items: center; display: flex; margin-right: 20px;">
+                                        <input type="radio" name="checkRewardSeq" value=""/>
+                                    </div>
+                                    <div>
+                                        <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
+                                        <div class="reward-choice-boxamount">19,600 원 펀딩</div>
+                                        <div class="reward-choice-boxrow"><!----> <span><b>199개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
+                                            <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
+                                                    class="fas fa-caret-right" aria-hidden="true"></i></div>
+                                        <div class="reward-choice-boxtitle">[나혼산 세트] 댓츠잇 너겟 2개입</div>
+                                        <div class="reward-choice-boxdesc">달콤양념 1 + 청양간장 1</div>
+                                    </div>
                                 </div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active">
+                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
+                                    <div style="align-items: center; display: flex; margin-right: 20px;">
+                                        <input type="radio" name="checkRewardSeq" value=""/>
+                                    </div>
+                                    <div>
                                     <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
                                     <div class="reward-choice-boxamount">32,900 원 펀딩</div>
                                     <div class="reward-choice-boxrow"><!----> <span><b>97개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;3개 펀딩</span>
@@ -410,8 +420,13 @@ To change this template use File | Settings | File Templates.
                                                 class="fas fa-caret-right" aria-hidden="true"></i></div>
                                     <div class="reward-choice-boxtitle">[홈파티 세트] 댓츠잇 너겟 4개입</div>
                                     <div class="reward-choice-boxdesc">달콤양념 2 + 청양간장 2</div>
+                                    </div>
                                 </div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active">
+                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
+                                    <div style="align-items: center; display: flex; margin-right: 20px;">
+                                        <input type="radio" name="checkRewardSeq" value=""/>
+                                    </div>
+                                    <div>
                                     <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
                                     <div class="reward-choice-boxamount">44,400 원 펀딩</div>
                                     <div class="reward-choice-boxrow"><!----> <span><b>47개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;3개 펀딩</span>
@@ -419,8 +434,35 @@ To change this template use File | Settings | File Templates.
                                                 class="fas fa-caret-right" aria-hidden="true"></i></div>
                                     <div class="reward-choice-boxtitle">[온가족 세트] 댓츠잇 너겟 6개입</div>
                                     <div class="reward-choice-boxdesc">달콤양념 3 + 청양간장 3</div>
-                                </div> <!----> <!----></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="reward-qty" class="common-flex-center mt25 xs-mt10" style="justify-content: right;">
+                                <div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex; align-items: center; margin-right: 10px;">
+                                            <span class="qty-minus" onclick="fnCalCount('m');"></span>
+                                            <label for="qtyInput"></label>
+                                            <input type="tel" autocomplete="new-password" pattern="[0-9]*" inputmode="numeric" readonly
+                                                                             id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
+                                            <span class="qty-add" onclick="fnCalCount('p');"></span>
+                                        </div>
+                                        <div class="reward-option-bottomStepBtn" style="width: 200px;">다음단계</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <script type="text/javascript">
+                            function fnCalCount(type){
+                                var  reward_count= $("input[name='reward_count']").val();
+
+                                if(type==='p'){
+                                    $("#reward_count").val(Number(reward_count)+1);
+                                }else{
+                                    if(reward_count-1>0){$("#reward_count").val(Number(reward_count)-1);}
+                                }
+                            }
+                        </script>
                     </div>
                     <div class="reward-option-bottomBtn">
                         <div class="reward-option-bottomStepBtn">다음단계</div>
@@ -709,3 +751,37 @@ To change this template use File | Settings | File Templates.
         </div>
 </main>
 <script src="/resources/js/productAll.js"></script>
+<script>
+    function displayFunding(){
+        console.log("funding display click!!");
+        const element = document.getElementById("choiceBox");
+        console.log(element);
+        console.log(element.style.display);
+        if(element.style.display === 'none'){
+            element.style.display = 'block';
+        }else{
+            element.style.display = 'none';
+        }
+    }
+
+    function closeFunding(){
+        const element = document.getElementById("choiceBox");
+        if(element.style.display === 'block'){
+            element.style.display = 'none';
+        }
+    }
+
+    function pagingsort(a){
+        console.log(a);
+        $(".reward-menu a").removeClass("active");
+        if(a === 'story'){
+            document.getElementById('story_page').classList.add("active");
+        } else if(a === 'news'){
+            document.getElementById('news_page').classList.add("active");
+        }else if(a === 'reply'){
+            document.getElementById('reply_page').classList.add("active");
+        }else{
+            document.getElementById('inf_page').classList.add("active");
+        }
+    }
+</script>

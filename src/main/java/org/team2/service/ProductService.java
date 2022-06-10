@@ -17,5 +17,5 @@ public interface ProductService {
     int delete(ProductVO productVO);
     int update(ProductVO productVO);
     List<Map<String, String>> getUserOrder(Long user_seq);
-    Map<String, String> getProductInfo(Long order_seq);
+    List<Map<String, String>> getProductInfo(Long order_seq);
 }
