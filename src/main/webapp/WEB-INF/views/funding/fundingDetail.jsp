@@ -391,26 +391,26 @@ To change this template use File | Settings | File Templates.
                                 펀딩을 마치면 <b>결제 예약 상태</b>입니다. 종료일에 100%<br>
                                 이상 달성되었을 경우에만 결제예정일에 결제가 됩니다
                             </div>
-                            <c:forEach items="${list}" var="reward" varStatus="status">
                                 <div class="reward-choice-margin">
                                     <div class="common-flex-between" style="align-items: center;"><span
                                             class="reward-choice-title mt10 xs-mt0 mb25">리워드 선택</span> <!----></div>
-                                    <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
-                                        <div style="align-items: center; display: flex; margin-right: 20px;">
-                                            <input type="radio" name="checkRewardSeq" value=""/>
+                                    <c:forEach items="${list}" var="reward" varStatus="status">
+                                        <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
+                                            <div style="align-items: center; display: flex; margin-right: 20px;">
+                                                <input type="radio" name="checkRewardSeq" value=""/>
+                                            </div>
+                                            <div>
+                                                <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
+                                                <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COST}"/> 원 펀딩</div>
+                                                <div class="reward-choice-boxrow"><!----> <span><b><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> </b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
+                                                    <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
+                                                            class="fas fa-caret-right" aria-hidden="true"></i></div>
+                                                <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
+                                                <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
-                                            <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> 원 펀딩</div>
-                                            <div class="reward-choice-boxrow"><!----> <span><b>199개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
-                                                <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
-                                                        class="fas fa-caret-right" aria-hidden="true"></i></div>
-                                            <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
-                                            <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
-                            </c:forEach>
                             <div id="reward-qty" class="common-flex-center mt25 xs-mt10" style="justify-content: right;">
                                 <div>
                                     <div style="display: flex;">

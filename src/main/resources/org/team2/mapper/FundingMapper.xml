@@ -48,7 +48,8 @@
                                     UPDATED_AT,
                                     FUND_REWARD_TITLE,
                                     FUND_REWARD_CONTENT,
-                                    FUND_REWARD_COUNT
+                                    FUND_REWARD_COUNT,
+                                    FUND_REWARD_COST
                                     )
                                     VALUES
                                     (
@@ -57,8 +58,9 @@
                                      sysdate,
                                      sysdate,
                                      #{fund_reward_title},
-                                     '리워드 내용이다!',
-                                     #{fund_reward_count}
+                                     #{fund_reward_content},
+                                     #{fund_reward_count},
+                                     #{fund_reard_cost}
                                     )
     </insert>
 
@@ -94,7 +96,7 @@
 
     <select id="readFundigProductDetail" resultType="map">
         SELECT FP.FUND_PRODUCT_SEQ, FP.FUND_PRODUCT_PR_COST, FP.FUND_PRODUCT_GOAL_COST,FP.FUND_PRODUCT_END_DATE,
-               FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT
+               FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT, FR.FUND_REWARD_COST
         FROM TBL_FUND_PRODUCT FP
                  INNER JOIN TBL_FUND_REWARD FR
                             ON FP.FUND_PRODUCT_SEQ = FR.FUND_PRODUCT_SEQ

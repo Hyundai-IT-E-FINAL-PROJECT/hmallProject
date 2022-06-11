@@ -18,6 +18,7 @@ public class RewardVO {
     private Date updated_at;
 
     private String fund_reward_title;
-    private String fund_reward_count;
+    private int fund_reward_count;
     private String fund_reward_content;
+    private int fund_reward_cost;
 }
