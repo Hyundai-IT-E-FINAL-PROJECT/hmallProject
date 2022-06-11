@@ -39,6 +39,7 @@
                                         sysdate,
                                         sysdate,
                                         #{fund_product_estimate_date}
+        fund_product_estimate_date
                                     )
     </insert>
 
@@ -98,7 +99,8 @@
 
     <select id="readFundigProductDetail" resultType="map">
         SELECT FP.FUND_PRODUCT_SEQ, FP.FUND_PRODUCT_PR_COST, FP.FUND_PRODUCT_GOAL_COST,FP.FUND_PRODUCT_END_DATE,
-               FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT, FR.FUND_REWARD_COST
+               FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT, FR.FUND_REWARD_COST,
+               FP.FUND_PRODUCT_ESTIMATE_DATE
         FROM TBL_FUND_PRODUCT FP
                  INNER JOIN TBL_FUND_REWARD FR
                             ON FP.FUND_PRODUCT_SEQ = FR.FUND_PRODUCT_SEQ
