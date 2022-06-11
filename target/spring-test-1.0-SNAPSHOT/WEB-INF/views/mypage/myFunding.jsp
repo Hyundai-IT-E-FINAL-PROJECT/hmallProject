@@ -35,7 +35,7 @@
                 <div class="mypage-order-wrap">
                     <div class="card-reward-list">
                         <ul>
-                            <% for(int i=0; i<10; i++){  %>
+                            <c:forEach items="${userFundProject}" var="myFund" >
                             <li class="pthumb">
                                 <div class="col-sm-6 col-md-4" style="margin-top: 20px;">
                                     <figure>
@@ -44,30 +44,58 @@
                                                     src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
                                                     class="img-responsive"> <!----> <!----></div>
                                         </a>
-                                            <figcaption class="rewards-caption"><a href="javascript:void(0)"><span
-                                                    class="btn btn-xs btn-danger-outline">제작중</span> <!----> <!---->
-                                                <!----> <!----> <!---->
+                                            <figcaption class="rewards-caption"><a href="javascript:void(0)">
+                                                <div style="display: flex; flex-direction: column; ">
+                                                    <c:if test="${myFund.fund_product_status eq 0}">
+                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
+
+                                                            심사중
+                                                    </span>
+                                                    </c:if>
+                                                    <c:if test="${myFund.fund_product_status eq 1}">
+                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                        color: green; border-color: green;">
+                                                            진행중
+                                                    </span>
+                                                    </c:if>
+
+                                                    <!----> <!----> <!---->
+                                                    <span style="height: 80px;">${myFund.fund_product_title}</span>
+                                                </div>
                                                 <div class="rewards-subject"><strong></strong></div>
-                                                <div class="row row-mobile-n">
-                                                    <div class="col-xs-9 col-sm-8"><span class="rewards-price"><span
-                                                            class="webfont2"></span>0</span> <span
-                                                            class="rewards-percent">0%</span></div> <!----></div>
+                                                <c:if test="${myFund.fund_product_status eq 1}">
+                                                    <div class="row row-mobile-n">
+                                                        <div class="col-xs-9 col-sm-8"><span class="rewards-price">
+                                                            <span class="webfont2"></span>달성률</span>
+                                                            <span class="rewards-percent">
+                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value="${(myFund.fund_product_pr_cost / myFund.fund_product_goal_cost)* 100}"/>%
+                                                            </span>
+                                                        </div> <!---->
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${myFund.fund_product_status eq 0}">
+                                                    <div class="row row-mobile-n">
+                                                        <div class="col-xs-9 col-sm-8"><span class="rewards-price">
+                                                            <span class="webfont2"></span></span>
+                                                            <span class="rewards-percent">
+                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value=""/>&nbsp;
+                                                            </span>
+                                                        </div> <!---->
+                                                    </div>
+                                                </c:if>
                                                 <div class="progress"><!----></div>
                                                 <div class="row row-mobile-n">
                                                     <div class="col-xs-8">
-                                                        <div class="invest-support">목표금액 0</div>
+                                                        <div class="invest-support">목표금액 <fmt:formatNumber value="${myFund.fund_product_goal_cost}"
+                                                                                                           pattern="#,###"/></div>
                                                     </div> <!----></div>
                                             </a>
                                                 <div class="mp-btn">
                                                     <div class="row row-mobile-n">
                                                         <div class="col-xs-6"><a
-                                                                class="btn btn-block btn-sm btn-default-outline">삭제하기</a>
-                                                        </div>
-                                                        <div class="col-xs-6 hidden-sm hidden-md hidden-lg"><a
-                                                                class="btn btn-block btn-sm btn-primary-outline">수정하기</a>
-                                                        </div>
-                                                        <div class="col-xs-6 hidden-xs"><a
-                                                                class="btn btn-block btn-sm btn-primary-outline">수정하기</a>
+                                                                class="btn btn-block btn-sm btn-default-outline"
+                                                                onclick="deleteMyFund(${myFund.fund_product_seq});"
+                                                        >삭제하기</a>
                                                         </div>
                                                     </div> <!----> <!----> <!----> <!----> <!----></div>
                                             </figcaption>
@@ -75,7 +103,7 @@
                                     </figure>
                                 </div>
                             </li>
-                            <% }%>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -83,4 +111,31 @@
             <!-- // .contents -->
         </div>
     </div>
+    <script type="text/javascript">
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+
+        function deleteMyFund(fund_product_seq){
+
+            $.ajax({
+                url:'${contextPath}/fund/delete/'+fund_product_seq,
+                type:'get',
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function (){
+                    alert("펀딩 상품을 삭제하였습니다!");
+                    location.href='${contextPath}/fund/myFunding';
+                },
+                error: function (request,status,error) {
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+
+            });
+
+        }
+
+    </script>
 </main>

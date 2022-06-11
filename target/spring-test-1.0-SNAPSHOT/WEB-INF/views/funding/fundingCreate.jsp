@@ -509,13 +509,16 @@
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
-        var fund_product_end_date = document.getElementById('duration_project').value;
+        var end_date = document.getElementById('duration_project').value;
         var fund_product_title = document.getElementById('project_subject').value;
         var fund_product_goal_cost = document.getElementById('goal_cost').value;
-        var fund_reward_name1 = document.getElementById('product_name1').value;
-        var fund_reward_cost1 = document.getElementById('product_cost1').value;
-        var fund_reward_name2 = document.getElementById('product_name2').value;
-        var fund_reward_cost2 = document.getElementById('product_cost2').value;
+        var fund_product_content = document.getElementById('project_story').value;
+        //String to Date
+        stringToDate(end_date,"mm-dd-yyyy","-")
+
+        console.log(end_date);
+        var fund_product_end_date = end_date;
+
 
         let fund_reward_titleList = [];
         let fund_reward_countList = [];
@@ -528,15 +531,12 @@
         console.log(fund_reward_titleList, fund_reward_countList);
 
         var rewardData = {
-            fund_product_end_date:fund_product_end_date,
-            fund_product_title:fund_product_title,
-            fund_product_goal_cost:parseInt(fund_product_goal_cost),
-            fund_reward_seq:1,
-            // fund_product_seq:1,
-            //
-            "fund_reward_titleList" : fund_reward_titleList
-            // fund_reward_content: 'asd',
-            // "fund_reward_count" : fund_reward_count
+            fund_product_end_date: fund_product_end_date,
+            fund_product_title: fund_product_title,
+            fund_product_content: fund_product_content,
+            fund_product_goal_cost: parseInt(fund_product_goal_cost),
+            "fund_reward_titleList" : fund_reward_titleList,
+            "fund_reward_countList" : fund_reward_countList
         }
         console.log(rewardData);
         $.ajax({
@@ -580,6 +580,7 @@
             $("#d_day").val(result-30);
         });
     });
+<<<<<<< HEAD
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -606,3 +607,20 @@
         });
     })
 </script>
+=======
+
+    function stringToDate(_date,_format,_delimiter)
+    {
+        var formatLowerCase=_format.toLowerCase();
+        var formatItems=formatLowerCase.split(_delimiter);
+        var dateItems=_date.split(_delimiter);
+        var monthIndex=formatItems.indexOf("mm");
+        var dayIndex=formatItems.indexOf("dd");
+        var yearIndex=formatItems.indexOf("yyyy");
+        var month=parseInt(dateItems[monthIndex]);
+        month-=1;
+        var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+        return formatedDate;
+    }
+</script>
+>>>>>>> 9486951a0798359266eefc6ded982c76ffc7335f

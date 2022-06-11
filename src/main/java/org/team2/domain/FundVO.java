@@ -1,19 +1,21 @@
 package org.team2.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Data
 public class FundVO {
     //pk
-    private Long fund_product_seq;
+    private int fund_product_seq;
 
     //fk
     private int no;
 
     private String fund_product_start_date;
-    private String fund_product_end_date;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date fund_product_end_date;
     private int fund_product_goal_cost;
     private int fund_product_pr_cost;
     private String fund_product_title;
