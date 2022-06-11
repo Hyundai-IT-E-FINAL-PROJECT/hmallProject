@@ -39,7 +39,6 @@
                                         sysdate,
                                         sysdate,
                                         #{fund_product_estimate_date}
-        fund_product_estimate_date
                                     )
     </insert>
 
