@@ -397,7 +397,7 @@ To change this template use File | Settings | File Templates.
                                     <c:forEach items="${list}" var="reward" varStatus="status">
                                         <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
                                             <div style="align-items: center; display: flex; margin-right: 20px;">
-                                                <input type="radio" name="checkRewardSeq" value=""/>
+                                                <input type="radio" name="checkRewardSeq" value="${reward.FUND_REWARD_SEQ}|${reward.FUND_PRODUCT_SEQ}"/>
                                             </div>
                                             <div>
                                                 <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
@@ -421,7 +421,7 @@ To change this template use File | Settings | File Templates.
                                                                              id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
                                             <span class="qty-add" onclick="fnCalCount('p');"></span>
                                         </div>
-                                        <div class="reward-option-bottomStepBtn" style="width: 200px;">다음단계</div>
+                                        <div class="reward-option-bottomStepBtn" style="width: 200px;">펀딩하기</div>
                                     </div>
                                 </div>
                             </div>
