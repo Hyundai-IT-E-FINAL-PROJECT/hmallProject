@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.FundingMapper">
+    <insert id="insertFunding">
+        <selectKey keyProperty="fund_product_seq" resultType="int" order="BEFORE">
+            select seq_fund_product.nextval from dual
+        </selectKey>
+        INSERT INTO TBL_FUND_PRODUCT(
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_PRODUCT_START_DATE,
+                                    FUND_PRODUCT_END_DATE,
+                                    FUND_PRODUCT_GOAL_COST,
+                                    FUND_PRODUCT_PR_COST,
+                                    FUND_PRODUCT_TITLE,
+                                    FUND_PRODUCT_CONTENT,
+                                    FUND_PRODUCT_STATUS,
+                                    FUND_PRODUCT_PARTICIPANTS,
+                                    FUND_PRODUCT_MAIN_IMG,
+                                    CREATED_AT,
+                                    UPDATED_AT
+                                    )
+                                    VALUES
+                                    (
+                                        #{fund_product_seq},
+                                        #{no},
+                                        sysdate,
+                                        #{fund_product_end_date},
+                                        #{fund_product_goal_cost},
+                                        0,
+                                        #{fund_product_title},
+                                        #{fund_product_content},
+                                        0,
+                                        0,
+                                        'aaa',
+                                        sysdate,
+                                        sysdate
+                                    )
+    </insert>
+
+    <insert id="insertReward">
+        INSERT INTO TBL_FUND_REWARD(
+                                    FUND_REWARD_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    CREATED_AT,
+                                    UPDATED_AT,
+                                    FUND_REWARD_TITLE,
+                                    FUND_REWARD_CONTENT,
+                                    FUND_REWARD_COUNT
+                                    )
+                                    VALUES
+                                    (
+                                     seq_fund_reward.nextval,
+                                     #{fund_product_seq},
+                                     sysdate,
+                                     sysdate,
+                                     #{fund_reward_title},
+                                     '리워드 내용이다!',
+                                     #{fund_reward_count}
+                                    )
+    </insert>
+</mapper>
