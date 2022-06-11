@@ -19,6 +19,7 @@ public class OrderVO {
     private String message;
     private String receiveName;
     private String order_method;
+    private Long order_coupon_seq;
 
     private Date createdAt;
     private Date updatedAt;
