@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div class="side-content">
     <sec:authentication property="principal" var="pinfo" />
     <h3 class="side-menu-title"><a href="/mypage">마이페이지</a></h3>
@@ -32,6 +32,7 @@
                 <a href="javascript:;">나의 정보</a>
                 <ul class="sub-list">
                     <li><a href="/mypageUpdate">회원정보 변경</a></li>
+                    <li><a href="/fund/myFunding">펀딩한 프로젝트</a></li>
                     <li><a href="/mypageDelivery">배송지 관리</a></li>
                     <li><a href="/mypageLeave">회원 탈퇴</a></li>
                 </ul>

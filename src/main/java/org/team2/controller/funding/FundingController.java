@@ -43,6 +43,42 @@ public class FundingController {
         return mav;
     }
 
+    @GetMapping("myFunding")
+    public ModelAndView openMyFunding(Principal principal) throws Exception {
+        log.info("myFunding 접속");
+        ModelAndView mav = new ModelAndView();
+        List<String> styleFileList = new ArrayList<>();
+        styleFileList.add("search");
+        styleFileList.add("display");
+        styleFileList.add("prd-list");
+        styleFileList.add("mypage");
+        mav.setViewName("mypage.myFunding");
+        
+        
+        //내 펀딩 프로젝트 가져오기
+        List<FundVO> userFundProject=fundingService.getUserFund(Long.valueOf(principal.getName()));
+
+        log.info(userFundProject);
+        mav.addObject("userFundProject",userFundProject);
+        mav.addObject("cssFileList", styleFileList);
+        mav.addObject("className", "wrap display-3depth");
+        return mav;
+    }
+
+    @ResponseBody
+    @GetMapping("delete/{fund_product_seq}")
+    public void deleteMyFunding(@PathVariable("fund_product_seq") String fund_product_seq){
+        log.info("deleteMyFunding 접속");
+        //내 펀딩 삭제하기
+        try{
+            fundingService.deleteUserFund(Long.valueOf(fund_product_seq));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
     @GetMapping( "detail")
     public ModelAndView openFundingDetail(){
         log.info("fundingMain 접속");

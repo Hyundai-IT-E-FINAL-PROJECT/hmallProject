@@ -61,4 +61,14 @@
                                      #{fund_reward_count}
                                     )
     </insert>
+
+    <select id="getUserFund" resultType="org.team2.domain.FundVO">
+        select *
+        from tbl_fund_product
+        where tbl_fund_product.user_seq=#{user_seq}
+    </select>
+
+    <delete id="deleteUserFund" >
+        delete from tbl_fund_product where fund_product_seq=#{fund_product_seq}
+    </delete>
 </mapper>
