@@ -52,8 +52,8 @@
                         <!--ui-tab-->
                         <ul class="ui-tab" role="tablist">
 
-                            <li role="presentation" class="ui-active"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/>원</em></span></a></li>
-                            <li role="presentation"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/>원</em></span></a></li>
+                            <li role="presentation" class="ui-active"><a href="/mypagePoint" role="tab" aria-controls="viewReserve"><span>적립금 <em><fmt:formatNumber  value="${userVO.user_point}" pattern="#,###"/>원</em></span></a></li>
+                            <li role="presentation"><a href="/mypageDeposit" role="tab" aria-controls="viewDeposit"><span>예치금 <em><fmt:formatNumber  value="${userVO.user_deposit}" pattern="#,###"/>원</em></span></a></li>
                         </ul>
                         <!--//ui-tab-->
                         <!--Tab panes-->
@@ -65,7 +65,7 @@
                                     <div class="point-wrap">
                                         <div class="point-fl">
                                             <span class="ctypo17 bold"><em class="name">${pinfo.userVO.user_name}</em>님의 적립금</span>
-                                            <span class="txt-point"><em class="myreserve"></em><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/>원</span>
+                                            <span class="txt-point"><em class="myreserve"></em><fmt:formatNumber  value="${userVO.user_point}" pattern="#,###"/>원</span>
                                         </div>
                                         <div class="point-fr">
                                             <dl>
@@ -160,34 +160,42 @@
                                                 <p>
                                                     <span class="date"><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
 
-                                                    <c:if test="${list.POINT_USE == 0}">
+                                                    <c:if test="${list.POINT_COST > 0 and list.ORDER_STATUS eq '배송완료'}">
                                                         <strong class="accu">적립</strong>
                                                     </c:if>
-                                                    <c:if test="${list.POINT_SAVE == 0}">
-                                                        <strong class="exp-accu">사용</strong>
+                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '주문접수'}">
+                                                        <strong class="exp-accu">사용 완료</strong>
                                                     </c:if>
-
+                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '배송완료'}">
+                                                        <strong class="exp-accu">사용 완료</strong>
+                                                    </c:if>
+                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '주문취소'}">
+                                                        <strong class="exp-accu">사용 완료</strong>
+                                                    </c:if>
+                                                    <c:if test="${list.POINT_COST > 0 and list.ORDER_STATUS eq '주문취소'}">
+                                                        <strong class="exp">사용 취소</strong>
+                                                    </c:if>
 
                                                 </p>
 
 
-                                                <p class="pdname nowrap">${list.POINT_CONTENT}</p>
+                                                <p class="pdname nowrap">${list.PRODUCT_NAME}</p>
 
 
 
 
 
-<%--                                                <p>주문번호 : ${list.ORDER_SEQ}</p>--%>
+                                                <p>주문번호 : ${list.ORDER_SEQ}</p>
 
 
 
                                             </div>
                                             <div class="cell">
-                                                <c:if test="${list.POINT_USE == 0}">
-                                                    <span class="point-up">+<fmt:formatNumber  value="${list.POINT_SAVE}" pattern="#,###"/>p</span>
+                                                <c:if test="${list.POINT_COST > 0}">
+                                                    <span class="point-up">+<fmt:formatNumber  value="${list.POINT_COST}" pattern="#,###"/>p</span>
                                                 </c:if>
-                                                <c:if test="${list.POINT_SAVE == 0}">
-                                                    <span class="point-down">-<fmt:formatNumber  value="${list.POINT_USE}" pattern="#,###"/>p</span>
+                                                <c:if test="${list.POINT_COST < 0}">
+                                                    <span class="point-down"><fmt:formatNumber  value="${list.POINT_COST}" pattern="#,###"/>p</span>
                                                 </c:if>
                                                 <sub></sub>
 

@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
   <div class="container">
@@ -367,8 +368,8 @@
 
 
                         <dl class="between">
-                          <dt>Point</dt>
-                          <dd><strong>${list[0].ORDER_POINT}</strong>P</dd>
+                          <dt>할인금액</dt>
+                          <dd><strong><fmt:formatNumber  value="${totalCost - list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong>원</dd>
                         </dl>
 
 
@@ -457,10 +458,9 @@
 
 
                       <dl class="between" name="paywayTr">
-                        <dt id="stlmPayWayGbcd_1">Point</dt>
-                        <dd><strong id="stlmRtpAmt_1" name="stlmRtpAmt"><fmt:formatNumber  value="${list[0].ORDER_POINT}" pattern="#,###"/></strong><span id="stlmRtpWon_1"> P</span></dd>
+                        <dt id="stlmPayWayGbcd_1">할인금액</dt>
+                        <dd><strong id="stlmRtpAmt_1" name="stlmRtpAmt"><fmt:formatNumber  value="${totalCost - list[0].ORDER_TOTAL_COST}" pattern="#,###"/></strong><span id="stlmRtpWon_1"> 원</span></dd>
                       </dl>
-
 
                     </li>
                   </ul>
@@ -476,15 +476,15 @@
                 </ul>
               </div>
 
-              <label class="chklabel mt_20" id="lblOrdCnclOrg">
-                <input type="checkbox" name="agreeYn">
-                <i class="icon"></i>
-                <span class="ctypo14">위 내용을 확인하였습니다.</span>
-              </label>
+<%--              <label class="chklabel mt_20" id="lblOrdCnclOrg">--%>
+<%--                <input type="checkbox" name="agreeYn">--%>
+<%--                <i class="icon"></i>--%>
+<%--                <span class="ctypo14">위 내용을 확인하였습니다.</span>--%>
+<%--              </label>--%>
 
               <div class="btngroup w_510" id="ordCnclOrg">
                 <button type="button" class="btn btn-linelgray medium" onclick="backCncl();"><span>취소</span></button>
-                <button type="button" class="btn btn-default medium" name="submit_btn" onclick="insertOrdCncl(this.form);return false;"><span>취소 신청</span></button>
+                <button type="button" class="btn btn-default medium" name="submit_btn");"><span>취소 신청</span></button>
               </div>
             </div>
 
@@ -495,8 +495,31 @@
     </div> <!-- //.gird-l2x -->
   </div> <!-- //.container -->
 </main>
-<script>
+<script type="text/javascript">
+  var csrfHeaderName = "${_csrf.headerName}";
+  var csrfTokenValue = "${_csrf.token}";
+
   function saveCnclQty() {
     document.getElementById("saveCnclConfirm").style.display = "";
   }
+
+  $(document).on('click', 'button[name=submit_btn]',function() {
+        if (confirm("주문을 취소하시겠습니까?")) {
+              $.ajax({
+                url: "orderCancel?order_seq=" + "${list[0].ORDER_SEQ}",
+                method: "GET", // 요청방식은 post
+                // beforeSend:function (xhr){
+                //   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                // },
+                success: function (result) {
+                  if (result === "1") {
+                      alert("주문이 취소되었습니다.");
+                      location.href = "mypageOrder"
+                  }
+                }, error: function (error) {
+                  alert("AJAX요청 실패 : 에러코드=" + error.status); // status 에러확인
+                }
+              });
+        }
+  });
 </script>

@@ -925,7 +925,9 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 coupon_seq:$("input[name='couponName']:checked").val(),
                 receiveName:$("input[name='receiveName']").val(),
                 order_method:$("input[name='payMethod']").val(),
-                point_cost:point3
+                point_cost:point3,
+                deposit_cost:$("input[name='totalDepositPoint']").val(),
+                order_coupon_seq:$("input[name='couponName']:checked").val()
             };
 
             console.log(orderData);

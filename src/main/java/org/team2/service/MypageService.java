@@ -16,7 +16,7 @@ public interface MypageService {
 
     Map couponList(long no)  throws Exception;
 
-    List<Map<String, Object>> pointList(String no, String strtDt, String endDt, String searchType) throws Exception;
+    Map pointList(long no, String strtDt, String endDt, String searchType) throws Exception;
 
     List<Map<String, Object>> cancelperiodOrders(String no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
 

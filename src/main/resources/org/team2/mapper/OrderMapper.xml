@@ -114,6 +114,7 @@
             order_message,
             order_method,
             order_receive_name,
+            order_coupon_seq,
             created_at,
             updated_at
         ) values(
@@ -129,6 +130,7 @@
             #{message},
             #{order_method},
             #{receiveName},
+            #{order_coupon_seq},
             sysdate,
             sysdate
         )
@@ -183,9 +185,27 @@
         <result property="order_seq" column="order_seq" />
     </resultMap>
 
-    <insert id="pointInsert" statementType="CALLABLE" parameterType="org.team2.domain.PointVO">
+    <insert id="pointUse" statementType="CALLABLE">
         {
-            call PROC_POINT_INSERT(#{point_cost}, #{user_seq}, #{order_seq})
+            call PROC_POINT_USE_INSERT(#{point_cost}, #{user_seq}, #{order_seq})
         }
     </insert>
+
+    <insert id="pointSave" statementType="CALLABLE">
+        {
+            call PROC_POINT_SAVE_INSERT(#{point_cost}, #{user_seq}, #{order_seq})
+            }
+    </insert>
+
+    <insert id="depositUse" statementType="CALLABLE">
+        {
+            call PROC_DEPOSIT_USE_INSERT(#{deposit_cost}, #{user_seq}, #{order_seq})
+            }
+    </insert>
+
+    <update id="orderCancel" statementType="CALLABLE">
+        {
+            call PROC_ORDER_CANCEL_PROCESS(#{no}, #{order_seq})
+            }
+    </update>
 </mapper>
