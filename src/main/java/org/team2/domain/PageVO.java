@@ -1,26 +1,23 @@
 package org.team2.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
 
 @Data
 public class PageVO {
 
-  private int startPage;
-  private int endPage;
+  private Long startPage;
+  private Long endPage;
   private boolean prev, next;
-
-  private int total;
+  private Long total;
   private Criteria cri;
 
-  public PageVO(Criteria cri, int total) {
+  public PageVO(Criteria cri, Long total) {
 
     this.cri = cri;
     this.total = total;
-    this.endPage = (int) (Math.ceil(cri.getPageNum() / 5.0)) * 5;
-    this.startPage = this.endPage - 4;
-    int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
+    this.endPage = (long)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
+    this.startPage = this.endPage - 9;
+    Long realEnd = (long) (Math.ceil((total * 1.0) / cri.getAmount()));
 
     if (realEnd <= this.endPage) {
       this.endPage = realEnd;

@@ -7,12 +7,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.CategoryVO;
-import org.team2.domain.ImageVO;
-import org.team2.domain.ProductVO;
+import org.team2.domain.*;
 import org.team2.service.CategoryService;
 import org.team2.service.ImageService;
 import org.team2.service.ProductService;
@@ -177,8 +176,15 @@ public class ProductController {
     }
 
     @RequestMapping("/all")
-    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value="sort", required=false) String sort){
-        log.info("product controller all start!!");
+    public ModelAndView all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value="sort", required=false) String sort, @RequestParam(value="page_num", required=false) Long page_num){
+
+        Long tmp_second_category = second_category;
+        if (page_num == null) {
+            page_num = 1L;
+        }
+        if (tmp_second_category == 0) {
+            tmp_second_category = null;
+        }
 
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
@@ -186,17 +192,55 @@ public class ProductController {
         styleFileList.add("display");
         styleFileList.add("prd-list");
 
+        CategoryVO categoryVO_all = new CategoryVO();
+        categoryVO_all.setCategory_name("전체");
+        categoryVO_all.setCategory_seq(0L);
+        categoryVO_all.setCategory_ref(0L);
 
-        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text, sort);
+        List<SortVO> sortVOS = new ArrayList<>();
+
+        SortVO date = new SortVO();
+        date.setSort_name("최근등록순");
+        date.setSort_value("date");
+        sortVOS.add(date);
+
+        SortVO sell = new SortVO();
+        sell.setSort_name("많이팔린순");
+        sell.setSort_value("sell");
+        sortVOS.add(sell);
+
+        SortVO low_cost = new SortVO();
+        low_cost.setSort_name("낮은가격순");
+        low_cost.setSort_value("low_cost");
+        sortVOS.add(low_cost);
+
+        SortVO high_cost = new SortVO();
+        high_cost.setSort_name("높은가격순");
+        high_cost.setSort_value("high_cost");
+        sortVOS.add(high_cost);
+
+
+        List<ProductVO> searchProductsBeforePaging = productService.searchProducts(first_category, tmp_second_category, search_text, sort, null);
+        List<ProductVO> searchProducts = productService.searchProducts(first_category, tmp_second_category, search_text, sort, page_num);
         CategoryVO categoryVO = categoryService.getOne(first_category);
         List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
+        subCategoryList.add(0, categoryVO_all);
+
+        Criteria cri = new Criteria(page_num, 30L);
+        PageVO pageMaker = new PageVO(cri, (long)searchProductsBeforePaging.size());
 
         mav.setViewName("search.all");
-        mav.addObject("productVOList", allWithCouponByFirstCategory);
+        mav.addObject("productVOList", searchProducts);
         mav.addObject("categoryVO", categoryVO);
+        mav.addObject("curr_category", second_category);
         mav.addObject("subCategoryList", subCategoryList);
         mav.addObject("className", "wrap display-3depth");
         mav.addObject("cssFileList", styleFileList);
+        mav.addObject("total", (long)searchProductsBeforePaging.size());
+        mav.addObject("pageMaker", pageMaker);
+        mav.addObject("sortVOList", sortVOS);
+        mav.addObject("curr_sort", sort);
+        mav.addObject("search_text", search_text);
         return mav;
     }
 }

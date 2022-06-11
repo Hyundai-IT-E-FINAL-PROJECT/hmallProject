@@ -5345,7 +5345,7 @@ $(function setCategory() {
                 let category = element;
                 if (!category.CATEGORY_REF) {
                     $(".category-list ul").append(
-                        `<li data-catecode="${category.CATEGORY_SEQ}"><a href="/product/all?first_category=${category.CATEGORY_SEQ}">${category.CATEGORY_NAME}</a></li>`
+                        `<li data-catecode="${category.CATEGORY_SEQ}"><a href="/product/all?first_category=${category.CATEGORY_SEQ}&second_category=0&sort=date&search_text=&page_num=1">${category.CATEGORY_NAME}</a></li>`
                     )
                     $(".category-menu-wrap").append(
                         `

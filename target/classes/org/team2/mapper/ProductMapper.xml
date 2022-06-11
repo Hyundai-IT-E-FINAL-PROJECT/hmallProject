@@ -56,49 +56,48 @@
     </select>
 
     <select id="searchProducts" resultType="map" parameterType="map">
-        SELECT s.created_at, s.product_seq, s.product_code, s.product_cost, s.product_count, s.product_country, s.discounted_cost, s.coupon_ratio, s.sell_count, s.product_name, i.image_name, i.image_type
-        FROM (SELECT p.product_seq,
-        CASE
-        WHEN aa.coupon_ratio IS NULL THEN
-        p.product_cost
-        ELSE
-        p.product_cost * (1 - aa.coupon_ratio / 100)
-        END AS discounted_cost,
-        p.product_code,
-        p.product_name,
-        p.product_info,
-        p.product_detail,
-        p.product_manufacture,
-        p.product_brand,
-        p.product_country,
-        p.product_count,
-        p.category_seq,
-        p.product_cost,
-        p.created_at,
-        p.updated_at,
-        p.sell_count,
-        aa.coupon_ratio
-        FROM tbl_product p
-        LEFT JOIN (SELECT c.coupon_ratio,
-        cp.product_seq
-        FROM tbl_coupon c
-        RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
-        ON p.product_seq = aa.product_seq) s
-        LEFT JOIN tbl_image i ON s.product_seq = i.product_seq
-        WHERE (i.image_type = 'MAIN'
-        OR i.image_type IS NULL)
+        SELECT *
+        FROM (SELECT ROWNUM rn,
+        s.product_name,
+        s.created_at,
+        s.product_seq,
+        s.product_code,
+        s.product_cost,
+        s.product_count,
+        s.product_country,
+        s.discounted_cost,
+        s.coupon_ratio,
+        s.sell_count,
+        s.image_name,
+        s.category_seq
+        FROM (SELECT *
+        FROM p_image_discount) s
         <if test="first_category != null">
-            AND s.category_seq IN (SELECT category_seq
-            FROM tbl_category
-            WHERE category_ref = #{first_category})
+            where s.category_seq IN (
+            SELECT
+            category_seq
+            FROM
+            tbl_category
+            WHERE
+            category_ref = ${first_category}
+            )
+        </if
+        >
+        <if test="page_num != null">
+            <![CDATA[and ROWNUM <= ${page_num} * 30]]>
         </if>
-        <if test="second_category != null">
-            AND s.category_seq = #{second_category}
-        </if>
-        <if test="search_text != null">
-            AND s.product_name LIKE '%' ||  #{search_text} || '%'
-        </if>
-        <if test="sort == 'date'">
+        <if test="second_category != null"
+        >
+            AND s.category_seq = ${second_category}
+        </if
+        >
+        <if test="search_text != null and search_text != ''"
+        >
+            AND s.product_name like '%' || '${search_text}' || '%'
+        </if
+        >
+        <if test="sort == 'date'"
+        >
             ORDER BY created_at DESC
         </if>
         <if test="sort == 'sell'">
@@ -115,76 +114,22 @@
         </if>
         <if test="sort == 'review'">
             ORDER BY created_at DESC
+        </if>)
+        <if test="page_num != null">
+            <![CDATA[WHERE
+                  rn
+                  > ( ${page_num} - 1 ) * 30]]>
         </if>
-    </select>
-
-    <select id="getAllWithCouponByFirstCategory" resultType="map">
-        SELECT s.product_seq,
-               s.discounted_cost,
-               s.product_code,
-               s.product_name,
-               s.product_info,
-               s.product_detail,
-               s.product_manufacture,
-               s.product_brand,
-               s.product_country,
-               s.product_count,
-               s.category_seq,
-               s.product_cost,
-               s.coupon_ratio,
-               i.image_name
-        FROM (SELECT p.product_seq,
-                     CASE
-                         WHEN aa.coupon_ratio IS NULL THEN
-                             p.product_cost
-                         ELSE
-                             p.product_cost * (1 - aa.coupon_ratio / 100)
-                         END AS discounted_cost,
-                     p.product_code,
-                     p.product_name,
-                     p.product_info,
-                     p.product_detail,
-                     p.product_manufacture,
-                     p.product_brand,
-                     p.product_country,
-                     p.product_count,
-                     p.category_seq,
-                     p.product_cost,
-                     CASE
-                         WHEN aa.coupon_ratio IS NULL THEN
-                             0
-                         else
-                             aa.coupon_ratio
-                         END as coupon_ratio
-              FROM tbl_product p
-                       LEFT JOIN (SELECT c.coupon_ratio,
-                                         cp.product_seq
-                                  FROM tbl_coupon c
-                                           RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
-                                 ON p.product_seq = aa.product_seq
-              WHERE p.category_seq IN (SELECT category_seq
-                                       FROM tbl_category
-                                       WHERE category_ref = ${category_seq})) s
-                 LEFT JOIN tbl_image i ON s.product_seq = i.product_seq
-        WHERE i.image_type = 'MAIN'
     </select>
 
     <select id="getMain" resultType="map">
         <![CDATA[
-        SELECT
-            *
-        FROM
-            (
-                SELECT
-                    *
-                FROM
-                    tbl_product p
-                        LEFT JOIN tbl_image   i ON p.product_seq = i.product_seq
-                ORDER BY
-                    p.sell_count DESC
-            )
-        WHERE
-            ROWNUM <= 10
+        SELECT *
+        FROM (SELECT *
+              FROM tbl_product p
+                       LEFT JOIN tbl_image i ON p.product_seq = i.product_seq
+              ORDER BY p.sell_count DESC)
+        WHERE ROWNUM <= 10
         ]]>
     </select>
 

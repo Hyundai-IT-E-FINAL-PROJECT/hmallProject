@@ -5,17 +5,11 @@
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-<!--    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">-->
-<!--        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>-->
-<!--        <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>-->
-<!--        <property name="username" value="c##teamKim"/>-->
-<!--        <property name="password" value="team2"/>-->
-<!--    </bean>-->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@kosa3.iptime.org:50106/xepdb1"/>
-        <property name="username" value="c##teamKim"/>
-        <property name="password" value="team2"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@dbteam2_high?TNS_ADMIN=/Users/gimjihye/Wallet_DBTeam2"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="Asdfg1234567!"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -27,11 +21,10 @@
     </bean>
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com"/> <!-- 메이서버 호스트 -->
-        <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
-        <property name="username" value="qudgns1115@gmail.com"/> <!-- 자신의 이메일 아이디 -->
-        <property name="password" value="mipwemrolwyzwfse"/> <!-- 자신의 비밀번호 -->
-        <!-- 보안연결 SSL과 관련된 설정 -->
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="qudgns1115@gmail.com"/>
+        <property name="password" value="mipwemrolwyzwfse"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.auth">true</prop>
@@ -47,6 +40,7 @@
     </bean>
 
     <mybatis-spring:scan base-package="org.team2.mapper"/>
+
     <context:component-scan base-package="org.team2"/>
 
 </beans>

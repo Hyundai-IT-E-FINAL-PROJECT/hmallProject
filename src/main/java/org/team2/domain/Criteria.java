@@ -10,35 +10,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Getter
 public class Criteria {
 
-	private int pageNum;
-	private int amount;
-
-	private String type;
-	private String keyword;
+	private Long pageNum;
+	private Long amount;
 
 	public Criteria() {
-		this(1, 10);
+		this(1L, 30L);
 	}
 
-	public Criteria(int pageNum, int amount) {
+	public Criteria(Long pageNum, Long amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
-	}
-
-	public String[] getTypeArr() {
-
-		return type == null ? new String[] {} : type.split("");
-	}
-
-	public String getListLink() {
-
-		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
-				.queryParam("pageNum", this.pageNum)
-				.queryParam("amount", this.getAmount())
-				.queryParam("type", this.getType())
-				.queryParam("keyword", this.getKeyword());
-
-		return builder.toUriString();
-
 	}
 }

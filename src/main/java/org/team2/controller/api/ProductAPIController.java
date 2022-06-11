@@ -166,10 +166,11 @@ public class ProductAPIController {
     }
 
     @RequestMapping("/all")
-    public ResponseEntity<List<ProductVO>> all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value = "sort", required = false) String sort){
+    public ResponseEntity<List<ProductVO>> all(@RequestParam(value="first_category", required=false) Long first_category, @RequestParam(value="second_category", required=false) Long second_category, @RequestParam(value="search_text", required=false) String search_text, @RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "page_num", required = false) Long page_num){
         log.info("product controller all start!!");
+        log.info(page_num);
 
-        List<ProductVO> allWithCouponByFirstCategory = productService.getAllWithCouponByFirstCategory(first_category, second_category, search_text, sort);
+        List<ProductVO> allWithCouponByFirstCategory = productService.searchProducts(first_category, second_category, search_text, sort, page_num);
         HttpHeaders resHeader = new HttpHeaders();
         resHeader.add("Content-Type", "application/json; charset=UTF-8");
 

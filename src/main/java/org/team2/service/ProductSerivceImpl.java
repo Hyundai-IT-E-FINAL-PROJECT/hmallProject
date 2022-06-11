@@ -29,8 +29,8 @@ public class ProductSerivceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getAllWithCouponByFirstCategory(Long first_category, Long second_category, String search_text, String sort) {
-        List<ProductVO> allWithCouponByFirstCategory = productMapper.searchProducts(first_category, second_category, search_text, sort);
+    public List<ProductVO> searchProducts(Long first_category, Long second_category, String search_text, String sort, Long page_num) {
+        List<ProductVO> allWithCouponByFirstCategory = productMapper.searchProducts(first_category, second_category, search_text, sort, page_num);
 
         return allWithCouponByFirstCategory;
     }
