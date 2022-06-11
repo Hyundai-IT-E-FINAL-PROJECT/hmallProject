@@ -60,9 +60,12 @@ public class FundingController {
         
         //내 펀딩 프로젝트 가져오기
         List<FundVO> userFundProject=fundingService.getUserFund(Long.valueOf(principal.getName()));
+        List<FundVO> adminAllProjdct=fundingService.getAllFund();
 
-        log.info(userFundProject);
+        log.info("user's :"+userFundProject);
+        log.info("admin's :"+adminAllProjdct);
         mav.addObject("userFundProject",userFundProject);
+        mav.addObject("adminAllProjdct",adminAllProjdct);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className", "wrap display-3depth");
         return mav;
@@ -75,6 +78,19 @@ public class FundingController {
         //내 펀딩 삭제하기
         try{
             fundingService.deleteUserFund(Long.valueOf(fund_product_seq));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @ResponseBody
+    @GetMapping("update/{fund_product_seq}")
+    public void updateFundStatus(@PathVariable("fund_product_seq") String fund_product_seq){
+        log.info("updateFundStatus 접속");
+        //대기중인 펀딩 수락하기
+        try{
+            fundingService.updateFundStatus(Long.valueOf(fund_product_seq));
         }catch (Exception e){
             e.printStackTrace();
         }

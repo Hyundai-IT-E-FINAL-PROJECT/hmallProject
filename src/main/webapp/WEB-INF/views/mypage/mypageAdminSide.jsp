@@ -25,6 +25,12 @@
                     <li><a href="/customer/inquiryPage">1:1 상담</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;">크라우드 펀딩</a>
+                <ul class="sub-list">
+                    <li><a href="/fund/myFunding">펀딩 상품 보러가기</a></li>
+                </ul>
+            </li>
 
         </ul>
     </div>

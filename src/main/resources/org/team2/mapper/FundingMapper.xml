@@ -68,6 +68,17 @@
         where tbl_fund_product.user_seq=#{user_seq}
     </select>
 
+    <select id="getAllFund" resultType="org.team2.domain.FundVO">
+        select *
+        from tbl_fund_product
+    </select>
+
+    <update id="updateFundStatus">
+        update tbl_fund_product
+        set FUND_PRODUCT_STATUS=1
+        where tbl_fund_product.FUND_PRODUCT_SEQ=#{fund_product_seq}
+    </update>
+
     <delete id="deleteUserFund" >
         delete from tbl_fund_product where fund_product_seq=#{fund_product_seq}
     </delete>

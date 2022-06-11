@@ -18,4 +18,8 @@ public interface FundingMapper {
     List<Map<Integer, Object>> readFundingProduct(FundVO fundVO) throws Exception;
 
     List<Map<Integer, Object>> readFundigProductDetail(int fund_product_seq) throws Exception;
+
+    List<FundVO> getAllFund() throws Exception;
+
+    void updateFundStatus(Long fund_product_seq) throws Exception;
 }

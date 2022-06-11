@@ -46,4 +46,14 @@ public class FundingServiceImpl implements FundingService{
     public List<Map<Integer, Object>> readFundigProductDetail(int fund_product_seq) throws Exception {
         return fundingMapper.readFundigProductDetail(fund_product_seq);
     }
+
+    @Override
+    public List<FundVO> getAllFund() throws Exception {
+        return fundingMapper.getAllFund();
+    }
+
+    @Override
+    public void updateFundStatus(Long fund_product_seq) throws Exception {
+        fundingMapper.updateFundStatus(fund_product_seq);
+    }
 }
