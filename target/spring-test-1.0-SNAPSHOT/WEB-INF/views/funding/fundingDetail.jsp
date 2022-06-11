@@ -6,7 +6,8 @@ Time: 오후 11:49
 To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="
+" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -403,7 +404,7 @@ To change this template use File | Settings | File Templates.
                                                 <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
                                                 <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COST}"/> 원 펀딩</div>
                                                 <div class="reward-choice-boxrow"><!----> <span><b><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> </b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
-                                                    <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
+                                                    <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span><fmt:formatDate value="${list[0].FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy-MM-dd"/></span> <i
                                                             class="fas fa-caret-right" aria-hidden="true"></i></div>
                                                 <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
                                                 <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>

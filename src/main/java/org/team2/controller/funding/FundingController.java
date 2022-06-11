@@ -137,9 +137,9 @@ public class FundingController {
     @PostMapping("insertFund")
     public void insertFund(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO,
                            @RequestParam(value = "fund_reward_titleList[]") List<String> fund_reward_titleList,
-                           @RequestParam(value = "fund_reward_costList[]") List<Integer> fund_reward_costList,
+                           @RequestParam(value = "fund_reward_costList[]") List<String> fund_reward_costList,
                            @RequestParam(value = "fund_reward_contentList[]") List<String> fund_reawrd_contentList,
-                           @RequestParam(value = "fund_reward_countList[]") List<Integer> fund_reward_countList,
+                           @RequestParam(value = "fund_reward_countList[]") List<String> fund_reward_countList,
                            Principal principal) throws Exception{
         log.info("펀딩 상품 및 리워드 insert !!");
         log.info(principal.getName());
@@ -155,9 +155,9 @@ public class FundingController {
             log.info(rewardVO.getFund_product_seq());
             for(int a = 0 ; a < fund_reward_countList.size() ; a++){
                 rewardVO.setFund_reward_title(fund_reward_titleList.get(a));
-                rewardVO.setFund_reward_cost(fund_reward_costList.get(a));
+                rewardVO.setFund_reward_cost(Integer.parseInt(fund_reward_costList.get(a)));
                 rewardVO.setFund_reward_content(fund_reawrd_contentList.get(a));
-                rewardVO.setFund_reward_count(fund_reward_countList.get(a));
+                rewardVO.setFund_reward_count(Integer.parseInt(fund_reward_countList.get(a)));
                 fundingService.insertReward(rewardVO);
             }
         }catch (Exception e){

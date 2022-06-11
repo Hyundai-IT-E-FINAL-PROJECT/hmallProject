@@ -20,7 +20,8 @@
                                     FUND_PRODUCT_PARTICIPANTS,
                                     FUND_PRODUCT_MAIN_IMG,
                                     CREATED_AT,
-                                    UPDATED_AT
+                                    UPDATED_AT,
+                                    FUND_PRODUCT_ESTIMATE_DATE
                                     )
                                     VALUES
                                     (
@@ -36,7 +37,8 @@
                                         0,
                                         'aaa',
                                         sysdate,
-                                        sysdate
+                                        sysdate,
+                                        #{fund_product_estimate_date}
                                     )
     </insert>
 
@@ -60,7 +62,7 @@
                                      #{fund_reward_title},
                                      #{fund_reward_content},
                                      #{fund_reward_count},
-                                     #{fund_reard_cost}
+                                     #{fund_reward_cost}
                                     )
     </insert>
 

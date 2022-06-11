@@ -566,14 +566,18 @@
         var csrfTokenValue = "${_csrf.token}";
 
         var end_date = document.getElementById('duration_project').value;
+        var estimated_date = document.getElementById('estimated_deliveryDate').value;
         var fund_product_title = document.getElementById('project_subject').value;
         var fund_product_goal_cost = document.getElementById('goal_cost').value;
         var fund_product_content = document.getElementById('project_story').value;
         //String to Date
-        stringToDate(end_date,"mm-dd-yyyy","-")
+        stringToDate(end_date,"mm-dd-yyyy","-");
+        stringToDate(estimated_date,"mm-dd-yyyy","-");
 
         console.log(end_date);
         var fund_product_end_date = end_date;
+        console.log("배송예정일 :"+estimated_date);
+        var fund_product_estimate_date = estimated_date;
 
 
         let fund_reward_titleList = [];
@@ -595,10 +599,11 @@
             fund_product_title: fund_product_title,
             fund_product_content: fund_product_content,
             fund_product_goal_cost: parseInt(fund_product_goal_cost),
+            fund_product_estimate_date: fund_product_estimate_date,
             "fund_reward_titleList" : fund_reward_titleList,
-            "fund_reward_costList" : parseInt(fund_reward_costList),
+            "fund_reward_costList" : fund_reward_costList,
             "fund_reward_contentList" : fund_reward_contentList,
-            "fund_reward_countList" : parseInt(fund_reward_countList)
+            "fund_reward_countList" : fund_reward_countList
         }
         console.log(rewardData);
         $.ajax({
@@ -607,6 +612,9 @@
             data:rewardData,
             beforeSend: function(xhr) {
                 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (){
+                alert("프로젝트 등록에 성공하셨습니다!");
+                location.href="${contextPath}/fund/main";
             }
         })
     }
