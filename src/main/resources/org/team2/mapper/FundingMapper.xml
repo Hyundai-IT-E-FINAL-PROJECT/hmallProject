@@ -71,4 +71,22 @@
     <delete id="deleteUserFund" >
         delete from tbl_fund_product where fund_product_seq=#{fund_product_seq}
     </delete>
+    <select id="readFundingProduct" resultType="map">
+        SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
+               FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
+               FP.FUND_PRODUCT_MAIN_IMG,FP.FUND_PRODUCT_END_DATE,
+               FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME
+        FROM TBL_FUND_PRODUCT FP
+                 INNER JOIN TBL_USER TU
+                            ON FP.USER_SEQ = TU.USER_SEQ
+    </select>
+
+    <select id="readFundigProductDetail" resultType="map">
+        SELECT FP.FUND_PRODUCT_SEQ, FP.FUND_PRODUCT_PR_COST, FP.FUND_PRODUCT_GOAL_COST,FP.FUND_PRODUCT_END_DATE,
+               FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT
+        FROM TBL_FUND_PRODUCT FP
+                 INNER JOIN TBL_FUND_REWARD FR
+                            ON FP.FUND_PRODUCT_SEQ = FR.FUND_PRODUCT_SEQ
+                            WHERE FP.FUND_PRODUCT_SEQ = #{fund_product_seq}
+    </select>
 </mapper>

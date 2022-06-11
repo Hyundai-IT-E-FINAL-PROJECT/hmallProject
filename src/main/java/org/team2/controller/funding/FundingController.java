@@ -29,7 +29,7 @@ public class FundingController {
     private FundingService fundingService;
 
     @GetMapping( "main")
-    public ModelAndView openOrderCompletePage(){
+    public ModelAndView openOrderCompletePage(@ModelAttribute FundVO fundVO) throws Exception{
         log.info("fundingMain 접속");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("funding.fundingMain");
@@ -37,7 +37,10 @@ public class FundingController {
         styleFileList.add("search");
         styleFileList.add("display");
         styleFileList.add("prd-list");
-
+        List<Map<Integer,Object>> list = fundingService.readFundingProduct(fundVO);
+        log.info(list.toString());
+//        펀딩 리스트 불러오기
+        mav.addObject("list",list);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className", "wrap display-3depth");
         return mav;
@@ -79,16 +82,23 @@ public class FundingController {
     }
 
 
-    @GetMapping( "detail")
-    public ModelAndView openFundingDetail(){
-        log.info("fundingMain 접속");
+
+    @ResponseBody
+    @GetMapping("detail/{fund_product_seq}")
+    public ModelAndView openFundingDetail(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO,
+                                          @PathVariable("fund_product_seq") int fund_product_seq ,Principal principal) throws Exception{
+        log.info("fundingDetail 접속");
+        log.info(fund_product_seq);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("funding.fundingDetail");
         List<String> styleFileList = new ArrayList<>();
+        List<Map<Integer,Object>> list = fundingService.readFundigProductDetail(fund_product_seq);
+        log.info(list.toString());
         styleFileList.add("search");
         styleFileList.add("display");
         styleFileList.add("prd-list");
 
+        mav.addObject("list",list);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className", "wrap display-3depth");
         return mav;
@@ -133,4 +143,6 @@ public class FundingController {
             e.printStackTrace();
         }
     }
+
+
 }

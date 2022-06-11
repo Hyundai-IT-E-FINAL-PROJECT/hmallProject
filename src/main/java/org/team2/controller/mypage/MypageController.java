@@ -86,7 +86,7 @@ public class MypageController {
 
     @GetMapping("mypageOrderDetail/{odno}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView orderDetail(@PathVariable  long odno, Principal principal) throws Exception {
+    public ModelAndView orderDetail(@PathVariable long odno, Principal principal) throws Exception {
         log.info("detail test");
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();

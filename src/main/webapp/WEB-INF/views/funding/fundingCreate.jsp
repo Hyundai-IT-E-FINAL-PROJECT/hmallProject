@@ -11,12 +11,14 @@
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!--datePicker-->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+<%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--%>
 <!--datePicker end -->
+
 <link href="/resources/font/NotoSansCJKkr/font.min.css" rel="stylesheet">
 <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +37,6 @@
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- include summernote css/js-->
@@ -168,6 +169,37 @@
                                         </div>
                                     </div>
                                 </div>
+                            <script>
+                                const config = {
+                                    dateFormat: 'yy-mm-dd',
+                                    yearRange: '1930:2022',
+                                    prevText: '이전 달',
+                                    nextText: '다음 달',
+                                    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                    dayNames: ['일','월','화','수','목','금','토'],
+                                    dayNamesShort: ['일','월','화','수','목','금','토'],
+                                    dayNamesMin: ['일','월','화','수','목','금','토'],
+                                    yearSuffix: '년',
+                                    changeMonth: true,
+                                    changeYear: true
+                                }
+                                $(function() {
+                                    var today=new Date();
+                                    $("#estimated_deliveryDate").datepicker(config);
+                                    $("#duration_project").datepicker(config);
+                                    $("#duration_project").on("change", function(){
+                                        let year= parseInt($(this).val().split('-')[0]);
+                                        let month= parseInt($(this).val().split('-')[1]);
+                                        let day= parseInt($(this).val().split('-')[2]);
+                                        console.log(year, month, day);
+                                        var d_day=new Date(year, month, day);
+                                        var gap=d_day.getTime()-today.getTime();
+                                        var result=Math.ceil(gap/(1000*60*60*24));
+                                        $("#d_day").val(result-30);
+                                    });
+                                });
+                            </script>
                                 <div class="form-group row-mobile-n mb30"><label for="project_img" class="col-xs-12 control-label control-label-big">
                                     <div class="text-left mb10">프로젝트 대표 이미지를 등록해주세요</div>
                                     <div style="text-align: left">
@@ -475,11 +507,6 @@
         }
     }
 
-    $('#duration_project').change(function (){
-        var a = $('#duration_project').val();
-        $('#duration_project').text(a);
-    });
-
     function nextStep_info(){
         $(".list_link_tab li").removeClass("active");
         document.getElementById('story_btn').classList.add("active");
@@ -548,38 +575,6 @@
             }
         })
     }
-</script>
-
-<script>
-    const config = {
-        dateFormat: 'yy-mm-dd',
-        yearRange: '1930:2022',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames: ['일','월','화','수','목','금','토'],
-        dayNamesShort: ['일','월','화','수','목','금','토'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        yearSuffix: '년',
-        changeMonth: true,
-        changeYear: true
-    }
-    $(function() {
-        var today=new Date();
-        $("#estimated_deliveryDate").datepicker(config);
-        $("#duration_project").datepicker(config);
-        $("#duration_project").on("change", function(){
-            let year= parseInt($(this).val().split('-')[0]);
-            let month= parseInt($(this).val().split('-')[1]);
-            let day= parseInt($(this).val().split('-')[2]);
-            console.log(year, month, day);
-            var d_day=new Date(year, month, day);
-            var gap=d_day.getTime()-today.getTime();
-            var result=Math.ceil(gap/(1000*60*60*24));
-            $("#d_day").val(result-30);
-        });
-    });
 </script>
 <script type="text/javascript">
     // $(document).ready(function() {

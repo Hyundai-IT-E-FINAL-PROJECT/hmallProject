@@ -9,7 +9,7 @@ import org.team2.domain.RewardVO;
 import org.team2.mapper.FundingMapper;
 
 import java.util.List;
-
+import java.util.Map;
 @Service
 public class FundingServiceImpl implements FundingService{
 
@@ -36,5 +36,14 @@ public class FundingServiceImpl implements FundingService{
     @Override
     public void deleteUserFund(Long fund_product_seq) throws Exception {
         fundingMapper.deleteUserFund(fund_product_seq);
+    }
+
+    public List<Map<Integer, Object>> readFundingProduct(FundVO fundVO) throws Exception {
+        return fundingMapper.readFundingProduct(fundVO);
+    }
+
+    @Override
+    public List<Map<Integer, Object>> readFundigProductDetail(int fund_product_seq) throws Exception {
+        return fundingMapper.readFundigProductDetail(fund_product_seq);
     }
 }

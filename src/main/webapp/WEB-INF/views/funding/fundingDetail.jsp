@@ -71,13 +71,13 @@ To change this template use File | Settings | File Templates.
                                 <div class="col-sm-4 mb30 xs-mt25 xs-mb20 pl45 pr15 xs-pl15 xs-pr15">
                                     <div class="reward-info-box">
                                         <div class="reward-info-name">리워드</div>
-                                        <div class="reward-info-amount">251,500원
+                                        <div class="reward-info-amount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST}"/>원
                                             <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                         <div class="mt20"><span class="reward-info-text">달성률</span> <span
-                                                class="reward-info-now">50% &nbsp;</span> <span
+                                                class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST / list[0].FUND_PRODUCT_GOAL_COST)* 100}"/>% &nbsp;</span> <span
                                                 class="reward-info-goal">목표금액 &nbsp;500,000원</span></div>
                                         <div class="mt5"><span class="reward-info-text">남은기간</span> <span
-                                                class="reward-info-now mr5"> 3일</span> <span class="reward-info-goal">2022.06.12 종료</span>
+                                                class="reward-info-now mr5"> 3일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
                                         </div>
                                         <div class="mt5"><span class="reward-info-text">참여자</span> <span
                                                 class="reward-info-now">7명</span></div>
@@ -391,52 +391,26 @@ To change this template use File | Settings | File Templates.
                                 펀딩을 마치면 <b>결제 예약 상태</b>입니다. 종료일에 100%<br>
                                 이상 달성되었을 경우에만 결제예정일에 결제가 됩니다
                             </div>
-                            <div class="reward-choice-margin">
-                                <div class="common-flex-between" style="align-items: center;"><span
-                                        class="reward-choice-title mt10 xs-mt0 mb25">리워드 선택</span> <!----></div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
-                                    <div style="align-items: center; display: flex; margin-right: 20px;">
-                                        <input type="radio" name="checkRewardSeq" value=""/>
-                                    </div>
-                                    <div>
-                                        <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
-                                        <div class="reward-choice-boxamount">19,600 원 펀딩</div>
-                                        <div class="reward-choice-boxrow"><!----> <span><b>199개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
-                                            <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
-                                                    class="fas fa-caret-right" aria-hidden="true"></i></div>
-                                        <div class="reward-choice-boxtitle">[나혼산 세트] 댓츠잇 너겟 2개입</div>
-                                        <div class="reward-choice-boxdesc">달콤양념 1 + 청양간장 1</div>
-                                    </div>
-                                </div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
-                                    <div style="align-items: center; display: flex; margin-right: 20px;">
-                                        <input type="radio" name="checkRewardSeq" value=""/>
-                                    </div>
-                                    <div>
-                                    <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
-                                    <div class="reward-choice-boxamount">32,900 원 펀딩</div>
-                                    <div class="reward-choice-boxrow"><!----> <span><b>97개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;3개 펀딩</span>
-                                        <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
-                                                class="fas fa-caret-right" aria-hidden="true"></i></div>
-                                    <div class="reward-choice-boxtitle">[홈파티 세트] 댓츠잇 너겟 4개입</div>
-                                    <div class="reward-choice-boxdesc">달콤양념 2 + 청양간장 2</div>
+                            <c:forEach items="${list}" var="reward" varStatus="status">
+                                <div class="reward-choice-margin">
+                                    <div class="common-flex-between" style="align-items: center;"><span
+                                            class="reward-choice-title mt10 xs-mt0 mb25">리워드 선택</span> <!----></div>
+                                    <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
+                                        <div style="align-items: center; display: flex; margin-right: 20px;">
+                                            <input type="radio" name="checkRewardSeq" value=""/>
+                                        </div>
+                                        <div>
+                                            <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
+                                            <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> 원 펀딩</div>
+                                            <div class="reward-choice-boxrow"><!----> <span><b>199개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
+                                                <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
+                                                        class="fas fa-caret-right" aria-hidden="true"></i></div>
+                                            <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
+                                            <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
-                                    <div style="align-items: center; display: flex; margin-right: 20px;">
-                                        <input type="radio" name="checkRewardSeq" value=""/>
-                                    </div>
-                                    <div>
-                                    <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
-                                    <div class="reward-choice-boxamount">44,400 원 펀딩</div>
-                                    <div class="reward-choice-boxrow"><!----> <span><b>47개 남음</b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;3개 펀딩</span>
-                                        <b class="pl20">예상 배송일 &nbsp;&nbsp;</b> <span>2022-06-13</span> <i
-                                                class="fas fa-caret-right" aria-hidden="true"></i></div>
-                                    <div class="reward-choice-boxtitle">[온가족 세트] 댓츠잇 너겟 6개입</div>
-                                    <div class="reward-choice-boxdesc">달콤양념 3 + 청양간장 3</div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                             <div id="reward-qty" class="common-flex-center mt25 xs-mt10" style="justify-content: right;">
                                 <div>
                                     <div style="display: flex;">
