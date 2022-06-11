@@ -23,6 +23,7 @@ public class FundVO {
     private int fund_product_status;
     private int fund_product_participants;
     private String fund_product_main_img;
+
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fund_product_estimate_date;
 
