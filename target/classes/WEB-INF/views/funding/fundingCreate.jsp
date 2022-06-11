@@ -213,7 +213,7 @@
                                             <div class="col-xs-6 col-sm-4 col-md-3">
                                                 <div class="btn btn-block btn-primary-outline">저장하기</div>
                                             </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">예약하기</button></div>
+                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">다음단계</button></div>
                                         </div>
                                     </div>
                                 </div>
