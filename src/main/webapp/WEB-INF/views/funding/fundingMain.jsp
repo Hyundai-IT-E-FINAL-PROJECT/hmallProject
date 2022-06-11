@@ -75,45 +75,45 @@ To change this template use File | Settings | File Templates.
                             <div param-art-type="0">
                                 <div class="card-reward-list">
 <%--                                    <div class="pdlist-wrap" id="pdListDiv">--%>
-                                        <ul>
-                                            <% for(int i=0; i<20; i++){  %>
-                                                <li class="pthumb">
-                                                    <div class="col-sm-4 col-xs-6">
-                                                        <figure><a href="${contextPath}/fund/detail"
-                                                                   class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                            <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                                <div class="card-newStatus-icon">NEW</div>
-                                                                <img
-                                                                        src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
-                                                                        alt="..." class="img-responsive">
+                                    <ul>
+                                        <% for(int i=0; i<20; i++){  %>
+                                            <li class="pthumb">
+                                                <div class="col-sm-4 col-xs-6">
+                                                    <figure><a href="${contextPath}/fund/detail"
+                                                               class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
+                                                        <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
+                                                            <div class="card-newStatus-icon">NEW</div>
+                                                            <img
+                                                                    src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
+                                                                    alt="..." class="img-responsive">
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <figcaption>
+                                                            <div class="card-reward-content">
+                                                                <div class="card-reward-name">(주) 라라잇츠</div>
+                                                                <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
+                                                                    페이셜 기능성크림
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-reward-row">
+                                                                <!---->
+                                                                <div class="card-reward-price crowdy-color-blue"> 5,308,300원
+                                                                    펀딩
+                                                                </div>
+                                                                <div class="card-reward-day">D - 18
+                                                                    <!---->
+                                                                </div>
+                                                                <div class="card-reward-persent">5,308%</div>
                                                                 <!---->
                                                                 <!---->
                                                             </div>
-                                                            <figcaption>
-                                                                <div class="card-reward-content">
-                                                                    <div class="card-reward-name">(주) 라라잇츠</div>
-                                                                    <div class="card-reward-title">[앵콜펀딩] 제주 용암해수를 먹은 스피루리나 미백 주름
-                                                                        페이셜 기능성크림
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-reward-row">
-                                                                    <!---->
-                                                                    <div class="card-reward-price crowdy-color-blue"> 5,308,300원
-                                                                        펀딩
-                                                                    </div>
-                                                                    <div class="card-reward-day">D - 18
-                                                                        <!---->
-                                                                    </div>
-                                                                    <div class="card-reward-persent">5,308%</div>
-                                                                    <!---->
-                                                                    <!---->
-                                                                </div>
-                                                            </figcaption>
-                                                        </a></figure>
-                                                    </div>
-                                                </li>
-                                            <% }%>
-                                        </ul>
+                                                        </figcaption>
+                                                    </a></figure>
+                                                </div>
+                                            </li>
+                                        <% }%>
+                                    </ul>
                                     </div>
 <%--                             --%>
 <%--                                    <div class="card-row-01">--%>
