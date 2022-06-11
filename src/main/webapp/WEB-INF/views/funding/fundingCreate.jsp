@@ -374,9 +374,9 @@
 
                                                 </div>
                                             </div>
-                                            <form method="post">
-                                                <textarea id="summernote" name="content"></textarea>
-                                            </form>
+<%--                                            <form method="post">--%>
+<%--                                                <textarea id="summernote" name="content"></textarea>--%>
+<%--                                            </form>--%>
                                             </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
                                         </div>
 
@@ -580,35 +580,31 @@
             $("#d_day").val(result-30);
         });
     });
-<<<<<<< HEAD
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#summernote').summernote({
-            // toolbar: [
-            //     // [groupName, [list of button]]
-            //     ['fontname', ['fontname']],
-            //     ['fontsize', ['fontsize']],
-            //     ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-            //     ['color', ['forecolor','color']],
-            //     ['table', ['table']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['height', ['height']],
-            //     ['insert',['picture','link','video']],
-            //     ['view', ['fullscreen', 'help']]
-            // ],
-            // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-            // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-            placeholder: 'content',
-            minHeight: 370,
-            maxHeight: null,
-            focus: true,
-            lang : 'ko-KR'
-        });
-    })
-</script>
-=======
-
+    // $(document).ready(function() {
+    //     $('#summernote').summernote({
+    //         // toolbar: [
+    //         //     // [groupName, [list of button]]
+    //         //     ['fontname', ['fontname']],
+    //         //     ['fontsize', ['fontsize']],
+    //         //     ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+    //         //     ['color', ['forecolor','color']],
+    //         //     ['table', ['table']],
+    //         //     ['para', ['ul', 'ol', 'paragraph']],
+    //         //     ['height', ['height']],
+    //         //     ['insert',['picture','link','video']],
+    //         //     ['view', ['fullscreen', 'help']]
+    //         // ],
+    //         // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+    //         // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+    //         placeholder: 'content',
+    //         minHeight: 370,
+    //         maxHeight: null,
+    //         focus: true,
+    //         lang : 'ko-KR'
+    //     });
+    // })
     function stringToDate(_date,_format,_delimiter)
     {
         var formatLowerCase=_format.toLowerCase();
@@ -623,4 +619,3 @@
         return formatedDate;
     }
 </script>
->>>>>>> 9486951a0798359266eefc6ded982c76ffc7335f
