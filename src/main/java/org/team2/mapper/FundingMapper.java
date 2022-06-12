@@ -30,4 +30,8 @@ public interface FundingMapper {
     void deleteReply(int delete_seq) throws Exception;
 
     void insertNotice(FundNoticeVO fundNoticeVO) throws Exception;
+
+    List<Map<String, Object>> selectInfo(FundNoticeVO fundNoticeVO) throws Exception;
+
+    void deleteInfo(int delete_seq) throws Exception;
 }

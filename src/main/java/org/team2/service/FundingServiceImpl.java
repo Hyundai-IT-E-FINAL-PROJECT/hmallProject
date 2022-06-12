@@ -80,4 +80,14 @@ public class FundingServiceImpl implements FundingService{
     public void insertNotice(FundNoticeVO fundNoticeVO) throws Exception {
         fundingMapper.insertNotice(fundNoticeVO);
     }
+
+    @Override
+    public List<Map<String, Object>> selectInfo(FundNoticeVO fundNoticeVO) throws Exception {
+        return fundingMapper.selectInfo(fundNoticeVO);
+    }
+
+    @Override
+    public void deleteInfo(int delete_seq) throws Exception {
+        fundingMapper.deleteInfo(delete_seq);
+    }
 }

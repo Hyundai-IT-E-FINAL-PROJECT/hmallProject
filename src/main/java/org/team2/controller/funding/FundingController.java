@@ -248,6 +248,42 @@ public class FundingController {
         fundNoticeVO.setFund_product_seq(fund_board_seq_info);
         fundNoticeVO.setFund_notice_content(fund_reply_content_info);
         fundingService.insertNotice(fundNoticeVO);
-        return null;
+        List<Map<String,Object>> info_list = fundingService.selectInfo(fundNoticeVO);
+        log.info(info_list.toString());
+        return ResponseEntity.ok().body(info_list);
+    }
+
+    @ResponseBody
+    @RequestMapping("selectInfo")
+    public ResponseEntity<List<Map<String, Object>>> selectInfo(@RequestParam("fund_board_seq_info") int fund_board_seq_info,
+                                                                 @RequestParam("user_seq_info") int user_seq_info,
+                                                                 @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
+
+        log.info("공지 출력 컨트롤러 도착 !");
+        log.info(fund_board_seq_info+" "+user_seq_info);
+        fundNoticeVO.setUser_seq(user_seq_info);
+        fundNoticeVO.setFund_product_seq(fund_board_seq_info);
+//        삽입 되어있는 댓글 리스트 불러오기
+        List<Map<String,Object>> info_list = fundingService.selectInfo(fundNoticeVO);
+        log.info(info_list.toString());
+        log.info("select 성공");
+        return ResponseEntity.ok().body(info_list);
+    }
+
+    @ResponseBody
+    @RequestMapping("deleteInfo")
+    public ResponseEntity<String> deleteInfo(@RequestParam("delete_seq") int delete_seq) throws Exception{
+        ResponseEntity<String> entity = null;
+
+        log.info("댓글 삭제 컨트롤러 도착 !");
+        log.info(delete_seq);
+        try {
+            fundingService.deleteInfo(delete_seq);
+            entity = new ResponseEntity<String>("1", HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            entity = new ResponseEntity<String>("0", HttpStatus.OK);
+        }
+        return entity;
     }
 }
