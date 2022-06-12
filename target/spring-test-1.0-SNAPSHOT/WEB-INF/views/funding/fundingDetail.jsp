@@ -32,10 +32,6 @@ To change this template use File | Settings | File Templates.
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="reward_community_partner mt40 mb10 xs-mt25">해당 프로젝트는 <a
-                                    href="/c/apfs2022"><span
-                                    class="crowdy-color-blue">[ 2022 농식품 펀딩 전용관 ]</span></a>과 함께 합니다
-                            </div>
                             <div class="reward_title mb30 xs-mb15" style="margin-top: 30px;">${list[0].FUND_PRODUCT_TITLE}</div>
                             <!----></div>
                         <div>
