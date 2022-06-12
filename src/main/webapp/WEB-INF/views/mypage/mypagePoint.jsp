@@ -71,7 +71,7 @@
                                             <dl>
                                                 <dt>적립예정</dt>
                                                 <dd>
-                                                    <span><em class="prepoint" id="totPromoExpectSvmt">0</em>P</span>
+                                                    <span><em class="prepoint" id="totPromoExpectSvmt">${prepoint}</em>P</span>
                                                 </dd>
                                                 <dt>당월 소멸예정</dt>
                                                 <dd>
@@ -149,66 +149,65 @@
 
                                 <!--//유효한 적립금만보기-->
                                 <c:if test="${list.size() != 0}">
-                                <c:forEach items="${list}" var="list">
-                                <div class="list-wrap" style="margin-top: 10px">
+                                <c:forEach items="${list}" var="polist" varStatus="vs">
+                                    <c:if test="${list[vs.index-1].COSTORDER != polist.COSTORDER}">
+                                        <div class="list-wrap" style="margin-top: 10px">
+                                            <ul class="list">
 
-                                    <ul class="list">
+                                                <li>
 
-                                        <li>
+                                                    <div class="cell">
+                                                        <p>
+                                                            <span class="date"><fmt:formatDate value="${polist.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
 
-                                            <div class="cell">
-                                                <p>
-                                                    <span class="date"><fmt:formatDate value="${list.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
+                                                            <c:if test="${polist.POINT_COST > 0 and polist.ORDER_STATUS eq '배송완료'}">
+                                                                <strong class="accu">적립</strong>
+                                                            </c:if>
+                                                            <c:if test="${polist.POINT_COST < 0 and polist.ORDER_STATUS eq '주문접수'}">
+                                                                <strong class="exp-accu">사용 완료</strong>
+                                                            </c:if>
+                                                            <c:if test="${polist.POINT_COST < 0 and polist.ORDER_STATUS eq '배송완료'}">
+                                                                <strong class="exp-accu">사용 완료</strong>
+                                                            </c:if>
+                                                            <c:if test="${polist.POINT_COST < 0 and polist.ORDER_STATUS eq '주문취소'}">
+                                                                <strong class="exp-accu">사용 완료</strong>
+                                                            </c:if>
+                                                            <c:if test="${polist.POINT_COST > 0 and polist.ORDER_STATUS eq '주문취소'}">
+                                                                <strong class="exp">사용 취소</strong>
+                                                            </c:if>
 
-                                                    <c:if test="${list.POINT_COST > 0 and list.ORDER_STATUS eq '배송완료'}">
-                                                        <strong class="accu">적립</strong>
-                                                    </c:if>
-                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '주문접수'}">
-                                                        <strong class="exp-accu">사용 완료</strong>
-                                                    </c:if>
-                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '배송완료'}">
-                                                        <strong class="exp-accu">사용 완료</strong>
-                                                    </c:if>
-                                                    <c:if test="${list.POINT_COST < 0 and list.ORDER_STATUS eq '주문취소'}">
-                                                        <strong class="exp-accu">사용 완료</strong>
-                                                    </c:if>
-                                                    <c:if test="${list.POINT_COST > 0 and list.ORDER_STATUS eq '주문취소'}">
-                                                        <strong class="exp">사용 취소</strong>
-                                                    </c:if>
-
-                                                </p>
-
-
-                                                <p class="pdname nowrap">${list.PRODUCT_NAME}</p>
+                                                        </p>
 
 
+                                                        <p class="pdname nowrap">${polist.PRODUCT_NAME}
+                                                            <c:if test="${polist.COUNT > 1}">
+                                                                외 ${polist.COUNT -1}건
+                                                            </c:if>
+                                                        </p>
+
+                                                        <p>주문번호 : ${polist.ORDER_SEQ}</p>
+
+                                                    </div>
+                                                    <div class="cell">
+                                                        <c:if test="${polist.POINT_COST > 0}">
+                                                            <span class="point-up">+<fmt:formatNumber  value="${polist.POINT_COST}" pattern="#,###"/>p</span>
+                                                        </c:if>
+                                                        <c:if test="${polist.POINT_COST < 0}">
+                                                            <span class="point-down"><fmt:formatNumber  value="${polist.POINT_COST}" pattern="#,###"/>p</span>
+                                                        </c:if>
+                                                        <sub></sub>
 
 
-
-                                                <p>주문번호 : ${list.ORDER_SEQ}</p>
-
-
-
-                                            </div>
-                                            <div class="cell">
-                                                <c:if test="${list.POINT_COST > 0}">
-                                                    <span class="point-up">+<fmt:formatNumber  value="${list.POINT_COST}" pattern="#,###"/>p</span>
-                                                </c:if>
-                                                <c:if test="${list.POINT_COST < 0}">
-                                                    <span class="point-down"><fmt:formatNumber  value="${list.POINT_COST}" pattern="#,###"/>p</span>
-                                                </c:if>
-                                                <sub></sub>
+                                                    </div>
+                                                </li>
 
 
-                                            </div>
-                                        </li>
-
-
-                                    </ul>
+                                            </ul>
 
 
 
-                                </div>
+                                        </div>
+                                    </c:if>
                                 </c:forEach>
                                 <!--hpoint list-->
                                 <!--paging-->
