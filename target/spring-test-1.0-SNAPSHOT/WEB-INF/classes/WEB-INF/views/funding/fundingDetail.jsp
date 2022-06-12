@@ -72,16 +72,10 @@ To change this template use File | Settings | File Templates.
                                     <div class="reward-info-amount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST}"/>원
                                         <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                     <div class="mt20"><span class="reward-info-text">달성률</span> <span
-                                            class="reward-info-now">
-                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST/ list[0].FUND_PRODUCT_GOAL_COST)*100}"/>%&nbsp;</span> <span
+                                            class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST / list[0].FUND_PRODUCT_GOAL_COST)* 100}"/>% &nbsp;</span> <span
                                             class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span></div>
-                                    <div class="mt5"><span class="reward-info-text">남은기간</span>
-                                        <jsp:useBean id="today" class="java.util.Date" />
-                                        <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
-                                        <fmt:formatDate var="itDate" value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyyMMdd" />
-<%--                                        <p style="margin-left:10px;">D-${itDate-now}</p>--%>
-                                        <span
-                                            class="reward-info-now mr5">${itDate-now} 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
+                                    <div class="mt5"><span class="reward-info-text">남은기간</span> <span
+                                            class="reward-info-now mr5">(계산필요) 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
                                     </div>
                                     <input type="hidden" value="${list[0].FUND_PRODUCT_END_DATE}" name="fund_end_date"/>
                                     <div class="mt5"><span class="reward-info-text">참여자</span> <span
@@ -865,7 +859,7 @@ To change this template use File | Settings | File Templates.
                                         <!---->
                                     </div>
                                     <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
-                                        <a  role="button" data-toggle="collapse" aria-expanded="false"  class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`);">삭제하기</a>
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`);">삭제하기</a>
                                     </div>
                             `
                         )
@@ -955,7 +949,7 @@ To change this template use File | Settings | File Templates.
                                         <!---->
                                     </div>
                                     <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
-                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`)">삭제하기</a>
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
                                     </div>
                             `
                         )

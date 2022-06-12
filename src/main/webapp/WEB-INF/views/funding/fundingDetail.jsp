@@ -955,7 +955,7 @@ To change this template use File | Settings | File Templates.
                                         <!---->
                                     </div>
                                     <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
-                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`)">삭제하기</a>
                                     </div>
                             `
                         )
@@ -1002,7 +1002,7 @@ To change this template use File | Settings | File Templates.
             beforeSend: function(xhr) {
                 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
             },success: function (data) {
-                if(data == 1){
+                if(data === 1){
                     console.log(data);
                     replySelect();
                 }
