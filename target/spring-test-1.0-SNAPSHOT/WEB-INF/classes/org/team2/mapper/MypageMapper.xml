@@ -95,7 +95,8 @@
                 #{strtDt, jdbcType=VARCHAR},
                 #{endDt, jdbcType=VARCHAR},
                 #{searchType, jdbcType=VARCHAR},
-                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder},
+                #{prepoint, mode=OUT, jdbcType=INTEGER, resultMap=mypageOrder}
             )
         }
     </select>

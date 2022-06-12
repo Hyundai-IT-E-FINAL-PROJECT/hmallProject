@@ -249,9 +249,10 @@ public class MypageController {
 
         UserVO userVO = userService.readPoint(no);
         Map map= mypageService.pointList(no, strtDt, endDt, searchType);
-        log.info(map.get("resultList"));
+
         mav.addObject("userVO", userVO);
         mav.addObject("className", "wrap mp-point");
+        mav.addObject("prepoint", map.get("prepoint"));
         mav.addObject("list", map.get("resultList"));
         mav.addObject("searchType", searchType);
         mav.addObject("cssFileList", styleFileList);
