@@ -169,7 +169,7 @@ public class FundingController {
 
     @ResponseBody
     @RequestMapping("insertReply")
-    public void insertReply(@RequestParam("fund_board_seq") int fund_board_seq,
+    public ResponseEntity<List<Map<String, Object>>> insertReply(@RequestParam("fund_board_seq") int fund_board_seq,
                            @RequestParam("user_seq") int user_seq,
                            @RequestParam("fund_reply_content_num") String fund_reply_content,
                            @ModelAttribute FundReplyVO fundReplyVO) throws Exception{
@@ -182,6 +182,7 @@ public class FundingController {
         fundingService.insertReply(fundReplyVO);
         List<Map<String,Object>> reply_list = fundingService.selectReply(fundReplyVO);
         log.info(reply_list.toString());
+        return ResponseEntity.ok().body(reply_list);
     }
 
     @ResponseBody

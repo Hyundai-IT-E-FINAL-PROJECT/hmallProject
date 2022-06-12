@@ -390,10 +390,7 @@ To change this template use File | Settings | File Templates.
                                     <input id="user_seq" type="hidden" value="${pinfo.userVO.no}">
                                     <div class="form-group row-mobile-n mb5">
                                         <div class="col-sm-12">
-                                            <textarea id="reply_content" rows="3" cols="5" name="crpyContent" maxlength="500"
-                                                      placeholder="주식회사 베지스푼님의 프로젝트 성공을 응원합니다!" class="textarea-form-control form-control" style="height: 100px;">
-                                            </textarea>
-                                            <!---->
+                                            <label for="reply_content"></label><textarea id="reply_content" rows="3" cols="5" name="crpyContent" maxlength="500" placeholder="주식회사 베지스푼님의 프로젝트 성공을 응원합니다!" class="textarea-form-control form-control" style="height: 100px; margin-bottom: 20px"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row-mobile-n mb20 xs-mb10 xs-pb3 displayFlex">
@@ -407,21 +404,23 @@ To change this template use File | Settings | File Templates.
                         </div>
                         <div class="mt20 mb30">
                             <!---->
-                            <div class="mb10" style="margin-top: 30px;">
-                                <div class="comment-box">
-                                    <div class="displayFlex">
-                                        <div href="javascript:void(0)" class="reward-policy-profileImg">
-                                            <!---->
-                                        </div>
-                                        <div class="ivs-comment-nameBox"><span class="comment-id">김유나</span>
-                                            <!---->
-                                            <div class="comment-date">
-                                                <!---->22.06.08
+                            <div class="reply_area">
+                                <div class="mb10" style="margin-top: 30px;">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">김유나</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="mt5">영양성분표는 없나요?</div>
+                                        <!---->
                                     </div>
-                                    <div class="mt5">영양성분표는 없나요?</div>
-                                    <!---->
                                 </div>
                             </div>
                         </div>
@@ -700,6 +699,9 @@ To change this template use File | Settings | File Templates.
             console.log("펀드상품번호: "+fund_board_seq);
             console.log("유저 시퀀스: "+user_seq);
             console.log("댓글 내용: "+reply_content);
+
+            $(".reply_area .mb10 .comment-box").remove();
+            $(".reply_area .mb10 .textRight").remove();
             $.ajax({
                 url:"${contextPath}/fund/selectReply",
                 method:"post",
@@ -710,6 +712,38 @@ To change this template use File | Settings | File Templates.
                 },
                 success: function (data){
                     console.log(data);
+
+                    for(let reply of data){
+                        var rcontent = reply.FUND_REPLY_CONTENT;
+                        var rname = reply.USER_NAME;
+                        var rseq = reply.FUND_REPLY_SEQ;
+                        console.log(rcontent);
+                        console.log(rname);
+                        console.log(rseq);
+                        $(".reply_area .mb10").append(
+                            `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
+                                    </div>
+                            `
+                        )
+                    }
                 }
             })
         }
@@ -738,7 +772,8 @@ To change this template use File | Settings | File Templates.
         const reply_content =document.getElementById("reply_content").value;
         console.log("펀드상품번호: "+fund_board_seq);
         console.log("유저 시퀀스: "+user_seq);
-
+        $(".reply_area .mb10 .comment-box").remove();
+        $(".reply_area .mb10 .textRight").remove();
         $.ajax({
             url:"${contextPath}/fund/insertReply",
             method:"post",
@@ -749,6 +784,38 @@ To change this template use File | Settings | File Templates.
             },
             success: function (data){
                 console.log(data);
+
+                for(let reply of data){
+                    var rcontent = reply.FUND_REPLY_CONTENT;
+                    var rname = reply.USER_NAME;
+                    var rseq = reply.FUND_REPLY_SEQ;
+                    console.log(rcontent);
+                    console.log(rname);
+                    console.log(rseq);
+                    $(".reply_area .mb10").append(
+                        `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
+                                    </div>
+                            `
+                    )
+                }
             }
         })
     }
