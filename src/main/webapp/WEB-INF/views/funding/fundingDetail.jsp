@@ -422,19 +422,45 @@ To change this template use File | Settings | File Templates.
                                                                              id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
                                             <span class="qty-add" onclick="fnCalCount('p');"></span>
                                         </div>
-                                        <div class="reward-option-bottomStepBtn" style="width: 200px;" onClick="loadFundingProcess();">펀딩하기</div>
+                                        <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 200px;" onClick="loadFundingProcess();">
+                                            <span>펀딩하기</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <script type="text/javascript">
+
+                            $("input[name=checkRewardSeq]").click(function(){
+                                var  reward_count= $("input[name='reward_count']").val();
+                                var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+                                var reward_cost=fundProduct.split('|')[2];
+
+                                var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+                                $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+
+                            });
+
                             function fnCalCount(type){
                                 var  reward_count= $("input[name='reward_count']").val();
 
+                                var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+                                var reward_cost=fundProduct.split('|')[2];
+
+                                var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+
                                 if(type==='p'){
                                     $("#reward_count").val(Number(reward_count)+1);
+                                    reward_count= $("input[name='reward_count']").val();
+                                    totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+                                    $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+
                                 }else{
-                                    if(reward_count-1>0){$("#reward_count").val(Number(reward_count)-1);}
+                                    if(reward_count-1>0){
+                                        $("#reward_count").val(Number(reward_count)-1);
+                                        reward_count= $("input[name='reward_count']").val();
+                                        totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+                                        $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+                                    }
                                 }
                             }
                         </script>
