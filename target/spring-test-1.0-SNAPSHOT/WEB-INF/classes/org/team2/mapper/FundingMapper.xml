@@ -151,4 +151,24 @@
         WHERE
             a.user_seq = b.user_seq
     </select>
+
+    <delete id="deleteReply">
+        delete from tbl_fund_reply where fund_reply_seq = #{delete_seq}
+    </delete>
+
+    <insert id="insertNotice">
+        INSERT INTO TBL_FUND_NOTICE(
+                                    FUND_NOTICE_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_NOTICE_CONTENT
+                                    )
+                                    VALUES
+                                    (
+                                    seq_fund_notice.nextval,
+                                     #{fund_product_seq},
+                                     #{user_seq},
+                                     #{fund_notice_content}
+                                    )
+    </insert>
 </mapper>

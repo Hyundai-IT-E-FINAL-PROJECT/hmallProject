@@ -32,11 +32,7 @@ To change this template use File | Settings | File Templates.
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="reward_community_partner mt40 mb10 xs-mt25">해당 프로젝트는 <a
-                                    href="/c/apfs2022"><span
-                                    class="crowdy-color-blue">[ 2022 농식품 펀딩 전용관 ]</span></a>과 함께 합니다
-                            </div>
-                            <div class="reward_title mb30 xs-mb15">#100% 식물성 너겟 #치킨 없는 치킨 너겟 &lt;댓츠잇&gt;</div>
+                            <div class="reward_title mb30 xs-mb15" style="margin-top: 30px;">${list[0].FUND_PRODUCT_TITLE}</div>
                             <!----></div>
                         <div>
                             <div class="col-sm-8 xs-pl0 xs-pr0" style="margin: 0px -9px;">
@@ -77,18 +73,20 @@ To change this template use File | Settings | File Templates.
                                         <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                     <div class="mt20"><span class="reward-info-text">달성률</span> <span
                                             class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST / list[0].FUND_PRODUCT_GOAL_COST)* 100}"/>% &nbsp;</span> <span
-                                            class="reward-info-goal">목표금액 &nbsp;500,000원</span></div>
+                                            class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span></div>
                                     <div class="mt5"><span class="reward-info-text">남은기간</span> <span
-                                            class="reward-info-now mr5"> 3일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
+                                            class="reward-info-now mr5">(계산필요) 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
                                     </div>
+                                    <input type="hidden" value="${list[0].FUND_PRODUCT_END_DATE}" name="fund_end_date"/>
                                     <div class="mt5"><span class="reward-info-text">참여자</span> <span
-                                            class="reward-info-now">7명</span></div>
+                                            class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PARTICIPANTS}"/>명</span></div>
                                     <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>
+
                                     <div class="common-flex-between mt30 xs-mt40 reward-order0-1">
                                         <div class="reward-info-group">
                                             <div class="reward-info-nowStatus reward-icon-1"></div>
                                             <div class="reward-info-text2 mt5">펀딩 종료일</div>
-                                            <div class="reward-info-text3">22.06.12</div>
+                                            <div class="reward-info-text3"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/></div>
                                         </div>
                                         <div class="reward-info-statusLine"></div>
                                         <div class="reward-info-group">
@@ -459,10 +457,11 @@ To change this template use File | Settings | File Templates.
                             <c:forEach items="${list}" var="reward" varStatus="status">
                                 <div class="reward-choice-optionBox-white rewad-chocie-active" style="display: flex;">
                                     <div style="align-items: center; display: flex; margin-right: 20px;">
-                                        <input type="radio" name="checkRewardSeq" value="${reward.FUND_REWARD_SEQ}|${reward.FUND_PRODUCT_SEQ}"/>
+                                        <input type="radio" name="checkRewardSeq" value="${reward.FUND_REWARD_SEQ}|${reward.FUND_PRODUCT_SEQ}|${reward.FUND_REWARD_COST}"/>
                                     </div>
                                     <div>
                                         <div class="reward-choice-boxlabel"><!----> <!----> <!----> <!----> <!----></div>
+                                        <input type="hidden" name="reward_cost" value="${reward.FUND_REWARD_COST}"/>
                                         <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COST}"/> 원 펀딩</div>
                                         <div class="reward-choice-boxrow"><!----> <span><b><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> </b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
                                             <b class="pl20">예상 배송일</b> <span><fmt:formatDate value="${reward.FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy-MM-dd"/></span>
@@ -483,7 +482,8 @@ To change this template use File | Settings | File Templates.
                                                id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
                                         <span class="qty-add" onclick="fnCalCount('p');"></span>
                                     </div>
-                                    <div class="reward-option-bottomStepBtn" style="width: 200px;" onClick="loadFundingProcess();">펀딩하기</div>
+                                    <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 250px;" onClick="loadFundingProcess();">
+                                        <span>펀딩하기</span></div>
                                 </div>
                             </div>
                         </div>
@@ -491,7 +491,6 @@ To change this template use File | Settings | File Templates.
                     <script type="text/javascript">
                         function fnCalCount(type){
                             var  reward_count= $("input[name='reward_count']").val();
-
                             if(type==='p'){
                                 $("#reward_count").val(Number(reward_count)+1);
                             }else{
@@ -651,6 +650,34 @@ To change this template use File | Settings | File Templates.
 </main>
 <script src="/resources/js/productAll.js"></script>
 <script>
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+    $("input[name=checkRewardSeq]").click(function(){
+        var  reward_count= $("input[name='reward_count']").val();
+        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+        var reward_cost=fundProduct.split('|')[2];
+        var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+        $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
+    });
+    function fnCalCount(type){
+        var  reward_count= $("input[name='reward_count']").val();
+        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+        var reward_cost=fundProduct.split('|')[2];
+        var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+        if(type==='p'){
+            $("#reward_count").val(Number(reward_count)+1);
+            reward_count= $("input[name='reward_count']").val();
+            totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+            $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
+        }else{
+            if(reward_count-1>0){
+                $("#reward_count").val(Number(reward_count)-1);
+                reward_count= $("input[name='reward_count']").val();
+                totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
+                $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
+            }
+        }
+    }
     function displayFunding(){
         console.log("funding display click!!");
         const element = document.getElementById("choiceBox");
@@ -662,14 +689,12 @@ To change this template use File | Settings | File Templates.
             element.style.display = 'none';
         }
     }
-
     function closeFunding(){
         const element = document.getElementById("choiceBox");
         if(element.style.display === 'block'){
             element.style.display = 'none';
         }
     }
-
     function pagingsort(a){
         console.log(a);
         const main_info = document.getElementById("main_info");
@@ -688,38 +713,164 @@ To change this template use File | Settings | File Templates.
         }else{
             document.getElementById('inf_page').classList.add("active");
         }
-
-
         if(a === 'reply'){
-            var csrfHeaderName = "${_csrf.headerName}";
-            var csrfTokenValue = "${_csrf.token}";
-            console.log("댓글 달기 버튼 클릭");
-            const fund_board_seq = document.getElementById("fund_num").value;
-            const user_seq = document.getElementById("user_seq").value;
-            console.log("펀드상품번호: "+fund_board_seq);
-            console.log("유저 시퀀스: "+user_seq);
-            console.log("댓글 내용: "+reply_content);
+            replySelect();
+        }
+    }
+    //펀딩하기 프로세스
+    function loadFundingProcess(){
+        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+        var fund_reward_seq=fundProduct.split('|')[0];
+        var fund_product_seq=fundProduct.split('|')[1];
+        var reward_cost=fundProduct.split('|')[2];
+        var fund_reward_count=$("input[name=reward_count]").val();
+        console.log(fundProduct);
+        console.log("reward_seq: "+fund_reward_seq);
+        console.log("product_seq: "+fund_product_seq);
+        console.log("fund_reward_count: "+fund_reward_count);
+        console.log("reward_cost: "+reward_cost);
+        var data={
+            fund_product_seq:fund_product_seq,
+            fund_reward_seq:fund_reward_seq,
+            fund_reward_cost:reward_cost,
+            fund_reward_count:fund_reward_count
+        };
+        $.ajax({
+            url:'${contextPath}/fund/fundingProcess',
+            type:'post',
+            data:data,
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function(){
+                alert("펀딩이 완료되었습니다!");
+                location.href='${contextPath}/fund/detail/'+fund_product_seq;
+            },
+            error: function (request,status,error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        });
+    }
 
-            $(".reply_area .mb10 .comment-box").remove();
-            $(".reply_area .mb10 .textRight").remove();
-            $.ajax({
-                url:"${contextPath}/fund/selectReply",
-                method:"post",
-                data:{"board_num":fund_board_seq, "user_num":user_seq},
-                dataType:"json",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-                },
-                success: function (data){
-                    console.log(data);
+    function replySelect(){
 
-                    for(let reply of data){
-                        var rcontent = reply.FUND_REPLY_CONTENT;
-                        var rname = reply.USER_NAME;
-                        var rseq = reply.FUND_REPLY_SEQ;
-                        console.log(rcontent);
-                        console.log(rname);
-                        console.log(rseq);
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("댓글 목록 가져오기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num").value;
+        const user_seq = document.getElementById("user_seq").value;
+        console.log("펀드상품번호: "+fund_board_seq);
+        console.log("유저 시퀀스: "+user_seq);
+
+        const loginUser_name = "${pinfo.userVO.user_name}";
+
+        $(".reply_area .mb10 .comment-box").remove();
+        $(".reply_area .mb10 .textRight").remove();
+        $.ajax({
+            url:"${contextPath}/fund/selectReply",
+            method:"post",
+            data:{"board_num":fund_board_seq, "user_num":user_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (data){
+                console.log(data);
+                for(let reply of data){
+                    var rcontent = reply.FUND_REPLY_CONTENT;
+                    var rname = reply.USER_NAME;
+                    var rseq = reply.FUND_REPLY_SEQ;
+                    console.log(rcontent);
+                    console.log(rname);
+                    console.log(rseq);
+                    if(rname === loginUser_name){
+                        $(".reply_area .mb10").append(
+                            `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`);">삭제하기</a>
+                                    </div>
+                            `
+                        )
+                    }else{
+                        $(".reply_area .mb10").append(
+                            `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!——>
+                                                <div class="comment-date">
+                                                    <!——>22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!——>
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
+                                    </div>
+                            `
+                        )
+                    }
+                }
+            }
+        })
+    }
+    function insert_reply(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("댓글 달기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num").value;
+        const user_seq = document.getElementById("user_seq").value;
+        const reply_content =document.getElementById("reply_content").value;
+
+        //로그인 한 유저 이름
+        const loginUser_name = "${pinfo.userVO.user_name}";
+
+        //textarea 영역 비우기
+        document.getElementById("reply_content").value = "";
+
+        console.log("펀드상품번호: "+fund_board_seq);
+        console.log("유저 시퀀스: "+user_seq);
+        $(".reply_area .mb10 .comment-box").remove();
+        $(".reply_area .mb10 .textRight").remove();
+        $.ajax({
+            url:"${contextPath}/fund/insertReply",
+            method:"post",
+            data:{"fund_board_seq":fund_board_seq, "user_seq":user_seq, "fund_reply_content_num":reply_content},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (data){
+                console.log(data);
+                for(let reply of data){
+                    var rcontent = reply.FUND_REPLY_CONTENT;
+                    var rname = reply.USER_NAME;
+                    var rseq = reply.FUND_REPLY_SEQ;
+                    console.log(rcontent);
+                    console.log(rname);
+                    console.log(rseq);
+                    if(rname === loginUser_name){
                         $(".reply_area .mb10").append(
                             `
                                     <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
@@ -743,78 +894,52 @@ To change this template use File | Settings | File Templates.
                                     </div>
                             `
                         )
-                    }
-                }
-            })
-        }
-    }
-
-    //펀딩하기 프로세스
-    function loadFundingProcess(){
-
-        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
-        var fund_reward_seq=fundProduct.split('|')[0];
-        var fund_product_seq=fundProduct.split('|')[1];
-        var fund_reward_count=$("input[name=reward_count]").val();
-
-        console.log("reward_seq: "+fund_reward_seq);
-        console.log("product_seq: "+fund_product_seq);
-        console.log("fund_reward_count: "+fund_reward_count);
-    }
-
-    //댓글 달기 프로세스
-    function insert_reply(){
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-        console.log("댓글 달기 버튼 클릭");
-        const fund_board_seq = document.getElementById("fund_num").value;
-        const user_seq = document.getElementById("user_seq").value;
-        const reply_content =document.getElementById("reply_content").value;
-        console.log("펀드상품번호: "+fund_board_seq);
-        console.log("유저 시퀀스: "+user_seq);
-        $(".reply_area .mb10 .comment-box").remove();
-        $(".reply_area .mb10 .textRight").remove();
-        $.ajax({
-            url:"${contextPath}/fund/insertReply",
-            method:"post",
-            data:{"fund_board_seq":fund_board_seq, "user_seq":user_seq, "fund_reply_content_num":reply_content},
-            dataType:"json",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-            },
-            success: function (data){
-                console.log(data);
-
-                for(let reply of data){
-                    var rcontent = reply.FUND_REPLY_CONTENT;
-                    var rname = reply.USER_NAME;
-                    var rseq = reply.FUND_REPLY_SEQ;
-                    console.log(rcontent);
-                    console.log(rname);
-                    console.log(rseq);
-                    $(".reply_area .mb10").append(
-                        `
+                    }else{
+                        $(".reply_area .mb10").append(
+                            `
                                     <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
                                     <div class="comment-box">
                                         <div class="displayFlex">
                                             <div href="javascript:void(0)" class="reward-policy-profileImg">
-                                                <!---->
+                                                <!——>
                                             </div>
                                             <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
-                                                <!---->
+                                                <!——>
                                                 <div class="comment-date">
-                                                    <!---->22.06.08
+                                                    <!——>22.06.08
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt5">`+rcontent+`</div>
-                                        <!---->
+                                        <!——>
                                     </div>
-                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
-                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
                                     </div>
                             `
-                    )
+                        )
+                    }
+                }
+            }
+        })
+    }
+
+    function deleteReply(deleteReplyNum){
+        console.log(deleteReplyNum);
+        var delete_seq = deleteReplyNum;
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        $.ajax({
+            url:"${contextPath}/fund/deleteReply",
+            method:"post",
+            data:{"delete_seq": delete_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (data) {
+                if(data == 1){
+                    console.log(data);
+                    replySelect();
                 }
             }
         })

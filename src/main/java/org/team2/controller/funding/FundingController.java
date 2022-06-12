@@ -217,4 +217,37 @@ public class FundingController {
         log.info("select 성공");
         return ResponseEntity.ok().body(reply_list);
     }
+
+    @ResponseBody
+    @RequestMapping("deleteReply")
+    public ResponseEntity<String> deleteReply(@RequestParam("delete_seq") int delete_seq) throws Exception{
+        ResponseEntity<String> entity = null;
+
+        log.info("댓글 삭제 컨트롤러 도착 !");
+        log.info(delete_seq);
+        try {
+            fundingService.deleteReply(delete_seq);
+            entity = new ResponseEntity<String>("1", HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            entity = new ResponseEntity<String>("0", HttpStatus.OK);
+        }
+        return entity;
+    }
+
+    @ResponseBody
+    @RequestMapping("insertInfo")
+    public ResponseEntity<List<Map<String, Object>>> insertInfo(@RequestParam("fund_board_seq_info") int fund_board_seq_info,
+                                                                 @RequestParam("user_seq_info") int user_seq_info,
+                                                                 @RequestParam("fund_reply_content_info") String fund_reply_content_info,
+                                                                 @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
+
+        log.info("펀딩 상품 공지 삽입 컨트롤러 도착 !");
+        log.info(fund_board_seq_info+" "+user_seq_info+" "+fund_reply_content_info);
+        fundNoticeVO.setUser_seq(user_seq_info);
+        fundNoticeVO.setFund_product_seq(fund_board_seq_info);
+        fundNoticeVO.setFund_notice_content(fund_reply_content_info);
+        fundingService.insertNotice(fundNoticeVO);
+        return null;
+    }
 }

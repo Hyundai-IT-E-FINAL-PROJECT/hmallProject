@@ -1,10 +1,7 @@
 package org.team2.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.team2.domain.FundParticipantsVO;
-import org.team2.domain.FundReplyVO;
-import org.team2.domain.FundVO;
-import org.team2.domain.RewardVO;
+import org.team2.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,4 +26,8 @@ public interface FundingMapper {
     void insertReply(FundReplyVO fundReplyVO) throws Exception;
 
     List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
+
+    void deleteReply(int delete_seq) throws Exception;
+
+    void insertNotice(FundNoticeVO fundNoticeVO) throws Exception;
 }
