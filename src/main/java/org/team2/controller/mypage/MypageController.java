@@ -15,6 +15,7 @@ import org.team2.domain.DepositVO;
 import org.team2.domain.UserVO;
 import org.team2.service.CouponService;
 import org.team2.service.MypageService;
+import org.team2.service.OrderService;
 import org.team2.service.UserService;
 
 import javax.servlet.http.Cookie;
@@ -40,6 +41,9 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private CouponService couponService;
 
+    @Setter(onMethod_ = @Autowired)
+    private OrderService orderService;
+
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView mypage(Principal principal, Authentication authentication ) throws Exception {
@@ -50,10 +54,12 @@ public class MypageController {
 
         long no = Long.parseLong(principal.getName());
 
+        UserVO userVO = userService.readPoint(Long.valueOf(principal.getName()));
         try {
             Map map = mypageService.recentOrders(no);
             int couponCount=couponService.couponCount(Long.valueOf(principal.getName()));
 
+            mav.addObject("userVO", userVO);
             mav.addObject("couponCount", couponCount);
             mav.addObject("list", map.get("resultList"));
             mav.addObject("className", "wrap mp-main");
@@ -239,11 +245,15 @@ public class MypageController {
         String endDt = req.getParameter("endDt");
         String searchType =  req.getParameter("searchType");
         ModelAndView mav = new ModelAndView();
+        long no = Long.parseLong(principal.getName());
 
-        List<Map<String,Object>> list = mypageService.pointList(principal.getName(), strtDt, endDt, searchType);
-        log.info(list);
+        UserVO userVO = userService.readPoint(no);
+        Map map= mypageService.pointList(no, strtDt, endDt, searchType);
+
+        mav.addObject("userVO", userVO);
         mav.addObject("className", "wrap mp-point");
-        mav.addObject("list", list);
+        mav.addObject("prepoint", map.get("prepoint"));
+        mav.addObject("list", map.get("resultList"));
         mav.addObject("searchType", searchType);
         mav.addObject("cssFileList", styleFileList);
 
@@ -397,10 +407,12 @@ public class MypageController {
         String endDt = req.getParameter("endDt");
         String searchType =  req.getParameter("searchType");
 
+        UserVO userVO = userService.readPoint(Long.valueOf(principal.getName()));
         ModelAndView mav = new ModelAndView();
 
         List<DepositVO> depositVO  = mypageService.depositList(principal.getName(), strtDt, endDt, searchType);
         log.info(depositVO);
+        mav.addObject("userVO", userVO);
         mav.addObject("depositVO", depositVO);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("searchType", searchType);
@@ -581,5 +593,25 @@ public class MypageController {
 
         mav.setViewName("layerPup/openDeliveryAppendPup.empty");
         return mav;
+    }
+
+    @ResponseBody
+    @GetMapping("orderCancel")
+    public ResponseEntity<String> orderCancel(@RequestParam("order_seq") long order_seq, Principal principal) throws Exception {
+
+        ResponseEntity<String> entity = null;
+
+
+        long no = Long.parseLong(principal.getName());
+
+        try {
+            orderService.orderCancel(order_seq, no);
+            entity = new ResponseEntity<>("1", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
     }
 }

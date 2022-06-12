@@ -35,7 +35,7 @@
                 #{itemNm, jdbcType=VARCHAR},
                 #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
             )
-            }
+        }
     </select>
 
     <select id="cancelperiodOrders" resultType="map">
@@ -88,21 +88,17 @@
         }
     </select>
 
-    <select id="pointList" resultType="map">
-        SELECT CREATED_AT, POINT_SAVE, POINT_USE, ORDER_SEQ, POINT_CONTENT
-        FROM TBL_POINT
-        WHERE USER_SEQ = #{no}
-        <choose>
-            <when test='searchType != null'>
-                <if test='searchType != "-3"'>
-                    AND TO_CHAR(CREATED_AT, 'YYYYMMDD') BETWEEN #{strtDt} AND #{endDt}
-                </if>
-            </when>
-            <when test="searchType == null">
-                <![CDATA[AND TO_DATE(sysdate-14) < CREATED_AT]]>
-            </when>
-        </choose>
-        ORDER BY CREATED_AT DESC
+    <select id="pointList" statementType="CALLABLE" parameterType="Hashmap">
+        {
+            CALL PROC_MYPAGE_POINTLIST(
+                #{no},
+                #{strtDt, jdbcType=VARCHAR},
+                #{endDt, jdbcType=VARCHAR},
+                #{searchType, jdbcType=VARCHAR},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder},
+                #{prepoint, mode=OUT, jdbcType=INTEGER, resultMap=mypageOrder}
+            )
+        }
     </select>
 
     <select id="depositList" resultType="org.team2.domain.DepositVO">

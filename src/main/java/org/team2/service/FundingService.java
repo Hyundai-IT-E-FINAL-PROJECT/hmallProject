@@ -1,6 +1,7 @@
 package org.team2.service;
 
 import org.team2.domain.FundParticipantsVO;
+import org.team2.domain.FundReplyVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
 
@@ -24,4 +25,7 @@ public interface FundingService {
 
     void fundingProcess(RewardVO rewardVO, FundParticipantsVO fundParticipantsVO) throws Exception;
 
+    void insertReply(FundReplyVO fundReplyVO) throws Exception;
+
+    List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
 }

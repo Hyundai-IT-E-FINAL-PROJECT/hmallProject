@@ -75,14 +75,13 @@
                                 <a href="/mypagePoint" onclick="doSearchUPntMainPop()">
                                 <%--<a href="javascript://" onclick="doSearchUPntMainPop()">--%>
                                     <span class="link">
-                                    <b><fmt:formatNumber  value="${pinfo.userVO.user_point}" pattern="#,###"/></b>P</span>
-<%--                                    ${pinfo.userVO.point}--%>
+                                    <b><fmt:formatNumber  value="${userVO.user_point}" pattern="#,###"/></b>P</span>
                                     <span class="txt">포인트</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="/mypageDeposit">
-                                    <span class="link"><b><fmt:formatNumber  value="${pinfo.userVO.user_deposit}" pattern="#,###"/></b>원</span>
+                                    <span class="link"><b><fmt:formatNumber  value="${userVO.user_deposit}" pattern="#,###"/></b>원</span>
                                     <span class="txt">예치금</span>
                                 </a>
                             </li>

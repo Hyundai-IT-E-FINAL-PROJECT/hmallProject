@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface OrderService {
+    
     List<OrderVO> packageSelect() throws Exception;
 
     int insert(OrderVO orderVO) throws Exception;
@@ -24,5 +25,11 @@ public interface OrderService {
 
     List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception;
 
-    void pointInsert(PointVO pointVO) throws Exception;
+    void pointUse(PointVO pointVO) throws Exception;
+
+    void pointSave(PointVO pointVO) throws Exception;
+
+    void depositUse(DepositVO depositVO) throws Exception;
+
+    void orderCancel(long order_seq, long no) throws Exception;
 }

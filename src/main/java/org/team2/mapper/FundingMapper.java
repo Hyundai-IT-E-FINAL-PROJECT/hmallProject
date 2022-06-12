@@ -2,6 +2,7 @@ package org.team2.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.team2.domain.FundParticipantsVO;
+import org.team2.domain.FundReplyVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
 
@@ -25,4 +26,7 @@ public interface FundingMapper {
     void updateFundStatus(Long fund_product_seq) throws Exception;
 
     void fundingProcess(@Param("rewardVO") RewardVO rewardVO, @Param("fundParticipantsVO")FundParticipantsVO fundParticipantsVO) throws Exception;
+    void insertReply(FundReplyVO fundReplyVO) throws Exception;
+
+    List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
 }

@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
+import org.team2.domain.FundReplyVO;
+import org.team2.domain.FundVO;
+import org.team2.domain.RewardVO;
 import org.team2.service.FundingService;
 
 import java.security.Principal;
@@ -181,5 +184,37 @@ public class FundingController {
         }
     }
 
+    @RequestMapping("insertReply")
+    public ResponseEntity<List<Map<String, Object>>> insertReply(@RequestParam("fund_board_seq") int fund_board_seq,
+                           @RequestParam("user_seq") int user_seq,
+                           @RequestParam("fund_reply_content_num") String fund_reply_content,
+                           @ModelAttribute FundReplyVO fundReplyVO) throws Exception{
 
+        log.info("댓글 삽입 컨트롤러 도착 !");
+        log.info(fund_board_seq+" "+user_seq+" "+fund_reply_content);
+        fundReplyVO.setUser_seq(user_seq);
+        fundReplyVO.setFund_product_seq(fund_board_seq);
+        fundReplyVO.setFund_reply_content(fund_reply_content);
+        fundingService.insertReply(fundReplyVO);
+        List<Map<String,Object>> reply_list = fundingService.selectReply(fundReplyVO);
+        log.info(reply_list.toString());
+        return ResponseEntity.ok().body(reply_list);
+    }
+
+    @ResponseBody
+    @RequestMapping("selectReply")
+    public ResponseEntity<List<Map<String, Object>>> selectReply(@RequestParam("board_num") int board_num,
+                                                                 @RequestParam("user_num") int user_num,
+                                                                 @ModelAttribute FundReplyVO fundReplyVO) throws Exception{
+
+        log.info("댓글 출력 컨트롤러 도착 !");
+        log.info(board_num+" "+user_num);
+        fundReplyVO.setUser_seq(user_num);
+        fundReplyVO.setFund_product_seq(board_num);
+//        삽입 되어있는 댓글 리스트 불러오기
+        List<Map<String,Object>> reply_list = fundingService.selectReply(fundReplyVO);
+        log.info(reply_list.toString());
+        log.info("select 성공");
+        return ResponseEntity.ok().body(reply_list);
+    }
 }
