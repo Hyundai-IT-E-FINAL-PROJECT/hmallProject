@@ -100,10 +100,23 @@
     <select id="readFundigProductDetail" resultType="map">
         SELECT FP.FUND_PRODUCT_SEQ, FP.FUND_PRODUCT_PR_COST, FP.FUND_PRODUCT_GOAL_COST,FP.FUND_PRODUCT_END_DATE,
                FR.FUND_REWARD_CONTENT, FR.FUND_REWARD_TITLE, FR.FUND_REWARD_COUNT, FR.FUND_REWARD_COST,
-               FP.FUND_PRODUCT_ESTIMATE_DATE
+               FP.FUND_PRODUCT_ESTIMATE_DATE, FR.FUND_REWARD_SEQ
         FROM TBL_FUND_PRODUCT FP
                  INNER JOIN TBL_FUND_REWARD FR
                             ON FP.FUND_PRODUCT_SEQ = FR.FUND_PRODUCT_SEQ
                             WHERE FP.FUND_PRODUCT_SEQ = #{fund_product_seq}
     </select>
+
+    <select id="fundingProcess" statementType="CALLABLE">
+        {
+            call PROC_FUNDING_PROCESS(
+                #{rewardVO.fund_product_seq},
+                #{rewardVO.fund_reward_seq},
+                #{fundParticipantsVO.user_seq},
+                #{rewardVO.fund_reward_count},
+                #{rewardVO.fund_reward_cost})
+        }
+    </select>
+
+
 </mapper>

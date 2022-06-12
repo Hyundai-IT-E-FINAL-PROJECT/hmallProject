@@ -1,5 +1,6 @@
 package org.team2.service;
 
+import org.team2.domain.FundParticipantsVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
 
@@ -20,4 +21,7 @@ public interface FundingService {
     List<FundVO> getAllFund() throws Exception;
 
     void updateFundStatus(Long fund_product_seq) throws Exception;
+
+    void fundingProcess(RewardVO rewardVO, FundParticipantsVO fundParticipantsVO) throws Exception;
+
 }

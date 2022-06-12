@@ -10,8 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.team2.domain.FundVO;
-import org.team2.domain.RewardVO;
+import org.team2.domain.*;
 import org.team2.service.FundingService;
 
 import java.security.Principal;
@@ -163,6 +162,22 @@ public class FundingController {
         }catch (Exception e){
             e.printStackTrace(
             );
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("fundingProcess")
+    public void fundingProcess(@ModelAttribute RewardVO rewardVO,
+                                @ModelAttribute FundParticipantsVO fundParticipantsVO,
+                                Principal principal){
+        log.info("fundingProcess...");
+        fundParticipantsVO.setUser_seq(Long.valueOf(principal.getName()));
+
+        try {
+            fundingService.fundingProcess(rewardVO,fundParticipantsVO);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

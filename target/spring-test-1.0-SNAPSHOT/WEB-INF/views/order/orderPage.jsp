@@ -932,7 +932,7 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
 
             $.ajax({
                 url: '${contextPath}/order/orderComplete',
-                type:'get',
+                type:'post',
                 data:orderData,
                 dataType: 'text',
                 beforeSend:function (xhr){
