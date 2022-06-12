@@ -996,7 +996,7 @@ To change this template use File | Settings | File Templates.
             beforeSend: function(xhr) {
                 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
             },success: function (data) {
-                if(data == 1){
+                if(data === 1){
                     console.log(data);
                     replySelect();
                 }
