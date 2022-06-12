@@ -4,10 +4,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.team2.domain.FundParticipantsVO;
-import org.team2.domain.FundReplyVO;
-import org.team2.domain.FundVO;
-import org.team2.domain.RewardVO;
+import org.team2.domain.*;
 import org.team2.mapper.FundingMapper;
 
 import java.util.List;
@@ -82,5 +79,25 @@ public class FundingServiceImpl implements FundingService{
     @Override
     public FundVO deadlineProduct() throws Exception {
         return fundingMapper.deadlineProduct();
+    }
+
+    @Override
+    public void deleteReply(int delete_seq) throws Exception {
+        fundingMapper.deleteReply(delete_seq);
+    }
+
+    @Override
+    public void insertNotice(FundNoticeVO fundNoticeVO) throws Exception {
+        fundingMapper.insertNotice(fundNoticeVO);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectInfo(FundNoticeVO fundNoticeVO) throws Exception {
+        return fundingMapper.selectInfo(fundNoticeVO);
+    }
+
+    @Override
+    public void deleteInfo(int delete_seq) throws Exception {
+        fundingMapper.deleteInfo(delete_seq);
     }
 }

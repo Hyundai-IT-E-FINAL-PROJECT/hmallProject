@@ -432,6 +432,52 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
             <!--댓글 달기 종료-->
+            <!--새소식-->
+            <div id="new_info" class="reward-detail-container" style="display: none">
+                <div class="reward-content-body" style="margin-top: 40px">
+                    <div class="reward_page_title">프로젝트 새소식을<br>알려드립니다. </div>
+                    <form id="information_form" class="information_form">
+                        <input id="fund_num_info" type="hidden" value="${list[0].FUND_PRODUCT_SEQ}">
+                        <sec:authentication property="principal" var="pinfo" />
+                        <input id="user_seq_info" type="hidden" value="${pinfo.userVO.no}">
+<%--                        <sec:authorize access="isAuthenticated()">--%>
+                            <c:if test="${list[0].USER_SEQ eq pinfo.userVO.no}">
+                                <div class="form-group row-mobile-n mb5">
+                                    <div class="col-sm-12">
+                                        <label for="reply_content"></label><textarea id="information_context" rows="3" cols="5" name="crpyContent" maxlength="500" placeholder="기획자님 새소식을 작성해주세요!" class="textarea-form-control form-control" style="height: 100px; margin-bottom: 20px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row-mobile-n mb20 xs-mb10 xs-pb3 displayFlex">
+                                    <div class="col-xs-12">
+                                        <div class="text-right info">
+                                            <a href="javascript:void(0)" class="btn btn-primary-outline font15" onclick="insert_info();">작성 하기</a></div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 1px dashed rgb(234, 235, 237);">
+                            </c:if>
+<%--                        </sec:authorize>--%>
+                    </form>
+                    <div class="mt30 mb40">
+                        <div class="info_area">
+                            <div class="mb30" style="margin-top: 30px;">
+                                <div class="comment-box info">
+                                    <div class="displayFlex">
+                                        <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                        </div>
+                                        <div class="ivs-comment-nameBox"><span class="comment-id">김유나</span>
+                                            <div class="comment-date">
+                                                22-06-08
+                                            </div>
+                                       </div>
+                                 </div>
+                                  <div class="mt5">영양성분표는 없나요?</div>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--새소식 종료-->
             <div>
                 <div class="reward-choice-container">
                     <div class="reward-choice-shareBtn"></div>
@@ -656,34 +702,25 @@ To change this template use File | Settings | File Templates.
 </main>
 <script src="/resources/js/productAll.js"></script>
 <script>
-
     var csrfHeaderName = "${_csrf.headerName}";
     var csrfTokenValue = "${_csrf.token}";
-
     $("input[name=checkRewardSeq]").click(function(){
         var  reward_count= $("input[name='reward_count']").val();
         var fundProduct=$("input[name=checkRewardSeq]:checked").val();
         var reward_cost=fundProduct.split('|')[2];
-
         var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
         $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
-
     });
-
     function fnCalCount(type){
         var  reward_count= $("input[name='reward_count']").val();
-
         var fundProduct=$("input[name=checkRewardSeq]:checked").val();
         var reward_cost=fundProduct.split('|')[2];
-
         var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
-
         if(type==='p'){
             $("#reward_count").val(Number(reward_count)+1);
             reward_count= $("input[name='reward_count']").val();
             totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
             $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
-
         }else{
             if(reward_count-1>0){
                 $("#reward_count").val(Number(reward_count)-1);
@@ -693,7 +730,6 @@ To change this template use File | Settings | File Templates.
             }
         }
     }
-
     function displayFunding(){
         console.log("funding display click!!");
         const element = document.getElementById("choiceBox");
@@ -715,48 +751,191 @@ To change this template use File | Settings | File Templates.
         console.log(a);
         const main_info = document.getElementById("main_info");
         const reply_board = document.getElementById("reply_board");
+        const new_info = document.getElementById("new_info");
         $(".reward-menu a").removeClass("active");
         if(a === 'story'){
             main_info.style.display = 'block';
             reply_board.style.display = 'none';
+            new_info.style.display = 'none';
             document.getElementById('story_page').classList.add("active");
         } else if(a === 'news'){
+            main_info.style.display = 'none';
+            reply_board.style.display = 'none';
+            new_info.style.display = 'block';
             document.getElementById('news_page').classList.add("active");
         }else if(a === 'reply'){
             document.getElementById('reply_page').classList.add("active");
             main_info.style.display = 'none';
             reply_board.style.display = 'block';
+            new_info.style.display = 'none';
         }else{
             document.getElementById('inf_page').classList.add("active");
         }
         if(a === 'reply'){
-            var csrfHeaderName = "${_csrf.headerName}";
-            var csrfTokenValue = "${_csrf.token}";
-            console.log("댓글 달기 버튼 클릭");
-            const fund_board_seq = document.getElementById("fund_num").value;
-            const user_seq = document.getElementById("user_seq").value;
-            console.log("펀드상품번호: "+fund_board_seq);
-            console.log("유저 시퀀스: "+user_seq);
-            console.log("댓글 내용: "+reply_content);
-            $(".reply_area .mb10 .comment-box").remove();
-            $(".reply_area .mb10 .textRight").remove();
-            $.ajax({
-                url:"${contextPath}/fund/selectReply",
-                method:"post",
-                data:{"board_num":fund_board_seq, "user_num":user_seq},
-                dataType:"json",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-                },
-                success: function (data){
-                    console.log(data);
-                    for(let reply of data){
-                        var rcontent = reply.FUND_REPLY_CONTENT;
-                        var rname = reply.USER_NAME;
-                        var rseq = reply.FUND_REPLY_SEQ;
-                        console.log(rcontent);
-                        console.log(rname);
-                        console.log(rseq);
+            replySelect();
+        }
+        if(a === 'news'){
+            selectInfo();
+        }
+    }
+    //펀딩하기 프로세스
+    function loadFundingProcess(){
+        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
+        var fund_reward_seq=fundProduct.split('|')[0];
+        var fund_product_seq=fundProduct.split('|')[1];
+        var reward_cost=fundProduct.split('|')[2];
+        var fund_reward_count=$("input[name=reward_count]").val();
+        console.log(fundProduct);
+        console.log("reward_seq: "+fund_reward_seq);
+        console.log("product_seq: "+fund_product_seq);
+        console.log("fund_reward_count: "+fund_reward_count);
+        console.log("reward_cost: "+reward_cost);
+        var data={
+            fund_product_seq:fund_product_seq,
+            fund_reward_seq:fund_reward_seq,
+            fund_reward_cost:reward_cost,
+            fund_reward_count:fund_reward_count
+        };
+        $.ajax({
+            url:'${contextPath}/fund/fundingProcess',
+            type:'post',
+            data:data,
+            beforeSend:function (xhr){
+                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            },
+            success:function(){
+                alert("펀딩이 완료되었습니다!");
+                location.href='${contextPath}/fund/detail/'+fund_product_seq;
+            },
+            error: function (request,status,error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        });
+    }
+
+    function replySelect(){
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("댓글 목록 가져오기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num").value;
+        const user_seq = document.getElementById("user_seq").value;
+        console.log("펀드상품번호: "+fund_board_seq);
+        console.log("유저 시퀀스: "+user_seq);
+
+        const loginUser_name = "${pinfo.userVO.no}";
+
+        $(".reply_area .mb10 .comment-box").remove();
+        $(".reply_area .mb10 .textRight").remove();
+        $.ajax({
+            url:"${contextPath}/fund/selectReply",
+            method:"post",
+            data:{"board_num":fund_board_seq, "user_num":user_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (data){
+                console.log(data);
+                for(let reply of data){
+                    var rcontent = reply.FUND_REPLY_CONTENT;
+                    var rname = reply.USER_NAME;
+                    var rseq = reply.FUND_REPLY_SEQ;
+                    var ruser_seq = reply.USER_SEQ;
+                    console.log(rcontent);
+                    console.log(rname);
+                    console.log(rseq);
+                    if(ruser_seq === parseInt(loginUser_name)){
+                        $(".reply_area .mb10").append(
+                            `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a  role="button" data-toggle="collapse" aria-expanded="false"  class="blue-800 mr5 collapsed" onclick="deleteReply(`+rseq+`);">삭제하기</a>
+                                    </div>
+                            `
+                        )
+                    }else{
+                        $(".reply_area .mb10").append(
+                            `
+                                    <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
+                                    <div class="comment-box">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!——>
+                                                <div class="comment-date">
+                                                    <!——>22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!——>
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
+                                    </div>
+                            `
+                        )
+                    }
+                }
+            }
+        })
+    }
+    function insert_reply(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("댓글 달기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num").value;
+        const user_seq = document.getElementById("user_seq").value;
+        const reply_content =document.getElementById("reply_content").value;
+
+        //로그인 한 유저 이름
+        const loginUser_name = "${pinfo.userVO.no}";
+
+        //textarea 영역 비우기
+        document.getElementById("reply_content").value = "";
+
+        console.log("펀드상품번호: "+fund_board_seq);
+        console.log("유저 시퀀스: "+user_seq);
+        $(".reply_area .mb10 .comment-box").remove();
+        $(".reply_area .mb10 .textRight").remove();
+        $.ajax({
+            url:"${contextPath}/fund/insertReply",
+            method:"post",
+            data:{"fund_board_seq":fund_board_seq, "user_seq":user_seq, "fund_reply_content_num":reply_content},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (data){
+                console.log(data);
+                for(let reply of data){
+                    var rcontent = reply.FUND_REPLY_CONTENT;
+                    var rname = reply.USER_NAME;
+                    var rseq = reply.FUND_REPLY_SEQ;
+                    var ruser_seq = reply.USER_SEQ;
+                    console.log(rcontent);
+                    console.log(rname);
+                    console.log(rseq);
+                    console.log("작성자 시퀀스 :"+ruser_seq);
+                    console.log("로그인 한 사람 시퀀스: "+loginUser_name);
+                    if(ruser_seq === parseInt(loginUser_name)){
                         $(".reply_area .mb10").append(
                             `
                                     <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
@@ -780,103 +959,249 @@ To change this template use File | Settings | File Templates.
                                     </div>
                             `
                         )
-                    }
-                }
-            })
-        }
-    }
-    //펀딩하기 프로세스
-    function loadFundingProcess(){
-        var fundProduct=$("input[name=checkRewardSeq]:checked").val();
-        var fund_reward_seq=fundProduct.split('|')[0];
-        var fund_product_seq=fundProduct.split('|')[1];
-        var reward_cost=fundProduct.split('|')[2];
-        var fund_reward_count=$("input[name=reward_count]").val();
-
-        console.log(fundProduct);
-        console.log("reward_seq: "+fund_reward_seq);
-        console.log("product_seq: "+fund_product_seq);
-        console.log("fund_reward_count: "+fund_reward_count);
-        console.log("reward_cost: "+reward_cost);
-
-        var data={
-            fund_product_seq:fund_product_seq,
-            fund_reward_seq:fund_reward_seq,
-            fund_reward_cost:reward_cost,
-            fund_reward_count:fund_reward_count
-        };
-
-        $.ajax({
-            url:'${contextPath}/fund/fundingProcess',
-            type:'post',
-            data:data,
-            beforeSend:function (xhr){
-                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-            },
-            success:function(){
-                alert("펀딩이 완료되었습니다!");
-                location.href='${contextPath}/fund/detail/'+fund_product_seq;
-
-            },
-            error: function (request,status,error) {
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-        });
-    }
-    //댓글 달기 프로세스
-    function insert_reply(){
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-        console.log("댓글 달기 버튼 클릭");
-        const fund_board_seq = document.getElementById("fund_num").value;
-        const user_seq = document.getElementById("user_seq").value;
-        const reply_content =document.getElementById("reply_content").value;
-        console.log("펀드상품번호: "+fund_board_seq);
-        console.log("유저 시퀀스: "+user_seq);
-        $(".reply_area .mb10 .comment-box").remove();
-        $(".reply_area .mb10 .textRight").remove();
-        $.ajax({
-            url:"${contextPath}/fund/insertReply",
-            method:"post",
-            data:{"fund_board_seq":fund_board_seq, "user_seq":user_seq, "fund_reply_content_num":reply_content},
-            dataType:"json",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-            },
-            success: function (data){
-                console.log(data);
-                for(let reply of data){
-                    var rcontent = reply.FUND_REPLY_CONTENT;
-                    var rname = reply.USER_NAME;
-                    var rseq = reply.FUND_REPLY_SEQ;
-                    console.log(rcontent);
-                    console.log(rname);
-                    console.log(rseq);
-                    $(".reply_area .mb10").append(
-                        `
+                    }else{
+                        $(".reply_area .mb10").append(
+                            `
                                     <input id="deleteReply`+rseq+`" type="hidden" value="`+rseq+`">
                                     <div class="comment-box">
                                         <div class="displayFlex">
                                             <div href="javascript:void(0)" class="reward-policy-profileImg">
-                                                <!---->
+                                                <!——>
                                             </div>
                                             <div class="ivs-comment-nameBox"><span class="comment-id">`+rname+`</span>
+                                                <!——>
+                                                <div class="comment-date">
+                                                    <!——>22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+rcontent+`</div>
+                                        <!——>
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
+                                    </div>
+                            `
+                        )
+                    }
+                }
+            }
+        })
+    }
+
+    function deleteReply(deleteReplyNum){
+        console.log(deleteReplyNum);
+        var delete_seq = deleteReplyNum;
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        $.ajax({
+            url:"${contextPath}/fund/deleteReply",
+            method:"post",
+            data:{"delete_seq": delete_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (data) {
+                if(data == 1){
+                    console.log(data);
+                    replySelect();
+                }
+            }
+        })
+    }
+
+    function insert_info(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("공지사항 작성하기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num_info").value;
+        const user_seq = document.getElementById("user_seq_info").value;
+        const info_content =document.getElementById("information_context").value;
+        console.log(fund_board_seq+" "+user_seq+" "+info_content);
+        $(".info_area .mb30 .comment-box").remove();
+        $(".info_area .mb30 .text-right").remove();
+
+        document.getElementById("information_context").value = "";
+
+        //로그인 한 유저 이름
+        const loginUser_name = "${pinfo.userVO.no}";
+        $.ajax({
+            url:"${contextPath}/fund/insertInfo",
+            method:"post",
+            data:{"fund_board_seq_info": fund_board_seq,"user_seq_info":user_seq,"fund_reply_content_info":info_content},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (data){
+                console.log(data);
+                for(let info of data){
+                    var infocontent = info.FUND_NOTICE_CONTENT;
+                    var infoname = info.USER_NAME;
+                    var infoseq = info.FUND_NOTICE_SEQ;
+                    var userseq = info.USER_SEQ;
+                    console.log(infocontent);
+                    console.log(infoname);
+                    console.log(infoseq);
+                    if(userseq === parseInt(loginUser_name)){
+                        $(".info_area .mb30").append(
+                            `
+                                    <input id="deleteInfo`+infoseq+`" type="hidden" value="`+infoseq+`">
+                                    <div class="comment-box info">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+infoname+`</span>
                                                 <!---->
                                                 <div class="comment-date">
                                                     <!---->22.06.08
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt5">`+rcontent+`</div>
+                                        <div class="mt5">`+infocontent+`</div>
                                         <!---->
                                     </div>
-                                    <div class="textRight" style="margin-bottom: 20px; margin-top: 4px;">
-                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed">삭제하기</a>
+                                    <div class="text-right info" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteInfo(`+infoseq+`);">삭제하기</a>
                                     </div>
+                        `
+                        )
+                    }else{
+                        $(".info_area .mb30").append(
                             `
-                    )
+                                    <input id="deleteInfo`+infoseq+`" type="hidden" value="`+infoseq+`">
+                                    <div class="comment-box info">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+infoname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+infocontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
+                                    </div>
+                        `
+                        )
+                    }
                 }
             }
         })
     }
+
+    function selectInfo(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("공지사항 작성하기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num_info").value;
+        const user_seq = document.getElementById("user_seq_info").value;
+        // const info_content =document.getElementById("information_context").value;
+        console.log(fund_board_seq+" "+user_seq);
+        $(".info_area .mb30 .comment-box").remove();
+        $(".info_area .mb30 .text-right").remove();
+
+        //로그인 한 유저 시퀀스
+        const loginUser_name = "${pinfo.userVO.no}";
+
+        $.ajax({
+            url:"${contextPath}/fund/selectInfo",
+            method:"post",
+            data:{"fund_board_seq_info": fund_board_seq,"user_seq_info":user_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (data){
+                console.log(data);
+                for(let info of data){
+                    var infocontent = info.FUND_NOTICE_CONTENT;
+                    var infoname = info.USER_NAME;
+                    var infoseq = info.FUND_NOTICE_SEQ;
+                    var userseq = info.USER_SEQ;
+                    console.log(infocontent);
+                    console.log(infoname);
+                    console.log(infoseq);
+                    if(userseq === parseInt(loginUser_name)){
+                        $(".info_area .mb30").append(
+                            `
+                                    <input id="deleteInfo`+infoseq+`" type="hidden" value="`+infoseq+`">
+                                    <div class="comment-box info">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+infoname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+infocontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="text-right info" style="margin-bottom: 20px; margin-top: 4px;">
+                                        <a href="#14987" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14987" class="blue-800 mr5 collapsed" onclick="deleteInfo(`+infoseq+`);">삭제하기</a>
+                                    </div>
+                        `
+                        )
+                    }else{
+                        $(".info_area .mb30").append(
+                            `
+                                    <input id="deleteInfo`+infoseq+`" type="hidden" value="`+infoseq+`">
+                                    <div class="comment-box info">
+                                        <div class="displayFlex">
+                                            <div href="javascript:void(0)" class="reward-policy-profileImg">
+                                                <!---->
+                                            </div>
+                                            <div class="ivs-comment-nameBox"><span class="comment-id">`+infoname+`</span>
+                                                <!---->
+                                                <div class="comment-date">
+                                                    <!---->22.06.08
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt5">`+infocontent+`</div>
+                                        <!---->
+                                    </div>
+                                    <div class="textRight" style="margin-bottom: 40px; margin-top: 4px;">
+                                    </div>
+                        `
+                        )
+                    }
+
+                }
+            }
+        })
+    }
+
+    function deleteInfo(deleteNoticeNum){
+        console.log(deleteNoticeNum)
+        var delete_seq = deleteNoticeNum;
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        $.ajax({
+            url:"${contextPath}/fund/deleteInfo",
+            method:"post",
+            data:{"delete_seq": delete_seq},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (data) {
+                if(data == 1){
+                    console.log(data);
+                    selectInfo();
+                }
+            }
+        })
+    }
+
+
+
 </script>

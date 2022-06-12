@@ -173,4 +173,48 @@
         where rownum=1
     </select>
 
+    <delete id="deleteReply">
+        delete from tbl_fund_reply where fund_reply_seq = #{delete_seq}
+    </delete>
+
+    <insert id="insertNotice">
+        INSERT INTO TBL_FUND_NOTICE(
+                                    FUND_NOTICE_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_NOTICE_CONTENT
+                                    )
+                                    VALUES
+                                    (
+                                    seq_fund_notice.nextval,
+                                     #{fund_product_seq},
+                                     #{user_seq},
+                                     #{fund_notice_content}
+                                    )
+    </insert>
+    
+    <select id="selectInfo" resultType="map">
+        SELECT
+            fund_product_seq,
+            user_name,
+            fund_notice_content,
+            fund_notice_seq,
+            a.user_seq
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    tbl_fund_notice
+                WHERE
+                    fund_product_seq = #{fund_product_seq}
+            )         a,
+            tbl_user b
+        WHERE
+            a.user_seq = b.user_seq
+    </select>
+
+    <delete id="deleteInfo">
+        delete from tbl_fund_notice where fund_notice_seq = #{delete_seq}
+    </delete>
 </mapper>

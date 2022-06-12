@@ -1,10 +1,7 @@
 package org.team2.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.team2.domain.FundParticipantsVO;
-import org.team2.domain.FundReplyVO;
-import org.team2.domain.FundVO;
-import org.team2.domain.RewardVO;
+import org.team2.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,4 +30,13 @@ public interface FundingMapper {
     FundVO best1FundProduct() throws Exception;
 
     FundVO deadlineProduct() throws Exception;
+
+    void deleteReply(int delete_seq) throws Exception;
+
+    void insertNotice(FundNoticeVO fundNoticeVO) throws Exception;
+
+    List<Map<String, Object>> selectInfo(FundNoticeVO fundNoticeVO) throws Exception;
+
+    void deleteInfo(int delete_seq) throws Exception;
+
 }
