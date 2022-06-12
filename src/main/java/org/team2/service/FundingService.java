@@ -28,4 +28,8 @@ public interface FundingService {
     void insertReply(FundReplyVO fundReplyVO) throws Exception;
 
     List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
+
+    FundVO best1FundProduct() throws Exception;
+
+    FundVO deadlineProduct() throws Exception;
 }

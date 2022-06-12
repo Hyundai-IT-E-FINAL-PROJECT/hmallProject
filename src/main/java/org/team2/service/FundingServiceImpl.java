@@ -73,4 +73,14 @@ public class FundingServiceImpl implements FundingService{
     public List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception {
         return fundingMapper.selectReply(fundReplyVO);
     }
+
+    @Override
+    public FundVO best1FundProduct() throws Exception {
+        return fundingMapper.best1FundProduct();
+    }
+
+    @Override
+    public FundVO deadlineProduct() throws Exception {
+        return fundingMapper.deadlineProduct();
+    }
 }

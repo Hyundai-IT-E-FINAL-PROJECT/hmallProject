@@ -8,7 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<style>
+    .hshop-fullbox .hshop-full .onair-box {
+        height: 538px;
+    }
+</style>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="contents">
@@ -1074,24 +1080,19 @@
                         //for chrome debugger
                         //# sourceURL=script-for-main-dprenew.js
                     </script>
-                    <div class="hshop-fullbox" id="brodMainFullBexArea" style="height: 670px;">
+                    <div class="hshop-fullbox" id="brodMainFullBexArea" style="height: 711px;">
                         <div class="hshop-full">
                             <div class="onair-box brodEtvArea">
                                 <!--onair-top-->
                                 <div class="onair-top">
-                                    <h3>펀딩 프로젝트 이름</h3>
-                                    <div class="onair-timer" style="justify-content: center;">
-                                        <span class="timer" id="etvLeftTime">01 : 06 : 09</span>
-
-
-                                        <!--온에어 아닐 시 방송 예정시간 노출-->
-                                        <!-- <p class="tag-extime">9/28 (월) 16:00 ~ 17:00</p> -->
+                                    <div>
+                                        <div style="display: flex; background-color: lightblue; color: white; cursor: pointer; width: 70px;
+                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;margin-top: 64px;">BEST1</div>
+                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>
                                     </div>
                                 </div>
-                                <!--//onair-top-->
-                                <!--product-list-->
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
-                                     style="height: 270px; width: 527px;">
+                                     style="height: 270px; width: 527px; margin-top: 45px">
                                 <div class="product-list">
                                     <div class="pdthumb">
                                         <!-- 동영상 다시보기 -->
@@ -1099,165 +1100,73 @@
                                             <div class="figcaption">
                                                 <a href="javascript:;"
                                                   >
-                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">크라우딩 펀딩 내용 블라블라
+                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${best1Product.fund_product_content}
                                                     </div>
-
-
                                                 </a>
-                                                <!--//pdinfo-->
-                                                <!--함께방송중인상품-->
-
-
                                                 <div class="multi">
                                                     <div class="pdprice" style="justify-content: space-between; margin-top: 80px;">
                                                         <div>
                                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
 
-                                                            <ins class="discount" aria-label="할인가"><em>5,454,000</em>원 펀딩</ins>
+                                                            <ins class="discount" aria-label="할인가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${best1Product.fund_product_pr_cost}"/></em>원 펀딩</ins>
                                                         </span>
                                                         </div>
                                                         <div style="display: flex; align-items: center;">
-                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">5,454<i  style="color:#002fa3;">%</i></em>
+                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">
+                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value="${(best1Product.fund_product_pr_cost/best1Product.fund_product_goal_cost)*100}"/>
+                                                                <i  style="color:#002fa3;">%</i></em>
                                                             <p style="margin-left:10px;">D-17</p>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!--//함께방송중인상품-->
                                             </div>
                                         </figure>
                                     </div>
                                 </div>
-                                <!--//product-list-->
 
-                                <script type="text/javascript">
-                                    var lbrdEndTimeStrH = '20220525114000';
-
-                                    var etvServerDtm;
-                                    if ('20220525103333' != '' && '20220525103333' != null) {
-                                        etvServerDtm = '20220525103333';
-                                    }
-
-                                    $(function () {
-                                        if ((lbrdEndTimeStrH && lbrdEndTimeStrH.length > 0)) {
-                                            clockH(etvServerDtm);
-                                        }
-
-                                        // 비디오 초기화
-                                        videojs($(".brodEtvArea video").get(0));
-
-                                        // 비디오 초기화
-                                        //$("brodEtvArea video source").attr("src", 'https://livejj.hyundaihmall.com:8443/live/ngrp:hmall.stream_pc/playlist.m3u8')
-                                        //var player = videojs($(".brodEtvArea video").get(0));
-                                    });
-
-
-                                    function clockH(serverDtm) {
-
-                                        var now;
-                                        if (serverDtm == undefined || serverDtm == null) {
-                                            now = new Date();
-                                        } else {
-                                            now = new Date(serverDtm.replace(/([\d]{4})([\d]{2})([\d]{2})([\d]{2})([\d]{2})([\d]{2})/, '$2/$3/$1 $4:$5:$6'));
-                                        }
-
-                                        var year = Number(lbrdEndTimeStrH.substring(0, 4));       //년
-                                        var month = Number(lbrdEndTimeStrH.substring(4, 6)) - 1; //월 (0 ~ 11)
-                                        var date = Number(lbrdEndTimeStrH.substring(6, 8));       //일
-                                        var hours = Number(lbrdEndTimeStrH.substring(8, 10));     //시
-                                        var minutes = Number(lbrdEndTimeStrH.substring(10, 12));  //분
-                                        var seconds = Number(lbrdEndTimeStrH.substring(12, 14));  //초
-
-                                        var endDtm = new Date(year, month, date, hours, minutes, seconds);  // 방송종료일시
-
-                                        var gap = (endDtm.getTime() - now.getTime()) / 1000;
-                                        var leftTime = "";
-
-                                        if (gap <= 0) {
-                                            /* location.reload(true); */
-                                            leftTime = "00 : 00 : 00";
-                                            $('#etvLeftTime').html(leftTime);
-                                            $("#etvLeftReload").show();
-                                            $(".brodEtvArea .vjs-big-play-button").hide()
-                                            return;
-                                        }
-
-                                        var hour = parseInt(gap / 3600);
-                                        var min = parseInt((gap % 3600) / 60);
-                                        var sec = parseInt(gap % 60);
-
-                                        leftTime += ((hour < 10) ? "0" : "") + hour;
-                                        leftTime += ((min < 10) ? " : 0" : " : ") + min;
-                                        leftTime += ((sec < 10) ? " : 0" : " : ") + sec;
-
-                                        $('#etvLeftTime').html(leftTime);
-                                        /*
-                                        $("#onAirNum").html(leftTime);
-                                        $("#countNum").html(leftTime + " <span>남음</span>");
-                                        $("#countNumSe").html(leftTime + " <span>남음</span>");
-                                        */
-                                        setTimeout("clockH()", 1000);
-                                    }
-
-                                    // 2021.04.06 문주성 > 온에어 ga태깅 제어
-                                    function onairEtvGaTagging(obj) {
-                                        if ($(obj).children().first().attr('class').indexOf('vjs-user-active vjs-live') > -1
-                                            || $(obj).children().first().attr('class').indexOf('vjs-live vjs-user-active') > -1) {
-                                            var $slitmInfo = $(obj).closest('figure');
-                                            setGaPromotion($slitmInfo.attr("ga-custom-title"), $slitmInfo.attr("ga-custom-name"), $slitmInfo.attr("ga-custom-position"), $slitmInfo.attr("ga-custom-creative"), $slitmInfo.attr("ga-custom-id"));
-                                        }
-                                    }
-                                </script>
 
                             </div>
                             <div class="onair-box brodDtvArea">
-                                <!--onair-top-->
                                 <div class="onair-top">
-                                    <h3>펀딩 프로젝트 이름</h3>
-                                    <div class="onair-timer" style="justify-content: center;">
-                                        <span class="timer" id="dtvLeftTime">00 : 05 : 10</span>
+                                    <div>
+                                        <div style="display: flex; background-color: lightcoral; color: white; cursor: pointer; width: 70px;
+                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;margin-top: 64px;">마감임박</div>
+                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>
                                     </div>
                                 </div>
-                                <!--//onair-top-->
-                                <!--product-list-->
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
-                                     style="height: 270px; width: 527px;">
+                                     style="height: 270px; width: 527px; margin-top: 45px">
                                 <div class="product-list">
                                     <div class="pdthumb">
 
                                         <figure>
                                             <div class="figcaption">
                                                 <a href="javascript:;">
-                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">크라우딩 펀딩 내용 블라블라
+                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}
                                                     </div>
 
 
                                                 </a>
-                                                <!--//pdinfo-->
-                                                <!--함께방송중인상품-->
-
-
                                                 <div class="multi">
                                                     <div class="pdprice" style="justify-content: space-between; margin-top: 80px;">
                                                         <div>
                                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
 
-                                                            <ins class="discount" aria-label="할인가"><em>5,454,000</em>원 펀딩</ins>
+                                                            <ins class="discount" aria-label="할인가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${deadlineProduct.fund_product_pr_cost}"/></em>원 펀딩</ins>
                                                         </span>
                                                         </div>
                                                         <div style="display: flex; align-items: center;">
-                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">5,454<i  style="color:#002fa3;">%</i></em>
+                                                            <em class="rate" aria-label="할인율"  style="color:#002fa3;">
+                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value="${(deadlineProduct.fund_product_pr_cost/deadlineProduct.fund_product_goal_cost)*100}"/>
+                                                                <i  style="color:#002fa3;">%</i></em>
                                                             <p style="margin-left:10px;">D-17</p>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!--//함께방송중인상품-->
                                             </div>
                                         </figure>
                                     </div>
                                 </div>
-                                <!--//product-list-->
                             </div>
                             <script type="text/javascript">
                                 var ldtvEndTimeStrH = "10:39";
@@ -1272,12 +1181,8 @@
                                     if (ldtvEndTimeStrH && ldtvEndTimeStrH.length > 0) {
                                         clockHomeDtvH(dtvServerDtm);
                                     }
-
-                                    // 비디오 초기화
-                                    //setTimeout(function () {
                                     $("brodDtvArea video source").attr("src", 'https://dtvstreaming.hyundaihmall.com/newcjp3/_definst_/newcjpstream.smil/playlist.m3u8')
                                     var player = videojs($(".brodDtvArea video").get(0));
-                                    //}, 1000);
                                 });
 
 
@@ -1348,11 +1253,6 @@
                             border-radius: 10px;" onclick="location.href='${contextPath}/fund/main'">펀딩 프로젝트 더 보기
 
                         </div>
-<%--                        <div style="width: 426px; border: solid 3px #eaebed; border-radius: 4px; text-align: center;--%>
-<%--                    height: 42px; cursor: pointer; margin: 0 auto; letter-spacing: -.5px; line-height: 41px;--%>
-<%--                    display: flex; justify-content: center; background: white;">--%>
-<%--                            <button type="button" style="color: #464646; font-family: 'sans-serif';">펀딩 프로젝트 더 보기</button>--%>
-<%--                        </div>--%>
                     </div>
 
                     <script type="text/javascript">
@@ -1422,28 +1322,6 @@
                                 <span>전체</span><i class="icon"></i></button>
 
                         </div>
-
-                        <!--유로 기획전 데이터 전송-->
-<%--                        <script>--%>
-<%--                            function euro_exhibit(){--%>
-<%--                                var exhibit_num = $('#exhibit_num').val();--%>
-<%--                                console.log(exhibit_num);--%>
-<%--                                var csrfHeaderName = "${_csrf.headerName}";--%>
-<%--                                var csrfTokenValue = "${_csrf.token}";--%>
-<%--                                $.ajax({--%>
-<%--                                    url:'${contextPath}/exhibition/euro_exhibit',--%>
-<%--                                    type:'post',--%>
-<%--                                    data: {exhibit_num:exhibit_num},--%>
-<%--                                    dataType:'int',--%>
-<%--                                    beforeSend:function (xhr){--%>
-<%--                                        xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
-<%--                                    },--%>
-<%--                                    success:function (data){--%>
-<%--                                        window.location.href="${contextPath}/exhibition/euro_exhibit";--%>
-<%--                                    }--%>
-<%--                                })--%>
-<%--                            }--%>
-<%--                        </script>--%>
 
                         <script type="text/javascript">
                             $(document).ready(function () {
@@ -2041,10 +1919,6 @@
                             });
                         }
 
-                        /*
-                         * 2020.12.01 icj 방송 알리미
-                         * PDAItemPtcMst.jsp bitemAlrimPopupNew 참조
-                         */
                         function bitemAlrimPopupTrk(slitmNm, slitmCd, bsitmCd) {
                             if (isLogin() != 'true') {
                                 openLoginPopup(location.href);
@@ -2053,9 +1927,6 @@
 
                             dp_clickTrace('alimi');
 
-
-                            // 방송 알리미 팝업
-                            // addBitemAlrimCommonPopupNew(slitmNm, slitmCd, bsitmCd);  //AS-IS
                             alimPopup(slitmNm, slitmCd, bsitmCd, function (w) {
                                 listAlrimiWithItem();
                             });
@@ -2122,12 +1993,6 @@
                                     alert('아직 판매중이 아닙니다.');
                                     return false;
                                 }
-                                /*
-                                if($slitmInfo.hasClass('soldOut')){
-                                    alert('품절입니다.');
-                                    return false;
-                                }
-                                */
                             }
 
                             /* ga tagging */
@@ -2155,14 +2020,11 @@
                         // 방송톡
                         function brodChatCheck() {
 
-                            //방송톡 가능여부
                             $.ajax({
                                 type: "GET",
-                                //url: "https://marsheg.sweettracker.net:4443/user/api/is_aviliable_chat/format/json",
                                 url: "https://broadeg.happytalk.io/user/api/is_aviliable_chat/format/json",
                                 success: function (result) {
                                     if (result.code == 'success') {
-                                        // 로그인 체크 및 팝업창 열기
                                         if (isLogin() == 'true') {
                                             var screenWidth = $(window).width();
                                             var screenHeight = $(window).height();
@@ -2179,7 +2041,6 @@
                                             return false;
                                         }
                                     } else {
-                                        //채팅방 상태가 좋지 않으면 오류메시지 표시.
                                         alert(result.results);
                                     }
                                 },
@@ -2189,7 +2050,6 @@
                             });
                         }
 
-                        // 기획전 템플릿 다운로드 쿠폰 적용
                         var roulette_flag = 0; //계속 클릭 방지
                         function DirectCopnDownload(prmoNo) {
 
@@ -3389,4 +3249,69 @@
         </div>
     </div>
     <!-- //.container -->
+    <script type="text/javascript">
+        var lbrdEndTimeStrH = '20220525114000';
+
+        var etvServerDtm;
+        if ('20220525103333' != '' && '20220525103333' != null) {
+            etvServerDtm = '20220525103333';
+        }
+
+        $(function () {
+            if ((lbrdEndTimeStrH && lbrdEndTimeStrH.length > 0)) {
+                clockH(etvServerDtm);
+            }
+            videojs($(".brodEtvArea video").get(0));
+        });
+
+
+        function clockH(serverDtm) {
+
+            var now;
+            if (serverDtm == undefined || serverDtm == null) {
+                now = new Date();
+            } else {
+                now = new Date(serverDtm.replace(/([\d]{4})([\d]{2})([\d]{2})([\d]{2})([\d]{2})([\d]{2})/, '$2/$3/$1 $4:$5:$6'));
+            }
+
+            var year = Number(lbrdEndTimeStrH.substring(0, 4));       //년
+            var month = Number(lbrdEndTimeStrH.substring(4, 6)) - 1; //월 (0 ~ 11)
+            var date = Number(lbrdEndTimeStrH.substring(6, 8));       //일
+            var hours = Number(lbrdEndTimeStrH.substring(8, 10));     //시
+            var minutes = Number(lbrdEndTimeStrH.substring(10, 12));  //분
+            var seconds = Number(lbrdEndTimeStrH.substring(12, 14));  //초
+
+            var endDtm = new Date(year, month, date, hours, minutes, seconds);  // 방송종료일시
+
+            var gap = (endDtm.getTime() - now.getTime()) / 1000;
+            var leftTime = "";
+
+            if (gap <= 0) {
+                /* location.reload(true); */
+                leftTime = "00 : 00 : 00";
+                $('#etvLeftTime').html(leftTime);
+                $("#etvLeftReload").show();
+                $(".brodEtvArea .vjs-big-play-button").hide()
+                return;
+            }
+
+            var hour = parseInt(gap / 3600);
+            var min = parseInt((gap % 3600) / 60);
+            var sec = parseInt(gap % 60);
+
+            leftTime += ((hour < 10) ? "0" : "") + hour;
+            leftTime += ((min < 10) ? " : 0" : " : ") + min;
+            leftTime += ((sec < 10) ? " : 0" : " : ") + sec;
+
+            $('#etvLeftTime').html(leftTime);
+            setTimeout("clockH()", 1000);
+        }
+        function onairEtvGaTagging(obj) {
+            if ($(obj).children().first().attr('class').indexOf('vjs-user-active vjs-live') > -1
+                || $(obj).children().first().attr('class').indexOf('vjs-live vjs-user-active') > -1) {
+                var $slitmInfo = $(obj).closest('figure');
+                setGaPromotion($slitmInfo.attr("ga-custom-title"), $slitmInfo.attr("ga-custom-name"), $slitmInfo.attr("ga-custom-position"), $slitmInfo.attr("ga-custom-creative"), $slitmInfo.attr("ga-custom-id"));
+            }
+        }
+    </script>
 </main>

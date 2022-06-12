@@ -72,7 +72,8 @@ To change this template use File | Settings | File Templates.
                                     <div class="reward-info-amount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST}"/>원
                                         <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                     <div class="mt20"><span class="reward-info-text">달성률</span> <span
-                                            class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST / list[0].FUND_PRODUCT_GOAL_COST)* 100}"/>% &nbsp;</span> <span
+                                            class="reward-info-now">
+                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST/ list[0].FUND_PRODUCT_GOAL_COST)*100}"/>%&nbsp;</span> <span
                                             class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span></div>
                                     <div class="mt5"><span class="reward-info-text">남은기간</span> <span
                                             class="reward-info-now mr5">(계산필요) 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
