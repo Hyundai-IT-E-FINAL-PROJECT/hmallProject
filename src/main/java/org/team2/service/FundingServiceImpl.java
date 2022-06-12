@@ -4,6 +4,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.team2.domain.FundReplyVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
 import org.team2.mapper.FundingMapper;
@@ -55,5 +56,15 @@ public class FundingServiceImpl implements FundingService{
     @Override
     public void updateFundStatus(Long fund_product_seq) throws Exception {
         fundingMapper.updateFundStatus(fund_product_seq);
+    }
+
+    @Override
+    public void insertReply(FundReplyVO fundReplyVO) throws Exception {
+        fundingMapper.insertReply(fundReplyVO);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception {
+        return fundingMapper.selectReply(fundReplyVO);
     }
 }

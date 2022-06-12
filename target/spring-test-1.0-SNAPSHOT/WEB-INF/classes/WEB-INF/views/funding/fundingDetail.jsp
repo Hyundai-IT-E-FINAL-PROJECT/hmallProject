@@ -8,6 +8,8 @@ To change this template use File | Settings | File Templates.
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/slick.min.css?v=20220222_02">
@@ -382,18 +384,21 @@ To change this template use File | Settings | File Templates.
                         <!---->
                         <div id="comment-collapse">
                             <div class="mp-body">
-                                <form class="form-horizontal pt15 xs-pt10 xs-pl5 xs-pr5">
+                                <form id="reply_form" class="reply_form">
+                                    <input id="fund_num" type="hidden" value="${list[0].FUND_PRODUCT_SEQ}">
+                                    <sec:authentication property="principal" var="pinfo" />
+                                    <input id="user_seq" type="hidden" value="${pinfo.userVO.no}">
                                     <div class="form-group row-mobile-n mb5">
-                                        <div class="col-sm-12 text-right"><span class="textarea_text_leng xs-mt5"><span>0</span> /500자</span></div>
-                                        <div class="col-sm-12"><textarea rows="3" cols="5" name="crpyContent" maxlength="500"
-                                                                         placeholder="주식회사 베지스푼님의 프로젝트 성공을 응원합니다!"
-                                                                         class="textarea-form-control form-control" style="height: 100px;"></textarea>
+                                        <div class="col-sm-12">
+                                            <textarea id="reply_content" rows="3" cols="5" name="crpyContent" maxlength="500"
+                                                      placeholder="주식회사 베지스푼님의 프로젝트 성공을 응원합니다!" class="textarea-form-control form-control" style="height: 100px;">
+                                            </textarea>
                                             <!---->
                                         </div>
                                     </div>
                                     <div class="form-group row-mobile-n mb20 xs-mb10 xs-pb3 displayFlex">
                                         <div class="col-xs-12">
-                                            <div class="text-right"><a href="javascript:void(0)" class="btn btn-primary-outline font15">댓글 달기</a></div>
+                                            <div class="text-right"><a href="javascript:void(0)" class="btn btn-primary-outline font15" onclick="insert_reply();">댓글 달기</a></div>
                                         </div>
                                     </div>
                                     <hr style="border-top: 1px dashed rgb(234, 235, 237);">
@@ -417,51 +422,6 @@ To change this template use File | Settings | File Templates.
                                     </div>
                                     <div class="mt5">영양성분표는 없나요?</div>
                                     <!---->
-                                </div>
-                                <div class="textRight" style="margin-bottom: -24px; margin-top: 4px;">
-                                    <a href="#14976" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14976" class="blue-800 mr5">답글달기</a></div>
-                                <div>
-                                    <form id="14976" class="collapse comment-reply">
-                                        <div class="replay-layout">
-                                            <div class="replay-dasi"></div>
-                                            <div class="mb10 ivs-comment-replay">
-                                                <div class="text-right"><span class="textarea_text_leng xs-mt5"><span>0</span> /500자</span></div>
-                                                <textarea cols="25" maxlength="500" placeholder="답글 입력" class="textarea-form-control form-control" style="resize: vertical;"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row-mobile-n mb20 xs-mb10 xs-pb3 displayFlex">
-                                            <div class="col-xs-12">
-                                                <div class="text-right">
-                                                    <a href="#14976" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="14976" class="btn btn-sm btn-default-outline">답글 취소</a>
-                                                    <a href="javascript:void(0)" role="button" data-toggle="collapse" aria-expanded="false" class="btn btn-sm btn-primary-outline">답글 달기</a></div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div>
-                                        <div class="replay-layout">
-                                            <div class="replay-dasi"></div>
-                                            <div class="replay-container mt5">
-                                                <div class="replay-box">
-                                                    <div class="displayFlex">
-                                                        <div href="javascript:void(0)" class="reward-policy-profileImg">
-                                                            <!---->
-                                                        </div>
-                                                        <div class="ivs-comment-nameBox"><span class="comment-id">주식회사 베지스푼</span>
-                                                            <span class="comment-user ml5">진행자</span>
-                                                            <div class="comment-date">
-                                                                <!---->1일 전
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt5">안녕하세요 유나님, <br>문의주셔서 감사합니다. :)<br><br>영양성분표 링크 첨부드립니다. <br>상품소개
-                                                        제일 하단에 링크 확인하시면 영양성분표를 확인 수 있습니다.
-                                                        <br>https://www.sixshop.com/bgreen21/product/6e5bb1e4-c967-4ab4-946d-36adf6a244c1
-                                                    </div>
-                                                    <!---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -729,6 +689,30 @@ To change this template use File | Settings | File Templates.
         }else{
             document.getElementById('inf_page').classList.add("active");
         }
+
+
+        if(a === 'reply'){
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfTokenValue = "${_csrf.token}";
+            console.log("댓글 달기 버튼 클릭");
+            const fund_board_seq = document.getElementById("fund_num").value;
+            const user_seq = document.getElementById("user_seq").value;
+            console.log("펀드상품번호: "+fund_board_seq);
+            console.log("유저 시퀀스: "+user_seq);
+            console.log("댓글 내용: "+reply_content);
+            $.ajax({
+                url:"${contextPath}/fund/selectReply",
+                method:"post",
+                data:{"board_num":fund_board_seq, "user_num":user_seq},
+                dataType:"json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
+                success: function (data){
+                    console.log(data);
+                }
+            })
+        }
     }
 
     //펀딩하기 프로세스
@@ -742,8 +726,30 @@ To change this template use File | Settings | File Templates.
         console.log("reward_seq: "+fund_reward_seq);
         console.log("product_seq: "+fund_product_seq);
         console.log("fund_reward_count: "+fund_reward_count);
+    }
 
+    //댓글 달기 프로세스
+    function insert_reply(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+        console.log("댓글 달기 버튼 클릭");
+        const fund_board_seq = document.getElementById("fund_num").value;
+        const user_seq = document.getElementById("user_seq").value;
+        const reply_content =document.getElementById("reply_content").value;
+        console.log("펀드상품번호: "+fund_board_seq);
+        console.log("유저 시퀀스: "+user_seq);
 
-
+        $.ajax({
+            url:"${contextPath}/fund/insertReply",
+            method:"post",
+            data:{"fund_board_seq":fund_board_seq, "user_seq":user_seq, "fund_reply_content_num":reply_content},
+            dataType:"json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (data){
+                console.log(data);
+            }
+        })
     }
 </script>
