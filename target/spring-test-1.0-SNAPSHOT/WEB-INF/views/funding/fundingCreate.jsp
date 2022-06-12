@@ -426,6 +426,12 @@
                                                 <div class="col-xs-3"><a href="https://drive.google.com/file/d/1SpeaG3Jj3gSwCQwZ51jDuFXiBelZPtiA/view" target="_blank" class="btn btn-block btn-primary" style="color: #fff4f3">디자인 가이드 보기</a>
                                                 </div>
                                             </div>
+
+                                            <div style="display: flex">
+                                                <span style="width: 136px; margin-bottom: 17px; font-weight: 800;">메인사진</span>
+                                                <input type="file" id="uploadFile" name="uploadFile" multiple><br>
+                                            </div>
+
                                             <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
                                                 <div class="text-left mb10">프로젝트 스토리</div>
                                             </label>
