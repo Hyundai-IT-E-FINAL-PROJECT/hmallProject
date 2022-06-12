@@ -30,11 +30,7 @@ To change this template use File | Settings | File Templates.
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-8">
-                                <div class="reward_community_partner mt40 mb10 xs-mt25">해당 프로젝트는 <a
-                                        href="/c/apfs2022"><span
-                                        class="crowdy-color-blue">[ 2022 농식품 펀딩 전용관 ]</span></a>과 함께 합니다
-                                </div>
-                                <div class="reward_title mb30 xs-mb15">#100% 식물성 너겟 #치킨 없는 치킨 너겟 &lt;댓츠잇&gt;</div>
+                                <div class="reward_title mb30 xs-mb15" style="margin-top: 30px;">${list[0].FUND_PRODUCT_TITLE}</div>
                                 <!----></div>
                             <div>
                                 <div class="col-sm-8 xs-pl0 xs-pr0" style="margin: 0px -9px;">
@@ -75,18 +71,19 @@ To change this template use File | Settings | File Templates.
                                             <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                         <div class="mt20"><span class="reward-info-text">달성률</span> <span
                                                 class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST / list[0].FUND_PRODUCT_GOAL_COST)* 100}"/>% &nbsp;</span> <span
-                                                class="reward-info-goal">목표금액 &nbsp;500,000원</span></div>
+                                                class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span></div>
                                         <div class="mt5"><span class="reward-info-text">남은기간</span> <span
-                                                class="reward-info-now mr5"> 3일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
+                                                class="reward-info-now mr5">(계산필요) 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
                                         </div>
+                                        <input type="hidden" value="${list[0].FUND_PRODUCT_END_DATE}" name="fund_end_date"/>
                                         <div class="mt5"><span class="reward-info-text">참여자</span> <span
-                                                class="reward-info-now">7명</span></div>
+                                                class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PARTICIPANTS}"/>명</span></div>
                                         <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>
                                         <div class="common-flex-between mt30 xs-mt40 reward-order0-1">
                                             <div class="reward-info-group">
                                                 <div class="reward-info-nowStatus reward-icon-1"></div>
                                                 <div class="reward-info-text2 mt5">펀딩 종료일</div>
-                                                <div class="reward-info-text3">22.06.12</div>
+                                                <div class="reward-info-text3"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/></div>
                                             </div>
                                             <div class="reward-info-statusLine"></div>
                                             <div class="reward-info-group">
@@ -154,6 +151,7 @@ To change this template use File | Settings | File Templates.
                         </div>
                     </div>
                 </div>
+
                 <div id="list_category" style="border-top: 1px solid rgb(221, 221, 221);">
                     <div class="common_sub_top_menu common_stm_detail">
                         <div class="reward-menu">
@@ -422,7 +420,7 @@ To change this template use File | Settings | File Templates.
                                                                              id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
                                             <span class="qty-add" onclick="fnCalCount('p');"></span>
                                         </div>
-                                        <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 200px;" onClick="loadFundingProcess();">
+                                        <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 250px;" onClick="loadFundingProcess();">
                                             <span>펀딩하기</span></div>
                                     </div>
                                 </div>
@@ -436,7 +434,7 @@ To change this template use File | Settings | File Templates.
                                 var reward_cost=fundProduct.split('|')[2];
 
                                 var totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
-                                $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+                                $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
 
                             });
 
@@ -452,14 +450,14 @@ To change this template use File | Settings | File Templates.
                                     $("#reward_count").val(Number(reward_count)+1);
                                     reward_count= $("input[name='reward_count']").val();
                                     totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
-                                    $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+                                    $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
 
                                 }else{
                                     if(reward_count-1>0){
                                         $("#reward_count").val(Number(reward_count)-1);
                                         reward_count= $("input[name='reward_count']").val();
                                         totalFundCost=parseInt(reward_count)*parseInt(reward_cost);
-                                        $('#fundBtn span').text(totalFundCost+'원 펀딩하기');
+                                        $('#fundBtn span').text(totalFundCost.toLocaleString('ko-KR')+'원 펀딩하기');
                                     }
                                 }
                             }
