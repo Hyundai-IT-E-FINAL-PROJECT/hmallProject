@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Date" %><%--
 Created by IntelliJ IDEA.
 User: user
 Date: 2022-06-08
@@ -71,10 +71,11 @@ To change this template use File | Settings | File Templates.
                                     <div class="reward-info-name">리워드</div>
                                     <div class="reward-info-amount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST}"/>원
                                         <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
-                                    <div class="mt20"><span class="reward-info-text">달성률</span> <span
-                                            class="reward-info-now">
-                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${(list[0].FUND_PRODUCT_PR_COST/ list[0].FUND_PRODUCT_GOAL_COST)*100}"/>%&nbsp;</span> <span
-                                            class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span></div>
+                                    <div class="mt20"><span class="reward-info-text">달성률</span> <span class="reward-info-now">
+                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST * 100 / list[0].FUND_PRODUCT_GOAL_COST}"/>% &nbsp;</span>
+<%--                                        ${list[0].FUND_PRODUCT_PR_COST * 100 / list[0].FUND_PRODUCT_GOAL_COST}% &nbsp;--%>
+                                        <span class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span>
+                                    </div>
                                     <div class="mt5"><span class="reward-info-text">남은기간</span>
                                         <jsp:useBean id="today" class="java.util.Date" />
                                         <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
@@ -100,12 +101,14 @@ To change this template use File | Settings | File Templates.
                                             <div class="reward-info-text2 mt5">결제 예정일</div>
                                             <fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/>
                                             <div class="reward-info-text3">22.06.13</div>
-                                        </div>
-                                        <div class="reward-info-statusLine"></div>
-                                        <div class="reward-info-group">
+                                            <fmt:parseDate value="${list[0].FUND_PRODUCT_END_DATE}}" var="strPlanDate" pattern="yyyy-MM-dd"/>
+                                            <fmt:parseNumber value="${strPlanDate.time + (60*60*24*1000)}" integerOnly="true" var="strDate"/>
+                                            <jsp:useBean id="myDate" class="java.util.Date"/>
+                                            <c:set target="${myDate}" property="time" value="${strDate}"/>
+                                            <div class="reward-info-text3"><fmt:formatDate value="${myDate}" pattern="yyyy.MM.dd"/></div>
                                             <div class="reward-info-nowStatus reward-icon-3"></div>
                                             <div class="reward-info-text2 mt5">발송 예정일</div>
-                                            <div class="reward-info-text3">22.06.13</div>
+                                            <div class="reward-info-text3"><fmt:formatDate value="${list[0].FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy.MM.dd"/></div>
                                         </div>
                                     </div>
                                     <div class="detail_order_info mt25 xs-mt15 reward-order1-0"><a href="#">
@@ -445,7 +448,6 @@ To change this template use File | Settings | File Templates.
                         <input id="fund_num_info" type="hidden" value="${list[0].FUND_PRODUCT_SEQ}">
                         <sec:authentication property="principal" var="pinfo" />
                         <input id="user_seq_info" type="hidden" value="${pinfo.userVO.no}">
-<%--                        <sec:authorize access="isAuthenticated()">--%>
                             <c:if test="${list[0].USER_SEQ eq pinfo.userVO.no}">
                                 <div class="form-group row-mobile-n mb5">
                                     <div class="col-sm-12">
@@ -460,7 +462,6 @@ To change this template use File | Settings | File Templates.
                                 </div>
                                 <hr style="border-top: 1px dashed rgb(234, 235, 237);">
                             </c:if>
-<%--                        </sec:authorize>--%>
                     </form>
                     <div class="mt30 mb40">
                         <div class="info_area">
@@ -483,6 +484,22 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
             <!--새소식 종료-->
+            <!--안내 페이지-->
+            <div id="info_page" class="mt40 mb80" style="display: none">
+                <div class="reward-detail-container reward-content-body">
+                    <div class="reward_page_title">프로젝트 진행 관련<br>안내사항입니다.</div>
+                    <div class="mt30 reward-policy-date">
+                        <font class="reward-policy-date-title">펀딩 종료일</font>
+                        <font class="ml10 reward-policy-date-body"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/></font>
+                        <font class="reward-policy-date-title ml22">결제 예정일</font>
+                        <font class="ml10 reward-policy-date-body"><fmt:formatDate value="${myDate}" pattern="yyyy.MM.dd"/></font>
+                        <font class="reward-policy-date-title ml22">발송 예정일</font>
+                        <font class="ml10 reward-policy-date-body"><fmt:formatDate value="${list[0].FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy.MM.dd"/></font>
+                    </div>
+                </div>
+                <hr class="crowdy-row-line crowdy-row-line10 mt50">
+            </div>
+            <!--안내 페이지 종료-->
             <div>
                 <div class="reward-choice-container">
                     <div class="reward-choice-shareBtn"></div>
@@ -757,23 +774,31 @@ To change this template use File | Settings | File Templates.
         const main_info = document.getElementById("main_info");
         const reply_board = document.getElementById("reply_board");
         const new_info = document.getElementById("new_info");
+        const info_page = document.getElementById("info_page");
         $(".reward-menu a").removeClass("active");
         if(a === 'story'){
             main_info.style.display = 'block';
             reply_board.style.display = 'none';
             new_info.style.display = 'none';
+            info_page.style.display ='none';
             document.getElementById('story_page').classList.add("active");
         } else if(a === 'news'){
             main_info.style.display = 'none';
             reply_board.style.display = 'none';
             new_info.style.display = 'block';
+            info_page.style.display ='none';
             document.getElementById('news_page').classList.add("active");
         }else if(a === 'reply'){
             document.getElementById('reply_page').classList.add("active");
             main_info.style.display = 'none';
             reply_board.style.display = 'block';
             new_info.style.display = 'none';
+            info_page.style.display ='none';
         }else{
+            main_info.style.display = 'none';
+            reply_board.style.display = 'none';
+            new_info.style.display = 'none';
+            info_page.style.display ='block';
             document.getElementById('inf_page').classList.add("active");
         }
         if(a === 'reply'){
@@ -1207,6 +1232,24 @@ To change this template use File | Settings | File Templates.
         })
     }
 
+    //안내 페이지 각종 date값 가져오기
 
+    <%--function selectDate(){--%>
+    <%--    const product_seq = document.getElementById('fund_num').value;--%>
+    <%--    console.log(product_seq);--%>
+    <%--    var csrfHeaderName = "${_csrf.headerName}";--%>
+    <%--    var csrfTokenValue = "${_csrf.token}";--%>
+    <%--    $.ajax({--%>
+    <%--        url:"${contextPath}/fund/selectDate",--%>
+    <%--        method:"post",--%>
+    <%--        data:{"product_seq":product_seq},--%>
+    <%--        dataType:"json",--%>
+    <%--        beforeSend: function(xhr) {--%>
+    <%--            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)--%>
+    <%--        },success: function (data) {--%>
+    <%--            console.log(data);--%>
+    <%--        }--%>
+    <%--    })--%>
+    <%--}--%>
 
 </script>

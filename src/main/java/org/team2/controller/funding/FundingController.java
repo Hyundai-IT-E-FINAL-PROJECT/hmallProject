@@ -302,4 +302,13 @@ public class FundingController {
 //        }
 //
 //    }
+    @ResponseBody
+    @RequestMapping("selectDate")
+    public ResponseEntity<List<Map<String, Object>>> selectDate(@RequestParam("product_seq") int product_seq ) throws Exception{
+        log.info("날짜 가져오기 컨트롤러 도착 !");
+        log.info("상품 시퀀스 : "+product_seq);
+        List<Map<String,Object>> date_list = fundingService.selectDate(product_seq);
+        log.info(date_list.toString());
+        return ResponseEntity.ok().body(date_list);
+    }
 }
