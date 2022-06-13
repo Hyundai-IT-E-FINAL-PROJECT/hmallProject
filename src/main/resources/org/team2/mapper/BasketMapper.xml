@@ -6,7 +6,7 @@
         SELECT
             *
         FROM
-            tbl_basket b left join p_image_discount a on a.product_seq = b.product_seq
+            tbl_basket b join p_image_discount a on a.product_seq = b.product_seq
         WHERE
             b.user_seq = ${user_seq}
     </select>

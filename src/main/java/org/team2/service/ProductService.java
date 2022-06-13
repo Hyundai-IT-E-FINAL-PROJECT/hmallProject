@@ -12,6 +12,8 @@ public interface ProductService {
 
     List<ProductVO> searchProducts(Long first_category, Long second_category, String search_text, String sort, Long page_num);
 
+    Long searchProductsCounts(Long first_category, Long second_category, String search_text, String sort);
+
     List<ProductVO> getMain();
     int insert(ProductVO productVO);
     int delete(ProductVO productVO);

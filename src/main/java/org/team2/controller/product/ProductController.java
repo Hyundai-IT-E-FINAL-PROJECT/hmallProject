@@ -220,14 +220,14 @@ public class ProductController {
         sortVOS.add(high_cost);
 
 
-        List<ProductVO> searchProductsBeforePaging = productService.searchProducts(first_category, tmp_second_category, search_text, sort, null);
+        Long total = productService.searchProductsCounts(first_category, tmp_second_category, search_text, sort);
         List<ProductVO> searchProducts = productService.searchProducts(first_category, tmp_second_category, search_text, sort, page_num);
         CategoryVO categoryVO = categoryService.getOne(first_category);
         List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
         subCategoryList.add(0, categoryVO_all);
 
         Criteria cri = new Criteria(page_num, 30L);
-        PageVO pageMaker = new PageVO(cri, (long)searchProductsBeforePaging.size());
+        PageVO pageMaker = new PageVO(cri, total);
 
         mav.setViewName("search.all");
         mav.addObject("productVOList", searchProducts);
@@ -236,7 +236,7 @@ public class ProductController {
         mav.addObject("subCategoryList", subCategoryList);
         mav.addObject("className", "wrap display-3depth");
         mav.addObject("cssFileList", styleFileList);
-        mav.addObject("total", (long)searchProductsBeforePaging.size());
+        mav.addObject("total", total);
         mav.addObject("pageMaker", pageMaker);
         mav.addObject("sortVOList", sortVOS);
         mav.addObject("curr_sort", sort);

@@ -35,6 +35,11 @@ public class ProductSerivceImpl implements ProductService {
         return allWithCouponByFirstCategory;
     }
 
+    @Override
+    public Long searchProductsCounts(Long first_category, Long second_category, String search_text, String sort) {
+        return productMapper.searchProductsCounts(first_category, second_category, search_text, sort);
+    }
+
 
     @Override
     public List<ProductVO> getMain() {

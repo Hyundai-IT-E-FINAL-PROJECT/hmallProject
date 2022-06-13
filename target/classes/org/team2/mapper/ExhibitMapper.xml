@@ -47,15 +47,15 @@
                                 aa.coupon_ratio
                             END as coupon_ratio
                  FROM tbl_product p
-                          LEFT JOIN (SELECT c.coupon_ratio,
+                          JOIN (SELECT c.coupon_ratio,
                                             cp.product_seq
                                      FROM tbl_coupon c
-                                              RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
+                                              JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
                                     ON p.product_seq = aa.product_seq
                  WHERE p.product_seq IN (SELECT product_seq
                                          FROM tbl_exhibit
                                          WHERE exhibit_num = #{exhibit_num})) s
-                 LEFT JOIN tbl_image i ON s.product_seq = i.product_seq
+                 JOIN tbl_image i ON s.product_seq = i.product_seq
         WHERE i.image_type = 'MAIN'
     </select>
 
@@ -97,22 +97,22 @@
                                 aa.coupon_ratio
                             END as coupon_ratio
                  FROM tbl_product p
-                          LEFT JOIN (SELECT c.coupon_ratio,
+                          JOIN (SELECT c.coupon_ratio,
                                             cp.product_seq
                                      FROM tbl_coupon c
-                                              RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
+                                              JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
                                     ON p.product_seq = aa.product_seq
                  WHERE p.product_seq IN (SELECT product_seq
                                          FROM tbl_exhibit
                                          WHERE exhibit_num = #{exhibit_num})) s
-                 LEFT JOIN tbl_image i ON s.product_seq = i.product_seq
+                 JOIN tbl_image i ON s.product_seq = i.product_seq
         WHERE i.image_type = 'MAIN'
     </select>
 
     <select id="sort_exhibit" resultType="map">
         select tp.product_name, tp.product_cost, tp.product_brand, tp.sell_count, tp.created_at
         from tbl_product tp
-                 left join tbl_exhibit te
+                 join tbl_exhibit te
                            on tp.product_seq = te.product_seq
         where te.exhibit_num = #{exhibit_num}
         order by ${sort_value}
