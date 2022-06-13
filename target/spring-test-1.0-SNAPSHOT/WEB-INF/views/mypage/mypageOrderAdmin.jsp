@@ -526,11 +526,18 @@
 </main>
 <!-- //.cmain -->
 <script language="JavaScript">
+
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+
     function orderConfirm(order_seq) {
         $.ajax({
             type: "post"
             ,url: "http://localhost:8080/api/admin/?order_seq=" + order_seq
             ,async: true
+            ,beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            }
             ,success : function() {
                 alert("주문 접수를 완료했습니다.")
                 window.location.reload()

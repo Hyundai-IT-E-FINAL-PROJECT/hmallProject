@@ -69,8 +69,14 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<Map<String, Object>> pointList(String no, String strtDt, String endDt, String searchType) throws Exception {
-        return mypageMapper.pointList(no, strtDt, endDt, searchType);
+    public Map pointList(long no, String strtDt, String endDt, String searchType) throws Exception {
+        Map map = new HashMap();
+        map.put("no", no);
+        map.put("strtDt", strtDt);
+        map.put("endDt", endDt);
+        map.put("searchType", searchType);
+        mypageMapper.pointList(map);
+        return map;
     }
 
     @Override

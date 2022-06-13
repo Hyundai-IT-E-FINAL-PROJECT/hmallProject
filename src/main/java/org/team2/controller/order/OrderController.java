@@ -2,6 +2,8 @@ package org.team2.controller.order;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -94,69 +96,111 @@ public class OrderController {
 
 
 
-        @Transactional
-        @ResponseBody
-        @PostMapping("orderComplete")
-        public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO,
-                                    @ModelAttribute UserVO userVO, @ModelAttribute OpVO opVO,
-                                    @ModelAttribute CuVO cuVO,
-                                    @RequestParam(value="basket_list[]") List<String> basket_list,
-                                    @RequestParam(value="product_list[]") List<String> product_list,
-                                    Principal principal) throws Exception {
-            log.info("order process...");
-            orderVO.setUser_seq(Integer.parseInt(principal.getName()));
+    @Transactional
+    @ResponseBody
+    @PostMapping("orderComplete")
+    public String sendOrderData(@ModelAttribute OrderVO orderVO, @ModelAttribute ProductVO productVO,
+                                @ModelAttribute UserVO userVO, @ModelAttribute OpVO opVO,
+                                @ModelAttribute CuVO cuVO, @ModelAttribute PointVO pointVO,
+                                @ModelAttribute DepositVO depositVO,
+                                @RequestParam(value="basket_list[]") List<String> basket_list,
+                                @RequestParam(value="product_list[]") List<String> product_list,
+                                Principal principal) throws Exception {
+        log.info("order process...");
+        orderVO.setUser_seq(Integer.parseInt(principal.getName()));
+        pointVO.setUser_seq(Long.valueOf(principal.getName()));
 
-            long order_seq = 0;
-            try {
-                //tbl_order insert query
-                orderService.insert(orderVO);
-                order_seq = orderVO.getNo();
-
-                for (int i = 0; i < basket_list.size(); ++i) {
-                    //tbl_op insert query
-                    opVO.setOrder_seq((int) order_seq);
-                    opVO.setProduct_seq(Integer.parseInt(product_list.get(i)));
-                    opVO.setOp_count(Long.valueOf(basket_list.get(i)));
-                    orderService.insertOp(opVO);
-                    //update product sell count
-                    productVO.setSell_count(Long.valueOf(basket_list.get(i)));
-                    orderService.productSellUpdate(productVO);
-
-                }
-                //update userPoint, deposit query
-                userVO.setNo(Integer.parseInt(principal.getName()));
-                orderService.userPointUpdate(userVO);
-                //coupon delete
-                if(cuVO.getCoupon_seq()!=null){ //coupon 선택 했을 시
-                    cuVO.setUser_seq(Long.valueOf(principal.getName()));
-                    orderService.deleteUseCoupon(cuVO);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        long order_seq = 0;
+        try {
+            if(orderVO.getOrder_coupon_seq()==null) {
+                orderVO.setOrder_coupon_seq(0L);
             }
-            return Integer.toString((int) order_seq); //return order_seq로 바꿔주기
-        }
+            //tbl_order insert query
+            orderService.insert(orderVO);
+            order_seq = orderVO.getNo();
 
-        @ResponseBody
-        @PostMapping("couponInfo")
-        public String getCouponInfo(@RequestParam("couponSeq") String couponSeq) throws Exception{
-            log.info("쿠폰 데이터 가져오는 중");
-            log.info(couponSeq);
 
-            String discount="";
+            for (int i = 0; i < basket_list.size(); ++i) {
+                //tbl_op insert query
+                opVO.setOrder_seq((int) order_seq);
+                opVO.setProduct_seq(Integer.parseInt(product_list.get(i)));
+                opVO.setOp_count(Long.valueOf(basket_list.get(i)));
+                orderService.insertOp(opVO);
+                //update product sell count
+                productVO.setSell_count(Long.valueOf(basket_list.get(i)));
+                orderService.productSellUpdate(productVO);
 
-            CouponVO vo=couponService.couponDiscount(Long.valueOf(couponSeq));
-
-            if(vo.getCoupon_cost()==0){
-                discount= String.valueOf(vo.getCoupon_ratio());
-                log.info(discount);
-                return discount;
-            }else{
-                discount= String.valueOf(vo.getCoupon_cost());
-                log.info(discount);
-                return discount;
             }
-        }
+            //update userPoint, deposit query
+            userVO.setNo(Integer.parseInt(principal.getName()));
 
+            // 적립금 사용, 적립을 위해 주문 시퀀스 저장
+            pointVO.setOrder_seq(order_seq);
+            depositVO.setOrder_seq(order_seq);
+
+            // 적립금 사용시 insert
+            if(pointVO.getPoint_cost()!=0) {
+                orderService.pointUse(pointVO);
+            }
+
+            // 구매한 금액에 따른 적립금 insert
+            pointVO.setPoint_cost(orderVO.getPoint());
+            orderService.pointSave(pointVO);
+
+            // 예치금 사용시 insert
+            if(depositVO.getDeposit_cost()!=0) {
+                depositVO.setUser_seq(Long.valueOf(principal.getName()));
+                orderService.depositUse(depositVO);
+            }
+
+            //coupon delete
+            if(cuVO.getCoupon_seq()!=null){ //coupon 선택 했을 시
+                cuVO.setUser_seq(Long.valueOf(principal.getName()));
+                orderService.deleteUseCoupon(cuVO);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Integer.toString((int) order_seq); //return order_seq로 바꿔주기
+    }
+
+    @ResponseBody
+    @PostMapping("couponInfo")
+    public String getCouponInfo(@RequestParam("couponSeq") String couponSeq) throws Exception{
+        log.info("쿠폰 데이터 가져오는 중");
+        log.info(couponSeq);
+
+        String discount="";
+
+        CouponVO vo=couponService.couponDiscount(Long.valueOf(couponSeq));
+
+        if(vo.getCoupon_cost()==0){
+            discount= String.valueOf(vo.getCoupon_ratio());
+            log.info(discount);
+            return discount;
+        }else{
+            discount= String.valueOf(vo.getCoupon_cost());
+            log.info(discount);
+            return discount;
+        }
+    }
+
+//    @ResponseBody
+//    @GetMapping("orderCancel")
+//    public ResponseEntity<String> orderCancel(@RequestParam("order_seq") String order_seq) throws Exception {
+//
+//        ResponseEntity<String> entity = null;
+//
+//        log.info(order_seq);
+//
+//        try {
+//            entity = new ResponseEntity<>("1", HttpStatus.OK);
+//        }
+//        catch (Exception e) {
+//            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//
+//        return entity;
+//    }
 }

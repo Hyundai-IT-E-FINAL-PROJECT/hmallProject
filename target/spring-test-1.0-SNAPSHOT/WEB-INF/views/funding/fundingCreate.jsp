@@ -5,16 +5,20 @@
   Time: 11:51 PM
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!--datePicker-->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+<%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--%>
 <!--datePicker end -->
+
 <link href="/resources/font/NotoSansCJKkr/font.min.css" rel="stylesheet">
 <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +34,19 @@
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/datepickerCustom.css">
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include summernote css/js-->
+<link  href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="${contextPath}/resources/js/summernote-ko-KR.js"></script>
+
+
 <div class="common_sub_layout">
     <div class="container">
         <div class="row not-space">
@@ -92,7 +109,7 @@
                                         <p class="form-control-static mb10 mt0"><a class="red-800">최소 100,000원 이상</a>이어야 합니다.</p>
                                     </div>
                                 </label>
-                                    <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control"></div>
+                                    <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control" id="goal_cost"></div>
                                     <div class="col-xs-12 col-sm-2">
                                         <div class="textarea_text_leng mt10">원</div>
                                     </div>
@@ -152,6 +169,37 @@
                                         </div>
                                     </div>
                                 </div>
+                            <script>
+                                const config = {
+                                    dateFormat: 'yy-mm-dd',
+                                    yearRange: '1930:2022',
+                                    prevText: '이전 달',
+                                    nextText: '다음 달',
+                                    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                                    dayNames: ['일','월','화','수','목','금','토'],
+                                    dayNamesShort: ['일','월','화','수','목','금','토'],
+                                    dayNamesMin: ['일','월','화','수','목','금','토'],
+                                    yearSuffix: '년',
+                                    changeMonth: true,
+                                    changeYear: true
+                                }
+                                $(function() {
+                                    var today=new Date();
+                                    $("#estimated_deliveryDate").datepicker(config);
+                                    $("#duration_project").datepicker(config);
+                                    $("#duration_project").on("change", function(){
+                                        let year= parseInt($(this).val().split('-')[0]);
+                                        let month= parseInt($(this).val().split('-')[1]);
+                                        let day= parseInt($(this).val().split('-')[2]);
+                                        console.log(year, month, day);
+                                        var d_day=new Date(year, month, day);
+                                        var gap=d_day.getTime()-today.getTime();
+                                        var result=Math.ceil(gap/(1000*60*60*24));
+                                        $("#d_day").val(result-30);
+                                    });
+                                });
+                            </script>
                                 <div class="form-group row-mobile-n mb30"><label for="project_img" class="col-xs-12 control-label control-label-big">
                                     <div class="text-left mb10">프로젝트 대표 이미지를 등록해주세요</div>
                                     <div style="text-align: left">
@@ -165,7 +213,7 @@
                                             <div class="col-xs-6 col-sm-4 col-md-3">
                                                 <div class="btn btn-block btn-primary-outline">저장하기</div>
                                             </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">다음단계</button></div>
+                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">예약하기</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -227,19 +275,29 @@
                                                 </div>
                                                 <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name1" name ="fund_reward_name1" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name1" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
 
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost1" name="fund_reward_cost1" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_content1" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25" style="width: fit-content">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_count1" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,18 +312,28 @@
                                                 </div>
                                                 <div id="option1_contents2" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name2" name ="fund_reward_name2" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name2" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost2" name="fund_reward_cost2" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost2" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_content2" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25" style="width: fit-content">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_count2" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,19 +348,28 @@
                                                 </div>
                                                 <div id="option1_contents3" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name3" name ="fund_reward_name3" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name3" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2"><span id="charNum3">0</span> / 20</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost3" name="fund_reward_cost3" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
-
+                                                        <input id="product_cost3" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
-                                                        <div class="mt10 textarea_text_leng webfont2">원</div>
+                                                        <div class="mt10 textarea_text_leng webfont2"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_content3" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row row-mobile-n mb25" style="width: fit-content">
+                                                    <div class="col-xs-8">
+                                                        <input id="product_count3" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,7 +394,7 @@
                                     <div class="col-sm-11">
                                         <div class="form-group row-mobile-n">
                                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                                <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                                                <button type="button" class="btn btn-block btn-primary" onclick="insertFund();">등록하기</button>
                                             </div>
                                         </div>
                                     </div>
@@ -349,13 +426,27 @@
                                                 <div class="col-xs-3"><a href="https://drive.google.com/file/d/1SpeaG3Jj3gSwCQwZ51jDuFXiBelZPtiA/view" target="_blank" class="btn btn-block btn-primary" style="color: #fff4f3">디자인 가이드 보기</a>
                                                 </div>
                                             </div>
+
+                                            <div style="display: flex">
+                                                <span style="width: 136px; margin-bottom: 17px; font-weight: 800;">메인사진</span>
+                                                <input type="file" id="uploadFile" name="uploadFile" multiple><br>
+                                            </div>
+
                                             <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
                                                 <div class="text-left mb10">프로젝트 스토리</div>
                                             </label>
-                                                <div class="col-xs-8"><textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
-                                                                                class="form-control"></textarea></div>
+                                                <div class="col-xs-8">
+                                                    <textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
+                                                                                class="form-control"></textarea>
+
+                                                </div>
                                             </div>
-                                        </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
+<%--                                            <form method="post">--%>
+<%--                                                <textarea id="summernote" name="content"></textarea>--%>
+<%--                                            </form>--%>
+                                            </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
+                                        </div>
+
                                     </div>
                                 </div>
                         </div>
@@ -451,11 +542,6 @@
         }
     }
 
-    $('#duration_project').change(function (){
-        var a = $('#duration_project').val();
-        $('#duration_project').text(a);
-    });
-
     function nextStep_info(){
         $(".list_link_tab li").removeClass("active");
         document.getElementById('story_btn').classList.add("active");
@@ -480,41 +566,100 @@
         element_story.style.display = 'none';
     }
 
-    function plus(a){
-        console.log(a);
-        a++;
-    }
+    //펀드 등록하기 함수
+    function insertFund(){
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
 
+        var end_date = document.getElementById('duration_project').value;
+        var estimated_date = document.getElementById('estimated_deliveryDate').value;
+        var fund_product_title = document.getElementById('project_subject').value;
+        var fund_product_goal_cost = document.getElementById('goal_cost').value;
+        var fund_product_content = document.getElementById('project_story').value;
+        //String to Date
+        stringToDate(end_date,"mm-dd-yyyy","-");
+        stringToDate(estimated_date,"mm-dd-yyyy","-");
+
+        console.log(end_date);
+        var fund_product_end_date = end_date;
+        console.log("배송예정일 :"+estimated_date);
+        var fund_product_estimate_date = estimated_date;
+
+
+        let fund_reward_titleList = [];
+        let fund_reward_costList = [];
+        let fund_reward_contentList = [];
+        let fund_reward_countList = [];
+        var rewardLength = document.getElementById('max_num').value;
+        for(var i = 1 ; i <= rewardLength ; i++){
+            fund_reward_titleList.push($("input[id='"+'product_name'+String(i)+"']").val());
+            fund_reward_costList.push($("input[id='"+'product_cost'+String(i)+"']").val());
+            fund_reward_contentList.push($("input[id='"+'product_content'+String(i)+"']").val());
+            fund_reward_countList.push($("input[id='"+'product_count'+String(i)+"']").val());
+        }
+
+        console.log(fund_reward_titleList, fund_reward_costList,fund_reward_contentList,fund_reward_countList);
+
+        var rewardData = {
+            fund_product_end_date: fund_product_end_date,
+            fund_product_title: fund_product_title,
+            fund_product_content: fund_product_content,
+            fund_product_goal_cost: parseInt(fund_product_goal_cost),
+            fund_product_estimate_date: fund_product_estimate_date,
+            "fund_reward_titleList" : fund_reward_titleList,
+            "fund_reward_costList" : fund_reward_costList,
+            "fund_reward_contentList" : fund_reward_contentList,
+            "fund_reward_countList" : fund_reward_countList
+        }
+        console.log(rewardData);
+        $.ajax({
+            url:"${contextPath}/fund/insertFund",
+            method:"post",
+            data:rewardData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },success: function (){
+                alert("프로젝트 등록에 성공하셨습니다!");
+                location.href="${contextPath}/fund/main";
+            }
+        })
+    }
 </script>
-
-<script>
-    const config = {
-        dateFormat: 'yy-mm-dd',
-        yearRange: '1930:2022',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames: ['일','월','화','수','목','금','토'],
-        dayNamesShort: ['일','월','화','수','목','금','토'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        yearSuffix: '년',
-        changeMonth: true,
-        changeYear: true
+<script type="text/javascript">
+    // $(document).ready(function() {
+    //     $('#summernote').summernote({
+    //         // toolbar: [
+    //         //     // [groupName, [list of button]]
+    //         //     ['fontname', ['fontname']],
+    //         //     ['fontsize', ['fontsize']],
+    //         //     ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+    //         //     ['color', ['forecolor','color']],
+    //         //     ['table', ['table']],
+    //         //     ['para', ['ul', 'ol', 'paragraph']],
+    //         //     ['height', ['height']],
+    //         //     ['insert',['picture','link','video']],
+    //         //     ['view', ['fullscreen', 'help']]
+    //         // ],
+    //         // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+    //         // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+    //         placeholder: 'content',
+    //         minHeight: 370,
+    //         maxHeight: null,
+    //         focus: true,
+    //         lang : 'ko-KR'
+    //     });
+    // })
+    function stringToDate(_date,_format,_delimiter)
+    {
+        var formatLowerCase=_format.toLowerCase();
+        var formatItems=formatLowerCase.split(_delimiter);
+        var dateItems=_date.split(_delimiter);
+        var monthIndex=formatItems.indexOf("mm");
+        var dayIndex=formatItems.indexOf("dd");
+        var yearIndex=formatItems.indexOf("yyyy");
+        var month=parseInt(dateItems[monthIndex]);
+        month-=1;
+        var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+        return formatedDate;
     }
-    $(function() {
-        var today=new Date();
-        $("#estimated_deliveryDate").datepicker(config);
-        $("#duration_project").datepicker(config);
-        $("#duration_project").on("change", function(){
-            let year= parseInt($(this).val().split('-')[0]);
-            let month= parseInt($(this).val().split('-')[1]);
-            let day= parseInt($(this).val().split('-')[2]);
-            console.log(year, month, day);
-            var d_day=new Date(year, month, day);
-            var gap=d_day.getTime()-today.getTime();
-            var result=Math.ceil(gap/(1000*60*60*24));
-            $("#d_day").val(result-30);
-        });
-    });
 </script>

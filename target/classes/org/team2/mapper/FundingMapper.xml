@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.FundingMapper">
+    <insert id="insertFunding">
+        <selectKey keyProperty="fund_product_seq" resultType="int" order="BEFORE">
+            select seq_fund_product.nextval from dual
+        </selectKey>
+        INSERT INTO TBL_FUND_PRODUCT(
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_PRODUCT_START_DATE,
+                                    FUND_PRODUCT_END_DATE,
+                                    FUND_PRODUCT_GOAL_COST,
+                                    FUND_PRODUCT_PR_COST,
+                                    FUND_PRODUCT_TITLE,
+                                    FUND_PRODUCT_CONTENT,
+                                    FUND_PRODUCT_STATUS,
+                                    FUND_PRODUCT_PARTICIPANTS,
+                                    FUND_PRODUCT_MAIN_IMG,
+                                    CREATED_AT,
+                                    UPDATED_AT,
+                                    FUND_PRODUCT_ESTIMATE_DATE
+                                    )
+                                    VALUES
+                                    (
+                                        #{fund_product_seq},
+                                        #{no},
+                                        sysdate,
+                                        #{fund_product_end_date},
+                                        #{fund_product_goal_cost},
+                                        0,
+                                        #{fund_product_title},
+                                        #{fund_product_content},
+                                        0,
+                                        0,
+                                        'aaa',
+                                        sysdate,
+                                        sysdate,
+                                        #{fund_product_estimate_date}
+                                    )
+    </insert>
+
+    <insert id="insertReward">
+        INSERT INTO TBL_FUND_REWARD(
+                                    FUND_REWARD_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    CREATED_AT,
+                                    UPDATED_AT,
+                                    FUND_REWARD_TITLE,
+                                    FUND_REWARD_CONTENT,
+                                    FUND_REWARD_COUNT,
+                                    FUND_REWARD_COST
+                                    )
+                                    VALUES
+                                    (
+                                     seq_fund_reward.nextval,
+                                     #{fund_product_seq},
+                                     sysdate,
+                                     sysdate,
+                                     #{fund_reward_title},
+                                     #{fund_reward_content},
+                                     #{fund_reward_count},
+                                     #{fund_reward_cost}
+                                    )
+    </insert>
+
+    <select id="getUserFund" resultType="org.team2.domain.FundVO">
+        select *
+        from tbl_fund_product
+        where tbl_fund_product.user_seq=#{user_seq}
+    </select>
+
+    <select id="getAllFund" resultType="org.team2.domain.FundVO">
+        select *
+        from tbl_fund_product
+    </select>
+
+    <update id="updateFundStatus">
+        update tbl_fund_product
+        set FUND_PRODUCT_STATUS=1
+        where tbl_fund_product.FUND_PRODUCT_SEQ=#{fund_product_seq}
+    </update>
+
+    <delete id="deleteUserFund" >
+        delete from tbl_fund_product where fund_product_seq=#{fund_product_seq}
+    </delete>
+    <select id="readFundingProduct" resultType="map">
+        SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
+               FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
+               FP.FUND_PRODUCT_MAIN_IMG,FP.FUND_PRODUCT_END_DATE,
+               FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME
+        FROM TBL_FUND_PRODUCT FP
+                 INNER JOIN TBL_USER TU
+                            ON FP.USER_SEQ = TU.USER_SEQ
+    </select>
+
+    <select id="readFundigProductDetail" resultType="map">
+        SELECT *
+        FROM TBL_FUND_PRODUCT FP
+                 INNER JOIN TBL_FUND_REWARD FR
+                            ON FP.FUND_PRODUCT_SEQ = FR.FUND_PRODUCT_SEQ
+                            WHERE FP.FUND_PRODUCT_SEQ = #{fund_product_seq}
+    </select>
+
+    <select id="fundingProcess" statementType="CALLABLE">
+        {
+            call PROC_FUNDING_PROCESS(
+                #{rewardVO.fund_product_seq},
+                #{rewardVO.fund_reward_seq},
+                #{fundParticipantsVO.user_seq},
+                #{rewardVO.fund_reward_count},
+                #{rewardVO.fund_reward_cost})
+        }
+    </select>
+
+    <insert id="insertReply">
+        INSERT INTO TBL_FUND_REPLY(
+                                    FUND_REPLY_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_REPLY_CONTENT
+                                   )
+                                   VALUES
+                                   (
+                                    SEQ_FUND_REPLY.NEXTVAL,
+                                    #{fund_product_seq},
+                                    #{user_seq},
+                                    #{fund_reply_content}
+                                   )
+    </insert>
+
+    <select id="selectReply" resultType="map">
+        SELECT
+            fund_product_seq,
+            user_name,
+            fund_reply_content,
+            fund_reply_seq,
+            a.user_seq
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    tbl_fund_reply
+                WHERE
+                    fund_product_seq = #{fund_product_seq}
+            )         a,
+            tbl_user b
+        WHERE
+            a.user_seq = b.user_seq
+    </select>
+
+    <select id="best1FundProduct" resultType="org.team2.domain.FundVO">
+        select *
+        from (
+                 select *
+                 from tbl_fund_product
+                 order by (fund_product_pr_cost/fund_product_goal_cost)*100 desc
+             )
+        where rownum=1
+    </select>
+
+    <select id="deadlineProduct" resultType="org.team2.domain.FundVO">
+        select *
+        from (
+                 select *
+                 from tbl_fund_product
+                 where fund_product_end_date > sysdate
+                 order by fund_product_end_date
+             )
+        where rownum=1
+    </select>
+
+    <delete id="deleteReply">
+        delete from tbl_fund_reply where fund_reply_seq = #{delete_seq}
+    </delete>
+
+    <insert id="insertNotice">
+        INSERT INTO TBL_FUND_NOTICE(
+                                    FUND_NOTICE_SEQ,
+                                    FUND_PRODUCT_SEQ,
+                                    USER_SEQ,
+                                    FUND_NOTICE_CONTENT
+                                    )
+                                    VALUES
+                                    (
+                                    seq_fund_notice.nextval,
+                                     #{fund_product_seq},
+                                     #{user_seq},
+                                     #{fund_notice_content}
+                                    )
+    </insert>
+    
+    <select id="selectInfo" resultType="map">
+        SELECT
+            fund_product_seq,
+            user_name,
+            fund_notice_content,
+            fund_notice_seq,
+            a.user_seq
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    tbl_fund_notice
+                WHERE
+                    fund_product_seq = #{fund_product_seq}
+            )         a,
+            tbl_user b
+        WHERE
+            a.user_seq = b.user_seq
+    </select>
+
+    <delete id="deleteInfo">
+        delete from tbl_fund_notice where fund_notice_seq = #{delete_seq}
+    </delete>
+</mapper>

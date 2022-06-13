@@ -17,10 +17,7 @@ public interface MypageMapper {
 
     void couponList(Map<String,Object> map) throws Exception;
 
-    List<Map<String, Object>> pointList(@Param("no") String no,
-                                        @Param("strtDt") String strtDt,
-                                        @Param("endDt")  String endDt,
-                                        @Param("searchType") String searchType) throws Exception;
+    void pointList(Map<String,Object> map) throws Exception;
 
     List<Map<String, Object>> cancelperiodOrders(@Param("no") String no,
                                                  @Param("ordStrtDt") String ordStrtDt,

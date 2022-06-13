@@ -68,4 +68,24 @@ public class OrderServiceImpl implements OrderService {
     public List<Map<String, Object>> justanOrderSelect(Long order_seq) throws Exception {
         return orderMapper.justanOrderSelect(order_seq);
     }
+
+    @Override
+    public void pointUse(PointVO pointVO) throws Exception {
+        orderMapper.pointUse(pointVO);
+    }
+
+    @Override
+    public void pointSave(PointVO pointVO) throws Exception {
+        orderMapper.pointSave(pointVO);
+    }
+
+    @Override
+    public void depositUse(DepositVO depositVO) throws Exception {
+        orderMapper.depositUse(depositVO);
+    }
+
+    @Override
+    public void orderCancel(long order_seq, long no) throws Exception {
+        orderMapper.orderCancel(order_seq, no);
+    }
 }

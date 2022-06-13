@@ -3,38 +3,25 @@ package org.team2.controller.mypage;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.team2.domain.AddressVO;
 import org.team2.domain.DepositVO;
-import org.team2.domain.CustomUser;
 import org.team2.domain.UserVO;
 import org.team2.service.CouponService;
-import org.team2.service.ExhibitService;
 import org.team2.service.MypageService;
+import org.team2.service.OrderService;
 import org.team2.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -54,9 +41,12 @@ public class MypageController {
     @Setter(onMethod_ = @Autowired)
     private CouponService couponService;
 
+    @Setter(onMethod_ = @Autowired)
+    private OrderService orderService;
+
     @RequestMapping("/mypage")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView mypage(Principal principal) throws Exception {
+    public ModelAndView mypage(Principal principal, Authentication authentication ) throws Exception {
 
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
@@ -64,10 +54,12 @@ public class MypageController {
 
         long no = Long.parseLong(principal.getName());
 
+        UserVO userVO = userService.readPoint(Long.valueOf(principal.getName()));
         try {
             Map map = mypageService.recentOrders(no);
             int couponCount=couponService.couponCount(Long.valueOf(principal.getName()));
 
+            mav.addObject("userVO", userVO);
             mav.addObject("couponCount", couponCount);
             mav.addObject("list", map.get("resultList"));
             mav.addObject("className", "wrap mp-main");
@@ -100,7 +92,7 @@ public class MypageController {
 
     @GetMapping("mypageOrderDetail/{odno}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView orderDetail(@PathVariable  long odno, Principal principal) throws Exception {
+    public ModelAndView orderDetail(@PathVariable long odno, Principal principal) throws Exception {
         log.info("detail test");
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
@@ -253,11 +245,15 @@ public class MypageController {
         String endDt = req.getParameter("endDt");
         String searchType =  req.getParameter("searchType");
         ModelAndView mav = new ModelAndView();
+        long no = Long.parseLong(principal.getName());
 
-        List<Map<String,Object>> list = mypageService.pointList(principal.getName(), strtDt, endDt, searchType);
-        log.info(list);
+        UserVO userVO = userService.readPoint(no);
+        Map map= mypageService.pointList(no, strtDt, endDt, searchType);
+
+        mav.addObject("userVO", userVO);
         mav.addObject("className", "wrap mp-point");
-        mav.addObject("list", list);
+        mav.addObject("prepoint", map.get("prepoint"));
+        mav.addObject("list", map.get("resultList"));
         mav.addObject("searchType", searchType);
         mav.addObject("cssFileList", styleFileList);
 
@@ -411,10 +407,12 @@ public class MypageController {
         String endDt = req.getParameter("endDt");
         String searchType =  req.getParameter("searchType");
 
+        UserVO userVO = userService.readPoint(Long.valueOf(principal.getName()));
         ModelAndView mav = new ModelAndView();
 
         List<DepositVO> depositVO  = mypageService.depositList(principal.getName(), strtDt, endDt, searchType);
         log.info(depositVO);
+        mav.addObject("userVO", userVO);
         mav.addObject("depositVO", depositVO);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("searchType", searchType);
@@ -424,14 +422,21 @@ public class MypageController {
     }
 
     // 주문 취소 페이지
-    @RequestMapping("mypageOrderCancel")
+    @GetMapping("mypageOrderCancel")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView cancel() {
+    public ModelAndView cancel(@RequestParam("order_seq") long order_seq, Principal principal) throws Exception {
         log.info("ordercancel test");
+        log.info(order_seq);
 
         ModelAndView mav = new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
+
+        Map map = mypageService.detailOrders(Long.parseLong(principal.getName()), order_seq);
+        log.info(map.get("resultList"));
+        mav.addObject("list", map.get("resultList"));
+        mav.addObject("className", "wrap mp-order-cancel");
+
 
         mav.addObject("cssFileList", styleFileList);
         mav.setViewName("mypage.mypageOrderCancel");
@@ -588,5 +593,25 @@ public class MypageController {
 
         mav.setViewName("layerPup/openDeliveryAppendPup.empty");
         return mav;
+    }
+
+    @ResponseBody
+    @GetMapping("orderCancel")
+    public ResponseEntity<String> orderCancel(@RequestParam("order_seq") long order_seq, Principal principal) throws Exception {
+
+        ResponseEntity<String> entity = null;
+
+
+        long no = Long.parseLong(principal.getName());
+
+        try {
+            orderService.orderCancel(order_seq, no);
+            entity = new ResponseEntity<>("1", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
     }
 }

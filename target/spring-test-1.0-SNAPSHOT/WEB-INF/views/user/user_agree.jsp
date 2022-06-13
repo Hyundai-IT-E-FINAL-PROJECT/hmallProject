@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="btn_area btn_ac" style="margin-top: 30px">
-                    <a href="https://www.hmall.com/p/index.do" class="btn_typeB1">
+                    <a href="/" class="btn_typeB1">
                         <span>취소</span></a>
                     <button class="btn_typeB2" id="joinSubmit" onclick="next()" ><span>다음</span></button>
                 </div>

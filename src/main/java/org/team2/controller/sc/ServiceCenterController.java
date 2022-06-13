@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,6 +60,7 @@ public class ServiceCenterController {
     }
 
     @GetMapping("inquiryPage")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView inquiryPage() throws Exception {
         ModelAndView mav=new ModelAndView();
         List<String> styleFileList = new ArrayList<>();
@@ -77,6 +79,7 @@ public class ServiceCenterController {
     }
 
     @GetMapping("myInquiryPage")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView myInquiryPage(Principal principal) throws Exception {
         ModelAndView mav=new ModelAndView();
         List<String> styleFileList = new ArrayList<>();

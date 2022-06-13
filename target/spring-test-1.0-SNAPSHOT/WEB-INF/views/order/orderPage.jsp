@@ -890,6 +890,8 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
             var total_price=$("input[name='totalCost1']").val();
             var point1=Math.ceil(parseInt(total_price)*0.05);
             var point2=Math.ceil((parseInt(total_price)*0.05)-parseInt($("input[name='totalUserPoint']").val()));
+            var point3=parseInt($("input[name='totalUserPoint']").val());
+            console.log(point3);
 
             var csrfHeaderName = "${_csrf.headerName}";
             var csrfTokenValue = "${_csrf.token}";
@@ -922,8 +924,10 @@ $(".cuponInqTable2 tbody .freeDlvRow").each(function() {
                 "product_list":product_list,
                 coupon_seq:$("input[name='couponName']:checked").val(),
                 receiveName:$("input[name='receiveName']").val(),
-                order_method:$("input[name='payMethod']").val()
-
+                order_method:$("input[name='payMethod']").val(),
+                point_cost:point3,
+                deposit_cost:$("input[name='totalDepositPoint']").val(),
+                order_coupon_seq:$("input[name='couponName']:checked").val()
             };
 
             console.log(orderData);
