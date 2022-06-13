@@ -742,8 +742,6 @@
                             console.log('trk_title', title);
                             _trk_clickTrace('EVT', title);
                         }
-
-
                         /*
                          * 2020.12.04 icj 찜하기
                          */
