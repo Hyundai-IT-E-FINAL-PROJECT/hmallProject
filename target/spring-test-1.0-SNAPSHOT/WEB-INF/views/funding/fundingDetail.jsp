@@ -11,6 +11,7 @@ To change this template use File | Settings | File Templates.
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/slick.min.css?v=20220222_02">
 <link href="/resources/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.css" rel="stylesheet">
@@ -24,15 +25,12 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/datepickerCustom.css">
-<%--<script type="text/javascript">--%>
-<%--    (function (d, s, id){--%>
-<%--        var js, fjs =d.getElementsByTagName(s)[0];--%>
-<%--        if(d.getElementById(id)) return;--%>
-<%--        js=d.createElement(s); js.id=id;--%>
-<%--        js.src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=APPKEY";--%>
-<%--        fjs.parentNode.insertBefore(js,fjs);--%>
-<%--    }(document, 'script','facebook-jssdk'));--%>
-<%--</script>--%>
+<style>
+    .link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+    .link-icon.twitter { background-image: url(${contextPath}/resources/img/sns/icon-twitter.png); background-repeat: no-repeat; }
+    .link-icon.facebook { background-image: url(${contextPath}/resources/img/sns/icon-facebook.png); background-repeat: no-repeat; }
+    .link-icon.kakao { background-image: url(${contextPath}/resources/img/sns/icon-kakao.png); background-repeat: no-repeat; }
+</style>
 <main class="cmain main" role="main" id="mainContents">
     <div>
         <div>
@@ -95,25 +93,8 @@ To change this template use File | Settings | File Templates.
                                     <input type="hidden" value="${list[0].FUND_PRODUCT_END_DATE}" name="fund_end_date"/>
                                     <div class="mt5"><span class="reward-info-text">참여자</span> <span
                                             class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PARTICIPANTS}"/>명</span></div>
-                                    <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>
-<%--                                    <img class="iconDetail" id="facebookShare" src="/images/board/share/facebook.png">--%>
+<%--                                    <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>--%>
 
-<%--                                    <script type="text/javascript">--%>
-<%--                                        $("#facebookShare").on("click",function() {--%>
-<%--                                            FB.ui({--%>
-<%--                                                method: 'share_open_graph',--%>
-<%--                                                action_type: 'og.shares',--%>
-<%--                                                action_properties: JSON.stringify({--%>
-<%--                                                    object: {--%>
-<%--                                                        'og:url': 'http://localhost:8080/board/getBoard?boardNo=' + $("#boardNo").val(),--%>
-<%--                                                        'og:title': $("#boardTitle").text(),--%>
-<%--                                                        'og:description': $("#boardContent").text(),--%>
-<%--                                                        // 'og:image': (이미지주소),--%>
-<%--                                                    }--%>
-<%--                                                })--%>
-<%--                                            });--%>
-<%--                                        })--%>
-<%--                                    </script>--%>
 
                                     <div class="common-flex-between mt30 xs-mt40 reward-order0-1">
                                         <div class="reward-info-group">
@@ -144,6 +125,44 @@ To change this template use File | Settings | File Templates.
                                         펀딩을 마치면 <span class="crowdy-font-bold">결제 예약 상태</span>입니다. 종료일에 100% 이상이
                                         달성되었을 경우에만 결제예정일에 결제가 됩니다.
                                         <!----></div>
+
+                                <div id="share_sns" style="text-align: right; margin-top: 20px;">
+                                    <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
+                                    <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
+                                    <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
+                                </div>
+                                <script type="text/javascript">
+                                    function shareTwitter(SEQ) {
+                                        var sendText = "같이 참여해봐요!"; // 전달할 텍스트
+                                        var sendUrl = "http://34.64.63.2:8080/fund/detail/"+SEQ; // 전달할 URL
+                                        window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+                                    }
+
+                                    function shareFacebook(SEQ) {
+                                        var sendUrl = "http://34.64.63.2:8080/fund/detail/"+SEQ; // 전달할 URL
+                                        window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+                                    }
+
+                                    function shareKakao(SEQ) {
+                                        // 사용할 앱의 JavaScript 키 설정
+                                        Kakao.init('caf33407aea23e6cbd7ad732e602b5ad');
+
+                                        // 카카오링크 버튼 생성
+                                        Kakao.Link.createDefaultButton({
+                                            container: '#btnKakao', // 카카오공유버튼ID
+                                            objectType: 'feed',
+                                            content: {
+                                                title: 'title', // 보여질 제목
+                                                description: "같이 참여해봐요!", // 보여질 설명
+                                                imageUrl: "${contextPath}/resources/img/exhibitions/mainImg_4.jpeg", // 콘텐츠 URL
+                                                link: {
+                                                    mobileWebUrl: "http://34.64.63.2:8080/fund/detail/"+SEQ,
+                                                    webUrl: "http://34.64.63.2:8080/fund/detail/"+SEQ
+                                                }
+                                            }
+                                        });
+                                    }
+                                </script>
                                 </div>
                                 <div id="profileModal" tabindex="-1" role="dialog" class="modal fade">
                                     <div role="document" class="modal-dialog modal-sm">
