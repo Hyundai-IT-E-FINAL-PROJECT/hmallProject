@@ -99,33 +99,21 @@ To change this template use File | Settings | File Templates.
                                         <div class="reward-info-group">
                                             <div class="reward-info-nowStatus reward-icon-2"></div>
                                             <div class="reward-info-text2 mt5">결제 예정일</div>
-                                            <fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/>
-                                            <div class="reward-info-text3">22.06.13</div>
                                             <fmt:parseDate value="${list[0].FUND_PRODUCT_END_DATE}}" var="strPlanDate" pattern="yyyy-MM-dd"/>
                                             <fmt:parseNumber value="${strPlanDate.time + (60*60*24*1000)}" integerOnly="true" var="strDate"/>
                                             <jsp:useBean id="myDate" class="java.util.Date"/>
                                             <c:set target="${myDate}" property="time" value="${strDate}"/>
                                             <div class="reward-info-text3"><fmt:formatDate value="${myDate}" pattern="yyyy.MM.dd"/></div>
-                                            <div class="reward-info-nowStatus reward-icon-3"></div>
-                                            <div class="reward-info-text2 mt5">발송 예정일</div>
-                                            <div class="reward-info-text3"><fmt:formatDate value="${list[0].FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy.MM.dd"/></div>
+                                        </div>
+                                        <div class="reward-info-statusLine"></div>
+                                            <div class="reward-info-group">
+                                                <div class="reward-info-nowStatus reward-icon-3"></div>
+                                                <div class="reward-info-text2 mt5">발송 예정일</div>
+                                                <div class="reward-info-text3"><fmt:formatDate value="${list[0].FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy.MM.dd"/></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="detail_order_info mt25 xs-mt15 reward-order1-0"><a href="#">
-                                        <div class="detail_order_info_head">
-                                            <div class="mr8 m-auto">
-                                                <div class="imgava"><!----></div>
-                                            </div>
-                                            <div class="ivs-info-profile">
-                                                <div>
-                                                    <div class="ivs-info-pjName">주식회사 베지스푼</div>
-                                                    <div class="ivs-info-pjlink">진행자에게 문의하기</div>
-                                                </div>
-                                                <div class="mt10"><span
-                                                        class="ivs-info-arrow arrow-left ml10"></span></div>
-                                            </div>
-                                        </div>
-                                    </a></div>
+
                                     <div class="reward-info-desc mt15 xs-mt40 reward-order2-2">
                                         펀딩을 마치면 <span class="crowdy-font-bold">결제 예약 상태</span>입니다. 종료일에 100% 이상이
                                         달성되었을 경우에만 결제예정일에 결제가 됩니다.
