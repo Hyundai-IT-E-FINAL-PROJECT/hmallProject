@@ -24,7 +24,15 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
 <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/datepickerCustom.css">
-
+<%--<script type="text/javascript">--%>
+<%--    (function (d, s, id){--%>
+<%--        var js, fjs =d.getElementsByTagName(s)[0];--%>
+<%--        if(d.getElementById(id)) return;--%>
+<%--        js=d.createElement(s); js.id=id;--%>
+<%--        js.src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=APPKEY";--%>
+<%--        fjs.parentNode.insertBefore(js,fjs);--%>
+<%--    }(document, 'script','facebook-jssdk'));--%>
+<%--</script>--%>
 <main class="cmain main" role="main" id="mainContents">
     <div>
         <div>
@@ -88,6 +96,24 @@ To change this template use File | Settings | File Templates.
                                     <div class="mt5"><span class="reward-info-text">참여자</span> <span
                                             class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PARTICIPANTS}"/>명</span></div>
                                     <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>
+<%--                                    <img class="iconDetail" id="facebookShare" src="/images/board/share/facebook.png">--%>
+
+<%--                                    <script type="text/javascript">--%>
+<%--                                        $("#facebookShare").on("click",function() {--%>
+<%--                                            FB.ui({--%>
+<%--                                                method: 'share_open_graph',--%>
+<%--                                                action_type: 'og.shares',--%>
+<%--                                                action_properties: JSON.stringify({--%>
+<%--                                                    object: {--%>
+<%--                                                        'og:url': 'http://localhost:8080/board/getBoard?boardNo=' + $("#boardNo").val(),--%>
+<%--                                                        'og:title': $("#boardTitle").text(),--%>
+<%--                                                        'og:description': $("#boardContent").text(),--%>
+<%--                                                        // 'og:image': (이미지주소),--%>
+<%--                                                    }--%>
+<%--                                                })--%>
+<%--                                            });--%>
+<%--                                        })--%>
+<%--                                    </script>--%>
 
                                     <div class="common-flex-between mt30 xs-mt40 reward-order0-1">
                                         <div class="reward-info-group">

@@ -49,7 +49,7 @@
                                                                         class="img-responsive"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
-                                                                    <div style="display: flex; flex-direction: column; ">
+                                                                    <div style="display: flex; flex-direction: column; "  onclick="location.href='${contextPath}/fund/detail/${fundpj.fund_product_seq}';">
                                                                         <c:if test="${fundpj.fund_product_status eq 0}">
                                                                 <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
 
@@ -64,7 +64,7 @@
                                                                         </c:if>
 
                                                                         <!----> <!----> <!---->
-                                                                        <span style="height: 80px;">${fundpj.fund_product_title}</span>
+                                                                        <div onclick="location.href='${contextPath}/fund/detail/${fundpj.fund_product_seq}'" style="height: 80px;">${fundpj.fund_product_title}</div>
                                                                     </div>
                                                                     <div class="rewards-subject"><strong></strong></div>
                                                                     <c:if test="${fundpj.fund_product_status eq 1}">
@@ -147,7 +147,7 @@
                                                                         </c:if>
 
                                                                         <!----> <!----> <!---->
-                                                                        <span style="height: 80px;">${fundpj.fund_product_title}</span>
+                                                                        <div  onclick="location.href='${contextPath}/fund/detail/${fundpj.fund_product_seq}'" style="height: 80px;">${fundpj.fund_product_title}</div>
                                                                     </div>
                                                                     <div class="rewards-subject"><strong></strong></div>
                                                                     <c:if test="${fundpj.fund_product_status eq 1}">
@@ -230,7 +230,7 @@
                                                                     </c:if>
 
                                                                     <!----> <!----> <!---->
-                                                                    <span style="height: 80px;">${myFund.fund_product_title}</span>
+                                                                    <div onclick="location.href='${contextPath}/fund/detail/${myFund.fund_product_seq}'" style="height: 80px;">${myFund.fund_product_title}</div>
                                                                 </div>
                                                                 <div class="rewards-subject"><strong></strong></div>
                                                                 <c:if test="${myFund.fund_product_status eq 1}">
@@ -256,8 +256,8 @@
                                                                 <div class="progress"><!----></div>
                                                                 <div class="row row-mobile-n">
                                                                     <div class="col-xs-8">
-                                                                        <div class="invest-support">목표금액 <fmt:formatNumber value="${myFund.fund_product_goal_cost}"
-                                                                                                                           pattern="#,###"/></div>
+                                                                        <div class="invest-support">목표금액 </div>
+                                                                        <div><fmt:formatNumber value="${myFund.fund_product_goal_cost}" pattern="#,###"/></div>
                                                                     </div> <!----></div>
                                                             </a>
                                                                 <div class="mp-btn">
