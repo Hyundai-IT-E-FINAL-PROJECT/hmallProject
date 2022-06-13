@@ -12,7 +12,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <style>
     .hshop-fullbox .hshop-full .onair-box {
-        height: 538px;
+        height: 500px;
     }
 </style>
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
@@ -1087,12 +1087,12 @@
                                 <div class="onair-top">
                                     <div>
                                         <div style="display: flex; background-color: lightblue; color: white; cursor: pointer; width: 70px;
-                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;margin-top: 64px;">BEST1</div>
-                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>
+                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;">BEST1</div>
+<%--                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
-                                     style="height: 270px; width: 527px; margin-top: 45px">
+                                     style="height: 270px; width: 527px;">
                                 <div class="product-list">
                                     <div class="pdthumb">
                                         <!-- 동영상 다시보기 -->
@@ -1100,8 +1100,10 @@
                                             <div class="figcaption">
                                                 <a href="javascript:;"
                                                   >
-                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${best1Product.fund_product_content}
-                                                    </div>
+                                                    <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>
+<%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">--%>
+<%--                                                        ${best1Product.fund_product_title}--%>
+<%--                                                    </div>--%>
                                                 </a>
                                                 <script type="text/javascript">
 
@@ -1136,20 +1138,21 @@
                                 <div class="onair-top">
                                     <div>
                                         <div style="display: flex; background-color: lightcoral; color: white; cursor: pointer; width: 70px;
-                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;margin-top: 64px;">마감임박</div>
-                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>
+                                            justify-content: center; border-radius: 10px; height: 34px; align-items: center;">마감임박</div>
+<%--                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
-                                     style="height: 270px; width: 527px; margin-top: 45px">
+                                     style="height: 270px; width: 527px;">
                                 <div class="product-list">
                                     <div class="pdthumb">
 
                                         <figure>
                                             <div class="figcaption">
                                                 <a href="javascript:;">
-                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}
-                                                    </div>
+                                                    <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>
+<%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}--%>
+<%--                                                    </div>--%>
 
 
                                                 </a>

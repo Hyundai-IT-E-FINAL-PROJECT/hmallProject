@@ -98,6 +98,7 @@ To change this template use File | Settings | File Templates.
                                         <div class="reward-info-group">
                                             <div class="reward-info-nowStatus reward-icon-2"></div>
                                             <div class="reward-info-text2 mt5">결제 예정일</div>
+                                            <fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy.MM.dd"/>
                                             <div class="reward-info-text3">22.06.13</div>
                                         </div>
                                         <div class="reward-info-statusLine"></div>
@@ -172,7 +173,11 @@ To change this template use File | Settings | File Templates.
             </div>
             <div id="main_info" class="mt40 xs-mt20 mb100" style="display: block">
                 <div class="container mce-content-body"><!---->
-                    <div><p><img src="//image-se.ycrowdy.com/20220519/CROWDY_0_202205191732450179_KzNXDzEEuz.gif"
+                    <div>
+
+                        ${list[0].FUND_PRODUCT_CONTENT}
+
+                        <p><img src="//image-se.ycrowdy.com/20220519/CROWDY_0_202205191732450179_KzNXDzEEuz.gif"
                                  alt=""></p>
                         <p class="al_center"><img
                                 src="//image-se.ycrowdy.com/20220519/CROWDY_0_202205191400360549_fRalXx6nrC.png"

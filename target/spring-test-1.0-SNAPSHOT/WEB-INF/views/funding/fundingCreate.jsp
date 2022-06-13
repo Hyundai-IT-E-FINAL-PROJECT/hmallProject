@@ -432,18 +432,21 @@
                                                 <input type="file" id="uploadFile" name="uploadFile" multiple><br>
                                             </div>
 
-                                            <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">
-                                                <div class="text-left mb10">프로젝트 스토리</div>
+<%--                                            <div class="row row-mobile-n mb25"><label for="rewards_contents" class="col-xs-2 control-label">--%>
+<%--                                                <div class="text-left mb10">프로젝트 스토리</div>--%>
+
+                                                <div >
+                                                    <textarea id="project_story" class="summernote" name="editorData"></textarea>
+                                                </div>
+<%--                                                <button onclick="testEditor();" name="testEditor">확인용</button>--%>
                                             </label>
                                                 <div class="col-xs-8">
-                                                    <textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."
-                                                                                class="form-control"></textarea>
+<%--                                                    <textarea rows="20" id="project_story" maxlength="70" placeholder="프로젝트 스토리를 적어주세요."--%>
+<%--                                                                                class="form-control"></textarea>--%>
 
                                                 </div>
                                             </div>
-<%--                                            <form method="post">--%>
-<%--                                                <textarea id="summernote" name="content"></textarea>--%>
-<%--                                            </form>--%>
+
                                             </div><textarea id="editor0" readonlyflag="0" value="" aria-hidden="true" style="display: none;"></textarea>
                                         </div>
 
@@ -626,29 +629,43 @@
     }
 </script>
 <script type="text/javascript">
-    // $(document).ready(function() {
-    //     $('#summernote').summernote({
-    //         // toolbar: [
-    //         //     // [groupName, [list of button]]
-    //         //     ['fontname', ['fontname']],
-    //         //     ['fontsize', ['fontsize']],
-    //         //     ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-    //         //     ['color', ['forecolor','color']],
-    //         //     ['table', ['table']],
-    //         //     ['para', ['ul', 'ol', 'paragraph']],
-    //         //     ['height', ['height']],
-    //         //     ['insert',['picture','link','video']],
-    //         //     ['view', ['fullscreen', 'help']]
-    //         // ],
-    //         // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-    //         // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-    //         placeholder: 'content',
-    //         minHeight: 370,
-    //         maxHeight: null,
-    //         focus: true,
-    //         lang : 'ko-KR'
-    //     });
-    // })
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            placeholder: '프로젝트 스토리를 적어주세요!',
+            minHeight: 370,
+            maxHeight: null,
+            focus: true,
+            lang : 'ko-KR',
+            callbacks:{
+                onImageUpload: function (files, editor, welEditable){
+                    for(var i=files.length-1; i>=0; i--){
+                        sendFile(files[i], this);
+                    }
+                }
+            }
+        });
+    })
+
+    function sendFile(file, el){
+        var form_data=new FormData();
+        form_data.append('file',file);
+        $.ajax({
+            data:form_data,
+            type:'post',
+            url:'${contextPath}/fund/uploadImage',
+            cache:false,
+            contentType:false,
+            enctype:'multipart/form-data',
+            processData:false,
+            success:function(img_name){
+                $(el).summernote('editor.insertImage', img_name);
+            },
+            error:function(data){
+                alert('error: '+data);
+            }
+        });
+    }
+
     function stringToDate(_date,_format,_delimiter)
     {
         var formatLowerCase=_format.toLowerCase();
