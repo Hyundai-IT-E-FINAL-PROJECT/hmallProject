@@ -290,18 +290,7 @@ public class FundingController {
         }
         return entity;
     }
-
-//    @PostMapping("uploadImage")
-//    public void imageUpload(
-//            final MultipartHttpServletRequest multiRequest,MultipartFile file) throws Exception{
-//
-//
-//        final Map<String, MultipartFile> files =multiRequest.getFileMap();
-//        if(!files.isEmpty()){
-//
-//        }
-//
-//    }
+    
     @ResponseBody
     @RequestMapping("selectDate")
     public ResponseEntity<List<Map<String, Object>>> selectDate(@RequestParam("product_seq") int product_seq ) throws Exception{
