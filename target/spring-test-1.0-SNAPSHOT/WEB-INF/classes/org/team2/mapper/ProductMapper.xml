@@ -27,7 +27,7 @@
                        aa.coupon_ratio
                    END AS coupon_ratio
         FROM tbl_product p
-                 JOIN (SELECT c.coupon_ratio,
+                 LEFT JOIN (SELECT c.coupon_ratio,
                                    cp.product_seq
                             FROM tbl_coupon c
                                      RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
