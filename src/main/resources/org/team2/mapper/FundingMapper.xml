@@ -217,4 +217,11 @@
     <delete id="deleteInfo">
         delete from tbl_fund_notice where fund_notice_seq = #{delete_seq}
     </delete>
+
+    <select id="selectDate" resultType="map">
+        select fund_product_end_date, fund_product_estimate_date
+            from tbl_fund_product
+            where fund_product_seq = #{product_seq}
+    </select>
+
 </mapper>

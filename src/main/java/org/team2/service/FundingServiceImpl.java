@@ -100,4 +100,9 @@ public class FundingServiceImpl implements FundingService{
     public void deleteInfo(int delete_seq) throws Exception {
         fundingMapper.deleteInfo(delete_seq);
     }
+
+    @Override
+    public List<Map<String, Object>> selectDate(int product_seq) throws Exception {
+        return fundingMapper.selectDate(product_seq);
+    }
 }

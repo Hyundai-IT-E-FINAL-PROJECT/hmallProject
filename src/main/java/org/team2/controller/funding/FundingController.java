@@ -3,12 +3,15 @@ package org.team2.controller.funding;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
 import org.team2.domain.FundReplyVO;
@@ -16,6 +19,7 @@ import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
 import org.team2.service.FundingService;
 
+import javax.mail.Multipart;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -285,5 +289,15 @@ public class FundingController {
             entity = new ResponseEntity<String>("0", HttpStatus.OK);
         }
         return entity;
+    }
+    
+    @ResponseBody
+    @RequestMapping("selectDate")
+    public ResponseEntity<List<Map<String, Object>>> selectDate(@RequestParam("product_seq") int product_seq ) throws Exception{
+        log.info("날짜 가져오기 컨트롤러 도착 !");
+        log.info("상품 시퀀스 : "+product_seq);
+        List<Map<String,Object>> date_list = fundingService.selectDate(product_seq);
+        log.info(date_list.toString());
+        return ResponseEntity.ok().body(date_list);
     }
 }

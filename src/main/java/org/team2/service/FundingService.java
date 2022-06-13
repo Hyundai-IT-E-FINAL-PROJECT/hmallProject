@@ -38,4 +38,5 @@ public interface FundingService {
 
     void deleteInfo(int delete_seq) throws Exception;
 
+    List<Map<String, Object>> selectDate(int product_seq) throws Exception;
 }

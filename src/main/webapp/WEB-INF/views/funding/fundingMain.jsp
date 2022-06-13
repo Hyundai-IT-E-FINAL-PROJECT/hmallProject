@@ -98,7 +98,7 @@ To change this template use File | Settings | File Templates.
                                                                     <div class="card-reward-day">종료일자 <fmt:formatDate value="${fund.FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/>
                                                                     </div>
                                                                     <div class="card-reward-persent">
-                                                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${(fund.FUND_PRODUCT_PR_COST div fund.FUND_PRODUCT_GOAL_COST)* 100}"/>%</div>
+                                                                        <fmt:formatNumber type="number" maxFractionDigits="0" value="${fund.FUND_PRODUCT_PR_COST * 100 / fund.FUND_PRODUCT_GOAL_COST}"/>% &nbsp;</span>
                                                                 </div>
                                                             </figcaption>
                                                         </a></figure>
