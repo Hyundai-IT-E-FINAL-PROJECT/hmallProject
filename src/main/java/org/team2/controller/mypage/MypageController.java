@@ -122,7 +122,8 @@ public class MypageController {
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
 
-       if (authentication.getAuthorities().size() == 2) {
+        String auth = String.valueOf(authentication.getAuthorities());
+       if (authentication.getAuthorities().size() == 2 || auth.equals("[ROLE_ADMIN]")) {
            String ordStrtDt = req.getParameter("ordStrtDt");
            String ordEndDt = req.getParameter("ordEndDt");
            String seType =  req.getParameter("seType");
