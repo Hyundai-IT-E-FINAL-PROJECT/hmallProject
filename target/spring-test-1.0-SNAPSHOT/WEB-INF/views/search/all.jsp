@@ -139,7 +139,7 @@
                                     </a>
                                     <div class="alimlike" data-slitmcd="2141512848" data-bsitmcd="2141512848">
 
-                                        <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info" onclick="image_show(243)">
+                                        <a href="javascript:;" class="btn btn-like" data-modules-modal="target:#broadcast-channel-info" onclick="image_show(${productVO.PRODUCT_SEQ})">
                                             <i class="icon"></i><span class="hiding">찜</span></a>
                                     </div>
                                 </li>
@@ -196,7 +196,7 @@
                                                     <button class="slick-prev slick-arrow" aria-label="Previous"
                                                             type="button" style="">Previous
                                                     </button>
-                                                    <div class="slick-list">
+                                                    <div class="slick-list" style="height: 520px">
                                                         <div class="slick-track"
                                                              style="opacity: 1; width: 6240px; transform: translate(-520px, 0px);">
                                                         </div>
@@ -216,7 +216,7 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span
-                                            class="hiding">레이어 닫기</span></button>
+                                            class="hiding" style="display: none">레이어 닫기</span></button>
                                 </div>
                             </div>
                         </div>

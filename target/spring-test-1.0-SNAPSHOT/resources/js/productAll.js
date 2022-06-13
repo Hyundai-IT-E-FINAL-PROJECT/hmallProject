@@ -9,7 +9,6 @@ function searchAutoCate(obj, first_category, second_category) {
 }
 
 function searchSortProc(obj, first_category) {
-
     let search_text = $("#searchKeyword").val();
     let sort = $(obj).attr("sort");
     let second_category = $(".autoCate.ui-active").val()
@@ -49,6 +48,7 @@ function image_show(product_seq) {
         dataType: "json",
         crossDomain: true,
         success: function (data) {
+            console.log(data)
             $(".ui-title").text(data.product_name + " 상세보기")
         }
     })
@@ -60,6 +60,7 @@ function image_show(product_seq) {
         , dataType: "json"
         , crossDomain: true
         , success: function (data) {
+            console.log(data)
             if (data.length !== 0) {
                 for (const [index, element] of data.entries()) {
                     console.log(element)
@@ -74,7 +75,7 @@ function image_show(product_seq) {
                                          style="width: 100%; display: inline-block; vertical-align: top;">
                                         <a href="javascript:;"
                                            onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                           tabindex="-1"><img
+                                           tabindex="-1"><img style="margin-top: 95%"
                                                 src="/resources/img/${element.IMAGE_NAME}.jpg"
                                                 alt="/resources/img/${element.IMAGE_NAME}.jpg"
                                                 onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
@@ -107,7 +108,7 @@ function image_show(product_seq) {
                                          style="width: 100%; display: inline-block; vertical-align: top;">
                                         <a href="javascript:;"
                                            onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                           tabindex="-1"><img
+                                           tabindex="-1"><img style="margin-top: 95%"
                                                 src="/resources/img/${element.IMAGE_NAME}.jpg"
                                                 alt="/resources/img/${element.IMAGE_NAME}.jpg"
                                                 onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
