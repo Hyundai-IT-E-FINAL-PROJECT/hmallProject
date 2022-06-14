@@ -67,11 +67,15 @@ public class FundingController {
         //내 펀딩 프로젝트 가져오기
         List<FundVO> userFundProject=fundingService.getUserFund(Long.valueOf(principal.getName()));
         List<FundVO> adminAllProjdct=fundingService.getAllFund();
+        //내가 참여한 펀딩 불러오기
+        List<Map<String, Object>> participateFund=fundingService.participatedFund(Long.valueOf(principal.getName()));
+        log.info(participateFund);
 
         log.info("user's :"+userFundProject);
         log.info("admin's :"+adminAllProjdct);
         mav.addObject("userFundProject",userFundProject);
         mav.addObject("adminAllProjdct",adminAllProjdct);
+        mav.addObject("participateFund",participateFund);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className", "wrap display-3depth");
         return mav;

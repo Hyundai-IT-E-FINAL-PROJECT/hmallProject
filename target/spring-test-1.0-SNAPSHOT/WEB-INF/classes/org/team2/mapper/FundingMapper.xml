@@ -227,4 +227,11 @@
             where fund_product_seq = #{product_seq}
     </select>
 
+    <select id="participatedFund" resultType="map">
+        select pa.fund_product_seq,pr.fund_product_title, sum(pa.fund_reward_cost) "PA_COST"
+        from tbl_fund_participants pa, tbl_fund_product pr
+        where pa.user_seq=#{user_seq} and pa.fund_product_seq=pr.fund_product_seq
+        group by pa.fund_product_seq, pr.fund_product_title
+    </select>
+
 </mapper>
