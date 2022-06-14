@@ -21,6 +21,7 @@ public class CategoryController {
 
     @Setter(onMethod_ = @Autowired)
     private CategoryService categoryService;
+
     @CrossOrigin
     @GetMapping(value = "/")
     public ResponseEntity<List<CategoryVO>> getAll(){
