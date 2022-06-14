@@ -46,6 +46,13 @@
             <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+
+        <multipart-config>
+            <location>/Users/kimbyeounghoon/Desktop/upload/temp</location>
+            <max-file-size>20971520</max-file-size>
+            <max-request-size>41943040</max-request-size>
+            <file-size-threshold>20971520</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <servlet-mapping>
@@ -57,5 +64,6 @@
         <error-code>404</error-code>
         <location>/error404</location>
     </error-page>
+
 
 </web-app>

@@ -105,4 +105,9 @@ public class FundingServiceImpl implements FundingService{
     public List<Map<String, Object>> selectDate(int product_seq) throws Exception {
         return fundingMapper.selectDate(product_seq);
     }
+
+    @Override
+    public void insertFile(AttachFileVO attachFileVO) throws Exception {
+        fundingMapper.insertFile(attachFileVO);
+    }
 }
