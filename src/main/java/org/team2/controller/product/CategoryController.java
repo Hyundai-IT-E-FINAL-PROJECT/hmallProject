@@ -27,6 +27,7 @@ public class CategoryController {
 
         HttpHeaders resHeader = new HttpHeaders();
         resHeader.add("Content-Type", "application/json; charset=UTF-8");
+        resHeader.add("Access-Control-Allow-Origin", "*");
 
         return new ResponseEntity<>(categoryVOS, resHeader, HttpStatus.OK);
     }
