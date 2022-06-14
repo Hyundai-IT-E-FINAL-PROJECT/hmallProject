@@ -5328,6 +5328,9 @@ $(function setCategory() {
         type: "get"
         , url: "http://localhost:8080/category/"
         , dataType: "json"
+        , beforeSend: function (xhr) {
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "http://34.64.63.2:8080/");
+        }
         , success: function (data, textStatus, jqXHR) {
             console.log(data)
             $("#categoryArea").append(
