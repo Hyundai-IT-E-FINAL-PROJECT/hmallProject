@@ -5391,7 +5391,7 @@ $(function setCategory() {
 
 $(function fn_searchAdKeywordDefault() {
         $.ajax({
-            url: "http://localhost:8080/api/product/main"
+            url: "/api/product/main"
             , type: "get"
             , dataType: "json"
             , async: false
