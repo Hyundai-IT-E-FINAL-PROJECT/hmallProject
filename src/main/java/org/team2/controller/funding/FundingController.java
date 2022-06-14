@@ -67,6 +67,7 @@ public class FundingController {
         styleFileList.add("search");
         styleFileList.add("display");
         styleFileList.add("prd-list");
+        styleFileList.add("product");
         List<Map<Integer,Object>> list = fundingService.readFundingProduct(fundVO);
         log.info(list.toString());
 //        펀딩 리스트 불러오기

@@ -46,7 +46,7 @@
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
                                                                         src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
-                                                                        class="img-responsive"> <!----> <!----></div>
+                                                                        class="img-responsive " style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                     <div style="display: flex; flex-direction: column; "  onclick="location.href='${contextPath}/fund/detail/${fundpj.fund_product_seq}';">
@@ -129,7 +129,7 @@
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
                                                                         src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
-                                                                        class="img-responsive"> <!----> <!----></div>
+                                                                        class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                     <div style="display: flex; flex-direction: column; ">
@@ -213,7 +213,7 @@
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
                                                                     src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${myFund.fund_product_main_img}"
-                                                                    class="img-responsive"> <!----> <!----></div>
+                                                                    class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                 <div style="display: flex; flex-direction: column; ">
@@ -289,7 +289,7 @@
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
                                                                     src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${paFund.FUND_PRODUCT_MAIN_IMG}"
-                                                                    class="img-responsive"> <!----> <!----></div>
+                                                                    class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                 <div style="display: flex; flex-direction: column; ">
