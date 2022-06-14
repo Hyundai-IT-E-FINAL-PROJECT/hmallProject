@@ -429,7 +429,7 @@
 
                                             <div class="mainImage_info" style="display: flex">
                                                 <span style="width: 136px; margin-bottom: 17px; font-weight: 800;">메인사진</span>
-                                                <input type="file" id="uploadFile" name="uploadFile" multiple> <br>
+                                                <input type="file" id="file" name="file" multiple> <br>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                             </div>
 
@@ -586,9 +586,6 @@
 
         //file 파일정보
         var fileName = document.getElementById('fileName').value;
-        var uploadPath = document.getElementById('uploadPath').value;
-        var uuid = document.getElementById('uuid').value;
-
 
         console.log(end_date);
         var fund_product_end_date = end_date;
@@ -611,9 +608,7 @@
         console.log(fund_reward_titleList, fund_reward_costList,fund_reward_contentList,fund_reward_countList);
 
         var rewardData = {
-            fileName: fileName,
-            uploadPath: uploadPath,
-            uuid: uuid,
+            fund_product_main_img: fileName,
             fund_product_end_date: fund_product_end_date,
             fund_product_title: fund_product_title,
             fund_product_content: fund_product_content,
@@ -641,82 +636,92 @@
     }
 </script>
 <script type="text/javascript">
+
+
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+
+
     $(document).ready(function() {
         $('.summernote').summernote({
             placeholder: '프로젝트 스토리를 적어주세요!',
             minHeight: 370,
             maxHeight: null,
             focus: true,
-            lang : 'ko-KR',
-            callbacks:{
-                onImageUpload: function (files, editor, welEditable){
-                    for(var i=files.length-1; i>=0; i--){
-                        sendFile(files[i], this);
-                    }
-                }
+            lang: 'ko-KR',
+            // callbacks: {
+            //     onImageUpload: function (files) {
+            //         sendFile(files[0], this);
+            //     }
+            // }
+        });
+    });
+
+    <%--function sendFile(file, editor){--%>
+    <%--    var form_data=new FormData();--%>
+    <%--    form_data.append('file',file);--%>
+    <%--    $.ajax({--%>
+    <%--        data:form_data,--%>
+    <%--        type:'post',--%>
+    <%--        url:'${contextPath}/fund/uploadImage',--%>
+    <%--        // cache:false,--%>
+    <%--        contentType:false,--%>
+    <%--        // enctype:'multipart/form-data',--%>
+    <%--        processData:false,--%>
+    <%--        success:function(data){--%>
+    <%--            $(editor).summernote('insertImage', data.url);--%>
+    <%--        },--%>
+    <%--        error:function(data){--%>
+    <%--            alert('error: '+data);--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--}--%>
+
+
+
+    $("input[type='file']").change(function (e){
+        var formData = new FormData();
+        var inputFile = $("input[name='file']");
+        var files = inputFile[0].files;
+
+        console.log(files);
+
+        for(var i = 0 ; i < files.length ; i++){
+            formData.append("file",files[i]);
+        }
+        console.log(formData);
+
+        $.ajax({
+            url: '${contextPath}/fund/uploadAjaxAction',
+            processData: false,
+            contentType: false,
+            data:formData,
+            type: 'post',
+            dataType: 'text',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
+            success: function (result){
+                console.log("result값 ");
+                console.log(result);
+                let fileName = result;
+
+                $(".mainImage_info").append(
+                    `
+                    <input type = 'hidden' id ='fileName' value =`+fileName+`>
+
+                    `
+                )
+
+            },
+            error: function (request,status,error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
-
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-        $("input[type='file']").change(function (e){
-            var formData = new FormData();
-            var inputFile = $("input[name='uploadFile']");
-            var files = inputFile[0].files;
-
-            for(var i = 0 ; i < files.length ; i++){
-                formData.append("uploadFile",files[i]);
-            }
-            console.log(formData);
-
-            $.ajax({
-                url: '${contextPath}/fund/uploadAjaxAction',
-                processData: false,
-                contentType: false,
-                data:formData,
-                type: 'post',
-                dataType: 'json',
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-                },
-                success: function (result){
-                    console.log(result);
-                    var fileName = result[0].fileName;
-                    var uploadPath = result[0].uploadPath;
-                    var uuid = result[0].uuid;
-
-                    $(".mainImage_info").append(
-                        `
-                        <input type = 'hidden' id ='fileName' value =`+fileName+`>
-                        <input type = 'hidden' id ='uploadPath' value =`+uploadPath+`>
-                        <input type = 'hidden' id ='uuid' value =`+uuid+`>
-                        `
-                    )
-
-                }
-            });
-        })
     })
 
-    function sendFile(file, el){
-        var form_data=new FormData();
-        form_data.append('file',file);
-        $.ajax({
-            data:form_data,
-            type:'post',
-            url:'${contextPath}/fund/uploadImage',
-            cache:false,
-            contentType:false,
-            enctype:'multipart/form-data',
-            processData:false,
-            success:function(img_name){
-                $(el).summernote('editor.insertImage', img_name);
-            },
-            error:function(data){
-                alert('error: '+data);
-            }
-        });
-    }
+
+
 
     function stringToDate(_date,_format,_delimiter)
     {

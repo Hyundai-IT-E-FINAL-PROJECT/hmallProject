@@ -45,7 +45,7 @@
                                                         <figure>
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
-                                                                        src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                        src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
                                                                         class="img-responsive"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -128,7 +128,7 @@
                                                         <figure>
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
-                                                                        src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                        src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
                                                                         class="img-responsive"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -202,6 +202,7 @@
                     <div class="gird-l2x">
                         <%@ include file="mypageSide.jsp" %>
                         <div class="contents">
+                            <h3 class="title22">내가 게시한 펀딩 프로젝트</h3>
                             <div class="mypage-order-wrap">
                                 <div class="card-reward-list">
                                     <ul>
@@ -211,7 +212,7 @@
                                                     <figure>
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
-                                                                    src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${myFund.fund_product_main_img}"
                                                                     class="img-responsive"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -266,6 +267,65 @@
                                                                                 class="btn btn-block btn-sm btn-default-outline"
                                                                                 onclick="deleteMyFund(${myFund.fund_product_seq});"
                                                                         >삭제하기</a>
+                                                                        </div>
+                                                                    </div> <!----> <!----> <!----> <!----> <!----></div>
+                                                            </figcaption>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3 class="title22">내가 참여한 펀딩 프로젝트</h3>
+                            <div class="mypage-order-wrap">
+                                <div class="card-reward-list">
+                                    <ul>
+                                        <c:forEach items="${participateFund}" var="paFund" >
+                                            <li class="pthumb">
+                                                <div class="col-sm-6 col-md-4" style="margin-top: 20px;">
+                                                    <figure>
+                                                        <div class="items over-box"><a href="javascript:void(0)">
+                                                            <div class="items_img"><img
+                                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${paFund.FUND_PRODUCT_MAIN_IMG}"
+                                                                    class="img-responsive"> <!----> <!----></div>
+                                                        </a>
+                                                            <figcaption class="rewards-caption"><a href="javascript:void(0)">
+                                                                <div style="display: flex; flex-direction: column; ">
+
+                                                                <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                                    color: green; border-color: green;">
+                                                                        진행중
+                                                                </span>
+
+
+                                                                    <!----> <!----> <!---->
+                                                                    <div onclick="location.href='${contextPath}/fund/detail/${paFund.FUND_PRODUCT_SEQ}'" style="height: 80px;">${paFund.FUND_PRODUCT_TITLE}</div>
+                                                                </div>
+                                                                <div class="rewards-subject"><strong></strong></div>
+                                                                    <div class="row row-mobile-n">
+                                                                        <div class="col-xs-9 col-sm-8"><span class="rewards-price">
+                                                            <span class="webfont2"></span></span>
+                                                                            <span class="rewards-percent">
+                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value=""/>&nbsp;
+                                                            </span>
+                                                                        </div> <!---->
+                                                                    </div>
+<%--                                                                </c:if>--%>
+                                                                <div class="progress"><!----></div>
+                                                                <div class="row row-mobile-n">
+                                                                    <div class="col-xs-8">
+                                                                        <div class="invest-support">투자한 펀딩 금액 </div>
+                                                                        <div><fmt:formatNumber value="${paFund.PA_COST}" pattern="#,###"/></div>
+                                                                    </div> <!----></div>
+                                                            </a>
+                                                                <div class="mp-btn">
+                                                                    <div class="row row-mobile-n">
+                                                                        <div class="col-xs-6"><a
+                                                                                class="btn btn-block btn-sm btn-default-outline"
+                                                                                onclick="deleteMyFund(${paFund.FUND_PRODUCT_SEQ});"
+                                                                        >펀딩 취소하기</a>
                                                                         </div>
                                                                     </div> <!----> <!----> <!----> <!----> <!----></div>
                                                             </figcaption>
