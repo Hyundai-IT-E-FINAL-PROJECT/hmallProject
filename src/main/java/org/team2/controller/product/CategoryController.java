@@ -16,13 +16,14 @@ import java.util.List;
 
 @Log4j
 @RequestMapping(value = "/category/*")
+@CrossOrigin(maxAge = 3600)
 @RestController
 public class CategoryController {
 
     @Setter(onMethod_ = @Autowired)
     private CategoryService categoryService;
 
-    @CrossOrigin
+    @CrossOrigin("http://localhost:8080")
     @GetMapping(value = "/")
     public ResponseEntity<List<CategoryVO>> getAll(){
         List<CategoryVO> categoryVOS = categoryService.getAll();
