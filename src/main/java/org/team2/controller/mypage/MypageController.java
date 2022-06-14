@@ -131,9 +131,12 @@ public class MypageController {
 
            Map mapOrder;
            try {
+               Map mapStatus = mypageService.adminOrderStatus();
                mapOrder = mypageService.adminPeriodOrders(ordStrtDt, ordEndDt, seType, itemNm);
 
+               log.info(mapStatus.get("resultList"));
                mav.addObject("list", mapOrder.get("resultList"));
+               mav.addObject("status", mapStatus.get("resultList"));
                mav.addObject("seType", seType);
                mav.addObject("className", "wrap mp-order");
                mav.addObject("cssFileList", styleFileList);

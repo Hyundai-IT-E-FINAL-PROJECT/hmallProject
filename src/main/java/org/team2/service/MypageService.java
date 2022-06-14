@@ -35,4 +35,6 @@ public interface MypageService {
     int deleteDelivery(long adno) throws Exception;
 
     void baseDelivery(long adno) throws Exception;
+
+    Map adminOrderStatus() throws Exception;
 }

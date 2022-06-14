@@ -130,5 +130,12 @@ public class MypageServiceImpl implements MypageService {
         mypageMapper.baseDelivery(adno);
     }
 
+    @Override
+    public Map adminOrderStatus() throws Exception {
+        Map map = new HashMap();
+        mypageMapper.adminOrderStatus(map);
+        return map;
+    }
+
 
 }

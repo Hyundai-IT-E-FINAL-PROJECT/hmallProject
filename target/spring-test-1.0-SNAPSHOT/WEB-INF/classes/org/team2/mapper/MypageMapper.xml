@@ -148,6 +148,14 @@
         }
     </select>
 
+    <select id="adminOrderStatus"  statementType="CALLABLE">
+        {
+            CALL PROC_MYPAGE_ADMIN_ORDERSTATUS(
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+            )
+        }
+    </select>
+
     <delete id="DropUser">
         delete from tbl_user where user_seq = #{no}
     </delete>

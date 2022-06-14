@@ -109,7 +109,7 @@
                                 <li>
                                     <a href="https://www.hmall.com/p/mpb/selectItemEvalAtclListPagingByCondtion.do">
                                         <strong class="num"><c:out value="${sendcp}"/></strong>
-                                        <span class="txt">작성 가능한 상품평</span>
+                                        <span class="txt">배송완료</span>
                                     </a>
                                 </li>
                             </ul>
