@@ -15,14 +15,13 @@ import org.team2.service.CategoryService;
 import java.util.List;
 
 @Log4j
-@CrossOrigin("*")
 @RequestMapping(value = "/category/*")
 @RestController
 public class CategoryController {
 
     @Setter(onMethod_ = @Autowired)
     private CategoryService categoryService;
-
+    @CrossOrigin
     @GetMapping(value = "/")
     public ResponseEntity<List<CategoryVO>> getAll(){
         List<CategoryVO> categoryVOS = categoryService.getAll();
