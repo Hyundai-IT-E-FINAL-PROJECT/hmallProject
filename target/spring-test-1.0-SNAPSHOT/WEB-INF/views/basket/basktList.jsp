@@ -62,7 +62,7 @@
                                         if (!selFlag) {
                                             alert("상품을 선택해주세요.");
                                             return;
-                                        } else if (!confirm("선택하신 상품들을 모두 삭제하시겠습니까?")) {
+                                        } else if (!confirm("장바구니에 담긴 모든 상품들을 삭제하시겠습니까?")) {
                                             return;
                                         }
                                         console.log($("input[name=basktInf]"))

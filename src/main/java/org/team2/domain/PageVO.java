@@ -11,6 +11,8 @@ public class PageVO {
   private Long total;
   private Criteria cri;
 
+  private Long realEnd;
+
   public PageVO(Criteria cri, Long total) {
 
     this.cri = cri;
@@ -18,6 +20,7 @@ public class PageVO {
     this.endPage = (long)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
     this.startPage = this.endPage - 9;
     Long realEnd = (long) (Math.ceil((total * 1.0) / cri.getAmount()));
+    this.realEnd = realEnd;
 
     if (realEnd <= this.endPage) {
       this.endPage = realEnd;
