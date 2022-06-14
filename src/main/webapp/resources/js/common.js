@@ -5329,7 +5329,7 @@ $(function setCategory() {
         , url: "http://localhost:8080/category/"
         , dataType: "json"
         , beforeSend: function (xhr) {
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "http://34.64.63.2:8080/");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
         }
         , success: function (data, textStatus, jqXHR) {
             console.log(data)
