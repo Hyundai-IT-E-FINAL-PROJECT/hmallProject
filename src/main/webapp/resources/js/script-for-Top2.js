@@ -262,7 +262,7 @@ function setCategory(url) {
     $.ajax({
         type: "get"
         , crossOrigin: true
-        , url: "http://localhost:8080/category/"
+        , url: "/category/"
         , dataType: "json"
         , success: function (data, textStatus, jqXHR) {
             console.log(data)

@@ -44,7 +44,7 @@ function image_show(product_seq) {
     $(".slider-thumbnaii ul").empty()
     $.ajax({
         type: "get",
-        url: `http://localhost:8080/api/product/${product_seq}`,
+        url: `/api/product/${product_seq}`,
         dataType: "json",
         crossDomain: true,
         success: function (data) {
@@ -56,7 +56,7 @@ function image_show(product_seq) {
     // 이미지 확대 모달
     $.ajax({
         type: "get"
-        , url: `http://localhost:8080/api/image/?product_seq=${product_seq}`
+        , url: `/api/image/?product_seq=${product_seq}`
         , dataType: "json"
         , crossDomain: true
         , success: function (data) {
