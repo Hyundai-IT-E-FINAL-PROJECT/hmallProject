@@ -1,14 +1,23 @@
 package org.team2.controller.funding;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
+import oracle.ucp.proxy.annotation.Post;
 import org.json.JSONArray;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -17,22 +26,37 @@ import org.team2.domain.*;
 import org.team2.domain.FundReplyVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
+import org.team2.service.AwsS3Biz;
 import org.team2.service.FundingService;
 
 import javax.mail.Multipart;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @Log4j
+@NoArgsConstructor
 @AllArgsConstructor
 @RequestMapping("/fund")
 public class FundingController {
 
     @Setter(onMethod_ = @Autowired)
     private FundingService fundingService;
+
+    @Setter(onMethod_ = @Autowired)
+    private AwsS3Biz s3Service;
+
+    @Value("${aws.accesskey}")
+    private String accessKey;
+
+    private static final Logger logger = LoggerFactory.getLogger(FundingController.class);
+
 
     @GetMapping( "main")
     public ModelAndView openOrderCompletePage(@ModelAttribute FundVO fundVO) throws Exception{
@@ -67,11 +91,15 @@ public class FundingController {
         //내 펀딩 프로젝트 가져오기
         List<FundVO> userFundProject=fundingService.getUserFund(Long.valueOf(principal.getName()));
         List<FundVO> adminAllProjdct=fundingService.getAllFund();
+        //내가 참여한 펀딩 불러오기
+        List<Map<String, Object>> participateFund=fundingService.participatedFund(Long.valueOf(principal.getName()));
+        log.info(participateFund);
 
         log.info("user's :"+userFundProject);
         log.info("admin's :"+adminAllProjdct);
         mav.addObject("userFundProject",userFundProject);
         mav.addObject("adminAllProjdct",adminAllProjdct);
+        mav.addObject("participateFund",participateFund);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className", "wrap display-3depth");
         return mav;
@@ -147,6 +175,8 @@ public class FundingController {
                            @RequestParam(value = "fund_reward_contentList[]") List<String> fund_reawrd_contentList,
                            @RequestParam(value = "fund_reward_countList[]") List<String> fund_reward_countList,
                            Principal principal) throws Exception{
+
+
         log.info("펀딩 상품 및 리워드 insert !!");
         log.info(principal.getName());
         log.info(rewardVO.toString());
@@ -154,9 +184,17 @@ public class FundingController {
         log.info(fund_reward_titleList.toString());
         log.info(fund_reward_countList.toString());
         fundVO.setNo(Integer.parseInt(principal.getName()));
+//
+//        log.info("----------파일 정보----------");
+////        log.info(attachFileVO.getFileName());
+////        log.info(attachFileVO.getUuid());
+////        log.info(attachFileVO.getUploadPath());
+//        log.info("----------파일 정보----------");
         try {
             fundingService.insertFunding(fundVO);
             rewardVO.setFund_product_seq(fundVO.getFund_product_seq());
+//            attachFileVO.setFund_product_seq(fundVO.getFund_product_seq());
+//            fundingService.insertFile(attachFileVO);
             log.info(fundVO.getFund_product_seq());
             log.info(rewardVO.getFund_product_seq());
             for(int a = 0 ; a < fund_reward_countList.size() ; a++){
@@ -300,4 +338,67 @@ public class FundingController {
         log.info(date_list.toString());
         return ResponseEntity.ok().body(date_list);
     }
+
+    private boolean checkImageType(File file) {
+        try {
+            String contentType = Files.probeContentType(file.toPath());
+            return contentType.startsWith("image");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    private String getFolder() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String str = sdf.format(date);
+
+        return str.replace("-",File.separator);
+    }
+
+    @GetMapping("display")
+    @ResponseBody
+    public ResponseEntity<byte[]> getFile(String fileName){
+        log.info("fileName: "+fileName);
+        File file = new File("C:\\upload"+fileName);
+        log.info("file: "+file);
+
+        ResponseEntity<byte[]> result = null;
+
+        try {
+            HttpHeaders header = new HttpHeaders();
+            header.add("Content-Type", Files.probeContentType(file.toPath()));
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String uploadAjaxPost(MultipartFile file, HttpServletRequest request) throws Exception{
+
+        String originalFileName = file.getOriginalFilename();
+
+        // ========= 파일명 중복 방지 처리 ========= //
+        String uuidFileName = getUuidFileName(originalFileName);
+
+
+        String res = s3Service.uploadObject(file, uuidFileName);
+        log.info(res);
+//        return "https://hmallbucket.s3.ap-northeast-2.amazonaws.com/+mainImage/"+uuidFileName;
+        return uuidFileName;
+    }
+
+
+    private static String getUuidFileName(String originalFileName) {
+        return UUID.randomUUID().toString() + "_" + originalFileName;
+    }
+
+
+
 }

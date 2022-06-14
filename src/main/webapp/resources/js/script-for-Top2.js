@@ -261,9 +261,9 @@ function setCategory(url) {
     console.log("바보")
     $.ajax({
         type: "get"
-        , url: "http://localhost:8080/category/"
+        , crossOrigin: true
+        , url: "/category/"
         , dataType: "json"
-        , crossDomain: true
         , success: function (data, textStatus, jqXHR) {
             console.log(data)
             $("#categoryArea").append(

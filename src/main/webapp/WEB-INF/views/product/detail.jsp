@@ -5438,7 +5438,7 @@
 
         $.ajax({
             type: "post"
-            , url: "http://localhost:8080/api/basket/?product_seq=" + product_seq + "&basket_count=" + ordQty
+            , url: "/api/basket/?product_seq=" + product_seq + "&basket_count=" + ordQty
             , crossDomain: true
             , beforeSend:function (xhr){
                 xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);

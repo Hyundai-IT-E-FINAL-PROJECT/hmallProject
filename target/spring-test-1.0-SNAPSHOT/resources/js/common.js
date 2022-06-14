@@ -5324,11 +5324,14 @@ $(function () {
 
 $(function setCategory() {
     console.log("카테고리 세팅")
+    console.log(location.href)
     $.ajax({
         type: "get"
-        , url: "http://localhost:8080/category/"
+        , url: "/category/"
         , dataType: "json"
-        , crossDomain: true
+        , beforeSend: function (xhr) {
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        }
         , success: function (data, textStatus, jqXHR) {
             console.log(data)
             $("#categoryArea").append(
@@ -5388,7 +5391,7 @@ $(function setCategory() {
 
 $(function fn_searchAdKeywordDefault() {
         $.ajax({
-            url: "http://localhost:8080/api/product/main"
+            url: "/api/product/main"
             , type: "get"
             , dataType: "json"
             , async: false
