@@ -30,7 +30,7 @@
         <sec:authorize access="isAuthenticated()">
             <sec:authentication property="principal" var="pinfo" />
             <c:choose>
-                <c:when test="${pinfo.userVO.authList.size() == 2}">
+                <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
                     <div class="gird-l2x">
                         <%@ include file="mypageAdminSide.jsp" %>
                         <div class="contents">

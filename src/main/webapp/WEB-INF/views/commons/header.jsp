@@ -92,7 +92,7 @@
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication property="principal" var="pinfo" />
                     <c:choose>
-                        <c:when test="${pinfo.userVO.authList.size() == 2}">
+                        <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
                             <li><a class="mypage" href="/mypageOrder"><span>주문관리</span></a></li>
                         </c:when>
                         <c:otherwise>
@@ -166,7 +166,7 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <c:choose>
-                            <c:when test="${pinfo.userVO.authList.size() == 2}">
+                            <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
                                 <li><a href="mypageOrder">관리자 ${pinfo.userVO.user_name}님</a></li>
                             </c:when>
                             <c:otherwise>
