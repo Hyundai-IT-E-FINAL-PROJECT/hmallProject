@@ -171,7 +171,7 @@
         from (
                  select *
                  from tbl_fund_product
-                 where fund_product_end_date > sysdate
+                 where fund_product_end_date > sysdate-1
                  AND FUND_PRODUCT_STATUS=1
                  order by fund_product_end_date
              )
