@@ -12,8 +12,6 @@
     <bean id="userLoginFailHandler" class="org.team2.security.UserLoginFailHandler"/>
 
     <security:http>
-        <security:intercept-url pattern="/" requires-channel="https" access="permitAll" />
-        <security:csrf />
         <security:intercept-url pattern="/user/all" access="permitAll"/>
         <security:intercept-url pattern="/user/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:form-login login-page="/customLogin"
