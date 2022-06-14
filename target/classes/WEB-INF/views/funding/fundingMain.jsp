@@ -74,16 +74,19 @@ To change this template use File | Settings | File Templates.
                                 <div class="card-reward-list">
                                         <ul>
                                             <c:forEach items="${list}" var="fund" varStatus="status">
+                                                <input id="fileName" type="hidden" value="${fund.FILENAME}">
+                                                <input id="uploadPath" type="hidden" value="${fund.UPLOADPATH}">
+                                                <input id="uuid" type="hidden" value="${fund.UUID}">
                                                 <li class="pthumb">
                                                     <div class="col-sm-4 col-xs-6">
                                                         <figure>
                                                             <a href="${contextPath}/fund/detail/${fund.FUND_PRODUCT_SEQ}" class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
-                                                            <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
-                                                                <div class="card-newStatus-icon">NEW</div>
-                                                                <img
-                                                                        src="${contextPath}/resources/img/fund/${fund.FUND_PRODUCT_MAIN_IMG}.jpeg"
-                                                                        alt="..." class="img-responsive">
-                                                            </div>
+                                                                <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
+                                                                    <div class="card-newStatus-icon">NEW</div>
+                                                                    <img class="img-responsive" src="${contextPath}/fund/display?fileName=${fund.UPLOADPATH}/${fund.UUID}_${fund.FILENAME}" alt="..."
+                                                                    style="width: 220px; margin: 0 auto; height: 220px;">
+<%--                                                                    <img src="${contextPath}/resources/img/2022/06/14/34d8707e-be99-42e8-883a-45b0962b283c_ping.jpeg">--%>
+                                                                </div>
                                                             <figcaption>
                                                                 <div class="card-reward-content">
                                                                     <div class="card-reward-name">${fund.USER_NAME}</div>
@@ -118,3 +121,26 @@ To change this template use File | Settings | File Templates.
     </div>
 </main>
 <script src="/resources/js/productAll.js"></script>
+<script>
+    window.onload=function(){
+        var fileName = document.getElementById('fileName').value;
+        var uploadPath = document.getElementById('uploadPath').value;
+        var uuid = document.getElementById('uuid').value;
+        console.log(fileName);
+        console.log(uploadPath);
+        console.log(uuid);
+        var fileCallPath = encodeURIComponent(fileNameuuid+"_"+fileName);
+        console.log(fileCallPath);
+        $(".card-reward-img *").remove();
+        $(".card-reward-img").append(
+            `
+            <div class="card-newStatus-icon">NEW</div>
+            <img class="img-responsive" src="/resources/img/2022/06/14/`+fileCallPath+`" alt="...">
+            `
+        );
+        // $(".card-reward-img .card-newStatus-icon").append(
+        //     `
+        //     `
+        // )
+    }
+</script>

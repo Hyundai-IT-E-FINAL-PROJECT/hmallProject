@@ -5434,6 +5434,7 @@
         let ordQty = Number(ordQtyObj.val());
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
+        console.log("${_csrf.headerName}");
 
         $.ajax({
             type: "post"
@@ -5445,8 +5446,8 @@
             , success: function () {
                 console.log("success")
                 window.location.href = 'http://localhost:8080/basket/basketList';
-            }, error: function () {
-                console.log()
+            }, error: function (err) {
+                console.log(err)
             }
         });
     }

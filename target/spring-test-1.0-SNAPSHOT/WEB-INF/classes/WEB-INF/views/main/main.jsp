@@ -1088,7 +1088,7 @@
                                     <div>
                                         <div style="display: flex; background-color: lightblue; color: white; cursor: pointer; width: 70px;
                                             justify-content: center; border-radius: 10px; height: 34px; align-items: center;">BEST1</div>
-<%--                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>--%>
+                                        <%--                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
@@ -1099,11 +1099,11 @@
                                         <figure >
                                             <div class="figcaption">
                                                 <a href="javascript:;"
-                                                  >
+                                                >
                                                     <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>
-<%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">--%>
-<%--                                                        ${best1Product.fund_product_title}--%>
-<%--                                                    </div>--%>
+                                                    <%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">--%>
+                                                    <%--                                                        ${best1Product.fund_product_title}--%>
+                                                    <%--                                                    </div>--%>
                                                 </a>
                                                 <script type="text/javascript">
 
@@ -1120,10 +1120,10 @@
                                                             <em class="rate" aria-label="할인율"  style="color:#002fa3;">
                                                                 <fmt:formatNumber type="number" maxFractionDigits="0" value="${(best1Product.fund_product_pr_cost/best1Product.fund_product_goal_cost)*100}"/>
                                                                 <i  style="color:#002fa3;">%</i></em>
-                                                                <jsp:useBean id="today" class="java.util.Date" />
-                                                                <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
-                                                                <fmt:formatDate var="itDate" value="${best1Product.fund_product_end_date}" pattern="yyyyMMdd" />
-                                                                <p style="margin-left:10px;">D-${itDate-now}</p>
+                                                            <jsp:useBean id="today" class="java.util.Date" />
+                                                            <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
+                                                            <fmt:formatDate var="itDate" value="${best1Product.fund_product_end_date}" pattern="yyyyMMdd" />
+                                                            <p style="margin-left:10px;">D-${itDate-now}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1139,7 +1139,7 @@
                                     <div>
                                         <div style="display: flex; background-color: lightcoral; color: white; cursor: pointer; width: 70px;
                                             justify-content: center; border-radius: 10px; height: 34px; align-items: center;">마감임박</div>
-<%--                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>--%>
+                                        <%--                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
                                 <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
@@ -1151,8 +1151,8 @@
                                             <div class="figcaption">
                                                 <a href="javascript:;">
                                                     <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>
-<%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}--%>
-<%--                                                    </div>--%>
+                                                    <%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}--%>
+                                                    <%--                                                    </div>--%>
 
 
                                                 </a>
@@ -1168,8 +1168,8 @@
                                                             <em class="rate" aria-label="할인율"  style="color:#002fa3;">
                                                                 <fmt:formatNumber type="number" maxFractionDigits="0" value="${(deadlineProduct.fund_product_pr_cost/deadlineProduct.fund_product_goal_cost)*100}"/>
                                                                 <i  style="color:#002fa3;">%</i></em>
-<%--                                                            <jsp:useBean id="today" class="java.util.Date" />--%>
-<%--                                                            <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>--%>
+                                                            <%--                                                            <jsp:useBean id="today" class="java.util.Date" />--%>
+                                                            <%--                                                            <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>--%>
                                                             <fmt:formatDate var="toDate" value="${deadlineProduct.fund_product_end_date}" pattern="yyyyMMdd" />
                                                             <p style="margin-left:10px;">D-${toDate-now}</p>
                                                         </div>

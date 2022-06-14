@@ -87,14 +87,19 @@
         delete from tbl_fund_product where fund_product_seq=#{fund_product_seq}
     </delete>
     <select id="readFundingProduct" resultType="map">
-        SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
-               FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
-               FP.FUND_PRODUCT_MAIN_IMG,FP.FUND_PRODUCT_END_DATE,
-               FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME
-        FROM TBL_FUND_PRODUCT FP
-                 INNER JOIN TBL_USER TU
-                            ON FP.USER_SEQ = TU.USER_SEQ
-        WHERE FP.FUND_PRODUCT_STATUS=1
+
+        SELECT *
+        FROM(
+                SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
+                       FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
+                       FP.FUND_PRODUCT_MAIN_IMG,FP.FUND_PRODUCT_END_DATE,
+                       FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME, FP.FUND_PRODUCT_STATUS
+                FROM TBL_FUND_PRODUCT FP
+                         INNER JOIN TBL_USER TU
+                                    ON FP.USER_SEQ = TU.USER_SEQ) NT
+                INNER JOIN TBL_FUND_MAINIMAGE FM
+                           ON NT.FUND_PRODUCT_SEQ = FM.FUND_PRODUCT_SEQ
+                WHERE NT.FUND_PRODUCT_STATUS = 1
     </select>
 
     <select id="readFundigProductDetail" resultType="map">
@@ -226,5 +231,23 @@
             from tbl_fund_product
             where fund_product_seq = #{product_seq}
     </select>
+
+    <insert id="insertFile">
+        INSERT INTO TBL_FUND_MAINIMAGE
+                (
+                 FUND_MAINIMAGE_SEQ,
+                 FUND_PRODUCT_SEQ,
+                 FILENAME,
+                 UPLOADPATH,
+                 UUID
+                )VALUES
+                     (
+                      FUND_MAINIMAGE_SEQ.NEXTVAL,
+                      #{fund_product_seq},
+                      #{fileName},
+                      #{uploadPath},
+                      #{uuid}
+                     )
+    </insert>
 
 </mapper>

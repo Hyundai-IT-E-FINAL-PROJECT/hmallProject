@@ -5326,11 +5326,15 @@ $(function setCategory() {
     console.log("카테고리 세팅")
     $.ajax({
         type: "get"
+        , crossOrigin: true
         , url: "http://localhost:8080/category/"
         , dataType: "json"
+<<<<<<< HEAD
         , beforeSend: function (xhr) {
             xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
         }
+=======
+>>>>>>> b9f1f1d43c8831f8f0f1d6b5591f64d4852d72bf
         , success: function (data, textStatus, jqXHR) {
             console.log(data)
             $("#categoryArea").append(
