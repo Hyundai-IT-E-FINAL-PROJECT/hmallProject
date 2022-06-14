@@ -5327,7 +5327,7 @@ $(function setCategory() {
     console.log(location.href)
     $.ajax({
         type: "get"
-        , url: "http://localhost:8080/category/"
+        , url: "/category/"
         , dataType: "json"
         , beforeSend: function (xhr) {
             xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
