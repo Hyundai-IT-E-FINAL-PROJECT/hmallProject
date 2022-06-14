@@ -5324,6 +5324,7 @@ $(function () {
 
 $(function setCategory() {
     console.log("카테고리 세팅")
+    console.log(location.href)
     $.ajax({
         type: "get"
         , url: "http://localhost:8080/category/"

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Log4j
 @RequestMapping(value = "/category/*")
-@CrossOrigin(maxAge = 3600)
 @RestController
 public class CategoryController {
 
@@ -28,6 +27,8 @@ public class CategoryController {
         HttpHeaders resHeader = new HttpHeaders();
         resHeader.add("Content-Type", "application/json; charset=UTF-8");
         resHeader.add("Access-Control-Allow-Origin", "*");
+        resHeader.add("Access-Control-Allow-Credentials", "true");
+        resHeader.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 
         return new ResponseEntity<>(categoryVOS, resHeader, HttpStatus.OK);
     }
