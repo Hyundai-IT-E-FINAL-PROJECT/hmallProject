@@ -44,6 +44,47 @@
                                             data-modules-modal="target:#cartAlarm;"><i
                                             class="icon cart-set"></i><span>알림설정</span></button>
                                 </div>
+                                <script>
+                                    function deleteBasktAll() {
+                                        console.log();
+
+                                        let csrfHeaderName = "${_csrf.headerName}";
+                                        let csrfTokenValue = "${_csrf.token}";
+
+                                        let selFlag = false;
+
+                                        $(".shipping-listwrap").find("input[name='basktInf']").each(function () {
+                                            if ($(this).parents(".pdwrap").attr("style").indexOf("none") < 0) {
+                                                selFlag = true;
+                                                return false;
+                                            }
+                                        });
+                                        if (!selFlag) {
+                                            alert("상품을 선택해주세요.");
+                                            return;
+                                        } else if (!confirm("선택하신 상품들을 모두 삭제하시겠습니까?")) {
+                                            return;
+                                        }
+                                        console.log($("input[name=basktInf]"))
+                                        $("input[name=basktInf]").each(function () {
+                                            $.ajax({
+                                                type: "delete"
+                                                ,url: "/api/basket/" + $(this).val().split("|")[2]
+                                                ,async: true
+                                                ,beforeSend:function (xhr){
+                                                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);}
+                                                ,success : function() {
+                                                    console.log("success")
+                                                },
+                                                error : function(){
+                                                    console.log("json error");
+                                                }
+                                            });
+                                        });
+                                        alert("상품이 정상적으로 삭제되었습니다.")
+                                        window.location.reload();
+                                    }
+                                </script>
                             </div>
                         </div>
 
@@ -71,11 +112,52 @@
                                         </div>
                                         <button type="button" class="btn btn-linelgray sm"
                                                 onclick="deleteBasktItem(this)"><span>선택삭제</span></button>
+                                        <script>
+                                            function deleteBasktItem(obj) {
+                                                console.log(obj);
+
+                                                let csrfHeaderName = "${_csrf.headerName}";
+                                                let csrfTokenValue = "${_csrf.token}";
+
+                                                var selFlag = false;
+                                                $(obj).parents(".shipping-listwrap").find("input[name='basktInf']:checked").each(function () {
+                                                    if ($(this).parents(".pdwrap").attr("style").indexOf("none") < 0) {
+                                                        selFlag = true;
+                                                        return false;
+                                                    }
+                                                });
+                                                if (!selFlag) {
+                                                    alert("상품을 선택해주세요.");
+                                                    return;
+                                                } else if (!confirm("선택하신 상품을 삭제하시겠습니까?")) {
+                                                    return;
+                                                }
+                                                $("input[name=basktInf]").each(function () {
+                                                    if ($(this).prop("checked")) {
+                                                        // 삭제 로직
+                                                        $.ajax({
+                                                            type: "delete"
+                                                            ,url: "/api/basket/" + $(this).val().split("|")[2]
+                                                            ,async: true
+                                                            ,beforeSend:function (xhr){
+                                                                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);}
+                                                            ,success : function() {
+                                                                console.log("success")
+                                                            },
+                                                            error : function(){
+                                                                console.log("json error");
+                                                            }
+                                                        });
+                                                        // redirect
+                                                    }
+                                                });
+                                                alert("상품이 정상적으로 삭제되었습니다.")
+                                                window.location.reload();
+                                            }
+                                        </script>
                                     </div>
                                     <div class="shipping-list" id="gen">
                                         <div class="pdwrap pdlist ml" style="display:none;" id="007818_000000_314">
-
-
                                             <div class="checkbox">
                                                 <label class="chklabel"><input type="checkbox" name="basktInf" value="${basketVO.productVO.discounted_cost}|${basketVO.basket_count}|${basketVO.basket_seq}" onclick="check(this, 'gen', '2122712699', '00002');"><i class="icon"></i><span>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</span></label>
                                             </div>
@@ -223,7 +305,7 @@
 
                         console.log(checkedProduct); //선택한 장바구니 시퀀스
                         if (checkedProduct.length === 0) {
-                            alert("상품을 선택해주세요!");
+                            택
                             return;
                         }
                         var submitForm=$('<form></form>');

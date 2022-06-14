@@ -26,8 +26,8 @@
 .detailbox.categp .catelist .dep3 a{padding-left:45px;}
 .detailbox.categp .catelist .dep4 a{padding-left:60px;}
 .detailbox.categp .catelist .selected > a{font-weight:700;}
-.detailbox.categp .catelist .on > a{color:#fff;font-weight:700;background-color:#ff5340;}
-.detailbox.categp .catelist .on > a:hover{background-color:#ff5340;}
+.detailbox.categp .catelist .on > a{color:#fff;font-weight:700;background-color:#002fa3;}
+.detailbox.categp .catelist .on > a:hover{background-color:#002fa3;}
 .detailbox.categp .catelist .cate-submenu{display:none;position:absolute;top:0;left:255px;z-index:10;min-width:250px;border:1px solid #ccc;border-radius:5px;background:#fff;overflow:hidden;}
 .detailbox.categp .catelist .ui-active .cate-submenu{display: flex;}
 .detailbox.categp .catelist .cate-submenu:before{content:'';display:block;position:absolute;top:0;left:-10px;width:10px;height:100%;}
@@ -73,7 +73,7 @@
 .detailbox.colorgp .checkbox .chklabel .icon::after{background-color:transparent;}
 .detailbox.colorgp .checkbox .chklabel .icon::before{top:17px;left:12px;}
 .detailbox.colorgp .checkbox .chklabel .icon::after{top:13px;left:7px;}
-.detailbox.colorgp .checkbox .chklabel input[type=checkbox]:checked + .icon{border:2px solid #ff5340;}
+.detailbox.colorgp .checkbox .chklabel input[type=checkbox]:checked + .icon{border:2px solid #002fa3;}
 .detailbox.colorgp .checkbox .chklabel input[type=checkbox]:checked + .icon::before,
 .detailbox.colorgp .checkbox .chklabel input[type=checkbox]:checked + .icon::after{background-color:#fff;}
 .detailbox.colorgp .checkbox .chklabel.yellow input[type=checkbox] + .icon{background-color:yellow;}
@@ -112,7 +112,7 @@
 .detail-filter-list > li:first-child > .filter-label    { margin: -15px 0 0; }
 .detail-filter-list input[class*=filter-]  { position: absolute; width: 0; height: 0; border: 0; background: transparent; outline: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 .detail-filter-list input[class*=filter-] + .filter-label   { position: relative; display: block; }
-.detail-filter-list input[class*=filter-] + .filter-label span   { font-size: 12px; font-weight: 700; color: #ff5340; padding-right: 40px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: block; }
+.detail-filter-list input[class*=filter-] + .filter-label span   { font-size: 12px; font-weight: 700; color: #002fa3; padding-right: 40px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: block; }
 .detail-filter-list input[class*=filter-] + .filter-label span em   { font-size: 16px; font-weight: 700; color: #333; margin-right: 2px; }
 .detail-filter-list .filter-title + .filter-label span::before,
 .detail-filter-list .filter-title + .filter-label span::after{content:'';display:block;position:absolute;top:50%;right:0;width:12px;height:1.5px;border-radius: 1px;background: #333;-webkit-transition: all .3s ease;transition: all .3s ease;}
@@ -235,14 +235,14 @@
 .results-title strong{color:inherit;font-size:inherit;line-height:inherit;font-weight:700;letter-spacing:inherit;}
 .results-title strong::before,
 .results-title strong::after{content:' " ';display:inline-block;position:relative;top:-4px;font-size:inherit;line-height:inherit;font-weight:400;letter-spacing:inherit;}
-.results-title em{margin-left:5px;color:#ff5340;font-size:24px;line-height:inherit;font-weight:inherit;letter-spacing:-0.96px;}
+.results-title em{margin-left:5px;color:#002fa3;font-size:24px;line-height:inherit;font-weight:inherit;letter-spacing:-0.96px;}
 /* 검색 결과가 없을 시 */
 .nodata{margin-bottom:0;text-align:center;}
 .nodata p{margin:20px 0 0;padding:0;color:#999;font-size:15px;line-height:22px;letter-spacing:-0.6px;}
 .nodata .results-title{margin:50px 0 20px;color:#333;font-size:25px;line-height:40px;letter-spacing:-1.12px;text-align:center;}
 .nodata .results-title strong::after{margin-right:5px;}
 .result-en{margin-bottom:30px;color:#666;font-size:14px;text-align:center;}
-.result-en span{color:#ff5340;}
+.result-en span{color:#002fa3;}
 .nodata .list-reset{width:250px;height:50px;line-height:48px;border:1px solid #ddd;border-radius:5px;color:#666;font-size:16px;font-weight:700;}
 .nodata .list-reset + p{margin-top:30px;}
 .nodata .list-reset .icon.reset{width:26px;height:26px;margin:-2px 4px 0 0;vertical-align:middle;background:url(//image.hmall.com/p/img/co/icon/ico-reset.png) no-repeat;background-size:26px;}
@@ -253,7 +253,7 @@
 .keyword-tag ul li{display:inline-block;margin:0 10px 10px 0;}
 .keyword-tag ul li a{display:inline-block;height:36px;padding:0 14px;border:1px solid #ddd;border-radius:20px;color:#333;font-size:15px;line-height:34px;letter-spacing:-0.6px;}
 .keyword-tag ul li a span{color:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit;}
-.keyword-tag ul li.active a{border-color:#ff5340;color:#ff5340;}
+.keyword-tag ul li.active a{border-color:#002fa3;color:#002fa3;}
 .keyword-tag .btn-toggle{width:36px;height:36px;min-width:auto;margin:0;padding:0;border:1px solid #ddd;border-radius:50%;background:#fff;}
 .keyword-tag .btn-toggle .arrow{position:relative;top:-1px;transform: rotate(45deg);-webkit-transform: rotate(45deg);}
 .keyword-tag.ui-active ul{height:auto;}
@@ -277,7 +277,7 @@
 /* 검색 광고 */
 .bn-area{position:relative;margin:30px 0 50px;overflow:hidden;}
 .bn-area .bn-title{margin-bottom:20px;color:#333;font-size:22px;font-weight:700;}
-.bn-area .bn-title strong{color:#ff5340;}
+.bn-area .bn-title strong{color:#002fa3;}
 .bn-area .pdlist-wrap.horizon ul li{margin:0;padding:20px;min-width:calc(50% - 10px);border-radius:5px;border:1px solid #eee;}
 .bn-area .pdlist-wrap.horizon ul li:nth-child(2n){margin-left:20px;}
 .bn-area .pdlist-wrap.horizon ul li .figcaption{margin:0 45px 0 0;}
@@ -508,7 +508,7 @@
 .tirefinder-area .tire-equip-step li::after{content:"";display:inline-block;position:absolute;bottom:-8px;left:18px;width:5px;height:5px;border:solid #ddd;border-width:0 1px 1px 0;transform: rotate(45deg);-webkit-transform: rotate(45deg);}
 .tirefinder-area .tire-equip-step li:last-child::after{display:none;}
 .tirefinder-area .tire-equip-step .icon{position:absolute;top:0;left:0;width:40px;height:40px;}
-.tirefinder-area .tire-equip-step em{margin-right:5px;color:#ff5340;font-size:15px;font-weight:700;letter-spacing:-0.6px;}
+.tirefinder-area .tire-equip-step em{margin-right:5px;color:#002fa3;font-size:15px;font-weight:700;letter-spacing:-0.6px;}
 .tirefinder-area .tire-equip-step strong{color:#333;font-size:15px;font-weight:700;letter-spacing:-0.6px;}
 .tirefinder-area .tire-equip-step p{width:100%;color:#999;font-size:12px;letter-spacing:-0.48px;}
 .tirefinder-area .tire-equip-step p:not(:first-child){margin-top:-6px;}

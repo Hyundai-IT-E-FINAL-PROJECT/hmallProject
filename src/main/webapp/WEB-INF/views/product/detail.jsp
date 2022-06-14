@@ -209,530 +209,11 @@
 
     <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
         <div class="container">
-            <!-- 로케이션 메뉴 시작 -->
-            <div class="location" data-modules-menus="">
-                <ul>
-                    <li data-menu="" class="home"><a href="https://www.hmall.com">홈</a></li>
-                    <li data-menu="">
-                        <a href="/p/dpa/searchSectItem.do?sectId=2731190" class="cate">
-                            농산
-                        </a>
-
-
-                        <div class="category-wrap" data-submenu="" style="left:55px">
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726024">세제/세정/탈취제</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726025">바디/헤어/구강</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726026">휴지/생리대/마스크</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726032">수납정리/소품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726027">수납/청소/생활잡화</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726028">건강관리/안마/실버</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726029">조리용기 / 도구</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726030">식기/접시/홈세트</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726031">보관용기</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2726033">와인/커피용품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731129">생활/미용가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731130">주방가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731131">계절가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731132">영상/음향 가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731133">카메라/렌즈/캠코더</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731134">노트북/PC/게임</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731135">스마트기기/OA</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731136">리퍼 가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731137">가방/지갑</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731138">신발</a>
-                                </li>
-                            </ul>
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731139">패션소품/ACC</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731140">명품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731141">거실가구</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731142">침실가구/드레스룸</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731143">주방가구/테이블</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731144">학생/서재가구</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731145">리모델링 시공/DIY</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731146">침구</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731147">커튼/카페트</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731148">인테리어소품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731159">스킨케어</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731160">헤어케어</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731161">바디케어</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731162">메이크업</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731163">향수</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731164">기기/소품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731165">스포츠 의류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731166">스포츠신발</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731167">스포츠패션잡화</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731168">골프용품</a>
-                                </li>
-                            </ul>
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731169">골프의류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731170">구기/라켓/격투</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731171">등산/ 아웃도어</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731172">캠핑</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731173">낚시</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731174">헬스/요가</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731175">수영/물놀이</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731176">스키/스노보드</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731177">자전거/인라인/퀵보드</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731178">자동차</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731183">원예/꽃배달</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731184">보석</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731185">반지</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731186">목걸이/귀걸이</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731187">팔찌/발찌</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731188">시계</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731189">기타 ACC</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731190">농산</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731191">축산</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731192">수산</a>
-                                </li>
-                            </ul>
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731193">간편식/반찬</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731194">면/캔/오일/소스</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731195">떡/베이커리/과자</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731196">유제품/유아식</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731197">생수/음료</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731198">커피/차</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731199">홍삼/전통건강식품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731200">비타민/영양제</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731201">유산균/콜라겐</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731203">여성의류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731204">남성의류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731205">캐주얼의류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731206">언더웨어</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731207">임신/출산</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731208">기저귀/물티슈</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731209">스킨케어/위생/소독</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731210">유아 침구/가구/매트</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731211">유모차/카시트/외출용품</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731212">유아 의류/잡화</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731213">완구</a>
-                                </li>
-                            </ul>
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731214">렌탈</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731215">보험/상조</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731216">여행/숙박</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731217">서비스/e쿠폰/상품권</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2732613">유아동 도서</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2743455">주방가전</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731128">도서/음반</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=216428">명품잡화</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2222295">반려동물(H펫샵)</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2379016">대형/생활가전</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-
-                    </li>
-                    <li data-menu="">
-                        <a href="/p/dpa/searchSectItem.do?sectId=2731643" class="cate">
-                            과일/건과/냉과
-                        </a>
-
-
-                        <div class="category-wrap" data-submenu="" style="left:55px">
-
-                            <ul class="category-list">
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731640">쌀/백미</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731641">잡곡/혼합곡</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731642">견과류</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731643">과일/건과/냉과</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="/p/dpa/searchSectItem.do?sectId=2731644">채소/버섯</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-
-                    </li>
-                </ul>
-            </div>
-            <script language="javascript">
-                $(".location li").each(function () {
-                    if (isEmpty($.trim($(this).html()))) {
-                        $(this).remove();
-                    }
-                });
-            </script>
-            <!--로케이션 메뉴 끝 -->
             <div class="contents">
                 <!-- 본문 컨텐츠 영역 시작 -->
                 <div class="product-detail-wrap">
                     <!-- pdr_wrap -->
-                    <div class="pdr_wrap">
+                    <div class="pdr_wrap" style="padding-top: 50px;">
                         <div class="product-info-wrap">
                             <!--.left-info-->
                             <!-- 좌측메뉴 -->
@@ -1018,8 +499,9 @@
                                             <div class="pdprice">
                                         <span class="rateprice" aria-label="할인율이 적용된 가격">
                                         <p class="discount" aria-label="할인가">
-                                            <em class="product-discount"><fmt:formatNumber value="${productVO.discounted_cost}"
-                                                                                           pattern="#,###"/></em><b>원</b>
+                                            <em class="product-discount"><fmt:formatNumber
+                                                    value="${productVO.discounted_cost}"
+                                                    pattern="#,###"/></em><b>원</b>
                                         </p>
                                     </span>
                                                 <div class="tooltip-box" id="tooltipDiscount">
@@ -1029,15 +511,17 @@
                                                     <dl class="cost-wrap">
                                                         <dt>판매가</dt>
                                                         <dd>
-                                                            <span class="enroll-price"><fmt:formatNumber value="${productVO.product_cost}"
-                                                                                                         pattern="#,###"/><em>원</em></span>
+                                                            <span class="enroll-price"><fmt:formatNumber
+                                                                    value="${productVO.product_cost}"
+                                                                    pattern="#,###"/><em>원</em></span>
                                                         </dd>
                                                     </dl>
                                                     <dl class="sumcost-wrap">
                                                         <dt>혜택가</dt>
                                                         <dd>
-                                                            <span class="sum-cost"><fmt:formatNumber value="${productVO.product_cost}"
-                                                                                                     pattern="#,###"/><em>원</em></span>
+                                                            <span class="sum-cost"><fmt:formatNumber
+                                                                    value="${productVO.product_cost}"
+                                                                    pattern="#,###"/><em>원</em></span>
                                                             <p class="saleprice-per">
                                                                 0
                                                                 <em>원 할인</em>
@@ -1221,8 +705,9 @@
 
 
                                             <a href="#" onclick="image_slide('상품상세','구매혜택 더보기','H.Point');"
-                                               data-modules-modal="target:#modalAccumBenefit;">적립금 ${Math.round(productVO.discounted_cost * 0.05)} 원<i
-                                                    class="icon icon-arrow"></i></a>
+                                               data-modules-modal="target:#modalAccumBenefit;">적립금 ${Math.round(productVO.discounted_cost * 0.05)}
+                                                원<i
+                                                        class="icon icon-arrow"></i></a>
 
 
                                         </dd>
@@ -1346,8 +831,8 @@
                                                 <div class="figcaption">
                                                     <div class="pdoption" aria-label="옵션/수량">
                                                             <span class="option">색상/속성 : <em>
-                                                                    ${productVO.product_info}
-                                                           </em>
+                                                                ${productVO.product_info}
+                                                            </em>
                                                            </span>
                                                         <span class="stock-num">남은수량 : <em>${productVO.product_count}</em></span>
                                                     </div>
@@ -1440,7 +925,8 @@
                                     <!-- 엄지펀딩의 경우 장바구니 비노출 시작-->
 
 
-                                    <button class="btn btn-linelgray large btn-cart" onclick="go_basket(${productVO.product_seq})">
+                                    <button class="btn btn-linelgray large btn-cart"
+                                            onclick="go_basket(${productVO.product_seq})">
                                         <a><span>장바구니</span></a></button>
 
 
@@ -1837,7 +1323,7 @@
                                         <li>
                                             <div class="tit-wrap">
                                                 <h3>기본 H.Point</h3>
-                                                <span class="point"><em>40</em>P</span>
+                                                <span class="point"><em>${Math.round(productVO.discounted_cost * 0.05)}</em>P</span>
                                             </div>
                                             <ul class="dotlist">
                                                 <li>구매 시 적립받을 수 있는 최대 혜택</li>
@@ -1858,25 +1344,13 @@
                                 <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span
                                         class="hiding">레이어 닫기</span></button>
                             </div>
-                            <!-- //.content -->
                         </div>
-                        <!-- //.ui-modal-dialog -->
                     </div>
-                    <!--//팝업 적립혜택-->
-                    <!-- @쿠폰 다운로드 ajax호출로 변경 -->
-
-                    <!--팝업 사은품안내-->
-
-
-                    <!--팝업 도착확률-->
                     <div class="ui-modal" id="modalDeliverPercent" tabindex="-1" role="dialog" aria-label="도착확률안내">
                         <div class="ui-modal-dialog deliverpercent" role="document">
                             <div class="content">
                                 <p class="ui-title">배송 확률 안내</p>
-                                <!-- //.content-head -->
                                 <div class="content-body">
-                                    <!-- <p class="ctypo15">배송비 : 무료</p>
-                                    <p class="ctypo15">2일 후 도착 확률 98% <span>(단, 가구/설치/주문제작 제외)</span></p> -->
                                     <p class="ctypo15">
                                         <strong>
 
@@ -2146,8 +1620,7 @@
                                     <div class="btngroup">
                                         <button class="btn btn-linegray" data-dismiss="modal"><span>쇼핑 계속하기</span>
                                         </button>
-                                        <button class="btn btn-default"
-                                                onclick="location.href='https://www.hmall.com/p/odb/basktList.do'">
+                                        <button class="btn btn-default">
                                             <span>장바구니 가기</span></button>
                                         <!-- 데이터 전송 후 클릭시 $(element).modal().hide() -->
                                     </div>
@@ -2524,33 +1997,13 @@
                             </div>
                             <!--//scrollspy-tab-->
                             <div class="pages page1" id="viewPage01">
-
-
-                                <!-- PC 상세가로배너(MD용) 신규_20200402 R021 -->
-
-                                <!--content-area // 상품구매안내-->
-
-
-                                <!-- 2019.01.29 storepick -->
-
-
-                                <!-- 엄지 펀딩 시작-->
-
-
                                 <div class="prod_buy_info">
                                     <div class="content-area noti-guide">
                                         <p class="noti-guide">상품구매 안내</p>
-
-
                                         <div class="cnt-txt">
-
-
                                             <p>
                                                 <br></p>
-
                                         </div>
-
-
                                     </div>
 
 
@@ -2590,117 +2043,6 @@
                                         <!-- 안전인증 태그 노출 -->
 
                                     </div>
-
-                                    <!-- 상품기술서사진노출-->
-                                    <div class="content-area">
-                                        <div class="product-banner-wrap vertical">
-                                            <div class="product-mainbanner slick-initialized slick-slider"
-                                                 data-modules-slick="dots:false; arrows:false; infinite:true; thumbnaiList:.slider-thumbnaii-ver;">
-                                                <div class="slick-list draggable">
-                                                    <div class="slick-track"
-                                                         style="opacity: 1; width: 3640px; transform: translate(-2600px, 0px);">
-                                                        <div class="slick-slide slick-cloned" data-slick-index="-1"
-                                                             aria-hidden="true" style="width: 520px;" tabindex="-1">
-                                                            <div>
-                                                                <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/image_example2.jpg"
-                                                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;"
-                                                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                       tabindex="-1"><img
-                                                                            src="https://image.hmall.com/static/2/8/85/39/2139858205_4.png?RS=520x520&amp;AR=0"
-                                                                            alt="2139858205_4.png"
-                                                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <c:forEach items="${imageVOList}" var="imageVO"
-                                                                   varStatus="status">
-                                                            <div class="slick-slide" data-slick-index="${status.index}"
-                                                                 aria-hidden="true"
-                                                                 style="width: 520px;" tabindex="-1">
-                                                                <div>
-                                                                    <div class="item" data-item=""
-                                                                         data-outputsrc="/resources/img/${imageVO.IMAGE_NAME}.jpg"
-                                                                         onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                         style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                        <a href="javascript:;"
-                                                                           onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                           tabindex="-1"><img
-                                                                                src="/resources/img/${imageVO.IMAGE_NAME}"
-                                                                                alt="2139858205_0.png"
-                                                                                onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </c:forEach>
-                                                        <div class="slick-slide slick-cloned" data-slick-index="5"
-                                                             aria-hidden="true" style="width: 520px;" tabindex="-1">
-                                                            <div>
-                                                                <div class="item" data-item=""
-                                                                     data-outputsrc="/resources/img/image_example1.jpg"
-                                                                     onerror="this.src='https://image.hmall.com/hmall/pd/no_image_600x600.jpg'"
-                                                                     style="width: 100%; display: inline-block; vertical-align: top;">
-                                                                    <a href="javascript:;"
-                                                                       onclick="goGaEvent('상품상세','상단_이미지확대','')"
-                                                                       tabindex="-1"><img
-                                                                            src="https://image.hmall.com/static/2/8/85/39/2139858205_0.png?RS=520x520&amp;AR=0"
-                                                                            alt="2139858205_0.png"
-                                                                            onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=520x520&amp;AR=0')"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="slider-thumbnaii-ver">
-                                                <ul>
-
-                                                    <li class="ui-thumbnaii ui-active">
-
-
-                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                             id="smallPic_1" alt="상품이미지"
-                                                             style="width:100px; height:100px;"
-                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
-
-
-                                                    </li>
-
-                                                    <li class="ui-thumbnaii">
-
-
-                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                             id="smallPic_2" alt="상품이미지"
-                                                             style="width:100px; height:100px;"
-                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
-
-
-                                                    </li>
-
-                                                    <li class="ui-thumbnaii">
-
-
-                                                        <img src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                             id="smallPic_3" alt="상품이미지"
-                                                             style="width:100px; height:100px;"
-                                                             onerror="this.src='https://image.hmall.com/hmall/pd/no_image_100x100.jpg'">
-
-
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- 190402 안하영 - 운동기구 상품상세 안내 권고사항 추가 -->
-
-                                    <!-- 190523 - 고데기 상품군 주의사항 인포그래픽 추가 -->
-
-                                    <!-- 결제정보 -->
                                     <div class="content-area">
                                         <div class="cnt-txt">
                                             <h3>결제 정보</h3>
@@ -2748,52 +2090,29 @@
                                                     <tbody>
                                                     <tr>
                                                         <th scope="row" class="txt-left">상품코드</th>
-                                                        <td>122712699</td>
+                                                        <td>${productVO.product_seq}</td>
                                                     </tr>
-
-
                                                     <tr>
                                                         <th scope="row" class="txt-left">가격</th>
-
-
-                                                        <td>29,900원</td>
-                                                    </tr>
-
-
-                                                    <tr>
-
-
-                                                        <th scope="row" class="txt-left">배송비</th>
-
-
-                                                        <td><p>
-
-
-                                                            무료
-
-
-                                                            <!-- 추가배송비 선결제 2020.07.17 -->
-
-
-                                                        </p>
-
-
+                                                        <td><fmt:formatNumber value="${productVO.discounted_cost}"
+                                                                              pattern="#,###"/>원
                                                         </td>
                                                     </tr>
-
-
+                                                    <tr>
+                                                        <th scope="row" class="txt-left">배송비</th>
+                                                        <td><p>
+                                                            무료
+                                                        </p>
+                                                        </td>
+                                                    </tr>
                                                     <tr>
                                                         <th scope="row" class="txt-left">택배사</th>
                                                         <td>CJ대한통운</td>
                                                     </tr>
-
-
                                                     <tr>
                                                         <th scope="row" class="txt-left">배송확률</th>
                                                         <td>
                                                             <div class="deliver-percent-wrap">
-
-
                                                                 <a href="javascript://" class="deliver-percent"
                                                                    data-modules-modal="target:#modalDeliverPercent2">06/02(목)까지
                                                                     배송 확률 <strong>62%</strong><i
@@ -2813,49 +2132,31 @@
                                                                     <button class="btn-close"><i class="icon"></i><span
                                                                             class="hiding">닫기</span></button>
                                                                 </div>
-
-
                                                             </div>
                                                         </td>
                                                     </tr>
-
-
                                                     <tr>
                                                         <th scope="row" class="txt-left">배송지역</th>
                                                         <td>
-
-
                                                             <p>도서/산간지역 불가,제주불가</p>
                                                         </td>
                                                     </tr>
-
                                                     <tr>
                                                         <th scope="row" class="txt-left">반품/교환</th>
                                                         <td>
                                                             상품확인 후 환불
-                                                            <!--
-                                                                                    <a class="getHelp renewToolTip" href="javascript:;" data-toolindex="7"></a>
-                                                                                    <div class="tooltip tip_2 renewToolTip7">반품상품이 도착하면 상품상태 확인 후 환불 및 교환이 진행됩니다.</div>
-                                                             -->
                                                             /
 
                                                             반품관련배송비 없음
                                                             /
 
                                                             교환관련배송비 없음
-
-                                                            <!-- 추가배송비 선결제 2020.07.17 -->
-
                                                         </td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <!--//content-area // 상품정보-->
-
-
-                                        <!--content-area // 상품필수정보 및 유의사항-->
                                         <div class="content-area">
                                             <!--accparent-->
                                             <div class="accparent">
@@ -2872,12 +2173,7 @@
 
                                                     <div class="txt-info">
                                                         <strong class="ctypo15 bold">품목 또는 명칭</strong>
-                                                        <p>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</p>
-                                                    </div>
-
-                                                    <div class="txt-info">
-                                                        <strong class="ctypo15 bold">포장단위별 내용물 용량(중량),수량,크기</strong>
-                                                        <p>1박스 3kg (11∼14과) <br><br>총 2박스<br></p>
+                                                        <p>${productVO.product_name}</p>
                                                     </div>
 
                                                     <div class="txt-info">
@@ -2888,7 +2184,7 @@
 
                                                     <div class="txt-info">
                                                         <strong class="ctypo15 bold">원산지</strong>
-                                                        <p>한국, 한국</p>
+                                                        <p>${productVO.product_country}</p>
                                                     </div>
 
                                                     <div class="txt-info">
@@ -2903,7 +2199,7 @@
 
                                                     <div class="txt-info">
                                                         <strong class="ctypo15 bold">상품구성</strong>
-                                                        <p>[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스 )</p>
+                                                        <p>${productVO.product_name}</p>
                                                     </div>
 
                                                     <div class="txt-info">
@@ -3021,19 +2317,12 @@
                                                     <!-- //.content-head -->
                                                     <div class="content-body" id="content-body">
                                                         <p class="ctypo15">
-
-
                                                             배송비 :
-
-
                                                             무료
-
-
                                                         </p>
                                                         <p class="ctypo15">06/02(목)까지 배송 확률 62%
                                                             <span>(단, 가구/설치/주문제작 제외)</span></p>
                                                         <!--gauge-list-->
-
                                                         <ul class="gauge-list">
                                                             <li>
                                                                 <p class="data">
@@ -3102,7 +2391,6 @@
                                     </div>
                                 </div>
 
-                                <!-- 상품평 tab -->
                                 <div class="pages page3" id="viewPage03">
 
 
@@ -4095,8 +3383,7 @@
                                             <div class="option-scroll">
 
 
-                                                <strong class="prduct-name">[아이사랑] 세척사과(부사) 6kg ( 3kg(11∼14과) * 2박스
-                                                    )</strong>
+                                                <strong class="prduct-name">${productVO.product_name}</strong>
 
 
                                                 <div class="ui-dropdown-group">
@@ -4106,16 +3393,8 @@
                                                         <div class="product-info">
                                                             <div class="figcaption">
                                                                 <div class="pdoption" aria-label="옵션/수량">
-                                                            <span class="option">색상/속성 : <em>
-
-
-
-                                                                    6kg(3kg * 2박스)
-
-
-                                                           </em>
-                                                           </span>
-                                                                    <span class="stock-num">남은수량 : <em>83,469</em></span>
+                                                                    </span>
+                                                                    <span class="stock-num">남은수량 : <em>${productVO.product_count}</em></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -4171,10 +3450,7 @@
                                                         <button class="btn medium btn-default buy-now"
                                                                 onclick="buyDirect();"><span>바로구매</span></button>
                                                         <button class="btn small btn-linelgray"
-                                                                onclick="addCart(this);"><span>장바구니</span></button>
-                                                        <button class="btn small btn-linelgray"
-                                                                onclick="setGiftOrder('Y');buyDirect();">
-                                                            <span>선물하기</span></button>
+                                                                onclick="go_basket(${productVO.product_seq})"><span>장바구니</span></button>
                                                     </div>
                                                 </div>
                                                 <div class="button-wrap pd_shipping_type_storePick"
@@ -4201,11 +3477,8 @@
                 <!-- //.container -->
             </div>
 
-
             <script type="text/javascript" defer="defer">
                 (function () {
-                    <%--console.log(${productVO});--%>
-
                     function injectScript() {
                         var _TRK_InSc = document.createElement('script');
                         _TRK_InSc.type = 'text/javascript';
@@ -4997,120 +4270,6 @@
 
             </script>
 
-            <!-- 스카이 스크래퍼 -->
-            <div class="sticky-ui-wrapper wing-banner-sticky">
-                <div class="sticky-placeholder"></div>
-                <div class="wing-banner banner-right"
-                     data-modules-sticky="padding:0;breakPoint:.header-menu-wrap;className:wing-banner-sticky">
-                    <!-- fixed 클래스 추가 시 고정 -->
-                    <a href="/pevent/eva/evntTmplDivideView.do?prmoNo=00049341">
-                        <div class="visit-indicator">바로접속
-
-
-                            <span class="visit-staus on" style="margin-left: 0px">ON</span>
-
-                        </div>
-                    </a>
-                    <div class="recent-view-area" id="skyScOnAirArea">
-
-
-                        <a class="recent-view-title">ON AIR</a>
-                        <ul id="banner-onair">
-
-
-                            <li>
-
-                                <a href="javascript:;" class="tv-shopping"
-                                   onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2134575678&amp;bfmtNo=202205303006&amp;brodDt=20220530&amp;brodStrtDtm=13:30&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^DB손해보험 (무)참좋은 100세 건강보험&quot;)"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑"
-                                   ga-custom-creative="방송상품" ga-custom-id="2134575678_DB손해보험 (무)참좋은 100세 건강보험"
-                                   ga-custom-etc="home">
-                                    <img src="https://image.hmall.com/static/6/5/57/34/2134575678_0.png?RS=140x140&amp;AR=0"
-                                         alt="DB손해보험 (무)참좋은 100세 건강보험"
-                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                                    <span class="over-box">
-		                            <strong class="onair-kind shopping">TV쇼핑</strong>
-		                            <em class="onair-time" id="onAirHtime"
-                                        data-brodenddtm="20220530143000">00:00:00</em>
-		                        </span>
-                                </a>
-
-
-                            </li>
-
-
-                            <li>
-
-                                <a href="javascript:;" class="tv-shopping"
-                                   onclick="gaTagging(this, &quot;/p/pda/itemPtc.do?sectId=1003&amp;slitmCd=2139646971&amp;bfmtNo=202205305009&amp;brodDt=20220530&amp;brodStrtDtm=13:40&amp;brodType=P&quot;, &quot;etvhm_etv&quot;, &quot;eTV온에어^영상상품^한국금거래센터 24K 순금 남녀공용 스퀘어 체인 목걸이 + 특별구성 호랑이 오브제&quot;)"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="TV쇼핑"
-                                   ga-custom-creative="방송상품"
-                                   ga-custom-id="2139646971_한국금거래센터 24K 순금 남녀공용 스퀘어 체인 목걸이 + 특별구성 호랑이 오브제"
-                                   ga-custom-etc="home">
-                                    <img src="https://image.hmall.com/static/9/6/64/39/2139646971_0.jpg?RS=140x140&amp;AR=0"
-                                         alt="한국금거래센터 24K 순금 남녀공용 스퀘어 체인 목걸이 + 특별구성 호랑이 오브제"
-                                         onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=140x140&amp;AR=0')">
-                                    <span class="over-box">
-		                            <strong class="onair-kind shop">TV+샵</strong>
-		                            <em class="onair-time" id="onAirHdtime"
-                                        data-brodenddtm="20220530145959">00:23:26</em>
-		                        </span>
-                                </a>
-
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-                    <div class="qr_view_area">
-                        <span class="qr_txt">쇼핑라이브</span>
-                        <span class="img_qr"><img src="https://image.hmall.com/p/img/co/img-qr.jpg"
-                                                  alt="쇼핑라이브 qr이미지"></span>
-                    </div>
-                    <div class="wing-slide exhibition01" id="skyScCardArea">
-
-
-                        <ul>
-
-
-                            <li style="">
-
-
-                                <a href="https://www.hmall.com/p/dpa/crdDmndDcPrmo.do?prmoNo=P202204280848">
-                                    <span class="img"><img src="//image.hmall.com/p/img/ev/icon/ico-card-kb.png"
-                                                           alt="KB국민카드"></span>
-                                    <span class="card-txt">
-		                            <strong class="card-name">KB국민카드</strong>
-		                            <span class="benefit-txt">
-		                              <em class="point-red">
-
-		                                      5%
-
-
-		                              </em>
-
-                                               즉시 할인
-
-
-
-		                            </span>
-		                        </span>
-                                </a>
-                            </li>
-
-                        </ul>
-                        <!-- 페이징 -->
-
-
-                        <!-- // 페이징 -->
-                    </div>
-                    <!-- // .wing-slide -->
-
-                    <div class="btn-top"><a href="javascript:;">TOP</a></div>
-                </div>
-            </div>
-            <!-- // 스카이 스크래퍼 -->
             <script type="text/javascript">
 
                 setTimeout(function () {
@@ -5435,13 +4594,14 @@
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
         console.log("${_csrf.headerName}");
+        window.alert("장바구니에 상품이 담겼습니다.")
 
         $.ajax({
             type: "post"
             , url: "/api/basket/?product_seq=" + product_seq + "&basket_count=" + ordQty
             , crossDomain: true
-            , beforeSend:function (xhr){
-                xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+            , beforeSend: function (xhr) {
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
             }
             , success: function () {
                 console.log("success")

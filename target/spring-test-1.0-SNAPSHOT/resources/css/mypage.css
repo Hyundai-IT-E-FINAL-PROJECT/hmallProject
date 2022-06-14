@@ -33,7 +33,7 @@
 .inputbox.autolist .list:before{content:'';display:block;position:absolute;top:0;left:50%;width:calc(100% - 28px);height:1px;background:#eee;transform:translateX(-50%);}
 .inputbox.autolist .list p{padding:7.5px 0;line-height:1;}
 .inputbox.autolist .list p a{color:#333;font-size:14px;}
-.inputbox.autolist .list p a em{color:#ff5340;}
+.inputbox.autolist .list p a em{color:#002fa3;}
 
 .star-score-box{}
 .star-ratingwrap{position:relative;display:inline-block;width:188px;height:32px;font-size:0;}
@@ -171,7 +171,7 @@
 .ui-tab.type-btn li:first-child{margin-left:0;}
 .ui-tab.type-btn li a{display:block;line-height:50px;color:#222;font-size:16px;border-radius:5px;border:1px solid #eee;outline:none;}
 .ui-tab.type-btn li.ui-active:after{display:none;}
-.ui-tab.type-btn li.ui-active a{color:#fff;font-weight:bold;border:none;background-color:#ff5340;}
+.ui-tab.type-btn li.ui-active a{color:#fff;font-weight:bold;border:none;background-color:#002fa3;}
 .ui-tab.type-btn.col4{flex-wrap:wrap;margin:20px 0;}
 .ui-tab.type-btn.col4 li{display:flex;flex-basis:calc(25% - 7.5px);flex-direction:column;}
 .ui-tab.type-btn.col4 li:nth-child(4n+1){margin-left:0;}
@@ -190,15 +190,15 @@
 .ui-tab.type-underline{display:flex;margin:30px 0;}
 .ui-tab.type-underline li{position:relative;display:inline-flex;flex:1;justify-content:center;align-items:center;height:50px;text-align:center;border-bottom:1px solid #ddd;}
 .ui-tab.type-underline li a{display:inline-flex;justify-content:center;align-items:center;width:100%;height:100%;color:#333;font-size:16px;font-weight:bold;}
-.ui-tab.type-underline li.ui-active a{color:#ff5340;}
-.ui-tab.type-underline li.ui-active:after{content:"";display:block;position:absolute;bottom:-1px;left:0;width:100%;height:2px;background-color:#ff5340;}
+.ui-tab.type-underline li.ui-active a{color:#002fa3;}
+.ui-tab.type-underline li.ui-active:after{content:"";display:block;position:absolute;bottom:-1px;left:0;width:100%;height:2px;background-color:#002fa3;}
 .tab-pane{display:none;}
 .tab-pane > *:first-child{margin-top:0;}
 .tab-pane.ui-active{display:block;}
 
 .dotlist.color-red{}
-.dotlist.color-red li{color:#ff5340;}
-.dotlist.color-red li:before{background-color:#ff5340;}
+.dotlist.color-red li{color:#002fa3;}
+.dotlist.color-red li:before{background-color:#002fa3;}
 
 .bg-gray-top{margin:-30px -40px 30px;padding:20px 40px;background-color:#f8f8f8;}
 .bg-gray-top strong{display:block;line-height:24px;color:#666;font-size:15px;font-weight:700;}
@@ -236,7 +236,7 @@
 .border-gray-box .radio-list .radlabel span{font-size:15px;}
 .border-gray-box .textareabox{margin:20px 0;}
 .border-gray-box .num-list li{position:relative;padding-left:25px;}
-.border-gray-box .num-list li:before{position:absolute;top:0;left:0;line-height:26px;color:#ff5340;font-size:20px;font-weight:700;}
+.border-gray-box .num-list li:before{position:absolute;top:0;left:0;line-height:26px;color:#002fa3;font-size:20px;font-weight:700;}
 .border-gray-box .num-list li .tit{display:block;line-height:26px;color:#333;font-weight:700;}
 .border-gray-box .num-list li .txt{display:block;line-height:26px;color:#666;}
 .border-gray-box .num-list li + li{margin-top:20px;}
@@ -248,7 +248,7 @@
 .delivery-box .list li{position:relative;margin-top:20px;padding:20px;border:1px solid #eee;border-radius:5px;}
 .delivery-box .list li:first-child{margin-top:0;}
 .delivery-box .list li .name{color:#333;font-size:17px;font-weight:700;}
-.delivery-box .list li .name .tag{margin:-6px 0 0 0;padding:0 5px;line-height:20px;color:#ff5340;font-size:12px;font-weight:400;vertical-align:middle;border:none;background-color:#fff4f3;}
+.delivery-box .list li .name .tag{margin:-6px 0 0 0;padding:0 5px;line-height:20px;color:#002fa3;font-size:12px;font-weight:400;vertical-align:middle;border:none;background-color:#fff4f3;}
 .delivery-box .list li .add{margin-top:10px;line-height:22px;color:#333;font-size:14px;}
 .delivery-box .list li .tel{line-height:22px;color:#333;font-size:14px;}
 .delivery-box .list li .btn{margin-top:20px;}
@@ -275,7 +275,7 @@
 .mp-section-wrap .util-option .sticky-inner > ul li div .txt strong{font-size:17px;vertical-align:baseline;}
 .mp-section-wrap .util-option .sticky-inner > ul li div .txt b{font-size:15px;vertical-align:baseline;}
 .mp-section-wrap .util-option .sticky-inner > ul li div.total .tit{line-height:32px;font-weight:700;}
-.mp-section-wrap .util-option .sticky-inner > ul li div.total .txt{color:#ff5340;font-size:17px;}
+.mp-section-wrap .util-option .sticky-inner > ul li div.total .txt{color:#002fa3;font-size:17px;}
 .mp-section-wrap .util-option .sticky-inner > ul li div.total .txt strong{font-size:22px;}
 .mp-section-wrap .util-option .sticky-inner > ul li .chklabel .icon{position:absolute;top:2px;left:0;}
 .mp-section-wrap .util-option .sticky-inner > ul li .chklabel span{margin:0;padding-left:26px;line-height:21px;color:#666;font-size:13px;}
@@ -339,7 +339,7 @@
     -webkit-animation: smdotAfterCheck1 0.2s ease 0s forwards;
     animation: smdotAfterCheck1 0.2s ease 0s forwards;
 }
-.mp-section-wrap .util-option .sticky-inner > ul li .checkbox input[type=checkbox]:checked + .icon{border-color: #ff5340;background-color: #ff5340;}
+.mp-section-wrap .util-option .sticky-inner > ul li .checkbox input[type=checkbox]:checked + .icon{border-color: #002fa3;background-color: #002fa3;}
 .mp-section-wrap .util-option .sticky-inner > ul li .checkbox label{padding-left:0;color:#666;font-size:14px;line-height:18px;vertical-align:baseline;}
 .mp-section-wrap .util-option .sticky-inner > ul li .btn-tooltip{display:inline-block;position:relative;top:-1px;left:2px;width:20px;height:20px;margin:0;padding:0;border:0;line-height:1;vertical-align:middle;}
 .mp-section-wrap .util-option .sticky-inner > ul li .btn-tooltip .icon{display:inline-block;position:static;width:20px;height:20px;background:url(//image.hmall.com/p/img/co/icon/ico-tooltip-question.png) no-repeat 50% 50%;}
@@ -449,7 +449,7 @@
 .address-box .top-box{position:relative;padding-bottom:20px;border-bottom:1px solid #f2f2f2;}
 .address-box .add-tit{margin-bottom:20px;font-size:17px;color:#333;font-weight:700;line-height:22px;letter-spacing:-0.68px;}
 .address-box .name{margin-bottom:10px;font-size:15px;color:#333;font-weight:700;line-height:22px;letter-spacing:-0.6px;}
-.address-box .name .tag{margin-left:5px;padding:0 5px;font-size:12px;color:#ff5340;line-height:20px;letter-spacing:-0.48px;border:1px solid #fff4f3;border-radius:5px;background:#fff4f3;}
+.address-box .name .tag{margin-left:5px;padding:0 5px;font-size:12px;color:#002fa3;line-height:20px;letter-spacing:-0.48px;border:1px solid #fff4f3;border-radius:5px;background:#fff4f3;}
 .address-box .add,
 .address-box .tel{font-size:14px;color:#333;line-height:22px;letter-spacing:-0.56px;}
 .address-box .btn{position:absolute;top:0px;right:0px;}
@@ -498,8 +498,8 @@
 .pay-info-box ul li .between.top dt{font-size:14px;color:#333;font-weight:700;letter-spacing:-0.56px;}
 .pay-info-box ul li .between.top dd{font-size:14px;color:#000;letter-spacing:-0.56px;}
 .pay-info-box ul li .between.top dd strong{display:inline-block;font-size:17px;color:#000;letter-spacing:-0.68px;}
-.pay-info-box ul li .between.top dd.result{font-size:17px;color:#ff5340;letter-spacing:-0.68px;}
-.pay-info-box ul li .between.top dd.result strong{font-size:22px;color:#ff5340;font-weight:700;line-height:21px;letter-spacing:-0.88px;}
+.pay-info-box ul li .between.top dd.result{font-size:17px;color:#002fa3;letter-spacing:-0.68px;}
+.pay-info-box ul li .between.top dd.result strong{font-size:22px;color:#002fa3;font-weight:700;line-height:21px;letter-spacing:-0.88px;}
 .pay-info-box ul li .btm{margin-top:20px;padding-top:12px;border-top:1px solid #eee;}
 .pay-info-box ul li .detail-info{margin-top:20px;padding-top:20px;border-top:1px solid #eee;}
 .pay-info-box ul li .detail-info dl{font-size:0;}
@@ -562,9 +562,9 @@
 .pay-type-box .box-list > li .radio-box > span label{position:relative;display:inline-flex;justify-content:center;align-items:center;width:100%;height:40px;text-align:center;border-radius:5px;cursor:pointer;}
 .pay-type-box .box-list > li .radio-box > span label:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;border-radius:5px;border:1px solid #ddd;}
 .pay-type-box .box-list > li .radio-box > span label .text{position:relative;display:block;padding:0;color:#666;font-size:16px;}
-.pay-type-box .box-list > li .radio-box > span input:checked + label:before{border:2px solid #ff5340;}
+.pay-type-box .box-list > li .radio-box > span input:checked + label:before{border:2px solid #002fa3;}
 .pay-type-box .box-list > li .radio-box > span input:checked + label:after{content:'';display:block;position:absolute;top:-6px;right:-6px;width:22px;height:22px;background:url(//image.hmall.com/p/img/mp/icon/icon-checkbox.png) no-repeat center center;}
-.pay-type-box .box-list > li .radio-box > span input:checked + label .text{color:#ff5340;font-weight:700;}
+.pay-type-box .box-list > li .radio-box > span input:checked + label .text{color:#002fa3;font-weight:700;}
 .pay-type-box .box-list > li .radio-box > span.hmallpay .icon{width:120px;height:40px;background:url(//image.hmall.com/p/img/mp/logo-hmallpay-off.png) no-repeat center center;background-size:120px 40px;}
 .pay-type-box .box-list > li .sub-tit{margin-bottom:10px;color:#333;font-size:15px;font-weight:700;}
 .pay-type-box .box-list > li dl{font-size:0;}
@@ -609,8 +609,8 @@
 .paytype li > span .text{color:#666;font-size:16px;font-weight:700;}
 .paytype li > .hmallpay label{background:url('//image.hmall.com/p/img/mp/logo-hmallpay-type1.png') no-repeat 50% 50%;}
 .paytype li [type="radio"]{position:absolute;top:4px;left:4px;z-index:-1;border:0;background:transparent;outline:0;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
-.paytype li [type="radio"]:checked + label{border:2px solid #ff5340;line-height:36px;}
-.paytype li > span [type="radio"]:checked + label .text{color:#ff5340;}
+.paytype li [type="radio"]:checked + label{border:2px solid #002fa3;line-height:36px;}
+.paytype li > span [type="radio"]:checked + label .text{color:#002fa3;}
 .paytype li > .hmallpay [type="radio"]:checked + label{background-image:url('//image.hmall.com/p/img/mp/logo-hmallpay-type1-on.png');}
 .paytype li [type="radio"]:checked + label:after{content:"";display:inline-block;position:absolute;top:-8px;right:-8px;width:22px;height:22px;background:url('//image.hmall.com/p/img/mp/icon/icon-checkbox.png') no-repeat 50% 50%;}
 
@@ -632,7 +632,7 @@
 .pay-typebox dd li > .payment-form > span strong{color:#333;font-size:14px;font-weight:700;}
 .pay-typebox dd li > .payment-form > span + .radio-box{display:inline-flex;margin-left:20px;}
 .pay-typebox dd li > .payment-form > p{color:#666;font-size:14px;line-height:22px;}
-.pay-typebox dd li > .payment-form > p.sub-txt{margin-top:0;color:#ff5340;font-size:13px;}
+.pay-typebox dd li > .payment-form > p.sub-txt{margin-top:0;color:#002fa3;font-size:13px;}
 .pay-typebox dd li > .payment-form > p + ol{margin-top:10px;}
 .pay-typebox dd li > .payment-form > p + ol li{color:#666;font-size:14px;line-height:22px;}
 .pay-typebox dd li > .payment-admin-box { margin-top: 20px; margin-left: 115px; padding: 20px; border-radius: 5px; background-color: #f8f8f8; }
@@ -728,7 +728,7 @@
 .cash-receipts .cashbox dd .radio-box{display:inline-block;}
 .cash-receipts .cashbox dd .radlabel{margin-left:20px;}
 .cash-receipts .cashbox dd .radlabel .icon + span{margin-left:5px;}
-.cash-receipts .cashbox dd p.sub-txt{display:block;width:100%;margin-top:0;color:#ff5340;font-size:13px;}
+.cash-receipts .cashbox dd p.sub-txt{display:block;width:100%;margin-top:0;color:#002fa3;font-size:13px;}
 .cashbox .payinfobox{position:relative;margin-top:20px;padding:20px 20px 74px;border-radius:5px;background:#f8f8f8;}
 .cashbox .payinfobox .payfield{display:inline-block;margin:0;}
 .cashbox .payinfobox .payfield + .payfield{margin-left:16px;}
@@ -905,7 +905,7 @@
 .order-list > dl > dd .box .state,
 .order-list > ul > li .box .state{line-height:18px;font-size:14px;font-weight:700;}
 .order-list > dl > dd .box .state.red,
-.order-list > ul > li .box .state.red{color:#ff5340;}
+.order-list > ul > li .box .state.red{color:#002fa3;}
 .order-list > dl > dd .box .state.sky,
 .order-list > ul > li .box .state.sky{color:#3abbd5;}
 .order-list > dl > dd .box .tit,
@@ -1006,7 +1006,7 @@
 .order-list > dl > .order-place .place-box .name,
 .order-list > ul > .order-place .place-box .name{margin-bottom:10px;color:#333;font-size:15px;font-weight:700;}
 .order-list > dl > .order-place .place-box .name .tag,
-.order-list > ul > .order-place .place-box .name .tag{padding:0 5px;line-height:20px;color:#ff5340;font-size:12px;font-weight:400;border:none;background-color:#fff4f3;}
+.order-list > ul > .order-place .place-box .name .tag{padding:0 5px;line-height:20px;color:#002fa3;font-size:12px;font-weight:400;border:none;background-color:#fff4f3;}
 .order-list > dl > .order-place .place-box .add,
 .order-list > ul > .order-place .place-box .add{line-height:22px;color:#333;font-size:14px;}
 .order-list > dl > .order-place .place-box .tel,
@@ -1204,7 +1204,7 @@
 .chk-form.add-opt .option-box .custom-selectbox.sm.ui-bottom{bottom:-2px;}
 .chk-form.add-opt .option-box .custom-selectbox.sm .ui-label a{padding-right:40px;}
 .chk-form.add-opt .option-box .selopt{position:relative;align-items:center;margin-top:10px;padding:0 45px 0 15px;}
-.chk-form.add-opt .option-box .selopt .point{font-size:14px;color:#ff5340;font-weight:700;line-height:24px;letter-spacing:-0.56px;}
+.chk-form.add-opt .option-box .selopt .point{font-size:14px;color:#002fa3;font-weight:700;line-height:24px;letter-spacing:-0.56px;}
 .chk-form.add-opt .option-box .selopt .l-txt{margin-left:15px;font-size:15px;color:#aaa;line-height:24px;letter-spacing:-0.6px;}
 .chk-form.add-opt .option-box .selopt .icon.right-arrow{margin:0 9px;width:9px;height:9px;background:url("//image.hmall.com/p/img/co/icon/icon-right-arrow.png") no-repeat center center;}
 .chk-form.add-opt .option-box .selopt .r-txt{font-size:15px;color:#666;line-height:24px;letter-spacing:-0.6px;}
@@ -1238,7 +1238,7 @@
 .consult-list > .list > li .case{display:table-cell;padding-right:50px;width:140px;color:#333;font-size:15px;font-weight:700;text-align:center;vertical-align:middle;}
 .consult-list > .list > li .case em{position:relative;display:block;color:#666;font-size:13px;}
 .consult-list > .list > li .case em.customer  { color:#3abbd5; }
-.consult-list > .list > li .case em.seller  { color:#ff5340; }
+.consult-list > .list > li .case em.seller  { color:#002fa3; }
 .consult-list > .list > li .case em:before{content:'(';}
 .consult-list > .list > li .case em:after{content:')';}
 .consult-list > .list > li .txt{display:table-cell;width:calc(100% - 430px);vertical-align:middle;}
@@ -1246,14 +1246,14 @@
 .consult-list > .list > li .txt .name:hover{text-decoration:underline;}
 .consult-list > .list > li .txt .date{display:block;margin-top:2px;color:#999;font-size:15px;}
 .consult-list > .list > li .txt .chat-status  { font-size: 13px; letter-spacing: -0.52px; vertical-align: baseline; }
-.consult-list > .list > li .txt .chat-status._ing  { color: #ff5340; }
+.consult-list > .list > li .txt .chat-status._ing  { color: #002fa3; }
 .consult-list > .list > li .txt .chat-status._end  { color: #999; }
 .consult-list > .list > li .txt .chat-status::before  { content: ''; width: 1px; height: 12px; margin: 0 6px 0 5px; background-color: #ddd; vertical-align: -1px; display: inline-block; }
 .consult-list > .list > li .state{display:table-cell;width:205px;text-align:right;vertical-align:middle;}
 .consult-list > .list > li .state .flag{display:inline-block;width:98px;font-size:15px;font-weight:700;text-align:center;}
-.consult-list > .list > li .state .flag.ing{color:#ff5340;}
+.consult-list > .list > li .state .flag.ing{color:#002fa3;}
 .consult-list > .list > li .state .btn{width:98px;}
-.consult-list > .list > li .state .new  { position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; font-size: 11px; color: #fff; line-height: 16px; border-radius: 16px; background-color: #ff5340; }
+.consult-list > .list > li .state .new  { position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; font-size: 11px; color: #fff; line-height: 16px; border-radius: 16px; background-color: #002fa3; }
 
 /* 회원정보관리 */
 .mypage-info-wrap{}
@@ -1327,7 +1327,7 @@
 .mp-event-list > ul{}
 .mp-event-list > ul > li{margin-top:20px;padding:20px;border:1px solid #eee;border-radius:5px;}
 .mp-event-list > ul > li h3{margin-bottom:20px;padding-bottom:20px;color:#333;font-size:15px;border-bottom:1px solid #eee;}
-.mp-event-list > ul > li h3 .type{margin-right:3px;color:#ff5340;}
+.mp-event-list > ul > li h3 .type{margin-right:3px;color:#002fa3;}
 .mp-event-list > ul > li .detail-list{}
 .mp-event-list > ul > li .detail-list li{margin-top:5px;font-size:0;}
 .mp-event-list > ul > li .detail-list li:first-child{margin-top:0;}
@@ -1373,20 +1373,20 @@
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box{display:inline-block;position:relative;margin-left:30px;padding-left:25px;width:calc(50% - 15px);min-height:212px;border-radius:5px;background:#fff;overflow:hidden;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box:nth-child(2n+1){margin-left:0;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box:nth-child(n+3){margin-top:30px;}
-.mypage-coupon-wrap .coupon-list-box ul .coupon-box:before{content:'';position:absolute;top:0;left:0;width:27px;height:100%;border:1px solid #F13B26;border-radius:5px 0 0 5px;background:#ff5340;}
+.mypage-coupon-wrap .coupon-list-box ul .coupon-box:before{content:'';position:absolute;top:0;left:0;width:27px;height:100%;border:1px solid #002fa3;border-radius:5px 0 0 5px;background:#002fa3;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box::after {content:"";position:absolute;top:25px;left:1px;width:27px;height:calc(100% - 50px);border-right:6px dotted #fff;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box.complete:before{border-color:#fff;background:#ddd;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon{position:relative;width:100%;min-height:212px;padding:10px 20px;border:1px solid #ddd;border-radius:0 5px 5px 0;border-left:none;background:#fff;}
 .ie .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon:before{content:"";display:inline-block;position:absolute;top:-1.5px;left:-6px;z-index:2;width:8px;height:1px;background:#fff;}
 .ie .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon:after{content:"";display:inline-block;position:absolute;bottom:-1.5px;left:-6px;z-index:2;width:8px;height:1px;background:#fff;}
-.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .discount{color:#ff5340;}
+.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .discount{color:#002fa3;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .discount strong{font-size:32px;font-weight:700;vertical-align:baseline;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .discount b{font-size:20px;font-weight:700;vertical-align:baseline;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info{}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .title{margin-top:5px;color:#333;font-size:17px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .coupon-info-list{margin-top:10px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .coupon-info-list li{line-height:20px;color:#999;font-size:13px;}
-.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .type{line-height:20px;color:#ff5340;font-size:13px;}
+.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .type{line-height:20px;color:#002fa3;font-size:13px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .coupon-info .btn.abs{position:absolute;bottom:20px;right:20px;padding:0 8px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .btn-area{position:absolute;bottom:0;left:0;display:flex;width:100%;border-top:1px dashed #eee;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon .btn-area button{position:relative;display:inline-block;width:100%;line-height:60px;}
@@ -1400,7 +1400,7 @@
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child{left:0;width:8px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:last-child{right:0;width:8px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child::before,
-.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child::after{content:'';position:absolute;left:0;z-index:1;width:16px;height:16px;border:1px solid #F13B26;border-radius:50%;background:#fff;}
+.mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child::after{content:'';position:absolute;left:0;z-index:1;width:16px;height:16px;border:1px solid #002fa3;border-radius:50%;background:#fff;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child::before{top:-8px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:first-child::after{bottom:-8px;}
 .mypage-coupon-wrap .coupon-list-box ul .coupon-box .coupon-bg div:last-child::before,
@@ -1456,7 +1456,7 @@
 .zzim-itemlist .item-wrap .box .selectwrap{width:450px;height:34px;margin-top:8px;}
 .zzim-itemlist .item-wrap .box .suspension{display:inline-flex;align-items:center;margin-top:10px;}
 .zzim-itemlist .item-wrap .box .suspension .icon{width:18px;height:18px;background:url(//image.hmall.com/m/img/co/icon/ico-soldout-1x.png) no-repeat 50% 50%;background-size:18px 18px;}
-.zzim-itemlist .item-wrap .box .suspension span{margin-left:4px;color:#ff5340;font-size:15px;line-height:23px;letter-spacing: -0.56px;}
+.zzim-itemlist .item-wrap .box .suspension span{margin-left:4px;color:#002fa3;font-size:15px;line-height:23px;letter-spacing: -0.56px;}
 .zzim-itemlist .itemselect-wrap{position:absolute;top:50%;right:25px;transform:translateY(-50%);}
 .zzim-itemlist .itemselect-wrap .btn{display:inline-block;margin:0;padding:0;height:inherit;}
 .zzim-itemlist .itemselect-wrap .btn + .btn{margin-left:24px;}
@@ -1522,8 +1522,8 @@
 .brandlistwrap .brandlist-slide figcaption{margin-top:10px;color:#111;font-size:15px;letter-spacing:-0.3px;text-align:center;}
 .brandlistwrap .brandlist-slide .items > a.active figcaption{font-weight:700;}
 .brandlistwrap .brandlist-slide .items > a:hover figcaption{font-weight:700;}
-.brandlistwrap .brandlist-slide .items > a:hover:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #ff5340;}
-.brandlistwrap .brandlist-slide .items > a.active:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #ff5340;}
+.brandlistwrap .brandlist-slide .items > a:hover:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #002fa3;}
+.brandlistwrap .brandlist-slide .items > a.active:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #002fa3;}
 /*Hmall의추천브랜드fade의경우*/
 .brandlistwrap.fade .brandlist-slide .items{width:100%;display:inline-block;vertical-align:top;}
 .brandlistwrap.fade .brandlist-slide .items > ul{overflow:hidden;font-size:0;}
@@ -1533,18 +1533,18 @@
 .brandlistwrap.fade .brandlist-slide figcaption{margin-top:10px;color:#111;font-size:15px;letter-spacing:-0.3px;text-align:center;}
 .brandlistwrap.fade .brandlist-slide a.active figcaption{font-weight:700;}
 .brandlistwrap.fade .brandlist-slide a:hover figcaption{font-weight:700;}
-.brandlistwrap .brandlist-slide  a:hover:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #ff5340;}
-.brandlistwrap .brandlist-slide a.active:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #ff5340;}
+.brandlistwrap .brandlist-slide  a:hover:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #002fa3;}
+.brandlistwrap .brandlist-slide a.active:after{content:'';z-index:2;position:absolute;left:0;top:0;width:140px;height:140px;border-radius:50%;border:2px solid #002fa3;}
 
 /*Hpoint*/
 .icon.arrow{width:20px;height:20px;margin-top:-4px;border:none;background:url(//image.hmall.com/p/img/co/icon/ico-arrow-20x20.png) no-repeat center center;background-size:20px 20px;}
 .hpoint-wrap{}
-.hpoint-wrap .point-head{width:800px;height:101px;padding:20px 20px 0;color:#fff;font-size:22px;font-weight:700;letter-spacing:-0.88px;border-radius:5px 5px 0 0;background:#ff5340;}
+.hpoint-wrap .point-head{width:800px;height:101px;padding:20px 20px 0;color:#fff;font-size:22px;font-weight:700;letter-spacing:-0.88px;border-radius:5px 5px 0 0;background:#002fa3;}
 .tabgroup.point-tab{margin-top:-35px;}
 .tabgroup.point-tab .ui-tab{position:relative;width:760px;margin:0 auto;border:0;border-radius:5px 5px 0 0;background:#fff}
 .tabgroup.point-tab .ui-tab li{height:90px;color:#333;font-size:18px;font-weight:700;letter-spacing:-0.72px;}
-.tabgroup.point-tab .ui-tab li.ui-active{color:#ff5340;}
-.tabgroup.point-tab .ui-tab li.ui-active:after{height:3px;background:#ff5340;}
+.tabgroup.point-tab .ui-tab li.ui-active{color:#002fa3;}
+.tabgroup.point-tab .ui-tab li.ui-active:after{height:3px;background:#002fa3;}
 .tabgroup.point-tab .ui-tab li span em{display:block;margin-top:6px;font-size:15px;}
 .tabgroup.point-tab .tab-content .point-progresstxt.apply{margin-top:50px;}
 .tabgroup.point-tab .tab-content .point-progresstxt .tit-wrap{position:relative;}
@@ -1578,7 +1578,7 @@
 .tabgroup.point-tab .tab-content .checkbox{margin:20px 0;}
 .tabgroup.point-tab .tab-content .checkbox .chklabel span{font-size:14px;font-weight:400;letter-spacing:-0.7px;}
 .tabgroup.point-tab .tab-content .box-bg{width:760px;height:60px;margin-top:20px;border-radius:5px;line-height:58px;text-align:center;background:#f8f8f8;}
-.tabgroup.point-tab .tab-content .box-bg .point-join{width:100%;margin-left:10px;color:#ff5340;vertical-align:baseline;}
+.tabgroup.point-tab .tab-content .box-bg .point-join{width:100%;margin-left:10px;color:#002fa3;vertical-align:baseline;}
 .tabgroup.point-tab .tab-content .box-bg .icon.arrow{width:6px;height:10px;margin-left:5px;background:url(//image.hmall.com/p/img/mp/icon/icon-arrow-red.png) no-repeat;background-size:6px 10px;}
 .tabgroup.point-tab .tab-content .nodata{margin:50px 0;}
 .tabgroup.point-tab .tab-content .paging{margin-top:30px;}
@@ -1588,9 +1588,9 @@
 .tabgroup.point-tab .tab-content .list .date{margin-right:5px;color:#333;font-size:14px;font-weight:700;line-height:20px;letter-spacing:-0.56px;}
 .tabgroup.point-tab .tab-content .list strong{font-size:14px;line-height:20px;font-weight:700;letter-spacing:-0.56px;}
 .tabgroup.point-tab .tab-content .list .cell .exp-accu{color:#3dc2b5 !important;}
-.tabgroup.point-tab .tab-content .list .cell .accu{color:#ff5340 !important;}
+.tabgroup.point-tab .tab-content .list .cell .accu{color:#002fa3 !important;}
 .tabgroup.point-tab .tab-content .list .cell .exp{color:#999 !important;}
-.tabgroup.point-tab .tab-content .list .cell .exp-date{color:#ff5340 !important;}
+.tabgroup.point-tab .tab-content .list .cell .exp-date{color:#002fa3 !important;}
 .tabgroup.point-tab .tab-content .list li .cell{display:inline-flex;align-content:center;flex-flow:column;}
 .tabgroup.point-tab .tab-content .list li .cell:first-child{width:calc(100% - 250px);}
 .tabgroup.point-tab .tab-content .list li .cell p{margin-top:10px;color:#999;font-size:14px;line-height:18px;letter-spacing:-0.56px;}
@@ -1665,7 +1665,7 @@
 .mp-membership .tblwrap table td .hyphenlist li .btn span{font-weight:400;}
 
 .membership-grade-box{margin-top:25px;}
-.membership-grade-box .top-area{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:15px 40px;border-radius:5px 5px 0 0;background-color:#ff5340;}
+.membership-grade-box .top-area{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:15px 40px;border-radius:5px 5px 0 0;background-color:#002fa3;}
 .membership-grade-box .top-area .tit-wrap{display:inline-flex;align-items:center;;}
 .membership-grade-box .top-area .tit-wrap .icon{width:36px;height:36px;border-radius:50%;}
 .membership-grade-box .top-area .tit-wrap .name{margin-left:5px;color:#fff;font-size:22px;}
@@ -1720,8 +1720,8 @@
 .membership-grade-box .text .icon{margin-right:8px;width:24px;height:24px;border-radius:50%;background:#ddd url(//image.hmall.com/p/img/mp/icon/ico-rating-default.png) no-repeat center center;background-size:15px 12px;}
 .ie .membership-grade-box .text .icon{background-position:5.2px 50%;}
 .membership-grade-box .text .btn.atext{margin-left:10px;}
-.membership-grade-box .text .btn.atext span{color:#ff5340;font-size:15px;font-weight:400;}
-.membership-grade-box .text .btn.atext .arrow{margin-left:3px;border-color:#ff5340;}
+.membership-grade-box .text .btn.atext span{color:#002fa3;font-size:15px;font-weight:400;}
+.membership-grade-box .text .btn.atext .arrow{margin-left:3px;border-color:#002fa3;}
 .membership-grade-box .text strong{margin-right:3px;}
 .membership-grade-box .text-big{margin-top:10px;color:#333;font-size:22px;}
 .membership-grade-box .text-big strong{color:#6348aa;vertical-align:baseline;}
@@ -1816,7 +1816,7 @@
 .membership-grade-info table td .coupon-box .coupon-bg div:last-child::after{content:"";position:absolute;left:0;width:6px;height:6px;border:1px solid #eee;border-radius:50%;background:#fff;}
 .membership-grade-info table td .coupon-box .coupon-bg div:last-child::before{top:-3px;left:-3px;}
 .membership-grade-info table td .coupon-box .coupon-bg div:last-child::after{bottom:-3px;left:-3px;}
-.membership-grade-info table td .coupon-box .badge{position:absolute;top:-10px;right:-10px;width:24px;height:24px;border-radius:50%;background-color:#ff5340;}
+.membership-grade-info table td .coupon-box .badge{position:absolute;top:-10px;right:-10px;width:24px;height:24px;border-radius:50%;background-color:#002fa3;}
 .membership-grade-info table td .coupon-box .badge em{color:#fff;font-size:12px;font-weight:700;letter-spacing:0.4px;}
 .membership-grade-info table td .ticket{margin:10px auto 0;padding:10px;width:102px;border:1px solid #eee;border-radius:3px;background-color:#fff;}
 .membership-grade-info table td .ticket .txt{color:#666;font-size:13px;}
@@ -1833,7 +1833,7 @@
 .membership-grade-info table .qinfo{display: inline-block;position:absolute;margin-top:2px;margin-left:9px;vertical-align: middle;}
 .membership-grade-info table .qinfo .icon{display: inline-block;width:20px;height:20px;background:url(//image.hmall.com/p/img/co/icon/ico-que-mark.png) no-repeat 50% 50%;}
 .membership-grade-info table .qinfo .tooltipwrap{display:none;position:absolute;top:0;padding-left:24px;}
-.membership-grade-info table .qinfo .tooltip{display:block;min-width:207px;min-height: 128px;padding:20px;border-radius: 5px;box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);border: solid 1px #ff5340;background-color: #ffffff;text-align:left;}
+.membership-grade-info table .qinfo .tooltip{display:block;min-width:207px;min-height: 128px;padding:20px;border-radius: 5px;box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);border: solid 1px #002fa3;background-color: #ffffff;text-align:left;}
 .membership-grade-info table .qinfo .tooltip p{color:#333;font-size:14px;line-height:20px;font-weight:400;}
 .membership-grade-info table .qinfo .tooltip p:first-child{margin-bottom:10px;}
 .membership-grade-info table .qinfo .tooltip p strong{color:#333;font-size:15px;line-height:20px;font-weight:700;}
@@ -2014,7 +2014,7 @@
 .order-list-fullbd > ul > li .img:after{content:"";display:block;position:absolute;top:0;left:0;width:90px;height:90px;background:rgba(0,0,0,.03);}
 .order-list-fullbd > ul > li .img img{width:90px;height:90px;border-radius:5px;}
 .order-list-fullbd > ul > li .box{display:inline-flex;flex-flow:column;vertical-align:middle;width:calc(100% - 115px);}
-.order-list-fullbd > ul > li .box .point{margin-bottom:5px;font-size:14px;color:#ff5340;font-weight:700;line-height:22px;letter-spacing:-0.56px;}
+.order-list-fullbd > ul > li .box .point{margin-bottom:5px;font-size:14px;color:#002fa3;font-weight:700;line-height:22px;letter-spacing:-0.56px;}
 .order-list-fullbd > ul > li .box .tit{line-height:20px;color:#333;font-size:15px;font-weight:400;}
 .order-list-fullbd > ul > li .box .price{margin-top:3px;line-height:21px;color:#333;font-size:14px;}
 .order-list-fullbd > ul > li .box .price strong{font-size:17px;vertical-align:baseline;}
@@ -2043,7 +2043,7 @@
 
 
 .limit{display:flex;align-items:center;margin-top:9px;}
-.limit span{margin-left:5px;font-size:14px;color:#ff5340;letter-spacing:-0.56px;}
+.limit span{margin-left:5px;font-size:14px;color:#002fa3;letter-spacing:-0.56px;}
 .dot-title{position:relative;padding-left:10px;font-size:15px;color:#666;font-weight:700;line-height:30px;letter-spacing:-0.6px;text-align:left;}
 .dot-title:before{content:"";position:absolute;top:calc(50% - 2px);left:0;width:4px;height:4px;background:#666;border-radius:50%;}
 .color-57b1c4{color:#57b1c4;}
@@ -2085,11 +2085,11 @@
 .qna-list > ul > li .qna-box .consult-question .tit{line-height:24px;color:#333;font-size:15px;font-weight:700;word-break:break-word;}
 .qna-list > ul > li .qna-box .consult-question .txt{margin-top:10px;line-height:20px;color:#666;font-size:15px;word-break:break-word;}
 .qna-list > ul > li .qna-box .state{margin-top:10px;padding-left:25px;display:inline-block;line-height:1;font-size:14px;font-weight:700;color:#999;}
-.qna-list > ul > li .qna-box .state.end{color:#ff5340;}
+.qna-list > ul > li .qna-box .state.end{color:#002fa3;}
 .qna-list > ul > li .qna-box h3.selected .state.end{display:none;}
 .qna-list > ul > li .qna-box h3.selected .icon.updown{bottom:6px;}
 .qna-list > ul > li .qna-box .consult-answer{position:relative;}
-.qna-list > ul > li .qna-box .consult-answer:before{content:'A';position:absolute;top:13px;left:2px;line-height:26px;color:#ff5340;font-size:20px;font-weight:700;}
+.qna-list > ul > li .qna-box .consult-answer:before{content:'A';position:absolute;top:13px;left:2px;line-height:26px;color:#002fa3;font-size:20px;font-weight:700;}
 .qna-list > ul > li .qna-box .consult-answer .tit{line-height:24px;color:#333;font-size:15px;font-weight:700;word-break:break-word;}
 .qna-list > ul > li .qna-box .consult-answer .txt{margin-top:10px;line-height:20px;color:#666;font-size:15px;word-break:break-word;}
 .qna-list > ul > li .qna-box .consult-answer .info{margin-top:20px;line-height:1;font-size:0;}
@@ -2395,6 +2395,6 @@ span{color:#333;font-size:14px;letter-spacing:-0.56px;}
 
 /* 방송알리미 플래그 */
 .order-list-fullbd .box .tit .flag { display: inline-block; margin-right: 5px; border: 1px solid #ccc; border-radius: 12px; padding: 0 7px; height: 21px; font-size: 12px; font-weight: 700; color: #ccc; line-height: 21px; vertical-align: top; }
-.order-list-fullbd .box .tit .flag.tv { border-color: #ff5340; color: #ff5340; }
+.order-list-fullbd .box .tit .flag.tv { border-color: #002fa3; color: #002fa3; }
 .order-list-fullbd .box .tit .flag.tvplus { border-color: #fe3bb0; color: #fe3bb0; }
 .order-list-fullbd .box .tit .flag.showpinglive { border-color: #611be6; color: #611be6; }
