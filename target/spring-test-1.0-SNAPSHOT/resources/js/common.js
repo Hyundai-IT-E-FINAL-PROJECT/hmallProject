@@ -5323,8 +5323,6 @@ $(function () {
 })
 
 $(function setCategory() {
-    console.log("카테고리 세팅")
-    console.log(location.href)
     $.ajax({
         type: "get"
         , url: "/category/"
@@ -5359,7 +5357,6 @@ $(function setCategory() {
                                         <ul>
     
                                         </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -5374,7 +5371,7 @@ $(function setCategory() {
                     console.log(category.CATEGORY_REF)
                     $('.category-list-contents[data-catecode="' + category.CATEGORY_REF + '"] .center-area .sub-category ul').append(
                         `
-                        <li><a href="/p/dpa/searchSectItem.do?sectId=2731203&GnbGroup=AllCategory&Code=${category.CATEGORY_SEQ}">${category.CATEGORY_NAME}</a></li>
+                        <li><a href="/product/all?first_category=${category.CATEGORY_REF}&second_category=${category.CATEGORY_SEQ}&sort=date&search_text=&page_num=1">${category.CATEGORY_NAME}</a></li>
                         `
                     )
                 }
