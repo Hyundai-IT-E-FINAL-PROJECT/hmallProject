@@ -20,7 +20,7 @@ public class CategoryController {
     @Setter(onMethod_ = @Autowired)
     private CategoryService categoryService;
 
-    @CrossOrigin(value = "http://localhost:8080/category/", methods = {RequestMethod.GET})
+    @CrossOrigin(value = "http://34.64.63.2:8080", methods = {RequestMethod.GET})
     @GetMapping(value = "/")
     public ResponseEntity<List<CategoryVO>> getAll(){
         List<CategoryVO> categoryVOS = categoryService.getAll();
