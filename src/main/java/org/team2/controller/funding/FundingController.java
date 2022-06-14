@@ -86,8 +86,8 @@ public class FundingController {
         styleFileList.add("prd-list");
         styleFileList.add("mypage");
         mav.setViewName("mypage.myFunding");
-        
-        
+
+
         //내 펀딩 프로젝트 가져오기
         List<FundVO> userFundProject=fundingService.getUserFund(Long.valueOf(principal.getName()));
         List<FundVO> adminAllProjdct=fundingService.getAllFund();
@@ -213,8 +213,8 @@ public class FundingController {
     @ResponseBody
     @PostMapping("fundingProcess")
     public void fundingProcess(@ModelAttribute RewardVO rewardVO,
-                                @ModelAttribute FundParticipantsVO fundParticipantsVO,
-                                Principal principal){
+                               @ModelAttribute FundParticipantsVO fundParticipantsVO,
+                               Principal principal){
         log.info("fundingProcess...");
         fundParticipantsVO.setUser_seq(Long.valueOf(principal.getName()));
 
@@ -228,9 +228,9 @@ public class FundingController {
 
     @RequestMapping("insertReply")
     public ResponseEntity<List<Map<String, Object>>> insertReply(@RequestParam("fund_board_seq") int fund_board_seq,
-                           @RequestParam("user_seq") int user_seq,
-                           @RequestParam("fund_reply_content_num") String fund_reply_content,
-                           @ModelAttribute FundReplyVO fundReplyVO) throws Exception{
+                                                                 @RequestParam("user_seq") int user_seq,
+                                                                 @RequestParam("fund_reply_content_num") String fund_reply_content,
+                                                                 @ModelAttribute FundReplyVO fundReplyVO) throws Exception{
 
         log.info("댓글 삽입 컨트롤러 도착 !");
         log.info(fund_board_seq+" "+user_seq+" "+fund_reply_content);
@@ -280,9 +280,9 @@ public class FundingController {
     @ResponseBody
     @RequestMapping("insertInfo")
     public ResponseEntity<List<Map<String, Object>>> insertInfo(@RequestParam("fund_board_seq_info") int fund_board_seq_info,
-                                                                 @RequestParam("user_seq_info") int user_seq_info,
-                                                                 @RequestParam("fund_reply_content_info") String fund_reply_content_info,
-                                                                 @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
+                                                                @RequestParam("user_seq_info") int user_seq_info,
+                                                                @RequestParam("fund_reply_content_info") String fund_reply_content_info,
+                                                                @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
 
         log.info("펀딩 상품 공지 삽입 컨트롤러 도착 !");
         log.info(fund_board_seq_info+" "+user_seq_info+" "+fund_reply_content_info);
@@ -298,8 +298,8 @@ public class FundingController {
     @ResponseBody
     @RequestMapping("selectInfo")
     public ResponseEntity<List<Map<String, Object>>> selectInfo(@RequestParam("fund_board_seq_info") int fund_board_seq_info,
-                                                                 @RequestParam("user_seq_info") int user_seq_info,
-                                                                 @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
+                                                                @RequestParam("user_seq_info") int user_seq_info,
+                                                                @ModelAttribute FundNoticeVO fundNoticeVO) throws Exception{
 
         log.info("공지 출력 컨트롤러 도착 !");
         log.info(fund_board_seq_info+" "+user_seq_info);
@@ -328,7 +328,7 @@ public class FundingController {
         }
         return entity;
     }
-    
+
     @ResponseBody
     @RequestMapping("selectDate")
     public ResponseEntity<List<Map<String, Object>>> selectDate(@RequestParam("product_seq") int product_seq ) throws Exception{
@@ -399,6 +399,5 @@ public class FundingController {
         return UUID.randomUUID().toString() + "_" + originalFileName;
     }
 
-
-
 }
+

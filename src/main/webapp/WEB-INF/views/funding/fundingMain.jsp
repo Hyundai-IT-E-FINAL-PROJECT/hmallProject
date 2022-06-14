@@ -138,9 +138,5 @@ To change this template use File | Settings | File Templates.
             <img class="img-responsive" src="/resources/img/2022/06/14/`+fileCallPath+`" alt="...">
             `
         );
-        // $(".card-reward-img .card-newStatus-icon").append(
-        //     `
-        //     `
-        // )
     }
 </script>
