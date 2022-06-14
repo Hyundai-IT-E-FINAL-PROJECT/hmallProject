@@ -14,6 +14,7 @@ public interface FundingService {
 
     void deleteUserFund(Long fund_product_seq) throws Exception;
     List<Map<Integer, Object>> readFundingProduct(FundVO fundVO) throws Exception;
+
     List<Map<Integer, Object>> readFundigProductDetail(int fund_product_seq) throws Exception;
 
     List<FundVO> getAllFund() throws Exception;
@@ -41,4 +42,6 @@ public interface FundingService {
     List<Map<String, Object>> selectDate(int product_seq) throws Exception;
 
     List<Map<String, Object>> participatedFund(Long user_seq) throws Exception;
+
+    void insertFile(AttachFileVO attachFileVO) throws Exception;
 }

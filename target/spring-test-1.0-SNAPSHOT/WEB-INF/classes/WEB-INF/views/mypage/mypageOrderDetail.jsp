@@ -202,10 +202,6 @@
                                 <h4 class="pay-tit">결제 수단</h4>
 
                                 <div class="paytype">
-                                    <!-- [kdh : 부분취소 적용] 20160108 s ========================================-->
-
-                                    <!-- [kdh : 부분취소 적용] 20160108 e ========================================-->
-
                                     <div class="paycase">
                                         <p class="case-tit">
                                             <strong>${list[0].ORDER_METHOD}</strong>
@@ -214,27 +210,6 @@
                                                             </span>
                                         </p>
                                     </div>
-
-<%--                                    <div class="paycase"></div> <!-- 무통장 한 건이면 div하나 추가해준다. 퍼블에서 요청 -->--%>
-
-<%--                                    <dl class="list">--%>
-
-<%--                                        <dt>KB국민은행</dt>--%>
-<%--                                        <dd><strong>130290-71-205907</strong>--%>
-<%--                                            <div class="btngroup">--%>
-<%--                                                <button type="button" class="btn btn-linelgray small25" onclick=""><span>복사</span></button>--%>
-<%--&lt;%&ndash;                                                copyEcrytFncIstnNo(this);&ndash;%&gt;--%>
-<%--                                            </div>--%>
-<%--                                        </dd>--%>
-<%--                                        <dt>입금자명</dt>--%>
-<%--                                        <dd>김민수</dd>--%>
-
-<%--                                    </dl>--%>
-
-
-
-
-
                                 </div>
 
                             </li>

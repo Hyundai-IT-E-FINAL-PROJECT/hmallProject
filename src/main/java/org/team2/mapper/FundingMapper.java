@@ -42,4 +42,6 @@ public interface FundingMapper {
     List<Map<String, Object>> selectDate(int product_seq) throws Exception;
 
     List<Map<String, Object>> participatedFund(Long user_seq) throws Exception;
+
+    void insertFile(AttachFileVO attachFileVO) throws Exception;
 }
