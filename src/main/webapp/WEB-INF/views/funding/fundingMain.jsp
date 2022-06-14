@@ -83,7 +83,7 @@ To change this template use File | Settings | File Templates.
                                                             <a href="${contextPath}/fund/detail/${fund.FUND_PRODUCT_SEQ}" class="card-reward-item" style="cursor: pointer; border-radius: 10px 10px 0 0;">
                                                                 <div class="card-reward-img" style="border-radius: 10px 10px 0 0;">
                                                                     <div class="card-newStatus-icon">NEW</div>
-                                                                    <img class="img-responsive" src="${contextPath}/fund/display?fileName=${fund.UPLOADPATH}/${fund.UUID}_${fund.FILENAME}" alt="..."
+                                                                    <img class="img-responsive" src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fund.FUND_PRODUCT_MAIN_IMG}" alt="..."
                                                                     style="width: 220px; margin: 0 auto; height: 220px;">
 <%--                                                                    <img src="${contextPath}/resources/img/2022/06/14/34d8707e-be99-42e8-883a-45b0962b283c_ping.jpeg">--%>
                                                                 </div>

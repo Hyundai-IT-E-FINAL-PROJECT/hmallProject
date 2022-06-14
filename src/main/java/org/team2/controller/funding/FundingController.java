@@ -1,11 +1,14 @@
 package org.team2.controller.funding;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import oracle.ucp.proxy.annotation.Post;
 import org.json.JSONArray;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,9 +25,11 @@ import org.team2.domain.*;
 import org.team2.domain.FundReplyVO;
 import org.team2.domain.FundVO;
 import org.team2.domain.RewardVO;
+import org.team2.service.AwsS3Biz;
 import org.team2.service.FundingService;
 
 import javax.mail.Multipart;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,12 +40,21 @@ import java.util.*;
 
 @Controller
 @Log4j
+@NoArgsConstructor
 @AllArgsConstructor
 @RequestMapping("/fund")
 public class FundingController {
 
     @Setter(onMethod_ = @Autowired)
     private FundingService fundingService;
+
+    @Setter(onMethod_ = @Autowired)
+    private AwsS3Biz s3Service;
+//    @Value("${aws.accesskey}")
+    private String accessKey="AKIATNAAHJTEVJV6FGQF";
+
+    private static final Logger logger = LoggerFactory.getLogger(FundingController.class);
+
 
     @GetMapping( "main")
     public ModelAndView openOrderCompletePage(@ModelAttribute FundVO fundVO) throws Exception{
@@ -153,11 +167,12 @@ public class FundingController {
     }
     @ResponseBody
     @PostMapping("insertFund")
-    public void insertFund(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO, @ModelAttribute AttachFileVO attachFileVO,
+    public void insertFund(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO,
                            @RequestParam(value = "fund_reward_titleList[]") List<String> fund_reward_titleList,
                            @RequestParam(value = "fund_reward_costList[]") List<String> fund_reward_costList,
                            @RequestParam(value = "fund_reward_contentList[]") List<String> fund_reawrd_contentList,
-                           @RequestParam(value = "fund_reward_countList[]") List<String> fund_reward_countList, Principal principal) throws Exception{
+                           @RequestParam(value = "fund_reward_countList[]") List<String> fund_reward_countList,
+                           Principal principal) throws Exception{
 
 
         log.info("펀딩 상품 및 리워드 insert !!");
@@ -167,17 +182,17 @@ public class FundingController {
         log.info(fund_reward_titleList.toString());
         log.info(fund_reward_countList.toString());
         fundVO.setNo(Integer.parseInt(principal.getName()));
-
-        log.info("----------파일 정보----------");
-        log.info(attachFileVO.getFileName());
-        log.info(attachFileVO.getUuid());
-        log.info(attachFileVO.getUploadPath());
-        log.info("----------파일 정보----------");
+//
+//        log.info("----------파일 정보----------");
+////        log.info(attachFileVO.getFileName());
+////        log.info(attachFileVO.getUuid());
+////        log.info(attachFileVO.getUploadPath());
+//        log.info("----------파일 정보----------");
         try {
             fundingService.insertFunding(fundVO);
             rewardVO.setFund_product_seq(fundVO.getFund_product_seq());
-            attachFileVO.setFund_product_seq(fundVO.getFund_product_seq());
-            fundingService.insertFile(attachFileVO);
+//            attachFileVO.setFund_product_seq(fundVO.getFund_product_seq());
+//            fundingService.insertFile(attachFileVO);
             log.info(fundVO.getFund_product_seq());
             log.info(rewardVO.getFund_product_seq());
             for(int a = 0 ; a < fund_reward_countList.size() ; a++){
@@ -340,57 +355,57 @@ public class FundingController {
 
         return str.replace("-",File.separator);
     }
-
-    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<AttachFileVO>> uploadAjaxPost(MultipartFile[] uploadFile) throws Exception{
-
-        List<AttachFileVO> list = new ArrayList<>();
-        String uploadFolder = "C:\\upload";
-        String uploadFolderPath = getFolder();
-        File uploadPath  = new File(uploadFolder, uploadFolderPath);
-
-        log.info("upload path: "+uploadPath);
-
-        if(uploadPath.exists() == false) {
-            uploadPath.mkdirs();
-        }
-
-        for (MultipartFile multipartFile : uploadFile) {
-            AttachFileVO attachDTO = new AttachFileVO();
-            String uploadFileName = multipartFile.getOriginalFilename();
-
-            log.info("---------------------");
-            log.info("Upload File Name:" + multipartFile.getOriginalFilename());
-            log.info("Upload File Size:" + multipartFile.getSize());
-
-
-            uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-            log.info("only file name: "+uploadFileName);
-            attachDTO.setFileName(uploadFileName);
-
-            UUID uuid = UUID.randomUUID();
-
-            uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-            try {
-                File saveFile = new File(uploadPath, uploadFileName);
-                multipartFile.transferTo(saveFile);
-
-                attachDTO.setUuid(uuid.toString());
-                attachDTO.setUploadPath(uploadFolderPath);
-                if(checkImageType(saveFile)) {
-                    FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                    Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
-                    thumbnail.close();
-                }
-                list.add(attachDTO);
-            }catch(Exception e){
-                log.error(e.getMessage());
-            }
-        }
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
+//
+//    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public ResponseEntity<List<AttachFileVO>> uploadAjaxPost(MultipartFile[] uploadFile) throws Exception{
+//
+//        List<AttachFileVO> list = new ArrayList<>();
+//        String uploadFolder = "C:\\upload";
+//        String uploadFolderPath = getFolder();
+//        File uploadPath  = new File(uploadFolder, uploadFolderPath);
+//
+//        log.info("upload path: "+uploadPath);
+//
+//        if(uploadPath.exists() == false) {
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : uploadFile) {
+//            AttachFileVO attachDTO = new AttachFileVO();
+//            String uploadFileName = multipartFile.getOriginalFilename();
+//
+//            log.info("---------------------");
+//            log.info("Upload File Name:" + multipartFile.getOriginalFilename());
+//            log.info("Upload File Size:" + multipartFile.getSize());
+//
+//
+//            uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+//            log.info("only file name: "+uploadFileName);
+//            attachDTO.setFileName(uploadFileName);
+//
+//            UUID uuid = UUID.randomUUID();
+//
+//            uploadFileName = uuid.toString() + "_" + uploadFileName;
+//
+//            try {
+//                File saveFile = new File(uploadPath, uploadFileName);
+//                multipartFile.transferTo(saveFile);
+//
+//                attachDTO.setUuid(uuid.toString());
+//                attachDTO.setUploadPath(uploadFolderPath);
+//                if(checkImageType(saveFile)) {
+//                    FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+//                    Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+//                    thumbnail.close();
+//                }
+//                list.add(attachDTO);
+//            }catch(Exception e){
+//                log.error(e.getMessage());
+//            }
+//        }
+//        return new ResponseEntity<>(list, HttpStatus.OK);
+//    }
 
     @GetMapping("display")
     @ResponseBody
@@ -410,4 +425,29 @@ public class FundingController {
         }
         return result;
     }
+
+
+    @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String uploadAjaxPost(MultipartFile file, HttpServletRequest request) throws Exception{
+
+        String originalFileName = file.getOriginalFilename();
+
+        // ========= 파일명 중복 방지 처리 ========= //
+        String uuidFileName = getUuidFileName(originalFileName);
+
+
+        String res = s3Service.uploadObject(file, uuidFileName);
+        log.info(res);
+//        return "https://hmallbucket.s3.ap-northeast-2.amazonaws.com/+mainImage/"+uuidFileName;
+        return uuidFileName;
+    }
+
+
+    private static String getUuidFileName(String originalFileName) {
+        return UUID.randomUUID().toString() + "_" + originalFileName;
+    }
+
+
+
 }

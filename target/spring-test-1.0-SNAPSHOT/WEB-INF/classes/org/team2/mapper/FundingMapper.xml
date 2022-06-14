@@ -35,7 +35,7 @@
                                         #{fund_product_content},
                                         0,
                                         0,
-                                        'aaa',
+                                        #{fund_product_main_img},
                                         sysdate,
                                         sysdate,
                                         #{fund_product_estimate_date}
@@ -88,18 +88,15 @@
     </delete>
     <select id="readFundingProduct" resultType="map">
 
-        SELECT *
-        FROM(
-                SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
-                       FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
-                       FP.FUND_PRODUCT_MAIN_IMG,FP.FUND_PRODUCT_END_DATE,
-                       FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME, FP.FUND_PRODUCT_STATUS
-                FROM TBL_FUND_PRODUCT FP
-                         INNER JOIN TBL_USER TU
-                                    ON FP.USER_SEQ = TU.USER_SEQ) NT
-                INNER JOIN TBL_FUND_MAINIMAGE FM
-                           ON NT.FUND_PRODUCT_SEQ = FM.FUND_PRODUCT_SEQ
-                WHERE NT.FUND_PRODUCT_STATUS = 1
+        SELECT FP.FUND_PRODUCT_SEQ,FP.FUND_PRODUCT_TITLE,
+               FP.FUND_PRODUCT_PR_COST,FP.FUND_PRODUCT_GOAL_COST,
+               FP.FUND_PRODUCT_END_DATE,FP.FUND_PRODUCT_MAIN_IMG,
+               FP.FUND_PRODUCT_PARTICIPANTS, TU.USER_NAME, FP.FUND_PRODUCT_STATUS
+        FROM TBL_FUND_PRODUCT FP
+                 INNER JOIN TBL_USER TU
+                            ON FP.USER_SEQ = TU.USER_SEQ
+        WHERE FP.FUND_PRODUCT_STATUS = 1
+
     </select>
 
     <select id="readFundigProductDetail" resultType="map">
@@ -233,10 +230,10 @@
     </select>
 
     <select id="participatedFund" resultType="map">
-        select pa.fund_product_seq,pr.fund_product_title, sum(pa.fund_reward_cost) "PA_COST"
+        select pa.fund_product_seq,pr.fund_product_title,pr.fund_product_main_img, sum(pa.fund_reward_cost) "PA_COST"
         from tbl_fund_participants pa, tbl_fund_product pr
         where pa.user_seq=#{user_seq} and pa.fund_product_seq=pr.fund_product_seq
-        group by pa.fund_product_seq, pr.fund_product_title
+        group by pa.fund_product_seq, pr.fund_product_title, pr.fund_product_main_img
     </select>
 
     <insert id="insertFile">

@@ -45,7 +45,7 @@
                                                         <figure>
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
-                                                                        src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                        src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
                                                                         class="img-responsive"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -128,7 +128,7 @@
                                                         <figure>
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
-                                                                        src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                        src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
                                                                         class="img-responsive"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -212,7 +212,7 @@
                                                     <figure>
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
-                                                                    src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${myFund.fund_product_main_img}"
                                                                     class="img-responsive"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -288,7 +288,7 @@
                                                     <figure>
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
-                                                                    src="//image-se.ycrowdy.com/logo/project-default-1.png/ycrowdy/resize/!340x!226"
+                                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${paFund.FUND_PRODUCT_MAIN_IMG}"
                                                                     class="img-responsive"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
@@ -304,17 +304,6 @@
                                                                     <div onclick="location.href='${contextPath}/fund/detail/${paFund.FUND_PRODUCT_SEQ}'" style="height: 80px;">${paFund.FUND_PRODUCT_TITLE}</div>
                                                                 </div>
                                                                 <div class="rewards-subject"><strong></strong></div>
-<%--                                                                <c:if test="${myFund.fund_product_status eq 1}">--%>
-<%--                                                                    <div class="row row-mobile-n">--%>
-<%--                                                                        <div class="col-xs-9 col-sm-8"><span class="rewards-price">--%>
-<%--                                                            <span class="webfont2"></span>달성률</span>--%>
-<%--                                                                            <span class="rewards-percent">--%>
-<%--                                                                <fmt:formatNumber type="number" maxFractionDigits="0" value="${(myFund.fund_product_pr_cost / myFund.fund_product_goal_cost)* 100}"/>%--%>
-<%--                                                            </span>--%>
-<%--                                                                        </div> <!---->--%>
-<%--                                                                    </div>--%>
-<%--                                                                </c:if>--%>
-<%--                                                                <c:if test="${myFund.fund_product_status eq 0}">--%>
                                                                     <div class="row row-mobile-n">
                                                                         <div class="col-xs-9 col-sm-8"><span class="rewards-price">
                                                             <span class="webfont2"></span></span>

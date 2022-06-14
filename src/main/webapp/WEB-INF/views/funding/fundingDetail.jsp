@@ -51,7 +51,7 @@ To change this template use File | Settings | File Templates.
                                                     tabindex="-1" role="option" aria-describedby="slick-slide00">
                                                 <!---->
                                                 <div class="embed-responsive embed-responsive-16by9"><img
-                                                        src="//image-se.ycrowdy.com/20220519/CROWDY_202205191412510018_DWVHL.png/ycrowdy/resize/!740x!417"
+                                                        src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${list[0].FUND_PRODUCT_MAIN_IMG}"
                                                         class="img-responsive"></div>
                                             </figure>
                                         </div>
@@ -66,7 +66,7 @@ To change this template use File | Settings | File Templates.
                                                     style="width: 63px;" tabindex="-1" role="option"
                                                     aria-describedby="slick-slide10" data-slick-index="0"
                                                     aria-hidden="false"><img
-                                                    src="//image-se.ycrowdy.com/20220519/CROWDY_202205191412510018_DWVHL.png/ycrowdy/resize/!200x!150"
+                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${list[0].FUND_PRODUCT_MAIN_IMG}"
                                                     class="img-responsive"></figure>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="col-sm-3 col-xs-6">
                                     <figure><a href="/r/wwwlalaitscom" class="card-story-item">
                                         <div class="card-story-img"><img
-                                                src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226"
+                                                src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${list[0].FUND_PRODUCT_MAIN_IMG}"
                                                 alt="..." class="img-responsive"> <!----> <!----></div>
                                         <figcaption>
                                             <div class="card-story-content">

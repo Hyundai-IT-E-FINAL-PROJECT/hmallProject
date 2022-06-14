@@ -1091,7 +1091,7 @@
                                         <%--                                        <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${best1Product.fund_product_seq}'">${best1Product.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
-                                <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
+                                <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${best1Product.fund_product_main_img}" alt="..." class="img-responsive"
                                      style="height: 270px; width: 527px;">
                                 <div class="product-list">
                                     <div class="pdthumb">
@@ -1139,10 +1139,9 @@
                                     <div>
                                         <div style="display: flex; background-color: lightcoral; color: white; cursor: pointer; width: 70px;
                                             justify-content: center; border-radius: 10px; height: 34px; align-items: center;">마감임박</div>
-                                        <%--                                        <h3 style="cursor: pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>--%>
                                     </div>
                                 </div>
-                                <img src="//image-se.ycrowdy.com/20220602/CROWDY_202206021738450791_yiaOY.png/ycrowdy/resize/!340x!226" alt="..." class="img-responsive"
+                                <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${deadlineProduct.fund_product_main_img}" alt="..." class="img-responsive"
                                      style="height: 270px; width: 527px;">
                                 <div class="product-list">
                                     <div class="pdthumb">
@@ -1151,10 +1150,6 @@
                                             <div class="figcaption">
                                                 <a href="javascript:;">
                                                     <h3 style="cursor:pointer;" onclick="location.href='${contextPath}/fund/detail/${deadlineProduct.fund_product_seq}'">${deadlineProduct.fund_product_title}</h3>
-                                                    <%--                                                    <div class="pdname" aria-label="제품명" style="font-weight: bold; font-size: 16px; line-height: 1.38;">${deadlineProduct.fund_product_content}--%>
-                                                    <%--                                                    </div>--%>
-
-
                                                 </a>
                                                 <div class="multi">
                                                     <div class="pdprice" style="justify-content: space-between; margin-top: 80px;">
