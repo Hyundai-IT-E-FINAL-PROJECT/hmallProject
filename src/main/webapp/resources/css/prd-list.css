@@ -25,7 +25,7 @@
 .pl_benefit_cats span._dep { color:#46675c; border:1px solid #46675c; }
 .pl_benefit_cats span._gdl { color:#6dae06; border:1px solid #6dae06; }
 .pl_benefit_cats span._mob { color:#8470ff; border:1px solid #8470ff; }
-.pl_benefit_cats span._dat { color:#ff5340; border:1px solid #ff5340; }
+.pl_benefit_cats span._dat { color:#002fa3; border:1px solid #002fa3; }
 .pl_benefit_cats span._dat sup { vertical-align:middle; margin-top:-10px; display:inline-block }
 .pl_benefit_cats span._app { color:#8470ff; border:1px solid #8470ff; }
 .pl_benefit_sub, .pl_item_title, .pl_item_price, .pl_item_price_strk { font-size:14px; line-height:18px; }
@@ -309,7 +309,7 @@
 .pl_item_tv_alarm, .pl_item_tv_buynow { display:inline-block; width:93px; font-size:13px; padding:3px 0 5px; text-align:center; }
 .pl_item_tv_alarm { border:1px solid #ddd; color:#333; }
 .pl_item_tv_alarm img { display:inline-block; vertical-align:middle; }
-.pl_item_tv_buynow { border:1px solid #ff5340; background:#ff5340; color:#fff !important; }
+.pl_item_tv_buynow { border:1px solid #002fa3; background:#002fa3; color:#fff !important; }
 
 .pl_main_category_view { position:absolute; top:0; right:0; font-size:0; display:inline-block; }
 ._btn_deptsel, ._btn_viewcount { display:inline-block; vertical-align:middle; border:1px solid #dcdcdc; font-size:13px; line-height:17px; padding:8px; color:#888 !important; white-space:nowrap; }
@@ -331,7 +331,7 @@
 .pl_selectbox_wrap label span { font-size:13px; line-height:14px; color:#555; margin-left:7px; display:inline-block; vertical-align:middle; margin-top:-3px; }
 .pl_selectbox_wrap._not_selectable label i { background-position:-162px -81px; }
 ._window_deptsel_ctrl { padding:13px 15px; border-top:1px solid #dcdcdc; }
-._window_deptsel_ctrl ._btn_apply { float:right; font-size:14px; color:#fff; line-height:18px; padding:7px 28px 8px; display:inline-block; background:#ff5340; vertical-align:middle; }
+._window_deptsel_ctrl ._btn_apply { float:right; font-size:14px; color:#fff; line-height:18px; padding:7px 28px 8px; display:inline-block; background:#002fa3; vertical-align:middle; }
 ._window_deptsel_ctrl > div { display:inline-block; height:22px; vertical-align:middle; padding-top:9px; }
 ._brand_select ul li, ._shop_select ul li, ._benefit_select ul li, ._age_select ul li { padding:2px 0; }
 ._brand_select ul li span, ._shop_select ul li span, ._benefit_select ul li span, ._age_select ul li span { font-size:14px; line-height:30px; }
@@ -385,7 +385,7 @@
 .pl_brands_wrap._btnset { text-align:center; font-size:0; }
 .pl_brands_wrap._btnset > a { display:inline-block; width:128px; line-height:40px; font-size:16px; }
 .pl_brands_wrap._btnset > a:hover { text-decoration:none; }
-.pl_brands_wrap._btnset > a._btn_apply { background:#ff5340; color:#fff; border:1px solid #ff5340; }
+.pl_brands_wrap._btnset > a._btn_apply { background:#002fa3; color:#fff; border:1px solid #002fa3; }
 .pl_brands_wrap._btnset > a._btn_cancel { background:#fff; color:#424242; border:1px solid #d5d5d5; margin-left:10px; }
 .pl_brands_brandname_list { font-size:0; width:800px; margin-top:7px; }
 .pl_brands_brandname_list li { display:inline-block; width:200px; margin:5px 0; }
@@ -440,7 +440,7 @@
 .pl_customer_ovreview { background:#fafafa; padding:25px 20px 20px; text-align:center; margin-top:30px; }
 .pl_customer_ovreview ._txtt1 { font-size:16px; color:#333; margin-bottom:12px; }
 .pl_customer_ovreview ._txtt2 { font-size:20px; color:#333; font-weight:bold; margin-bottom:18px; }
-.pl_customer_ovreview ._txtt2 em { color:#ff5340; }
+.pl_customer_ovreview ._txtt2 em { color:#002fa3; }
 .pl_customer_ovreview ._btnset > a { width:100px; background:#fff; font-size:16px; color:#333; padding:10px; text-align:center; display:inline-block; margin:0 10px; border:1px solid #eee; }
 
 .pl_bundled_item { display:block; margin-bottom:50px; margin-top:25px; }
@@ -452,11 +452,11 @@
 .pl_bundled_item_price_calc > em { font-size:25px; font-weight:bold; }
 .pl_bundled_item_price_calc img { width:22px; margin:0 5px 2px; vertical-align:middle; display:inline-block; }
 .pl_bundled_item_price_calc > span { font-size:15px; }
-.pl_bundled_item_price_calc > span > em { color:#ff5340; font-weight:bold; }
+.pl_bundled_item_price_calc > span > em { color:#002fa3; font-weight:bold; }
 .pl_bundled_item .pl_benefit_cats { margin-bottom:6px; }
 ._clrfix { clear:both; content:''; display:block; }
 .pl_bundled_pop { display:block; color:#424242; text-align:center; font-size:15px; border:1px solid #ddd; padding:7px; margin-top:15px; }
-.pl_bundled_pop em { color:#ff5340; font-weight:bold; }
+.pl_bundled_pop em { color:#002fa3; font-weight:bold; }
 
 .pl_main_tvitems, .pl_main_frequent, .pl_main_category { margin-top:38px; }
 .pl_main_tvitems, .pl_main_frequent { margin-bottom:-60px; }
@@ -555,7 +555,7 @@
 .pl_search_keyword .hash_tag_wrap   { position:relative; width:100%; display:inline-block; }
 .pl_search_keyword .hash_tag_wrap .hashtag  { margin-bottom:15px; margin-right:5px; padding:5px 10px; min-width:85px; height:27px; line-height:1; font-size:14px; color:#555; text-align:center; border:1px solid #e5e5e5; border-radius:20px; box-sizing:border-box; display:inline-block; }
 .pl_search_keyword .hash_tag_wrap .hashtag.long { width:125px; min-width:125px }
-.pl_search_keyword .hash_tag_wrap .hashtag.on, .hashtag:hover   { color:#ff5340; border:1px solid #ff5340; }
+.pl_search_keyword .hash_tag_wrap .hashtag.on, .hashtag:hover   { color:#002fa3; border:1px solid #002fa3; }
 
 /* �꾩����� */
 .pl_itemlist_crowd  { position: absolute; bottom: 160px; left: 480px; z-index: 100; width: 541px; font-size: 0; }

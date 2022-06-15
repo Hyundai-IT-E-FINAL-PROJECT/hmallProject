@@ -12,6 +12,8 @@ public interface BasketMapper {
 
     void addBasket(@Param("user_seq") Long user_seq, @Param("product_seq") Long product_seq, @Param("basket_count") Long basket_count);
 
+    void deleteBasket(@Param("basket_seq") Long basket_seq);
+
     BasketVO directBuy(Map<String, Long> map);
 
     Map<String, String> getBasketOne(Map<String, Long> map);

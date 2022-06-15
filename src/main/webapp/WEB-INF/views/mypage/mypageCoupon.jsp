@@ -79,9 +79,6 @@
                                         <p class="type">
                                             남은기간 : ${list.LEFTTIME}일
                                         </p>
-
-                                        <button class="btn btn-linelgray small30 abs" data-modules-modal="target:#applicable-item;" onclick="doSearchSlitmPop('02683299');return false;"><span>적용상품보기</span></button><!-- 2020-09-28 마크업 추가 -->
-
                                     </div>
                                 </div>
                                 <div class="coupon-bg"><div></div><div></div></div>

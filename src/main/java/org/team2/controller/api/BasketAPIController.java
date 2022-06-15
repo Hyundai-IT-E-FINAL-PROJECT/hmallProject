@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.BasketVO;
 import org.team2.domain.UserVO;
@@ -40,6 +37,14 @@ public class BasketAPIController {
         resHeader.add("Content-Type", "application/json; charset=UTF-8");
 
         basketService.addBasket(user_seq, product_seq, basket_count);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("{basket_seq}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity deleteBasket(@PathVariable long basket_seq) {
+        basketService.deleteBasket(basket_seq);
 
         return new ResponseEntity(HttpStatus.OK);
     }

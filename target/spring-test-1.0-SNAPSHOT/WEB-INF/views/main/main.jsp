@@ -1321,13 +1321,8 @@
                                 </div>
                                 <button class="slick-next slick-arrow" aria-label="Next" type="button" style="" onclick="plusSlides(1)">Next
                                 </button>
-                                <div class="slick-slidetotal" style=""><em id="current_slide">1</em><strong
-                                        class="total">3</strong></div>
+                                <div class="slick-slidetotal" style=""><em id="current_slide">1</em><strong class="total">3</strong></div>
                             </div>
-
-                            <button type="button" class="btn btn-all lyopen" data-modules-modal="target:#modalTvFull;">
-                                <span>전체</span><i class="icon"></i></button>
-
                         </div>
 
                         <script type="text/javascript">
@@ -1431,79 +1426,6 @@
                                 slides_side[slideIndex_side-1].style.display = "block";
                             }
                         </script>
-
-
-                        <!--//딜배너 영역-->
-                        <!--이달의 혜택 hm2tv_evicon 없는 경우에 display:none-->
-
-                        <div class="month-benefit-wrap">
-                            <div class="titArea"><h3>이달의 혜택</h3></div>
-                            <div class="sliderwrap slick-initialized slick-slider isArrows slick-paging"
-                                 data-modules-slick="arrows:true;paging:true;dots:false;infinite:true;">
-                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="" onclick="plusSlides_side(-1)">
-                                    Previous
-                                </button>
-                                <div class="slick-list draggable">
-                                    <div class="slick-track"
-                                         style="opacity: 1; width: 1192px;">
-                                        <div style="width: 298px;">
-                                            <div>
-                                                <ul class="slide_img" style="width: 100%; vertical-align: top;">
-
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_1.jpeg"/>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_2.jpeg"/>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_3.jpeg"/>
-                                                        </div>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div style="width: 298px;">
-                                            <div>
-                                                <ul class="slide_img" style="width: 100%; vertical-align: top; display: none">
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_4.jpeg"/>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_5.jpeg"/>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="items">
-                                                            <img class="img_2" src="${contextPath}/resources/img/exhibitions/side_6.jpeg"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="" onclick="plusSlides_side(1)">Next
-                                </button>
-                                <div class="slick-slidetotal" style=""><em id="current_side">1</em><strong
-                                        class="total" value="">2</strong></div>
-                            </div>
-                        </div>
-
-                        <!--//이달의 혜택-->
                     </div>
                     <div class="home-section point" style="display:none">
                         <div class="point-box">
@@ -2116,7 +2038,7 @@
                     </script>
                     <div class="home-section mytem" id="myTemArea" style="">
                         <div class="titArea">
-                            <h3>나에게 딱! 마이템</h3>
+                            <h3>나에게 딱! 현재 인기 아이템</h3>
                         </div>
 
 
@@ -2126,9 +2048,6 @@
                         <div class="pdlist-wrap col5">
                             <div data-modules-slick="paging:true;fade:false;dots:false;arrows:true;"
                                  class="slick-initialized slick-slider isArrows slick-paging">
-                                <button class="slick-prev slick-arrow slick-disabled" aria-label="Previous"
-                                        type="button" aria-disabled="true" style="">Previous
-                                </button>
                                 <div class="slick-list draggable">
                                     <div class="slick-track"
                                          style="opacity: 1; width: 2162px; transform: translate(0px, 0px);">
@@ -2346,11 +2265,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style=""
-                                        aria-disabled="false">Next
-                                </button>
-                                <div class="slick-slidetotal" style=""><em class="current">1</em><strong
-                                        class="total">2</strong></div>
                             </div>
                         </div>
 
@@ -2361,51 +2275,6 @@
                         // MYTEM 추천영역 셋팅
                         rcmmItemMyTem();
                     </script>
-                    <div class="home-section banner-slider big-banner">
-                        <ul data-modules-slick="paging:false;dots:true;arrows:false;autoplay:true;infinite:true;"
-                            class="slick-initialized slick-slider slick-single">
-                            <div class="slick-list draggable">
-                                <div class="slick-track"
-                                     style="opacity: 1; width: 1081px; transform: translate(0px, 0px);">
-                                    <div class="slick-slide slick-current slick-active" data-slick-index="0"
-                                         aria-hidden="false" style="width: 1081px;">
-                                        <div>
-                                            <li class="items"
-                                                style="background-color: rgb(255, 153, 115); width: 100%; display: inline-block; vertical-align: top;">
-
-
-                                                <a href="javascript:;"
-                                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2718492&amp;eventCode=HHS20', '', '');"
-                                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                   ga-custom-position="광고영역배너" ga-custom-creative="현대홈쇼핑 현대카드"
-                                                   ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:14"
-                                                   tabindex="0">
-
-
-                                                    <div class="info-box">
-
-
-                                                        <span class="tit">현대홈쇼핑 현대카드</span>
-
-
-                                                        <p class="txt">현대홈쇼핑에서 첫 이용시 <br>3만원 할인<br>(2022.05.01~2022.05.31)
-                                                        </p>
-
-                                                    </div>
-                                                    <div class="thumb">
-                                                        <img src="https://image.hmall.com/MH/MH002/20220430/230553/0112_big2_ff9973.jpg"
-                                                             alt=""
-                                                             onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
                             jjimList();
@@ -2932,323 +2801,7 @@
                                 return false;
                             }
                         }
-
-                        //for chrome debugger
-                        //# sourceURL=script-for-main-dprenew.js
                     </script>
-                    <div class="home-section theme-pd">
-
-                        <!--8개로 운영, 8개 한번에 노출 // 어드민에 별도 url 입력된 경우 해당url로 이동, 그렇지 않을 시 기본기획전 url로 이동-->
-                        <ul class="theme-list">
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="마틴발
-    CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                    <div class="img">
-                                        <img src="https://image.hmall.com/MH/MH002/20220426/130221/494.png"
-                                             alt="마틴발 스페셜샵"
-                                             onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-                                        <span class="flag-da">AD</span>
-
-
-                                    </div>
-                                    <figcaption>
-
-
-                                        <p class="tit">마틴발</p>
-
-                                        <p class="tit">CLASSIC MEN'S WEAR</p>
-
-
-                                        <p class="txt"></p>
-                                    </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="마틴발
-    CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2766132', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="한섬의 디자인을 입다
-    Mothan" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/static/image/sect/mblbnnr2766132.jpg"
-                                                 alt="모덴 스페셜샵"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">한섬의 디자인을 입다</p>
-
-                                            <p class="tit">Mothan</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2766132', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="한섬의 디자인을 입다
-    Mothan" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2211104', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="고비(GOBI)
-    Ordinary Premium" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220406/130850/20220406114541026.S220100035.jpg"
-                                                 alt="고비(GOBI)"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">고비(GOBI)</p>
-
-                                            <p class="tit">Ordinary Premium</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2211104', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="고비(GOBI)
-    Ordinary Premium" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2146735', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="Reflect me
-    Laciento 라씨엔토" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220510/153559/4565.jpg"
-                                                 alt="라씨엔토 스페셜샵"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">Reflect me </p>
-
-                                            <p class="tit">Laciento 라씨엔토</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2146735', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="Reflect me
-    Laciento 라씨엔토" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2700368', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="JBY by 디자이너 정구호
-    공기를 담은 실루엣" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220510/153529/897.jpg"
-                                                 alt="JBY(제이바이) SHOP"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">JBY by 디자이너 정구호</p>
-
-                                            <p class="tit">공기를 담은 실루엣</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2700368', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="JBY by 디자이너 정구호
-    공기를 담은 실루엣" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2731848', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="프리미엄 데님
-    TRUE RELIGION" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220421/171944/545.png"
-                                                 alt="트루릴리전 스페셜샵"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">프리미엄 데님</p>
-
-                                            <p class="tit">TRUE RELIGION</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2731848', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="프리미엄 데님
-    TRUE RELIGION" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/plPlanSaleL.do?PlanSaleSectID=2690970', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="안나수이 ANNA SUI
-    달콤한 로맨티시즘" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220208/083355/20220208083232338.1617714.jpg"
-                                                 alt="안나수이(ANNA SUI)"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">안나수이 ANNA SUI</p>
-
-                                            <p class="tit">달콤한 로맨티시즘</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/m/plPlanSaleL.do?PlanSaleSectID=2690970', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="안나수이 ANNA SUI
-    달콤한 로맨티시즘" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                            <li>
-
-
-                                <figure>
-
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2383760', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="이상봉 에디션
-    프리미엄을 담다" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-
-
-                                        <div class="img">
-                                            <img src="https://image.hmall.com/MH/MH002/20220512/111908/1_21.jpg"
-                                                 alt="이상봉 에디션 스페셜샵"
-                                                 onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
-
-
-                                        </div>
-                                        <figcaption>
-
-
-                                            <p class="tit">이상봉 에디션</p>
-
-                                            <p class="tit">프리미엄을 담다</p>
-
-
-                                            <p class="txt"></p>
-                                        </figcaption>
-                                    </a></figure>
-                                <a href="javascript:;"
-                                   onclick="gaTagging(this, 'https://www.hmall.com/p/dpa/searchSpexSectItem.do?sectId=2383760', '', '');"
-                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                   ga-custom-creative="이상봉 에디션
-    프리미엄을 담다" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </div>
                 <!--//homeshoping-wrap-->
             </div>
