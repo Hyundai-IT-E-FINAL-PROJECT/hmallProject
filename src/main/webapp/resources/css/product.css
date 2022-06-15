@@ -132,7 +132,7 @@
 }
 
 .another-store .store-list li:first-child {
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
 }
 
 .another-store .store-list li:first-child:after {
@@ -147,7 +147,7 @@
 }
 
 .another-store .store-list li:hover {
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
 }
 
 .another-store .store-list li:hover:after {
@@ -162,9 +162,9 @@
 }
 
 /* .another-store .store-list li:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;border-radius:5px;border:1px solid #ccc;}
-.another-store .store-list li:first-child:before{border:1px solid #ff5340;}
+.another-store .store-list li:first-child:before{border:1px solid #002fa3;}
 .another-store .store-list li:first-child:after{content:'';display:block;position:absolute;top:-6px;right:-6px;width:22px;height:22px;background:url(//image.hmall.com/p/img/mp/icon/icon-checkbox.png) no-repeat center center;}
-.another-store .store-list li:hover .store-wrap:before{border:1px solid #ff5340;}
+.another-store .store-list li:hover .store-wrap:before{border:1px solid #002fa3;}
 .another-store .store-list li:hover .store-wrap:after{content:'';display:block;position:absolute;top:-6px;right:-6px;width:22px;height:22px;background:url(//image.hmall.com/p/img/mp/icon/icon-checkbox.png) no-repeat center center;} */
 
 
@@ -336,7 +336,7 @@
 }
 
 .slider-thumbnaii .ui-thumbnaii.ui-active {
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
     border-radius: 5px;
 }
 
@@ -502,7 +502,7 @@
 }
 
 .onair-area .onair-date em.onair {
-    color: #FF5340;
+    color: #002fa3;
     font-weight: 700;
 }
 
@@ -834,7 +834,7 @@
     letter-spacing: -0.56px;
 }
 
-/* .tooltip-box .cost-wrap .sum-cost{color:#FF5340;font-size:22px;letter-spacing:-0.88px;}
+/* .tooltip-box .cost-wrap .sum-cost{color:#002fa3;font-size:22px;letter-spacing:-0.88px;}
 .tooltip-box .cost-wrap .sum-cost em{font-size:17px;letter-spacing:-0.68px;} */
 .tooltip-box .btn-close {
     width: 20px;
@@ -871,7 +871,7 @@
 }
 
 .tooltip-box .sumcost-wrap dd .sum-cost {
-    color: #FF5340;
+    color: #002fa3;
     font-size: 22px;
     letter-spacing: -0.88px;
 }
@@ -982,7 +982,7 @@
 
 .basic-info .pdprice .rateprice .rate {
     margin: -7px 10px 0 0;
-    color: #FF5340;
+    color: #002fa3;
     font-size: 28px;
     font-weight: 700;
     line-height: 37px;
@@ -1288,7 +1288,7 @@ dl dd .icon.arrow {
 }
 
 .sum-price .price-wrap .total-price strong {
-    color: #FF5340;
+    color: #002fa3;
     font-size: 32px;
     letter-spacing: -1.28px;
     vertical-align: baseline;
@@ -1343,7 +1343,7 @@ dl dd .icon.arrow {
 }
 
 .deliver-store .tooltip-box .caution-list li:before {
-    color: #ff5340;
+    color: #002fa3;
 }
 
 .deliver-store .tooltip-box .caution-list li {
@@ -1579,12 +1579,12 @@ dl dd .icon.arrow {
 }
 
 .product-option-wrap.add-accessory .custom-selectbox.ui-active {
-    border-color: #ff5340;
+    border-color: #002fa3;
 }
 
 .product-option-wrap.add-accessory .custom-selectbox.ui-active .ui-label a::after {
-    border-top: 1px solid #ff5340;
-    border-right: 1px solid #ff5340;
+    border-top: 1px solid #002fa3;
+    border-right: 1px solid #002fa3;
 }
 
 .product-option-wrap.add-accessory .custom-selectbox a {
@@ -1641,7 +1641,7 @@ dl dd .icon.arrow {
 }
 
 .product-option-wrap .bg-box .tooltip-boxwrap .tooltip-box .txt em {
-    color: #ff5340;
+    color: #002fa3;
 }
 
 .product-option-wrap .stock-item + .bg-box {
@@ -1686,7 +1686,7 @@ dl dd .icon.arrow {
 }
 
 .ui-dropdown.ui-active {
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
     border-radius: 5px 5px 0 0;
 }
 
@@ -1722,8 +1722,8 @@ dl dd .icon.arrow {
     top: 50%;
     margin-top: -2px;
     transform: rotate(314deg);
-    border-top: 1px solid #FF5340;
-    border-right: 1px solid #FF5340;
+    border-top: 1px solid #002fa3;
+    border-right: 1px solid #002fa3;
 }
 
 .ui-dropdown .drop.disabled {
@@ -1843,7 +1843,7 @@ dl dd .icon.arrow {
 .dropdown-menu {
     z-index: 100;
     position: absolute;
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
     border-radius: 0 0 5px 5px;
     background-color: #fff;
 }
@@ -2342,7 +2342,7 @@ dl dd .icon.arrow {
     width: 80px;
     height: 80px;
     bottom: 0;
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
     border-radius: 0 5px 5px 5px;
 }
 
@@ -2568,7 +2568,7 @@ dl dd .icon.arrow {
     position: relative;
     height: 8px;
     border-radius: 8px;
-    background: #ff5340;
+    background: #002fa3;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
@@ -2583,7 +2583,7 @@ dl dd .icon.arrow {
     height: 14px;
     border: 2px solid #f8f8f8;
     border-radius: 50%;
-    background: #ff5340;
+    background: #002fa3;
 }
 
 .funding .fd-progress .bar .graph .marker .value {
@@ -2591,7 +2591,7 @@ dl dd .icon.arrow {
     top: 12px;
     left: 50%;
     width: max-content;
-    color: #ff5340;
+    color: #002fa3;
     font-size: 12px;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
@@ -2943,7 +2943,7 @@ hr.line {
 }
 
 .product-detail-content .scrollspy-tab .nav-tabs > li.ui-active span em {
-    color: #FF5340;
+    color: #002fa3;
 }
 
 .product-detail-content .scrollspy-wrap .ui-dropdown .drop > a {
@@ -3109,7 +3109,7 @@ hr.line {
     padding: 0 15px;
     border-radius: 5px;
     background: #FCF1EF;
-    color: #FF5340;
+    color: #002fa3;
     font-size: 17px;
     font-weight: 700;
     line-height: 48px;
@@ -4273,7 +4273,7 @@ hr.line {
     display: block;
     height: 8px;
     border-radius: 4px;
-    background: #FF5340;
+    background: #002fa3;
 }
 
 .review-rate .rate-list .part .gauge-box .rate {
@@ -4610,7 +4610,7 @@ hr.line {
 }
 
 .txt-review-list .review-item .btngroup .btn.ui-active {
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
 }
 
 .txt-review-list .review-item .btngroup .btn span {
@@ -4621,7 +4621,7 @@ hr.line {
 }
 
 .txt-review-list .review-item .btngroup .btn.ui-active span {
-    color: #FF5340;
+    color: #002fa3;
 }
 
 .txt-review-list .review-item .btngroup .btn span .icon {
@@ -4639,7 +4639,7 @@ hr.line {
 }
 
 .txt-review-list .review-item .btngroup .btn.ui-active strong {
-    color: #FF5340;
+    color: #002fa3;
 }
 
 /* .txt-review-list .review-item .btngroup .btn.ui-active span .icon.help{width:16px;height:16px;background:url(//image.hmall.com/p/img/pd/icon/icon-help-on.png) no-repeat;background-size:16px 16px;} */
@@ -4796,7 +4796,7 @@ hr.line {
 }
 
 .inquiry-item .inq-tit-wrap.ui-active:before {
-    color: #ff5340;
+    color: #002fa3;
 }
 
 .inquiry-item .btngroup.edit {
@@ -5066,8 +5066,8 @@ hr.line {
 }
 
 .pick-keyword-wrap .keyword a:hover {
-    color: #FF5340;
-    border: 1px solid #FF5340;
+    color: #002fa3;
+    border: 1px solid #002fa3;
     border-radius: 20px;
 }
 
@@ -5269,7 +5269,7 @@ hr.line {
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
 }
 
 .pdlist-wrap.pdrow ul .pdthumb:hover .thumb:after {
@@ -5733,7 +5733,7 @@ hr.line {
 
 .join-talk span em {
     margin-right: 3px;
-    color: #FF5340;
+    color: #002fa3;
     font-weight: 700;
 }
 
@@ -6097,7 +6097,7 @@ hr.line {
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
 }
 
 /*********** tag-icon (추후에 common으로 뺄 예정) ***********/
@@ -6147,7 +6147,7 @@ hr.line {
 .product-detail-content .tabgroup.tab-bottom .ui-tab > li.ui-active > a{color:#333;}
 .product-detail-content .tabgroup.tab-bottom .ui-tab > li.ui-active:after{content: '';display:block;position:absolute;bottom:0;left:0;width:200px;height:3px;background:#333;}
 .product-detail-content .tabgroup.tab-bottom .ui-tab > li em{display:inline-block;margin-left:5px;font-size:14px;font-weight:700;}
-.product-detail-content .tabgroup.tab-bottom .ui-tab > li.ui-active em{color:#FF5340;}
+.product-detail-content .tabgroup.tab-bottom .ui-tab > li.ui-active em{color:#002fa3;}
 .product-detail-content .tabgroup.tab-bottom .tab-content{margin:40px 0 36px 0;}
 .product-detail-content .tabgroup.tab-bottom .tab-pane{display:block;}
 .product-detail-content .tabgroup.tab-bottom .tab-pane{height:100% !important;}
@@ -6191,7 +6191,7 @@ hr.line {
 }
 
 .util-option .ui-dropdown.ui-active {
-    border-color: #ff5340;
+    border-color: #002fa3;
 }
 
 .util-option .ui-dropdown .dropdown-menu .item-box-list > a {
@@ -6435,7 +6435,7 @@ hr.line {
 }
 
 .util-option .product-option-wrap.add-accessory .custom-selectbox.ui-active {
-    border-color: #ff5340;
+    border-color: #002fa3;
 }
 
 .util-option .stock-item {
@@ -6698,7 +6698,7 @@ hr.line {
 }
 
 .util-option .total-wrap .total-price ins em {
-    color: #FF5340;
+    color: #002fa3;
     font-size: 28px;
     line-height: 26px;
     letter-spacing: -1.12px;
@@ -6916,7 +6916,7 @@ hr.line {
 }
 
 .discount-price .btn.layer-open.on {
-    background: #ff5340 url("//image.hmall.com/p/img/co/sample/btn-arrow01-on.png") no-repeat center center
+    background: #002fa3 url("//image.hmall.com/p/img/co/sample/btn-arrow01-on.png") no-repeat center center
 }
 
 .discount-price .pop-layer {
@@ -6926,7 +6926,7 @@ hr.line {
     width: 460px;
     padding: 10px 10px;
     background: #fff;
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
     z-index: 110;
 }
 
@@ -6947,7 +6947,7 @@ hr.line {
     position: absolute;
     top: 0;
     right: 0;
-    color: #ff5340;
+    color: #002fa3;
     font-size: 48px;
     line-height: 48px;
     font-weight: bold
@@ -7257,7 +7257,7 @@ textarea {
 .option-deal-thumbnaii .thumbnaii-wrap{position:relative;height:60px;}
 .option-deal-thumbnaii .thumbnaii-wrap .slick-slide{padding: 0 5px;}
 .option-deal-thumbnaii .thumbnaii-wrap .ui-thumbnaii{display:inline-block;position:relative;width:140px;height:60px;padding:10px 21px 10px 10px;border:1px solid #ddd;border-radius:5px;}
-.option-deal-thumbnaii .slick-current .ui-thumbnaii{border:1px solid #FF5340;}
+.option-deal-thumbnaii .slick-current .ui-thumbnaii{border:1px solid #002fa3;}
 .option-deal-thumbnaii .ui-thumbnaii > a{display:flex;align-items:center;flex-wrap:nowrap;}
 .option-deal-thumbnaii .ui-thumbnaii > a .thumb{width:40px;height:40px;margin-right:13px;}
 .option-deal-thumbnaii .ui-thumbnaii > a .option{font-size:16px;font-weight:700;line-height:18px;}
@@ -7535,7 +7535,7 @@ textarea {
     left: 0;
     width: 164px;
     height: 60px;
-    border: 1px solid #ff5340;
+    border: 1px solid #002fa3;
     border-radius: 5px;
     background: #FFF;
 }
@@ -7574,7 +7574,7 @@ textarea {
 .mac_color_wrap .mac_Pickcolor li:nth-child(10n+1){margin-left:0;}
 .mac_color_wrap .mac_Pickcolor li:nth-child(n+11){margin-top:8px;}
 .mac_color_wrap .mac_Pickcolor li .thumColor{width:32px;height:32px;border-radius:5px;}
-.mac_color_wrap .mac_Pickcolor li .color_Tooltip{z-index:10;display:none;position:absolute;top:36px;left:0;width:164px;border:1px solid #ff5340;border-radius:5px;background:#FFF;}
+.mac_color_wrap .mac_Pickcolor li .color_Tooltip{z-index:10;display:none;position:absolute;top:36px;left:0;width:164px;border:1px solid #002fa3;border-radius:5px;background:#FFF;}
 .mac_color_wrap .mac_Pickcolor li .color_Tooltip .zoomColor{width:58px;height:58px;border-radius:4px 0 0 4px;}
 .mac_color_wrap .mac_Pickcolor li .color_Tooltip .color_info{display:inline-block;max-height:;padding:13px 10px;text-align:center;} */
 
@@ -7661,7 +7661,7 @@ textarea {
 }
 
 .onair-area .type-tv a {
-    color: #ff5340;
+    color: #002fa3;
 }
 
 .onair-area .type-tvplus a {
@@ -7673,7 +7673,7 @@ textarea {
 }
 
 .onair-area .type-tv .icon.right-arrow:after {
-    border-color: #ff5340;
+    border-color: #002fa3;
 }
 
 .onair-area .type-tvplus .icon.right-arrow:after {

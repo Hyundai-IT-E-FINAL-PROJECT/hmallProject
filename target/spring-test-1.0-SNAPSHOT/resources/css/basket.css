@@ -117,7 +117,7 @@ form .shipping-listwrap:first-child{margin:20px 0 25px 0;}
 
 .shipping-list .pdwrap.pdlist .stock-left{}
 .shipping-list .pdwrap.pdlist .stock-left .icon{width:16px;height:16px;background:url('//image.hmall.com/p/img/od/ico-timeout.png') no-repeat center center; background-size:16px 16px;vertical-align:middle;}
-.shipping-list .pdwrap.pdlist .stock-left span{margin-left:4px;color:#ff5340;font-size:14px;line-height:24px;letter-spacing:-0.64px;vertical-align:middle;}
+.shipping-list .pdwrap.pdlist .stock-left span{margin-left:4px;color:#002fa3;font-size:14px;line-height:24px;letter-spacing:-0.64px;vertical-align:middle;}
 
 .shipping-list .pdwrap.pdlist .pdfunc{display:inline-block;vertical-align:middle;}
 .shipping-list .pdwrap.pdlist .btngroup .pdfunc .btn{min-width:140px;height:34px;}
@@ -197,7 +197,7 @@ form .shipping-listwrap:first-child{margin:20px 0 25px 0;}
 .soldout .shipping-list figcaption p{width:100%;}
 .soldout .shipping-list .suspension{display:inline-flex;align-items:center;}
 .soldout .shipping-list .suspension .icon{width:18px;height:18px;background:url(//image.hmall.com/m/img/co/icon/ico-soldout-1x.png) no-repeat 50% 50%;background-size:18px 18px;}
-.soldout .shipping-list .suspension span{margin-left:4px;color:#ff5340;font-size:15px;line-height:23px;letter-spacing:-0.56px;}
+.soldout .shipping-list .suspension span{margin-left:4px;color:#002fa3;font-size:15px;line-height:23px;letter-spacing:-0.56px;}
 .soldout .shipping-list .recom{margin-bottom:0;}
 .soldout .shipping-list .recom a{display:inline-flex;align-items:center;padding:0;color:#333;font-size:15px;line-height:24px;letter-spacing:-0.52px;}
 .soldout .shipping-list .recom a span{margin-right:5px;color:#333;font-size:15px;line-height:24px;letter-spacing:-0.52px;}
@@ -229,8 +229,8 @@ form .shipping-listwrap:first-child{margin:20px 0 25px 0;}
 .shipping-list .bundle-shipping .full-sum p{float:left;line-height:40px;}
 .shipping-list .bundle-shipping .full-sum p .free{font-size:14px;line-height:29px;vertical-align:middle;}
 .shipping-list .bundle-shipping .full-sum p ins{margin-left:6px;}
-.shipping-list .bundle-shipping .full-sum p ins em{color:#ff5340;font-size:21px;line-height:29px;font-weight:700;letter-spacing:-0.8px;vertical-align:middle;}
-.shipping-list .bundle-shipping .full-sum p ins b{color:#ff5340;font-size:17px;line-height:23px;font-weight:700;letter-spacing:-0.64px;vertical-align:middle;}
+.shipping-list .bundle-shipping .full-sum p ins em{color:#002fa3;font-size:21px;line-height:29px;font-weight:700;letter-spacing:-0.8px;vertical-align:middle;}
+.shipping-list .bundle-shipping .full-sum p ins b{color:#002fa3;font-size:17px;line-height:23px;font-weight:700;letter-spacing:-0.64px;vertical-align:middle;}
 .shipping-list .bundle-shipping .full-sum .btngroup{float:left;width:160px;margin-left:20px;}
 .shipping-list .bundle-shipping .bundle-pick{width:100%;text-align:right;overflow:hidden;}
 .shipping-list .bundle-shipping .bundle-pick .btn{float:right;width:160px;}
@@ -348,8 +348,8 @@ figcaption .pdprice b{vertical-align:baseline;}
 .util-option .total-price a{display:inline-flex;align-items:center;}
 .util-option .total-price span{color:#333;font-size:15px;line-height:16px;letter-spacing:-0.6px;}
 .util-option .total-price ins{display:inline-flex;align-items:center;text-decoration:none;}
-.util-option .total-price ins em{color:#ff5340;font-size:20px;font-weight:700;line-height:24px;letter-spacing:-0.8px;}
-.util-option .total-price ins b{color:#ff5340;font-size:16px;font-weight:400;line-height:20px;letter-spacing:-0.64px;}
+.util-option .total-price ins em{color:#002fa3;font-size:20px;font-weight:700;line-height:24px;letter-spacing:-0.8px;}
+.util-option .total-price ins b{color:#002fa3;font-size:16px;font-weight:400;line-height:20px;letter-spacing:-0.64px;}
 .util-option .result .sale em:before{content:'-';margin-right:5px;}
 .util-option .result .ship-fee em:before{content:'+';margin-right:5px;}
 .util-option .result .sale em.off:before{content:inherit;margin-right:0;}
@@ -364,7 +364,7 @@ figcaption .pdprice b{vertical-align:baseline;}
 .util-option .total-price .btn-total.selected .icon::after{background:#666;-webkit-transition: all .3s ease;transition: all .3s ease;}
 .util-option .total-price .btn-total.selected .icon::before{-webkit-transform: scale(0.96, 0.8) rotate(50deg);transform: scale(0.96, 0.8) rotate(50deg);}
 .util-option .total-price .btn-total.selected .icon::after{-webkit-transform: scale(0.96, 0.8) rotate(-50deg);transform: scale(0.96, 0.8) rotate(-50deg);}
-.util-option .btngroup .btn{display:block;min-width:210px;height:50px;margin:0 auto;border-radius:5px;background:#ff5340;}
+.util-option .btngroup .btn{display:block;min-width:210px;height:50px;margin:0 auto;border-radius:5px;background:#002fa3;}
 .util-option .btngroup .btn span{color:#fff;font-size:16px;font-weight:700;}
 .util-option .btngroup._gift .btn   { min-width: auto; display: inline-flex; }
 .util-option .btngroup._gift .btn:first-child   { background-color: #fff; }

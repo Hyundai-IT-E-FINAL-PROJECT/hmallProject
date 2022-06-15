@@ -126,7 +126,7 @@
 .exhibition-depth2 .depth2-all-list{}
 .exhibition-depth2 .depth2-all-list .tit-area{padding-bottom: 13px;}
 .exhibition-depth2 .depth2-all-list .tit-area h3{color: #333; font-size: 30px; font-weight: bold; line-height: 45px; text-align: center;}
-.exhibition-depth2 .depth2-all-list .tit-area h3 span{margin-left: 5px; color: #FF5340; font-size: 24px; font-weight: normal; vertical-align: baseline;}
+.exhibition-depth2 .depth2-all-list .tit-area h3 span{margin-left: 5px; color: #002fa3; font-size: 24px; font-weight: normal; vertical-align: baseline;}
 .exhibition-depth2 .depth2-all-list .list-sort-area{height: auto; padding: 15px 0; border: 1px solid #eee; border-width: 1px 0;}
 .exhibition-depth2 .depth2-all-list .list-search-area{margin: 15px 0 30px 0;}
 
@@ -351,8 +351,8 @@
 .weeklyBest .firstWrap .first{font-size: 0;}
 .weeklyBest .firstWrap .first .items{display: inline-block;}
 .weeklyBest .firstWrap .first .items a{display: block; position: relative; padding-bottom: 28px;}
-.weeklyBest .firstWrap .first .items a:hover:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 108px; height: 108px; border: 2px solid #ff5340; border-radius: 50%;}
-.weeklyBest .firstWrap .first .items a.active:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 108px; height: 108px; border: 2px solid #ff5340; border-radius: 50%;}
+.weeklyBest .firstWrap .first .items a:hover:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 108px; height: 108px; border: 2px solid #002fa3; border-radius: 50%;}
+.weeklyBest .firstWrap .first .items a.active:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 108px; height: 108px; border: 2px solid #002fa3; border-radius: 50%;}
 .weeklyBest .firstWrap .first .items a figure figcaption{margin-top: 20px; padding-right: 25px; color: #333; font-size: 14px; text-align: center;}
 .weeklyBest .firstWrap .first .items a:hover figure figcaption{font-weight: bold;}
 .weeklyBest .firstWrap .first .items a.active figure figcaption{font-weight: bold;}
@@ -510,7 +510,7 @@
 .display-3depth .container .location{margin-top: 18px;}
 .display-3depth .store-img { overflow:hidden; margin-bottom:40px; border-radius:5px;}
 .display-3depth .display-list-wrap > h2 { margin-bottom:19px; text-align:center;}
-.display-3depth .display-list-wrap > h2 > em { font-size:24px; color:#FF5340; font-weight:400;}
+.display-3depth .display-list-wrap > h2 > em { font-size:24px; color:#002fa3; font-weight:400;}
 
 .display-3depth .list-sort-area{border-top: 1px solid #eee; padding: 15px 0;}
 .display-3depth .list-sort-area .sortOption{font-size: 0;}
@@ -539,7 +539,7 @@
 .display-3depth .display-list-wrap .paging { padding-top:20px; border-top:1px solid #eee;}
 
 /* 전체 브랜드 보기 레이어 */
-.allViewLayer{position: absolute; left: 30px; top: 0; z-index: 90; width: 801px; height: 100%; background: #fff; border: 1px solid #ff5340;}
+.allViewLayer{position: absolute; left: 30px; top: 0; z-index: 90; width: 801px; height: 100%; background: #fff; border: 1px solid #002fa3;}
 .allViewLayer .allViewTit{position: relative; padding: 29px 0 0 28px; margin-bottom: 20px;}
 .allViewLayer .allViewTit h4{color: #333; font-size: 24px; font-weight: bold;}
 .allViewLayer .allViewTit .close{position: absolute; right: 0; top: 0; width: 60px; height: 60px; background: url('//image.hmall.com/p/img/co/icon/ico-btn-pop-close.png') no-repeat 50% 50%; font-size: 0;}
@@ -550,7 +550,7 @@
 .allViewLayer .keyword li a{display: block; border: 1px solid #ccc; border-radius:5px; color: #333; font-size: 14px; font-weight: bold; text-align: center; line-height: 34px;}
 .allViewLayer .keyword li a.disabled{border-color: #eee; background: #eee; color: #aaa;}
 .allViewLayer .keyword li a.active,
-.allViewLayer .keyword li a:hover:not(.disabled){border-color: #ff5340; background: #ff5340; color: #fff; transition: all 0.3s;}
+.allViewLayer .keyword li a:hover:not(.disabled){border-color: #002fa3; background: #002fa3; color: #fff; transition: all 0.3s;}
 .allViewLayer .list{width: 740px; padding: 30px 0 30px 0; margin: 0 auto; border-top: 1px solid #eee;}
 .allViewLayer .list dl{width: 740px; height: 467px; overflow-y: auto; overflow-x: hidden;}
 .allViewLayer .list dl dt{margin: 26px 0 20px 0; color: #333; font-size: 30px; font-weight: bold;}
@@ -562,9 +562,9 @@
 .allViewLayer .list dl dd ul li:nth-child(4n) a{width: 170px;}
 .allViewLayer .list dl dd ul li a span{display: inline-block; position: relative;}
 .allViewLayer .list dl dd ul li a.active span,
-.allViewLayer .list dl dd ul li a:hover span{color: #ff5340;}
+.allViewLayer .list dl dd ul li a:hover span{color: #002fa3;}
 .allViewLayer .list dl dd ul li a.active span:after,
-.allViewLayer .list dl dd ul li a:hover span:after{content: ''; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: #ff5340;}
+.allViewLayer .list dl dd ul li a:hover span:after{content: ''; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: #002fa3;}
 
 /* 스토어픽 */
 .display-storepick .container { margin-top:40px;}
@@ -583,7 +583,7 @@
 .display-storepick .store-pdlist-wrap .tab-content .store-box ul li { margin:10px 0 0 10px; width:162px; height:40px; border-radius:5px; text-align:center; border:1px solid #EEEEEE; background:#fff;}
 .display-storepick .store-pdlist-wrap .tab-content .store-box ul li:nth-child(6n+1) { margin-left:0;}
 .display-storepick .store-pdlist-wrap .tab-content .store-box ul li a { display:block; padding:9px 0 11px; font-size:15px; color:#333;}
-.display-storepick .store-pdlist-wrap .tab-content .store-box ul li.active { background:#FF5340;}
+.display-storepick .store-pdlist-wrap .tab-content .store-box ul li.active { background:#002fa3;}
 .display-storepick .store-pdlist-wrap .tab-content .store-box ul li.active a { color:#fff;}
 
 .display-storepick .store-pdlist-wrap .tab-pane { display:none;}
@@ -606,8 +606,8 @@
 .ui-modal.storepick-use-step .use-step .step-list li .step { position:relative; margin-top:20px;}
 .ui-modal.storepick-use-step .use-step .step-list li .step:after { content:''; position:absolute; right:-20px; top:60px; width:15px; height:15px; border:solid #ccc; border-width:0 1.5px 1.5px 0; transform:rotate(-45deg); -webkit-transform:rotate(-45deg);}
 .ui-modal.storepick-use-step .use-step .step-list li:nth-child(2n) .step:after { display:none;}
-.ui-modal.storepick-use-step .use-step .step-list li .step > strong { position:relative; font-size:16px; color:#FF5340;}
-.ui-modal.storepick-use-step .use-step .step-list li .step > strong:after { content:''; position:absolute; left:0; bottom:0; width:100%; height:2px; background:#FF5340;}
+.ui-modal.storepick-use-step .use-step .step-list li .step > strong { position:relative; font-size:16px; color:#002fa3;}
+.ui-modal.storepick-use-step .use-step .step-list li .step > strong:after { content:''; position:absolute; left:0; bottom:0; width:100%; height:2px; background:#002fa3;}
 .ui-modal.storepick-use-step .use-step .step-list li .step p { margin-top:12px; font-size:18px; color:#333333; font-weight:700; line-height:28px;}
 .ui-modal.storepick-use-step .use-step .noti-area { padding-top:29px; border-top:1px solid #eee;}
 .ui-modal.storepick-use-step .use-step .noti-area .ctypo14 { display:block; margin-bottom:15px; line-height:18px; color:#333;}
@@ -933,9 +933,9 @@
 .pet-enroll-wrap .enroll-box .right-area .radio-box > span label{position:relative;display:block;width:143px;height:40px;line-height:40px;text-align:center;border-radius:5px;cursor:pointer;}
 .pet-enroll-wrap .enroll-box .right-area .radio-box > span label:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;border-radius:5px;border:1px solid #ccc;}
 .pet-enroll-wrap .enroll-box .right-area .radio-box > span label .text{position:relative;display:block;padding:0;line-height:40px;color:#333333;font-weight:700;font-size:14px;}
-.pet-enroll-wrap .enroll-box .right-area .radio-box > span input:checked + label:before{border:2px solid #ff5340;}
+.pet-enroll-wrap .enroll-box .right-area .radio-box > span input:checked + label:before{border:2px solid #002fa3;}
 .pet-enroll-wrap .enroll-box .right-area .radio-box > span input:checked + label:after{content:'';display:block;position:absolute;top:-6px;right:-6px;width:22px;height:22px;background:url(//image.hmall.com/p/img/mp/icon/icon-checkbox.png) no-repeat center center;}
-.pet-enroll-wrap .enroll-box .right-area .radio-box > span input:checked + label .text{color:#ff5340;font-weight:700;}
+.pet-enroll-wrap .enroll-box .right-area .radio-box > span input:checked + label .text{color:#002fa3;font-weight:700;}
 .pet-enroll-wrap .enroll-box .right-area .breed {  position:relative; display:block; padding-left:15px; width:100%; height:46px; line-height:44px; font-size:14px; color:#666; border:1px solid #ddd; border-radius:5px; background:#fff;}
 .pet-enroll-wrap .enroll-box .right-area .breed .icon {position:absolute; right:19px; top:50%; transform:translateY(-50%); width:15px; height:15px; background:url('//image.hmall.com/p/img/dp/icon/icon-find.png') no-repeat; }
 .pet-enroll-wrap .enroll-box .right-area .breed.selected .icon { display:none;}
@@ -953,14 +953,14 @@
 .pet-enroll .pop-content{padding:15px 40px 50px; overflow:hidden;}
 .pet-breed-seleted {}
 .pet-breed-seleted .ui-tab li a { font-size:16px; color:#333; font-weight:700;}
-.pet-breed-seleted .ui-tab li.ui-active a { color:#FF5340;}
-.pet-breed-seleted .ui-tab li.ui-active:after { background-color:#FF5340;}
+.pet-breed-seleted .ui-tab li.ui-active a { color:#002fa3;}
+.pet-breed-seleted .ui-tab li.ui-active:after { background-color:#002fa3;}
 .pet-breed-seleted .sorting-box {  padding:20px; height:331px; border:1px solid #eee; border-top:0;}
 .pet-breed-seleted .sorting-box ul { overflow-y:auto; height:290px; }
 .pet-breed-seleted .sorting-box ul li { line-height:34px; text-align:left;}
 .pet-breed-seleted .sorting-box ul li a { font-size:15px; color:#333;}
 .pet-breed-seleted .sorting-box ul li.on a,
-.pet-breed-seleted .sorting-box ul li a:hover { color:#FF5340;}
+.pet-breed-seleted .sorting-box ul li a:hover { color:#002fa3;}
 .pet-breed-seleted .sorting-box .inputbox { margin-top:0;}
 .pet-breed-seleted .btngroup { margin:15px 0 0;}
 .pet-breed-seleted .btngroup .btn + .btn { margin-left:6px;}
@@ -1051,7 +1051,7 @@
 .exhibition-holiday .holiday-order .benefit-con .tit-area h5{font-size: 0; line-height: 90px;}
 .exhibition-holiday .holiday-order .benefit-con .tit-area h5 strong{margin-right: 10px; color: #333; font-size: 32px; font-weight: bold;}
 .exhibition-holiday .holiday-order .benefit-con .tit-area h5 span{color: #333; font-size: 20px; font-weight: normal;}
-.exhibition-holiday .holiday-order .benefit-con .tit-area p{display: flex; color: #FF5340; font-size: 16px; line-height: 90px;}
+.exhibition-holiday .holiday-order .benefit-con .tit-area p{display: flex; color: #002fa3; font-size: 16px; line-height: 90px;}
 .exhibition-holiday .holiday-order .benefit-con .btngroup{width: 240px; margin: 0 auto;}
 .exhibition-holiday .holiday-order .benefit-con .table-wrap table thead tr th{position: relative; height: 54px; background: #666; color: #fff; font-size: 16px; font-weight: bold; text-align: center; vertical-align: middle;}
 .exhibition-holiday .holiday-order .benefit-con .table-wrap table thead tr th + th:before{content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 26px; background: #a2a2a2;}
@@ -1068,7 +1068,7 @@
 .exhibition-holiday .holiday-order .coupon-con figure div span strong{display: inline-block; font-size: 79px; font-weight: bold; vertical-align: baseline; line-height: 106px;letter-spacing: -8px;}
 .exhibition-holiday .holiday-order .coupon-con figure div span em{position: absolute; right: 0; top: 33px; width: 46px; font-size: 42px; font-weight: bold; vertical-align: baseline;}
 .exhibition-holiday .holiday-order .coupon-con figcaption{display: inline-block; width: 541px; padding: 0 30px 0 32px;}
-.exhibition-holiday .holiday-order .coupon-con figcaption p{margin: 40px 0 15px 0; color: #FF5340; font-size: 16px;}
+.exhibition-holiday .holiday-order .coupon-con figcaption p{margin: 40px 0 15px 0; color: #002fa3; font-size: 16px;}
 .exhibition-holiday .holiday-order .coupon-con figcaption h5{min-height: 128px;}
 .exhibition-holiday .holiday-order .coupon-con figcaption h5 strong{display: block; margin-bottom: 8px; color: #333; font-size: 32px; font-weight: bold; letter-spacing: -2px;}
 .exhibition-holiday .holiday-order .coupon-con figcaption h5 span{color: #333; font-size: 20px; font-weight: normal; letter-spacing: -1.5px;}
@@ -1095,7 +1095,7 @@
 .exhibition-holiday .holiday-ex .box-con .tit-area h5{font-size: 0; line-height: 90px;}
 .exhibition-holiday .holiday-ex .box-con .tit-area h5 strong{margin-right: 10px; color: #333; font-size: 32px; font-weight: bold;}
 .exhibition-holiday .holiday-ex .box-con .tit-area h5 span{color: #333; font-size: 20px; font-weight: normal;}
-.exhibition-holiday .holiday-ex .box-con .tit-area p{display: flex; color: #FF5340; font-size: 16px; line-height: 90px;}
+.exhibition-holiday .holiday-ex .box-con .tit-area p{display: flex; color: #002fa3; font-size: 16px; line-height: 90px;}
 .exhibition-holiday .holiday-ex .box-con .pdlist-wrap{}
 .exhibition-holiday .holiday-ex .box-con .pdlist-wrap .pdthumb{width: 327px; margin: 0 0 20px 20px;}
 .exhibition-holiday .holiday-ex .box-con .pdlist-wrap .pdthumb .thumb{width:327px;height:327px;}
@@ -1220,7 +1220,7 @@
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con{height: 255px;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con .left p{font-size: 26px; text-align: center;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con .left p span{display: block; margin-top: 12px; color: #333; font-size: 48px; line-height: 65px;}
-.exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con .left p span em{color: #FF5340; font-size: 54px;}
+.exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con .left p span em{color: #002fa3; font-size: 54px;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-text .con .left p span em strong{font-size: 61px;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-table .con .left table thead tr th{position: relative; height: 57px; background: #666; color: #fff; font-size: 16px; font-weight: bold; text-align: center; vertical-align: middle;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.reward-table .con .left table thead tr th + th:before{content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 26px; background: #a2a2a2;}
@@ -1355,7 +1355,7 @@
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .tit{margin-bottom: 63px;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap{position: relative; width: 331px; height: 188px; margin-left: 90px; background: url('//image.hmall.com/p/img/dp/bg/bg_marketing_coupon.png') no-repeat 0 0; text-align: center;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap .inner{position: absolute; left: 0; top: 50%; width: 100%; padding-left: 30px; transform: translateY(-50%);}
-.exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap .inner span{display: flex; padding-bottom: 3px; color: #FF5340; font-size: 50px; font-weight: bold; justify-content: center; align-items: center;}
+.exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap .inner span{display: flex; padding-bottom: 3px; color: #002fa3; font-size: 50px; font-weight: bold; justify-content: center; align-items: center;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap .inner span em{font-size: 32px;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon .con .coupon-wrap .inner p{color: #333; font-size: 20px; font-weight: bold;}
 .exhibition-marketing .benefit-wrap .kinds-wrap ol li.coupon.two{ padding-bottom: 30px; font-size: 0;}
@@ -1468,7 +1468,7 @@
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list a .playing {position:absolute; right: 12px; bottom: 12px; display:flex; align-items:center; min-width: 60px; height: 24px; padding: 0 10px; background: rgba(0,0,0,0.5); border-radius: 16px; z-index:2; }
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list a .playing .icon { display: inline-block; width:6.5px; height:8px; margin:2px 3px 0 0; background: url('//image.hmall.com/p/img/dp/icon/icon_play_10.png') 0 0 no-repeat; background-size: 100%;}
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list a .playing > em { display: inline-block; font-size:13px; color:#fff;}
-.exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel {position: absolute; left: 0; top: 0; border-radius:5px 0 5px 0; background-color: #FF5340; min-width: 70px; height: 23px; text-align: center; padding: 0 8px; }
+.exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel {position: absolute; left: 0; top: 0; border-radius:5px 0 5px 0; background-color: #002fa3; min-width: 70px; height: 23px; text-align: center; padding: 0 8px; }
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel span {color: #fff; font-size: 12px; line-height: 23px; font-weight: bold; }
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list > li .mov-area .pdtit { display:block; overflow:hidden; margin-bottom:0; padding:20px; font-size:22px; color:#333; text-overflow:ellipsis; white-space:nowrap; }
 .exhibition-marketing .pdtype-wrap .pdlist-wrap.pdmov .mov-list.odd{}
@@ -1496,8 +1496,8 @@
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li .price > em { font-size:19px; color:#000; font-weight:700;}
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total { width:100%; background:#f8f8f8;}
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total:before { display:none;}
-.exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total span { font-weight:700; color:#FF5340}
-.exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total em { font-size:22px; color:#FF5340;}
+.exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total span { font-weight:700; color:#002fa3}
+.exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li.total em { font-size:22px; color:#002fa3;}
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li:nth-last-child(2),
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li:nth-last-child(2) ~ li{width:100%;}
 .exhibition-marketing .pdtype-wrap .pdlist-wrap ul li .benefit-price li:nth-last-child(3),
@@ -2043,7 +2043,7 @@
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption {display: inline-block;margin-top: 0;padding-left: 40px; overflow: hidden; width: 100%; min-width: 353px;}
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption a {display: block;}
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption .flag-area { margin-bottom: 15px; }
-.exhibition-holiday .horizon-large-list .pdthumb .figcaption .flag-area .benefit-flag { display: inline-block; border-radius: 5px; padding: 0 5px; font-size: 12px; color: #fff; text-align: center; line-height: 28px; background-color: #ff5340; }
+.exhibition-holiday .horizon-large-list .pdthumb .figcaption .flag-area .benefit-flag { display: inline-block; border-radius: 5px; padding: 0 5px; font-size: 12px; color: #fff; text-align: center; line-height: 28px; background-color: #002fa3; }
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption .pdtit {position: relative; margin-bottom:0; }
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption .pdname { display: -webkit-box; margin-bottom:5px; width: 100%; height: 32px; font-size: 24px; font-weight:700; line-height: 32px; -webkit-box-orient: vertical; -webkit-line-clamp:1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .exhibition-holiday .horizon-large-list .pdthumb .figcaption p { display: -webkit-box; width: 100%; max-width: 314px; max-height: 46px; font-size: 16px; font-weight:normal; line-height: 23px; -webkit-box-orient: vertical; -webkit-line-clamp:2; white-space: normal; overflow: hidden; text-overflow: ellipsis; }
@@ -2059,10 +2059,10 @@
 .exhibition-holiday .horizon-large-list .pdthumb.soldout .thumb:before { background-color: rgba(0,0,0,0.3); opacity: 1;}
 .exhibition-holiday .horizon-large-list .pdthumb.soldout .thumb:after { content: '품절';position: absolute;display: block;border-radius: 50%;left: 50%;top: 50%;width: 108px;height: 108px;font-size: 22px;font-weight: 700;color: #fff;text-align: center;line-height: 108px;background-color: rgba(0,0,0,0.6);z-index: 10;transform: translate(-50%, -50%); }
 
-.exhibition-holiday .horizon-large-list .pdthumb .hoverview { position:absolute; margin-top:20px; top:369px; left: 164px; margin-left: 0; padding:0 12px; height:30px; line-height:30px; font-size:13px; color:#fff; border-radius:30px; background:#FF5340; z-index:3; opacity:0; transition:0.4s;}
+.exhibition-holiday .horizon-large-list .pdthumb .hoverview { position:absolute; margin-top:20px; top:369px; left: 164px; margin-left: 0; padding:0 12px; height:30px; line-height:30px; font-size:13px; color:#fff; border-radius:30px; background:#002fa3; z-index:3; opacity:0; transition:0.4s;}
 .exhibition-holiday .horizon-large-list .pdthumb .hoverview .icon { display:inline-block; margin-right:5px; width:14px; height:14px; background:url('//image.hmall.com/p/img/dp/icon/icon-view-14.png') no-repeat;}
 .exhibition-holiday .horizon-large-list .pdthumb.ui-hover .thumb:after {border: 0;}
-.exhibition-holiday .horizon-large-list .pdthumb.ui-hover .thumbwrap .thumb:after { content:''; position:absolute; left:0; top:0; width:100%; height:100%; border-radius:5px; border:1px solid #FF5340; transition:0.3s;}
+.exhibition-holiday .horizon-large-list .pdthumb.ui-hover .thumbwrap .thumb:after { content:''; position:absolute; left:0; top:0; width:100%; height:100%; border-radius:5px; border:1px solid #002fa3; transition:0.3s;}
 .exhibition-holiday .horizon-large-list .pdthumb.ui-hover .hoverview { margin-top:25px; opacity:0;}
 .exhibition-holiday .horizon-large-list .pdthumb.ui-hover .thumbwrap .hoverview { margin-top:0; opacity:1;}
 
@@ -2074,8 +2074,8 @@
 .exhibition-holiday .cateslider{font-size:0;background:#fff;}
 .exhibition-holiday .cateslider .items{display: inline-block;}
 .exhibition-holiday .cateslider .items a{display: block; position: relative;}
-.exhibition-holiday .cateslider .items a:hover:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 110px; height: 110px; border: 2px solid #ff5340; border-radius: 50%;}
-.exhibition-holiday .cateslider .items a.active:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 110px; height: 110px; border: 2px solid #ff5340; border-radius: 50%;}
+.exhibition-holiday .cateslider .items a:hover:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 110px; height: 110px; border: 2px solid #002fa3; border-radius: 50%;}
+.exhibition-holiday .cateslider .items a.active:after{content: ''; position: absolute; left: 0; top: 0; z-index: 2; width: 110px; height: 110px; border: 2px solid #002fa3; border-radius: 50%;}
 .exhibition-holiday .cateslider .items a figure figcaption{margin-top: 20px; padding-right: 25px; color: #333; font-size: 14px; text-align: center;}
 .exhibition-holiday .cateslider .items a:hover figure figcaption{font-weight: bold;}
 .exhibition-holiday .cateslider .items a.active figure figcaption{font-weight: bold;}
@@ -2130,7 +2130,7 @@
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list a .playing {position:absolute; right: 12px; bottom: 12px; display:flex; align-items:center; min-width: 60px; height: 24px; padding: 0 10px; background: rgba(0,0,0,0.5); border-radius: 16px; z-index:2; }
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list a .playing .icon { display: inline-block; width:6.5px; height:8px; margin:2px 3px 0 0; background: url('//image.hmall.com/p/img/dp/icon/icon_play_10.png') 0 0 no-repeat; background-size: 100%;}
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list a .playing > em { display: inline-block; font-size:13px; color:#fff;}
-.exhibition-holiday .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel {position: absolute; left: 0; top: 0; border-radius:5px 0 5px 0; background-color: #FF5340; min-width: 70px; height: 23px; text-align: center; padding: 0 8px; }
+.exhibition-holiday .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel {position: absolute; left: 0; top: 0; border-radius:5px 0 5px 0; background-color: #002fa3; min-width: 70px; height: 23px; text-align: center; padding: 0 8px; }
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list > li .mov-area .thumb .taglabel span {color: #fff; font-size: 12px; line-height: 23px; font-weight: bold; }
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list > li .pdtit { display:block; overflow:hidden; margin-bottom:0; padding:20px; font-size:22px; color:#333; text-overflow:ellipsis; white-space:nowrap; }
 .exhibition-holiday .pdlist-wrap.pdmov .mov-list > li:nth-child(2n){margin-right:0;}
@@ -2226,7 +2226,7 @@
 /* 브랜드샵 수정 - 방송예정상품 방송타입 플래그, 슬라이드 */
 .display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag { display: inline-block; margin-right: 15px; border: 1px solid #333; border-radius: 12px; padding: 0 10px; height: 24px; text-align: center; vertical-align: middle; }
 .display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag em { font-size: 13px; font-weight: 700; vertical-align: top; }
-.display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag.tvshop { border-color: #ff5340; color: #ff5340; }
+.display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag.tvshop { border-color: #002fa3; color: #002fa3; }
 .display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag.tvplus { border-color: #fe3bb0; color: #fe3bb0; }
 .display-brandview .show-plan-product .pdlist-wrap .ctypo17 .flag.shoplive { border-color: #611be6; color: #611be6; }
 .display-brandview .show-plan-product .page-wrap + .page-wrap { margin-top: 65px; }
@@ -2321,7 +2321,7 @@
 }
 
 .slider-thumbnaii .ui-thumbnaii.ui-active {
-    border: 1px solid #FF5340;
+    border: 1px solid #002fa3;
     border-radius: 5px;
 }
 
