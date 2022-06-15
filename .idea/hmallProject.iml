@@ -16,7 +16,13 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Security Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/security-context.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
 </module>
