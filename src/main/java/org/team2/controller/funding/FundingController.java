@@ -67,6 +67,7 @@ public class FundingController {
         styleFileList.add("search");
         styleFileList.add("display");
         styleFileList.add("prd-list");
+        styleFileList.add("product");
         List<Map<Integer,Object>> list = fundingService.readFundingProduct(fundVO);
         log.info(list.toString());
 //        펀딩 리스트 불러오기
@@ -167,6 +168,7 @@ public class FundingController {
         mav.addObject("className","common_sub_layout");
         return mav;
     }
+
     @ResponseBody
     @PostMapping("insertFund")
     public void insertFund(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO,
@@ -184,17 +186,9 @@ public class FundingController {
         log.info(fund_reward_titleList.toString());
         log.info(fund_reward_countList.toString());
         fundVO.setNo(Integer.parseInt(principal.getName()));
-//
-//        log.info("----------파일 정보----------");
-////        log.info(attachFileVO.getFileName());
-////        log.info(attachFileVO.getUuid());
-////        log.info(attachFileVO.getUploadPath());
-//        log.info("----------파일 정보----------");
         try {
             fundingService.insertFunding(fundVO);
             rewardVO.setFund_product_seq(fundVO.getFund_product_seq());
-//            attachFileVO.setFund_product_seq(fundVO.getFund_product_seq());
-//            fundingService.insertFile(attachFileVO);
             log.info(fundVO.getFund_product_seq());
             log.info(rewardVO.getFund_product_seq());
             for(int a = 0 ; a < fund_reward_countList.size() ; a++){

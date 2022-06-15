@@ -11,8 +11,7 @@ import org.team2.domain.FundVO;
 import org.team2.domain.UserVO;
 import org.team2.service.FundingService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +29,16 @@ public class SampleController {
         log.info("main controller");
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("main");
-
-        FundVO best1Product=fundingService.best1FundProduct();
-        FundVO deadlineProduct=fundingService.deadlineProduct();
-        log.info(best1Product);
-        log.info(deadlineProduct);
+        List<FundVO> bestFund = fundingService.best1FundProduct();
+        log.info(bestFund.toString());
+        List<FundVO> deadlineProduct=fundingService.deadlineProduct();
+        log.info(deadlineProduct.toString());
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main.main");
+        mv.addObject("bestFund",bestFund);
+        mv.addObject("deadlineProduct",deadlineProduct);
         mv.addObject("cssFileList", styleFileList);
-        mv.addObject("best1Product", best1Product);
-        mv.addObject("deadlineProduct", deadlineProduct);
         mv.addObject("className", "wrap hyundai-homeshoping");
         return mv;
     }

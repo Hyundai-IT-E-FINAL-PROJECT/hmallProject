@@ -163,7 +163,7 @@
                  WHERE FUND_PRODUCT_STATUS=1
                  order by (fund_product_pr_cost/fund_product_goal_cost)*100 desc
              )
-        where rownum=1
+        where rownum <![CDATA[<]]> 5
     </select>
 
     <select id="deadlineProduct" resultType="org.team2.domain.FundVO">
@@ -175,7 +175,7 @@
                  AND FUND_PRODUCT_STATUS=1
                  order by fund_product_end_date
              )
-        where rownum=1
+        where rownum <![CDATA[<]]> 5
     </select>
 
     <delete id="deleteReply">
