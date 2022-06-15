@@ -14,6 +14,7 @@ public class SchedulerService {
     @Setter(onMethod_ = @Autowired)
     private FundingMapper fundingMapper;
 
+    //매일 자정마다 펀드 상품 마감 처리
     @Scheduled(cron="0 0 0 * * *")
     public void scheduleRun() throws Exception {
           log.info("5sec");

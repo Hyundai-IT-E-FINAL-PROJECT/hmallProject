@@ -27,6 +27,11 @@ public class BasketSerivceImpl implements BasketService{
     }
 
     @Override
+    public void deleteBasket(Long basket_seq) {
+        basketMapper.deleteBasket(basket_seq);
+    }
+
+    @Override
     public BasketVO directBuy(Map<String, Long> map) {
         return basketMapper.directBuy(map);
     }

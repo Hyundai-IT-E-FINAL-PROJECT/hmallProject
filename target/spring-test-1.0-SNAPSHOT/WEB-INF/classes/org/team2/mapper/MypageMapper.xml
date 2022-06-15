@@ -33,7 +33,9 @@
                 #{ordEndDt, jdbcType=VARCHAR},
                 #{seType, jdbcType=VARCHAR},
                 #{itemNm, jdbcType=VARCHAR},
-                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+                #{page_num, jdbcType=VARCHAR},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder},
+                #{total, mode=OUT, jdbcType=INTEGER, resultMap=mypageOrder}
             )
         }
     </select>
@@ -143,6 +145,14 @@
         {
             CALL PROC_MYPAGE_ORDERSTATUS(
                 #{no},
+                #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
+            )
+        }
+    </select>
+
+    <select id="adminOrderStatus"  statementType="CALLABLE">
+        {
+            CALL PROC_MYPAGE_ADMIN_ORDERSTATUS(
                 #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=mypageOrder}
             )
         }

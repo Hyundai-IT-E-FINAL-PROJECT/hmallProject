@@ -93,7 +93,7 @@
                     <sec:authentication property="principal" var="pinfo" />
                     <c:choose>
                         <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
-                            <li><a class="mypage" href="/mypageOrder"><span>주문관리</span></a></li>
+                            <li><a class="mypage" href="/mypageOrder?seType=&page_num=1"><span>주문관리</span></a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
@@ -103,14 +103,6 @@
                 <sec:authorize access="isAnonymous()">
                     <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
                 </sec:authorize>
-                <li>
-                    <a href="javascript:;" class="recently" id="recentlyImg"
-                       onclick="openRecentShopping(); return false;">
-                        <span>최근본쇼핑</span>
-                        <!-- 최근 본 상품 썸네일 이미지 -->
-                        <em class="thumb-recent"></em>
-                    </a>
-                </li>
             </ul>
         </div>
         <!-- // 개인화 메뉴 -->
@@ -120,38 +112,22 @@
             <!-- 카테고리 메뉴 -->
             <div class="category-area" id="categoryArea">
                 <a href="javascript:;" class="btn-category">카테고리</a>
-                <!-- 카테고리 메뉴 시작 -->
-
             </div>
-            <!-- // 카테고리 메뉴 -->
-            <!-- 퀵메뉴 -->
             <div class="quick-menu-wrap">
                 <div class="quick-menu-list">
                     <ul class="quicklink ql-left222" id="main_tab">
                         <li class=" ">
                             <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">편성표</a></li>
+                               ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">스토어</a></li>
                         <li class=" ">
-                            <a href="/p/home.do?_IC_=tab2&mainDispSeq=1&" class="gp_className" ga-category="메인 홈"
-                               ga-action="상단탭" ga-label="스토어">스토어</a></li>
+                            <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
+                               ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">
                             <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="홈">홈</a></li>
                         <li class=" ">
                             <a href="/p/mktgMain.do?_IC_=tab4&mainDispSeq=62&" class="gp_className" ga-category="메인 홈"
-                               ga-action="상단탭" ga-label="슈퍼H페스타">슈퍼H페스타</a></li>
-                        <li class=" ">
-                            <a href="/p/dsMainR.do?_IC_=tab5&mainDispSeq=6&" class="gp_className" ga-category="메인 홈"
-                               ga-action="상단탭" ga-label="백화점">백화점</a></li>
-                        <li class=" ">
-                            <a href="/p/todayOpenDeal.do?_IC_=tab6&mainDispSeq=48&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="오늘추천">오늘추천</a></li>
-                        <li class=" ">
-                            <a href="/pevent/eva/evntMainPage.do?_IC_=tab7&mainDispSeq=7&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="이벤트">이벤트</a></li>
-                        <li class=" point">
-                            <a href="/p/dpd/wkBestTypeTot.do?_IC_=tab8&mainDispSeq=21&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="주간베스트">주간베스트</a></li>
+                               ga-action="상단탭" ga-label="슈퍼H페스타">기획전</a></li>
                     </ul>
                 </div>
 
@@ -167,7 +143,7 @@
                     <sec:authorize access="isAuthenticated()">
                         <c:choose>
                             <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
-                                <li><a href="mypageOrder">관리자 ${pinfo.userVO.user_name}님</a></li>
+                                <li><a href="mypageOrder?page_num=1">관리자 ${pinfo.userVO.user_name}님</a></li>
                             </c:when>
                             <c:otherwise>
                                 <li><a href="${contextPath}/mypage">${pinfo.userVO.user_name}님</a></li>

@@ -167,7 +167,6 @@ function calculateSelect() {
     $("#selCnt_btn").html(gfn_appendComma(selCnt));
 }
 
-
 function calculateSelectDlvAmt() {
     var dlvAmtSum = 0;
     var basktVenCdGatherVals = "";
@@ -203,30 +202,6 @@ function calculateSelectDlvAmt() {
         }
     });
     return dlvAmtSum;
-}
-
-
-function deleteBasktItem(obj) {
-    var selFlag = false;
-    $(obj).parents(".shipping-listwrap").find("input[name='basktInf']:checked").each(function () {
-        if ($(this).parents(".pdwrap").attr("style").indexOf("none") < 0) {
-            selFlag = true;
-            return false;
-        }
-    });
-    if (!selFlag) {
-        alert("상품을 선택해주세요.");
-        return;
-    } else if (!confirm("선택하신 상품을 삭제하시겠습니까?")) {
-        return;
-    }
-    $("form[name=deleteForm]").html("");
-    $(obj).parents(".shipping-listwrap").find("input[name='basktInf']:checked").each(function () {
-        if ($(this).parents(".pdwrap").attr("style").indexOf("none") < 0) {
-            $("#deleteForm").append($(this).clone());
-        }
-    });
-    deleteBaskt();
 }
 
 function showChgUitmPup(obj, slitmCd, uitmCd, aspItemCd, sellPrc, uitmCombYn) {

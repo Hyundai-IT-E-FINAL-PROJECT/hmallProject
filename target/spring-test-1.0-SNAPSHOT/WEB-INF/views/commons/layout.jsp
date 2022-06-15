@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/search.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> <!--CDN 링크 -->
     <c:forEach items="${cssFileList}" var="styleFile">
         <link rel="stylesheet" type="text/css" href="/resources/css/${styleFile}.css">
     </c:forEach>

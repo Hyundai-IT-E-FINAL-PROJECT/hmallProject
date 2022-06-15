@@ -10,7 +10,7 @@ public interface MypageService {
 
     Map periodOrders(long no, String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
 
-    Map adminPeriodOrders(String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception;
+    Map adminPeriodOrders(String ordStrtDt, String ordEndDt, String seType, String itemNm, long page_num) throws Exception;
 
     Map detailOrders(long no, long odno) throws Exception;
 
@@ -35,4 +35,6 @@ public interface MypageService {
     int deleteDelivery(long adno) throws Exception;
 
     void baseDelivery(long adno) throws Exception;
+
+    Map adminOrderStatus() throws Exception;
 }

@@ -29,6 +29,10 @@
                  )
     </insert>
 
+    <delete id="deleteBasket" parameterType="Long">
+        DELETE FROM tbl_basket WHERE basket_seq = ${basket_seq}
+    </delete>
+
     <resultMap id="basketMap" type="org.team2.domain.BasketVO">
         <result property="basket_seq" column="basket_seq" />
         <result property="basket_count" column="basket_count" />

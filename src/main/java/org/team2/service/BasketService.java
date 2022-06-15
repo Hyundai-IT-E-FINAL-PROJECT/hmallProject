@@ -11,6 +11,8 @@ public interface BasketService {
 
      void addBasket(Long user_seq, Long product_seq, Long basket_count);
 
+     void deleteBasket(Long basket_seq);
+
      BasketVO directBuy(Map<String, Long> map);
 
      Map<String, String> getBasketOne(Map<String, Long> map);

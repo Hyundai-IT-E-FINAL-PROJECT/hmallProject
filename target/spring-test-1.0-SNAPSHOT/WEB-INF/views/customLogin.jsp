@@ -12,11 +12,12 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/login.css">
-<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/common.css"><!-- 공통 css -->
-<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/layout.css"><!-- 공통 Layout css -->
-<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/popup.css"><!-- 공통 Popup css -->
-<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- jQuery UI css -->
+<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css"><!-- 공통 css -->
+<link rel="stylesheet" type="text/css" href="/resources/css/layout.css"><!-- 공통 css -->
+<link rel="stylesheet" type="text/css" href="/resources/css/popup.css"><!-- 공통 css -->
+<link rel="stylesheet" type="text/css" href="//image.hmall.com/p/css/co/jquery-ui.css"><!-- 공통 css -->
+<link rel="stylesheet" type="text/css" href="/resources/css/search.css">
 <main class="cmain main" role="main" id="mainContents"><!-- 메인페이지 'main' 클래스 추가 -->
     <div class="container">
         <div class="cbody gird-full">

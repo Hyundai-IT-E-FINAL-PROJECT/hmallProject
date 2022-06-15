@@ -48,4 +48,8 @@ public interface MypageMapper {
     int baseDelivery(long adno) throws Exception;
 
     int changeDelivery() throws Exception;
+
+    void adminOrderStatus(Map<String,Object> map) throws Exception;
+
+
 }

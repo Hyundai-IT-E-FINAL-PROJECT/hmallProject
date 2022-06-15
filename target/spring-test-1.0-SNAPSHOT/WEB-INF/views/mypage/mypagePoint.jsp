@@ -71,7 +71,16 @@
                                             <dl>
                                                 <dt>적립예정</dt>
                                                 <dd>
-                                                    <span><em class="prepoint" id="totPromoExpectSvmt">${prepoint}</em>P</span>
+                                                    <span>
+                                                        <em class="prepoint" id="totPromoExpectSvmt">
+                                                            <c:if test="${prepoint == null}">
+                                                                0
+                                                            </c:if>
+                                                            <c:if test="${prepoint != null}">
+                                                                ${prepoint}
+                                                            </c:if>
+                                                        </em>P
+                                                    </span>
                                                 </dd>
                                                 <dt>당월 소멸예정</dt>
                                                 <dd>

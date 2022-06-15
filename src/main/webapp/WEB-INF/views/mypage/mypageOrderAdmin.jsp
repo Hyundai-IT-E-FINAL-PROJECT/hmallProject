@@ -48,6 +48,7 @@
                      <input type='hidden' name='ordStrtDt' 		id='ordStrtDt'		value="" />
                      <input type='hidden' name='ordEndDt' 		id='ordEndDt' 		value="" />
                      <input type='hidden' name='itemNm' 		id='itemNm'			value="" />
+                     <input type='hidden' name='page_num' 		id='page_num'			value="" />
                  </form>
 
                 <div class="contents">
@@ -109,7 +110,7 @@
                                 <li>
                                     <a href="https://www.hmall.com/p/mpb/selectItemEvalAtclListPagingByCondtion.do">
                                         <strong class="num"><c:out value="${sendcp}"/></strong>
-                                        <span class="txt">작성 가능한 상품평</span>
+                                        <span class="txt">배송완료</span>
                                     </a>
                                 </li>
                             </ul>
@@ -124,31 +125,31 @@
                                 <ul class="radiolist">
                                     <li>
                                         <input type="radio" name="order" id="order01" value="2" aria-checked=&#034;true&#034; checked=&#034;&#034;>
-                                        <label for="order01" onclick="setPeriod(2);">최근 14일</label>
+                                        <label for="order01" onclick="setPeriod(2, 1);">최근 14일</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order02" value="3" aria-checked=&#034;false&#034;>
-                                        <label for="order02" onclick="setPeriod(3);">최근 3개월</label>
+                                        <label for="order02" onclick="setPeriod(3, 1);">최근 3개월</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order03" value="6" aria-checked=&#034;false&#034;>
-                                        <label for="order03" onclick="setPeriod(6);">최근 6개월</label>
+                                        <label for="order03" onclick="setPeriod(6, 1);">최근 6개월</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order04" value="0" aria-checked=&#034;false&#034;>
-                                        <label for="order04" onclick="setPeriod(0);">2022년</label>
+                                        <label for="order04" onclick="setPeriod(0, 1);">2022년</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order05" value="-1" aria-checked=&#034;false&#034;>
-                                        <label for="order05" onclick="setPeriod(-1);">2021년</label>
+                                        <label for="order05" onclick="setPeriod(-1, 1);">2021년</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order06" value="-2" aria-checked=&#034;false&#034;>
-                                        <label for="order06" onclick="setPeriod(-2);">2020년</label>
+                                        <label for="order06" onclick="setPeriod(-2, 1);">2020년</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="order" id="order07" value="-3" aria-checked=&#034;false&#034;>
-                                        <label for="order07" onclick="setPeriod(-3);">전체</label>
+                                        <label for="order07" onclick="setPeriod(-3, 1);">전체</label>
                                     </li>
                                 </ul>
                                 <input type="hidden" id="searchType" name="searchType" value=""/>
@@ -250,24 +251,55 @@
                                     </div>
                                 </c:if>
                         </c:forEach>
+                        <div class="paging">
 
+                                <div class="page-prevarea">
+                                    <c:if test="${pageMaker.prev}">
+                                        <a onclick="setPeriod(${seType}, 1)"
+                                           class="page-first" aria-label="처음페이지 이동">
+                                            <i class="icon"></i><span class="hiding">처음페이지 이동</span>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${pageMaker.prev}">
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.startPage} - 1)"
+                                           class="page-prev" aria-label="이전페이지 이동">
+                                            <i class="icon"></i><span class="hiding">이전페이지 이동</span>
+                                        </a>
+                                    </c:if>
+                                    <c:forEach var="num" begin="${pageMaker.startPage}"
+                                               end="${pageMaker.endPage}">
+                                        <c:choose>
+                                            <c:when test="${pageMaker.cri.pageNum == num}">
+                                                <strong class="checkedPage" id="page${num}">${num}</strong>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:choose>
+                                                    <c:when test="${seType eq ''}">
+                                                        <a onclick="setPeriod(2, ${num})" id="page${num}">${num}</a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a onclick="setPeriod(${seType}, ${num})" id="page${num}">${num}</a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                    <c:if test="${pageMaker.next}">
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.endPage} + 1)"
+                                           class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
+                                    </c:if>
+                                    <c:if test="${pageMaker.cri.pageNum != pageMaker.realEnd}">
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.realEnd})"
+                                           class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
+                                    </c:if>
+                                </div>
+                        </div>
                         <c:if test="${list.size() == 0}">
                             <div class="nodata">
                                 <span class="bgcircle"><i class="icon nodata-type14"></i></span>
                                 <p>해당 기간동안 주문/배송 내역이 없습니다.</p>
                             </div>
                         </c:if>
-
-                    <div class="paging">
-
-
-                        <div class="page-prevarea">
-
-
-                            <strong aria-label="현재 선택페이지">1</strong>
-
-
-                        </div>
 
 
                     </div>
@@ -473,7 +505,7 @@
             });
         });
 
-        function setPeriod(period) {
+        function setPeriod(period, num) {
             var d = new Date();
             var endDateStr = getDateStr(d);
             var dt ,startDateStr;
@@ -506,6 +538,7 @@
             $("#txtOrdStrtDt").val(startDateStr);
             $("#txtOrdEndDt").val(endDateStr);
             $("#searchType").val(period);
+            $("#page_num").val(num);
             $("#serach").click();
         }
 
