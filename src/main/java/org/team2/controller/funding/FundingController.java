@@ -227,6 +227,22 @@ public class FundingController {
         }
     }
 
+
+    @ResponseBody
+    @PostMapping("cancelFundingProcess")
+    public void cancelFundingProcess(FundParticipantsVO fundParticipantsVO,
+                               Principal principal){
+        log.info("cancelFundingProcess...");
+        fundParticipantsVO.setUser_seq(Long.valueOf(principal.getName()));
+
+        try {
+            fundingService.cancelFundingProcess(fundParticipantsVO);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @RequestMapping("insertReply")
     public ResponseEntity<List<Map<String, Object>>> insertReply(@RequestParam("fund_board_seq") int fund_board_seq,
                            @RequestParam("user_seq") int user_seq,

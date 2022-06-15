@@ -324,7 +324,8 @@
                                                                     <div class="row row-mobile-n">
                                                                         <div class="col-xs-6"><a
                                                                                 class="btn btn-block btn-sm btn-default-outline"
-                                                                                onclick="deleteMyFund(${paFund.FUND_PRODUCT_SEQ});"
+                                                                                onclick="cancelFundingProcess(${paFund.FUND_PRODUCT_SEQ}, ${paFund.FUND_REWARD_SEQ},
+                                                                                        ${paFund.FUND_REWARD_COUNT}, ${paFund.FUND_REWARD_COST});"
                                                                         >펀딩 취소하기</a>
                                                                         </div>
                                                                     </div> <!----> <!----> <!----> <!----> <!----></div>
@@ -381,6 +382,33 @@
                 }
 
             });
+
+        }
+
+        function cancelFundingProcess(product_seeq, reward_seq, count, cost){
+
+            var data={
+                fund_product_seq:product_seeq,
+                fund_reward_seq:reward_seq,
+                fund_reward_cost:cost,
+                fund_reward_count:count
+            };
+            $.ajax({
+                url:'${contextPath}/fund/cancelFundingProcess',
+                type:'post',
+                data:data,
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function(){
+                    alert('예약한 펀딩이 취소되었습니다!');
+                    location.href='${contextPath}/fund/myFunding';
+                },
+                error: function (request,status,error) {
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+
 
         }
     </script>

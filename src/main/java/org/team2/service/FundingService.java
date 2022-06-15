@@ -44,4 +44,6 @@ public interface FundingService {
     List<Map<String, Object>> participatedFund(Long user_seq) throws Exception;
 
     void insertFile(AttachFileVO attachFileVO) throws Exception;
+
+    void cancelFundingProcess(FundParticipantsVO fundParticipantsVO) throws Exception;
 }

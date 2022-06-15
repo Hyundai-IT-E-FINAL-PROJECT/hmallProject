@@ -23,6 +23,9 @@ public interface FundingMapper {
     void updateFundStatus(Long fund_product_seq) throws Exception;
 
     void fundingProcess(@Param("rewardVO") RewardVO rewardVO, @Param("fundParticipantsVO")FundParticipantsVO fundParticipantsVO) throws Exception;
+
+    void cancelFundingProcess(FundParticipantsVO fundParticipantsVO) throws Exception;
+
     void insertReply(FundReplyVO fundReplyVO) throws Exception;
 
     List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
@@ -44,4 +47,6 @@ public interface FundingMapper {
     List<Map<String, Object>> participatedFund(Long user_seq) throws Exception;
 
     void insertFile(AttachFileVO attachFileVO) throws Exception;
+
+    void updateFundStatusByDay() throws Exception;
 }
