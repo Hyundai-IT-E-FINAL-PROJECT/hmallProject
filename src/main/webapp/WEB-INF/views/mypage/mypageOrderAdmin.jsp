@@ -164,7 +164,7 @@
                             </div>
                         </div>
 
-
+                        <c:if test="${list.size() != 0}">
                         <c:forEach items="${list}" var="odlist" varStatus="vs">
 <%--                            <c:if test="${vs.index != 0}">--%>
 <%--                                <p>현재 주문 번호 : ${vs.current.ORDER_SEQ} </p>--%>
@@ -294,6 +294,7 @@
                                     </c:if>
                                 </div>
                         </div>
+                        </c:if>
                         <c:if test="${list.size() == 0}">
                             <div class="nodata">
                                 <span class="bgcircle"><i class="icon nodata-type14"></i></span>
