@@ -218,18 +218,22 @@
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                 <div style="display: flex; flex-direction: column; ">
                                                                     <c:if test="${myFund.fund_product_status eq 0}">
-                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
-
-                                                            심사중
-                                                    </span>
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
+                                                                        심사중
+                                                                        </span>
                                                                     </c:if>
                                                                     <c:if test="${myFund.fund_product_status eq 1}">
-                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
                                                         color: green; border-color: green;">
-                                                            진행중
-                                                    </span>
+                                                                            진행중
+                                                                        </span>
                                                                     </c:if>
-
+                                                                    <c:if test="${myFund.fund_product_status eq 2}">
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                                        color: gray; border-color: gray;">
+                                                                            마감
+                                                                        </span>
+                                                                    </c:if>
                                                                     <!----> <!----> <!---->
                                                                     <div onclick="location.href='${contextPath}/fund/detail/${myFund.fund_product_seq}'" style="height: 80px;">${myFund.fund_product_title}</div>
                                                                 </div>
