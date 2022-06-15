@@ -71,7 +71,7 @@
                                                         <input type="hidden" name="exhibit_num" value="3">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg" onclick="exhibit_3()"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
@@ -81,7 +81,7 @@
                                                         <input type="hidden" name="exhibit_num" value="2">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg" onclick="exhibit_2()"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg" onclick="exhibit_2()" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;">
@@ -91,7 +91,7 @@
                                                         <input type="hidden" name="exhibit_num" value="1">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg" onclick="exhibit_3()" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -549,8 +549,7 @@
 <%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
                                 <li>
                                     <figure>
-                                        <a href="javascript:;"
-                                           onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                        <a onclick="location.href='${contextPath}/fund/detail/${bestFund[0].fund_product_seq}'";
                                            ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                            ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -580,8 +579,7 @@
 <%--                            </c:forEach>--%>
                                 <li>
                                     <figure>
-                                        <a href="javascript:;"
-                                           onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                        <a onclick="location.href='${contextPath}/fund/detail/${bestFund[1].fund_product_seq}'";
                                            ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                            ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -610,8 +608,7 @@
                                 </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${bestFund[2].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -640,8 +637,7 @@
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${bestFund[3].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -684,8 +680,7 @@
                             <%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[0].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -715,8 +710,7 @@
                             <%--                            </c:forEach>--%>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[1].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -745,8 +739,7 @@
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[2].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -775,8 +768,7 @@
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[3].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 

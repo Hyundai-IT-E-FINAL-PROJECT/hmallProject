@@ -33,8 +33,7 @@ public class ExhibitController {
         List<Map<Integer,Object>> list = exhibitService.euro_exhibit(exhibit_num);
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("display");
-        log.info(list.get(0).toString());
-        log.info(list.get(1).toString());
+        log.info(list.toString());
         mav.addObject("list",list);
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("className","wrap display-exhibition exhibition-marketing");
