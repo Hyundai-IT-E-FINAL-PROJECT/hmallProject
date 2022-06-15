@@ -73,12 +73,12 @@ public class FundingServiceImpl implements FundingService{
     }
 
     @Override
-    public FundVO best1FundProduct() throws Exception {
+    public  List<FundVO> best1FundProduct() throws Exception {
         return fundingMapper.best1FundProduct();
     }
 
     @Override
-    public FundVO deadlineProduct() throws Exception {
+    public List<FundVO> deadlineProduct() throws Exception {
         return fundingMapper.deadlineProduct();
     }
 
