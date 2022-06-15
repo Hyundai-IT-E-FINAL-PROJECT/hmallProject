@@ -16,7 +16,7 @@
             <li>
                 <a href="javascript:;">주문관리</a>
                 <ul class="sub-list">
-                    <li><a href="/mypageOrder">주문접수</a></li>
+                    <li><a href="/mypageOrder?seType=&page_num=1">주문접수</a></li>
                 </ul>
             </li>
             <li>

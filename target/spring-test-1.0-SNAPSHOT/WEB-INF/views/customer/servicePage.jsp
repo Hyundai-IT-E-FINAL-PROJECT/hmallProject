@@ -8,10 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%--<body class="vsc-initialized">--%>
-<%--<div class="wrap customer-center"><!-- wing banner 미노출 시 : wing-none 클래스 추가 -->--%>
-<%--    <div class="nav-skip"><a href="#mainContents">본문 콘텐츠로 건너뛰기</a></div>--%>
-
 <style>
     #quickMenu div{
         padding: 20px;
@@ -41,12 +37,6 @@
 </style>
     <main class="cmain customer" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
         <div class="container">
-
-            <!-- LNB 시작 -->
-
-
-
-
             <script type="text/javascript">
                 //1:1 상담
                 function openCnslAcptPup(obj){
@@ -72,11 +62,8 @@
                     windowPup.focus();
                 }
             </script>
-
-
             <div class="side-content">
-
-                <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
+                <h2 class="side-menu-title" onclick="javascript:location.href='${contextPath}/customer';" style="cursor:pointer;">고객센터</h2>
                 <div class="side-menu-list">
                     <ul>
                         <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
@@ -85,25 +72,68 @@
                     </ul>
                 </div>
             </div>
-            <!-- // LNB 끝 -->
-
             <div class="contents">
-                <!--search : 자주 묻는 질문-->
-                <div class="cus-wrap">
-                    <h3>자주 묻는 질문</h3>
+                <div>
+                    <div class="cus-wrap noti">
+                        <!--1:1 문의하기-->
+                        <div class="question-wrap">
+                            <h3>바로가기</h3>
+                            <div class="btngroup">
+                                <button class="btn btn-chat" type="button" onclick="location.href='${contextPath}/customer/inquiryPage';"><span><i class="icon"></i>1:1 문의하기</span></button>
+                                <button class="btn btn-board" onclick="location.href='${contextPath}/customer/noticeList'; return false;"><span><i class="icon"></i>공지사항 바로가기</span></button>
+                            </div>
+                        </div>
+                        <!--//1:1 문의하기-->
+                        <!--공지사항-->
+                        <div class="noti-wrap">
+                            <div class="tit-wrap">
+                                <h3>공지사항</h3>
+                                <p><a href="${contextPath}/customer/noticeList">전체보기</a></p>
+                            </div>
+                            <!--tblwrap tbl-list-->
+                            <div class="tblwrap tbl-list">
+                                <table>
+                                    <caption>고객센터 공지사항</caption>
+                                    <colgroup>
+                                        <col style="width:400px">
+                                        <col style="width:75px">
+                                    </colgroup>
+                                    <tbody>
+                                    <c:forEach items="${noticeList}" var="notice" varStatus="status" begin="0" end="4">
+                                        <tr>
+                                            <td class="nowrap">${notice.notice_title}</td>
+                                            <td class="txt-center">
+                                            <span class="date">
+                                                <fmt:formatDate value="${notice.created_at}" pattern="yyyy-MM-dd"/>
+                                            </span>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--//tblwrap tbl-list-->
+                        </div>
+                        <!--//공지사항-->
+                    </div>
+                    <div class="cus-wrap noti" style="margin-left: -50px;">
+                        <div class="noti-wrap">
+                            <div class="tit-wrap">
+                                <h3>Quick Menu</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="quickMenu" style="display: flex; justify-content: center;">
+                        <div onclick="location.href='${contextPath}/mypageOrder'">주문/배송 조회</div>
+                        <div onclick="location.href='${contextPath}/user/finduser_info'">아이디 찾기</div>
+                        <div onclick="location.href='${contextPath}/user/find_pw'">비밀번호 찾기</div>
+                    </div>
                 </div>
-                <!--//search : 자주 묻는 질문-->
-
-
-                <!--베스트 FAQ 10-->
                 <div class="cus-wrap">
                     <div class="tit-wrap">
-                        <h3>베스트 FAQ 10</h3>
+                        <h3 style="margin-top: 40px;">베스트 FAQ 10</h3>
                     </div>
-                    <!--accparent-->
                     <div class="accparent">
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3 class=""><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,25,05)"><i class="icon question"></i><span>주문 내용 변경, 취소, AS 등은 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt01" role="best-txt01" aria-label="주문 내용 변경, 취소, AS 등은 어떻게 하나요?">
                             <div class="txt-wrap">
@@ -116,54 +146,36 @@
                                 <p>&nbsp;</p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,19,04)"><i class="icon question"></i><span>주문한 상품은 배송 내역은 어디서 확인하나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt02" role="best-txt02" aria-label="주문한 상품은 배송 내역은 어디서 확인하나요?">
                             <div class="txt-wrap">
                                 <p style="LINE-HEIGHT: 1.5"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문하신 상품의 배송 일정은 결제완료 시점을 기준으로 안내됩니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">상품 종류에 따라 배송 일정이 달라질 수 있으니 아래 가이드에 따라 배송 일정을 확인해주시면 됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷회원 주문 시</span><br></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. [ 마이페이지 &gt; </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문/배송현황 &gt; </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">주문/배송 상세 ]&nbsp;선택</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 배송 관련 상세 정보 확인 가능</span><br><br></span><span style="COLOR: #000000"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">비회원 주문 시</span><br></span></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 로그인 화면에서 비회원 주문조회 선택</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 성명/주문번호 입력</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. 배송 관련 상세 정보 확인 가능</span><br><br></span><span style="COLOR: #000000"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">※&nbsp;</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">참고사항<br></span></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">꽃이나 케이크는 배송희망일을 주문 메모에 적어 주시면 해당 날짜에 배송해 드립니다.</span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3 class=""><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,52944,05)"><i class="icon question"></i><span>취소/반품 완료 후 환불 언제 되나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt03" role="best-txt03" aria-label="취소/반품 완료 후 환불 언제 되나요?">
                             <div class="txt-wrap">
                                 <p><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">취소 또는 반품에 대한 환불 처리는 취소, 반품 접수 후 24시간 이내 해드립니다. 환불 처리는 주문 결제 수단과 동일하게 함을 원칙으로 하며, 환불 받을 금액을 예치 해두고 다음에 사용하고자 한다면 고객센터를 통해 환불 금액의 예치금 전환을 신청해 주시기 바랍니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ Hmall 상품의 반품에 대한 환불 처리는 상품 입고하여 검품 완료 후 환불처리 되므로 대략 4~7일 정도의 시간이 소요됩니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주말 또는 휴일처럼 금융업무가 비정상적인 경우 그 다음 근무 일에 처리됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 신용카드<span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"></span></span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">주문취소 시 카드매출 취소는 즉시 접수 되지만, 카드사 매입 취소까지 보통 3~7일 정도 소요될 수 있습니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">※ 매입 전 카드 주문은 당일 취소됩니다.</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000">※ 각 카드사마다 취소 처리 기간이 다르기 때문에 카드사를 통하여 확인하실 수 있습니다. </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">만약에 대금이 결제되었다 하더라도 해당 금액만큼 해당 카드사에서 다음달 결제 대금에서 제외됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 체크카드</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">당사 취소 청구 후 7일 이내 카드사에서 계좌로 입금됩니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 은행에 따라 소요일 달라질 수 있습니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 무통장입금/ 실시간계좌이체</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">환불요청 후 익일 (영업일 기준<span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"></span>) 입력하신 계좌로 입금됩니다.</span><br></span><span style="COLOR: #cc3d3d"><strong><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 휴대폰 결제</span><br></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif">환불요청 후 3~5일 소요됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷ 상품권 결제</span><br></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">환불 요청 후 익일 (영업일 기준) 예치금 환불로 처리됩니다.</span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,28,05)"><i class="icon question"></i><span>택배기사를 기다릴 필요없이 편의점반품이 가능한가요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt04" role="best-txt04" aria-label="택배기사를 기다릴 필요없이 편의점반품이 가능한가요?">
                             <div class="txt-wrap">
                                 <span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반품신청 후 수거가 진행되는 동안의 불편함을 줄이고자 편의점반품 서비스를 오픈하였습니다.</span><br><br><b><font color="red"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷편의점반품이란?</span><br></font></b><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반품신청 후 택배기사님의 방문을 기다릴 필요 없이 가까운 편의점(GS25, CU)에 방문하여 반품접수를 </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">할 수 있는 서비스입니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 사전 현대홈쇼핑 고객센터(1600-0000)로 연락하여 접수해 주시기 바랍니다. </span><br><br><font color="red"><span style="COLOR: #cc3d3d"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">편의점반품 진행단계</span></strong></span></font><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">당사 고객센터 전화상담</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 편의점반품 접수</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품신청승인번호 SMS발송</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 편의점방문,승인번호입력 / 택배접수</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">5.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품배송 시작</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">6.</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> 반품배송 완료</span><br><br><font color="red"><span style="COLOR: #cc3d3d"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷</span></strong></span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">편의점반품 불가상품</span></strong></span></font><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">비규격상품(가로+세로+높이의 합이 100cm이상 또는 2kg이상)</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">식품류</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">상품가격 50만원 이상의 상품</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"> </span>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,26,05)"><i class="icon question"></i><span>환불은 어떻게 받나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt05" role="best-txt05" aria-label="환불은 어떻게 받나요?">
                             <div class="txt-wrap">
                                 <p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">취소 또는 반품에 대한 환불처리는 취소, 반품 접수 후 24시간 이내 해드립니다.&nbsp; </span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">단, Hmall 상품의 반품에 대한 환불처리는 상품 입고하여 검품 완료 후 환불처리 되므로 대략 4~7일 정도의 시간이 소요됩니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">다만, 주말 또는 휴일처럼 금융업무가 비정상적인 경우 그 다음 근무일에 처리됩니다.</span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">참고로, 환불처리는 주문결제 수단과 동일하게 함을 원칙으로 하며, 환불 받을 금액을 예치해두고 다음에 사용하고자 한다면 고객센터를 통해 환불금액의 예치금 전환을 신청해 주시기 바랍니다.</span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,5,01)"><i class="icon question"></i><span>회원탈퇴는 어떻게 하나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt06" role="best-txt06" aria-label="회원탈퇴는 어떻게 하나요?">
                             <div class="txt-wrap">
                                 <p style="LINE-HEIGHT: 1.5"><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; COLOR: #123456"><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷PC </span></span></span></strong></span><br><span style="FONT-SIZE: 10pt; COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">화면 상단에 있는 [마이페이지 &gt;&nbsp;회원정보 &gt; 회원탈퇴]를 선택하시면 회원탈퇴를 하실 수 있습니다.</span><br><br></span><strong><span style="FONT-SIZE: 10pt; COLOR: #123456"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷모바일</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">&nbsp;</span></span><br></strong><span style="FONT-SIZE: 10pt; COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">화면 하단에 있는 [마이페이지 &gt; 최하단 ‘㈜현대홈쇼핑’ &gt; 회원탈퇴]를 선택하시면 회원탈퇴를 하실 수 있습니다.</span><br><br></span><span style="COLOR: #cc3d3d"><span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">※ </span><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">유의사항</span></strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d"> </span></span></span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 배송 진행 중, 반품진행중인 주문 건이 &nbsp;있을 경우에는 탈퇴처리가 되지 않습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 재가입하셔도 개인정보가 복원되지 않습니다. </span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. Hmall에 가지고 계신 적립금, 예치금, 할인쿠폰 등의 혜택이 자동삭제 되며, 재가입하실 경우에도 복원되지 않습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4.&nbsp;재가입시, 기존에 사용하셨던 ID는 재가입 시 사용하실 수 없습니다. </span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,24,05)"><i class="icon question"></i><span>교환 또는 반품이 안되는 경우는 어떤 경우인가요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt07" role="best-txt07" aria-label="교환 또는 반품이 안되는 경우는 어떤 경우인가요?">
                             <div class="txt-wrap">
@@ -173,27 +185,18 @@
                                 <p style="LINE-HEIGHT: 1.5"><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000">※ 상품에 따라서 변심으로 인한 반품 시 고객께서 반품 비용을 부담하셔야 하는 경우도 있습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif"><span style="COLOR: #000000">※ 그 외 특이사항은 해당 상품 설명에 표기되어 있습니다. </span></span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,31,07)"><i class="icon question"></i><span>이벤트 당첨은 어디서 확인하나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt08" role="best-txt08" aria-label="이벤트 당첨은 어디서 확인하나요?">
                             <div class="txt-wrap">
                                 <p class="depth1" nodeindex="1" jquery17102688160967782381="246" sizcache09139176650749625="6" sizset="54"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">이벤트 당첨자는 이벤트 탭의 이벤트 당첨공지에서 확인하실 수 있습니다.</span><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">내가 참여한 이벤트는 마이페이지 &gt; 참여이벤트에서 확인하실 수 있습니다.</span><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">[PC]</span><br><img src="http://image.hyundaihmall.com/CO/EDITOR/20210208/053356609/www5o.jpg"><br><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">[모바일]</span><br><img style="HEIGHT: 581px; WIDTH: 310px" src="http://image.hyundaihmall.com/CO/EDITOR/20210208/053421173/19o7u.jpg" width="310" height="581"></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,21,04)"><i class="icon question"></i><span>백화점 상품의 배송은 어떻게 진행이 되나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt09" role="best-txt09" aria-label="백화점 상품의 배송은 어떻게 진행이 되나요?">
                             <div class="txt-wrap">
                                 <p style="LINE-HEIGHT: 1.5"><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">가구 및 침구 등 일부 상품의 경우 협력사에 직접 배송이 진행되며, 그 외 상품은 현대백화점 매장을 통해 배송 진행 됩니다.</span><br></span><span style="COLOR: #cc3d3d"><strong><span style="COLOR: #cc3d3d"><br><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷배송과정 </span><br></span></strong></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">1. 결제완료가 된 다음날 백화점 매장으로 상품 준비 요청됩니다. </span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 현대백화점 배송팀에서 상품을 받아 포장합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">3. 포장완료후 해당지역으로 발송합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">4. 발송후 1~2일 이후 수령(결제후 2~7일이내)&nbsp;가능합니다.</span><br></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 무통장입금 경우 무통장입금 확인이 된 다음날 백화점 매장으로 상품 준비 요청됩니다.</span><br><br></span><span style="COLOR: #cc3d3d"><strong><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d">▷&nbsp;배송기간</span><span style="COLOR: #cc3d3d"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #cc3d3d"> </span><br></span></strong></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #000000"><span style="COLOR: #353535">1. 매장에 재고가 있을 경우 주문일로 부터 평균 3~4일 소요되며(공휴일 제외)</span><span style="COLOR: #353535">&nbsp;</span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">일시품절일 경우 평균 5~7일 소요됩니다.(완전 품절일 경우 취소 요청)</span></span></span><span style="COLOR: #000000"><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">2. 백화점의 휴무일과 공휴일, 주말의 주문상품은 평균배송일에 1~2일이 더 소요됩니다.&nbsp;</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">제품 품절시 고객님께 가능한 빠른시간내에 품절통보 및 환불절차에 대해 안내해 드리도록 하겠습니다.</span><br></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                        <!--best-txt01 : -h3/accordion-panel에 selected 시 열림-->
                         <h3><button data-modules-collapse="parent:.accparent;" class="accordion-trigger" aria-expanded="false" onclick="lookup_count(this,18,04)"><i class="icon question"></i><span>주문 후 배송상태를 어떻게 알 수 있나요?</span><i class="icon acc-arrow"></i></button></h3>
                         <div class="accordion-panel best-txt010" role="best-txt010" aria-label="주문 후 배송상태를 어떻게 알 수 있나요?">
                             <div class="txt-wrap">
@@ -203,75 +206,10 @@
                                 <p style="LINE-HEIGHT: 1.5"><br><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535"><br>※ 발송완료 단계에서는 배송추적기능을 통해 택배사, 상품의 현재 위치를 시간대별로 실시간 </span></span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">조회하실 수 있습니다. </span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주문상태의 변경은 실시간으로 반영하는 것을 원칙으로 하오나, 업체배송 상품의 경우 간혹 </span><span style="COLOR: #000000"><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">반영이 늦어지는 경우가 발생할 수 있습니다.</span><br></span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">※ 주문상태 변경이 지연되고 있는 경우에는 1대1 고객상담이나 고객센터(1600-0000)으로 문의하시면 빠른 시간 내에 배송현황을 </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: Gulim,굴림,AppleGothic,sans-serif; COLOR: #353535">알려드리겠습니다.</span><span style="COLOR: #000000"><br></span></p>
                             </div>
                         </div>
-                        <!--best-txt01 -->
-
-                    </div>
-                    <!--//accparent-->
-                </div>
-                <!--//베스트 FAQ 10-->
-
-                <!--1:1문의하기 / 공지사항-->
-                <div class="cus-wrap noti">
-                    <!--1:1 문의하기-->
-                    <div class="question-wrap">
-                        <h3>바로가기</h3>
-                        <div class="btngroup">
-                            <button class="btn btn-chat" type="button" onclick="location.href='${contextPath}/customer/inquiryPage';"><span><i class="icon"></i>1:1 문의하기</span></button>
-                            <button class="btn btn-board" onclick="location.href='${contextPath}/customer/noticeList'; return false;"><span><i class="icon"></i>공지사항 바로가기</span></button>
-                        </div>
-                    </div>
-                    <!--//1:1 문의하기-->
-                    <!--공지사항-->
-                    <div class="noti-wrap">
-                        <div class="tit-wrap">
-                            <h3>공지사항</h3>
-                            <p><a href="${contextPath}/customer/noticeList">전체보기</a></p>
-                        </div>
-                        <!--tblwrap tbl-list-->
-                        <div class="tblwrap tbl-list">
-                            <table>
-                                <caption>고객센터 공지사항</caption>
-                                <colgroup>
-                                    <col style="width:400px">
-                                    <col style="width:75px">
-                                </colgroup>
-                                <tbody>
-                                <c:forEach items="${noticeList}" var="notice" varStatus="status" begin="0" end="4">
-                                    <tr>
-                                        <td class="nowrap">${notice.notice_title}</td>
-                                        <td class="txt-center">
-                                            <span class="date">
-                                                <fmt:formatDate value="${notice.created_at}" pattern="yyyy-MM-dd"/>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--//tblwrap tbl-list-->
-                    </div>
-                    <!--//공지사항-->
-                </div>
-                <div class="cus-wrap noti" style="margin-left: -50px;">
-                    <div class="noti-wrap">
-                        <div class="tit-wrap">
-                            <h3>Quick Menu</h3>
-                        </div>
                     </div>
                 </div>
-                <div id="quickMenu" style="display: flex; justify-content: center;">
-                    <div onclick="location.href='${contextPath}/mypageOrder'">주문/배송 조회</div>
-                    <div onclick="location.href='${contextPath}/user/finduser_info'">아이디 찾기</div>
-                    <div onclick="location.href='${contextPath}/user/find_pw'">비밀번호 찾기</div>
-                </div>
-
-
-                <!--//고객평가단/채널모니터링-->
             </div>
-            <!-- // .contents -->
         </div>
-        <!-- //.container -->
     </main>
 
     <script type="text/javascript" defer="defer">

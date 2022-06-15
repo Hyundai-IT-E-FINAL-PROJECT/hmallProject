@@ -93,7 +93,7 @@
                     <sec:authentication property="principal" var="pinfo" />
                     <c:choose>
                         <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
-                            <li><a class="mypage" href="/mypageOrder"><span>주문관리</span></a></li>
+                            <li><a class="mypage" href="/mypageOrder?seType=&page_num=1"><span>주문관리</span></a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="mypage" href="/mypage"><span>마이페이지</span></a></li>
@@ -120,7 +120,7 @@
                             <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
                                ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">스토어</a></li>
                         <li class=" ">
-                            <a href="/p/home.do?_IC_=tab2&mainDispSeq=1&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">
                             <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"
@@ -143,7 +143,7 @@
                     <sec:authorize access="isAuthenticated()">
                         <c:choose>
                             <c:when test="${pinfo.userVO.authList[0].user_auth_authority eq 'ROLE_ADMIN'}">
-                                <li><a href="mypageOrder">관리자 ${pinfo.userVO.user_name}님</a></li>
+                                <li><a href="mypageOrder?page_num=1">관리자 ${pinfo.userVO.user_name}님</a></li>
                             </c:when>
                             <c:otherwise>
                                 <li><a href="${contextPath}/mypage">${pinfo.userVO.user_name}님</a></li>

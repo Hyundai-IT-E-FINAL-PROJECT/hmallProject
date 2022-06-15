@@ -67,6 +67,7 @@ public class FundingController {
         styleFileList.add("search");
         styleFileList.add("display");
         styleFileList.add("prd-list");
+        styleFileList.add("product");
         List<Map<Integer,Object>> list = fundingService.readFundingProduct(fundVO);
         log.info(list.toString());
 //        펀딩 리스트 불러오기
@@ -220,6 +221,22 @@ public class FundingController {
 
         try {
             fundingService.fundingProcess(rewardVO,fundParticipantsVO);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @ResponseBody
+    @PostMapping("cancelFundingProcess")
+    public void cancelFundingProcess(FundParticipantsVO fundParticipantsVO,
+                               Principal principal){
+        log.info("cancelFundingProcess...");
+        fundParticipantsVO.setUser_seq(Long.valueOf(principal.getName()));
+
+        try {
+            fundingService.cancelFundingProcess(fundParticipantsVO);
 
         } catch (Exception e) {
             e.printStackTrace();

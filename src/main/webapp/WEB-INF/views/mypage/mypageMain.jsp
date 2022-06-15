@@ -239,21 +239,21 @@
                     <!-- 추후 상품전시 레이아웃 마크업으로 변경 필요 -->
 
 
-                    <h3 class="title22">
-                        최근 상담내역
-                        <div class="btngroup abs">
-                            <a href="/customer/myInquiryPage" class="btn atext" onclick="gaTagging(this, '', '', '');"
-                               ga-custom-name="마이페이지" ga-custom-position="최근 상담내역" ga-custom-creative="전체보기"
-                               ga-custom-title="마이페이지>메인" ga-custom-etc="urlAction"><span>전체보기</span><i
-                                    class="arrow right"></i></a>
-                        </div>
-                    </h3>
-                    <div class="pdlist-wrap col4"> <!--// 4xn class="col4" 추가 -->
+<%--                    <h3 class="title22">--%>
+<%--                        최근 상담내역--%>
+<%--                        <div class="btngroup abs">--%>
+<%--                            <a href="/customer/myInquiryPage" class="btn atext" onclick="gaTagging(this, '', '', '');"--%>
+<%--                               ga-custom-name="마이페이지" ga-custom-position="최근 상담내역" ga-custom-creative="전체보기"--%>
+<%--                               ga-custom-title="마이페이지>메인" ga-custom-etc="urlAction"><span>전체보기</span><i--%>
+<%--                                    class="arrow right"></i></a>--%>
+<%--                        </div>--%>
+<%--                    </h3>--%>
+<%--                    <div class="pdlist-wrap col4"> <!--// 4xn class="col4" 추가 -->--%>
 
-                        <!-- [12/08]_수정(위키 342 관련 내용 수정 - 찜한 상품이 없을 경우 추가) -->
-                        <div class="nodata">
-                            <p>찜한 상품이 없습니다.</p>
-                        </div>
+<%--                        <!-- [12/08]_수정(위키 342 관련 내용 수정 - 찜한 상품이 없을 경우 추가) -->--%>
+<%--                        <div class="nodata">--%>
+<%--                            <p>찜한 상품이 없습니다.</p>--%>
+<%--                        </div>--%>
 
 
                     </div>
