@@ -255,7 +255,13 @@
 
                                 <div class="page-prevarea">
                                     <c:if test="${pageMaker.prev}">
-                                        <a href="/p/dpa/searchSectItem.do?sectId=2731284&amp;page=1581&amp;sort=REG_DTM%40DESC"
+                                        <a onclick="setPeriod(${seType}, 1)"
+                                           class="page-first" aria-label="처음페이지 이동">
+                                            <i class="icon"></i><span class="hiding">처음페이지 이동</span>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${pageMaker.prev}">
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.startPage} - 1)"
                                            class="page-prev" aria-label="이전페이지 이동">
                                             <i class="icon"></i><span class="hiding">이전페이지 이동</span>
                                         </a>
@@ -268,8 +274,8 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <c:choose>
-                                                    <c:when test="${seType == null}">
-                                                        <a onclick="setPeriod(2)" id="page${num}">${num}</a>
+                                                    <c:when test="${seType eq ''}">
+                                                        <a onclick="setPeriod(2, ${num})" id="page${num}">${num}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a onclick="setPeriod(${seType}, ${num})" id="page${num}">${num}</a>
@@ -279,8 +285,12 @@
                                         </c:choose>
                                     </c:forEach>
                                     <c:if test="${pageMaker.next}">
-                                        <a href="/p/dpa/searchSectItem.do?sectId=2731753&amp;page=11&amp;sort=REG_DTM%40DESC"
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.endPage} + 1)"
                                            class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
+                                    </c:if>
+                                    <c:if test="${pageMaker.cri.pageNum != pageMaker.realEnd}">
+                                        <a onclick="setPeriod(${seType}, ${pageMaker.realEnd})"
+                                           class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
                                     </c:if>
                                 </div>
                         </div>
