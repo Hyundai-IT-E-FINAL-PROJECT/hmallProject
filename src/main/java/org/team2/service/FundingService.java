@@ -27,9 +27,9 @@ public interface FundingService {
 
     List<Map<String, Object>> selectReply(FundReplyVO fundReplyVO) throws Exception;
 
-    FundVO best1FundProduct() throws Exception;
+    List<FundVO> best1FundProduct() throws Exception;
 
-    FundVO deadlineProduct() throws Exception;
+    List<FundVO> deadlineProduct() throws Exception;
 
     void deleteReply(int delete_seq) throws Exception;
 

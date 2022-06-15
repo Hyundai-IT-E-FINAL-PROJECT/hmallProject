@@ -52,9 +52,6 @@
         <div class="row not-space">
             <div class="col-md-2">
                 <div class="col-line-lm mt70">
-                    <div class="st-navi-device-wrap"><span>프로젝트 미리보기</span>
-                        <div class="st-navi-device"><a>모바일</a> <a>태블릿</a> <a>PC</a></div>
-                    </div>
                     <ul class="st-navi st-navi-p">
                         <li class="active"><a href="javascript:void(0)">프로젝트 만들기</a>
                             <div class="list_link_tab">
@@ -66,12 +63,9 @@
                             </div>
                         </li>
                     </ul>
-                    <div style="cursor: pointer;"><img
-                            src="https://image-se.ycrowdy.com/crowdyCss/img/mypage_banner.png"
-                            style="width: 180px; padding-right: 10px;"></div>
                 </div>
             </div>
-            <div id="basic_info" class="col-md-10 col-line" style="display: block">
+            <div id="basic_info" class="col-md-10 col-line" style="display: block; padding-bottom: 150px">
                 <div class="row not-space">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-11">
@@ -98,10 +92,6 @@
                                         </div>
                                     </label>
                                     <div class="col-xs-12 col-sm-8"><input type="text" id="project_subject" maxlength="40" class="form-control"></div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <span class="textarea_text_leng webfont2 mt10">
-                                        <span id="charNum">0</span> / 40</span>
-                                    </div>
                                 </div>
                                 <div class="form-group row-mobile-n mb30"><label for="project_price" class="col-xs-12 control-label control-label-big">
                                     <div class="text-left mb10">목표 금액을 적어주세요</div>
@@ -110,9 +100,6 @@
                                     </div>
                                 </label>
                                     <div class="col-xs-12 col-sm-8"><input placeholder="" type="tel" data-vv-name="cpTargetAmount" class="form-control" id="goal_cost"></div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <div class="textarea_text_leng mt10">원</div>
-                                    </div>
                                     <div class="col-xs-12 col-sm-10 basic_info">
                                         <div class="fees_info">
                                             <div class="fees_info_frame">
@@ -200,20 +187,10 @@
                                     });
                                 });
                             </script>
-                                <div class="form-group row-mobile-n mb30"><label for="project_img" class="col-xs-12 control-label control-label-big">
-                                    <div class="text-left mb10">프로젝트 대표 이미지를 등록해주세요</div>
-                                    <div style="text-align: left">
-                                        <p class="form-control-static mb10 mt0">홈페이지와 외부 공유를 했을 때 보여집니다. 프로젝트를 한 눈에 나타낼 수 있는 이미지를 등록해주세요.</p>
-                                    </div>
-                                </label>
-                                </div>
                                 <div class="form-group row-mobile-n mt90">
-                                    <div class="col-sm-11">
-                                        <div class="form-group row-mobile-n">
-                                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                                <div class="btn btn-block btn-primary-outline">저장하기</div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">예약하기</button></div>
+                                    <div class="col-sm-11" style="margin-top: 20px">
+                                        <div class="form-group row-mobile-n" style="margin-top: 20px;">
+                                            <div class="col-xs-6 col-sm-4 col-md-3" style="width: 200"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_info();">다음 단계</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +240,7 @@
                                             <div class="text-left mb10">리워드 옵션</div>
                                         </div>
                                         <div class="col-xs-9">
-                                            <button type="button" id="option_btn" class="btn btn-block btn-primary-outline" style="display: block" onclick="showOptions();">리워드 옵션 추가하기</button>
+                                            <button type="button" id="option_btn" class="btn btn-block btn-primary" style="display: block" onclick="showOptions();">리워드 옵션 추가하기</button>
                                             <div id="option_group1" class="option_group"  style="display: none">
                                                 <div class="row row-mobile-n option_select">
                                                     <div class="col-xs-12 text-right" style="text-align: left!important;">
@@ -376,19 +353,6 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row row-mobile-n pt15 mb30">
-                                        <div class="col-xs-4"></div>
-                                        <div class="col-xs-2"><button type="button" class="btn btn-block btn-primary">
-                                            등록
-                                            <!---->
-                                        </button></div>
-                                        <div class="col-xs-2"><button type="button"
-                                                                      class="btn btn-block btn-primary-outline">
-                                            초기화
-                                            <!---->
-                                        </button></div>
-                                        <div class="col-xs-4"></div>
-                                    </div>
                                 </div>
                                 <div class="form-group row-mobile-n mt90">
                                     <div class="col-sm-11">
@@ -428,7 +392,7 @@
                                             </div>
 
                                             <div class="mainImage_info" style="display: flex">
-                                                <span style="width: 136px; margin-bottom: 17px; font-weight: 800;">메인사진</span>
+                                                <span style="width: 50px; margin-bottom: 17px; font-weight: 800;">메인사진</span>
                                                 <input type="file" id="file" name="file" multiple> <br>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                             </div>
@@ -454,10 +418,10 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="form-group row-mobile-n mt90">
-                            <div class="col-sm-11">
+                        <div class="form-group row-mobile-n mt90" style="padding-left: 80px">
+                            <div class="col-sm-11" style="margin-top: -70px">
                                 <div class="form-group row-mobile-n">
-                                    <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary-outline">저장하기</button></div>
+                                    <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary">이전으로</button></div>
                                     <div class="col-xs-6 col-sm-4 col-md-3"><button type="button" class="btn btn-block btn-primary" onclick="nextStep_story();">다음단계</button></div>
                                 </div>
                             </div>
