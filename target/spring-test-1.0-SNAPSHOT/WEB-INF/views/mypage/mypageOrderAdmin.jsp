@@ -202,7 +202,7 @@
                                 </c:if>
                             </c:if>
                                     <dd>
-                                        <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}">
+                                        <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}&page_num=1">
                                             <input type="hidden" name="slitmCd" value="2137807436">
                                             <span class="img">
                                                 <img src="/resources/img/${odlist.IMAGE_NAME}.jpg" alt="${odlist.PRODUCT_NAME}"/>

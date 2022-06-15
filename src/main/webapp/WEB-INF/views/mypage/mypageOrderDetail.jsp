@@ -55,7 +55,7 @@
                             <input type="hidden" name="lastOrdStatGbcdNm" value="배송완료">
 
                             <dd class="btn-col2"><!-- 버튼 1개일경우 class="btn-col" 추가, 버튼 2개 이상일경우 class="btn-col2" 추가 -->
-                                <a href="${contextPath}/product/detail?product_seq=${list.PRODUCT_SEQ}">
+                                <a href="${contextPath}/product/detail?product_seq=${list.PRODUCT_SEQ}&page_num=1">
                                     <span class="img"><img src="/resources/img/${list.IMAGE_NAME}.jpg" alt="${list.PRODUCT_NAME}"/></span>
                                     <div class="box">
                                         <c:choose>

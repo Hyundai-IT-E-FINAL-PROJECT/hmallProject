@@ -3,36 +3,56 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.ProductMapper">
     <select id="getOne" resultType="org.team2.domain.ProductVO">
-        SELECT p.product_seq,
-               CASE
-                   WHEN aa.coupon_ratio IS NULL THEN
-                       p.product_cost
-                   ELSE
-                       p.product_cost * (1 - aa.coupon_ratio / 100)
-                   END AS discounted_cost,
-               p.product_code,
-               p.product_name,
-               p.product_info,
-               p.product_detail,
-               p.product_manufacture,
-               p.product_brand,
-               p.product_country,
-               p.product_count,
-               p.category_seq,
-               p.product_cost,
-               CASE
-                   WHEN aa.coupon_ratio IS NULL THEN
-                       0
-                   ELSE
-                       aa.coupon_ratio
-                   END AS coupon_ratio
-        FROM tbl_product p
-                 LEFT JOIN (SELECT c.coupon_ratio,
-                                   cp.product_seq
-                            FROM tbl_coupon c
-                                     RIGHT JOIN tbl_cp cp ON c.coupon_seq = cp.coupon_seq) aa
-                           ON p.product_seq = aa.product_seq
-        where p.product_seq = ${product_seq}
+        SELECT
+            created_at,
+            product_seq,
+            product_code,
+            product_cost,
+            product_count,
+            product_country,
+            sell_count,
+            product_name,
+            category_seq,
+            (1- (
+                    SELECT
+                        coupon_ratio
+                    FROM
+                        tbl_coupon
+                    WHERE
+                            coupon_seq = (
+                            SELECT
+                                coupon_seq
+                            FROM
+                                tbl_cp
+                            WHERE
+                                tbl_cp.product_seq = p.product_seq
+                        )
+                ) / 100) * p.product_cost discounted_cost,
+            (
+                SELECT
+                    image_name
+                FROM
+                    tbl_image
+                WHERE
+                    tbl_image.product_seq = p.product_seq
+                  AND tbl_image.image_type = 'MAIN'
+            ) image_name,
+            (SELECT
+                 coupon_ratio
+             FROM
+                 tbl_coupon
+             WHERE
+                     coupon_seq = (
+                     SELECT
+                         coupon_seq
+                     FROM
+                         tbl_cp
+                     WHERE
+                         tbl_cp.product_seq = p.product_seq
+                 )) coupon_ratio
+        FROM
+            tbl_product p
+        where product_seq = ${product_seq}
     </select>
 
     <select id="getUserOrder" resultType="map">

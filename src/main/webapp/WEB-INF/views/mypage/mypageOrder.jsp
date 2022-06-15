@@ -199,7 +199,7 @@
     <%--                                <input type="hidden" name="paymentYnOrdNo" value="" />--%>
                                     <!-- 가장최근주문 1건, 최대 10개 상품 -->
                                     <dd>
-                                        <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}">
+                                        <a href="product/detail?product_seq=${odlist.PRODUCT_SEQ}&page_num=1">
                                             <input type="hidden" name="slitmCd" value="2137807436">
                                             <span class="img">
                                                 <img src="/resources/img/${odlist.IMAGE_NAME}.jpg" alt="${odlist.PRODUCT_NAME}"/>

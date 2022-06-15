@@ -15,6 +15,7 @@ import org.team2.domain.*;
 import org.team2.service.CategoryService;
 import org.team2.service.ImageService;
 import org.team2.service.ProductService;
+import org.team2.service.ReplyService;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -35,6 +36,9 @@ public class ProductController {
 
     @Setter(onMethod_ = @Autowired)
     private CategoryService categoryService;
+
+    @Setter(onMethod_ = @Autowired)
+    private ReplyService replyService;
 
 
     // restAPI
@@ -100,20 +104,27 @@ public class ProductController {
 
     // frontAPI
     @RequestMapping("/detail")
-    public ModelAndView detail(@RequestParam Long product_seq){
+    public ModelAndView detail(@RequestParam Long product_seq, @RequestParam Long page_num){
         log.info("product controller detail start!!");
 
         ProductVO productVO = productService.getOne(product_seq);
         List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
+        List<ReplyVO> replyVOList = replyService.getByProductSeq(product_seq);
+        Long total = replyService.getReplyCount(product_seq);
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("product");
 
         log.info(productVO.getProduct_name());
 
+        Criteria cri = new Criteria(page_num, 5L);
+        PageVO pageMaker = new PageVO(cri, total);
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("productVO", productVO);
         mav.addObject("imageVOList",  allByProductSeq);
         mav.addObject("cssFileList", styleFileList);
+        mav.addObject("replyVOList", replyVOList);
+        mav.addObject("pageMaker", pageMaker);
 
         mav.setViewName("product.detail");
 

@@ -5364,7 +5364,6 @@ $(function setCategory() {
                     )
                 }
             })
-            // 자식 카테고리
             data.forEach(function (element) {
                 let category = element;
                 if (category.CATEGORY_REF) {
@@ -5399,7 +5398,7 @@ $(function fn_searchAdKeywordDefault() {
                     $("#mainProduct").append(
                         `
                         <li class="pdthumb">
-                            <a href="product/detail?product_seq=${product.PRODUCT_SEQ}" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-position="마이템_추천" ga-custom-id="${product.PRODUCT_NAME}" ga-custom-name="메인_홈쇼핑탭" ga-custom-creative="BDA_bdTrkArea=34&amp;bdTrkAlgrth=11_자동" tabindex="0">
+                            <a href="product/detail?product_seq=${product.PRODUCT_SEQ}&page_num=1" onclick="gaTagging(this, '', '', '');" class="item-box" ga-custom-position="마이템_추천" ga-custom-id="${product.PRODUCT_NAME}" ga-custom-name="메인_홈쇼핑탭" ga-custom-creative="BDA_bdTrkArea=34&amp;bdTrkAlgrth=11_자동" tabindex="0">
                                 <div class="thumb">
                                     <img src="/resources/img/${product.IMAGE_NAME}.jpg" alt="SPC삼립 필라프 5종(총15팩) + 비프 함박스테이크 2종(총15장)" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')">
                                 </div>
