@@ -2377,7 +2377,7 @@
                 <input type="hidden" name="mcustNo" value="">
             </form>
             <div class="side-content">
-                <h2 class="side-menu-title" onclick="javascript:location.href=&quot;/p/cca/main.do&quot;" style="cursor:pointer;">고객센터</h2>
+                <h2 class="side-menu-title" onclick="javascript:location.href='${contextPath}/customer';" style="cursor:pointer;">고객센터</h2>
                 <div class="side-menu-list">
                     <ul>
                         <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
