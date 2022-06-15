@@ -23,7 +23,7 @@ public class MyAdvice {
     @GetMapping("/error404")
     public String Error404(HttpServletResponse res, Model model) {
         model.addAttribute("code", "ERROR_404");
-        return "error.error404";
+        return "error/error404.empty";
     }
 
     @GetMapping("/error505")

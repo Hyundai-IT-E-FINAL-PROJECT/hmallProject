@@ -26,5 +26,7 @@
         <put-attribute name="content" value="/WEB-INF/views/layerPup/{1}.jsp" />
     </definition>
 
-
+    <definition name="error/*.empty" extends="empty">
+        <put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp" />
+    </definition>
 </tiles-definitions>

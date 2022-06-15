@@ -168,10 +168,11 @@
     <select id="justanOrderSelect" resultType="map">
 -- 방금 주문한 주문내역 보여주기
         select *
-        from tbl_order, tbl_op, tbl_product
+        from tbl_order, tbl_op, tbl_product, tbl_image
         where tbl_order.order_seq=#{order_seq}
           and tbl_op.order_seq=tbl_order.order_seq
           and tbl_op.product_seq=tbl_product.product_seq
+          and tbl_product.product_seq=tbl_image.product_seq
     </select>
 
 
