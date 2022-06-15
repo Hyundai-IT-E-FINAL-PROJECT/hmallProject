@@ -41,12 +41,13 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public Map adminPeriodOrders(String ordStrtDt, String ordEndDt, String seType, String itemNm) throws Exception {
+    public Map adminPeriodOrders(String ordStrtDt, String ordEndDt, String seType, String itemNm, long page_num) throws Exception {
         Map map = new HashMap();
         map.put("ordStrtDt", ordStrtDt);
         map.put("ordEndDt", ordEndDt);
         map.put("seType", seType);
         map.put("itemNm", itemNm);
+        map.put("page_num", page_num);
         mypageMapper.adminPeriodOrders(map);
         return map;
     }

@@ -11,7 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.team2.domain.Criteria;
 import org.team2.domain.DepositVO;
+import org.team2.domain.PageVO;
 import org.team2.domain.UserVO;
 import org.team2.service.CouponService;
 import org.team2.service.MypageService;
@@ -116,12 +118,13 @@ public class MypageController {
     // 마이페이지 주문/배송조회 페이지 기간 별로 상품 나타내기, 상품명 검색 기능 컨트롤러
    @RequestMapping("mypageOrder")
    @PreAuthorize("isAuthenticated()")
-    public ModelAndView oreder(Principal principal, Authentication authentication, HttpServletRequest req) throws Exception {
+    public ModelAndView oreder(Principal principal, Authentication authentication, HttpServletRequest req, @RequestParam(value="page_num", required=false) Long page_num) throws Exception {
         ModelAndView mav = new ModelAndView();
 
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("mypage");
 
+        log.info(page_num);
         String auth = String.valueOf(authentication.getAuthorities());
        if (authentication.getAuthorities().size() == 2 || auth.equals("[ROLE_ADMIN]")) {
            String ordStrtDt = req.getParameter("ordStrtDt");
@@ -132,12 +135,18 @@ public class MypageController {
            Map mapOrder;
            try {
                Map mapStatus = mypageService.adminOrderStatus();
-               mapOrder = mypageService.adminPeriodOrders(ordStrtDt, ordEndDt, seType, itemNm);
+               mapOrder = mypageService.adminPeriodOrders(ordStrtDt, ordEndDt, seType, itemNm, page_num);
+               Long total = Long.valueOf(String.valueOf(mapOrder.get("total")));
+               log.info(mapOrder);
 
+               Criteria cri = new Criteria(page_num, 30L);
+               PageVO pageMaker = new PageVO(cri, total);
+               log.info(pageMaker);
                log.info(mapStatus.get("resultList"));
                mav.addObject("list", mapOrder.get("resultList"));
                mav.addObject("status", mapStatus.get("resultList"));
                mav.addObject("seType", seType);
+               mav.addObject("pageMaker", pageMaker);
                mav.addObject("className", "wrap mp-order");
                mav.addObject("cssFileList", styleFileList);
                mav.setViewName("mypage.mypageOrderAdmin");
