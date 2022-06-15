@@ -2038,7 +2038,7 @@
                     </script>
                     <div class="home-section mytem" id="myTemArea" style="">
                         <div class="titArea">
-                            <h3>나에게 딱! 마이템</h3>
+                            <h3>나에게 딱! 현재 인기 아이템</h3>
                         </div>
 
 
