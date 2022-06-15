@@ -85,11 +85,11 @@
                                         <tr style="background-color:white;">
                                             <td>
                                                 <dd>
-                                                    <a href="https://www.hmall.com/p/pda/itemPtc.do?slitmCd=2137807436&ordpreview=true">
+                                                    <a href="${contextPath}/product/detail?product_seq=${history.PRODUCT_SEQ}">
                                                         <div style="display:flex;">
                                                             <div>
                                                                 <span class="img">
-                                                                    <img src="https://image.hmall.com/static/4/7/80/37/2137807436_0.jpg?RS=100x100&AR=0" alt="SPC삼립" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
+                                                                    <img src="/resources/img/${history.IMAGE_NAME}.jpg" height="100" width="100" alt="SPC삼립" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&AR=0')"/>
                                                                 </span>
                                                             </div>
                                                             <div class="box" style="margin-left:20px; ">

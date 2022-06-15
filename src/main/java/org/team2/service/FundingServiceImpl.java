@@ -61,6 +61,7 @@ public class FundingServiceImpl implements FundingService{
         fundingMapper.fundingProcess(rewardVO, fundParticipantsVO);
     }
 
+
     @Override
     public void insertReply(FundReplyVO fundReplyVO) throws Exception {
         fundingMapper.insertReply(fundReplyVO);
@@ -114,5 +115,10 @@ public class FundingServiceImpl implements FundingService{
     @Override
     public void insertFile(AttachFileVO attachFileVO) throws Exception {
         fundingMapper.insertFile(attachFileVO);
+    }
+
+    @Override
+    public void cancelFundingProcess(FundParticipantsVO fundParticipantsVO) throws Exception {
+        fundingMapper.cancelFundingProcess(fundParticipantsVO);
     }
 }

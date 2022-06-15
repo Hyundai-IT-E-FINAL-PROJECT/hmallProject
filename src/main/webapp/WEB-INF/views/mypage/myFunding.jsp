@@ -46,7 +46,7 @@
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
                                                                         src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
-                                                                        class="img-responsive"> <!----> <!----></div>
+                                                                        class="img-responsive " style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                     <div style="display: flex; flex-direction: column; "  onclick="location.href='${contextPath}/fund/detail/${fundpj.fund_product_seq}';">
@@ -129,7 +129,7 @@
                                                             <div class="items over-box"><a href="javascript:void(0)">
                                                                 <div class="items_img"><img
                                                                         src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fundpj.fund_product_main_img}"
-                                                                        class="img-responsive"> <!----> <!----></div>
+                                                                        class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                             </a>
                                                                 <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                     <div style="display: flex; flex-direction: column; ">
@@ -213,23 +213,27 @@
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
                                                                     src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${myFund.fund_product_main_img}"
-                                                                    class="img-responsive"> <!----> <!----></div>
+                                                                    class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                 <div style="display: flex; flex-direction: column; ">
                                                                     <c:if test="${myFund.fund_product_status eq 0}">
-                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
-
-                                                            심사중
-                                                    </span>
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;">
+                                                                        심사중
+                                                                        </span>
                                                                     </c:if>
                                                                     <c:if test="${myFund.fund_product_status eq 1}">
-                                                    <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
                                                         color: green; border-color: green;">
-                                                            진행중
-                                                    </span>
+                                                                            진행중
+                                                                        </span>
                                                                     </c:if>
-
+                                                                    <c:if test="${myFund.fund_product_status eq 2}">
+                                                                        <span class="btn btn-xs btn-danger-outline" style="margin: 8px 0 8px 0;width: 80px;
+                                                                        color: gray; border-color: gray;">
+                                                                            마감
+                                                                        </span>
+                                                                    </c:if>
                                                                     <!----> <!----> <!---->
                                                                     <div onclick="location.href='${contextPath}/fund/detail/${myFund.fund_product_seq}'" style="height: 80px;">${myFund.fund_product_title}</div>
                                                                 </div>
@@ -289,7 +293,7 @@
                                                         <div class="items over-box"><a href="javascript:void(0)">
                                                             <div class="items_img"><img
                                                                     src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${paFund.FUND_PRODUCT_MAIN_IMG}"
-                                                                    class="img-responsive"> <!----> <!----></div>
+                                                                    class="img-responsive" style="width: 218px;height: 218px;"> <!----> <!----></div>
                                                         </a>
                                                             <figcaption class="rewards-caption"><a href="javascript:void(0)">
                                                                 <div style="display: flex; flex-direction: column; ">
@@ -324,7 +328,8 @@
                                                                     <div class="row row-mobile-n">
                                                                         <div class="col-xs-6"><a
                                                                                 class="btn btn-block btn-sm btn-default-outline"
-                                                                                onclick="deleteMyFund(${paFund.FUND_PRODUCT_SEQ});"
+                                                                                onclick="cancelFundingProcess(${paFund.FUND_PRODUCT_SEQ}, ${paFund.FUND_REWARD_SEQ},
+                                                                                        ${paFund.FUND_REWARD_COUNT}, ${paFund.FUND_REWARD_COST});"
                                                                         >펀딩 취소하기</a>
                                                                         </div>
                                                                     </div> <!----> <!----> <!----> <!----> <!----></div>
@@ -381,6 +386,33 @@
                 }
 
             });
+
+        }
+
+        function cancelFundingProcess(product_seeq, reward_seq, count, cost){
+
+            var data={
+                fund_product_seq:product_seeq,
+                fund_reward_seq:reward_seq,
+                fund_reward_cost:cost,
+                fund_reward_count:count
+            };
+            $.ajax({
+                url:'${contextPath}/fund/cancelFundingProcess',
+                type:'post',
+                data:data,
+                beforeSend:function (xhr){
+                    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+                },
+                success:function(){
+                    alert('예약한 펀딩이 취소되었습니다!');
+                    location.href='${contextPath}/fund/myFunding';
+                },
+                error: function (request,status,error) {
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+
 
         }
     </script>

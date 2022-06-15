@@ -191,7 +191,7 @@
                             <div class="ui-modal-dialog" role="document">
                                 <div class="content">
                                     <p class="ui-title" style="font-size: initial;"></p>
-                                    <!-- //.content-head -->
+                                    <!-- //.content-head mm -->
                                     <div class="content-body">
                                         <div class="product-banner-wrap">
                                             <div data-modules-imageviewer="">
