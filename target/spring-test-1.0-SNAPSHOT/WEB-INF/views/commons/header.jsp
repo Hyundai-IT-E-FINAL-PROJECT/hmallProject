@@ -120,7 +120,7 @@
                             <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
                                ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">스토어</a></li>
                         <li class=" ">
-                            <a href="/p/home.do?_IC_=tab2&mainDispSeq=1&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">
                             <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"

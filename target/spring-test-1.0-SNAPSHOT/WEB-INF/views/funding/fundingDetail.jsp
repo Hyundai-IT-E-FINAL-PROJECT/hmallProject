@@ -30,6 +30,10 @@ To change this template use File | Settings | File Templates.
     .link-icon.twitter { background-image: url(${contextPath}/resources/img/sns/icon-twitter.png); background-repeat: no-repeat; }
     .link-icon.facebook { background-image: url(${contextPath}/resources/img/sns/icon-facebook.png); background-repeat: no-repeat; }
     .link-icon.kakao { background-image: url(${contextPath}/resources/img/sns/icon-kakao.png); background-repeat: no-repeat; }
+    .embed-responsive-16by9 {
+        padding-bottom: 100%;
+    }
+
 </style>
 <main class="cmain main" role="main" id="mainContents">
     <div>
@@ -38,7 +42,7 @@ To change this template use File | Settings | File Templates.
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="reward_title mb30 xs-mb15" style="margin-top: 30px;">${list[0].FUND_PRODUCT_TITLE}</div>
+                            <div class="reward_title mb30 xs-mb15" style="margin-top: 30px; margin: 30px 0 0 60px;">${list[0].FUND_PRODUCT_TITLE}</div>
                             <!----></div>
                         <div>
                             <div class="col-sm-8 xs-pl0 xs-pr0" style="margin: 0px -9px;">
@@ -47,7 +51,7 @@ To change this template use File | Settings | File Templates.
                                         <div class="slick-track" style="opacity: 1; width: 631px;" role="listbox">
                                             <figure class="slick-slide slick-current slick-active"
                                                     data-slick-index="0" aria-hidden="false"
-                                                    style="width: 621px; height: 400px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+                                                    style="width: 550px; height: 550px; position: relative; left: 38px; top: 0px; z-index: 999; opacity: 1;"
                                                     tabindex="-1" role="option" aria-describedby="slick-slide00">
                                                 <!---->
                                                 <div class="embed-responsive embed-responsive-16by9"><img
@@ -72,7 +76,7 @@ To change this template use File | Settings | File Templates.
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4 mb30 xs-mt25 xs-mb20 pl45 pr15 xs-pl15 xs-pr15">
+                            <div class="col-sm-4 mb30 xs-mt25 xs-mb20 pl45 pr15 xs-pl15 xs-pr15" style="margin-left: -20px;">
                                 <div class="reward-info-box">
                                     <div class="reward-info-name">리워드</div>
                                     <div class="reward-info-amount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST}"/>원

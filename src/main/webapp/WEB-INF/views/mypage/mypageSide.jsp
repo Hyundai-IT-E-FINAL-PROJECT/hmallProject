@@ -32,7 +32,6 @@
                 <a href="javascript:;">나의 정보</a>
                 <ul class="sub-list">
                     <li><a href="/mypageUpdate">회원정보 변경</a></li>
-                    <li><a href="/fund/myFunding">펀딩한 프로젝트</a></li>
                     <li><a href="/mypageDelivery">배송지 관리</a></li>
                     <li><a href="/mypageLeave">회원 탈퇴</a></li>
                 </ul>
@@ -43,6 +42,12 @@
                 <ul class="sub-list">
                     <li><a href="/customer/inquiryPage">1:1 상담</a></li>
                     <li><a href="/customer/faqList">자주 묻는 질문</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">크라우드 펀딩</a>
+                <ul class="sub-list">
+                    <li><a href="/fund/myFunding">펀딩 서비스</a></li>
                 </ul>
             </li>
 

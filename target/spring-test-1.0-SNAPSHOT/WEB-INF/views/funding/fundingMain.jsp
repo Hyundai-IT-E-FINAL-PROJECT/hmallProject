@@ -100,11 +100,21 @@ To change this template use File | Settings | File Templates.
                                                                     </div>
                                                                     <div class="card-reward-day">종료일자 <fmt:formatDate value="${fund.FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/>
                                                                     </div>
+                                                                    <div>
                                                                     <div class="card-reward-persent">
                                                                         <fmt:formatNumber type="number" maxFractionDigits="0" value="${fund.FUND_PRODUCT_PR_COST * 100 / fund.FUND_PRODUCT_GOAL_COST}"/>% &nbsp;</span>
-                                                                </div>
+                                                                    </div>
+
+
                                                             </figcaption>
+
                                                         </a></figure>
+                                                        <div>
+                                                            <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -10px;">
+                                                                <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${fund.FUND_PRODUCT_PR_COST * 100 / fund.FUND_PRODUCT_GOAL_COST}"/>%;
+                                                                        display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%;"></span>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </li>
                                             </c:forEach>
