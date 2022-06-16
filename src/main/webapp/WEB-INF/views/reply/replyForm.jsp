@@ -51,9 +51,9 @@
     <input type="hidden" name="modify_image" id="hiddenModifyImg4" value="I,0">
 
 
-    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg1" value="꼼꼼해요">
-    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg2" value="빨라요">
-    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg3" value="만족해요">
+    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg1" value='꼼꼼해요'>
+    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg2" value='빨라요'>
+    <input type="hidden" name="itemEvalScrg" id="hdnItemEvalScrg3" value='만족해요'>
 
     <input type="hidden" name="pDCItemEvalAtclVO.uitmPtcDescExpsYn" value="">
 
@@ -157,7 +157,7 @@
                                                          data="17;31;5" checked="" aria-checked="true" id="rad-1731"
                                                          class="on">
                                                   <label for="rad-1731" class="sm50"><span
-                                                          class="text">빨라요</span></label>
+                                                          class="text">만족해요</span></label>
                                               </span>
                                 <span>
                                                   <input type="radio" onclick="setItemEvalCsf(this,3);" name="17;31"
@@ -210,30 +210,39 @@
                     </div>
                     <script>
                         function review_submit() {
-                            let csrfHeaderName = "${_csrf.headerName}";
-                            let csrfTokenValue = "${_csrf.token}";
+                            const csrfHeaderName = "${_csrf.headerName}";
+                            const csrfTokenValue = "${_csrf.token}";
 
-                            console.log("submit clicked")
-                            console.log($(".star.ui-active").length)
-                            console.log($("#hdnItemEvalScrg1").val())
-                            console.log($("#hdnItemEvalScrg2").val())
-                            console.log($("#hdnItemEvalScrg3").val())
-                            console.log("${pinfo.userVO.no}")
+                            let user_seq = ${pinfo.userVO.no};
+                            let product_seq = ${productVO.product_seq};
+                            let reply_package = $("#hdnItemEvalScrg1").val();
+                            let reply_post = $("#hdnItemEvalScrg2").val();
+                            let reply_satis = $("#hdnItemEvalScrg3").val();
+                            let star = $(".star.ui-active").length;
 
                             $.ajax({
-                                type: "post"
-                                ,url: "/reply/?user_seq=" + "${pinfo.userVO.no}" + "&product_seq=" + "${productVO.product_seq}" + "?start=" + $(".star.ui-active").length + "?review1=" + $("#hdnItemEvalScrg1").val() + "?review2=" + $("#hdnItemEvalScrg2").val() + "?review3=" + $("#hdnItemEvalScrg3").val()
-                                ,async: true
-                                ,beforeSend:function (xhr){
-                                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);}
-                                ,success : function() {
-                                    console.log("success")
+                                type		: "POST",
+                                url 		: "/reply/",
+                                data		:  JSON.stringify({
+                                                    user_seq: user_seq,
+                                                    product_seq: product_seq,
+                                                    reply_package: reply_package,
+                                                    reply_post: reply_post,
+                                                    reply_satis: reply_satis,
+                                                    star: star
+                                                }),
+                                contentType : "application/json",
+                                beforeSend: function(xhr) {
+                                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
                                 },
-                                error : function(){
-                                    console.log("json error");
+                                success 	: function(data) {
+                                    alert("상품 만족도 평가를 완료하였습니다.")
+                                    window.location.href='/product/detail?product_seq=${productVO.product_seq}&page_num=1'
+                                },
+                                error		: function(error) {
+                                    console.log(error);
                                 }
                             });
-
                         }
                     </script>
                 </div>

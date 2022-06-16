@@ -1,6 +1,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: SM-PC
@@ -430,21 +431,6 @@
                                     <input type="hidden" name="fundingYn" value="N">
                                     <input type="hidden" name="uitmCdInf" value="0^00002|1"></form>
                                 <div class="basic-info">
-                                    <div class="brand-info">
-                                        <a href="javascript://" ga-custom-name="상품상세" ga-custom-position="브랜드샵"
-                                           ga-custom-creative="아이사랑" ga-custom-id="" ga-custom-title="상품>상품상세>메인"
-                                           onclick="gaTagging(this, '/p/pde/brndSearchL.do?srchBrndCd=M14717', '', '');"
-                                           ga-custom-etc="urlAction">
-
-                                            <span class="img"><img
-                                                    src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                    alt="아이사랑"
-                                                    onerror="noImage(this, 'http:////image.hmall.com/p/img/co/logo-brand-default.jpg')"></span>
-
-                                            <span class="brand-name">${productVO.product_brand}<i
-                                                    class="icon icon-arrow"></i></span>
-                                        </a>
-                                    </div>
                                     <div class="prduct-title-info">
                                         <c:set var="total_price" value="0"/>
                                         <input type="hidden" value="${productVO.product_name}" name="product_name"/>
@@ -484,7 +470,7 @@
                                                 <div class="starbg pt9">
                                                     <p class="score"><span class="hiding">90점</span></p>
                                                 </div>
-                                                <p class="like-count"><em>4.4</em>(4,441)</p>
+                                                <p class="like-count"><em>4.4</em>(${pageMaker.total})</p>
                                             </div>
                                         </a>
                                         <script type="text/javascript">
@@ -1988,7 +1974,7 @@
 
                                         <li role="presentation"><a href="#viewPage03" class="gp_className"
                                                                    ga-category="상품상세" ga-action="탭"
-                                                                   ga-label="만족도"><span>고객만족도<em>4,441</em></span></a>
+                                                                   ga-label="만족도"><span>고객만족도<em>${pageMaker.total}</em></span></a>
                                         </li>
 
 
@@ -2402,10 +2388,11 @@
                                     <div class="content-area">
                                         <div class="tit-wrap review satisfaction">
 
-
-                                            <button ga-category="상품상세" ga-action="만족도" ga-label="만족도 평가"
-                                                    class="btn btn-lineblack small itemEvalRegBtn gp_className" onclick="javascript:review();"><span><i
-                                                    class="icon review"></i>만족도 평가</span></button>
+                                            <sec:authorize access="isAuthenticated()">
+                                                <button ga-category="상품상세" ga-action="만족도" ga-label="만족도 평가"
+                                                        class="btn btn-lineblack small itemEvalRegBtn gp_className" onclick="javascript:review();"><span><i
+                                                        class="icon review"></i>만족도 평가</span></button>
+                                            </sec:authorize>
                                             <input type="hidden" value="2122712699">
                                             <script>
                                                 function review() {
@@ -2466,9 +2453,9 @@
 
                                                     <div class="rate-item" id="rateItem0">
                                                         <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">신선도</p>
+                                                        <p class="rate-tit">포장상태</p>
                                                         <div class="part">
-                                                            <p class="data"><span>신선해요</span></p>
+                                                            <p class="data"><span>꼼꼼해요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:56%;"></span>
@@ -2477,7 +2464,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="part">
-                                                            <p class="data"><span>적당해요</span></p>
+                                                            <p class="data"><span>보통이에요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:31%;"></span>
@@ -2499,9 +2486,9 @@
 
                                                     <div class="rate-item" id="rateItem1">
                                                         <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">맛</p>
+                                                        <p class="rate-tit">배송상태</p>
                                                         <div class="part">
-                                                            <p class="data"><span>맛있어요</span></p>
+                                                            <p class="data"><span>빨라요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:51%;"></span>
@@ -2510,7 +2497,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="part">
-                                                            <p class="data"><span>평범해요</span></p>
+                                                            <p class="data"><span>보통이에요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:32%;"></span>
@@ -2519,7 +2506,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="part">
-                                                            <p class="data"><span>맛없어요</span></p>
+                                                            <p class="data"><span>느려요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:17%;"></span>
@@ -2532,9 +2519,9 @@
 
                                                     <div class="rate-item" id="rateItem2">
                                                         <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">포장상태</p>
+                                                        <p class="rate-tit">제품상태</p>
                                                         <div class="part">
-                                                            <p class="data"><span>꼼꼼해요</span></p>
+                                                            <p class="data"><span>만족해요</span></p>
                                                             <div class="gauge-box">
                                                                 <p class="gauge-bar">
                                                                     <span class="gauge" style="width:76%;"></span>
@@ -2575,7 +2562,7 @@
 
                                         <div class="content-area txt-review" id="reviewContentArea">
 
-                                            <h3>고객만족도 <em class="total-num">4,441</em>건</h3>
+                                            <h3>고객만족도 <em class="total-num">${pageMaker.total}</em>건</h3>
                                             <ul class="txt-review-list">
                                                 <c:forEach items="${replyVOList}" var="ReplyVO">
                                                     <li class="review-item">
@@ -2655,10 +2642,6 @@
                                                         <c:if test="${pageMaker.next}">
                                                             <a onclick="paging(this, ${pageMaker.endPage} + 1)"
                                                                class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
-                                                        </c:if>
-                                                        <c:if test="${pageMaker.cri.pageNum != pageMaker.realEnd}">
-                                                            <a onclick="paging(this, ${pageMaker.realEnd})"
-                                                               class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
                                                         </c:if>
                                                     </div>
 

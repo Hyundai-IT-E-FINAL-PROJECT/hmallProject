@@ -111,6 +111,9 @@ public class ProductController {
         List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
         List<ReplyVO> replyVOList = replyService.getByProductSeq(product_seq);
         Long total = replyService.getReplyCount(product_seq);
+//        Map<String, String> byPackage = replyService.getByPackage(product_seq);
+//        Map<String, String> byPost = replyService.getByPost(product_seq);
+//        Map<String, String> bySatis = replyService.getBySatis(product_seq);
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("product");
 
