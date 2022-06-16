@@ -117,9 +117,6 @@
                 <div class="quick-menu-list">
                     <ul class="quicklink ql-left222" id="main_tab">
                         <li class=" ">
-                            <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">스토어</a></li>
-                        <li class=" ">
                             <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">

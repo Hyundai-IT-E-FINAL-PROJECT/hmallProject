@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.ReplyMapper">
+
+    <select id="getReplyByProductSeq" resultType="map">
+        SELECT
+            *
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+        order by created_at desc
+    </select>
+
+    <select id="getReplyCount" resultType="Long">
+        SELECT
+            count(*)
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+    </select>
+
+    <insert id="newReply">
+        insert into tbl_reply (reply_seq, user_seq, product_seq, reply_package, reply_post, reply_satis, reply_count) values (seq_reply.nextval, ${user_seq}, ${product_seq}, '${reply_package}', '${reply_post}', '${reply_satis}', ${star})
+    </insert>
+
+    <select id="getStar" resultType="Long">
+        SELECT
+            trunc(AVG(reply_count)) star
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+    </select>
+
+    <select id="getByPackage" resultType="map">
+        SELECT
+            reply_package result,
+            COUNT(*) count
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+        GROUP BY
+            reply_package
+    </select>
+
+    <select id="getByPost" resultType="map">
+        SELECT
+            reply_post result,
+            COUNT(*) count
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+        GROUP BY
+            reply_post
+    </select>
+
+    <select id="getBySatis" resultType="map">
+        SELECT
+            reply_satis result,
+            COUNT(*) count
+        FROM
+            tbl_reply
+        WHERE
+            product_seq = ${product_seq}
+        GROUP BY
+            reply_satis
+    </select>
+
+</mapper>

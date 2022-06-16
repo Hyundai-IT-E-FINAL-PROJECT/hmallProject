@@ -13,10 +13,6 @@ public class Criteria {
 	private Long pageNum;
 	private Long amount;
 
-	public Criteria() {
-		this(1L, 30L);
-	}
-
 	public Criteria(Long pageNum, Long amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;

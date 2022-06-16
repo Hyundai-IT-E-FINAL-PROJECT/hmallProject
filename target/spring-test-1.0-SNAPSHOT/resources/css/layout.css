@@ -51,7 +51,7 @@
 /* .top-banner .top-banner-content {width:1081px;margin:0 auto;color:#111;font-size:25px;font-weight:bold;text-align:center} */
 
 .header .header-top {display:flex;justify-content:space-between;align-items:center;margin:0 auto;width:1081px;padding:28px 0 31px 0;height:123px;}
-.header .header-top .logo a {display:block;width:153px;margin:0 -45px 0 38px; height:76px;background:url(../../resources/img/logo.PNG) no-repeat 0 center;text-indent:-9999px;}
+.header .header-top .logo a {display:block;width:160px;margin:0 -45px 0 38px; height:76px;background:url(../../resources/img/logo.png) no-repeat 0 center;text-indent:-9999px;}
 /*.header .header-top .logo a {display:block;width:191px;height:64px;background:url("//image.hmall.com/p/img/co/logo-hmall-20th@1x.png") no-repeat 0 center;text-indent:-9999px;}*/
 
 /* 검색어 영역*/

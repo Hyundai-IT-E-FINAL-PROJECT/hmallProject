@@ -5,15 +5,6 @@
 }
 
 
-/*동영상일 경우 버튼 케이스*/
-/* .product-banner-wrap .video-js .vjs-big-play-button{width:54px;height:54px;top:50%;left:50%;transform:translate(-50%, -50%);border-radius:50%;border:none;background: rgba(0,0,0,0.5) url(//image.hmall.com/p/img/dp/icon/icon-playing-18.png) 58% no-repeat;}
-.product-banner-wrap .vjs-icon-play:before,
-.product-banner-wrap .video-js .vjs-big-play-button .vjs-icon-placeholder:before,
-.product-banner-wrap .video-js .vjs-play-control .vjs-icon-placeholder:before{content:inherit;}
-.product-banner-wrap .vjs-custom-duration{margin-top:20px;} */
-
-/*sprites*/
-
 .icon.noti-red, .icon.review, .icon.icon-tvplan, .icon.icon-arrow, .icon.deliver {
     background-image: url('//image.hmall.com/p/img/pd/icon/sprite-icon-pd.png');
     background-repeat: no-repeat;
