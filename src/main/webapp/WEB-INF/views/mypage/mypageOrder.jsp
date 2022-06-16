@@ -207,7 +207,7 @@
                                             <div class="box">
                                                 <c:choose>
                                                     <c:when test="${odlist.ORDER_STATUS eq '주문취소' or odlist.ORDER_STATUS eq '교환접수' or odlist.ORDER_STATUS eq '교환완료' or odlist.ORDER_STATUS eq '반품접수' or odlist.ORDER_STATUS eq '반품완료'}">
-                                                        <span class="state red">
+                                                        <span class="state red" style="color: #ff0707">
                                                                     ${odlist.ORDER_STATUS}
                                                         <em class="color-999">
 
