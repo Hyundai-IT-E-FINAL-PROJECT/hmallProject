@@ -9,6 +9,7 @@
             product_code,
             product_cost,
             product_count,
+            product_detail,
             product_country,
             sell_count,
             product_name,
