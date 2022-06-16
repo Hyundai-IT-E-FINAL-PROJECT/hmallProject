@@ -117,16 +117,13 @@
                 <div class="quick-menu-list">
                     <ul class="quicklink ql-left222" id="main_tab">
                         <li class=" ">
-                            <a href="/p/bmc/brodPordPbdv.do?type=03?_IC_=tab1&mainDispSeq=2&" class="gp_className"
-                               ga-category="메인 홈" ga-action="상단탭" ga-label="편성표">스토어</a></li>
-                        <li class=" ">
                             <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">
-                            <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="홈">홈</a></li>
                         <li class=" ">
-                            <a href="/p/mktgMain.do?_IC_=tab4&mainDispSeq=62&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/exhibition/euro_exhibit?exhibit_num=1" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="슈퍼H페스타">기획전</a></li>
                     </ul>
                 </div>

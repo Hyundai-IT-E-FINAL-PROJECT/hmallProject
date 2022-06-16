@@ -2320,13 +2320,6 @@
     <main class="cmain mypage" role="main" id="mainContents"><!-- 마이페이지 'mypage' 클래스 추가 -->
         <div class="container">
             <div class="gird-l2x">
-
-
-
-
-
-
-
                 <script type="text/javascript">
                     var upntCustYn = "N";
                     $(document).ready(function() {
@@ -2376,12 +2369,12 @@
                     <input type="hidden" name="mcustNo" value="">
                 </form>
                 <div class="side-content">
-                    <h2 class="side-menu-title" onclick="javascript:location.href='${contextPath}/customer';" style="cursor:pointer;">고객센터</h2>
+                    <h2 class="side-menu-title" onclick="javascript:location.href='/customer';" style="cursor:pointer;">고객센터</h2>
                     <div class="side-menu-list">
                         <ul>
-                            <li><a href="${contextPath}/customer/inquiryPage">1:1 문의하기</a></li>
-                            <li><a href="${contextPath}/customer/myInquiryPage">내 상담내역 조회하기</a></li>
-                            <li><a href="${contextPath}/customer/noticeList">공지사항</a></li>
+                            <li><a href="/customer/inquiryPage">1:1 문의하기</a></li>
+                            <li><a href="/customer/myInquiryPage">내 상담내역 조회하기</a></li>
+                            <li><a href="/customer/noticeList">공지사항</a></li>
                         </ul>
                     </div>
                 </div>

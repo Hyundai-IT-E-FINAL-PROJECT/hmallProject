@@ -318,9 +318,8 @@
 
                                                                 </div>
                                                             </a>
-                                                            <a href="/p/pda/itemPtc.do?slitmCd=2138703518&amp;sectId=&amp;bdTrkArea=34&amp;bdTrkAlgrth=11&amp;bdTrkOpt=A"
+                                                            <a
                                                                class="hoverview" target="_blank"
-                                                               onclick="gaTagging(this, '', '', '');"
                                                                ga-custom-position="마이템_추천"
                                                                ga-custom-id="2138703518_CK 퍼포먼스 22SS 남성 올데이 라운드셔츠 4종"
                                                                ga-custom-creative="BDA_bdTrkArea=34&amp;bdTrkAlgrth=11_자동"
