@@ -20,6 +20,7 @@
         <div class="contents">
             <!--contents-area-->
             <div class="main-contents-area">
+                <img src="${contextPath}/resources/img/mainBanner.png" style="width: 100%;">
                 <!--homeshoping-wrap-->
                 <div class="homeshoping-wrap">
                     <script type="text/javascript">
@@ -71,7 +72,7 @@
                                                         <input type="hidden" name="exhibit_num" value="3">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/brand.PNG" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
@@ -500,36 +501,37 @@
                                     <div class="slick-slide slick-current slick-active" data-slick-index="0"
                                          aria-hidden="false" style="width: 1081px;">
                                         <div>
-                                            <li class="items"
-                                                style="background-color: rgb(255, 153, 115); width: 100%; display: inline-block; vertical-align: top;">
+                                            <img src="${contextPath}/resources/img/homeMiniBanner.PNG" style="width: 1108px;"/>
+<%--                                            <li class="items"--%>
+<%--                                                style="background-color: rgb(255, 153, 115); width: 100%; display: inline-block; vertical-align: top;">--%>
 
 
-                                                <a href="javascript:;"
-                                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2718492&amp;eventCode=HHS20', '', '');"
-                                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"
-                                                   ga-custom-position="광고영역배너" ga-custom-creative="현대홈쇼핑 현대카드"
-                                                   ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:14"
-                                                   tabindex="0">
+<%--                                                <a href="javascript:;"--%>
+<%--                                                   onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?PlanSaleSectID=2718492&amp;eventCode=HHS20', '', '');"--%>
+<%--                                                   ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭"--%>
+<%--                                                   ga-custom-position="광고영역배너" ga-custom-creative="현대홈쇼핑 현대카드"--%>
+<%--                                                   ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:14"--%>
+<%--                                                   tabindex="0">--%>
 
 
-                                                    <div class="info-box">
+<%--                                                    <div class="info-box">--%>
 
 
-                                                        <span class="tit">현대홈쇼핑 현대카드</span>
+<%--                                                        <span class="tit">현대홈쇼핑 현대카드</span>--%>
 
 
-                                                        <p class="txt">현대홈쇼핑에서 첫 이용시 <br>3만원 할인<br>(2022.05.01~2022.05.31)
-                                                        </p>
+<%--                                                        <p class="txt">현대홈쇼핑에서 첫 이용시 <br>3만원 할인<br>(2022.05.01~2022.05.31)--%>
+<%--                                                        </p>--%>
 
-                                                    </div>
-                                                    <div class="thumb">
-                                                        <img src="https://image.hmall.com/MH/MH002/20220430/230553/0112_big2_ff9973.jpg"
-                                                             alt=""
-                                                             onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">
+<%--                                                    </div>--%>
+<%--                                                    <div class="thumb">--%>
+<%--                                                        <img src="https://image.hmall.com/MH/MH002/20220430/230553/0112_big2_ff9973.jpg"--%>
+<%--                                                             alt=""--%>
+<%--                                                             onerror="noImage(this, '//image.hmall.com/p/img/co/noimg-thumb.png')">--%>
 
-                                                    </div>
-                                                </a>
-                                            </li>
+<%--                                                    </div>--%>
+<%--                                                </a>--%>
+<%--                                            </li>--%>
                                         </div>
                                     </div>
                                 </div>

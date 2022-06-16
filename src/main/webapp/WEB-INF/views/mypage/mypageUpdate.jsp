@@ -27,27 +27,6 @@
         <!-- // LNB 끝 -->
           <div class="contents">
             <div class="mypage-info-wrap">
-              <!-- 본인확인 시작 ----------------------------------------------------------------------------------------------- -->
-              <div class="bg-gray-box center" id="divConfirmMemberInfo">
-                <p class="ctypo15">고객님의 개인정보 보호를 위해 본인확인 후 가려진 정보 확인이 가능합니다.</p>
-                <h3><button type="button" class="btn btn-linelgray small34 accordion-trigger" data-modules-collapse="" aria-expanded="false"><span>본인확인</span></button></h3>
-                <div class="accordion-panel" role="region" aria-label="회원정보입력">
-                  <div class="form-wrap">
-                    <div class="inputbox">
-                      <label class="inplabel"><input type="text" name="confirmName" value="" placeholder="이름"></label>
-                      <button type="button" class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                    </div>
-                    <div class="inputbox">
-                      <label class="inplabel"><input type="number" name="confirmMobile" value="" placeholder="휴대폰번호 입력" onkeypress="return isNumberKey(event)"></label>
-                      <button type="button" class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
-                    </div>
-                    <div class="btngroup">
-                      <button type="button" class="btn btn-default medium" onclick="confirmMemberInfo();"><span>확인</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 본인확인 종료 ----------------------------------------------------------------------------------------------- -->
               <!-- 기본정보 시작 ----------------------------------------------------------------------------------------------- -->
               <h3 class="title22">기본정보</h3>
               <div class="tblwrap">
@@ -95,7 +74,6 @@
 
                       <span id="baseInfoMobilePhone">대한민국 (82) - ${userVO.user_phone}</span>
                       <input type="hidden" id="cnryNm" value="대한민국 (82)">
-                      <button type="button" class="btn btn-linelgray small30" onclick="popChangeMobilePhone();"><span>수정</span></button>
                     </td>
                   </tr>
                   </tbody>
@@ -126,7 +104,6 @@
                     <th scope="row" class="txt-left">이메일</th>
                     <td>
                       <span id="baseInfoEmail">${userVO.user_email}</span>
-                      <button type="button" class="btn btn-linelgray small30" onclick="popChangeEmail();"><span>수정</span></button>
                     </td>
                   </tr>
                   <tr>

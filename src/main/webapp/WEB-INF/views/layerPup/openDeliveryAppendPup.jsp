@@ -74,7 +74,7 @@
               </p>
               <!-- 핸드폰번호 -->
               <div class="inputbox">
-                <label class="inplabel"><input type="text" id="dstnHpNo" name="dstnHpNo" maxlength="11" value="" placeholder="전화번호1"></label>
+                <label class="inplabel"><input type="text" id="dstnHpNo" name="dstnHpNo" maxlength="11" value="" placeholder="전화번호"></label>
                 <button class="btn ico-clearabled"><i class="icon"></i><span class="hiding">지우기</span></button>
               </div>
               <!-- 실패시 노출 -->

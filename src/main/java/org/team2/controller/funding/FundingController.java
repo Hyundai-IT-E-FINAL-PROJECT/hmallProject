@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
-import oracle.ucp.proxy.annotation.Post;
-import org.json.JSONArray;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +12,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
 import org.team2.domain.FundReplyVO;
@@ -29,10 +25,8 @@ import org.team2.domain.RewardVO;
 import org.team2.service.AwsS3Biz;
 import org.team2.service.FundingService;
 
-import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.security.Principal;
@@ -133,7 +127,7 @@ public class FundingController {
     }
 
 
-
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     @GetMapping("detail/{fund_product_seq}")
     public ModelAndView openFundingDetail(@ModelAttribute FundVO fundVO, @ModelAttribute RewardVO rewardVO,

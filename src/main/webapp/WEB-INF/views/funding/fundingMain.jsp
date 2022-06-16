@@ -10,53 +10,33 @@ To change this template use File | Settings | File Templates.
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="javascript" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    .header-menu-in {
+        margin-top: -10px;
+    }
+</style>
 <main class="cmain main" role="main" id="mainContents">
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/common.min.css?v=20220513_01">
+
+
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/theme.min.css?v=20220331_01">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyNav.min.css?v=20220331_01">
-    <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/common.min.css?v=20220513_01">
+
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdy.min.css?v=20220527_01">
     <link href="/resources/css/crowdy/crowdy.css?v=20220330_01" rel="stylesheet">
     <link rel="stylesheet" href="//image-se.ycrowdy.com/crowdyCss/crowdy/crowdyCardUI.min.css?v=20220222_02">
     <div>
         <div id="reflashArea" style="margin-top: 68px">
-                <div class="gird-l5x" style="padding: 10px 0 50px 0;">
+                <div class="gird-l5x" style="padding: 10px 0 50px 0;display: flex;flex-direction: column; align-items: center;}">
+                    <img src="${contextPath}/resources/img/fund/crowdBanner.PNG" alt="crowdBanner" style="margin-top: -54px; width:1108px;" />
                     <div class="contents" id="pl_main">
                         <div>
-                            <div class="spstart_vi_wrap spstart_vi_wrap1">
-                                <div class="spstart_vi_frame">
-                                    <div>
-                                        <div class="row not-space">
-                                            <div class="col-sm-3 col-md-5 col-lg-6"></div>
-                                            <div class="col-sm-9 col-md-7 col-lg-6" style="margin-left: 700px;">
-                                                <div class="md-ml20 m-ml15 xs-ml0">
-                                                    <div class="spstart_vi_title"><strong class="webfont2" style="font-weight: bold;">크라우드 펀딩 참여하기</strong>
-                                                        <span>크라우드펀딩</span>
-                                                        <p>제품/서비스를 리워드로 제공하여 수익을 얻습니다.</p></div>
-                                                    <div class="spstart_vi_btn">
-                                                        <div class="row row-mobile-n hidden-sm hidden-md hidden-lg">
-                                                            <div class="col-xs-12 mt10">
-                                                                <div class="mt15 grey-800 big-hb hidden-sm hidden-md hidden-lg text-center">
-                                                                    리워드 프로젝트 바로 시작은 PC에서 가능합니다.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="hidden-xs">
-                                                            <div class="btn btn-sps btn-shadow btn-primary" style="font-weight: bold;"
-                                                                 onclick="location.href='${contextPath}/fund/create'">프로젝트
-                                                                만들기
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="mt70 m-mt50 xs-mt40">
-                            <div><a>
+                            <div style="display: flex;justify-content: space-between;">
+                            <div>
+                                <a>
                                 <div class="crowdy-title-01">
                                     <font>
                                         리워드 프로젝트
@@ -69,7 +49,18 @@ To change this template use File | Settings | File Templates.
                                     </font>
                                 </div>
                             </a> <span class="crowdy-titleDesc-01 hidden-xs hidden-sm">FUNTHING에서 핫한 프로젝트들을 만나보세요.</span>
+
                             </div>
+                                <div class="hidden-xs">
+                                    <div class="btn btn-sps btn-shadow btn-primary" style="font-weight: bold; margin-top: 30px;"
+                                         onclick="location.href='${contextPath}/fund/create'">프로젝트
+                                        만들기
+                                    </div>
+                                </div>
+
+
+                            </div>
+
                             <div param-art-type="0">
                                 <div class="card-reward-list">
                                         <ul>
@@ -85,7 +76,6 @@ To change this template use File | Settings | File Templates.
                                                                     <div class="card-newStatus-icon">NEW</div>
                                                                     <img class="img-responsive" src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${fund.FUND_PRODUCT_MAIN_IMG}" alt="..."
                                                                     style="width: 220px; margin: 0 auto; height: 220px;">
-<%--                                                                    <img src="${contextPath}/resources/img/2022/06/14/34d8707e-be99-42e8-883a-45b0962b283c_ping.jpeg">--%>
                                                                 </div>
                                                             <figcaption>
                                                                 <div class="card-reward-content">

@@ -252,7 +252,7 @@
                                                 </div>
                                                 <div id="option1_contents1" class="row row-mobile-n otab1_contents mt10" style="margin-bottom: 20px">
                                                     <div class="col-xs-8">
-                                                        <input id="product_name1" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 옷의 사이즈를 적어주세요." class="form-control ">
+                                                        <input id="product_name1" name ="fund_reward_name" type="text" maxlength="20" placeholder="ex) 리워드 옵션을 적어주세요." class="form-control ">
 
                                                     </div>
                                                     <div class="col-xs-2">

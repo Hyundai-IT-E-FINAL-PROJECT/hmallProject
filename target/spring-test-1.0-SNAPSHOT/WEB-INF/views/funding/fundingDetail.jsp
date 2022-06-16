@@ -61,20 +61,6 @@ To change this template use File | Settings | File Templates.
                                         </div>
                                     </div>
                                 </div>
-                                <div id="slider-nav" class="slick-initialized slick-slider">
-                                    <div aria-live="polite" class="slick-list draggable">
-                                        <div class="slick-track"
-                                             style="opacity: 1; width: 73px; transform: translate3d(0px, 0px, 0px);"
-                                             role="listbox">
-                                            <figure class="slick-slide slick-current slick-active"
-                                                    style="width: 63px;" tabindex="-1" role="option"
-                                                    aria-describedby="slick-slide10" data-slick-index="0"
-                                                    aria-hidden="false"><img
-                                                    src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${list[0].FUND_PRODUCT_MAIN_IMG}"
-                                                    class="img-responsive"></figure>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-sm-4 mb30 xs-mt25 xs-mb20 pl45 pr15 xs-pl15 xs-pr15" style="margin-left: -20px;">
                                 <div class="reward-info-box">
@@ -83,21 +69,18 @@ To change this template use File | Settings | File Templates.
                                         <!----> <span class="reward-info-status">펀딩 중</span> <!----></div>
                                     <div class="mt20"><span class="reward-info-text">달성률</span> <span class="reward-info-now">
                                         <fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PR_COST * 100 / list[0].FUND_PRODUCT_GOAL_COST}"/>% &nbsp;</span>
-<%--                                        ${list[0].FUND_PRODUCT_PR_COST * 100 / list[0].FUND_PRODUCT_GOAL_COST}% &nbsp;--%>
                                         <span class="reward-info-goal">목표금액 &nbsp;${list[0].FUND_PRODUCT_GOAL_COST}원</span>
                                     </div>
                                     <div class="mt5"><span class="reward-info-text">남은기간</span>
                                         <jsp:useBean id="today" class="java.util.Date" />
                                         <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
                                         <fmt:formatDate var="itDate" value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyyMMdd" />
-<%--                                        <p style="margin-left:10px;">D-${itDate-now}</p>--%>
                                         <span
                                             class="reward-info-now mr5">${itDate-now} 일</span> <span class="reward-info-goal"><fmt:formatDate value="${list[0].FUND_PRODUCT_END_DATE}" pattern="yyyy-MM-dd"/></span>
                                     </div>
                                     <input type="hidden" value="${list[0].FUND_PRODUCT_END_DATE}" name="fund_end_date"/>
                                     <div class="mt5"><span class="reward-info-text">참여자</span> <span
                                             class="reward-info-now"><fmt:formatNumber type="number" maxFractionDigits="0" value="${list[0].FUND_PRODUCT_PARTICIPANTS}"/>명</span></div>
-<%--                                    <div class="reward-info-share mt10 xs-mt15"><span class="reward-share-icon" style="margin-top: 12;"></span></span> <span>프로젝트 공유하기</span></div>--%>
 
 
                                     <div class="common-flex-between mt30 xs-mt40 reward-order0-1">
@@ -133,7 +116,7 @@ To change this template use File | Settings | File Templates.
                                 <div id="share_sns" style="text-align: right; margin-top: 20px;">
                                     <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
                                     <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
-                                    <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao(${list[0].FUND_PRODUCT_SEQ});"><div style="width: 42px;"></div></a>
+                                    <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao(${list[0].FUND_PRODUCT_SEQ}, '${list[0].FUND_PRODUCT_TITLE}', '${list[0].FUND_PRODUCT_MAIN_IMG}');"><div style="width: 42px;"></div></a>
                                 </div>
                                 <script type="text/javascript">
                                     function shareTwitter(SEQ) {
@@ -147,7 +130,7 @@ To change this template use File | Settings | File Templates.
                                         window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
                                     }
 
-                                    function shareKakao(SEQ) {
+                                    function shareKakao(SEQ, TITLE, IMG) {
                                         // 사용할 앱의 JavaScript 키 설정
                                         Kakao.init('caf33407aea23e6cbd7ad732e602b5ad');
 
@@ -156,9 +139,9 @@ To change this template use File | Settings | File Templates.
                                             container: '#btnKakao', // 카카오공유버튼ID
                                             objectType: 'feed',
                                             content: {
-                                                title: 'title', // 보여질 제목
+                                                title: TITLE, // 보여질 제목
                                                 description: "같이 참여해봐요!", // 보여질 설명
-                                                imageUrl: "${contextPath}/resources/img/exhibitions/mainImg_4.jpeg", // 콘텐츠 URL
+                                                imageUrl: "https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/"+IMG, // 콘텐츠 URL
                                                 link: {
                                                     mobileWebUrl: "http://34.64.63.2:8080/fund/detail/"+SEQ,
                                                     webUrl: "http://34.64.63.2:8080/fund/detail/"+SEQ
@@ -205,8 +188,8 @@ To change this template use File | Settings | File Templates.
                 <div class="common_sub_top_menu common_stm_detail">
                     <div class="reward-menu">
                         <a id="story_page" class="pointerCursor active" onclick="pagingsort('story');"><span class="webcrowdy-font-bold">스토리</span></a>
-                        <a id="news_page" class="pointerCursor" onclick="pagingsort('news');"><span class="webcrowdy-font-bold">새소식 <em>0</em></span></a>
-                        <a id="reply_page" class="pointerCursor" onclick="pagingsort('reply');"><span class="webcrowdy-font-bold">댓글 <em>1</em></span></a>
+                        <a id="news_page" class="pointerCursor" onclick="pagingsort('news');"><span class="webcrowdy-font-bold">새소식 </span></a>
+                        <a id="reply_page" class="pointerCursor" onclick="pagingsort('reply');"><span class="webcrowdy-font-bold">댓글 </span></a>
                         <a id="inf_page" class="pointerCursor" onclick="pagingsort('inf');"><span class="webcrowdy-font-bold">안내</span></a>
                     </div>
                 </div>
@@ -287,8 +270,7 @@ To change this template use File | Settings | File Templates.
                                                 <div class="card-story-name"><span
                                                         class="card-story-type">리워드</span> 주식회사 베지스푼
                                                 </div>
-                                                <div class="card-story-title">#100% 식물성 너겟 #치킨 없는 치킨 너겟
-                                                    &lt;댓츠잇&gt;
+                                                <div class="card-story-title">
                                                 </div>
                                             </div>
                                         </figcaption>
@@ -440,7 +422,7 @@ To change this template use File | Settings | File Templates.
                             <div class="menu-trigger mt5 active_1"><span></span><span></span><span></span></div>
                         </div>
                     </div>
-                    <div class="reward-choice-projectTitle">#100% 식물성 너겟 #치킨 없는 치킨 너겟 &lt;댓츠잇&gt;</div>
+                    <div class="reward-choice-projectTitle">${list[0].FUND_PRODUCT_TITLE}</div>
                     <div class="reward-choice-contentArea reward-choice-margin">
                         <div class="reward-choice-desc">
                             펀딩을 마치면 <b>결제 예약 상태</b>입니다. 종료일에 100%<br>
@@ -462,7 +444,8 @@ To change this template use File | Settings | File Templates.
                                             <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COST}"/> 원 펀딩</div>
                                             <div class="reward-choice-boxrow"><!----> <span><b><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> </b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
                                                 <b class="pl20">예상 배송일</b> <span><fmt:formatDate value="${reward.FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy-MM-dd"/></span>
-                                                <i class="fas fa-caret-right" aria-hidden="true"></i></div>
+<%--                                                <i class="fas fa-caret-right" aria-hidden="true"></i>--%>
+                                            </div>
                                             <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
                                             <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>
                                         </div>
@@ -479,7 +462,8 @@ To change this template use File | Settings | File Templates.
                                                 <div class="reward-choice-boxamount"><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COST}"/> 원 펀딩</div>
                                                 <div class="reward-choice-boxrow"><!----> <span><b><fmt:formatNumber type="number" maxFractionDigits="0" value="${reward.FUND_REWARD_COUNT}"/> </b></span> <span>&nbsp;&nbsp;|&nbsp;&nbsp;1개 펀딩</span>
                                                     <b class="pl20">예상 배송일</b> <span><fmt:formatDate value="${reward.FUND_PRODUCT_ESTIMATE_DATE}" pattern="yyyy-MM-dd"/></span>
-                                                    <i class="fas fa-caret-right" aria-hidden="true"></i></div>
+<%--                                                    <i class="fas fa-caret-right" aria-hidden="true"></i>--%>
+                                                </div>
                                                 <div class="reward-choice-boxtitle">${reward.FUND_REWARD_TITLE}</div>
                                                 <div class="reward-choice-boxdesc">${reward.FUND_REWARD_CONTENT}</div>
                                             </div>
