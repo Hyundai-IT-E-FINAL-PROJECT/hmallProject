@@ -96,9 +96,6 @@
                                 <div class="point-progresstxt">
                                     <div class="tit-wrap btn-with"> <!--버튼과 함께 사용될 경우 class="btn-with" 추가-->
                                         <h3>적립금 보유 &amp; 사용 현황</h3>
-                                        <div class="btngroup">
-                                            <button class="btn btn-linelgray small34" data-modules-modal="target:.pop-phc038;" onclick="javascript:openHPntVlidTermPup();return false;"><span>적립금 유효기간 조회</span></button>
-                                        </div>
                                     </div>
                                 </div>
                                 <!--//point-progresstxt-->
@@ -170,7 +167,7 @@
                                                             <span class="date"><fmt:formatDate value="${polist.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
 
                                                             <c:if test="${polist.POINT_COST > 0 and polist.ORDER_STATUS eq '배송완료'}">
-                                                                <strong class="accu">적립</strong>
+                                                                <strong class="accu" style="color: #de040a">적립</strong>
                                                             </c:if>
                                                             <c:if test="${polist.POINT_COST < 0 and polist.ORDER_STATUS eq '주문접수'}">
                                                                 <strong class="exp-accu">사용 완료</strong>

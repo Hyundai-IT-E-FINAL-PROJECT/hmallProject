@@ -173,6 +173,7 @@
           and tbl_op.order_seq=tbl_order.order_seq
           and tbl_op.product_seq=tbl_product.product_seq
           and tbl_product.product_seq=tbl_image.product_seq
+          and image_type = 'MAIN'
     </select>
 
 

@@ -1588,7 +1588,7 @@
 .tabgroup.point-tab .tab-content .list .date{margin-right:5px;color:#333;font-size:14px;font-weight:700;line-height:20px;letter-spacing:-0.56px;}
 .tabgroup.point-tab .tab-content .list strong{font-size:14px;line-height:20px;font-weight:700;letter-spacing:-0.56px;}
 .tabgroup.point-tab .tab-content .list .cell .exp-accu{color:#3dc2b5 !important;}
-.tabgroup.point-tab .tab-content .list .cell .accu{color:#002fa3 !important;}
+.tabgroup.point-tab .tab-content .list .cell .accu{color:#ff0707 !important;}
 .tabgroup.point-tab .tab-content .list .cell .exp{color:#999 !important;}
 .tabgroup.point-tab .tab-content .list .cell .exp-date{color:#002fa3 !important;}
 .tabgroup.point-tab .tab-content .list li .cell{display:inline-flex;align-content:center;flex-flow:column;}
