@@ -2431,276 +2431,277 @@
 
                                         <!-- 만족도 딜이 아닌 경우 -->
                                         <!-- start custmrSatisfy -->
-                                        <div class="content-area review-point">
-                                            <h3>구매고객 총 만족도</h3>
-                                            <!--review-star -->
+                                        <c:if test="${packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0}">
+                                            <div class="content-area review-point">
+                                                <h3>구매고객 총 만족도</h3>
+                                                <!--review-star -->
 
 
-                                            <div class="review-star">
-                                                <div class="starbg type-big pt9">
-                                                    <p class="score"><span class="hiding">90점</span></p>
-                                                </div>
-                                                <span class="like-point" aria-label="포인트"><em>4.5</em></span>
-                                            </div>
-
-                                            <!-- //.review-star -->
-                                            <!--review-rate -->
-                                            <div class="review-rate ui-active">
-                                                <strong class="hiding">평가 비율</strong>
-                                                <div class="rate-list">
-                                                    <!--2018.04 상품평 개선 , 상품평 항목에 따라 part 갯수 1~3개로 운용. 자동 중앙 정렬 -->
-
-
-                                                    <div class="rate-item" id="rateItem0">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">포장상태</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>꼼꼼해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:56%;"></span>
-                                                                </p>
-                                                                <p class="rate">56<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>보통이에요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:31%;"></span>
-                                                                </p>
-                                                                <p class="rate">31<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>별로예요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:13%;"></span>
-                                                                </p>
-                                                                <p class="rate">13<span>%</span></p>
-                                                            </div>
-                                                        </div>
+                                                <div class="review-star">
+                                                    <div class="starbg type-big pt${star * 2}">
+                                                        <p class="score"><span class="hiding">90점</span></p>
                                                     </div>
-
-
-                                                    <div class="rate-item" id="rateItem1">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">배송상태</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>빨라요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:51%;"></span>
-                                                                </p>
-                                                                <p class="rate">51<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>보통이에요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:32%;"></span>
-                                                                </p>
-                                                                <p class="rate">32<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>느려요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:17%;"></span>
-                                                                </p>
-                                                                <p class="rate">17<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="rate-item" id="rateItem2">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">제품상태</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>만족해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:76%;"></span>
-                                                                </p>
-                                                                <p class="rate">76<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>보통이에요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:20%;"></span>
-                                                                </p>
-                                                                <p class="rate">20<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>별로예요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:4%;"></span>
-                                                                </p>
-                                                                <p class="rate">4<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                    <span class="like-point" aria-label="포인트"><em>${star}</em></span>
                                                 </div>
-                                                <div class="more-btn">
-                                                    <a href="#"
-                                                       data-modules-customtoggle="openText:자세히보기;parent:.review-rate;"><span
-                                                            data-text="">닫기</span><i class="icon arrow"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- //.review-rate -->
-                                        </div>
 
-
-                                        <div class="content-area txt-review" id="reviewContentArea">
-
-                                            <h3>고객만족도 <em class="total-num">${pageMaker.total}</em>건</h3>
-                                            <ul class="txt-review-list">
-                                                <c:forEach items="${replyVOList}" var="ReplyVO">
-                                                    <li class="review-item">
-                                                        <div class="review-top">
-                                                            <div class="top-left">
-                                                                <div class="starbg pt10">
-                                                                    <p class="score"><span class="hiding">100점</span></p>
+                                                <!-- //.review-star -->
+                                                <!--review-rate -->
+                                                <div class="review-rate ui-active">
+                                                    <strong class="hiding">평가 비율</strong>
+                                                    <div class="rate-list">
+                                                        <div class="rate-item" id="rateItem0">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">포장상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.good / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.good / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
                                                                 </div>
-                                                                <span class="nick">${ReplyVO.USER_SEQ}</span>
-
                                                             </div>
-                                                            <div class="top-right">
-                                                                <span class="date"><fmt:formatDate value="${ReplyVO.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
-                                                                <input type="hidden" name="ITEM_EVAL_COMT_NO" value="48122177637977">
-                                                                <input type="hidden" name="SLITM_CD" value="2122712699">
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.normal / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.normal / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.bad / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.bad / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <!--//review-top-->
-
-                                                        <!--review-content-->
-
-                                                        <div class="review-content">
-                                                            <ul class="user-rate">
-
-                                                                <li>
-                                                                    <strong>만족도</strong>
-                                                                    <span>${ReplyVO.REPLY_SATIS}</span>
-                                                                </li>
 
 
-                                                                <li>
-                                                                    <strong>포장상태</strong>
-                                                                    <span>${ReplyVO.REPLY_PACKAGE}</span>
-                                                                </li>
-
-
-                                                                <li>
-                                                                    <strong>배송상태</strong>
-                                                                    <span>${ReplyVO.REPLY_POST}</span>
-                                                                </li>
-
-
-                                                            </ul>
+                                                        <div class="rate-item" id="rateItem1">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">배송상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.good / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.good / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.normal / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.normal / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.bad / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.bad / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
-                                                        <!--//review-content-->
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
 
-                                            <div class="paging">
-                                                <div class="page-prevarea">
+                                                        <div class="rate-item" id="rateItem2">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">제품상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.good / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.good / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.normal / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.normal / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.bad / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.bad / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="more-btn">
+                                                        <a href="#"
+                                                           data-modules-customtoggle="openText:자세히보기;parent:.review-rate;"><span
+                                                                data-text="">닫기</span><i class="icon arrow"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- //.review-rate -->
+                                            </div>
+                                        </c:if>
+
+                                        <c:if test="${! (packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0)}">
+                                            <div class="content-area txt-review" id="reviewContentArea">
+
+                                                <h3>고객만족도 <em class="total-num">${pageMaker.total}</em>건</h3>
+                                                <ul class="txt-review-list">
+                                                    <c:forEach items="${replyVOList}" var="ReplyVO">
+                                                        <li class="review-item">
+                                                            <div class="review-top">
+                                                                <div class="top-left">
+                                                                    <div class="starbg pt${2 * ReplyVO.REPLY_COUNT}">
+                                                                        <p class="score"><span class="hiding">100점</span></p>
+                                                                    </div>
+                                                                    <span class="nick">${ReplyVO.USER_SEQ}</span>
+
+                                                                </div>
+                                                                <div class="top-right">
+                                                                    <span class="date"><fmt:formatDate value="${ReplyVO.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
+                                                                    <input type="hidden" name="ITEM_EVAL_COMT_NO" value="48122177637977">
+                                                                    <input type="hidden" name="SLITM_CD" value="2122712699">
+                                                                </div>
+                                                            </div>
+                                                            <!--//review-top-->
+
+                                                            <!--review-content-->
+
+                                                            <div class="review-content">
+                                                                <ul class="user-rate">
+
+                                                                    <li>
+                                                                        <strong>만족도</strong>
+                                                                        <span>${ReplyVO.REPLY_SATIS}</span>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <strong>포장상태</strong>
+                                                                        <span>${ReplyVO.REPLY_PACKAGE}</span>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <strong>배송상태</strong>
+                                                                        <span>${ReplyVO.REPLY_POST}</span>
+                                                                    </li>
+
+
+                                                                </ul>
+                                                            </div>
+
+                                                            <!--//review-content-->
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+
+                                                <div class="paging">
                                                     <div class="page-prevarea">
-                                                        <c:if test="${pageMaker.prev}">
-                                                            <a onclick="paging(this, 1)"
-                                                               class="page-first" aria-label="처음페이지 이동">
-                                                                <i class="icon"></i><span class="hiding">처음페이지 이동</span>
-                                                            </a>
-                                                        </c:if>
-                                                        <c:if test="${pageMaker.prev}">
-                                                            <a onclick="paging(this, ${pageMaker.startPage} - 1)"
-                                                               class="page-prev" aria-label="이전페이지 이동">
-                                                                <i class="icon"></i><span class="hiding">이전페이지 이동</span>
-                                                            </a>
-                                                        </c:if>
-                                                        <c:forEach var="num" begin="${pageMaker.startPage}"
-                                                                   end="${pageMaker.endPage}">
-                                                            <c:choose>
-                                                                <c:when test="${pageMaker.cri.pageNum == num}">
-                                                                    <strong class="checkedPage" id="page${num}">${num}</strong>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <a onclick="paging(this, ${num})" id="page${num}">${num}</a>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </c:forEach>
-                                                        <c:if test="${pageMaker.next}">
-                                                            <a onclick="paging(this, ${pageMaker.endPage} + 1)"
-                                                               class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
-                                                        </c:if>
-                                                    </div>
+                                                        <div class="page-prevarea">
+                                                            <c:if test="${pageMaker.prev}">
+                                                                <a onclick="paging(this, 1)"
+                                                                   class="page-first" aria-label="처음페이지 이동">
+                                                                    <i class="icon"></i><span class="hiding">처음페이지 이동</span>
+                                                                </a>
+                                                            </c:if>
+                                                            <c:if test="${pageMaker.prev}">
+                                                                <a onclick="paging(this, ${pageMaker.startPage} - 1)"
+                                                                   class="page-prev" aria-label="이전페이지 이동">
+                                                                    <i class="icon"></i><span class="hiding">이전페이지 이동</span>
+                                                                </a>
+                                                            </c:if>
+                                                            <c:forEach var="num" begin="${pageMaker.startPage}"
+                                                                       end="${pageMaker.endPage}">
+                                                                <c:choose>
+                                                                    <c:when test="${pageMaker.cri.pageNum == num}">
+                                                                        <strong class="checkedPage" id="page${num}">${num}</strong>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <a onclick="paging(this, ${num})" id="page${num}">${num}</a>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                            <c:if test="${pageMaker.next}">
+                                                                <a onclick="paging(this, ${pageMaker.endPage} + 1)"
+                                                                   class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
+                                                            </c:if>
+                                                        </div>
 
-                                                    <input id="ajaxSearchCnt" type="hidden" value="(45,670)">
-                                                </div>
-                                                <div class="ui-modal broadcast-channel-info" id="broadcast-channel-info" tabindex="-1"
-                                                     role="dialog"
-                                                     aria-label="방송채널 안내" style="z-index: 1031; display: none;">
-                                                    <div class="ui-modal-dialog" role="document">
-                                                        <div class="content">
-                                                            <p class="ui-title" style="font-size: initial;"></p>
-                                                            <!-- //.content-head -->
-                                                            <div class="content-body">
-                                                                <div class="product-banner-wrap">
-                                                                    <div data-modules-imageviewer="">
-                                                                        <div class="product-mainbanner slick-initialized slick-slider isArrows"
-                                                                             data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
-                                                                            <button class="slick-prev slick-arrow" aria-label="Previous"
-                                                                                    type="button" style="">Previous
-                                                                            </button>
-                                                                            <div class="slick-list" style="height: 520px">
-                                                                                <div class="slick-track"
-                                                                                     style="opacity: 1; width: 6240px; transform: translate(-520px, 0px);">
+                                                        <input id="ajaxSearchCnt" type="hidden" value="(45,670)">
+                                                    </div>
+                                                    <div class="ui-modal broadcast-channel-info" id="broadcast-channel-info" tabindex="-1"
+                                                         role="dialog"
+                                                         aria-label="방송채널 안내" style="z-index: 1031; display: none;">
+                                                        <div class="ui-modal-dialog" role="document">
+                                                            <div class="content">
+                                                                <p class="ui-title" style="font-size: initial;"></p>
+                                                                <!-- //.content-head -->
+                                                                <div class="content-body">
+                                                                    <div class="product-banner-wrap">
+                                                                        <div data-modules-imageviewer="">
+                                                                            <div class="product-mainbanner slick-initialized slick-slider isArrows"
+                                                                                 data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
+                                                                                <button class="slick-prev slick-arrow" aria-label="Previous"
+                                                                                        type="button" style="">Previous
+                                                                                </button>
+                                                                                <div class="slick-list" style="height: 520px">
+                                                                                    <div class="slick-track"
+                                                                                         style="opacity: 1; width: 6240px; transform: translate(-520px, 0px);">
+                                                                                    </div>
                                                                                 </div>
+                                                                                <button class="slick-next slick-arrow" aria-label="Next"
+                                                                                        type="button"
+                                                                                        style="">Next
+                                                                                </button>
                                                                             </div>
-                                                                            <button class="slick-next slick-arrow" aria-label="Next"
-                                                                                    type="button"
-                                                                                    style="">Next
-                                                                            </button>
+                                                                            <div class="ui-angle"
+                                                                                 style="display: none; width: 260px; height: 260px; top: 79px; left: 260px;"></div>
                                                                         </div>
-                                                                        <div class="ui-angle"
-                                                                             style="display: none; width: 260px; height: 260px; top: 79px; left: 260px;"></div>
-                                                                    </div>
-                                                                    <div class="slider-thumbnaii ">
-                                                                        <ul>
-                                                                        </ul>
+                                                                        <div class="slider-thumbnaii ">
+                                                                            <ul>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span
+                                                                        class="hiding" style="display: none">레이어 닫기</span></button>
                                                             </div>
-                                                            <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span
-                                                                    class="hiding" style="display: none">레이어 닫기</span></button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <script>
+                                                    function paging(obj, curr_page) {
+                                                        let prev_pageNum = $(".checkedPage").text()
+
+                                                        $(".checkedPage").replaceWith($('<a id=page' + prev_pageNum + ' onClick=paging(this)' + '>' + prev_pageNum + '</a>'))
+                                                        $(obj).replaceWith($('<strong class="checkedPage" id="page"' + curr_page + '>' + obj.innerHTML + '</strong>'));
+
+                                                        $(".pdlist-wrap ul li").remove();
+
+                                                        location.href = `/product/detail?product_seq=${productVO.product_seq}&page_num=` + curr_page + `#reviewContentArea`
+                                                    }
+                                                </script>
+
                                             </div>
-                                            <script>
-                                                function paging(obj, curr_page) {
-                                                    let prev_pageNum = $(".checkedPage").text()
+                                        </c:if>
 
-                                                    $(".checkedPage").replaceWith($('<a id=page' + prev_pageNum + ' onClick=paging(this)' + '>' + prev_pageNum + '</a>'))
-                                                    $(obj).replaceWith($('<strong class="checkedPage" id="page"' + curr_page + '>' + obj.innerHTML + '</strong>'));
-
-                                                    $(".pdlist-wrap ul li").remove();
-
-                                                    location.href = `/product/detail?product_seq=${productVO.product_seq}&page_num=` + curr_page + `#reviewContentArea`
-                                                }
-                                            </script>
-
-                                        </div>
 
 
                                         <!--// 만족도 -->

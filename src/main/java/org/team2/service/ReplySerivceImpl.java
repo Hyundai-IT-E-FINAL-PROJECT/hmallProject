@@ -32,17 +32,22 @@ public class ReplySerivceImpl implements ReplyService{
     }
 
     @Override
-    public Map<String, String> getByPackage(Long product_seq) {
+    public List<Map<String, String>> getByPackage(Long product_seq) {
         return replyMapper.getByPackage(product_seq);
     }
 
     @Override
-    public Map<String, String> getByPost(Long product_seq) {
+    public List<Map<String, String>> getByPost(Long product_seq) {
         return replyMapper.getByPost(product_seq);
     }
 
     @Override
-    public Map<String, String> getBySatis(Long product_seq) {
+    public List<Map<String, String>> getBySatis(Long product_seq) {
         return replyMapper.getBySatis(product_seq);
+    }
+
+    @Override
+    public Long getStar(Long product_seq) {
+        return replyMapper.getStar(product_seq);
     }
 }

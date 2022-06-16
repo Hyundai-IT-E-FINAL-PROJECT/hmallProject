@@ -1,9 +1,6 @@
 package org.team2.domain;
 
 import lombok.Data;
-import org.team2.domain.enums.PackageStatus;
-import org.team2.domain.enums.PostStatus;
-import org.team2.domain.enums.SatisStatus;
 
 @Data
 public class ReplyVO {

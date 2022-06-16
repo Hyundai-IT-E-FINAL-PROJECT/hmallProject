@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @Log4j
@@ -107,15 +109,66 @@ public class ProductController {
     public ModelAndView detail(@RequestParam Long product_seq, @RequestParam Long page_num){
         log.info("product controller detail start!!");
 
+//        AtomicInteger package_total = new AtomicInteger(0);
+//        AtomicInteger package_good = new AtomicInteger(0);
+//        AtomicInteger package_normal = new AtomicInteger(0);
+//        AtomicInteger package_bad = new AtomicInteger(0);
+//
+//        AtomicInteger post_total = new AtomicInteger(0);
+//        AtomicInteger post_good = new AtomicInteger(0);
+//        AtomicInteger post_normal = new AtomicInteger(0);
+//        AtomicInteger post_bad = new AtomicInteger(0);
+//
+//        AtomicInteger satis_total = new AtomicInteger(0);
+//        AtomicInteger satis_good = new AtomicInteger(0);
+//        AtomicInteger satis_normal = new AtomicInteger(0);
+//        AtomicInteger satis_bad = new AtomicInteger(0);
+
+        PostVO postVO = new PostVO();
+        PackageVO packageVO = new PackageVO();
+        SatisVO satisVO = new SatisVO();
+
+
         ProductVO productVO = productService.getOne(product_seq);
         List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
         List<ReplyVO> replyVOList = replyService.getByProductSeq(product_seq);
         Long total = replyService.getReplyCount(product_seq);
-//        Map<String, String> byPackage = replyService.getByPackage(product_seq);
-//        Map<String, String> byPost = replyService.getByPost(product_seq);
-//        Map<String, String> bySatis = replyService.getBySatis(product_seq);
+        Long star = replyService.getStar(product_seq);
+        List<Map<String, String>> byPackage = replyService.getByPackage(product_seq);
+        List<Map<String, String>> byPost = replyService.getByPost(product_seq);
+        List<Map<String, String>> bySatis = replyService.getBySatis(product_seq);
         List<String> styleFileList = new ArrayList<>();
         styleFileList.add("product");
+
+        byPackage.forEach(action -> {
+            if (action.get("RESULT").equals("보통이에요")) {
+                packageVO.setNormal(packageVO.getNormal() + 1);
+            } else if (action.get("RESULT").equals("꼼꼼해요")) {
+                packageVO.setGood(packageVO.getGood() + 1);
+            } else {
+                packageVO.setBad(packageVO.getGood() + 1);
+            }
+        });
+
+        byPost.forEach(action -> {
+            if (action.get("RESULT").equals("보통이에요")) {
+                postVO.setNormal(postVO.getNormal() + 1);
+            } else if (action.get("RESULT").equals("빨라요")) {
+                postVO.setGood(postVO.getGood() + 1);
+            } else {
+                postVO.setBad(postVO.getGood() + 1);
+            }
+        });
+
+        bySatis.forEach(action -> {
+            if (action.get("RESULT").equals("보통이에요")) {
+                satisVO.setNormal(satisVO.getNormal() + 1);
+            } else if (action.get("RESULT").equals("만족해요")) {
+                satisVO.setGood(satisVO.getGood() + 1);
+            } else {
+                satisVO.setBad(satisVO.getGood() + 1);
+            }
+        });
 
         log.info(productVO.getProduct_name());
 
@@ -128,6 +181,10 @@ public class ProductController {
         mav.addObject("cssFileList", styleFileList);
         mav.addObject("replyVOList", replyVOList);
         mav.addObject("pageMaker", pageMaker);
+        mav.addObject("star", star);
+        mav.addObject("packageVO", packageVO);
+        mav.addObject("postVO", postVO);
+        mav.addObject("satisVO", satisVO);
 
         mav.setViewName("product.detail");
 
