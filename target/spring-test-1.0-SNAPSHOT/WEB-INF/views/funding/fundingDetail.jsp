@@ -482,7 +482,7 @@ To change this template use File | Settings | File Templates.
                                                id="reward_count"  name="reward_count" value="1" maxlength="11" class="qty-input">
                                         <span class="qty-add" onclick="fnCalCount('p');"></span>
                                     </div>
-                                    <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 250px;" onClick="loadFundingProcess();">
+                                    <div id="fundBtn" class="reward-option-bottomStepBtn" style="width: 250px;" onClick="loadFundingProcess(); color: #ffffff; font-size: 20px;">
                                         <span>펀딩하기</span></div>
                                 </div>
                             </div>
