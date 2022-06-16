@@ -6,9 +6,8 @@
 			<h2 class="hiding">푸터메뉴</h2>
 			<div class="short-menu">
 				<ul>
-					<li><a href="http://www.ehyundai.com/newPortal/ir/main.do" target="_blank">현대백화점그룹</a></li>
-					<li><a href="http://www.ehyundai.com/newPortal/index.jsp" target="_blank">현대백화점소개</a></li>
-					<li><a href="https://company.hyundaihmall.com/" target="_blank">현대홈쇼핑소개</a></li>
+					<li><a href="http://www.ehyundai.com/newPortal/ir/main.do" target="_blank">펀띵그룹</a></li>
+					<li><a href="http://www.ehyundai.com/newPortal/index.jsp" target="_blank">펀띵소개</a></li>
 					<li><a href="https://company.hyundaihmall.com/html/company/company_ethics-2.html" target="_blank">윤리경영</a></li>
 					<li><a href="https://company.hyundaihmall.com/html/investment/investment_stock.html" target="_blank">IR</a></li>
 					<li><a href="https://recruit.ehyundai.com/index.nhd" target="_blank">채용안내</a></li>
@@ -62,7 +61,6 @@
 	<!-- // .link-area -->
 
 	<div class="footer-contents">
-		<div class="footer-logo"><img src="//image.hmall.com/p/img/co/footer-logo.jpg" alt="HYUNDAI">
 		</div>
 		<div class="info-area">
 			<div class="policy-link-list">
@@ -78,7 +76,7 @@
 
 			<!-- on 클래스 추가 시 노출 -->
 			<div class="footer-info">
-				<button class="btn-footer" data-modules-customtoggle="parent:.footer-info;activeClass:on;"><strong>(주)현대홈쇼핑</strong></button>
+				<button class="btn-footer" data-modules-customtoggle="parent:.footer-info;activeClass:on;"><strong>(주)FUN-THING</strong></button>
 				<div class="footer-info-box">
 					<div class="hmall-info">
 						<div class="list-contents">
