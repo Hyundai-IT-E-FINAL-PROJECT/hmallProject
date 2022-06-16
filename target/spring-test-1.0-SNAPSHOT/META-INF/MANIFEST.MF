@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-<<<<<<< HEAD
-Built-By: Minsu
+Built-By: gimjihye
 Build-Jdk: Oracle OpenJDK version 11.0.15
-=======
-Built-By: kimbyeounghoon
-Build-Jdk: BellSoft Liberica version 11.0.15
->>>>>>> 3a89edda18ff4264d2e63057d95396cc215954dc
 
