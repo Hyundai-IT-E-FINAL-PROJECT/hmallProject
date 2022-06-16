@@ -72,7 +72,7 @@
                                                         <input type="hidden" name="exhibit_num" value="3">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/brand.PNG" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
