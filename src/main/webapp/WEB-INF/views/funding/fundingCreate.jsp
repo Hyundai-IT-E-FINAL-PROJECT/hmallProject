@@ -261,7 +261,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"></div>
@@ -269,12 +269,12 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_content1" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_content1" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25" style="width: fit-content">
                                                     <div class="col-xs-8">
-                                                        <input id="product_count1" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_count1" name="fund_reward_count" placeholder="수량" type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -297,7 +297,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost2" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost2" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel"  class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"></div>
@@ -305,12 +305,12 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_content2" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_content2" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25" style="width: fit-content">
                                                     <div class="col-xs-8">
-                                                        <input id="product_count2" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_count2" name="fund_reward_count" placeholder="수량" type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -333,7 +333,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost3" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost3" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel"  class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"></div>
@@ -341,12 +341,12 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_content3" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_content3" name="fund_reward_content" placeholder="간단한 소개글을 작성해주세요." type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="row row-mobile-n mb25" style="width: fit-content">
                                                     <div class="col-xs-8">
-                                                        <input id="product_count3" name="fund_reward_count" placeholder="수량" type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_count3" name="fund_reward_count" placeholder="수량" type="tel"  class="form-control">
                                                     </div>
                                                 </div>
                                             </div>

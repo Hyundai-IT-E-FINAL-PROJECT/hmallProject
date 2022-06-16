@@ -181,7 +181,7 @@
                                     <a onclick="paging(this, ${pageMaker.realEnd})"
                                        class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
                                 </c:if>
-                            </div>
+                          git   </div>
 
                             <input id="ajaxSearchCnt" type="hidden" value="(45,670)">
                         </div>
@@ -190,7 +190,7 @@
                              aria-label="방송채널 안내" style="z-index: 1031; display: none;">
                             <div class="ui-modal-dialog" role="document">
                                 <div class="content">
-                                    <p class="ui-title" style="font-size: initial;"></p>
+                                    <p cgitlass="ui-title" style="font-size: initial;"></p>
                                     <!-- //.content-head mm -->
                                     <div class="content-body">
                                         <div class="product-banner-wrap">

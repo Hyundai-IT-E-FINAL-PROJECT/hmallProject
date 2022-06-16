@@ -261,7 +261,7 @@
                                                 </div>
                                                 <div class="row row-mobile-n mb25">
                                                     <div class="col-xs-8">
-                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" maxlength="9" class="form-control">
+                                                        <input id="product_cost1" name="fund_reward_cost" placeholder="1,000원 이상 입력해 주세요." type="tel" class="form-control">
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <div class="mt10 textarea_text_leng webfont2"></div>
