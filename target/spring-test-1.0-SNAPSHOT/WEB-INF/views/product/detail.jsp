@@ -1,6 +1,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: SM-PC
@@ -430,21 +431,6 @@
                                     <input type="hidden" name="fundingYn" value="N">
                                     <input type="hidden" name="uitmCdInf" value="0^00002|1"></form>
                                 <div class="basic-info">
-                                    <div class="brand-info">
-                                        <a href="javascript://" ga-custom-name="상품상세" ga-custom-position="브랜드샵"
-                                           ga-custom-creative="아이사랑" ga-custom-id="" ga-custom-title="상품>상품상세>메인"
-                                           onclick="gaTagging(this, '/p/pde/brndSearchL.do?srchBrndCd=M14717', '', '');"
-                                           ga-custom-etc="urlAction">
-
-                                            <span class="img"><img
-                                                    src="/resources/img/${imageVOList[0].IMAGE_NAME}.jpg"
-                                                    alt="아이사랑"
-                                                    onerror="noImage(this, 'http:////image.hmall.com/p/img/co/logo-brand-default.jpg')"></span>
-
-                                            <span class="brand-name">${productVO.product_brand}<i
-                                                    class="icon icon-arrow"></i></span>
-                                        </a>
-                                    </div>
                                     <div class="prduct-title-info">
                                         <c:set var="total_price" value="0"/>
                                         <input type="hidden" value="${productVO.product_name}" name="product_name"/>
@@ -484,7 +470,7 @@
                                                 <div class="starbg pt9">
                                                     <p class="score"><span class="hiding">90점</span></p>
                                                 </div>
-                                                <p class="like-count"><em>4.4</em>(4,441)</p>
+                                                <p class="like-count"><em>4.4</em>(${pageMaker.total})</p>
                                             </div>
                                         </a>
                                         <script type="text/javascript">
@@ -1988,7 +1974,7 @@
 
                                         <li role="presentation"><a href="#viewPage03" class="gp_className"
                                                                    ga-category="상품상세" ga-action="탭"
-                                                                   ga-label="만족도"><span>고객만족도<em>4,441</em></span></a>
+                                                                   ga-label="만족도"><span>고객만족도<em>${pageMaker.total}</em></span></a>
                                         </li>
 
 
@@ -2402,12 +2388,18 @@
                                     <div class="content-area">
                                         <div class="tit-wrap review satisfaction">
 
-
-                                            <button ga-category="상품상세" ga-action="만족도" ga-label="만족도 평가"
-                                                    class="btn btn-lineblack small itemEvalRegBtn gp_className"><span><i
-                                                    class="icon review"></i>만족도 평가</span></button>
+                                            <sec:authorize access="isAuthenticated()">
+                                                <button ga-category="상품상세" ga-action="만족도" ga-label="만족도 평가"
+                                                        class="btn btn-lineblack small itemEvalRegBtn gp_className" onclick="javascript:review();"><span><i
+                                                        class="icon review"></i>만족도 평가</span></button>
+                                            </sec:authorize>
                                             <input type="hidden" value="2122712699">
-
+                                            <script>
+                                                function review() {
+                                                    console.log("aa")
+                                                    window.location.href = '/reply/' + ${productVO.product_seq}
+                                                }
+                                            </script>
 
                                         </div>
 
@@ -2439,807 +2431,277 @@
 
                                         <!-- 만족도 딜이 아닌 경우 -->
                                         <!-- start custmrSatisfy -->
-                                        <div class="content-area review-point">
-                                            <h3>구매고객 총 만족도</h3>
-                                            <!--review-star -->
+                                        <c:if test="${packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0}">
+                                            <div class="content-area review-point">
+                                                <h3>구매고객 총 만족도</h3>
+                                                <!--review-star -->
 
 
-                                            <div class="review-star">
-                                                <div class="starbg type-big pt9">
-                                                    <p class="score"><span class="hiding">90점</span></p>
+                                                <div class="review-star">
+                                                    <div class="starbg type-big pt${star * 2}">
+                                                        <p class="score"><span class="hiding">90점</span></p>
+                                                    </div>
+                                                    <span class="like-point" aria-label="포인트"><em>${star}</em></span>
                                                 </div>
-                                                <span class="like-point" aria-label="포인트"><em>4.5</em></span>
+
+                                                <!-- //.review-star -->
+                                                <!--review-rate -->
+                                                <div class="review-rate ui-active">
+                                                    <strong class="hiding">평가 비율</strong>
+                                                    <div class="rate-list">
+                                                        <div class="rate-item" id="rateItem0">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">포장상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.good / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.good / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.normal / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.normal / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(packageVO.bad / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(packageVO.bad / (packageVO.good + packageVO.normal + packageVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="rate-item" id="rateItem1">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">배송상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.good / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.good / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.normal / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.normal / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(postVO.bad / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(postVO.bad / (postVO.good + postVO.normal + postVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="rate-item" id="rateItem2">
+                                                            <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
+                                                            <p class="rate-tit">제품상태</p>
+                                                            <div class="part">
+                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.good / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.good / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>보통이에요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.normal / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.normal / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="part">
+                                                                <p class="data"><span>별로예요</span></p>
+                                                                <div class="gauge-box">
+                                                                    <p class="gauge-bar">
+                                                                        <span class="gauge" style="width:${(satisVO.bad / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
+                                                                    </p>
+                                                                    <p class="rate"><fmt:parseNumber value="${(satisVO.bad / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}" integerOnly="true"/><span>%</span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="more-btn">
+                                                        <a href="#"
+                                                           data-modules-customtoggle="openText:자세히보기;parent:.review-rate;"><span
+                                                                data-text="">닫기</span><i class="icon arrow"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- //.review-rate -->
                                             </div>
+                                        </c:if>
 
-                                            <!-- //.review-star -->
-                                            <!--review-rate -->
-                                            <div class="review-rate ui-active">
-                                                <strong class="hiding">평가 비율</strong>
-                                                <div class="rate-list">
-                                                    <!--2018.04 상품평 개선 , 상품평 항목에 따라 part 갯수 1~3개로 운용. 자동 중앙 정렬 -->
+                                        <c:if test="${! (packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0)}">
+                                            <div class="content-area txt-review" id="reviewContentArea">
+
+                                                <h3>고객만족도 <em class="total-num">${pageMaker.total}</em>건</h3>
+                                                <ul class="txt-review-list">
+                                                    <c:forEach items="${replyVOList}" var="ReplyVO">
+                                                        <li class="review-item">
+                                                            <div class="review-top">
+                                                                <div class="top-left">
+                                                                    <div class="starbg pt${2 * ReplyVO.REPLY_COUNT}">
+                                                                        <p class="score"><span class="hiding">100점</span></p>
+                                                                    </div>
+                                                                    <span class="nick">${ReplyVO.USER_SEQ}</span>
+
+                                                                </div>
+                                                                <div class="top-right">
+                                                                    <span class="date"><fmt:formatDate value="${ReplyVO.CREATED_AT}" pattern="yyyy-MM-dd"/></span>
+                                                                    <input type="hidden" name="ITEM_EVAL_COMT_NO" value="48122177637977">
+                                                                    <input type="hidden" name="SLITM_CD" value="2122712699">
+                                                                </div>
+                                                            </div>
+                                                            <!--//review-top-->
+
+                                                            <!--review-content-->
+
+                                                            <div class="review-content">
+                                                                <ul class="user-rate">
+
+                                                                    <li>
+                                                                        <strong>만족도</strong>
+                                                                        <span>${ReplyVO.REPLY_SATIS}</span>
+                                                                    </li>
 
 
-                                                    <div class="rate-item" id="rateItem0">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">신선도</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>신선해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:56%;"></span>
-                                                                </p>
-                                                                <p class="rate">56<span>%</span></p>
+                                                                    <li>
+                                                                        <strong>포장상태</strong>
+                                                                        <span>${ReplyVO.REPLY_PACKAGE}</span>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <strong>배송상태</strong>
+                                                                        <span>${ReplyVO.REPLY_POST}</span>
+                                                                    </li>
+
+
+                                                                </ul>
                                                             </div>
+
+                                                            <!--//review-content-->
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+
+                                                <div class="paging">
+                                                    <div class="page-prevarea">
+                                                        <div class="page-prevarea">
+                                                            <c:if test="${pageMaker.prev}">
+                                                                <a onclick="paging(this, 1)"
+                                                                   class="page-first" aria-label="처음페이지 이동">
+                                                                    <i class="icon"></i><span class="hiding">처음페이지 이동</span>
+                                                                </a>
+                                                            </c:if>
+                                                            <c:if test="${pageMaker.prev}">
+                                                                <a onclick="paging(this, ${pageMaker.startPage} - 1)"
+                                                                   class="page-prev" aria-label="이전페이지 이동">
+                                                                    <i class="icon"></i><span class="hiding">이전페이지 이동</span>
+                                                                </a>
+                                                            </c:if>
+                                                            <c:forEach var="num" begin="${pageMaker.startPage}"
+                                                                       end="${pageMaker.endPage}">
+                                                                <c:choose>
+                                                                    <c:when test="${pageMaker.cri.pageNum == num}">
+                                                                        <strong class="checkedPage" id="page${num}">${num}</strong>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <a onclick="paging(this, ${num})" id="page${num}">${num}</a>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                            <c:if test="${pageMaker.next}">
+                                                                <a onclick="paging(this, ${pageMaker.endPage} + 1)"
+                                                                   class="page-next" aria-label="다음페이지 이동"><i class="icon"></i><span class="hiding">다음페이지 이동</span></a>
+                                                            </c:if>
                                                         </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>적당해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:31%;"></span>
-                                                                </p>
-                                                                <p class="rate">31<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>별로예요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:13%;"></span>
-                                                                </p>
-                                                                <p class="rate">13<span>%</span></p>
-                                                            </div>
-                                                        </div>
+
+                                                        <input id="ajaxSearchCnt" type="hidden" value="(45,670)">
                                                     </div>
-
-
-                                                    <div class="rate-item" id="rateItem1">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">맛</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>맛있어요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:51%;"></span>
-                                                                </p>
-                                                                <p class="rate">51<span>%</span></p>
+                                                    <div class="ui-modal broadcast-channel-info" id="broadcast-channel-info" tabindex="-1"
+                                                         role="dialog"
+                                                         aria-label="방송채널 안내" style="z-index: 1031; display: none;">
+                                                        <div class="ui-modal-dialog" role="document">
+                                                            <div class="content">
+                                                                <p class="ui-title" style="font-size: initial;"></p>
+                                                                <!-- //.content-head -->
+                                                                <div class="content-body">
+                                                                    <div class="product-banner-wrap">
+                                                                        <div data-modules-imageviewer="">
+                                                                            <div class="product-mainbanner slick-initialized slick-slider isArrows"
+                                                                                 data-modules-slick="draggable:false; dots:false; infinite:true; thumbnaiList:.slider-thumbnaii;thumbnailsToShow:5;">
+                                                                                <button class="slick-prev slick-arrow" aria-label="Previous"
+                                                                                        type="button" style="">Previous
+                                                                                </button>
+                                                                                <div class="slick-list" style="height: 520px">
+                                                                                    <div class="slick-track"
+                                                                                         style="opacity: 1; width: 6240px; transform: translate(-520px, 0px);">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="slick-next slick-arrow" aria-label="Next"
+                                                                                        type="button"
+                                                                                        style="">Next
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="ui-angle"
+                                                                                 style="display: none; width: 260px; height: 260px; top: 79px; left: 260px;"></div>
+                                                                        </div>
+                                                                        <div class="slider-thumbnaii ">
+                                                                            <ul>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-close" data-dismiss="modal"><i class="icon xico"></i><span
+                                                                        class="hiding" style="display: none">레이어 닫기</span></button>
                                                             </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>평범해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:32%;"></span>
-                                                                </p>
-                                                                <p class="rate">32<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>맛없어요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:17%;"></span>
-                                                                </p>
-                                                                <p class="rate">17<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="rate-item" id="rateItem2">
-                                                        <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
-                                                        <p class="rate-tit">포장상태</p>
-                                                        <div class="part">
-                                                            <p class="data"><span>꼼꼼해요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:76%;"></span>
-                                                                </p>
-                                                                <p class="rate">76<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>보통이에요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:20%;"></span>
-                                                                </p>
-                                                                <p class="rate">20<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="part">
-                                                            <p class="data"><span>별로예요</span></p>
-                                                            <div class="gauge-box">
-                                                                <p class="gauge-bar">
-                                                                    <span class="gauge" style="width:4%;"></span>
-                                                                </p>
-                                                                <p class="rate">4<span>%</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="more-btn">
-                                                    <a href="#"
-                                                       data-modules-customtoggle="openText:자세히보기;parent:.review-rate;"><span
-                                                            data-text="">닫기</span><i class="icon arrow"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- //.review-rate -->
-                                        </div>
-
-
-                                        <div class="content-area txt-review" id="reviewContentArea">
-
-                                            <h3>고객만족도 <em class="total-num">4,441</em>건</h3>
-
-                                            <div class="selectwrap">
-                                                <div class="custom-selectbox sm"
-                                                     onchange="searchEvalSort('/p/pdc/selectItemEvalList.do?dealYn=N')"
-                                                     id="posRightDiv" data-modules-selectbox="">
-                                                    <select id="posRight">
-                                                        <option value="01">최신순</option>
-                                                        <option value="16">별점 높은순</option>
-                                                        <option value="17">별점 낮은순</option>
-                                                    </select>
-                                                    <div class="ui-label"><a href="#1">최신순</a></div>
-                                                    <div class="ui-selectbox">
-                                                        <div class="selectbox_area">
-                                                            <ul>
-                                                                <li><a href="#1">최신순</a></li>
-                                                                <li><a href="#2">별점 높은순</a></li>
-                                                                <li><a href="#3">별점 낮은순</a></li>
-                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <script>
+                                                    function paging(obj, curr_page) {
+                                                        let prev_pageNum = $(".checkedPage").text()
 
+                                                        $(".checkedPage").replaceWith($('<a id=page' + prev_pageNum + ' onClick=paging(this)' + '>' + prev_pageNum + '</a>'))
+                                                        $(obj).replaceWith($('<strong class="checkedPage" id="page"' + curr_page + '>' + obj.innerHTML + '</strong>'));
 
-                                            <ul class="txt-review-list">
+                                                        $(".pdlist-wrap ul li").remove();
 
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">hee****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-30</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177637977">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">hee****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-30</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177637975">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">alt****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-30</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177637644">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">den****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-30</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177627442">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">005****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-30</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177626954">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">ass****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-29</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177625179">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>적당해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>평범해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>보통이에요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">eun****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-29</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177624257">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">hyj****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-29</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177615066">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>신선해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>맛있어요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">yjy****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-29</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177614465">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>별로예요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>평범해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>별로예요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-
-                                                <li class="review-item">
-                                                    <div class="review-top">
-                                                        <div class="top-left">
-                                                            <div class="starbg pt10">
-                                                                <p class="score"><span class="hiding">100점</span></p>
-                                                            </div>
-                                                            <span class="nick">yjy****</span>
-
-                                                        </div>
-                                                        <div class="top-right">
-                                                            <span class="date">2022-05-29</span>
-                                                            <input type="hidden" name="ITEM_EVAL_COMT_NO"
-                                                                   value="48122177614462">
-                                                            <input type="hidden" name="SLITM_CD" value="2122712699">
-                                                        </div>
-                                                    </div>
-                                                    <!--//review-top-->
-
-                                                    <!--review-option-->
-                                                    <div class="review-option">
-
-
-                                                        6kg(3kg * 2박스)
-
-                                                    </div>
-                                                    <!--//review-option-->
-
-                                                    <!--review-content-->
-
-                                                    <div class="review-content">
-                                                        <ul class="user-rate">
-
-
-                                                            <li>
-                                                                <strong>신선도</strong>
-                                                                <span>적당해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>맛</strong>
-                                                                <span>평범해요</span>
-                                                            </li>
-
-
-                                                            <li>
-                                                                <strong>포장상태</strong>
-                                                                <span>꼼꼼해요</span>
-                                                            </li>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                    <!--//review-content-->
-                                                </li>
-
-                                            </ul>
-
-                                            <div class="paging itemEvalPaging">
-
-
-                                                <div class="page-prevarea">
-
-
-                                                    <strong>1</strong>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=2')"
-                                                       href="javascript://" class="">2</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=3')"
-                                                       href="javascript://" class="">3</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=4')"
-                                                       href="javascript://" class="">4</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=5')"
-                                                       href="javascript://" class="">5</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=6')"
-                                                       href="javascript://" class="">6</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=7')"
-                                                       href="javascript://" class="">7</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=8')"
-                                                       href="javascript://" class="">8</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=9')"
-                                                       href="javascript://" class="">9</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=10')"
-                                                       href="javascript://" class="">10</a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=11')"
-                                                       class="page-next" aria-label="다음페이지 이동" href="javascript://">
-                                                        <i class="icon"></i><span class="hiding">다음페이지 이동</span>
-                                                    </a>
-
-
-                                                    <a onclick="searchEvalPaging('/p/pdc/selectItemEvalList.do?dealYn=N&amp;page=445')"
-                                                       class="page-last" aria-label="마지막페이지 이동" href="javascript://">
-                                                        <i class="icon"></i><span class="hiding">마지막페이지 이동</span>
-                                                    </a>
-
-                                                </div>
-
+                                                        location.href = `/product/detail?product_seq=${productVO.product_seq}&page_num=` + curr_page + `#reviewContentArea`
+                                                    }
+                                                </script>
 
                                             </div>
+                                        </c:if>
 
-
-                                        </div>
 
 
                                         <!--// 만족도 -->
@@ -3314,24 +2776,11 @@
 
 
                                 </div>
-                                <!--// 상품평 tab -->
-
-                                <!-- Q&A -->
-
-                                <!--// Q&A -->
-
-                                <!-- 추천 영역 -->
                                 <div class="compd-wrap">
                                     <div class="content-area pick-keyword-wrap" id="rcmmKeywordSearch"
                                          style="display:none;">
                                     </div>
 
-
-                                    <!--content-area // 현대Hmall 엠디가 추천하는 딜-->
-
-                                    <!--//content-area // 현대Hmall 엠디가 추천하는 딜-->
-
-                                    <!--content-area // 연관추천상품 삭제!!-->
                                     <div class="content-area product-wrap pdslide" style="display:none;"
                                          id="rcmmSectRelateArea">
 
@@ -3350,25 +2799,11 @@
                                          id="rcmmSectFashionArea">
 
                                     </div>
-                                    <!--//content-area // 패션잡화추천상품-->
-
-                                    <!--content-area // 매장추천상품-->
-
-                                    <!--//content-area // 매장추천상품-->
-
-                                    <!--content-area // 추천기획전-->
-
-                                    <!--//content-area // 추천기획전-->
-
-                                    <!-- PC 상품상세(마케팅용) 하단배너 R023 BG컬러x -->
 
                                     <div class="content-area banner-template-wrap">
 
 
                                     </div>
-
-                                    <!-- // PC 상품상세(마케팅용) 하단배너 -->
-
                                 </div>
                                 <!--// 추천 영역 -->
                             </div>

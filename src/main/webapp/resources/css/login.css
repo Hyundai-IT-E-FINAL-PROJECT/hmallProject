@@ -12,7 +12,7 @@
 
 .chklabel .icon + span{margin:0 0 3px 8px;}
 
-/* input readonly 컬러 >> 이후 공통 작업으로 common.css 에 옮길 예정 */
+/* input readonly 컬러 >> 이후 공통 작z업으로 common.css 에 옮길 예정 */
 input[readonly]{color:#aaa;}
 .inputbox + .inputbox{margin-top:10px;}
 

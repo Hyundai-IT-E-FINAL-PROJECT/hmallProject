@@ -242,7 +242,7 @@
 
 
 
-                      <a href="product/detail?product_seq=${list.PRODUCT_SEQ}">
+                      <a href="product/detail?product_seq=${list.PRODUCT_SEQ}&page_num=1">
                       <span class="img"><img src="/resources/img/${list.IMAGE_NAME}.jpg" alt="${list.PRODUCT_NAME}"/></span>
                       <div class="box">
                         <span class="tit">${list.PRODUCT_NAME}</span>

@@ -47,7 +47,7 @@
             <div class="contents" id="pl_main">
                 <div class="display-list-wrap" id="itemListArea">
                     <h2 class="title30" first_category="${categoryVO.category_seq}">
-                        <span>${categoryVO.category_name}</span> <em id="product-count">(${total})</em>
+                        <span style="font-size: unset;">${categoryVO.category_name}</span> <em id="product-count">(${total})</em>
                     </h2>
                     <ul class="ui-tab _selectCategory" role="tablist">
                         <c:forEach items="${subCategoryList}" var="subCategory">
@@ -94,7 +94,7 @@
                         <ul>
                             <c:forEach items="${productVOList}" var="productVO">
                                 <li class="pdthumb">
-                                    <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}">
+                                    <a href="/product/detail?product_seq=${productVO.PRODUCT_SEQ}&page_num=1">
                                         <div class="thumb">
                                             <img src="/resources/img/${productVO.IMAGE_NAME}.jpg" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=300x300&amp;AR=0')" img404="http://localhost:8080/resources/img/undefined.jpg">
                                         </div>
