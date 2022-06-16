@@ -270,8 +270,7 @@ To change this template use File | Settings | File Templates.
                                                 <div class="card-story-name"><span
                                                         class="card-story-type">리워드</span> 주식회사 베지스푼
                                                 </div>
-                                                <div class="card-story-title">#100% 식물성 너겟 #치킨 없는 치킨 너겟
-                                                    &lt;댓츠잇&gt;
+                                                <div class="card-story-title">
                                                 </div>
                                             </div>
                                         </figcaption>
@@ -423,7 +422,7 @@ To change this template use File | Settings | File Templates.
                             <div class="menu-trigger mt5 active_1"><span></span><span></span><span></span></div>
                         </div>
                     </div>
-                    <div class="reward-choice-projectTitle">#100% 식물성 너겟 #치킨 없는 치킨 너겟 &lt;댓츠잇&gt;</div>
+                    <div class="reward-choice-projectTitle">${list[0].FUND_PRODUCT_TITLE}</div>
                     <div class="reward-choice-contentArea reward-choice-margin">
                         <div class="reward-choice-desc">
                             펀딩을 마치면 <b>결제 예약 상태</b>입니다. 종료일에 100%<br>

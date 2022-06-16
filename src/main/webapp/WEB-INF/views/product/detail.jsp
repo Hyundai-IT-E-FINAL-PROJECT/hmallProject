@@ -2028,7 +2028,7 @@
                                                             <p>&nbsp;</p>
                                                             <p>
                                                                 <%--                                                                <img src="http://image.hyundaihmall.com/CO/EDITOR/20210302/140909557/26s1w.jpg">--%>
-                                                                ${productVO.product_detail}
+                                                                <img src="/resources/img/${productVO.product_detail}.jpg" />
                                                             </p>
                                                             <p>&nbsp;</p>
                                                             <p>&nbsp;</p>

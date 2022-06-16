@@ -123,10 +123,10 @@
                             <a href="${contextPath}/fund/main" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="스토어">펀딩</a></li>
                         <li class="current ">
-                            <a href="/p/tvMainR.do?_IC_=tab3&mainDispSeq=3&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="홈">홈</a></li>
                         <li class=" ">
-                            <a href="/p/mktgMain.do?_IC_=tab4&mainDispSeq=62&" class="gp_className" ga-category="메인 홈"
+                            <a href="${contextPath}/exhibition/euro_exhibit?exhibit_num=1" class="gp_className" ga-category="메인 홈"
                                ga-action="상단탭" ga-label="슈퍼H페스타">기획전</a></li>
                     </ul>
                 </div>
