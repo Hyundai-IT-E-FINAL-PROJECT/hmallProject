@@ -1203,7 +1203,7 @@
 .theme-pd .theme-list li .img .flag-da{position:absolute;top:15px;left:15px;width:29px;height:20px;border-radius:20px;background:rgba(0, 0, 0, 0.05);color:rgba(255,255,255,0.3);font-size:10px;line-height:18px;letter-spacing:-0.4px;}
 .theme-pd .theme-list li .img .brand{position:absolute;top:15px;right:15px;width:60px;height:60px;}
 .theme-pd .theme-list li .img .brand img{width:100%;height:100%;border-radius:0;}
-.theme-pd .theme-list li figcaption{height:108px;padding:15px;text-align:center;}
+.theme-pd .theme-list li figcaption{height:108px;padding:15px;}
 .theme-pd .theme-list li figcaption .tit{width:218px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333;font-size:18px;line-height:26px;font-weight:700;letter-spacing:-0.72px;}
 .theme-pd .theme-list li figcaption .txt{width:218px;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#999;font-size:14px;letter-spacing:-0.56px;}
 /* 통합기획전 타이틀 - 딜배너형 */

@@ -30,6 +30,7 @@
                         });
                         var rgx1 = /\D/g;
                         var rgx2 = /(\d+)(\d{3})/;
+
                         // 금액 타입 체크
                         function getNumber(obj) {
                             var num01, num02;
@@ -38,6 +39,7 @@
                             num01 = setComma(num02);
                             obj.value = num01;
                         }
+
                         // 콤마 입력 변환
                         function setComma(inNum) {
                             var outNum;
@@ -47,6 +49,7 @@
                             }
                             return outNum;
                         }
+
                     </script>
 
                     <div class="home-section display-wrap">
@@ -69,7 +72,7 @@
                                                         <input type="hidden" name="exhibit_num" value="3">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg" onclick="exhibit_3()"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;" >
@@ -79,7 +82,7 @@
                                                         <input type="hidden" name="exhibit_num" value="2">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg" onclick="exhibit_2()"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_4.jpeg" onclick="exhibit_2()" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                         <div class="slick-slide" style="width: 711px;">
@@ -89,15 +92,14 @@
                                                         <input type="hidden" name="exhibit_num" value="1">
                                                     </div>
                                                 </form>
-                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_5.jpeg" onclick="exhibit_1();"/>
+                                                <img class="img_1" src="${contextPath}/resources/img/exhibitions/mainImg_3.jpeg" onclick="exhibit_3()" style="width: 1081px; height: 336px"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <button class="slick-next slick-arrow" aria-label="Next" type="button" style="" onclick="plusSlides(1)">Next
                                 </button>
-                                <div class="slick-slidetotal" style=""><em id="current_slide">1</em><strong
-                                        class="total">3</strong></div>
+                                <div class="slick-slidetotal" style=""><em id="current_slide">1</em><strong class="total">3</strong></div>
                             </div>
                         </div>
 
@@ -149,6 +151,7 @@
                                         currentElement = parseInt(currentElement) -1;
                                     }
                                 }
+
                                 resultElement.innerText = currentElement;
                             }
                             function showSlides(n){
@@ -162,8 +165,10 @@
                                 }
                                 slides[slideIndex-1].style.display = "block";
                             }
+
                             var slideIndex_side = 1;
                             showSlides_side(slideIndex_side);
+
                             function plusSlides_side(n){
                                 showSlides_side(slideIndex_side+=n);
                                 console.log(n);
@@ -186,6 +191,7 @@
                                 }
                                 resultElement.innerText = currentElement;
                             }
+
                             function showSlides_side(n){
                                 var i;
                                 var slides_side = document.getElementsByClassName("slide_img");
@@ -198,11 +204,6 @@
                                 slides_side[slideIndex_side-1].style.display = "block";
                             }
                         </script>
-
-
-                        <!--//딜배너 영역-->
-                        <!--이달의 혜택 hm2tv_evicon 없는 경우에 display:none-->
-                        <!--//이달의 혜택-->
                     </div>
                     <div class="home-section point" style="display:none">
                         <div class="point-box">
@@ -260,7 +261,7 @@
 
                     <div class="home-section mytem" id="myTemArea" style="">
                         <div class="titArea">
-                            <h3>나에게 딱! 마이템</h3>
+                            <h3>나에게 딱! 현재 인기 아이템</h3>
                         </div>
 
                         <!-- 이 카테고리를 본 고객님들이 본 상품 -->
@@ -269,9 +270,6 @@
                         <div class="pdlist-wrap col5">
                             <div data-modules-slick="paging:true;fade:false;dots:false;arrows:true;"
                                  class="slick-initialized slick-slider isArrows slick-paging">
-                                <button class="slick-prev slick-arrow slick-disabled" aria-label="Previous"
-                                        type="button" aria-disabled="true" style="">Previous
-                                </button>
                                 <div class="slick-list draggable">
                                     <div class="slick-track"
                                          style="opacity: 1; width: 2162px; transform: translate(0px, 0px);">
@@ -489,21 +487,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style=""
-                                        aria-disabled="false">Next
-                                </button>
-                                <div class="slick-slidetotal" style=""><em class="current">1</em><strong
-                                        class="total">2</strong></div>
                             </div>
                         </div>
 
 
                         <!--// 이 카테고리를 본 고객님들이 본 상품 -->
                     </div>
-                    <script type="text/javascript">
-                        // MYTEM 추천영역 셋팅
-                        rcmmItemMyTem();
-                    </script>
                     <div class="home-section banner-slider big-banner">
                         <ul data-modules-slick="paging:false;dots:true;arrows:false;autoplay:true;infinite:true;"
                             class="slick-initialized slick-slider slick-single">
@@ -550,84 +539,81 @@
                             </div>
                         </ul>
                     </div>
-
                     <div class="home-section mytem" id="myTemArea" style="margin-bottom: -50px">
                         <div class="titArea">
                             <h3>진행중인 인기 리워드</h3>
                         </div>
                         <!--// 이 카테고리를 본 고객님들이 본 상품 -->
                     </div>
-
                     <div class="home-section theme-pd">
                         <!--8개로 운영, 8개 한번에 노출 // 어드민에 별도 url 입력된 경우 해당url로 이동, 그렇지 않을 시 기본기획전 url로 이동-->
                         <ul class="theme-list">
-                            <%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
-                            <li>
-                                <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
-                                    <div class="img" style="margin-bottom: -12px">
-                                        <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${bestFund[0].fund_product_main_img}">
-                                    </div>
-                                    <figcaption>
-                                        <div>
-                                            <p class="tit">${bestFund[0].fund_product_title}</p>
+<%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
+                                <li>
+                                    <figure>
+                                        <a onclick="location.href='${contextPath}/fund/detail/${bestFund[0].fund_product_seq}'";
+                                           ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
+                                           ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
+
+                                        <div class="img" style="margin-bottom: -12px">
+                                            <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${bestFund[0].fund_product_main_img}">
                                         </div>
-                                        <p class="tit" style="margin-bottom: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bestFund[0].fund_product_pr_cost}"/>원 펀딩</p>
-                                        <div style="justify-content: space-between; display: flex">
-                                            <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/> %</p>
-                                            <fmt:formatDate var="itDate" value="${bestFund[0].fund_product_end_date}" pattern="yyyyMMdd" />
-                                            <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D -${itDate-now}</p>
-                                        </div>
-                                    </figcaption>
-                                    </a>
-                                </figure>
-                                <div>
-                                    <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
+                                        <figcaption>
+                                            <div>
+                                                <p class="tit">${bestFund[0].fund_product_title}</p>
+                                            </div>
+                                            <p class="tit" style="margin-bottom: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bestFund[0].fund_product_pr_cost}"/>원 펀딩</p>
+                                            <div style="justify-content: space-between; display: flex">
+                                                <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/> %</p>
+                                                <fmt:formatDate var="itDate" value="${bestFund[0].fund_product_end_date}" pattern="yyyyMMdd" />
+                                                <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D -${itDate-now}</p>
+                                            </div>
+                                        </figcaption>
+                                        </a>
+                                    </figure>
+                                    <div>
+                                        <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
                                             <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/>%;
                                                     display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
-                                    </p>
-                                </div>
-                            </li>
-                            <%--                            </c:forEach>--%>
+                                        </p>
+                                    </div>
+                                </li>
+<%--                            </c:forEach>--%>
+                                <li>
+                                    <figure>
+                                        <a onclick="location.href='${contextPath}/fund/detail/${bestFund[1].fund_product_seq}'";
+                                           ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
+                                           ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
+
+                                        <div class="img" style="margin-bottom: -12px">
+                                            <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${bestFund[1].fund_product_main_img}">
+                                        </div>
+                                        <figcaption>
+                                            <div>
+                                                <p class="tit">${bestFund[1].fund_product_title}</p>
+                                            </div>
+                                            <p class="tit" style="margin-bottom: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bestFund[1].fund_product_pr_cost}"/>원 펀딩</p>
+                                            <div style="justify-content: space-between; display: flex">
+                                                <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[1].fund_product_pr_cost/bestFund[1].fund_product_goal_cost)*100}"/> %</p>
+                                                <fmt:formatDate var="itDate" value="${bestFund[1].fund_product_end_date}" pattern="yyyyMMdd" />
+                                                <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D -${itDate-now}</p>
+                                            </div>
+                                        </figcaption>
+                                        </a>
+                                    </figure>
+                                    <div>
+                                        <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
+                                                                        <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[1].fund_product_pr_cost/bestFund[1].fund_product_goal_cost)*100}"/>%;
+                                                                                display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
+                                        </p>
+                                    </div>
+                                </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${bestFund[2].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
-                                    <div class="img" style="margin-bottom: -12px">
-                                        <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${bestFund[1].fund_product_main_img}">
-                                    </div>
-                                    <figcaption>
-                                        <div>
-                                            <p class="tit">${bestFund[1].fund_product_title}</p>
-                                        </div>
-                                        <p class="tit" style="margin-bottom: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bestFund[1].fund_product_pr_cost}"/>원 펀딩</p>
-                                        <div style="justify-content: space-between; display: flex">
-                                            <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[1].fund_product_pr_cost/bestFund[1].fund_product_goal_cost)*100}"/> %</p>
-                                            <fmt:formatDate var="itDate" value="${bestFund[1].fund_product_end_date}" pattern="yyyyMMdd" />
-                                            <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D -${itDate-now}</p>
-                                        </div>
-                                    </figcaption>
-                                    </a>
-                                </figure>
-                                <div>
-                                    <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
-                                                                        <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[1].fund_product_pr_cost/bestFund[1].fund_product_goal_cost)*100}"/>%;
-                                                                                display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
-                                       ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
-                                       ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
                                     <div class="img" style="margin-bottom: -12px">
                                         <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${bestFund[2].fund_product_main_img}">
                                     </div>
@@ -653,8 +639,7 @@
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${bestFund[3].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -677,7 +662,7 @@
                                 <div>
                                     <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
                                         <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[3].fund_product_pr_cost/bestFund[3].fund_product_goal_cost)*100}"/>%;
-                                                display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
+                                                                                                        display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
                                     </p>
                                 </div>
                             </li>
@@ -687,7 +672,7 @@
                     <div class="home-section mytem" id="myTemArea" style="margin-bottom: -50px">
                         <div class="titArea">
                             <h3>마감임박 리워드 프로젝트</h3>
-                        </div>
+                       </div>
                         <!--// 이 카테고리를 본 고객님들이 본 상품 -->
                     </div>
 
@@ -697,10 +682,10 @@
                             <%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[0].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
+
                                     <div class="img" style="margin-bottom: -12px">
                                         <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${deadlineProduct[0].fund_product_main_img}">
                                     </div>
@@ -727,8 +712,7 @@
                             <%--                            </c:forEach>--%>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[1].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -751,16 +735,16 @@
                                 <div>
                                     <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
                                        <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(deadlineProduct[1].fund_product_pr_cost/deadlineProduct[1].fund_product_goal_cost)*100}"/>%;
-                                               display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
+                                           display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
                                     </p>
                                 </div>
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[2].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
+
                                     <div class="img" style="margin-bottom: -12px">
                                         <img src="https://hmallbucket.s3.ap-northeast-2.amazonaws.com/mainImage/${deadlineProduct[2].fund_product_main_img}">
                                     </div>
@@ -780,14 +764,13 @@
                                 <div>
                                     <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
                                         <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(deadlineProduct[2].fund_product_pr_cost/deadlineProduct[2].fund_product_goal_cost)*100}"/>%;
-                                                display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
+                                            display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
                                     </p>
                                 </div>
                             </li>
                             <li>
                                 <figure>
-                                    <a href="javascript:;"
-                                       onclick="gaTagging(this, 'https://www.hmall.com/m/dpa/searchSpexSectItem.do?sectId=2740027', '', '');"
+                                    <a onclick="location.href='${contextPath}/fund/detail/${deadlineProduct[3].fund_product_seq}'";
                                        ga-custom-title="메인>홈쇼핑" ga-custom-name="메인_홈쇼핑탭" ga-custom-position="테마기획전"
                                        ga-custom-creative="마틴발 CLASSIC MEN" s="" wear'="" ga-custom-id="" ga-custom-etc="urlAction" tag-comment="GA요청:홈쇼핑탭:17">
 
@@ -810,7 +793,7 @@
                                 <div>
                                     <p style="width: 100%;height: 8px;margin-bottom: 0;border-radius: 4px;background: #eee; margin-top: -5px;">
                                         <span style="width: <fmt:formatNumber type="number" maxFractionDigits="0" value="${(deadlineProduct[3].fund_product_pr_cost/deadlineProduct[3].fund_product_goal_cost)*100}"/>%;
-                                                display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
+                                            display: block;height: 8px;border-radius: 4px;background: #18A0FB; max-width: 100%"></span>
                                     </p>
                                 </div>
                             </li>
@@ -840,32 +823,41 @@
     <!-- //.container -->
     <script type="text/javascript">
         var lbrdEndTimeStrH = '20220525114000';
+
         var etvServerDtm;
         if ('20220525103333' != '' && '20220525103333' != null) {
             etvServerDtm = '20220525103333';
         }
+
         $(function () {
             if ((lbrdEndTimeStrH && lbrdEndTimeStrH.length > 0)) {
                 clockH(etvServerDtm);
             }
             videojs($(".brodEtvArea video").get(0));
         });
+
+
         function clockH(serverDtm) {
+
             var now;
             if (serverDtm == undefined || serverDtm == null) {
                 now = new Date();
             } else {
                 now = new Date(serverDtm.replace(/([\d]{4})([\d]{2})([\d]{2})([\d]{2})([\d]{2})([\d]{2})/, '$2/$3/$1 $4:$5:$6'));
             }
+
             var year = Number(lbrdEndTimeStrH.substring(0, 4));       //년
             var month = Number(lbrdEndTimeStrH.substring(4, 6)) - 1; //월 (0 ~ 11)
             var date = Number(lbrdEndTimeStrH.substring(6, 8));       //일
             var hours = Number(lbrdEndTimeStrH.substring(8, 10));     //시
             var minutes = Number(lbrdEndTimeStrH.substring(10, 12));  //분
             var seconds = Number(lbrdEndTimeStrH.substring(12, 14));  //초
+
             var endDtm = new Date(year, month, date, hours, minutes, seconds);  // 방송종료일시
+
             var gap = (endDtm.getTime() - now.getTime()) / 1000;
             var leftTime = "";
+
             if (gap <= 0) {
                 /* location.reload(true); */
                 leftTime = "00 : 00 : 00";
@@ -874,12 +866,15 @@
                 $(".brodEtvArea .vjs-big-play-button").hide()
                 return;
             }
+
             var hour = parseInt(gap / 3600);
             var min = parseInt((gap % 3600) / 60);
             var sec = parseInt(gap % 60);
+
             leftTime += ((hour < 10) ? "0" : "") + hour;
             leftTime += ((min < 10) ? " : 0" : " : ") + min;
             leftTime += ((sec < 10) ? " : 0" : " : ") + sec;
+
             $('#etvLeftTime').html(leftTime);
             setTimeout("clockH()", 1000);
         }

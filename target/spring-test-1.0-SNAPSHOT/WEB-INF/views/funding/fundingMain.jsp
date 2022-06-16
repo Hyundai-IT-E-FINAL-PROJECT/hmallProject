@@ -72,7 +72,9 @@ To change this template use File | Settings | File Templates.
                                                             <figcaption>
                                                                 <div class="card-reward-content">
                                                                     <div class="card-reward-name">${fund.USER_NAME}</div>
-                                                                    <div class="card-reward-title">${fund.FUND_PRODUCT_TITLE}
+                                                                    <div class="card-reward-title" style="justify-content: space-between; display: flex;">
+                                                                        <span>${fund.FUND_PRODUCT_TITLE}</span>
+                                                                        <span>${fund.FUND_PRODUCT_PARTICIPANTS} 명 참여</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-reward-row">

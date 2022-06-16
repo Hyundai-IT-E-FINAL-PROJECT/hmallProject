@@ -481,7 +481,7 @@
                                                 <li class="pdthumb" ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                     <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
                                                         <div class="thumb">
-                                                            <img src="https://image.hmall.com/static/0/5/17/41/2141175088_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/0/5/17/41/2141175088_0.jpg?RS=400x400&amp;AR=0" alt="유로컬렉션 22FW 휘메일 풀스킨 호리젠탈 밍크 베스트" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                            <img src="${contextPath}/resources/img/exhibitions/${euro.EXHIBIT_IMAGE}.jpg">
                                                             <div class="ready">
                                                                 <span class="playtime"><i class="icon"></i><em>00:59</em></span>
                                                             </div>
@@ -527,30 +527,30 @@
                             <div class="pdlist-wrap col4">
                                 <div class="lio">
                                 <ul>
-                                    <c:forEach items="${list}" var="euro">
-                                        <c:if test="${euro.PRODUCT_BRAND eq 'LIOBELL'}">
+                                    <c:forEach items="${list}" var="liobell">
+                                        <c:if test="${liobell.PRODUCT_BRAND eq 'LIOBELL'}">
                                             <li class="pdthumb " ga-custom-title="" ga-custom-name="" ga-custom-position="" ga-custom-creative="" ga-custom-id="" ga-custom-etc="">
                                                 <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740678&amp;slitmCd=2141537482', this);">
                                                     <div class="thumb">
-                                                        <img src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" alt="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                        <img src="${contextPath}/resources/img/exhibitions/${liobell.EXHIBIT_IMAGE}.jpg">
                                                         <div class="ready">
                                                         </div>
                                                     </div>
                                                     <div class="figcaption">
-                                                        <div class="pdname" aria-label="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종">${euro.PRODUCT_NAME}</div>
+                                                        <div class="pdname" aria-label="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종">${liobell.PRODUCT_NAME}</div>
                                                         <div class="pdprice">
                                                             <span class="rateprice" aria-label="정상가 가격">
-                                                            <p class="discount" aria-label="정상가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST}"/></em>원</p>
+                                                            <p class="discount" aria-label="정상가"><em><fmt:formatNumber type="number" maxFractionDigits="0" value="${liobell.PRODUCT_COST}"/></em>원</p>
                                                             </span>
                                                         </div>
                                                         <div class="pdinfo">
                                                             <div class="benefits">
                                                                 <span class="flag"><em class="color-ec5baa">적립금</em></span>
-                                                                <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${euro.PRODUCT_COST * 0.05}"/></span>
+                                                                <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${liobell.PRODUCT_COST * 0.05}"/></span>
                                                             </div>
                                                             <p class="like-count">
-                                                                <em><fmt:formatDate value="${euro.CREATED_AT}" pattern="yyyy-MM-dd"/></em>
-                                                                <b>(${euro.SELL_COUNT})</b>
+                                                                <em><fmt:formatDate value="${liobell.CREATED_AT}" pattern="yyyy-MM-dd"/></em>
+                                                                <b>(${liobell.SELL_COUNT})</b>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -663,10 +663,12 @@
                     console.log(pp.PRODUCT_BRAND);
                     console.log(pp.CREATED_AT);
                     console.log(pp.SELL_COUNT);
+                    console.log(pp.EXHIBIT_IMAGE);
                     var pn = pp.PRODUCT_NAME;
                     var pc = (pp.PRODUCT_COST).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
                     var pb = pp.PRODUCT_BRAND;
                     var ps = pp.SELL_COUNT;
+                    var pi = pp.EXHIBIT_IMAGE;
                     var pd = date;
                     var point = (pp.PRODUCT_COST * 0.05).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
                     if (pb === 'EURO') {
@@ -675,7 +677,7 @@
                             <li class="pdthumb">
                                  <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
                                             <div class="thumb">
-                                                <img src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" alt="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                <img src="../../../resources/img/exhibitions/`+pi+`.jpg">
                                                 <div class="ready">
                                                 </div>
                                             </div>
@@ -713,7 +715,7 @@
                             <li class="pdthumb">
                                  <a href="javascript:;" onclick="goItemDetail('/p/pda/itemPtc.do?sectId=2740676&amp;slitmCd=2141175088', this);">
                                             <div class="thumb">
-                                                <img src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" data-io-src="https://image.hmall.com/static/4/7/53/41/2141537482_0.jpg?RS=400x400&amp;AR=0" alt="리오벨[Liobell] 22 NEW 컬러링 리버서블 호주산 양모 100% 베스트 1종" class=" done" onerror="noImage(this, 'https://image.hmall.com/p/img/co/noimg-thumb.png?RS=400x400&amp;AR=0')">
+                                                <img src="../../../resources/img/exhibitions/`+pi+`.jpg">
                                                 <div class="ready">
                                                 </div>
                                             </div>
