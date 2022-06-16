@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.team2.mapper.ExhibitMapper">
     <select id="euro_exhibit" resultType="map">
-        select tp.product_name, tp.product_cost, tp.product_brand, tp.sell_count, tp.created_at
+        select tp.product_name, tp.product_cost, tp.product_brand, tp.sell_count, tp.created_at, te.exhibit_image
         from tbl_product tp
         left join tbl_exhibit te
         on tp.product_seq = te.product_seq
@@ -110,7 +110,7 @@
     </select>
 
     <select id="sort_exhibit" resultType="map">
-        select tp.product_name, tp.product_cost, tp.product_brand, tp.sell_count, tp.created_at
+        select tp.product_name, tp.product_cost, tp.product_brand, tp.sell_count, tp.created_at, te.exhibit_image
         from tbl_product tp
                  join tbl_exhibit te
                            on tp.product_seq = te.product_seq

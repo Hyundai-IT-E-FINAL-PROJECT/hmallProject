@@ -12,6 +12,7 @@ public class ExhibitVO {
     private int exhibit_num;
     private Date created_at;
     private Date updated_at;
+    private String exhibit_image;
 
     private List<ProductVO> productVO;
 }
