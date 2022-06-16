@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
+<<<<<<< HEAD
 Built-By: Minsu
+=======
+Built-By: gimjihye
+>>>>>>> f8e6cae863fa920bab005a87ca692e12fa4dba56
 Build-Jdk: Oracle OpenJDK version 11.0.15
 
