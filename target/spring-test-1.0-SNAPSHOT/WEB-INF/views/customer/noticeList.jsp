@@ -3100,59 +3100,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--//tblwrap tbl-list-->
-                    <!--paging-->
-                    <div class="paging">
-                        <div class="page-prevarea">
-
-
-
-
-
-                            <div class="page-prevarea">
-
-
-
-
-
-
-
-
-                                <strong aria-label="현재 선택페이지">1</strong>
-
-
-
-                                <a href="/p/ccb/noticeList.do?page=2">2</a>
-
-
-
-
-                                <a href="/p/ccb/noticeList.do?page=3">3</a>
-
-
-
-
-                                <a href="/p/ccb/noticeList.do?page=4">4</a>
-
-
-
-
-
-
-
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                    <!--//paging-->
                 </div>
-                <!--//공지사항-->
             </div>
-            <!-- // .contents -->
         </div>
-        <!-- //.container -->
     </main>
     <script type="text/javascript" defer="defer">
         (function() {

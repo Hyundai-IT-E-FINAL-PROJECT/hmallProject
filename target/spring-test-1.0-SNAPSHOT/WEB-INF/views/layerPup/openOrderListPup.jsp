@@ -693,7 +693,7 @@
                             <!--allNoti-->
                             <div role="tabpanel" class="tab-pane ui-active" id="allNoti">
                                 <!--box-type-->
-                                <div class="box-type">
+                                <div class="box-type" style="margin-bottom: 10px;}">
                                     <!--dotlist-->
                                     <ul class="dotlist">
                                         <li>문의하실 주문을 선택하시고 확인 버튼을 눌러주세요.</li>
@@ -701,50 +701,50 @@
                                 </div>
                                 <!--//box-type-->
                                 <!--search-form-->
-                                <div class="search-form">
-                                    <p>
+<%--                                <div class="search-form">--%>
+<%--                                    <p>--%>
 
-                                    </p>
-                                    <!--search-area-->
-                                    <form action="/p/cce/selectCustBoardPup.do" method="post" name="custBoardSchForm">
-                                        <div class="search-area">
-                                            <!--search-term--> <!--20200828 금요일 추후 라디오박스 형태로 변경 예정-->
-                                            <div class="search-term">
-                                                <a href="javascript:;" onclick="goListPage('1');" class="termmonth active">1개월</a>
-                                                <a href="javascript:;" onclick="goListPage('3');" class="term ">3개월</a>
-                                                <a href="javascript:;" onclick="goListPage('4');" class="term ">12개월</a>
-                                                <a href="javascript:;" onclick="goListPage('A');" class="all ">전체보기</a>
-                                                <input type="hidden" name="month" value="1">
-                                            </div>
-                                            <!--//search-term-->
-                                            <!--field-->
-<%--                                            <div class="field">--%>
-<%--                                                <!--selectbox-->--%>
-<%--                                                <div class="selectwrap"><div class="custom-selectbox" data-modules-selectbox="">--%>
-<%--                                                    <select>--%>
-<%--                                                        <option value="" selected="selected">분류를 선택하세요</option>--%>
-<%--                                                        <option value="02">상품</option>--%>
-<%--                                                        <option value="03">결제</option>--%>
-<%--                                                        <option value="04">취소/교환/반품/AS</option>--%>
-<%--                                                        <option value="05">배송/회수</option>--%>
-<%--                                                        <option value="06">사고</option>--%>
-<%--                                                        <option value="07">서비스시스템</option>--%>
-<%--                                                    </select>--%>
-<%--                                                    <div class="ui-label"><a href="#1">분류를 선택하세요</a></div><div class="ui-selectbox"><div class="selectbox_area"><ul><li><a href="#1">분류를 선택하세요</a></li><li><a href="#2">상품</a></li><li><a href="#3">결제</a></li><li><a href="#4">취소/교환/반품/AS</a></li><li><a href="#5">배송/회수</a></li><li><a href="#6">사고</a></li><li><a href="#7">서비스시스템</a></li></ul></div></div></div></div>--%>
-<%--                                                <!--//selectbox-->--%>
-<%--                                                <!--검색창-->--%>
-<%--                                                <div class="inputbox">--%>
-<%--                                                    <label class="inplabel icon-find"><input type="text" name="condText" value="" placeholder="입력하세요"></label>--%>
-<%--                                                    <button class="btn btn-find"><i class="icon find"></i><span class="hiding">검색</span></button>--%>
-<%--                                                    <button class="btn ico-clearabled"><span class="hiding">지우기</span></button>--%>
-<%--                                                </div>--%>
-                                                <!--//검색창-->
-                                                <!--20200828 금요일 새창으로 열기 글쓰기 버튼 클릭 시 유형선택 팝업 노출 PJD005 // width, height 값 -->
-                                                <button class="btn btn-default small34" onclick="openCustBoardTypeChoice();"><span>조회</span></button>
-                                            </div>
-                                            <!--//field-->
-                                        </div>
-                                    </form>
+<%--                                    </p>--%>
+<%--                                    <!--search-area-->--%>
+<%--                                    <form action="/p/cce/selectCustBoardPup.do" method="post" name="custBoardSchForm">--%>
+<%--                                        <div class="search-area">--%>
+<%--                                            <!--search-term--> <!--20200828 금요일 추후 라디오박스 형태로 변경 예정-->--%>
+<%--                                            <div class="search-term">--%>
+<%--                                                <a href="javascript:;" onclick="goListPage('1');" class="termmonth active">1개월</a>--%>
+<%--                                                <a href="javascript:;" onclick="goListPage('3');" class="term ">3개월</a>--%>
+<%--                                                <a href="javascript:;" onclick="goListPage('4');" class="term ">12개월</a>--%>
+<%--                                                <a href="javascript:;" onclick="goListPage('A');" class="all ">전체보기</a>--%>
+<%--                                                <input type="hidden" name="month" value="1">--%>
+<%--                                            </div>--%>
+<%--                                            <!--//search-term-->--%>
+<%--                                            <!--field-->--%>
+<%--&lt;%&ndash;                                            <div class="field">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <!--selectbox-->&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <div class="selectwrap"><div class="custom-selectbox" data-modules-selectbox="">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <select>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="" selected="selected">분류를 선택하세요</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="02">상품</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="03">결제</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="04">취소/교환/반품/AS</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="05">배송/회수</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="06">사고</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <option value="07">서비스시스템</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    </select>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <div class="ui-label"><a href="#1">분류를 선택하세요</a></div><div class="ui-selectbox"><div class="selectbox_area"><ul><li><a href="#1">분류를 선택하세요</a></li><li><a href="#2">상품</a></li><li><a href="#3">결제</a></li><li><a href="#4">취소/교환/반품/AS</a></li><li><a href="#5">배송/회수</a></li><li><a href="#6">사고</a></li><li><a href="#7">서비스시스템</a></li></ul></div></div></div></div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <!--//selectbox-->&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <!--검색창-->&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <div class="inputbox">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <label class="inplabel icon-find"><input type="text" name="condText" value="" placeholder="입력하세요"></label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <button class="btn btn-find"><i class="icon find"></i><span class="hiding">검색</span></button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <button class="btn ico-clearabled"><span class="hiding">지우기</span></button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                </div>&ndash;%&gt;--%>
+<%--                                                <!--//검색창-->--%>
+<%--                                                <!--20200828 금요일 새창으로 열기 글쓰기 버튼 클릭 시 유형선택 팝업 노출 PJD005 // width, height 값 -->--%>
+<%--                                                <button class="btn btn-default small34" onclick="openCustBoardTypeChoice();"><span>조회</span></button>--%>
+<%--                                            </div>--%>
+<%--                                            <!--//field-->--%>
+<%--                                        </div>--%>
+<%--                                    </form>--%>
                                     <!--//search-area-->
                                 </div>
                                 <!--//search-form-->
@@ -787,8 +787,9 @@
                                         </table>
                                     </div>
                                 </div>
-<%--                            TODO: 확인버튼 눌렀을 때 product seq 값 반환, product controller: getOne--%>
+                            <div style="display: flex;justify-content: center;margin-top: 20px;">
                                 <button class="btn btn-default small34" onclick="closePopup();"><span>확인</span></button>
+                            </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="myNoti">
                             </div>
