@@ -6,8 +6,9 @@
 			<h2 class="hiding">푸터메뉴</h2>
 			<div class="short-menu">
 				<ul>
-					<li><a href="http://www.ehyundai.com/newPortal/ir/main.do" target="_blank">펀띵그룹</a></li>
-					<li><a href="http://www.ehyundai.com/newPortal/index.jsp" target="_blank">펀띵소개</a></li>
+					<li><a href="http://www.ehyundai.com/newPortal/ir/main.do" target="_blank">펀-띵</a></li>
+					<li><a href="http://www.ehyundai.com/newPortal/index.jsp" target="_blank">즐거윤쇼핑</a></li>
+					<li><a href="https://company.hyundaihmall.com/" target="_blank">팀킴과함께</a></li>
 					<li><a href="https://company.hyundaihmall.com/html/company/company_ethics-2.html" target="_blank">윤리경영</a></li>
 					<li><a href="https://company.hyundaihmall.com/html/investment/investment_stock.html" target="_blank">IR</a></li>
 					<li><a href="https://recruit.ehyundai.com/index.nhd" target="_blank">채용안내</a></li>
@@ -61,47 +62,10 @@
 	<!-- // .link-area -->
 
 	<div class="footer-contents">
+		<div class="footer-logo"><img src="/resources/img/logo.png" alt="HYUNDAI">
 		</div>
 		<div class="info-area">
-			<div class="policy-link-list">
-				<ul>
-					<li><a href="/p/cod/shmlTcnd.do">이용약관</a></li>
-					<li><a href="/p/cod/psnHndl.do"><strong>개인정보 처리방침</strong></a></li>
-					<li><a href="http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=2118676540" target="_blank">사업자정보확인</a></li>
-					<li><a href="https://company.hyundaihmall.com/html/company/company_ethics-1.html" target="_blank">공정거래 자율준수</a></li>
-					<li><a href="/p/cod/psnHdhsInnerCntrl.do">보험대리점 내부통제기준</a></li>
-				</ul>
-			</div>
-			<!-- // .policy-link-list -->
-
-			<!-- on 클래스 추가 시 노출 -->
 			<div class="footer-info">
-				<button class="btn-footer" data-modules-customtoggle="parent:.footer-info;activeClass:on;"><strong>(주)FUN-THING</strong></button>
-				<div class="footer-info-box">
-					<div class="hmall-info">
-						<div class="list-contents">
-							<p><span>대표이사 : 임대규</span><span>주소 : 서울특별시 강동구 올림픽로70길 34 (주)현대홈쇼핑</span></p>
-							<p><span>고객센터 TEL : 1600-0000(유료)</span><span>고객만족사업부 FAX : 02-2143-2731</span></p>
-							<p><span>기타문의 : <a
-									href="mailto:webmaster@hmall.com">webmaster@hmall.com</a></span><span>사업자등록번호
-                                        : 211-86-76540</span></p>
-							<p><span>통신판매업 신고 : 제 25-3133호</span><span>부가통신 신고번호 : 3787</span></p>
-							<p><span>정보보호최고책임자 : 정보보호담당 오권호</span><span>청소년보호책임자 : Hmall사업부 홍성일</span></p>
-							<p><span>호스팅서비스 : (주)현대홈쇼핑</span></p>
-						</div>
-					</div>
-					<!-- // .hamall-info -->
-
-					<div class="service-info-wrap">
-						<p class="safe-info">우리은행 구매안전 서비스 <a href="#" onclick="window.open('https://www.hmall.com/static/html/popup/2013/11/woori_escrow.html','','left=300,top=150,scrollbars=yes,resizable=no,width=558,height=580'); return false;" target="_blank">가입사실 확인</a> 고객님은 안전거래를 위해 현금
-							결제 시 저희
-							쇼핑몰에서 가입한 우리은행의 구매안전 서비스를 이용하실 수 있습니다.</p>
-						<div class="cs-link">
-							<a href="/p/cod/hdhsArs.do">ARS안내</a>
-							<a href="/p/ccc/faqList.do?faqLCsfNo=&ancmCntn=카카오톡&sort=false&faqMCsfNo=" onclick="javascript:bizSpringTag('','^푸터^카톡주문안내');" name="shopGuide">카톡주문안내</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
