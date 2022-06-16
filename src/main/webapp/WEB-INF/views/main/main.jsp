@@ -565,7 +565,7 @@
                                             <div style="justify-content: space-between; display: flex">
                                                 <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/> %</p>
                                                 <fmt:formatDate var="itDate" value="${bestFund[0].fund_product_end_date}" pattern="yyyyMMdd" />
-                                                <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D -${itDate-now}</p>
+                                                <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D-${itDate-now}</p>
                                             </div>
                                         </figcaption>
                                         </a>
