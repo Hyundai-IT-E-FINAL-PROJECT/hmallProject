@@ -670,7 +670,7 @@
                     var ps = pp.SELL_COUNT;
                     var pi = pp.EXHIBIT_IMAGE;
                     var pd = date;
-                    var point = (pp.PRODUCT_COST * 0.05).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                    var point = (Math.round(pp.PRODUCT_COST * 0.05).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
                     if (pb === 'EURO') {
                         $(".eu ul ").append(
                             `
