@@ -23,6 +23,8 @@
                 <img src="${contextPath}/resources/img/mainBanner.png" style="width: 100%;">
                 <!--homeshoping-wrap-->
                 <div class="homeshoping-wrap">
+                    <jsp:useBean id="today" class="java.util.Date" />
+                    <fmt:formatDate var="now" value="${today}" pattern="yyyyMMdd"/>
                     <script type="text/javascript">
                         $(document).ready(function () {
                             jjimList();
@@ -547,7 +549,7 @@
                     <div class="home-section theme-pd">
                         <!--8개로 운영, 8개 한번에 노출 // 어드민에 별도 url 입력된 경우 해당url로 이동, 그렇지 않을 시 기본기획전 url로 이동-->
                         <ul class="theme-list">
-<%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
+
                                 <li>
                                     <figure>
                                         <a onclick="location.href='${contextPath}/fund/detail/${bestFund[0].fund_product_seq}'";
@@ -563,7 +565,8 @@
                                             </div>
                                             <p class="tit" style="margin-bottom: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bestFund[0].fund_product_pr_cost}"/>원 펀딩</p>
                                             <div style="justify-content: space-between; display: flex">
-                                                <p class="tit" style="color:#002fa3;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/> %</p>
+                                                <p class="tit" style="color:#002fa3;">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${(bestFund[0].fund_product_pr_cost/bestFund[0].fund_product_goal_cost)*100}"/> %</p>
                                                 <fmt:formatDate var="itDate" value="${bestFund[0].fund_product_end_date}" pattern="yyyyMMdd" />
                                                 <p class="tit" style="font-size: 15px; color: gray; margin-left: 120px;" >D-${itDate-now}</p>
                                             </div>
@@ -678,6 +681,7 @@
                     <div class="home-section theme-pd">
                         <!--8개로 운영, 8개 한번에 노출 // 어드민에 별도 url 입력된 경우 해당url로 이동, 그렇지 않을 시 기본기획전 url로 이동-->
                         <ul class="theme-list">
+
                             <%--                            <c:forEach items="${bestFund}" var="bestFund" varStatus="status">--%>
                             <li>
                                 <figure>
