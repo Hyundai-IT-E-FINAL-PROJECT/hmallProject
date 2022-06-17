@@ -11,7 +11,7 @@ public interface OrderMapper {
     //int insert(@Param("OrderVO") OrderVO orderVO) throws Exception;
     int insert(OrderVO orderVO) throws Exception;
 
-
+    void setReply(Long order_seq);
 
     OrderVO readOne(Long seq);
 

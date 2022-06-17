@@ -88,4 +88,11 @@ public class OrderServiceImpl implements OrderService {
     public void orderCancel(long order_seq, long no) throws Exception {
         orderMapper.orderCancel(order_seq, no);
     }
+
+    @Override
+    public void setReply(Long order_seq) {
+        orderMapper.setReply(order_seq);
+    }
+
+
 }

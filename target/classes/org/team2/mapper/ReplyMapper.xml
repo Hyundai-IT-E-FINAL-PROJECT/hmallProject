@@ -3,12 +3,17 @@
 <mapper namespace="org.team2.mapper.ReplyMapper">
 
     <select id="getReplyByProductSeq" resultType="map">
-        SELECT
-            *
-        FROM
-            tbl_reply
-        WHERE
-            product_seq = ${product_seq}
+        SELECT reply_seq,
+               reply_post,
+               reply_satis,
+               reply_count,
+               (select user_id from tbl_user where user_seq = r.user_seq) user_id,
+               product_seq,
+               created_at,
+               updated_at,
+               reply_package
+        FROM tbl_reply r
+        WHERE product_seq = 349
         order by created_at desc
     </select>
 

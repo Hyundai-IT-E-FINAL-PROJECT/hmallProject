@@ -181,7 +181,7 @@
                                     <a onclick="paging(this, ${pageMaker.realEnd})"
                                        class="page-last" aria-label="마지막페이지 이동"><i class="icon"></i><span class="hiding">마지막페이지 이동</span></a>
                                 </c:if>
-                          git   </div>
+                             </div>
 
                             <input id="ajaxSearchCnt" type="hidden" value="(45,670)">
                         </div>

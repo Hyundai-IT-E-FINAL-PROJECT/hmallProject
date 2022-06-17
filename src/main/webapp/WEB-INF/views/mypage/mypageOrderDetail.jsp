@@ -45,7 +45,9 @@
                                     <c:if test="${list.ORDER_STATUS eq '상품발송' or list.ORDER_STATUS eq '배송완료'}">
                                         <button class="btn btn-linelgray small30" type="button" onclick=""><span>배송조회</span></button>
                                         <%--                                    openDlvTrcUrlPup('20220513295854', '1')--%>
-                                        <button class="btn btn-linelgray small30" type="button" onclick=""><span>만족도평가</span></button>
+                                        <c:if test="${list.ORDER_REPLY eq '0'}">
+                                            <button class="btn btn-linelgray small30" type="button" onclick="location.href='/reply/' + ${list.PRODUCT_SEQ} + '/' + ${list.ORDER_SEQ}"><span>만족도평가</span></button>
+                                        </c:if>
                                         <%--                                    openItemEvalPopup('2137807436', '00008', '20220513295854')--%>
                                     </c:if>
                                 </div>

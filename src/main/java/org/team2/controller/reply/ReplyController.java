@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.team2.domain.*;
+import org.team2.service.OrderService;
 import org.team2.service.ProductService;
 import org.team2.service.ReplyService;
 
@@ -24,14 +25,18 @@ public class ReplyController {
     @Setter(onMethod_ = @Autowired)
     private ProductService productService;
 
-    @GetMapping(value = "/{product_seq}")
+    @Setter(onMethod_ = @Autowired)
+    private OrderService orderService;
+
+    @GetMapping(value = "/{product_seq}/{order_seq}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView getReplyForm(@PathVariable("product_seq") Long product_seq){
+    public ModelAndView getReplyForm(@PathVariable("product_seq") Long product_seq, @PathVariable("order_seq") Long order_seq){
         log.info("product controller reply form start!!");
         ProductVO productVO = productService.getOne(product_seq);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("productVO", productVO);
+        mav.addObject("order_seq", order_seq);
         mav.setViewName("reply.replyForm");
 
         return mav;
@@ -40,6 +45,7 @@ public class ReplyController {
     public ResponseEntity insertReply(@RequestBody ReplyOptionVO replyOptionVO) {
         log.info(replyOptionVO);
         replyService.insertReply(replyOptionVO.getProduct_seq(), replyOptionVO.getUser_seq(), replyOptionVO.getReply_package().replace("\"", "'"), replyOptionVO.getReply_post().replace("\"", "'"), replyOptionVO.getReply_satis().replace("\"", "'"), replyOptionVO.getStar());
+        orderService.setReply(replyOptionVO.getOrder_seq());
         return new ResponseEntity(HttpStatus.OK);
     }
 

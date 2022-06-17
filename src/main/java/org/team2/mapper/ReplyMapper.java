@@ -18,4 +18,6 @@ public interface ReplyMapper {
     List<Map<String, String>> getBySatis(Long product_seq);
 
     Long getStar(Long product_seq);
+
+    void setReply(Long order_seq);
 }

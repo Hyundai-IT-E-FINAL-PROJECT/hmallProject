@@ -139,7 +139,7 @@ public class MypageController {
                Long total = Long.valueOf(String.valueOf(mapOrder.get("total")));
                log.info(mapOrder);
 
-               Criteria cri = new Criteria(page_num, 30L);
+               Criteria cri = new Criteria(page_num, 15L);
                PageVO pageMaker = new PageVO(cri, total);
                log.info(pageMaker);
                log.info(mapStatus.get("resultList"));

@@ -215,6 +215,7 @@
 
                             let user_seq = ${pinfo.userVO.no};
                             let product_seq = ${productVO.product_seq};
+                            let order_seq = ${order_seq};
                             let reply_package = $("#hdnItemEvalScrg1").val();
                             let reply_post = $("#hdnItemEvalScrg2").val();
                             let reply_satis = $("#hdnItemEvalScrg3").val();
@@ -226,6 +227,7 @@
                                 data		:  JSON.stringify({
                                                     user_seq: user_seq,
                                                     product_seq: product_seq,
+                                                    order_seq: order_seq,
                                                     reply_package: reply_package,
                                                     reply_post: reply_post,
                                                     reply_satis: reply_satis,

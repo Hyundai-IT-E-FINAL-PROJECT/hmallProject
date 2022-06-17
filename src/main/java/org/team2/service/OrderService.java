@@ -32,4 +32,6 @@ public interface OrderService {
     void depositUse(DepositVO depositVO) throws Exception;
 
     void orderCancel(long order_seq, long no) throws Exception;
+
+    void setReply(Long order_seq);
 }

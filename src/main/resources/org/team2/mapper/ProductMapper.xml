@@ -157,7 +157,7 @@
             )
         </if>
         <if test="page_num != null">
-            <![CDATA[and ROWNUM <= ${page_num} * 30]]>
+            <![CDATA[and ROWNUM <= ${page_num} * 15]]>
         </if>
         <if test="second_category != null">
             AND s.category_seq = ${second_category}
@@ -186,7 +186,7 @@
         <if test="page_num != null">
             <![CDATA[WHERE
                   rn
-                  > ( ${page_num} - 1 ) * 30]]>
+                  > ( ${page_num} - 1 ) * 15]]>
         </if>
     </select>
 

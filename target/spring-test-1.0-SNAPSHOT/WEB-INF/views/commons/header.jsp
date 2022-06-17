@@ -108,7 +108,7 @@
         <!-- // 개인화 메뉴 -->
     </div>
     <div class="header-menu-wrap">
-        <div class="header-menu-in">
+        <div class="header-menu-in" style="height: -webkit-fill-available;">
             <!-- 카테고리 메뉴 -->
             <div class="category-area" id="categoryArea">
                 <a href="javascript:;" class="btn-category">카테고리</a>

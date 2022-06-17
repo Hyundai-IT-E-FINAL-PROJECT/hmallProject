@@ -45,6 +45,10 @@
 
     </select>
 
+    <update id="setReply">
+        UPDATE tbl_order SET order_reply = '1' where order_seq = ${order_seq}
+    </update>
+
 <!--    op_seq값 반환-->
 <!--    <insert id="insert" parameterType="org.team2.domain.OrderVO">-->
 

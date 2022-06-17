@@ -467,10 +467,10 @@
                                         <a href="#none" onclick="gotoPageLink(2);return false;" class="gp_className"
                                            ga-category="상품상세" ga-action="별점" ga-label="">
                                             <div class="grade">
-                                                <div class="starbg pt9">
+                                                <div class="starbg pt${star * 2}">
                                                     <p class="score"><span class="hiding">90점</span></p>
                                                 </div>
-                                                <p class="like-count"><em>4.4</em>(${pageMaker.total})</p>
+                                                <p class="like-count"><em>${star}</em>(${pageMaker.total})</p>
                                             </div>
                                         </a>
                                         <script type="text/javascript">
@@ -2387,20 +2387,7 @@
 
                                     <div class="content-area">
                                         <div class="tit-wrap review satisfaction">
-
-                                            <sec:authorize access="isAuthenticated()">
-                                                <button ga-category="상품상세" ga-action="만족도" ga-label="만족도 평가"
-                                                        class="btn btn-lineblack small itemEvalRegBtn gp_className" onclick="javascript:review();"><span><i
-                                                        class="icon review"></i>만족도 평가</span></button>
-                                            </sec:authorize>
                                             <input type="hidden" value="2122712699">
-                                            <script>
-                                                function review() {
-                                                    console.log("aa")
-                                                    window.location.href = '/reply/' + ${productVO.product_seq}
-                                                }
-                                            </script>
-
                                         </div>
 
                                         <!-- 상품평 딜/옵션 combobox -->
@@ -2486,7 +2473,7 @@
                                                             <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
                                                             <p class="rate-tit">배송상태</p>
                                                             <div class="part">
-                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <p class="data"><span>빨라요</span></p>
                                                                 <div class="gauge-box">
                                                                     <p class="gauge-bar">
                                                                         <span class="gauge" style="width:${(postVO.good / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
@@ -2504,7 +2491,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="part">
-                                                                <p class="data"><span>별로예요</span></p>
+                                                                <p class="data"><span>느려요</span></p>
                                                                 <div class="gauge-box">
                                                                     <p class="gauge-bar">
                                                                         <span class="gauge" style="width:${(postVO.bad / (postVO.good + postVO.normal + postVO.bad)) * 100}%;"></span>
@@ -2519,7 +2506,7 @@
                                                             <!--20200909 수요일 pc레이아웃 공통 rate-item 추가-->
                                                             <p class="rate-tit">제품상태</p>
                                                             <div class="part">
-                                                                <p class="data"><span>꼼꼼해요</span></p>
+                                                                <p class="data"><span>만족해요</span></p>
                                                                 <div class="gauge-box">
                                                                     <p class="gauge-bar">
                                                                         <span class="gauge" style="width:${(satisVO.good / (satisVO.good + satisVO.normal + satisVO.bad)) * 100}%;"></span>
@@ -2558,7 +2545,7 @@
                                             </div>
                                         </c:if>
 
-                                        <c:if test="${! (packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0)}">
+                                        <c:if test="${packageVO.good != 0 or packageVO.normal != 0 or packageVO.bad != 0}">
                                             <div class="content-area txt-review" id="reviewContentArea">
 
                                                 <h3>고객만족도 <em class="total-num">${pageMaker.total}</em>건</h3>
@@ -2570,7 +2557,7 @@
                                                                     <div class="starbg pt${2 * ReplyVO.REPLY_COUNT}">
                                                                         <p class="score"><span class="hiding">100점</span></p>
                                                                     </div>
-                                                                    <span class="nick">${ReplyVO.USER_SEQ}</span>
+                                                                    <span class="nick">${ReplyVO.USER_ID}</span>
 
                                                                 </div>
                                                                 <div class="top-right">
@@ -2586,11 +2573,6 @@
                                                             <div class="review-content">
                                                                 <ul class="user-rate">
 
-                                                                    <li>
-                                                                        <strong>만족도</strong>
-                                                                        <span>${ReplyVO.REPLY_SATIS}</span>
-                                                                    </li>
-
 
                                                                     <li>
                                                                         <strong>포장상태</strong>
@@ -2601,6 +2583,11 @@
                                                                     <li>
                                                                         <strong>배송상태</strong>
                                                                         <span>${ReplyVO.REPLY_POST}</span>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <strong>제품상태</strong>
+                                                                        <span>${ReplyVO.REPLY_SATIS}</span>
                                                                     </li>
 
 

@@ -108,26 +108,9 @@ public class ProductController {
     @RequestMapping("/detail")
     public ModelAndView detail(@RequestParam Long product_seq, @RequestParam Long page_num){
         log.info("product controller detail start!!");
-
-//        AtomicInteger package_total = new AtomicInteger(0);
-//        AtomicInteger package_good = new AtomicInteger(0);
-//        AtomicInteger package_normal = new AtomicInteger(0);
-//        AtomicInteger package_bad = new AtomicInteger(0);
-//
-//        AtomicInteger post_total = new AtomicInteger(0);
-//        AtomicInteger post_good = new AtomicInteger(0);
-//        AtomicInteger post_normal = new AtomicInteger(0);
-//        AtomicInteger post_bad = new AtomicInteger(0);
-//
-//        AtomicInteger satis_total = new AtomicInteger(0);
-//        AtomicInteger satis_good = new AtomicInteger(0);
-//        AtomicInteger satis_normal = new AtomicInteger(0);
-//        AtomicInteger satis_bad = new AtomicInteger(0);
-
         PostVO postVO = new PostVO();
         PackageVO packageVO = new PackageVO();
         SatisVO satisVO = new SatisVO();
-
 
         ProductVO productVO = productService.getOne(product_seq);
         List<ImageVO> allByProductSeq = imageService.getAllByProductSeq(product_seq);
@@ -297,7 +280,7 @@ public class ProductController {
         List<CategoryVO> subCategoryList = categoryService.getSubCategoryList(first_category);
         subCategoryList.add(0, categoryVO_all);
 
-        Criteria cri = new Criteria(page_num, 30L);
+        Criteria cri = new Criteria(page_num, 15L);
         PageVO pageMaker = new PageVO(cri, total);
 
         mav.setViewName("search.all");
