@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team2.mapper.OrderMapper">
+    <select id="readOne" resultType="org.team2.domain.OrderVO">
+        select * from tbl_order where order_seq=#{seq}
+    </select>
+
+
+    <update id="updateOrder">
+        update tbl_order
+        set order_point=#{point},
+            order_status=#{status},
+            order_user_number=#{userNumber},
+            order_delivery=#{delivery},
+            order_invoice=#{invoice},
+            updated_at=sysdate
+        where order_seq=#{seq}
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_order where order_seq=#{seq}
+    </delete>
+
+    <select id="packageSelect">
+        declare p_cursor sys_refcursor;
+            order_rec tbl_order%rowtype;
+                    begin
+            pack_order.proc_order_select_all(p_cursor);
+            loop
+                    fetch p_cursor into order_rec;
+              exit when p_cursor%notfound;
+                    end loop;
+                    close p_cursor;
+                    end;
+
+    </select>
+
+<!--    op_seq값 반환-->
+<!--    <insert id="insert" parameterType="org.team2.domain.OrderVO">-->
+
+<!--        <selectKey keyProperty="order_seq" order="BEFORE" resultType="int">-->
+<!--            SELECT seq_order.nextval from dual-->
+<!--        </selectKey>-->
+
+<!--        INSERT INTO tbl_order(-->
+<!--            order_seq,-->
+<!--            user_seq,-->
+<!--            order_point,-->
+<!--            order_status,-->
+<!--            order_user_name,-->
+<!--            order_user_number,-->
+<!--            order_delivery,-->
+<!--            order_invoice,-->
+<!--            order_total_cost,-->
+<!--            order_message,-->
+<!--            created_at,-->
+<!--            updated_at-->
+<!--        ) values(-->
+<!--            #{order_seq},-->
+<!--            #{user_seq},-->
+<!--            #{point},-->
+<!--            #{status},-->
+<!--            #{userName},-->
+<!--            #{userNumber},-->
+<!--            #{delivery},-->
+<!--            #{invoice},-->
+<!--            #{totalCost},-->
+<!--            #{message},-->
+<!--            sysdate,-->
+<!--            sysdate-->
+<!--&#45;&#45;             #{order_seq},-->
+<!--&#45;&#45;             #{OrderVO.user_seq},-->
+<!--&#45;&#45;             #{OrderVO.point},-->
+<!--&#45;&#45;             #{OrderVO.status},-->
+<!--&#45;&#45;             #{OrderVO.userName},-->
+<!--&#45;&#45;             #{OrderVO.userNumber},-->
+<!--&#45;&#45;             #{OrderVO.delivery},-->
+<!--&#45;&#45;             #{OrderVO.invoice},-->
+<!--&#45;&#45;             #{OrderVO.totalCost},-->
+<!--&#45;&#45;             #{OrderVO.message},-->
+<!--&#45;&#45;             sysdate,-->
+<!--&#45;&#45;             sysdate-->
+<!--        )-->
+
+
+<!--    </insert>-->
+
+    <insert id="insert">
+
+        <selectKey keyProperty="no" resultType="long" order="BEFORE">
+            select seq_order.nextval from dual
+        </selectKey>
+
+        INSERT INTO tbl_order(
+            order_seq,
+            user_seq,
+            order_point,
+            order_status,
+            order_user_name,
+            order_user_number,
+            order_delivery,
+            order_invoice,
+            order_total_cost,
+            order_message,
+            order_method,
+            order_receive_name,
+            created_at,
+            updated_at
+        ) values(
+            #{no},
+            #{user_seq},
+            #{point},
+            #{status},
+            #{userName},
+            #{userNumber},
+            #{delivery},
+            #{invoice},
+            #{totalCost},
+            #{message},
+            #{order_method},
+            #{receiveName},
+            sysdate,
+            sysdate
+        )
+
+    </insert>
+
+    <insert id="insertOp">
+        <selectKey keyProperty="op_seq" resultType="int" order="BEFORE">
+            select seq_op.nextval from dual
+        </selectKey>
+        insert into tbl_op(op_seq,order_seq, product_seq, op_count)
+        values(#{op_seq}, #{order_seq}, #{product_seq}, #{op_count})
+    </insert>
+
+
+    <update id="userPointUpdate">
+        /*적립금, 예치금 업데이트*/
+        update tbl_user
+        set user_point=user_point+#{user_point},
+            user_deposit=user_deposit-#{user_deposit}
+            where user_seq=#{no}
+    </update>
+
+    <update id="productSellUpdate">
+--         상품 판매시 sell count 증가
+        update tbl_product
+        set sell_count=sell_count+#{sell_count}
+        where product_seq=#{product_seq}
+    </update>
+
+    <delete id="deleteUseCoupon">
+        delete from tbl_cu where coupon_seq=#{coupon_seq} and user_seq=#{user_seq}
+    </delete>
+
+    <select id="justanOrderSelect" resultType="map">
+-- 방금 주문한 주문내역 보여주기
+        select *
+        from tbl_order, tbl_op, tbl_product
+        where tbl_order.order_seq=#{order_seq}
+          and tbl_op.order_seq=tbl_order.order_seq
+          and tbl_op.product_seq=tbl_product.product_seq
+    </select>
+
+
+    <delete id="delete" statementType="CALLABLE">
+        {
+            call pack_order.proc_order_delete(#{order_seq})
+        }
+    </delete>
+
+    <resultMap id="orderMap" type="org.team2.domain.OrderVO">
+        <result property="order_seq" column="order_seq" />
+    </resultMap>
+
+</mapper>

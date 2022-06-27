@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition template="/WEB-INF/views/commons/layout.jsp" name="default">
+        <put-attribute name="title" value="FunThing! with TeamKim"/>
+        <put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+    </definition>
+
+    <definition name="*.*" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="*" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/{1}.jsp"/>
+    </definition>
+
+    <definition name="empty" template="/WEB-INF/views/commons/empty.jsp">
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <definition name="layerPup/*.empty" extends="empty">
+        <put-attribute name="content" value="/WEB-INF/views/layerPup/{1}.jsp" />
+    </definition>
+
+    <definition name="error/*.empty" extends="empty">
+        <put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp" />
+    </definition>
+</tiles-definitions>
